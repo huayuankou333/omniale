@@ -1,8 +1,17 @@
 import fs from 'node:fs/promises';
-import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 import assert from 'node:assert/strict';
-import {evaluate} from './case1_review_v2/pipeline/evaluate.mjs';
+import {fileURLToPath} from 'node:url';
+import {evaluate,referenceState} from './pipeline/evaluate.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const report=JSON.parse(await fs.readFile(path.join(root,'data/report.json'),'utf8'));
-for(const m of report.models){const state=JSON.parse(await fs.readFile(path.join(root,'data',m.id,'final-state.json'),'utf8'));const result=await evaluate(state);assert.equal(result.score,m.score);console.log(JSON.stringify({model:m.label,score:result.score,success:result.success,source:m.provenance}));}
+const read=async p=>JSON.parse(await fs.readFile(path.join(root,p),'utf8'));
+const report=await read('data/report.json');
+assert.equal((await evaluate(await referenceState())).score,100);
+const results=[];
+for(const a of report.attempts){
+ const original=await read(`${a.path}/evaluation.json`),state=await read(`${a.path}/state.json`),rescored=await evaluate(state);
+ assert.equal(rescored.score,a.valid?original.score:original.diagnostic_partial_state_score);
+ assert.deepEqual(rescored.section_scores,original.section_scores);
+ results.push({model:a.model,path:a.path,valid:a.valid,official_score:a.valid?rescored.score:null});
+}
+console.log(JSON.stringify({pass:true,reference_score:100,attempts:results,note:'Infrastructure-error state diagnostics remain excluded from model scores.'},null,2));

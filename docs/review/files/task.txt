@@ -1,38 +1,96 @@
-# Review Desk — delivery conform and technical handoff
+# Review Desk v4 — conform, dependencies and release handoff
 
-Apply the authorized final decisions from the review recording to the persisted ticket system.
-This is a controlled synthetic professional workflow, not a real client meeting.
-The app works; your deliverable is business state, not source repairs or edited footage.
+Apply the authorized final decisions in the meeting to the persistent ticket system.
+Deliver business state, not a meeting summary, edited media, or source-code repairs.
+This is a synthetic development case, not a recording of a real client meeting.
 
-## Production SOP
+## Authority and interpretation
 
-- NORA is the approving producer. JAY is an assistant: his proposals are not authorized unless
-  NORA explicitly adopts them. The active speaker is identified visually in the recording.
-- Both players can contain valid media. The yellow ON AIR border identifies what was just played.
-  Blue keyboard/bin focus may move to the other player during the spoken comment.
-  "This shot", "this export", and "the shot I just played" refer to ON AIR playback, not keyboard focus.
-- Picture notes (subtitle/crop/endcard) that say delivery/current cut must be conformed to the
-  catalog's `release` version by matching the pictured shot in that export.
-  The shots were reordered and retimed: old source intervals are NOT transferable.
-  Use the entire matching shot, excluding black/slate leader and tail, in source-relative seconds.
-- Technical audio findings apply to the exact export auditioned, over its entire technical-slate shot;
-  do not migrate them to the release version. A clean export requires no new ticket.
-- Subtitles go to editorial; crop/framing goes to editorial; ready contact/endcard graphics go to design.
-  Contact/endcard work awaiting legal/brand approval goes to production and is blocked.
-  Picture tasks are p2/open unless the producer says otherwise; urgent release work is p1.
-  A framing hold stays with editorial, blocked. Audio faults are audio/p1/open unless placed on hold.
-- Technical slate convention: the visual L lamp then R lamp should coincide with a short tone in
-  the matching ear. A delay exceeding 0.15s is `av_sync`; wrong ear is `channel_swap`.
-  Interrupted speech while the music continues is `audio_gap`. Do not confuse music with dialogue,
-  legitimate percussion with a fault, or a preliminary ticket diagnosis with verified evidence.
-- Keep original ticket IDs when explicitly updating old records. A withdrawn diagnosis is dismissed,
-  not deleted; a different actual diagnosis gets its own ticket. Preserve unmentioned history.
-- Later authorized decisions supersede earlier ones only within their stated scope.
+* NORA approves picture changes, scheduling, picture ownership and urgency.
+* MAYA controls legal/brand clearance. Her outstanding veto blocks the affected contact work
+  even if NORA previously said ready. Only MAYA can release that veto. A conditional clearance
+  takes effect only if its stated condition is satisfied by the actual delivery media.
+* ELI controls technical diagnoses, technical holds and technical closure. A producer schedule
+  cannot resolve an audio defect. Diagnose the export from audiovisual evidence, not speculation.
+* JAY proposes changes but cannot authorize them. His proposal counts only if the relevant
+  authorized specialist explicitly adopts it. There is no universal "last speaker wins" rule.
+* Later authorized decisions supersede earlier ones only for the stated subject and scope.
+  Resolve shorthand using the speaker, playback, take identity and earlier discussion together.
+* Two players are visible. Yellow ON AIR is the reviewed playback. Blue keyboard focus can
+  move to the other pane during speech. It does not change the subject of the comment.
+* Brief legal receipts and technical handoff cards are ordinary meeting evidence, not subtitles.
+  They can corroborate a remote speaker when their connection is degraded. Other voices can overlap.
 
-## Available tools
+## Source and interval rules
 
-Read the catalog/state, inspect the review recording or source exports, measure their audio, and
-apply atomic transactions. Continuous contact sheets and source inspection are available;
-you do not have to rely on the initial sampled frames. Independent ASR may contain errors.
-Available issue types include subtitle/crop/logo/endcard/title/color/click/audio_gap/av_sync/channel_swap.
-Use public_check for schema integrity, then finish. A prose summary is not a completed handoff.
+* The catalog's `release` is the final pinned delivery. The later authorized conform handoff
+  supersedes historical delivery banners only for its stated scope. Picture notes must be matched
+  visually from the reviewed export into the old delivery, then through the editorial events
+  in `conform.json` into the final delivery. A numerically newer version alone is not authorization.
+* The conform file is production edit metadata, not an issue list. Each event linearly maps
+  `[source_in, source_out)` to `[delivery_in, delivery_out)`. Intersect the approved source interval
+  with each event before mapping. Preserve partial-shot scope and speed changes. Separate
+  nonadjacent intervals into separate tickets. Original first/later take names retain their old order.
+* Each version has its own `version_durations` value. Keep technical work on the specifically
+  auditioned export unless an authorized technical instruction changes that scope.
+* Similar takes differ in sail color, gallery layout, DAY/NIGHT label and address.
+  A red insert can occur twice, separated by other content. An instruction covering both means
+  two separate full-shot intervals; never span the intervening content with one ticket.
+* Use the whole matching shot unless an authorized instruction explicitly says otherwise.
+  Use source-relative seconds, excluding leader/tail. Do not infer timing from meeting time.
+* Technical findings belong to the exact auditioned export and the whole FIRST calibration slate
+  shot. A later SECOND calibration slate is a clean control with the same spoken phrase.
+  Its different shot position is not a defect. A clean export needs no technical ticket.
+* Visual L then R lamps should coincide with a short tone in the matching ear. Delay >0.15s
+  is `av_sync`; the wrong ear is `channel_swap`; interrupted dialogue with music continuing is
+  `audio_gap`. Independent faults can coexist and require separate tickets, even at identical ranges.
+  Legitimate low percussion and degraded meeting speech are not source-export defects.
+
+## Workflow
+
+* subtitle/crop -> editorial; title and ready endcard/contact graphics -> design;
+  contact work awaiting legal/brand approval -> production, blocked.
+* Picture defaults: open/p2. Urgent is p1, explicitly deferred low priority is p3.
+  Composition hold: editorial/blocked. Scheduling hold on legally cleared graphics:
+  design/blocked. Do not confuse these with legal holds.
+* Technical defaults: audio/p1/open. ELI may place a scoped hold; preserve ownership and urgency.
+* Reuse the ID of an existing ticket for the same work when instructed. Update only the fields
+  authorized to change. Withdrawing a wrong diagnosis means dismissing it, not deleting it
+  or overwriting its issue type. Create a separate ticket for a distinct verified diagnosis.
+* Preserve all unmentioned records and their notes. No blanket closure or copy to lookalikes.
+* Transactions accept at most 30 operations; split larger handoffs. Distinct batches need distinct
+  request IDs. Identical retries are idempotent. Read back state and verify schema before finishing.
+
+## Dependencies and release operations
+
+* `depends_on` stores direct predecessor ticket IDs. Store the stated edges only; transitive
+  predecessors are discovered by the release system. Do not change an authorized task status
+  merely because it has a blocked prerequisite.
+* A split bundle is retained as dismissed with `superseded_by` listing all retained/new child IDs;
+  each child has `split_from` pointing back. A duplicate is dismissed with `duplicate_of` pointing
+  to the retained canonical ticket. Preserve historical fields and notes when the handoff says so.
+* Create records before referring to their server-issued IDs. Ticket receipts list changed IDs
+  in operation order and the new global revision. All references must exist; cycles are rejected.
+* `update_releases` changes existing plans using the current `expected_revision`. Each operation
+  supplies `version`, `required_ticket_ids`, `status`, and `blocker_ticket_ids`. Required IDs are
+  the channel's direct roots, not a flattened list of all their dependencies.
+* Traverse each root and all transitive `depends_on` edges. Any blocked ticket means `hold`;
+  otherwise any open ticket means `queued`; otherwise `ready`. Blocker IDs include every blocked
+  ticket in this closure. Approval to do work does not mean that work is completed.
+* Save ticket operations before release updates. Keep unrelated archive releases unchanged.
+  A rejected transaction changes nothing; read the live revision when resolving a conflict.
+  `public_check` reports schema/graph/gate consistency, never whether the chosen work is correct.
+
+## Evidence tools
+
+Initial visual observations describe sparse frames, not full evidence. Request detailed meeting/source contact
+sheets and audio measurements when needed. Every candidate uses the same fixed visual observer;
+it returns fallible timestamped observations and readable text, not approved decisions.
+No candidate directly receives images on this comparison route. ASR is independent and may omit negatives or names.
+`transcribe_review` re-decodes a selected meeting interval with optional channel selection;
+`transcribe_source` and `measure_audio` operate on exact source exports. They supply observations,
+not approved decisions or correctness feedback. No tool returns private scoring truth.
+
+You have 15 main-model request turns; each turn may contain multiple tool calls. Finish by persisting and verifying both tickets and release plans. Shared perception API requests are separately metered.
+
+The common evaluation route is a text-only decision agent + shared visual observations + independent ASR + signal tools, not native Omni.

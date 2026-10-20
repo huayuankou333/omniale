@@ -1,0 +1,19 @@
+{
+  "amended_at": "2026-10-20T13:37:54.346146+00:00",
+  "original_policy": "At most one fresh rerun after infrastructure failure.",
+  "amended_policy": "At most two fresh reruns after infrastructure failure, for all candidates. First valid trial is retained; never rerun a valid trial for score selection.",
+  "reason": "GLM first attempt failed in main-model transport, second in independent shared visual service. Allow one additional recovery attempt without altering frozen task, tools, scorer, reasoning or logical budgets.",
+  "known_valid_scores_at_amendment": {
+    "gpt-6-luna": 59.88
+  },
+  "all_attempts_disclosed": true,
+  "frozen_files_changed": false,
+  "executor_incident": {
+    "recorded_at": "2026-10-20T13:46:37.624751+00:00",
+    "affected_attempt": "case1_review_v4-glm-5.3-full-shared_tools-2026-10-20T13-38-01-980Z",
+    "error": "gateway_concurrency_limit",
+    "cause": "Recovery processes overlapped the suite; gateway rejected concurrent usage. This is an execution infrastructure incident, not model behavior.",
+    "correction": "After currently running trials finish, replace the affected GLM attempt once in serial. Keep it published as invalid; no valid model trial is replaced.",
+    "additional_serial_replacement": 1
+  }
+}

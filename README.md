@@ -1,55 +1,30 @@
-# OmniALE · D1 Review Desk
+# OmniALE · D1 Review Desk v4
 
-静态案例站点：**https://huayuankou333.github.io/omniale/review/**
+公开展示：https://huayuankou333.github.io/omniale/review/
 
-站点首页：https://huayuankou333.github.io/omniale/
+新版加入时间对齐、工单依赖和发布计划联动；四模型共用视觉、ASR与PCM工具，主模型预算统一为15轮。成绩从实际终态确定性计算，接口故障单独保留为N/A。
 
-## 发布方式
+## GitHub Pages
 
-GitHub Pages 设置为 **Deploy from a branch → main → /docs**。
-更新 `docs/` 并推送到 `main` 后，由 GitHub 自动构建和发布。不需要额外服务器、第三方部署服务或前端构建。
+仓库 `main` 分支的 `/docs` 目录自动发布。无需前端编译或额外服务器。
 
-目录：
+- `docs/review/`：v4任务定义、四模型结果、逐项评分、轨迹、失败分析。
+- `docs/review/data/`：报告和所有实际尝试的原始证据。
+- `docs/review/media/`：会议、源视频、源音轨和初始抽帧。
+- `docs/review/files/`：规范、编辑事件表、评前冻结、评后真值、共同观察缓存和代码包。
+- `docs/review/reproduction/`：独立复算终态的评分器快照。
+- `docs/review-v2/`：原v2展示归档；不与新版成绩混用。
 
-```text
-docs/
-  .nojekyll
-  index.html                 # 站点入口
-  review/
-    index.html               # 任务、成绩、失败分析
-    traces.html              # 可搜索与筛选的轨迹浏览器
-    app.js / traces.js       # 展示逻辑
-    analysis.js              # 有证据链接的案例分析
-    data/                    # 分数、原始轨迹、持久化状态与审计
-    media/                   # 会议视频、源素材、初始抽帧
-    files/                   # SOP、真值、评分与历史失败记录
-    reproduction/            # 重评分脚本及源码快照
-scripts/check-site.mjs       # 无外部依赖的完整性检查
-```
-
-## 本地预览与维护
+## 验证与预览
 
 ```sh
-node docs/review/serve.mjs
-# 打开 http://127.0.0.1:4186/
-
 node scripts/check-site.mjs
 node docs/review/reproduction/rescore.mjs
+python -m http.server 8000 --directory docs
 ```
 
-若替换一条模型结果，应一起更新 `data/report.json`、其对应的 `data/report.js`、模型轨迹 JSON/JS、评分、状态和审计；随后修改分析文字并运行检查。不得只改页面中的显示分数。
+通过HTTP打开 `/review/`；轨迹JSON按需加载。完整复现步骤见 `docs/review/README.md`。发布前应同时校验报告JSON/JS、所有原始轨迹和评分终态，不能只修改显示分数。
 
-## 当前结果的解释
+所有模型API密钥与GitHub令牌仅在调用进程环境中使用，不保存在仓库。评后公开的答案不能进入被测模型输入。
 
-|模型|分数|来源与条件|
-|---|---:|---|
-|gpt-6-luna|43.60|已有完整输入基线|
-|kimi-k3（API k3）|100.00|2026-10-20 本次完整输入新测|
-|glm-5.3|64.73|本次仅转写与音频工具诊断，图片接口拒绝；完整输入 N/A|
-|gpt-6.1-sol|100.00|已有历史运行；本次重测因服务器过载未完成|
-
-不是四个模型同条件的新跑排行榜。输入路线是抽帧、独立 ASR 与信号工具，不是原生 Omni。合成素材、单次开发样本及接口限制均在页面显著标注。
-
-模型调用使用的密钥与 GitHub 令牌不在此仓库中。公开真值与评分器仅用于评测后复核，不能加入被测模型输入。
-
-布局参考：https://wang-jiahao.github.io/omniale/piano/
+任务为合成开发样本，路线为共同工具辅助感知而非原生Omni；单次结果不代表稳定排名。上游模型身份以代理返回标识为准，未独立认证。

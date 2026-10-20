@@ -1,0 +1,58 @@
+{
+  "frozen": true,
+  "full_valid_trial": false,
+  "within_75": null,
+  "below_80": null,
+  "shared_protocol": {
+    "protocol": "case1-v4-shared-15turns-v1",
+    "models": [
+      "gpt-6-luna",
+      "glm-5.3",
+      "k3",
+      "gpt-6.1-sol"
+    ],
+    "vision": {
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "low",
+      "max_output_tokens": 7000,
+      "batch_size": 8
+    },
+    "asr": {
+      "model": "base.en",
+      "device": "cpu",
+      "compute_type": "int8",
+      "cpu_threads": 4
+    },
+    "agent": {
+      "reasoning_effort": "high",
+      "max_output_tokens": 9000
+    },
+    "limits": {
+      "model_turns": 15,
+      "output_tokens": 135000,
+      "tool_calls": 120,
+      "visual_frames": 1024,
+      "asr_seconds": 1800,
+      "measurement_seconds": 900
+    }
+  },
+  "budget": {
+    "limits": {
+      "model_turns": 15,
+      "output_tokens": 135000,
+      "tool_calls": 120,
+      "visual_frames": 1024,
+      "asr_seconds": 1800,
+      "measurement_seconds": 900
+    },
+    "used": {
+      "model_turns": 4,
+      "output_tokens": 18867,
+      "tool_calls": 7,
+      "visual_frames": 343,
+      "asr_seconds": 1023.317375,
+      "measurement_seconds": 0
+    }
+  },
+  "tool_errors": 1
+}

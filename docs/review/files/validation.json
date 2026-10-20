@@ -1,16 +1,472 @@
 {
-  "checked_at": "2026-10-20T09:24:42.568Z",
-  "pass": true,
-  "findings": [
-    "主页面四模型卡片、20行逐项矩阵、80个详情按钮、13个源版本选择器均通过DOM执行检查。",
-    "主页面静态与动态本地资源、原始数据下载链接均存在。",
-    "gpt-6-luna：7轮渲染、工具筛选、搜索空态、全部工具图片链接通过。",
-    "glm-5.3：14轮渲染、工具筛选、搜索空态、全部工具图片链接通过。",
-    "kimi-k3：13轮渲染、工具筛选、搜索空态、全部工具图片链接通过。",
-    "gpt-6.1-sol：7轮渲染、工具筛选、搜索空态、全部工具图片链接通过。",
-    "四模型分项总和与原评分一致；26份源媒体逐文件哈希一致；工具定义一致；运行后审计通过。",
-    "已扫描104个文本文件，未发现API密钥格式。"
-  ],
-  "browser_visual_qa": false,
-  "browser_visual_qa_note": "Local HTTP requests timed out in this session; in-app browser disallows file URLs. DOM validation is not a browser rendering or video playback test."
+  "business": {
+    "pass": true,
+    "reference_score": 100,
+    "baseline_score": 21.99,
+    "reference_api_transactions": 5,
+    "mutations": [
+      {
+        "label": "wrong retimed endpoint",
+        "score": 99.69
+      },
+      {
+        "label": "bridge separate inserts",
+        "score": 99.69
+      },
+      {
+        "label": "omitted dependency",
+        "score": 99.75
+      },
+      {
+        "label": "spurious dependency",
+        "score": 99.75
+      },
+      {
+        "label": "wrong duplicate target",
+        "score": 99.8
+      },
+      {
+        "label": "missing split lineage",
+        "score": 99.8
+      },
+      {
+        "label": "flattened release roots",
+        "score": 99.53
+      },
+      {
+        "label": "missing transitive release blocker",
+        "score": 99.53
+      },
+      {
+        "label": "wrong release version",
+        "score": 99.53
+      },
+      {
+        "label": "wrong ready state",
+        "score": 99.53
+      },
+      {
+        "label": "archive changed",
+        "score": 99.44
+      },
+      {
+        "label": "history note changed",
+        "score": 99.8
+      },
+      {
+        "label": "extra record",
+        "score": 95
+      },
+      {
+        "label": "deleted historical record",
+        "score": 94.44
+      }
+    ],
+    "limits": {
+      "model_turns": 15,
+      "output_tokens": 135000,
+      "tool_calls": 120,
+      "visual_frames": 1024,
+      "asr_seconds": 1800,
+      "measurement_seconds": 900
+    },
+    "notes": [
+      "Private reference replay tests system attainability; it does not claim that a model can infer all decisions within the same requests.",
+      "Scorer and rubric frozen before model evaluation."
+    ]
+  },
+  "media": {
+    "pass": true,
+    "duration_seconds": 1023.3,
+    "scene_count": 39,
+    "initial_frames": 103,
+    "v5_event_frame_checks": [
+      {
+        "asset": "H17",
+        "event": "E00",
+        "pixel_mae": 0.675
+      },
+      {
+        "asset": "H17",
+        "event": "E01",
+        "pixel_mae": 0.541
+      },
+      {
+        "asset": "H17",
+        "event": "E02",
+        "pixel_mae": 0.637
+      },
+      {
+        "asset": "H17",
+        "event": "E03",
+        "pixel_mae": 0.595
+      },
+      {
+        "asset": "H17",
+        "event": "E04",
+        "pixel_mae": 0.636
+      },
+      {
+        "asset": "H17",
+        "event": "E05",
+        "pixel_mae": 0.707
+      },
+      {
+        "asset": "H17",
+        "event": "E06",
+        "pixel_mae": 0.632
+      },
+      {
+        "asset": "H17",
+        "event": "E07",
+        "pixel_mae": 0.633
+      },
+      {
+        "asset": "H17",
+        "event": "E08",
+        "pixel_mae": 0.71
+      },
+      {
+        "asset": "H17",
+        "event": "E09",
+        "pixel_mae": 0.568
+      },
+      {
+        "asset": "H17",
+        "event": "E10",
+        "pixel_mae": 0.629
+      },
+      {
+        "asset": "H17",
+        "event": "E11",
+        "pixel_mae": 0.723
+      },
+      {
+        "asset": "H17",
+        "event": "E12",
+        "pixel_mae": 0.632
+      },
+      {
+        "asset": "H17",
+        "event": "TAIL",
+        "pixel_mae": 0.673
+      },
+      {
+        "asset": "M42",
+        "event": "E00",
+        "pixel_mae": 0.675
+      },
+      {
+        "asset": "M42",
+        "event": "E01",
+        "pixel_mae": 1.082
+      },
+      {
+        "asset": "M42",
+        "event": "E02",
+        "pixel_mae": 1.174
+      },
+      {
+        "asset": "M42",
+        "event": "E03",
+        "pixel_mae": 1.123
+      },
+      {
+        "asset": "M42",
+        "event": "E04",
+        "pixel_mae": 1.172
+      },
+      {
+        "asset": "M42",
+        "event": "E05",
+        "pixel_mae": 1.122
+      },
+      {
+        "asset": "M42",
+        "event": "E06",
+        "pixel_mae": 1.067
+      },
+      {
+        "asset": "M42",
+        "event": "E07",
+        "pixel_mae": 1.084
+      },
+      {
+        "asset": "M42",
+        "event": "E08",
+        "pixel_mae": 1.117
+      },
+      {
+        "asset": "M42",
+        "event": "E09",
+        "pixel_mae": 1.129
+      },
+      {
+        "asset": "M42",
+        "event": "E10",
+        "pixel_mae": 1.073
+      },
+      {
+        "asset": "M42",
+        "event": "E11",
+        "pixel_mae": 1.118
+      },
+      {
+        "asset": "M42",
+        "event": "E12",
+        "pixel_mae": 1.134
+      },
+      {
+        "asset": "M42",
+        "event": "TAIL",
+        "pixel_mae": 0.67
+      },
+      {
+        "asset": "C63",
+        "event": "E00",
+        "pixel_mae": 0.675
+      },
+      {
+        "asset": "C63",
+        "event": "E01",
+        "pixel_mae": 1.372
+      },
+      {
+        "asset": "C63",
+        "event": "E02",
+        "pixel_mae": 1.38
+      },
+      {
+        "asset": "C63",
+        "event": "E03",
+        "pixel_mae": 1.32
+      },
+      {
+        "asset": "C63",
+        "event": "E04",
+        "pixel_mae": 1.385
+      },
+      {
+        "asset": "C63",
+        "event": "E05",
+        "pixel_mae": 1.361
+      },
+      {
+        "asset": "C63",
+        "event": "E06",
+        "pixel_mae": 1.374
+      },
+      {
+        "asset": "C63",
+        "event": "E07",
+        "pixel_mae": 1.294
+      },
+      {
+        "asset": "C63",
+        "event": "E08",
+        "pixel_mae": 1.402
+      },
+      {
+        "asset": "C63",
+        "event": "E09",
+        "pixel_mae": 1.408
+      },
+      {
+        "asset": "C63",
+        "event": "E10",
+        "pixel_mae": 1.299
+      },
+      {
+        "asset": "C63",
+        "event": "E11",
+        "pixel_mae": 1.384
+      },
+      {
+        "asset": "C63",
+        "event": "E12",
+        "pixel_mae": 1.397
+      },
+      {
+        "asset": "C63",
+        "event": "TAIL",
+        "pixel_mae": 0.675
+      },
+      {
+        "asset": "G28",
+        "event": "E00",
+        "pixel_mae": 0.675
+      },
+      {
+        "asset": "G28",
+        "event": "E01",
+        "pixel_mae": 1.451
+      },
+      {
+        "asset": "G28",
+        "event": "E02",
+        "pixel_mae": 1.745
+      },
+      {
+        "asset": "G28",
+        "event": "E03",
+        "pixel_mae": 1.684
+      },
+      {
+        "asset": "G28",
+        "event": "E04",
+        "pixel_mae": 1.734
+      },
+      {
+        "asset": "G28",
+        "event": "E05",
+        "pixel_mae": 1.669
+      },
+      {
+        "asset": "G28",
+        "event": "E06",
+        "pixel_mae": 1.604
+      },
+      {
+        "asset": "G28",
+        "event": "E07",
+        "pixel_mae": 1.683
+      },
+      {
+        "asset": "G28",
+        "event": "E08",
+        "pixel_mae": 1.449
+      },
+      {
+        "asset": "G28",
+        "event": "E09",
+        "pixel_mae": 1.683
+      },
+      {
+        "asset": "G28",
+        "event": "E10",
+        "pixel_mae": 1.719
+      },
+      {
+        "asset": "G28",
+        "event": "E11",
+        "pixel_mae": 1.681
+      },
+      {
+        "asset": "G28",
+        "event": "E12",
+        "pixel_mae": 1.686
+      },
+      {
+        "asset": "G28",
+        "event": "TAIL",
+        "pixel_mae": 0.67
+      }
+    ],
+    "unchanged_original_source_files": 34,
+    "target_count": 39,
+    "release_count": 8,
+    "limits": [
+      "Automated media/EDL consistency QA does not establish human inter-annotator agreement.",
+      "Synthetic source graphics and TTS; shared-tool evaluation, not native Omni."
+    ]
+  },
+  "leakage": {
+    "pass": true,
+    "public_files": [
+      "conform.json",
+      "inputs\\review.mp4",
+      "sources\\C63_v1.mp4",
+      "sources\\C63_v1.wav",
+      "sources\\C63_v2.mp4",
+      "sources\\C63_v2.wav",
+      "sources\\C63_v3.mp4",
+      "sources\\C63_v3.wav",
+      "sources\\C63_v4.mp4",
+      "sources\\C63_v4.wav",
+      "sources\\C63_v5.mp4",
+      "sources\\C63_v5.wav",
+      "sources\\G28_v1.mp4",
+      "sources\\G28_v1.wav",
+      "sources\\G28_v2.mp4",
+      "sources\\G28_v2.wav",
+      "sources\\G28_v3.mp4",
+      "sources\\G28_v3.wav",
+      "sources\\G28_v4.mp4",
+      "sources\\G28_v4.wav",
+      "sources\\G28_v5.mp4",
+      "sources\\G28_v5.wav",
+      "sources\\H17_v1.mp4",
+      "sources\\H17_v1.wav",
+      "sources\\H17_v2.mp4",
+      "sources\\H17_v2.wav",
+      "sources\\H17_v3.mp4",
+      "sources\\H17_v3.wav",
+      "sources\\H17_v4.mp4",
+      "sources\\H17_v4.wav",
+      "sources\\H17_v5.mp4",
+      "sources\\H17_v5.wav",
+      "sources\\M42_v1.mp4",
+      "sources\\M42_v1.wav",
+      "sources\\M42_v2.mp4",
+      "sources\\M42_v2.wav",
+      "sources\\M42_v3.mp4",
+      "sources\\M42_v3.wav",
+      "sources\\M42_v4.mp4",
+      "sources\\M42_v4.wav",
+      "sources\\M42_v5.mp4",
+      "sources\\M42_v5.wav",
+      "sources\\X90_v1.mp4",
+      "sources\\X90_v1.wav",
+      "state.json",
+      "task.md"
+    ],
+    "read_path_negative_tests": 9,
+    "forbidden_grading_markers_tested": 10,
+    "tool_names": [
+      "get_state",
+      "read_file",
+      "apply_changes",
+      "update_releases",
+      "get_frame",
+      "contact_sheet",
+      "transcribe_source",
+      "transcribe_review",
+      "get_transcript",
+      "measure_audio",
+      "public_check",
+      "finish"
+    ],
+    "public_text_sha256": "062ec9969c542bb3da93792d21fa4a969609aa82fd0901f0fd2402aabc1eeaf6",
+    "findings": [
+      "No private answer/weights/target counts in initial text, tool schemas, public app or ASR.",
+      "Read-file allowlist rejects traversal/absolute/private paths; no shell or arbitrary network tool.",
+      "Source paths require IDs in immutable catalog; public_check returns integrity, not correctness.",
+      "Business SOP and allowed field names are legitimate task requirements, not answer leakage."
+    ],
+    "limits": [
+      "Interface-level audit, not OS sandbox or formal information-flow proof.",
+      "Media inspected through generated provenance and separate visual/audio QA; no claim of exhaustive semantic leakage proof."
+    ]
+  },
+  "http": {
+    "http_private_path": 404,
+    "persistent_edit": true,
+    "idempotent_retry": true,
+    "video_byte_range": true,
+    "release_transaction": true,
+    "revision_conflict": true,
+    "public_conform": true,
+    "initial_records": 15,
+    "scope": "HTTP/service smoke; separate browser inspection recorded in visual QA"
+  },
+  "mock_shared_integration": {
+    "passed": true,
+    "tested_models": 4,
+    "identical_initial_inputs": true,
+    "zero_raw_images": true,
+    "15_turn_limit": true,
+    "tool_budget": 120,
+    "infrastructure_score": null,
+    "evidence": "work/shared-integration-D3iYeV; local mock results are not model scores."
+  }
 }
