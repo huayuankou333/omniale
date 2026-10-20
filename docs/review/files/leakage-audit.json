@@ -1,0 +1,59 @@
+{
+  "pass": true,
+  "public_files": [
+    "inputs\\review.mp4",
+    "sources\\C63_v1.mp4",
+    "sources\\C63_v1.wav",
+    "sources\\C63_v2.mp4",
+    "sources\\C63_v2.wav",
+    "sources\\C63_v3.mp4",
+    "sources\\C63_v3.wav",
+    "sources\\G28_v1.mp4",
+    "sources\\G28_v1.wav",
+    "sources\\G28_v2.mp4",
+    "sources\\G28_v2.wav",
+    "sources\\G28_v3.mp4",
+    "sources\\G28_v3.wav",
+    "sources\\H17_v1.mp4",
+    "sources\\H17_v1.wav",
+    "sources\\H17_v2.mp4",
+    "sources\\H17_v2.wav",
+    "sources\\H17_v3.mp4",
+    "sources\\H17_v3.wav",
+    "sources\\M42_v1.mp4",
+    "sources\\M42_v1.wav",
+    "sources\\M42_v2.mp4",
+    "sources\\M42_v2.wav",
+    "sources\\M42_v3.mp4",
+    "sources\\M42_v3.wav",
+    "sources\\X90_v1.mp4",
+    "sources\\X90_v1.wav",
+    "state.json",
+    "task.md"
+  ],
+  "read_path_negative_tests": 9,
+  "forbidden_grading_markers_tested": 6,
+  "tool_names": [
+    "get_state",
+    "read_file",
+    "apply_changes",
+    "get_frame",
+    "contact_sheet",
+    "transcribe_source",
+    "get_transcript",
+    "measure_audio",
+    "public_check",
+    "finish"
+  ],
+  "public_text_sha256": "c9545839bb4ec78a95502b76ecb2843d6ae582bc998b8b281780fa708d419cae",
+  "findings": [
+    "No private answer/weights/target counts in initial text, tool schemas, public app or ASR.",
+    "Read-file allowlist rejects traversal/absolute/private paths; no shell or arbitrary network tool.",
+    "Source paths require IDs in immutable catalog; public_check returns integrity, not correctness.",
+    "Business SOP and allowed field names are legitimate task requirements, not answer leakage."
+  ],
+  "limits": [
+    "Interface-level audit, not OS sandbox or formal information-flow proof.",
+    "Media inspected through generated provenance and separate visual/audio QA; no claim of exhaustive semantic leakage proof."
+  ]
+}

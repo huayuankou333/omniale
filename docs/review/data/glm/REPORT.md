@@ -1,0 +1,83 @@
+# Case1 v2 难度校准报告
+
+## 本轮结果
+
+- 模型：glm-5.3；代理返回：glm-5.3；推理设置 medium；协议 openai。
+- 得分：**64.73/100**；有效模型试评：true；终止状态：finished。
+- 完整决策正确：1/20。模型调用 14 轮，上限 40。
+- 不操作基线：26.4；参考解：100。
+- 旧版成绩：98.4/100；任务已改变，这不是同一试题的模型能力涨跌。
+- 这是诊断条件或未正常完成的运行，不用于确认完整任务的难度目标。
+- 路线为 通用模型＋ASR＋信号工具（没有图像输入），不是原生 Omni。
+
+## 泄漏检查
+
+- 运行前审计通过：true；负向路径测试 9 项。
+- 运行中初始文本、工具定义、工具返回的私有评分标记命中：0。
+- 输入、真值、评分器哈希在运行后仍一致：true。
+- 没有把生成旁白脚本、镜头位置表、故障标签、答案工单或逐项权重传给模型。
+- 公共 SOP、字段枚举、角色权限属于完成真实业务必需的要求，不应当作泄题删除。
+- 不声称形式化证明零泄漏；隔离边界是受控工具接口，不是任意代码执行沙箱。
+
+## 增难内容
+
+20 项最终决策、13 个源版本、27 段会议。参考版镜头必须匹配到重排/重定时的交付版；
+双播放器 ON AIR 与键盘焦点不同；技术问题留在试听版本，不随画面类意见迁移；
+助手的未获授权提议与制片人最终决定混合出现；音频包含人声中断、声画延迟、声道交换。
+
+保持旧版 80/10/10 评分比例及五字段等分；区间容差反而放宽到 0.3s。
+没有关闭测量工具或减少模型预算：新增源片 contact sheet、分声道频带测量、源片 ASR，
+本轮实际轮数上限为 40；修复旧环境配置覆盖后，新版默认 40。
+通过任务复杂性而非收紧验收制造区分度。
+
+## 逐项记录
+
+| 项 | 期望素材/版本/类型 | 期望区间 s | 期望负责人/状态/优先级 | 模型结果 | 分数 |
+|---|---|---|---|---|---|
+| 1 | H17/v3/subtitle | 9–14 | editorial/open/p2 | H17/v3/subtitle, 19.3–23.9, editorial/open/p2 | 3.2 / 4 |
+| 2 | H17/v3/crop | 24–32 | editorial/open/p2 | H17/v3/crop, 24.7–28.4, editorial/open/p2 | 3.2 / 4 |
+| 3 | M42/v3/subtitle | 24–32 | editorial/open/p2 | M42/v3/subtitle, 19.3–23.9, editorial/open/p2 | 3.2 / 4 |
+| 4 | M42/v3/crop | 2–9 | editorial/blocked/p2 | M42/v3/crop, 24.7–28.4, editorial/blocked/p2 | 3.2 / 4 |
+| 5 | C63/v3/subtitle | 20–24 | editorial/open/p2 | C63/v3/subtitle, 19.3–23.9, editorial/open/p2 | 3.2 / 4 |
+| 6 | C63/v3/crop | 9–14 | editorial/open/p2 | C63/v3/crop, 24.7–28.4, editorial/open/p2 | 3.2 / 4 |
+| 7 | G28/v3/subtitle | 2–9 | editorial/open/p2 | G28/v3/subtitle, 19.3–23.9, editorial/open/p2 | 3.2 / 4 |
+| 8 | G28/v3/crop | 24–32 | editorial/blocked/p2 | G28/v3/crop, 24.7–28.4, editorial/open/p2 | 2.4 / 4 |
+| 9 | H17/v3/endcard | 20–24 | production/blocked/p2 | H17/v3/endcard, 29.2–33.6, design/open/p1 | 0.8 / 4 |
+| 10 | M42/v3/endcard | 9–14 | design/open/p1 | M42/v3/endcard, 29.2–33.6, design/open/p2 | 2.4 / 4 |
+| 11 | C63/v3/endcard | 24–32 | production/blocked/p2 | C63/v3/endcard, 29.2–33.6, production/blocked/p2 | 3.2 / 4 |
+| 12 | G28/v3/endcard | 14–20 | design/open/p2 | G28/v3/endcard, 29.2–33.6, production/blocked/p2 | 1.6 / 4 |
+| 13 | H17/v2/channel_swap | 7–14 | audio/open/p1 | H17/v2/channel_swap, 5.3–11.4, audio/open/p1 | 3.2 / 4 |
+| 14 | H17/v3/av_sync | 14–20 | audio/blocked/p1 | H17/v3/av_sync, 14.1–18.4, audio/blocked/p1 | 3.2 / 4 |
+| 15 | M42/v2/av_sync | 14–18 | audio/open/p1 | 未找到匹配记录 | 0.0 / 4 |
+| 16 | M42/v3/audio_gap | 20–24 | audio/open/p1 | 未找到匹配记录 | 0.0 / 4 |
+| 17 | C63/v2/audio_gap | 18–26 | audio/open/p1 | 未找到匹配记录 | 0.0 / 4 |
+| 18 | C63/v3/channel_swap | 32–38 | audio/open/p1 | 未找到匹配记录 | 0.0 / 4 |
+| 19 | M42/v2/audio_gap | 14–18 | audio/dismissed/p2 | M42/v2/audio_gap, 14–18, audio/open/p2 | 3.2 / 4 |
+| 20 | G28/v3/logo | 9–14 | production/resolved/p1 | G28/v3/logo, 9–14, production/resolved/p1 | 4.0 / 4 |
+
+- preserve_unrequested_records：8.33/10
+- no_extra_or_deleted_records：10.00/10
+
+错误字段计数：`{"source_range":18,"status":8,"owner":6,"priority":6,"identity":4}`。
+未匹配到正确身份的新增工单，各字段均无分；因此这些计数不能独立解释为五种推理错误。
+应结合原始 state_diff 和工具轨迹分析根因。
+
+## 执行与验收
+
+工具次数：`{"read_file":1,"get_state":1,"get_frame":2,"contact_sheet":1,"measure_audio":7,"transcribe_source":3,"get_transcript":1,"apply_changes":2,"public_check":1,"finish":1}`。
+工具错误 4 次：get_frame: Video unavailable in this ablation.；get_frame: Video unavailable in this ablation.；contact_sheet: Video unavailable in this ablation；apply_changes: Invalid status。
+参考解 100；107 项评分突变测试通过；事务检查通过。
+详细素材 QA 与浏览器报告保存在 private 下。
+
+本报告只对应 `audio_only` 这一条运行；其他消融须查看各自独立记录，不能把接口隔离或不操作基线当作模态必要性的实验证明。
+素材仍是程序图形和合成语音。后续应以独立制作、专业复核的保留集测试，而不是不断对本模型调题后宣称泛化。
+
+## 文件
+
+- 运行目录：`D:\omniale\runs\case1_review_v2-glm-5.3-audio_only-2026-10-20T08-43-33-473Z`
+- 实际模型初始输入：model_input_audit.json
+- 全部工具轨迹：agent_trace.json
+- 逐项评分：evaluation.json
+- 最终数据库：workspace/state.json
+- 差异：state_diff.json
+- 冻结配置：manifest.json；运行后审计：postrun_audit.json
