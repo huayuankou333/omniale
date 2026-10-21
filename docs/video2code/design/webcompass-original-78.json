@@ -1,0 +1,108 @@
+{
+  "repo": "claude/webcoding",
+  "instance_id": "78",
+  "base_commit": "main",
+  "problem_statement": [
+    {
+      "task": "Does the page load correctly and run without errors?",
+      "category": "Runnability",
+      "operation_sequence": "1. Open the browser developer tools Console panel 2. Load the page and wait for complete rendering 3. Check if the Console has any red error messages (JavaScript errors) 4. Check if the Network panel has any failed resource requests (404/500)",
+      "expected_result": "Page loads completely, Console has no red errors, Network panel has no failed requests (404/500), all static resources (CSS/JS/images/fonts) load successfully",
+      "criteria": "Full score 10 points; JavaScript runtime errors deduct 5 points; Resource 404 errors deduct 3 points; White screen or crash results in 0 points; Warnings only do not deduct points",
+      "max_score": 10
+    },
+    {
+      "task": "Verify 'Ghost Block' preview and grid snapping logic",
+      "category": "Spec Implementation",
+      "operation_sequence": "1. Select a block configuration (e.g., Red 2x4) from the toolbar 2. Move the mouse cursor onto the baseplate without clicking 3. Observe the semi-transparent preview block's movement relative to the cursor 4. Verify it snaps to the stud grid rather than moving continuously",
+      "expected_result": "A semi-transparent 'Ghost Object' must follow the cursor; movement must be discrete (jumping between grid units/studs) rather than smooth; position must align perfectly with baseplate studs",
+      "criteria": "Full score 12 points; Deduct 6 points if ghost object is missing; Deduct 6 points if snapping is absent (free movement); Deduct 4 points for misalignment with grid",
+      "max_score": 12
+    },
+    {
+      "task": "Verify vertical stacking and Z-height detection",
+      "category": "Spec Implementation",
+      "operation_sequence": "1. Place a block on the baseplate 2. Select a new block and hover the cursor directly over the placed block 3. Check if the ghost block automatically rises to the correct Z-height (Layer 2) 4. Click to place and verify visual alignment",
+      "expected_result": "The new block must detect the existing block's height and snap to sit flush on top of it; no visual clipping/intersection between the two blocks; stacking must feel solid",
+      "criteria": "Full score 12 points; Deduct 12 points if stacking is impossible (blocks clip inside each other or refuse to place); Deduct 5 points for visual gaps between layers",
+      "max_score": 12
+    },
+    {
+      "task": "Verify Block Configuration (Color & Size) updates",
+      "category": "Spec Implementation",
+      "operation_sequence": "1. Select 'Red' color and '2x4' size, observe ghost block 2. Click 'Blue' color swatch, verify ghost updates immediately 3. Change size to '1x2' via dropdown, verify ghost geometry updates immediately 4. Place the modified block to confirm final state matches preview",
+      "expected_result": "Ghost object must instantly reflect changes in color and dimensions; final placed block must match the selected configuration exactly",
+      "criteria": "Full score 8 points; Deduct 4 points if ghost does not update dynamically; Deduct 4 points if placed block differs from selection",
+      "max_score": 8
+    },
+    {
+      "task": "Verify Camera Navigation (Orbit & Zoom)",
+      "category": "Spec Implementation",
+      "operation_sequence": "1. Build a small structure in the center 2. Hold Right Mouse Button and drag to rotate the view 3. Use Mouse Scroll Wheel to zoom in and out 4. Verify the camera orbits around the build center, not the camera origin",
+      "expected_result": "Camera must orbit smoothly 360 degrees around the structure; Zoom must be responsive; Controls should not obstruct the view or behave erratically",
+      "criteria": "Full score 8 points; Deduct 4 points for jerky or inverted controls; Deduct 4 points if orbit pivot is incorrect (making the object fly off-screen)",
+      "max_score": 8
+    },
+    {
+      "task": "Verify 'Move Mode' for repositioning blocks",
+      "category": "Spec Implementation",
+      "operation_sequence": "1. Place a block on the grid 2. Switch to 'Select/Move Mode' in the sidebar 3. Click and drag the placed block to a new location on the grid 4. Release mouse to confirm the new position",
+      "expected_result": "User must be able to pick up an existing block, see it snap to new coordinates while dragging, and successfully re-place it",
+      "criteria": "Full score 5 points; Deduct 5 points if blocks cannot be moved once placed; Deduct 2 points if snapping is lost during move operation",
+      "max_score": 5
+    },
+    {
+      "task": "Verify 'Erase Mode' functionality",
+      "category": "Spec Implementation",
+      "operation_sequence": "1. Place multiple blocks 2. Select the 'Erase Mode' (Eraser tool) from the sidebar 3. Click on a specific block 4. Verify that only the target block is removed while others remain",
+      "expected_result": "Clicking a block with the Eraser tool must remove it instantly; no accidental deletion of adjacent blocks",
+      "criteria": "Full score 5 points; Deduct 5 points if deletion fails; Deduct 3 points if wrong block is deleted",
+      "max_score": 5
+    },
+    {
+      "task": "Verify 'Clear All' modal and action",
+      "category": "Spec Implementation",
+      "operation_sequence": "1. Place random blocks on the canvas 2. Click the 'Clear All' (Trash can) icon 3. Verify a confirmation modal appears with a warning 4. Click 'Clear'/Confirm and verify canvas is empty",
+      "expected_result": "A confirmation modal must interrupt the action; confirming must instantly reset the grid to the initial empty state",
+      "criteria": "Full score 5 points; Deduct 3 points if no confirmation modal appears (immediate delete); Deduct 5 points if canvas does not clear",
+      "max_score": 5
+    },
+    {
+      "task": "Verify placement validation (Overlap Prevention)",
+      "category": "Spec Implementation",
+      "operation_sequence": "1. Place a block (Block A) 2. Attempt to place a second block (Block B) exactly in the same position (intersecting Block A) without stacking 3. Observe visual feedback or placement restriction",
+      "expected_result": "System must prevent placing a block inside another block; Ghost should ideally turn red or visual indicator should show invalid placement",
+      "criteria": "Full score 5 points; Deduct 5 points if blocks can physically overlap/intersect in the same grid space",
+      "max_score": 5
+    },
+    {
+      "task": "Evaluate whether the interface visual design meets professional design standards",
+      "category": "Design Quality",
+      "operation_sequence": "1. View the webpage screenshot to assess whether the overall color scheme is harmonious 2. Check if the layout spacing is reasonable (whether element spacing follows the 8px multiple principle) 3. Check if the typography system is professional (body font size ≥14px, line height exceeds 1.5x)",
+      "expected_result": "The interface follows modern design principles: harmonious and unified color scheme, reasonable and standardized layout spacing, professional and clear typography system",
+      "criteria": "Deduct 5 points for each instance of crowded visual elements, deduct 6 points for jarring color combinations, deduct 5 points for chaotic text and image layout",
+      "max_score": 10
+    },
+    {
+      "task": "Evaluate 3D Rendering Quality (Material & Lighting)",
+      "category": "Design Quality",
+      "operation_sequence": "1. Zoom in on a placed block 2. Inspect the surface for 'plastic' material properties (specular highlights/gloss) 3. Check for cast shadows on the baseplate and other blocks 4. Verify studs are modeled in 3D",
+      "expected_result": "Blocks should look like physical plastic toys (not flat colors); Lighting should include soft shadows to provide depth; Studs must be visible 3D geometry",
+      "criteria": "Full score 10 points; Deduct 5 points for flat/2D looking shading; Deduct 3 points for missing shadows; Deduct 2 points for low-poly/jagged edges",
+      "max_score": 10
+    },
+    {
+      "task": "Evaluate UI Theme adherence (Dark Mode & Contrast)",
+      "category": "Design Quality",
+      "operation_sequence": "1. Inspect the Bottom Control Bar and Sidebar 2. Verify background is Dark Mode (Deep Grey/Charcoal) as requested 3. Check that active elements (like selected color) have high visibility (White border/Lifted effect)",
+      "expected_result": "UI must strictly follow the Dark Mode specification; Icons must be high-contrast (White/Light); Active states must be clearly visually distinct",
+      "criteria": "Full score 10 points; Deduct 5 points for Light Mode UI; Deduct 5 points for poor contrast or invisible active states",
+      "max_score": 10
+    }
+  ],
+  "meta": {
+    "class": "Web Development",
+    "difficulty": "N/A"
+  },
+  "working_dir": "/testbed"
+}

@@ -14,6 +14,7 @@
 - `docs/review/files/`：规范、编辑事件表、评前冻结、评后真值、共同观察缓存和代码包。
 - `docs/review/reproduction/`：独立复算终态的评分器快照。
 - `docs/review-v2/`：原v2展示归档；不与新版成绩混用。
+- `docs/video2code/`：新 D2 设计页。WebCompass #78 三维积木录屏、24 项/43 个断言、统一15轮协议与证据评分器；尚未运行四模型，不展示预测分数。
 
 ## 验证与预览
 

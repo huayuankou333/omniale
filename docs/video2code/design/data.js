@@ -1,0 +1,701 @@
+window.CHECKLIST = {
+  "case_id": "omniale-video2code-brick-v1",
+  "status": "design_draft_pending_pilot",
+  "total": 100,
+  "items": [
+    {
+      "id": "E01",
+      "category": "execution",
+      "weight": 4,
+      "title": "安装与启动",
+      "scenario": "S00",
+      "evidence_anchor": {
+        "source": "public/TASK.md",
+        "section": "交付"
+      },
+      "assertions": [
+        {
+          "id": "E01.1",
+          "claim": "文档中的启动命令成功监听本地 3000 端口，并能打开 /。",
+          "scale": "binary"
+        },
+        {
+          "id": "E01.2",
+          "claim": "初屏真正渲染可操作场景；不存在白屏、持续加载遮罩或阻塞异常。",
+          "scale": "binary"
+        }
+      ],
+      "evidence_required": [
+        "execution or browser log"
+      ],
+      "scoring": "Each assertion receives an equal share of this item. Binary: 0 or 1. Anchored visual: 0, .25, .5, .75, 1. Missing evidence is unjudgeable."
+    },
+    {
+      "id": "E02",
+      "category": "execution",
+      "weight": 2,
+      "title": "离线资源",
+      "scenario": "S00",
+      "evidence_anchor": {
+        "source": "public/TASK.md",
+        "section": "交付"
+      },
+      "assertions": [
+        {
+          "id": "E02.1",
+          "claim": "断开外网后，从干净缓存加载仍能显示核心场景；没有必需 JS/CSS/纹理加载失败。",
+          "scale": "binary"
+        }
+      ],
+      "evidence_required": [
+        "execution or browser log"
+      ],
+      "scoring": "Each assertion receives an equal share of this item. Binary: 0 or 1. Anchored visual: 0, .25, .5, .75, 1. Missing evidence is unjudgeable."
+    },
+    {
+      "id": "E03",
+      "category": "execution",
+      "weight": 2,
+      "title": "运行错误",
+      "scenario": "S00",
+      "evidence_anchor": {
+        "source": "public/TASK.md",
+        "section": "交付"
+      },
+      "assertions": [
+        {
+          "id": "E03.1",
+          "claim": "完整操作路径无未捕获异常或与任务相关的资源失败；单纯浏览器警告不扣分。",
+          "scale": "binary"
+        }
+      ],
+      "evidence_required": [
+        "execution or browser log"
+      ],
+      "scoring": "Each assertion receives an equal share of this item. Binary: 0 or 1. Anchored visual: 0, .25, .5, .75, 1. Missing evidence is unjudgeable."
+    },
+    {
+      "id": "E04",
+      "category": "execution",
+      "weight": 2,
+      "title": "重复初始化",
+      "scenario": "S00",
+      "evidence_anchor": {
+        "source": "public/TASK.md",
+        "section": "复刻范围"
+      },
+      "assertions": [
+        {
+          "id": "E04.1",
+          "claim": "刷新、清空后仍能再次进入可操作的干净场景；不要求保存作品。",
+          "scale": "binary"
+        }
+      ],
+      "evidence_required": [
+        "execution or browser log"
+      ],
+      "scoring": "Each assertion receives an equal share of this item. Binary: 0 or 1. Anchored visual: 0, .25, .5, .75, 1. Missing evidence is unjudgeable."
+    },
+    {
+      "id": "I01",
+      "category": "interaction",
+      "weight": 4,
+      "title": "预览与提交分离",
+      "scenario": "S01",
+      "evidence_anchor": {
+        "source": "public/inputs/demo.mp4",
+        "start_seconds": 0,
+        "end_seconds": 2
+      },
+      "assertions": [
+        {
+          "id": "I01.1",
+          "claim": "未点击时出现半透明黄色预览并随指针移动；离开搭建区域后不遗留新的实体。",
+          "scale": "binary"
+        },
+        {
+          "id": "I01.2",
+          "claim": "悬停不会增加永久积木；每次提交只增加一个实体，预览与实体可区分。",
+          "scale": "binary"
+        }
+      ],
+      "evidence_required": [
+        "action log",
+        "candidate before/after images or clip"
+      ],
+      "scoring": "Each assertion receives an equal share of this item. Binary: 0 or 1. Anchored visual: 0, .25, .5, .75, 1. Missing evidence is unjudgeable."
+    },
+    {
+      "id": "I02",
+      "category": "interaction",
+      "weight": 4,
+      "title": "网格吸附",
+      "scenario": "S01",
+      "evidence_anchor": {
+        "source": "public/inputs/demo.mp4",
+        "start_seconds": 0,
+        "end_seconds": 10
+      },
+      "assertions": [
+        {
+          "id": "I02.1",
+          "claim": "沿底板缓慢移动时，预览以凸点网格为单位离散定位，并与网格对齐。",
+          "scale": "binary"
+        },
+        {
+          "id": "I02.2",
+          "claim": "两个相邻位置提交后的积木保持各自网格坐标，边界贴合而不明显穿插。",
+          "scale": "binary"
+        }
+      ],
+      "evidence_required": [
+        "action log",
+        "candidate before/after images or clip"
+      ],
+      "scoring": "Each assertion receives an equal share of this item. Binary: 0 or 1. Anchored visual: 0, .25, .5, .75, 1. Missing evidence is unjudgeable."
+    },
+    {
+      "id": "I03",
+      "category": "interaction",
+      "weight": 4,
+      "title": "重复放置与独立对象",
+      "scenario": "S01",
+      "evidence_anchor": {
+        "source": "public/inputs/demo.mp4",
+        "start_seconds": 0,
+        "end_seconds": 10
+      },
+      "assertions": [
+        {
+          "id": "I03.1",
+          "claim": "在三个不同格点连续放置后，所有实体同时存在，不是轮播替换。",
+          "scale": "binary"
+        },
+        {
+          "id": "I03.2",
+          "claim": "后续修改颜色或尺寸不会追溯改变已放置的实体。",
+          "scale": "binary"
+        }
+      ],
+      "evidence_required": [
+        "action log",
+        "candidate before/after images or clip"
+      ],
+      "scoring": "Each assertion receives an equal share of this item. Binary: 0 or 1. Anchored visual: 0, .25, .5, .75, 1. Missing evidence is unjudgeable."
+    },
+    {
+      "id": "I04",
+      "category": "interaction",
+      "weight": 10,
+      "title": "叠层与表面高度",
+      "scenario": "S02",
+      "evidence_anchor": {
+        "source": "public/inputs/demo.mp4",
+        "start_seconds": 2,
+        "end_seconds": 10
+      },
+      "assertions": [
+        {
+          "id": "I04.1",
+          "claim": "在红色 2×2 上放绿色 2×2，预览自动位于其顶面，提交后形成上下两层。",
+          "scale": "binary"
+        },
+        {
+          "id": "I04.2",
+          "claim": "底板位置与已有顶面位置产生不同的正确放置高度，不把所有新砖固定在一层。",
+          "scale": "binary"
+        },
+        {
+          "id": "I04.3",
+          "claim": "从斜侧视角观察，两层贴合且无明显穿透，原先下层仍在。",
+          "scale": "binary"
+        },
+        {
+          "id": "I04.4",
+          "claim": "换到另一网格位置和另一已展示颜色，仍能完成同样的叠层语义。",
+          "scale": "binary"
+        }
+      ],
+      "evidence_required": [
+        "action log",
+        "candidate before/after images or clip"
+      ],
+      "scoring": "Each assertion receives an equal share of this item. Binary: 0 or 1. Anchored visual: 0, .25, .5, .75, 1. Missing evidence is unjudgeable."
+    },
+    {
+      "id": "I05",
+      "category": "interaction",
+      "weight": 4,
+      "title": "颜色与实体属性",
+      "scenario": "S03",
+      "evidence_anchor": {
+        "source": "public/inputs/demo.mp4",
+        "start_seconds": 2,
+        "end_seconds": 16
+      },
+      "assertions": [
+        {
+          "id": "I05.1",
+          "claim": "红、绿、紫选项能实际改变后续提交实体颜色，选中状态可辨认。",
+          "scale": "binary"
+        },
+        {
+          "id": "I05.2",
+          "claim": "更改颜色后只影响新实体，尺寸/已有结构不被意外重置；ghost 可保持黄色。",
+          "scale": "binary"
+        }
+      ],
+      "evidence_required": [
+        "action log",
+        "candidate before/after images or clip"
+      ],
+      "scoring": "Each assertion receives an equal share of this item. Binary: 0 or 1. Anchored visual: 0, .25, .5, .75, 1. Missing evidence is unjudgeable."
+    },
+    {
+      "id": "I06",
+      "category": "interaction",
+      "weight": 6,
+      "title": "尺寸与几何联动",
+      "scenario": "S03",
+      "evidence_anchor": {
+        "source": "public/inputs/demo.mp4",
+        "start_seconds": 10,
+        "end_seconds": 16
+      },
+      "assertions": [
+        {
+          "id": "I06.1",
+          "claim": "2×2 变为 3×2 时，预览和提交实体的长宽随之改变。",
+          "scale": "binary"
+        },
+        {
+          "id": "I06.2",
+          "claim": "3×2 实体可见凸点数量为 6，2×2 为 4，底面占格与几何一致。",
+          "scale": "binary"
+        },
+        {
+          "id": "I06.3",
+          "claim": "不同尺寸能在合法空白位置正常放置；不能仅修改下拉框文字。",
+          "scale": "binary"
+        }
+      ],
+      "evidence_required": [
+        "action log",
+        "candidate before/after images or clip"
+      ],
+      "scoring": "Each assertion receives an equal share of this item. Binary: 0 or 1. Anchored visual: 0, .25, .5, .75, 1. Missing evidence is unjudgeable."
+    },
+    {
+      "id": "I07",
+      "category": "interaction",
+      "weight": 4,
+      "title": "宽深交换",
+      "scenario": "S03",
+      "evidence_anchor": {
+        "source": "public/inputs/demo.mp4",
+        "start_seconds": 23,
+        "end_seconds": 26
+      },
+      "assertions": [
+        {
+          "id": "I07.1",
+          "claim": "Swap 把 3×2 改为 2×3，两个数值与实体长轴方向一致变化。",
+          "scale": "binary"
+        },
+        {
+          "id": "I07.2",
+          "claim": "交换不改变已放置砖、当前颜色或已有场景；交换后可继续放置。",
+          "scale": "binary"
+        }
+      ],
+      "evidence_required": [
+        "action log",
+        "candidate before/after images or clip"
+      ],
+      "scoring": "Each assertion receives an equal share of this item. Binary: 0 or 1. Anchored visual: 0, .25, .5, .75, 1. Missing evidence is unjudgeable."
+    },
+    {
+      "id": "I08",
+      "category": "interaction",
+      "weight": 6,
+      "title": "播放与返回编辑",
+      "scenario": "S04",
+      "evidence_anchor": {
+        "source": "public/inputs/demo.mp4",
+        "start_seconds": 17,
+        "end_seconds": 23
+      },
+      "assertions": [
+        {
+          "id": "I08.1",
+          "claim": "Play 进入绕作品转动的展示，编辑工具条按参考隐藏，存在可暂停入口。",
+          "scale": "binary"
+        },
+        {
+          "id": "I08.2",
+          "claim": "展示期间作品相对几何和数量不改变，旋转体现三维遮挡变化。",
+          "scale": "binary"
+        },
+        {
+          "id": "I08.3",
+          "claim": "暂停返回可编辑界面，原作品保留，后续放置仍可完成。",
+          "scale": "binary"
+        }
+      ],
+      "evidence_required": [
+        "action log",
+        "candidate before/after images or clip"
+      ],
+      "scoring": "Each assertion receives an equal share of this item. Binary: 0 or 1. Anchored visual: 0, .25, .5, .75, 1. Missing evidence is unjudgeable."
+    },
+    {
+      "id": "I09",
+      "category": "interaction",
+      "weight": 4,
+      "title": "手动视角与模式隔离",
+      "scenario": "S05",
+      "evidence_anchor": {
+        "source": "public/inputs/demo.mp4",
+        "start_seconds": 27,
+        "end_seconds": 30
+      },
+      "assertions": [
+        {
+          "id": "I09.1",
+          "claim": "选择手动视角模式并拖动后，视角改变，作品保持三维相对位置。",
+          "scale": "binary"
+        },
+        {
+          "id": "I09.2",
+          "claim": "这次拖动不意外新增或删除积木；切回放置/擦除后对应操作可用。",
+          "scale": "binary"
+        }
+      ],
+      "evidence_required": [
+        "action log",
+        "candidate before/after images or clip"
+      ],
+      "scoring": "Each assertion receives an equal share of this item. Binary: 0 or 1. Anchored visual: 0, .25, .5, .75, 1. Missing evidence is unjudgeable."
+    },
+    {
+      "id": "I10",
+      "category": "interaction",
+      "weight": 6,
+      "title": "擦除拾取与遮挡",
+      "scenario": "S06",
+      "evidence_anchor": {
+        "source": "public/inputs/demo.mp4",
+        "start_seconds": 30,
+        "end_seconds": 34
+      },
+      "assertions": [
+        {
+          "id": "I10.1",
+          "claim": "擦除模式中指针命中的目标出现清楚的红色高亮反馈。",
+          "scale": "binary"
+        },
+        {
+          "id": "I10.2",
+          "claim": "点击只删除命中的一块，其余积木保留；删除上层后露出被挡住的下层。",
+          "scale": "binary"
+        },
+        {
+          "id": "I10.3",
+          "claim": "相机改变后仍删除当前指针命中的目标，不能删除旧屏幕坐标处的对象。",
+          "scale": "binary"
+        }
+      ],
+      "evidence_required": [
+        "action log",
+        "candidate before/after images or clip"
+      ],
+      "scoring": "Each assertion receives an equal share of this item. Binary: 0 or 1. Anchored visual: 0, .25, .5, .75, 1. Missing evidence is unjudgeable."
+    },
+    {
+      "id": "I11",
+      "category": "interaction",
+      "weight": 4,
+      "title": "清空事务",
+      "scenario": "S07",
+      "evidence_anchor": {
+        "source": "public/inputs/demo.mp4",
+        "start_seconds": 37,
+        "end_seconds": 41
+      },
+      "assertions": [
+        {
+          "id": "I11.1",
+          "claim": "Clear 先打开遮罩与确认框，确认后所有实体被移除，底板和工具仍在。",
+          "scale": "binary"
+        },
+        {
+          "id": "I11.2",
+          "claim": "Cancel 或关闭确认框保留全部实体，不能已在后台清空。",
+          "scale": "binary"
+        }
+      ],
+      "evidence_required": [
+        "action log",
+        "candidate before/after images or clip"
+      ],
+      "scoring": "Each assertion receives an equal share of this item. Binary: 0 or 1. Anchored visual: 0, .25, .5, .75, 1. Missing evidence is unjudgeable."
+    },
+    {
+      "id": "I12",
+      "category": "interaction",
+      "weight": 4,
+      "title": "组合后的继续操作",
+      "scenario": "S08",
+      "evidence_anchor": {
+        "source": "public/TASK.md",
+        "section": "复刻范围"
+      },
+      "assertions": [
+        {
+          "id": "I12.1",
+          "claim": "删去上层砖后，重新预览并叠放使用剩余表面的实际高度，不使用已删除对象的高度。",
+          "scale": "binary"
+        },
+        {
+          "id": "I12.2",
+          "claim": "清空后切回放置，可以重复构建两层结构；没有旧 ghost、旧命中或卡死模式。",
+          "scale": "binary"
+        }
+      ],
+      "evidence_required": [
+        "action log",
+        "candidate before/after images or clip"
+      ],
+      "scoring": "Each assertion receives an equal share of this item. Binary: 0 or 1. Anchored visual: 0, .25, .5, .75, 1. Missing evidence is unjudgeable."
+    },
+    {
+      "id": "V01",
+      "category": "visual",
+      "weight": 5,
+      "title": "布局和整体构图",
+      "scenario": "S09",
+      "evidence_anchor": {
+        "source": "public/inputs/demo.mp4",
+        "start_seconds": 0,
+        "end_seconds": 41
+      },
+      "assertions": [
+        {
+          "id": "V01.1",
+          "claim": "浅灰三维工作区、底板居中、底部深色胶囊工具条、左上模式组的位置比例接近参考；不把全页面做成深色后台。",
+          "scale": "anchored"
+        }
+      ],
+      "evidence_required": [
+        "action log",
+        "candidate before/after images or clip"
+      ],
+      "scoring": "Each assertion receives an equal share of this item. Binary: 0 or 1. Anchored visual: 0, .25, .5, .75, 1. Missing evidence is unjudgeable."
+    },
+    {
+      "id": "V02",
+      "category": "visual",
+      "weight": 7,
+      "title": "立体几何与视角",
+      "scenario": "S09",
+      "evidence_anchor": {
+        "source": "public/inputs/demo.mp4",
+        "start_seconds": 4,
+        "end_seconds": 26
+      },
+      "assertions": [
+        {
+          "id": "V02.1",
+          "claim": "凸点、侧面厚度、底板、积木长宽比例具有参考中的立体形状；多个角度仍成立。",
+          "scale": "anchored"
+        },
+        {
+          "id": "V02.2",
+          "claim": "参考状态的透视、遮挡关系与层高一致；不能用一张平面图或纯 CSS 假叠层冒充。",
+          "scale": "anchored"
+        }
+      ],
+      "evidence_required": [
+        "action log",
+        "candidate before/after images or clip"
+      ],
+      "scoring": "Each assertion receives an equal share of this item. Binary: 0 or 1. Anchored visual: 0, .25, .5, .75, 1. Missing evidence is unjudgeable."
+    },
+    {
+      "id": "V03",
+      "category": "visual",
+      "weight": 5,
+      "title": "材质、光照与色彩",
+      "scenario": "S09",
+      "evidence_anchor": {
+        "source": "public/inputs/demo.mp4",
+        "start_seconds": 0,
+        "end_seconds": 34
+      },
+      "assertions": [
+        {
+          "id": "V03.1",
+          "claim": "红/绿/紫积木具有塑料高光、立体阴影和柔和环境光；浅灰底板与环境对比接近参考。",
+          "scale": "anchored"
+        }
+      ],
+      "evidence_required": [
+        "action log",
+        "candidate before/after images or clip"
+      ],
+      "scoring": "Each assertion receives an equal share of this item. Binary: 0 or 1. Anchored visual: 0, .25, .5, .75, 1. Missing evidence is unjudgeable."
+    },
+    {
+      "id": "V04",
+      "category": "visual",
+      "weight": 4,
+      "title": "临时视觉状态",
+      "scenario": "S09",
+      "evidence_anchor": {
+        "source": "public/inputs/demo.mp4",
+        "start_seconds": 0,
+        "end_seconds": 38
+      },
+      "assertions": [
+        {
+          "id": "V04.1",
+          "claim": "黄色半透明 ghost、红色擦除高亮、选色描边和 Clear 遮罩/白色小弹窗层级清楚且接近参考。",
+          "scale": "anchored"
+        }
+      ],
+      "evidence_required": [
+        "action log",
+        "candidate before/after images or clip"
+      ],
+      "scoring": "Each assertion receives an equal share of this item. Binary: 0 or 1. Anchored visual: 0, .25, .5, .75, 1. Missing evidence is unjudgeable."
+    },
+    {
+      "id": "V05",
+      "category": "visual",
+      "weight": 4,
+      "title": "动态连续性",
+      "scenario": "S09",
+      "evidence_anchor": {
+        "source": "public/inputs/demo.mp4",
+        "start_seconds": 17,
+        "end_seconds": 30
+      },
+      "assertions": [
+        {
+          "id": "V05.1",
+          "claim": "播放旋转与相机交互连续，没有明显跳帧闪烁、穿帮或每次操作重置场景；不按屏幕录像的编码帧率强制 60fps。",
+          "scale": "anchored"
+        }
+      ],
+      "evidence_required": [
+        "action log",
+        "candidate before/after images or clip"
+      ],
+      "scoring": "Each assertion receives an equal share of this item. Binary: 0 or 1. Anchored visual: 0, .25, .5, .75, 1. Missing evidence is unjudgeable."
+    },
+    {
+      "id": "U01",
+      "category": "usability",
+      "weight": 2,
+      "title": "模式和选项反馈",
+      "scenario": "S10",
+      "evidence_anchor": {
+        "source": "public/inputs/demo.mp4",
+        "start_seconds": 10,
+        "end_seconds": 38
+      },
+      "assertions": [
+        {
+          "id": "U01.1",
+          "claim": "能辨认当前模式、颜色和尺寸；工具图标/悬停提示可识别，不依赖猜测不可见热区。",
+          "scale": "anchored"
+        }
+      ],
+      "evidence_required": [
+        "action log",
+        "candidate before/after images or clip"
+      ],
+      "scoring": "Each assertion receives an equal share of this item. Binary: 0 or 1. Anchored visual: 0, .25, .5, .75, 1. Missing evidence is unjudgeable."
+    },
+    {
+      "id": "U02",
+      "category": "usability",
+      "weight": 1,
+      "title": "控件可达",
+      "scenario": "S10",
+      "evidence_anchor": {
+        "source": "public/TASK.md",
+        "section": "复刻范围"
+      },
+      "assertions": [
+        {
+          "id": "U02.1",
+          "claim": "1280×804 验收视口下，工具条和模式组不遮住主要目标，文字/数值可读且可点击。",
+          "scale": "anchored"
+        }
+      ],
+      "evidence_required": [
+        "action log",
+        "candidate before/after images or clip"
+      ],
+      "scoring": "Each assertion receives an equal share of this item. Binary: 0 or 1. Anchored visual: 0, .25, .5, .75, 1. Missing evidence is unjudgeable."
+    },
+    {
+      "id": "U03",
+      "category": "usability",
+      "weight": 2,
+      "title": "弹窗可用性",
+      "scenario": "S10",
+      "evidence_anchor": {
+        "source": "public/inputs/demo.mp4",
+        "start_seconds": 37,
+        "end_seconds": 41
+      },
+      "assertions": [
+        {
+          "id": "U03.1",
+          "claim": "模态框的取消、关闭与确认清楚可区分；打开弹窗时不能穿透点击底板误放积木。",
+          "scale": "anchored"
+        }
+      ],
+      "evidence_required": [
+        "action log",
+        "candidate before/after images or clip"
+      ],
+      "scoring": "Each assertion receives an equal share of this item. Binary: 0 or 1. Anchored visual: 0, .25, .5, .75, 1. Missing evidence is unjudgeable."
+    }
+  ]
+}
+;
+window.RESULTS = {
+  "case_id": "omniale-video2code-brick-v1",
+  "status": "not_run",
+  "all_below_80": null,
+  "models": [
+    {
+      "model": "gpt-6-luna",
+      "status": "not_run",
+      "score": null,
+      "trials": []
+    },
+    {
+      "model": "glm-5.3",
+      "status": "not_run",
+      "score": null,
+      "trials": []
+    },
+    {
+      "model": "kimi-k3",
+      "status": "not_run",
+      "score": null,
+      "trials": []
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "status": "not_run",
+      "score": null,
+      "trials": []
+    }
+  ]
+}
+;

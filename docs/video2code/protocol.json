@@ -1,0 +1,68 @@
+{
+  "case_id": "omniale-video2code-brick-v1",
+  "status": "design_prepared_not_run",
+  "date": "2026-10-21",
+  "models": [
+    "gpt-6-luna",
+    "glm-5.3",
+    "kimi-k3",
+    "gpt-6.1-sol"
+  ],
+  "route": "shared_tools",
+  "raw_candidate_image_video_inputs": false,
+  "budgets": {
+    "model_logical_turns": 15,
+    "tool_calls": 120,
+    "max_output_tokens_per_turn": 9000,
+    "max_output_tokens_total": 135000,
+    "reference_frames": 256,
+    "candidate_frames": 120,
+    "asr_seconds": 0
+  },
+  "common_observer": {
+    "proposed_model": "gpt-6.1-sol",
+    "reasoning_effort": "low",
+    "must_freeze_version_and_prompt_before_run": true,
+    "candidate_family_overlap_must_be_disclosed": true,
+    "cache_hit_counts_against_budget": true
+  },
+  "common_tools": [
+    "list_files",
+    "read_file",
+    "write_files",
+    "run_command",
+    "video_frames",
+    "inspect_own_page",
+    "browser_action"
+  ],
+  "tools_note": "Proposed contract only; video/frame helper and scoring tools included. A sandboxed coding-agent orchestration runner is not yet implemented for this case.",
+  "reasoning_effort": "high where supported; any API translation must be logged before pilot",
+  "environment": {
+    "node": "22.x exact version to freeze",
+    "browser": "Chromium exact build to freeze",
+    "viewport": {
+      "width": 1280,
+      "height": 804
+    },
+    "device_scale_factor": 1,
+    "runtime_network": "localhost only",
+    "implementation_libraries": "same pinned offline package cache for all"
+  },
+  "judge": {
+    "number": 2,
+    "model_ids": null,
+    "blind_model_identity": true,
+    "require_distinct_judge_models": true,
+    "manual_resolution_for_binary_disagreement": true,
+    "visual_disagreement_threshold": 0.25
+  },
+  "calibration": {
+    "effective_trials_per_model": 3,
+    "report_all_valid_trials": true,
+    "infra_restarts_max": 2,
+    "infra_error_is_score": false,
+    "target": "mean <80 for each model; separately disclose whether all trials <80",
+    "no_posthoc_reweight_or_trial_selection": true
+  },
+  "freeze_status": "Input bytes fixed; design manifest exists. Full trial freeze blocked until readiness checklist completed."
+}
