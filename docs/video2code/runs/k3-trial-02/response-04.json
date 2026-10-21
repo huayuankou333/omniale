@@ -1,0 +1,292 @@
+{
+  "id": "resp_KkhvRgxD6SrTlGvJIdILpoSD",
+  "object": "response",
+  "created_at": 1792596056,
+  "completed_at": 1792596157,
+  "status": "completed",
+  "error": null,
+  "incomplete_details": null,
+  "output": [
+    {
+      "type": "reasoning",
+      "id": "rs_soJy378Qpjv37pmGtXedX23h",
+      "status": "completed",
+      "summary": [
+        {
+          "type": "summary_text",
+          "text": "Now write main.js with the full Three.js logic."
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "id": "msg_DzgZcttTGqOTxmAK1Lt1IUNw",
+      "status": "completed",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "output_text",
+          "text": "Now the main Three.js logic:",
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "type": "function_call",
+      "id": "fc_YtrjN9ag6bMpBzdimyeGX7cJ",
+      "status": "completed",
+      "call_id": "write_files_4_24fecafa",
+      "name": "write_files",
+      "arguments": "{\"files\": [{\"path\":\"main.js\",\"content\":\"import * as THREE from 'three';\\nimport { OrbitControls } from 'three/addons/controls/OrbitControls.js';\\n\\n/* ---------- constants ---------- */\\nconst GRID = 16;                 // studs per side\\nconst STUD = 1;                  // stud spacing\\nconst BRICK_H = 1.1;             // brick body height\\nconst STUD_R = 0.30, STUD_H = 0.20;\\nconst HALF = GRID / 2;           // 8\\n\\nconst COLORS = [\\n  { name: 'Red',        hex: 0xe0322d },\\n  { name: 'Orange',     hex: 0xf59e42 },\\n  { name: 'Yellow',     hex: 0xf7d038 },\\n  { name: 'Green',      hex: 0x37a35b },\\n  { name: 'Light Blue', hex: 0x45b8f0 },\\n  { name: 'Blue',       hex: 0x5b6ee1 },\\n  { name: 'Purple',     hex: 0x9b4dca },\\n  { name: 'Gray',       hex: 0x6e6e78 },\\n];\\n\\n/* ---------- state ---------- */\\nlet mode = 'place';              // place | move | erase\\nlet colorIdx = 0;\\nlet width = 2, depth = 2;\\nlet playing = false;\\nconst bricks = [];               // {mesh, i, j, layer, w, d}\\nconst occ = new Map();           // \\\"i,j,layer\\\" -> brick\\nconst key = (i, j, l) => i + ',' + j + ',' + l;\\n\\n/* ---------- renderer / scene ---------- */\\nconst canvas = document.getElementById('scene');\\nconst renderer = new THREE.WebGLRenderer({ canvas, antialias: true });\\nrenderer.setPixelRatio(Math.min(devicePixelRatio, 2));\\nrenderer.shadowMap.enabled = true;\\nrenderer.shadowMap.type = THREE.PCFSoftShadowMap;\\n\\nconst scene = new THREE.Scene();\\nscene.background = new THREE.Color(0xcfcfd6);\\nscene.fog = new THREE.Fog(0xcfcfd6, 55, 110);\\n\\nconst camera = new THREE.PerspectiveCamera(42, 1, 0.1, 300);\\ncamera.position.set(2.5, 15.5, 17);\\n\\nconst controls = new OrbitControls(camera, canvas);\\ncontrols.target.set(0, 0.8, 0);\\ncontrols.enableDamping = true;\\ncontrols.dampingFactor = 0.08;\\ncontrols.minDistance = 7;\\ncontrols.maxDistance = 55;\\ncontrols.maxPolarAngle = Math.PI * 0.49;\\ncontrols.enabled = false;\\n\\n/* ---------- lights ---------- */\\nscene.add(new THREE.HemisphereLight(0xffffff, 0x9a9aa4, 1.15));\\nconst sun = new THREE.DirectionalLight(0xffffff, 1.9);\\nsun.position.set(10, 20, 8);\\nsun.castShadow = true;\\nsun.shadow.mapSize.set(2048, 2048);\\nsun.shadow.camera.left = sun.shadow.camera.bottom = -16;\\nsun.shadow.camera.right = sun.shadow.camera.top = 16;\\nsun.shadow.camera.far = 60;\\nsun.shadow.bias = -0.0004;\\nscene.add(sun);\\n\\n/* ---------- marble ground ---------- */\\nfunction marbleTexture() {\\n  const c = document.createElement('canvas');\\n  c.width = c.height = 512;\\n  const g = c.getContext('2d');\\n  g.fillStyle = '#cdccd4';\\n  g.fillRect(0, 0, 512, 512);\\n  for (let n = 0; n < 26; n++) {\\n    g.strokeStyle = `rgba(120,118,130,${0.05 + Math.random() * 0.07})`;\\n    g.lineWidth = 0.6 + Math.random() * 1.4;\\n    g.beginPath();\\n    let x = Math.random() * 512, y = Math.random() * 512;\\n    g.moveTo(x, y);\\n    for (let s = 0; s < 5; s++) {\\n      x += (Math.random() - 0.5) * 260; y += (Math.random() - 0.5) * 260;\\n      g.quadraticCurveTo(x + (Math.random() - .5) * 80, y + (Math.random() - .5) * 80, x, y);\\n    }\\n    g.stroke();\\n  }\\n  for (let n = 0; n < 900; n++) {\\n    g.fillStyle = `rgba(110,108,120,${Math.random() * 0.05})`;\\n    g.fillRect(Math.random() * 512, Math.random() * 512, 1.5, 1.5);\\n  }\\n  const t = new THREE.CanvasTexture(c);\\n  t.wrapS = t.wrapT = THREE.RepeatWrapping;\\n  t.repeat.set(4, 4);\\n  return t;\\n}\\nconst ground = new THREE.Mesh(\\n  new THREE.PlaneGeometry(400, 400),\\n  new THREE.MeshStandardMaterial({ map: marbleTexture(), roughness: 0.95 })\\n);\\nground.rotation.x = -Math.PI / 2;\\nground.position.y = -0.45;\\nground.receiveShadow = true;\\nscene.add(ground);\\n\\n/* ---------- baseplate ---------- */\\nconst plateGroup = new THREE.Group();\\nscene.add(plateGroup);\\nconst plateMat = new THREE.MeshStandardMaterial({ color: 0xd8d9e2, roughness: 0.55 });\\nconst plate = new THREE.Mesh(new THREE.BoxGeometry(GRID, 0.4, GRID), plateMat);\\nplate.position.y = -0.2;\\nplate.receiveShadow = true;\\nplateGroup.add(plate);\\n\\n{\\n  const studGeo = new THREE.CylinderGeometry(0.28, 0.28, 0.16, 18);\\n  const inst = new THREE.InstancedMesh(studGeo, plateMat, GRID * GRID);\\n  const m = new THREE.Matrix4();\\n  let k = 0;\\n  for (let i = 0; i < GRID; i++) for (let j = 0; j < GRID; j++) {\\n    m.setPosition(i - HALF + 0.5, 0.08, j - HALF + 0.5);\\n    inst.setMatrixAt(k++, m);\\n  }\\n  inst.receiveShadow = true;\\n  plateGroup.add(inst);\\n}\\n// invisible top plane for raycast\\nconst plateTop = new THREE.Mesh(\\n  new THREE.PlaneGeometry(GRID, GRID),\\n  new THREE.MeshBasicMaterial({ visible: false })\\n);\\nplateTop.rotation.x = -Math.PI / 2;\\nplateTop.userData.isPlate = true;\\nscene.add(plateTop);\\n\\n/* ---------- brick factory ---------- */\\nconst matCache = new Map();\\nfunction brickMat(hex) {\\n  if (!matCache.has(hex))\\n    matCache.set(hex, new THREE.MeshStandardMaterial({ color: hex, roughness: 0.32, metalness: 0.02 }));\\n  return matCache.get(hex);\\n}\\n\\nfunction buildBrickMesh(w, d, mat) {\\n  const g = new THREE.Group();\\n  const body = new THREE.Mesh(new THREE.BoxGeometry(w - 0.06, BRICK_H, d - 0.06), mat);\\n  body.position.y = BRICK_H / 2;\\n  g.add(body);\\n  const studGeo = new THREE.CylinderGeometry(STUD_R, STUD_R, STUD_H, 20);\\n  for (let a = 0; a < w; a++) for (let b = 0; b < d; b++) {\\n    const s = new THREE.Mesh(studGeo, mat);\\n    s.position.set(a - (w - 1) / 2, BRICK_H + STUD_H / 2, b - (d - 1) / 2);\\n    g.add(s);\\n  }\\n  g.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });\\n  return g;\\n}\\n\\nconst cellCenter = (i, j) => ({ x: i - HALF + 0.5, z: j - HALF + 0.5 });\\n\\nfunction canPlace(i, j, layer, w, d) {\\n  if (i < 0 || j < 0 || i + w > GRID || j + d > GRID || layer > 24) return false;\\n  for (let a = i; a < i + w; a++) for (let b = j; b < j + d; b++)\\n    if (occ.has(key(a, b, layer))) return false;\\n  return true;\\n}\\n\\nfunction addBrick(i, j, layer, w, d, hex) {\\n  const mesh = buildBrickMesh(w, d, brickMat(hex));\\n  const c = cellCenter(i + (w - 1) / 2 - (w - 1) / 2, 0); // placeholder\\n  const x = i + (w - 1) / 2 - HALF + 0.5;\\n  const z = j + (d - 1) / 2 - HALF + 0.5;\\n  mesh.position.set(x, layer * BRICK_H, z);\\n  const brick = { mesh, i, j, layer, w, d, hex };\\n  mesh.userData.brick = brick;\\n  mesh.traverse(o => o.userData.brick = brick);\\n  scene.add(mesh);\\n  bricks.push(brick);\\n  for (let a = i; a < i + w; a++) for (let b = j; b < j + d; b++) occ.set(key(a, b, layer), brick);\\n  return brick;\\n}\\n\\nfunction removeBrick(brick) {\\n  scene.remove(brick.mesh);\\n  const idx = bricks.indexOf(brick);\\n  if (idx >= 0) bricks.splice(idx, 1);\\n  for (let a = brick.i; a < brick.i + brick.w; a++)\\n    for (let b = brick.j; b < brick.j + brick.d; b++)\\n      occ.delete(key(a, b, brick.layer));\\n}\\n\\nfunction clearAll() { [...bricks].forEach(removeBrick); }\\n\\n/* ---------- ghost preview ---------- */\\nconst ghostMat = new THREE.MeshStandardMaterial({\\n  color: 0xffe27a, transparent: true, opacity: 0.55, roughness: 0.4, depthWrite: false\\n});\\nlet ghost = null;\\nlet ghostSpot = null; // {i,j,layer}\\n\\nfunction refreshGhostMesh() {\\n  if (ghost) scene.remove(ghost);\\n  ghost = buildBrickMesh(width, depth, ghostMat);\\n  ghost.traverse(o => { if (o.isMesh) { o.castShadow = false; o.receiveShadow = false; } });\\n  ghost.visible = false;\\n  scene.add(ghost);\\n  ghostSpot = null;\\n}\\nrefreshGhostMesh();\\n\\n/* ---------- raycasting ---------- */\\nconst ray = new THREE.Raycaster();\\nconst mouse = new THREE.Vector2();\\nlet hoveredErase = null;\\n\\nfunction setRayFromEvent(e) {\\n  const r = canvas.getBoundingClientRect();\\n  mouse.x = ((e.clientX - r.left) / r.width) * 2 - 1;\\n  mouse.y = -((e.clientY - r.top) / r.height) * 2 + 1;\\n  ray.setFromCamera(mouse, camera);\\n}\\n\\nfunction updateGhost(e) {\\n  if (mode !== 'place' || playing) { ghost.visible = false; ghostSpot = null; return; }\\n  setRayFromEvent(e);\\n  const targets = [plateTop, ...bricks.map(b => b.mesh)];\\n  const hits = ray.intersectObjects(targets, true);\\n  let spot = null;\\n  for (const h of hits) {\\n    const b = h.object.userData.brick;\\n    const p = h.point, n = h.face ? h.face.normal.clone().transformDirection(h.object.matrixWorld) : new THREE.Vector3(0, 1, 0);\\n    if (!b) { // plate top\\n      const i = Math.floor(p.x + HALF), j = Math.floor(p.z + HALF);\\n      spot = { i, j, layer: 0 };\\n      break;\\n    }\\n    if (n.y > 0.5) { // top face -> stack\\n      const i = Math.floor(p.x + HALF), j = Math.floor(p.z + HALF);\\n      spot = { i, j, layer: b.layer + 1 };\\n      break;\\n    }\\n    // side face -> adjacent at same layer\\n    const i = Math.floor(p.x + n.x * 0.5 + HALF), j = Math.floor(p.z + n.z * 0.5 + HALF);\\n    spot = { i, j, layer: b.layer };\\n    break;\\n  }\\n  if (spot && canPlace(spot.i, spot.j, spot.layer, width, depth)) {\\n    ghostSpot = spot;\\n    ghost.position.set(\\n      spot.i + (width - 1) / 2 - HALF + 0.5,\\n      spot.layer * BRICK_H,\\n      spot.j + (depth - 1) / 2 - HALF + 0.5\\n    );\\n    ghost.visible = true;\\n  } else {\\n    ghost.visible = false;\\n    ghostSpot = null;\\n  }\\n}\\n\\nfunction updateEraseHover(e) {\\n  if (hoveredErase) {\\n    hoveredErase.mesh.traverse(o => { if (o.isMesh) o.material.emissive?.setHex(0); });\\n    hoveredErase = null;\\n  }\\n  if (mode !== 'erase' || playing) return;\\n  setRayFromEvent(e);\\n  const hits = ray.intersectObjects(bricks.map(b => b.mesh), true);\\n  if (hits.length) {\\n    const b = hits[0].object.userData.brick;\\n    hoveredErase = b;\\n    b.mesh.traverse(o => { if (o.isMesh && o.material.emissive) o.material.emissive.setHex(0x555555); });\\n    canvas.style.cursor = 'pointer';\\n  } else canvas.style.cursor = '';\\n}\\n\\n/* ---------- pointer events ---------- */\\ncanvas.addEventListener('pointermove', e => {\\n  if (mode === 'place') updateGhost(e);\\n  else if (mode === 'erase') updateEraseHover(e);\\n});\\ncanvas.addEventListener('pointerdown', e => {\\n  if (e.button !== 0 || playing) return;\\n  if (mode === 'place') {\\n    updateGhost(e);\\n    if (ghostSpot && ghost.visible) {\\n      addBrick(ghostSpot.i, ghostSpot.j, ghostSpot.layer, width, depth, COLORS[colorIdx].hex);\\n      updateGhost(e);\\n    }\\n  } else if (mode === 'erase') {\\n    updateEraseHover(e);\\n    if (hoveredErase) {\\n      const b = hoveredErase;\\n      b.mesh.traverse(o => { if (o.isMesh) o.material.emissive?.setHex(0); });\\n      hoveredErase = null;\\n      removeBrick(b);\\n    }\\n  }\\n});\\ncanvas.addEventListener('pointerleave', () => { ghost.visible = false; ghostSpot = null; });\\n\\n/* ---------- modes ---------- */\\nconst modeBtns = { place: document.getElementById('mPlace'), move: document.getElementById('mMove'), erase: document.getElementById('mErase') };\\nfunction setMode(m) {\\n  mode = m;\\n  for (const k in modeBtns) modeBtns[k].classList.toggle('active', k === m);\\n  controls.enabled = (m === 'move') || playing;\\n  if (m !== 'place') { ghost.visible = false; ghostSpot = null; }\\n  if (m !== 'erase' && hoveredErase) {\\n    hoveredErase.mesh.traverse(o => { if (o.isMesh) o.material.emissive?.setHex(0); });\\n    hoveredErase = null;\\n  }\\n  canvas.style.cursor = '';\\n}\\nmodeBtns.place.onclick = () => setMode('place');\\nmodeBtns.move.onclick = () => setMode('move');\\nmodeBtns.erase.onclick = () => setMode('erase');\\n\\n/* ---------- swatches ---------- */\\nconst swWrap = document.getElementById('swatches');\\nCOLORS.forEach((c, i) => {\\n  const b = document.createElement('button');\\n  b.className = 'swatch' + (i === colorIdx ? ' active' : '');\\n  b.style.background = '#' + c.hex.toString(16).padStart(6, '0');\\n  b.dataset.tip = `${c.name} (${i + 1})`;\\n  b.onclick = () => setColor(i);\\n  swWrap.appendChild(b);\\n});\\nfunction setColor(i) {\\n  colorIdx = i;\\n  [...swWrap.children].forEach((el, k) => el.classList.toggle('active', k === i));\\n}\\n\\n/* ---------- width / depth ---------- */\\nconst wVal = document.getElementById('wVal'), dVal = document.getElementById('dVal');\\nconst dimPop = document.getElementById('dimPop');\\nlet popTarget = null;\\n\\nfunction openDimPop(which, btn) {\\n  popTarget = which;\\n  dimPop.innerHTML = '';\\n  for (let n = 1; n <= 6; n++) {\\n    const b = document.createElement('button');\\n    b.textContent = n;\\n    if (n === (which === 'w' ? width : depth)) b.classList.add('cur');\\n    b.onclick = ev => {\\n      ev.stopPropagation();\\n      if (which === 'w') { width = n; wVal.textContent = n; }\\n      else { depth = n; dVal.textContent = n; }\\n      refreshGhostMesh();\\n      closePop();\\n    };\\n    dimPop.appendChild(b);\\n  }\\n  const r = btn.getBoundingClientRect();\\n  dimPop.classList.remove('hidden');\\n  dimPop.style.left = (r.left + r.width / 2 - 60) + 'px';\\n  dimPop.style.bottom = (innerHeight - r.top + 10) + 'px';\\n}\\nfunction closePop() { dimPop.classList.add('hidden'); popTarget = null; }\\ndocument.getElementById('wBtn').onclick = e => { e.stopPropagation(); popTarget === 'w' ? closePop() : openDimPop('w', e.currentTarget); };\\ndocument.getElementById('dBtn').onclick = e => { e.stopPropagation(); popTarget === 'd' ? closePop() : openDimPop('d', e.currentTarget); };\\ndocument.addEventListener('click', e => { if (popTarget && !dimPop.contains(e.target)) closePop(); });\\n\\ndocument.getElementById('swap').onclick = doSwap;\\nfunction doSwap() {\\n  [width, depth] = [depth, width];\\n  wVal.textContent = width; dVal.textContent = depth;\\n  refreshGhostMesh();\\n}\\n\\n/* ---------- play / pause ---------- */\\nconst pauseBtn = document.getElementById('pauseBtn');\\ndocument.getElementById('play').onclick = () => {\\n  playing = true;\\n  document.body.classList.add('playing');\\n  pauseBtn.classList.remove('hidden');\\n  ghost.visible = false; ghostSpot = null;\\n  controls.enabled = true;\\n  controls.autoRotate = true;\\n  controls.autoRotateSpeed = 2.2;\\n};\\npauseBtn.onclick = () => {\\n  playing = false;\\n  document.body.classList.remove('playing');\\n  pauseBtn.classList.add('hidden');\\n  controls.autoRotate = false;\\n  controls.enabled = (mode === 'move');\\n};\\n\\n/* ---------- clear dialog ---------- */\\nconst overlay = document.getElementById('overlay');\\ndocument.getElementById('trash').onclick = () => overlay.classList.remove('hidden');\\ndocument.getElementById('dlgCancel').onclick = () => overlay.classList.add('hidden');\\ndocument.getElementById('dlgClose').onclick = () => overlay.classList.add('hidden');\\ndocument.getElementById('dlgClear').onclick = () => { clearAll(); overlay.classList.add('hidden'); };\\noverlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.add('hidden'); });\\n\\n/* ---------- keyboard ---------- */\\naddEventListener('keydown', e => {\\n  if (!overlay.classList.contains('hidden')) { if (e.key === 'Escape') overlay.classList.add('hidden'); return; }\\n  const k = e.key.toLowerCase();\\n  if (k >= '1' && k <= '8') setColor(+k - 1);\\n  else if (k === 's') doSwap();\\n  else if (k === 'e') setMode('erase');\\n  else if (k === 'b') setMode('place');\\n  else if (k === 'm') setMode('move');\\n});\\n\\n/* ---------- resize / loop ---------- */\\nfunction resize() {\\n  const w = innerWidth, h = innerHeight;\\n  renderer.setSize(w, h, false);\\n  camera.aspect = w / h;\\n  camera.updateProjectionMatrix();\\n}\\naddEventListener('resize', resize);\\nresize();\\n\\nrenderer.setAnimationLoop(() => {\\n  controls.update();\\n  renderer.render(scene, camera);\\n});\\n\\n/* ---------- seed ---------- */\\naddBrick(6, 7, 0, 2, 2, COLORS[0].hex);\\n\"}]}"
+    }
+  ],
+  "usage": {
+    "input_tokens": 37367,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 30058
+    },
+    "output_tokens": 5142,
+    "output_tokens_details": {
+      "reasoning_tokens": 11
+    },
+    "total_tokens": 42509
+  },
+  "store": false,
+  "background": false,
+  "previous_response_id": null,
+  "conversation": null,
+  "instructions": null,
+  "reasoning": null,
+  "text": {
+    "format": {
+      "type": "text"
+    }
+  },
+  "tools": [
+    {
+      "type": "function",
+      "name": "list_files",
+      "description": "List your own project files. No evaluator or host access.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "strict": false
+    },
+    {
+      "type": "function",
+      "name": "read_file",
+      "description": "Read a text file from your project or public TASK.md. Local three vendor modules may be read by relative vendor paths.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "strict": false
+    },
+    {
+      "type": "function",
+      "name": "write_files",
+      "description": "Create/replace front-end project files. Only relative HTML/CSS/JS/JSON/SVG/README files. package.json, server.mjs, vendor are read-only. No server-side code executes.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "files": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "content": {
+                  "type": "string"
+                },
+                "path": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path",
+                "content"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "files"
+        ],
+        "type": "object"
+      },
+      "strict": false
+    },
+    {
+      "type": "function",
+      "name": "run_command",
+      "description": "Trusted operations only: serve starts/reloads your page, check runs syntax parsing on your JS (without executing it), reload refreshes. No arbitrary shell commands.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "command": {
+            "enum": [
+              "serve",
+              "check",
+              "reload"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "command"
+        ],
+        "type": "object"
+      },
+      "strict": false
+    },
+    {
+      "type": "function",
+      "name": "video_frames",
+      "description": "Extract exact reference video frames. Returns raw images. Up to 12 times per call; optional crop x,y,width,height. Each frame counts, even cached. Duration 41.333s.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "crop": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "seconds": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "seconds"
+        ],
+        "type": "object"
+      },
+      "strict": false
+    },
+    {
+      "type": "function",
+      "name": "inspect_own_page",
+      "description": "Return an actual screenshot, visible controls with bounding boxes, and browser error logs. Counts one own-page frame.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "strict": false
+    },
+    {
+      "type": "function",
+      "name": "browser_action",
+      "description": "Perform up to 20 mouse/keyboard/select/wait actions, then return screenshot and controls. Coordinates are viewport pixels (1280x804); select index refers to visible selects.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "actions": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "button": {
+                  "enum": [
+                    "left",
+                    "middle",
+                    "right"
+                  ],
+                  "type": "string"
+                },
+                "index": {
+                  "type": "number"
+                },
+                "key": {
+                  "type": "string"
+                },
+                "ms": {
+                  "type": "number"
+                },
+                "steps": {
+                  "type": "number"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "to_x": {
+                  "type": "number"
+                },
+                "to_y": {
+                  "type": "number"
+                },
+                "type": {
+                  "enum": [
+                    "click",
+                    "move",
+                    "drag",
+                    "key",
+                    "text",
+                    "select",
+                    "wait"
+                  ],
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                },
+                "x": {
+                  "type": "number"
+                },
+                "y": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "actions"
+        ],
+        "type": "object"
+      },
+      "strict": false
+    }
+  ],
+  "tool_choice": "auto",
+  "parallel_tool_calls": true,
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "metadata": null,
+  "model": "k3",
+  "temperature": 1,
+  "top_p": 0.95,
+  "presence_penalty": 0,
+  "frequency_penalty": 0,
+  "top_logprobs": 0,
+  "truncation": "disabled",
+  "prompt_cache_key": null,
+  "safety_identifier": null,
+  "service_tier": "default",
+  "transport": {
+    "requested_model": "k3",
+    "attempt": 1,
+    "latency_ms": 158877,
+    "time": "2026-10-21T15:22:39.090Z"
+  }
+}

@@ -1,4 +1,4 @@
-> 历史登记文档：以下正文保留设计/试测开始时的约定，部分状态已由后续修订取代。2026-10-21 已完成两份有效输出：Luna 67.00、Sol 93.56；GLM-5.3-Flash与Kimi因接口故障为N/A。最终judge为Sol+Luna；统一15轮，但不保证相同token。当前状态请看 [实际协议](../PROTOCOL_EFFECTIVE.json)、[本轮结果](../results.json) 和 [复现说明](../README.md)。独立参考认证及三次重复试验仍未完成。
+> 历史登记文档：以下正文保留设计/试测开始时的约定，部分状态已由后续修订取代。2026-10-22 已有三份有效输出：Luna 67.00、Sol 93.56、Kimi重试89.75；GLM-5.3-Flash重试仍因429/503为N/A。最终judge为Sol+Luna；统一15轮，但不保证相同token。当前状态请看 [实际协议](../PROTOCOL_EFFECTIVE.json)、[本轮结果](../results.json) 和 [复现说明](../README.md)。独立参考认证及三次重复试验仍未完成。
 
 # Native-image pilot, registered before candidate generation
 

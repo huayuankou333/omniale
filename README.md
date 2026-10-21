@@ -14,7 +14,7 @@
 - `docs/review/files/`：规范、编辑事件表、评前冻结、评后真值、共同观察缓存和代码包。
 - `docs/review/reproduction/`：独立复算终态的评分器快照。
 - `docs/review-v2/`：原v2展示归档；不与新版成绩混用。
-- `docs/video2code/`：D2 原生图像试测。WebCompass #78 三维积木录屏、24项/43个断言、15轮预算。Luna 67.00、Sol 93.56；GLM-5.3-Flash和Kimi接口故障为N/A。含代码ZIP、实际轨迹、双judge、代理复核和验收录像；详见该目录README与实际协议。
+- `docs/video2code/`：D2 原生图像试测。WebCompass #78 三维积木录屏、24项/43个断言、15轮预算。Luna 67.00、Sol 93.56、Kimi重试89.75；GLM-5.3-Flash重试429/503为N/A。含代码ZIP、实际轨迹、双judge、代理复核和验收录像；详见该目录README与实际协议。
 
 ## 验证与预览
 

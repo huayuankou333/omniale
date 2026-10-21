@@ -1,0 +1,116 @@
+{
+  "anonymous_id": "candidate-1cd2b7318665",
+  "reference_seconds": [
+    0,
+    5,
+    15,
+    23,
+    32,
+    38
+  ],
+  "evidence_ids": [
+    "J-0056-S00-reload-after",
+    "J-0060-S01-reset-confirm-after",
+    "J-0066-S01-hover-a-after",
+    "J-0068-S01-hover-neighbor-after",
+    "J-0070-S01-hover-away-after",
+    "J-0074-S01-independent-1-placed-after",
+    "J-0078-S01-independent-2-placed-after",
+    "J-0082-S01-independent-3-placed-after",
+    "J-0086-S01-new-settings-after",
+    "J-0096-S02-primary-base-preview-after",
+    "J-0098-S02-primary-base-placed-after",
+    "J-0102-S02-primary-top-preview-after",
+    "J-0104-S02-primary-top-placed-after",
+    "J-0108-S02-floor-placed-after",
+    "J-0114-S02-secondary-base-placed-after",
+    "J-0118-S02-secondary-top-preview-after",
+    "J-0120-S02-secondary-top-placed-after",
+    "J-0124-S02-side-angle-after",
+    "J-0140-S03-red22-placed-after",
+    "J-0146-S03-green22-placed-after",
+    "J-0150-S03-width3-after",
+    "J-0152-S03-purple32-preview-after",
+    "J-0154-S03-purple32-placed-after",
+    "J-0156-S03-swap-after",
+    "J-0158-S03-purple23-preview-after",
+    "J-0160-S03-purple23-placed-after",
+    "J-0162-S04-play-after",
+    "J-0164-S04-rotate-1-after",
+    "J-0166-S04-rotate-2-after",
+    "J-0168-S04-rotate-3-after",
+    "J-0170-S04-pause-after",
+    "J-0176-S04-postplay-placed-after",
+    "J-0180-S05-drag-after",
+    "J-0186-S05-after-camera-placed-after",
+    "J-0200-S06-setup-base-placed-after",
+    "J-0206-S06-setup-top-placed-after",
+    "J-0212-S06-purple-placed-after",
+    "J-0214-S06-erase-mode-after",
+    "J-0216-S06-green-hover-after",
+    "J-0218-S06-green-delete-after",
+    "J-0222-S06-camera-turn-after",
+    "J-0226-S06-purple-hover-after",
+    "J-0228-S06-purple-delete-after",
+    "J-0234-S08-rebuild-on-red-preview-after",
+    "J-0236-S08-rebuild-on-red-placed-after",
+    "J-0268-S07-third-placed-after",
+    "J-0270-S07-open-cancel-after",
+    "J-0276-S07-modal-no-clickthrough-after",
+    "J-0272-S07-cancel-after",
+    "J-0280-S07-open-close-after",
+    "J-0282-S07-close-after",
+    "J-0284-S07-open-confirm-after",
+    "J-0286-S07-confirm-after",
+    "J-0294-S08-clear-rebuild-base-placed-after",
+    "J-0298-S08-clear-rebuild-top-preview-after",
+    "J-0300-S08-clear-rebuild-top-placed-after",
+    "J-0340-SUP-snap-x-480-after",
+    "J-0342-SUP-snap-x-490-after",
+    "J-0348-SUP-snap-x-520-after",
+    "J-0356-SUP-snap-x-560-after",
+    "J-0364-SUP-snap-x-600-after",
+    "SUP-motion-sheet-1",
+    "SUP-motion-sheet-2",
+    "SUP-motion-sheet-3"
+  ],
+  "notes": [
+    {
+      "scenario": "general",
+      "description": "All images are actual screenshots, with original PNG retained. Labels describe intended actions, not assumed successes. Judge from actual visible results plus logged coordinates. A scenario label saying top-placed does not assert that stacking succeeded."
+    },
+    {
+      "scenario": "S00",
+      "description": "Clean offline browser context; no candidate JS evaluated by Node. Trusted immutable npm server is the same supplied to all candidates. Evaluation uses 3002 to avoid interfering with generation; generation self-check used 3000. Original generation browser-log is also retained. Warnings alone do not fail E03."
+    },
+    {
+      "scenario": "S01",
+      "description": "Clear first. Move without clicking, then click three distinct scene points and change color/size. Compare position/independence and whether original entities change."
+    },
+    {
+      "scenario": "S02",
+      "description": "Red bottom requested at an interior grid point, green requested on its visible top; repeat purple/green at a different point and inspect side angle. If model placement is displaced, judge that actual failure rather than assuming successful setup."
+    },
+    {
+      "scenario": "S03-S05",
+      "description": "Create red/green 2x2 and purple 3x2; swap and place 2x3. Play, observe multiple timed frames over 5 seconds, attempt to pause using visible pause/play entry, then attempt editing and manual orbit. If Play cannot exit, subsequent programmatic size selection does not establish successful pause; use independent camera replay if supplied."
+    },
+    {
+      "scenario": "S06-S08",
+      "description": "Use visible colored targets to hover/delete, change camera, delete current target, rebuild on remaining red. Some setup states may be unreachable because of candidate placement defects. Additional independent camera/erase or seed-top retarget evidence is supplied when needed; no candidate source state is used to prove behavior."
+    },
+    {
+      "scenario": "S07",
+      "description": "Independent Cancel first: open modal then click actual Cancel. Then separately reopen and click exterior board to test blocking/dismissal; Escape closes if still open. Finally independently open/close x and open/confirm. All exact actions are recorded."
+    },
+    {
+      "scenario": "operator corrections",
+      "description": "First S01/S02 run interrupted because localhost controller connection reset before a hover action; reloaded and fully reran those scenes, selected the later complete images. This is evaluator infrastructure, not candidate failure. Candidate uses custom size menus; actual visible button/option coordinates replace native select operations. Pause button observed at (640,759). No candidate code was changed. Extra slow pointer moves verify discrete snapping; contact sheets contain consecutive actual frames, no interpolated/synthetic output."
+    }
+  ],
+  "judge_models": [
+    "gpt-6.1-sol",
+    "gpt-6-luna"
+  ],
+  "blind_identity": true
+}

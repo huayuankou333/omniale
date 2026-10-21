@@ -1,0 +1,292 @@
+{
+  "id": "resp_EQ2GJ9ixUneeXhtfGNMl8dpL",
+  "object": "response",
+  "created_at": 1792595773,
+  "completed_at": 1792595779,
+  "status": "completed",
+  "error": null,
+  "incomplete_details": null,
+  "output": [
+    {
+      "type": "reasoning",
+      "id": "rs_I6CepvdR6LdUyqsYhYPz0ipy",
+      "status": "completed",
+      "summary": [
+        {
+          "type": "summary_text",
+          "text": "Let me grab a few more frames to see eraser mode, play mode details, and the clear dialog interaction. Key timestamps: eraser highlight (~30-37s), play mode (~17-21s), swap (~23-25s). Let me sample a few frames quickly."
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "id": "msg_SA1isiKdkmq2pQZbgwbLkXxM",
+      "status": "completed",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "output_text",
+          "text": "Let me check a few more key frames for details (eraser highlight, play mode, dropdowns).",
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "type": "function_call",
+      "id": "fc_h0YflhxTqpALL1Od35cBgFOQ",
+      "status": "completed",
+      "call_id": "video_frames_2_73f0205b",
+      "name": "video_frames",
+      "arguments": "{\"seconds\": [1.5,16.5,19.5,30.5,33.5,36.5,39.5,41.0]}"
+    }
+  ],
+  "usage": {
+    "input_tokens": 18396,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 18062
+    },
+    "output_tokens": 160,
+    "output_tokens_details": {
+      "reasoning_tokens": 58
+    },
+    "total_tokens": 18556
+  },
+  "store": false,
+  "background": false,
+  "previous_response_id": null,
+  "conversation": null,
+  "instructions": null,
+  "reasoning": null,
+  "text": {
+    "format": {
+      "type": "text"
+    }
+  },
+  "tools": [
+    {
+      "type": "function",
+      "name": "list_files",
+      "description": "List your own project files. No evaluator or host access.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "strict": false
+    },
+    {
+      "type": "function",
+      "name": "read_file",
+      "description": "Read a text file from your project or public TASK.md. Local three vendor modules may be read by relative vendor paths.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "strict": false
+    },
+    {
+      "type": "function",
+      "name": "write_files",
+      "description": "Create/replace front-end project files. Only relative HTML/CSS/JS/JSON/SVG/README files. package.json, server.mjs, vendor are read-only. No server-side code executes.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "files": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "content": {
+                  "type": "string"
+                },
+                "path": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path",
+                "content"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "files"
+        ],
+        "type": "object"
+      },
+      "strict": false
+    },
+    {
+      "type": "function",
+      "name": "run_command",
+      "description": "Trusted operations only: serve starts/reloads your page, check runs syntax parsing on your JS (without executing it), reload refreshes. No arbitrary shell commands.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "command": {
+            "enum": [
+              "serve",
+              "check",
+              "reload"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "command"
+        ],
+        "type": "object"
+      },
+      "strict": false
+    },
+    {
+      "type": "function",
+      "name": "video_frames",
+      "description": "Extract exact reference video frames. Returns raw images. Up to 12 times per call; optional crop x,y,width,height. Each frame counts, even cached. Duration 41.333s.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "crop": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "seconds": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "seconds"
+        ],
+        "type": "object"
+      },
+      "strict": false
+    },
+    {
+      "type": "function",
+      "name": "inspect_own_page",
+      "description": "Return an actual screenshot, visible controls with bounding boxes, and browser error logs. Counts one own-page frame.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "strict": false
+    },
+    {
+      "type": "function",
+      "name": "browser_action",
+      "description": "Perform up to 20 mouse/keyboard/select/wait actions, then return screenshot and controls. Coordinates are viewport pixels (1280x804); select index refers to visible selects.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "actions": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "button": {
+                  "enum": [
+                    "left",
+                    "middle",
+                    "right"
+                  ],
+                  "type": "string"
+                },
+                "index": {
+                  "type": "number"
+                },
+                "key": {
+                  "type": "string"
+                },
+                "ms": {
+                  "type": "number"
+                },
+                "steps": {
+                  "type": "number"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "to_x": {
+                  "type": "number"
+                },
+                "to_y": {
+                  "type": "number"
+                },
+                "type": {
+                  "enum": [
+                    "click",
+                    "move",
+                    "drag",
+                    "key",
+                    "text",
+                    "select",
+                    "wait"
+                  ],
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                },
+                "x": {
+                  "type": "number"
+                },
+                "y": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "actions"
+        ],
+        "type": "object"
+      },
+      "strict": false
+    }
+  ],
+  "tool_choice": "auto",
+  "parallel_tool_calls": true,
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "metadata": null,
+  "model": "k3",
+  "temperature": 1,
+  "top_p": 0.95,
+  "presence_penalty": 0,
+  "frequency_penalty": 0,
+  "top_logprobs": 0,
+  "truncation": "disabled",
+  "prompt_cache_key": null,
+  "safety_identifier": null,
+  "service_tier": "default",
+  "transport": {
+    "requested_model": "k3",
+    "attempt": 1,
+    "latency_ms": 40762,
+    "time": "2026-10-21T15:16:20.724Z"
+  }
+}

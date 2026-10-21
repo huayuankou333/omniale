@@ -1,0 +1,34 @@
+[
+  {
+    "scenario": "general",
+    "description": "All images are actual screenshots, with original PNG retained. Labels describe intended actions, not assumed successes. Judge from actual visible results plus logged coordinates. A scenario label saying top-placed does not assert that stacking succeeded."
+  },
+  {
+    "scenario": "S00",
+    "description": "Clean offline browser context; no candidate JS evaluated by Node. Trusted immutable npm server is the same supplied to all candidates. Evaluation uses 3002 to avoid interfering with generation; generation self-check used 3000. Original generation browser-log is also retained. Warnings alone do not fail E03."
+  },
+  {
+    "scenario": "S01",
+    "description": "Clear first. Move without clicking, then click three distinct scene points and change color/size. Compare position/independence and whether original entities change."
+  },
+  {
+    "scenario": "S02",
+    "description": "Red bottom requested at an interior grid point, green requested on its visible top; repeat purple/green at a different point and inspect side angle. If model placement is displaced, judge that actual failure rather than assuming successful setup."
+  },
+  {
+    "scenario": "S03-S05",
+    "description": "Create red/green 2x2 and purple 3x2; swap and place 2x3. Play, observe multiple timed frames over 5 seconds, attempt to pause using visible pause/play entry, then attempt editing and manual orbit. If Play cannot exit, subsequent programmatic size selection does not establish successful pause; use independent camera replay if supplied."
+  },
+  {
+    "scenario": "S06-S08",
+    "description": "Use visible colored targets to hover/delete, change camera, delete current target, rebuild on remaining red. Some setup states may be unreachable because of candidate placement defects. Additional independent camera/erase or seed-top retarget evidence is supplied when needed; no candidate source state is used to prove behavior."
+  },
+  {
+    "scenario": "S07",
+    "description": "Independent Cancel first: open modal then click actual Cancel. Then separately reopen and click exterior board to test blocking/dismissal; Escape closes if still open. Finally independently open/close x and open/confirm. All exact actions are recorded."
+  },
+  {
+    "scenario": "operator corrections",
+    "description": "First S01/S02 run interrupted because localhost controller connection reset before a hover action; reloaded and fully reran those scenes, selected the later complete images. This is evaluator infrastructure, not candidate failure. Candidate uses custom size menus; actual visible button/option coordinates replace native select operations. Pause button observed at (640,759). No candidate code was changed. Extra slow pointer moves verify discrete snapping; contact sheets contain consecutive actual frames, no interpolated/synthetic output."
+  }
+]

@@ -1,0 +1,279 @@
+{
+  "id": "resp_5zpq3nJw9pKBnBYEey6yQKwp",
+  "object": "response",
+  "created_at": 1792596767,
+  "completed_at": 1792596776,
+  "status": "completed",
+  "error": null,
+  "incomplete_details": null,
+  "output": [
+    {
+      "type": "reasoning",
+      "id": "rs_o1wcDWsfIJJRd8Nkc14oYKwB",
+      "status": "completed",
+      "summary": [
+        {
+          "type": "summary_text",
+          "text": "Mixing index clicks and x/y clicks in a batch fails. It seems when an action uses \"index\", subsequent x/y clicks fail? Or index clicks consume differently. The successful call earlier had a single click with x,y,button. The failed batch had click index 8 first... maybe index-based clicks need \"index\" AND no x/y, and the error was on the second action \"mouse.click x expected float got undefined\" — but I did provide x:600. Weird. Maybe when any action in batch has index, the parser mishandles others. Let me avoid mixing: do x/y clicks in separate batch from index clicks. Green swatch at x≈473+13=486? swatch centers: green box x:473.22 width 26 → center 486, y 755. Width dropdown center ~711,755. Swap ~757,755. Trash ~987,755. Erase mode ~39,159. Play ~947,755.\n\nBatch: click (486,755) green; click (600,390) stack; click (987,755) trash; wait."
+        }
+      ]
+    },
+    {
+      "type": "function_call",
+      "id": "fc_DlAMdgEe97Lj6tbpsprpBnd5",
+      "status": "completed",
+      "call_id": "browser_action_13_6c947783",
+      "name": "browser_action",
+      "arguments": "{\"actions\": [{\"type\":\"click\",\"x\":486,\"y\":755,\"button\":\"left\"},{\"type\":\"click\",\"x\":600,\"y\":390,\"button\":\"left\"},{\"type\":\"click\",\"x\":987,\"y\":755,\"button\":\"left\"},{\"type\":\"wait\",\"ms\":400}]}"
+    }
+  ],
+  "usage": {
+    "input_tokens": 56341,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 55809
+    },
+    "output_tokens": 332,
+    "output_tokens_details": {
+      "reasoning_tokens": 227
+    },
+    "total_tokens": 56673
+  },
+  "store": false,
+  "background": false,
+  "previous_response_id": null,
+  "conversation": null,
+  "instructions": null,
+  "reasoning": null,
+  "text": {
+    "format": {
+      "type": "text"
+    }
+  },
+  "tools": [
+    {
+      "type": "function",
+      "name": "list_files",
+      "description": "List your own project files. No evaluator or host access.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "strict": false
+    },
+    {
+      "type": "function",
+      "name": "read_file",
+      "description": "Read a text file from your project or public TASK.md. Local three vendor modules may be read by relative vendor paths.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "strict": false
+    },
+    {
+      "type": "function",
+      "name": "write_files",
+      "description": "Create/replace front-end project files. Only relative HTML/CSS/JS/JSON/SVG/README files. package.json, server.mjs, vendor are read-only. No server-side code executes.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "files": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "content": {
+                  "type": "string"
+                },
+                "path": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path",
+                "content"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "files"
+        ],
+        "type": "object"
+      },
+      "strict": false
+    },
+    {
+      "type": "function",
+      "name": "run_command",
+      "description": "Trusted operations only: serve starts/reloads your page, check runs syntax parsing on your JS (without executing it), reload refreshes. No arbitrary shell commands.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "command": {
+            "enum": [
+              "serve",
+              "check",
+              "reload"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "command"
+        ],
+        "type": "object"
+      },
+      "strict": false
+    },
+    {
+      "type": "function",
+      "name": "video_frames",
+      "description": "Extract exact reference video frames. Returns raw images. Up to 12 times per call; optional crop x,y,width,height. Each frame counts, even cached. Duration 41.333s.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "crop": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "seconds": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "seconds"
+        ],
+        "type": "object"
+      },
+      "strict": false
+    },
+    {
+      "type": "function",
+      "name": "inspect_own_page",
+      "description": "Return an actual screenshot, visible controls with bounding boxes, and browser error logs. Counts one own-page frame.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "strict": false
+    },
+    {
+      "type": "function",
+      "name": "browser_action",
+      "description": "Perform up to 20 mouse/keyboard/select/wait actions, then return screenshot and controls. Coordinates are viewport pixels (1280x804); select index refers to visible selects.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "actions": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "button": {
+                  "enum": [
+                    "left",
+                    "middle",
+                    "right"
+                  ],
+                  "type": "string"
+                },
+                "index": {
+                  "type": "number"
+                },
+                "key": {
+                  "type": "string"
+                },
+                "ms": {
+                  "type": "number"
+                },
+                "steps": {
+                  "type": "number"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "to_x": {
+                  "type": "number"
+                },
+                "to_y": {
+                  "type": "number"
+                },
+                "type": {
+                  "enum": [
+                    "click",
+                    "move",
+                    "drag",
+                    "key",
+                    "text",
+                    "select",
+                    "wait"
+                  ],
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                },
+                "x": {
+                  "type": "number"
+                },
+                "y": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "actions"
+        ],
+        "type": "object"
+      },
+      "strict": false
+    }
+  ],
+  "tool_choice": "auto",
+  "parallel_tool_calls": true,
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "metadata": null,
+  "model": "k3",
+  "temperature": 1,
+  "top_p": 0.95,
+  "presence_penalty": 0,
+  "frequency_penalty": 0,
+  "top_logprobs": 0,
+  "truncation": "disabled",
+  "prompt_cache_key": null,
+  "safety_identifier": null,
+  "service_tier": "default",
+  "transport": {
+    "requested_model": "k3",
+    "attempt": 1,
+    "latency_ms": 51296,
+    "time": "2026-10-21T15:32:58.153Z"
+  }
+}

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3D Brick Studio</title>
+<link rel="stylesheet" href="style.css">
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head>
+<body>
+<div id="app">
+  <canvas id="scene"></canvas>
+
+  <!-- left mode buttons -->
+  <div id="modes">
+    <button class="mode active" id="mPlace" data-tip="Build (b)" aria-label="Build">
+      <svg viewBox="0 0 24 24"><path d="M14.6 3.2a4.9 4.9 0 0 0-5.9 6.1L3 15l6 6 5.7-5.7a4.9 4.9 0 0 0 6.1-5.9l-3.4 3.4-2.8-.8-.8-2.8z"/></svg>
+    </button>
+    <button class="mode" id="mMove" data-tip="Move view (m)" aria-label="Move view">
+      <svg viewBox="0 0 24 24"><path d="M12 2l3 3h-2v5h5V8l3 4-3 4v-2h-5v5h2l-3 3-3-3h2v-5H6v2l-3-4 3-4v2h5V5H9z"/></svg>
+    </button>
+    <button class="mode" id="mErase" data-tip="Erase (e)" aria-label="Erase">
+      <svg viewBox="0 0 24 24"><path d="M15.5 3.5l5 5L11 18H6l-2.5-2.5zM5.6 16.4l1.2 1.2h2.6l1.4-1.4-3.8-3.8zM4 20h16v1.6H4z"/></svg>
+    </button>
+  </div>
+
+  <!-- mute -->
+  <div id="mute">
+    <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 4V5L7 9H3zm13.6 3l2.2-2.2-1.1-1.1-2.2 2.2-2.2-2.2-1.1 1.1 2.2 2.2-2.2 2.2 1.1 1.1 2.2-2.2 2.2 2.2 1.1-1.1z"/></svg>
+  </div>
+
+  <!-- bottom toolbar -->
+  <div id="toolbar">
+    <button class="tbtn" id="undo" data-tip="Undo" disabled><svg viewBox="0 0 24 24"><path d="M8 5L3 10l5 5v-3h5a4 4 0 0 1 0 8H5v2h8a6 6 0 0 0 0-12H8z" transform="scale(0.9) translate(1.3 1.3)"/></svg></button>
+    <button class="tbtn" id="redo" data-tip="Redo" disabled><svg viewBox="0 0 24 24" style="transform:scaleX(-1)"><path d="M8 5L3 10l5 5v-3h5a4 4 0 0 1 0 8H5v2h8a6 6 0 0 0 0-12H8z" transform="scale(0.9) translate(1.3 1.3)"/></svg></button>
+    <span class="sep"></span>
+    <div id="swatches"></div>
+    <button class="swatch rainbow" id="rainbow" data-tip="Custom color"></button>
+    <span class="sep"></span>
+    <button class="selbtn" id="wBtn" data-tip="Width (w)"><span id="wVal">2</span><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+    <button class="tbtn" id="swap" data-tip="Swap (s)"><svg viewBox="0 0 24 24"><path d="M7 7h10l-2.5-2.5L16 3l5 5-5 5-1.5-1.5L17 9H7zm10 10H7l2.5 2.5L8 21l-5-5 5-5 1.5 1.5L7 15h10z" transform="rotate(90 12 12)"/></svg></button>
+    <button class="selbtn" id="dBtn" data-tip="Depth (d)"><span id="dVal">2</span><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+    <span class="sep"></span>
+    <button class="tbtn" id="open" data-tip="Open"><svg viewBox="0 0 24 24"><path d="M3 5a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v2H6.5L4 17V5zm3.6 6H22l-2.5 8H2z"/></svg></button>
+    <button class="tbtn" id="save" data-tip="Save"><svg viewBox="0 0 24 24"><path d="M5 3h11l4 4v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm2 1v5h8V4zm-1 9v6h12v-6z"/></svg></button>
+    <button class="tbtn" id="play" data-tip="Play"><svg viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></svg></button>
+    <button class="tbtn danger" id="trash" data-tip="Clear set"><svg viewBox="0 0 24 24"><path d="M9 3h6l1 2h5v2H3V5h5zM5 9h14l-1 12H6zm3 2v8h1.5v-8zm4.5 0v8H14v-8z"/></svg></button>
+  </div>
+
+  <!-- dimension popup -->
+  <div id="dimPop" class="hidden"></div>
+
+  <!-- pause button (play mode) -->
+  <button id="pauseBtn" class="hidden" aria-label="Pause">
+    <svg viewBox="0 0 24 24"><path d="M7 4h4v16H7zm6 0h4v16h-4z"/></svg>
+  </button>
+
+  <!-- clear dialog -->
+  <div id="overlay" class="hidden">
+    <div id="dialog">
+      <button id="dlgClose" aria-label="Close">✕</button>
+      <h2>Clear Set</h2>
+      <p>Are you sure you want to clear the entire set? This action cannot be undone.</p>
+      <div class="dlgBtns">
+        <button id="dlgCancel">Cancel</button>
+        <button id="dlgClear">Clear</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="module" src="main.js"></script>
+</body>
+</html>

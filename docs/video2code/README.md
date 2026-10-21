@@ -1,6 +1,6 @@
 # OmniALE Video2Code 原生图像试测
 
-2026-10-21：GPT-6-Luna **67.00**；GPT-6.1-Sol **93.56**；GLM-5.3-Flash、Kimi-K3 **N/A（接口故障）**。没有达到四模型均低于80分的目标。
+2026-10-22 更新：GPT-6-Luna **67.00**；GPT-6.1-Sol **93.56**；Kimi-K3重试完成，**89.75**；GLM-5.3-Flash重试仍为 **N/A（429/503）**。没有达到四模型均低于80分的目标。
 
 输入为 WebCompass #78 的41.333秒三维积木网站录屏。交付物为可运行网站代码。冻结评分为执行10、交互60、视觉25、可用性5，共43条断言。
 
@@ -15,7 +15,7 @@
 
 ## 边界
 
-这是一轮试测，只有两份有效结果。两个judge均来自GPT家族，主代理进行证据复核；不冒称独立人工认证。网关忽略输出token上限，因此统一预算是15轮、120次工具和帧数限制，实际输出token在成绩中单列。GLM已经通过原生图像预检，但完整任务连接不稳定；Kimi在第三轮后持续503。故障没有计为0分。
+这是单次有效输出的试测，共三份有效结果。基础设施失败与重试全部保留。两个judge均来自GPT家族，主代理进行证据复核；不冒称独立人工认证。网关忽略输出token上限，因此统一预算是15轮、120次工具和帧数限制，实际输出token在成绩中单列。GLM已经通过原生图像预检，但再次尝试首轮遇到429/503；Kimi前次503，本次在15轮内生成完整候选并完成验收。故障没有计为0分。
 
 运行原生runner需同机 Node22.19.0、F:/annconda/python.exe、D:/omniale/.deps中的PyAV、D:/omniale/node_modules中的Playwright1.64.1，以及Chromium143 build1200。所有模型密钥只由进程环境 OMNIALE_GLM_KEY / OMNIALE_GPT_KEY / OMNIALE_KIMI_KEY读取；目标服务为用户授权的 api-temporary.nju-link.com。API模型身份以网关返回为准。
 
@@ -26,3 +26,5 @@ python tools/score.py --manifest runs/gpt-6-luna-trial-01/evaluation/manifest.js
 ```
 
 公开网页保留所有被judge/复核引用的证据、未剪辑压缩验收录像、原始接口输出和轨迹。全部原始PNG/WebM在本地完整包；网页不托管数百MB的原始WebM。发布副本证据清单只删减未引用文件，分数重新校验一致。
+
+本次重试开始于2026-10-21晚，评分与发布于2026-10-22（Asia/Shanghai）。原成绩快照在 history/；登记与验收补证在 RETRY_2026-10-21.json 和 RETRY_AUDIT_2026-10-21.json。Kimi的原始输出与生成文件未被评测者修改。

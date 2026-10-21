@@ -1,0 +1,66 @@
+*{margin:0;padding:0;box-sizing:border-box}
+html,body,#app{width:100%;height:100%;overflow:hidden;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#cfcfd6}
+#scene{display:block;width:100%;height:100%}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* left mode buttons */
+#modes{position:absolute;top:16px;left:16px;display:flex;flex-direction:column;gap:14px;z-index:10}
+.mode{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(140,142,150,.75);transition:background .15s;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.mode svg{width:22px;height:22px;fill:#fff}
+.mode:hover{background:rgba(110,112,120,.85)}
+.mode.active{background:#141519}
+
+/* mute */
+#mute{position:absolute;top:14px;right:18px;z-index:10;opacity:.85}
+#mute svg{width:22px;height:22px;fill:#8b8d95}
+
+/* bottom toolbar */
+#toolbar{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:flex;align-items:center;gap:6px;padding:10px 16px;background:rgba(18,19,24,.94);border-radius:30px;z-index:10;box-shadow:0 6px 24px rgba(0,0,0,.35)}
+.tbtn{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;color:#c9cbd2;transition:background .12s}
+.tbtn svg{width:19px;height:19px;fill:currentColor}
+.tbtn:hover{background:rgba(255,255,255,.12)}
+.tbtn:disabled{opacity:.4;cursor:default}
+.tbtn:disabled:hover{background:none}
+.tbtn.danger{color:#e0655f}
+.sep{width:1px;height:24px;background:rgba(255,255,255,.16);margin:0 6px}
+
+#swatches{display:flex;align-items:center;gap:7px}
+.swatch{width:26px;height:26px;border-radius:50%;border:2px solid transparent;transition:transform .1s}
+.swatch:hover{transform:scale(1.12)}
+.swatch.active{border-color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.35)}
+.swatch.rainbow{background:conic-gradient(#f44336,#ff9800,#ffeb3b,#4caf50,#2196f3,#9c27b0,#f44336)}
+
+.selbtn{display:flex;align-items:center;gap:4px;height:34px;padding:0 10px;border-radius:9px;background:rgba(255,255,255,.1);color:#e8e9ec;font-size:14px;font-weight:600}
+.selbtn svg{width:14px;height:14px;fill:none;stroke:#c9cbd2;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.selbtn:hover{background:rgba(255,255,255,.2)}
+
+/* dimension popup */
+#dimPop{position:absolute;z-index:20;background:#fff;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.25);padding:6px;min-width:120px;max-height:230px;overflow:auto}
+#dimPop button{display:block;width:100%;text-align:left;padding:9px 14px;border-radius:7px;font-size:14px;color:#26282e}
+#dimPop button:hover{background:#eef0f5}
+#dimPop button.cur{background:#e3e7f0;font-weight:600}
+
+/* tooltips */
+[data-tip]{position:relative}
+[data-tip]:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:#141519;color:#fff;font-size:12px;padding:5px 9px;border-radius:6px;white-space:nowrap;pointer-events:none;z-index:30}
+.mode[data-tip]:hover::after{bottom:auto;top:50%;left:calc(100% + 10px);transform:translateY(-50%)}
+
+/* pause */
+#pauseBtn{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:10;color:#fff;opacity:.9}
+#pauseBtn svg{width:34px;height:34px;fill:#fff;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
+
+/* clear dialog */
+#overlay{position:absolute;inset:0;background:rgba(10,10,14,.62);display:flex;align-items:center;justify-content:center;z-index:40}
+#dialog{position:relative;width:430px;background:#fff;border-radius:14px;padding:28px 30px 26px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+#dialog h2{font-size:21px;color:#181a20;margin-bottom:10px}
+#dialog p{font-size:14.5px;line-height:1.5;color:#4a4d55;margin-bottom:22px}
+.dlgBtns{display:flex;justify-content:flex-end;gap:12px}
+#dlgCancel{padding:9px 20px;border-radius:20px;border:1px solid #d4d6dc;color:#26282e;font-size:14px;font-weight:600;background:#fff}
+#dlgCancel:hover{background:#f2f3f6}
+#dlgClear{padding:9px 22px;border-radius:20px;background:#e5484d;color:#fff;font-size:14px;font-weight:600}
+#dlgClear:hover{background:#d13438}
+#dlgClose{position:absolute;top:12px;right:14px;font-size:14px;color:#8a8d95}
+#dlgClose:hover{color:#333}
+
+.hidden{display:none!important}
+body.playing #toolbar,body.playing #modes{visibility:hidden}
