@@ -1,0 +1,38 @@
+{
+  "id": "2026102112094719e91915b01b48d9",
+  "object": "response",
+  "created_at": 1792555791,
+  "model": "glm-5.3-flash",
+  "status": "completed",
+  "output": [
+    {
+      "type": "reasoning",
+      "id": "item_f456afcaf460f253dc392b4e",
+      "summary": [
+        {
+          "type": "summary_text",
+          "text": "The user wants me to inspect the image and call report_image with:\n- left_color: the color of the left large shape (blue square)\n- right_shape: geometric name of the right large shape (triangle)\n- visible_code: exact code printed at top (Q7M-492)\n\nLeft shape: blue square. Right shape: red triangle. Code: Q7M-492."
+        }
+      ]
+    },
+    {
+      "type": "function_call",
+      "id": "item_104a4d3f2aca750b03d86f21",
+      "status": "completed",
+      "call_id": "call_f714ccf39131452ca4946804",
+      "name": "report_image",
+      "arguments": "{\"left_color\":\"blue\",\"right_shape\":\"triangle\",\"visible_code\":\"Q7M-492\"}"
+    }
+  ],
+  "usage": {
+    "input_tokens": 593,
+    "output_tokens": 113,
+    "total_tokens": 706
+  },
+  "transport": {
+    "requested_model": "glm-5.3-flash",
+    "attempt": 1,
+    "latency_ms": 7739,
+    "time": "2026-10-21T04:09:54.295Z"
+  }
+}

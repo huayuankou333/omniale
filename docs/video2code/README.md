@@ -1,42 +1,28 @@
-# OmniALE D2 · Video2Code / 3D Brick Studio
+# OmniALE Video2Code 原生图像试测
 
-状态：**设计与输入已落盘，尚未进行四模型实测**。此包是从 WebCompass video-generation #78 派生的开发案例，不宣称是独立未见过的新基准，也不宣称四个模型已低于 80 分。
+2026-10-21：GPT-6-Luna **67.00**；GPT-6.1-Sol **93.56**；GLM-5.3-Flash、Kimi-K3 **N/A（接口故障）**。没有达到四模型均低于80分的目标。
 
-核心任务是观看三维积木网页的演示录屏，创建、启动并调试一个具有相同可观察行为的网站。输出是可运行代码与应用，属于“视频输入 → 系统产物和操作”的 D 类任务。
+输入为 WebCompass #78 的41.333秒三维积木网站录屏。交付物为可运行网站代码。冻结评分为执行10、交互60、视觉25、可用性5，共43条断言。
 
-- `public/TASK.md`：仅此说明和 `public/inputs/demo.mp4` 进入候选工作区。
-- `design/方案说明.md`：选题、证据核对、难度设计和校准办法。
-- `evaluator/checklist.json`：逐项评分规则，合计 100 分。
-- `evaluator/scenarios.json`：回放和组合测试；交互执行者先产出证据，judge 再评分。
-- `evaluator/JUDGE.md`：盲评、证据和分歧处理协议。
-- `evaluator/references/`：42 张逐秒精确解码参考帧，仅供验收与展示；它们不是候选的文字答案。
-- `tools/score.py`：验证证据、汇总两名 judge 的评分，不调用模型。
-- `tools/check_package.py`：校验输入哈希、分值、证据锚点、候选边界和结果状态。
-- `tools/media.py`：对原视频精确抽帧和局部放大。
-- `protocol.json`：四模型统一预算的拟定协议。
-- `results.json`：四个模型均为 `not_run`，分数为 `null`。
-- `index.html`：可本地打开的设计展示页，含原始视频、分段定位和评分清单。
+## 使用与复核
 
-## 查看
+- `downloads/*-candidate.zip`：两份实际输出，解压后按 RUNNING.md 启动。无需模型API，Three.js已内置。
+- `results.json`：分数、完整尝试状态、逐轮轨迹、扣分依据。
+- `runs/*/evaluation/`：原始judge、代理复核、分数、验收录像和证据哈希。
+- `PROTOCOL_EFFECTIVE.json`：合并基础设施修订后的实际协议。原 protocol.json 和所有冻结/修订文件保留。
+- `runner/executed-snapshot/`：执行时工作区辅助程序原件；runner中的副本仅做相对路径打包修正，见 PACKAGING_MANIFEST.json。
+- `downloads/design-v1.zip`：原设计版本。Review Desk v4未更改。
 
-直接打开 `index.html`，或在本目录执行 `node tools/serve.mjs` 后访问 `http://127.0.0.1:8767`。内置服务器支持视频 Range 请求和章节跳转。展示页不依赖远程脚本或 API。
+## 边界
 
-## 检查
+这是一轮试测，只有两份有效结果。两个judge均来自GPT家族，主代理进行证据复核；不冒称独立人工认证。网关忽略输出token上限，因此统一预算是15轮、120次工具和帧数限制，实际输出token在成绩中单列。GLM已经通过原生图像预检，但完整任务连接不稳定；Kimi在第三轮后持续503。故障没有计为0分。
 
-```powershell
-python tools/check_package.py
-python tools/score.py --self-test
+运行原生runner需同机 Node22.19.0、F:/annconda/python.exe、D:/omniale/.deps中的PyAV、D:/omniale/node_modules中的Playwright1.64.1，以及Chromium143 build1200。所有模型密钥只由进程环境 OMNIALE_GLM_KEY / OMNIALE_GPT_KEY / OMNIALE_KIMI_KEY读取；目标服务为用户授权的 api-temporary.nju-link.com。API模型身份以网关返回为准。
+
+示例（从本目录运行，使用新run id，避免覆盖）：
+```
+node runner/run.mjs glm-5.3-flash glm-5.3-flash-new-run
+python tools/score.py --manifest runs/gpt-6-luna-trial-01/evaluation/manifest.json --judges runs/gpt-6-luna-trial-01/evaluation/judge-gpt-6.1-sol.json runs/gpt-6-luna-trial-01/evaluation/judge-gpt-6-luna.json --adjudication runs/gpt-6-luna-trial-01/evaluation/adjudication.json
 ```
 
-评测执行前还必须完成 `evaluator/READINESS.md` 中的参考实现验收、环境与 judge 冻结。工具自测的 100 分仅用于验证加法与边界，并非任何模型成绩或已验证的参考网站成绩。
-
-## 来源
-
-- 官方项目：https://github.com/NJU-LINK/WebCompass
-- 官方数据：https://huggingface.co/datasets/NJU-LINK/WebCompass
-- 选用录屏：https://huggingface.co/datasets/NJU-LINK/WebCompass/resolve/main/video/generation/videos/78.mp4
-- 原题 checklist：https://huggingface.co/datasets/NJU-LINK/WebCompass/blob/main/video/generation/data.jsonl
-
-视频字节不作修改，来源和 SHA-256 见 `provenance.json`。数据集卡标注 Apache-2.0；保留来源声明。本包新增设计与评分代码和原始录屏分别标明来源，不声称拥有原网站品牌或商标。
-
-现有 Review Desk v4 仍保存在 `D:/omniale/case1_review_v4`；本设计不修改该 case 或其已发布成绩。
+公开网页保留所有被judge/复核引用的证据、未剪辑压缩验收录像、原始接口输出和轨迹。全部原始PNG/WebM在本地完整包；网页不托管数百MB的原始WebM。发布副本证据清单只删减未引用文件，分数重新校验一致。

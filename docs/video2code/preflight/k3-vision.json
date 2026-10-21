@@ -1,0 +1,102 @@
+{
+  "id": "resp_oAzf0Od9yrrlsdTZwmyBsYDo",
+  "object": "response",
+  "created_at": 1792555803,
+  "completed_at": 1792555813,
+  "status": "completed",
+  "error": null,
+  "incomplete_details": null,
+  "output": [
+    {
+      "type": "reasoning",
+      "id": "rs_Tlmk0h1FoJrWcHhyiIICwKU2",
+      "status": "completed",
+      "summary": [
+        {
+          "type": "summary_text",
+          "text": "The user wants me to call report_image with: left large shape color, right large shape geometric name, exact code printed at top.\nFrom image: left large shape is blue square/rectangle. Right large shape is red triangle. Top code: Q7M-492. Need report left_color blue, right_shape triangle, visible_code Q7M-492. Ensure exact code includes hyphen. Call tool."
+        }
+      ]
+    },
+    {
+      "type": "function_call",
+      "id": "fc_EX4FPpWq0RWcK7iLfu1k9pg7",
+      "status": "completed",
+      "call_id": "report_image_0_1003c009",
+      "name": "report_image",
+      "arguments": "{\"left_color\": \"blue\", \"right_shape\": \"triangle\", \"visible_code\": \"Q7M-492\"}"
+    }
+  ],
+  "usage": {
+    "input_tokens": 609,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 168,
+    "output_tokens_details": {
+      "reasoning_tokens": 82
+    },
+    "total_tokens": 777
+  },
+  "store": false,
+  "background": false,
+  "previous_response_id": null,
+  "conversation": null,
+  "instructions": null,
+  "reasoning": null,
+  "text": {
+    "format": {
+      "type": "text"
+    }
+  },
+  "tools": [
+    {
+      "type": "function",
+      "name": "report_image",
+      "description": "Report the actual contents of the supplied image.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "left_color": {
+            "type": "string"
+          },
+          "right_shape": {
+            "type": "string"
+          },
+          "visible_code": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "left_color",
+          "right_shape",
+          "visible_code"
+        ],
+        "type": "object"
+      },
+      "strict": true
+    }
+  ],
+  "tool_choice": "auto",
+  "parallel_tool_calls": true,
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "metadata": null,
+  "model": "k3",
+  "temperature": 1,
+  "top_p": 0.95,
+  "presence_penalty": 0,
+  "frequency_penalty": 0,
+  "top_logprobs": 0,
+  "truncation": "disabled",
+  "prompt_cache_key": null,
+  "safety_identifier": null,
+  "service_tier": "default",
+  "transport": {
+    "requested_model": "k3",
+    "attempt": 1,
+    "latency_ms": 11799,
+    "time": "2026-10-21T04:10:14.040Z"
+  }
+}

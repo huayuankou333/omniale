@@ -1,0 +1,466 @@
+{
+  "run_id": "gpt-6.1-sol-trial-01",
+  "candidate_hash": "696629f77e79300bf2735b59370cde5462b5bc583223ce21f65d527d38776e30",
+  "judge_model": "gpt-6-luna",
+  "items": [
+    {
+      "id": "E01.1",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "execution log: exact npm startup check",
+        "execution/browser logs"
+      ],
+      "reason": "文档启动命令在3000端口返回200，评测启动命令亦在3002端口返回200。"
+    },
+    {
+      "id": "E01.2",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0008-S00-reload-after",
+        "execution/browser logs"
+      ],
+      "reason": "刷新后场景正常渲染，底板、积木和工具均可见；浏览器日志无错误。"
+    },
+    {
+      "id": "E02.1",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0008-S00-reload-after",
+        "execution/browser logs"
+      ],
+      "reason": "干净缓存的离线浏览器上下文中成功显示核心场景，未见必需资源加载失败。"
+    },
+    {
+      "id": "E03.1",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "execution/browser logs"
+      ],
+      "reason": "完整操作日志无未捕获异常或任务相关资源失败。"
+    },
+    {
+      "id": "E04.1",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0008-S00-reload-after",
+        "J-0012-S01-reset-confirm-after",
+        "execution/browser logs"
+      ],
+      "reason": "刷新和清空后均能重新进入可操作的干净场景。"
+    },
+    {
+      "id": "I01.1",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0018-S01-hover-a-after",
+        "J-0022-S01-hover-away-after",
+        "execution/browser logs"
+      ],
+      "reason": "移动指针后显示黄色半透明预览；指针移出搭建区后预览消失。"
+    },
+    {
+      "id": "I01.2",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0018-S01-hover-a-after",
+        "J-0020-S01-hover-neighbor-after",
+        "J-0026-S01-independent-1-placed-after"
+      ],
+      "reason": "悬停时未增加永久实体，点击后形成实体且仍可与黄色预览区分。"
+    },
+    {
+      "id": "I02.1",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0026-S01-independent-1-placed-after",
+        "J-0030-S01-independent-2-placed-after",
+        "J-0034-S01-independent-3-placed-after"
+      ],
+      "reason": "放置实体落在离散凸点网格位置，持续移动和不同目标点对应网格定位。"
+    },
+    {
+      "id": "I02.2",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0030-S01-independent-2-placed-after",
+        "J-0034-S01-independent-3-placed-after"
+      ],
+      "reason": "相邻放置的砖边界贴合，未见明显穿插。"
+    },
+    {
+      "id": "I03.1",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0034-S01-independent-3-placed-after"
+      ],
+      "reason": "多个不同格点的实体同时保留，并非轮播替换。"
+    },
+    {
+      "id": "I03.2",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0034-S01-independent-3-placed-after",
+        "J-0038-S01-new-settings-after"
+      ],
+      "reason": "改变尺寸后，已经放置的砖仍保留原有外观和尺寸。"
+    },
+    {
+      "id": "I04.1",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0048-S02-primary-base-preview-after",
+        "J-0050-S02-primary-base-placed-after",
+        "J-0054-S02-primary-top-preview-after",
+        "J-0056-S02-primary-top-placed-after"
+      ],
+      "reason": "绿色预览定位于红色底砖顶面，提交后形成上下两层。"
+    },
+    {
+      "id": "I04.2",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0054-S02-primary-top-preview-after",
+        "J-0060-S02-floor-placed-after"
+      ],
+      "reason": "顶面预览和底板上的新砖呈现不同高度，未固定在同一层。"
+    },
+    {
+      "id": "I04.3",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0056-S02-primary-top-placed-after",
+        "J-0076-S02-side-angle-after"
+      ],
+      "reason": "斜侧视角可见上下砖贴合，红色下层仍在，无明显穿透。"
+    },
+    {
+      "id": "I04.4",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0066-S02-secondary-base-placed-after",
+        "J-0070-S02-secondary-top-preview-after",
+        "J-0072-S02-secondary-top-placed-after"
+      ],
+      "reason": "在另一网格位置以紫色底砖和绿色上砖完成叠放。"
+    },
+    {
+      "id": "I05.1",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0092-S03-red22-placed-after",
+        "J-0098-S03-green22-placed-after",
+        "J-0106-S03-purple32-placed-after"
+      ],
+      "reason": "红、绿、紫均实际出现在后续提交的砖上，工具栏选中状态可辨认。"
+    },
+    {
+      "id": "I05.2",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0098-S03-green22-placed-after",
+        "J-0106-S03-purple32-placed-after"
+      ],
+      "reason": "更改颜色及尺寸后，已放置的红、绿砖仍保持原样；预览仍为黄色。"
+    },
+    {
+      "id": "I06.1",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0102-S03-width3-after",
+        "J-0104-S03-purple32-preview-after",
+        "J-0106-S03-purple32-placed-after"
+      ],
+      "reason": "设置为3×2后，预览和提交砖的长宽随设置改变。"
+    },
+    {
+      "id": "I06.2",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0104-S03-purple32-preview-after",
+        "J-0106-S03-purple32-placed-after",
+        "J-0110-S03-purple23-preview-after"
+      ],
+      "reason": "3×2砖可见六个凸点，2×2砖可见四个凸点，底面尺寸相符。"
+    },
+    {
+      "id": "I06.3",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0106-S03-purple32-placed-after",
+        "J-0112-S03-purple23-placed-after"
+      ],
+      "reason": "不同尺寸的砖均在空白位置实际提交，几何随尺寸变化。"
+    },
+    {
+      "id": "I07.1",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0108-S03-swap-after",
+        "J-0110-S03-purple23-preview-after",
+        "J-0112-S03-purple23-placed-after"
+      ],
+      "reason": "Swap后数值由3×2变为2×3，后续预览和实体呈现相应方向变化。"
+    },
+    {
+      "id": "I07.2",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0106-S03-purple32-placed-after",
+        "J-0108-S03-swap-after",
+        "J-0112-S03-purple23-placed-after"
+      ],
+      "reason": "交换保留已放置结构及选中的紫色，且交换后仍能继续放置。"
+    },
+    {
+      "id": "I08.1",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0114-S04-play-after",
+        "J-0122-S04-pause-after"
+      ],
+      "reason": "Play隐藏编辑工具栏并进入展示；画面提供暂停入口。"
+    },
+    {
+      "id": "I08.2",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0114-S04-play-after",
+        "J-0116-S04-rotate-1-after",
+        "J-0118-S04-rotate-2-after",
+        "J-0120-S04-rotate-3-after"
+      ],
+      "reason": "多个展示帧显示作品持续转动，砖的数量和相对几何保持不变，遮挡关系随视角变化。"
+    },
+    {
+      "id": "I08.3",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0122-S04-pause-after",
+        "J-0128-S04-postplay-placed-after"
+      ],
+      "reason": "暂停后编辑工具栏恢复、原作品保留，并成功继续放置。"
+    },
+    {
+      "id": "I09.1",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0132-S05-drag-after"
+      ],
+      "reason": "选择手动视角并拖动后，相机方向改变，作品保持三维相对位置。"
+    },
+    {
+      "id": "I09.2",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0132-S05-drag-after",
+        "J-0138-S05-after-camera-placed-after"
+      ],
+      "reason": "拖动后未见意外新增或删除；切回放置模式后成功放置砖。"
+    },
+    {
+      "id": "I10.1",
+      "verdict": "scored",
+      "credit": 0,
+      "evidence": [
+        "J-0166-S06-erase-mode-after",
+        "J-0178-S06-purple-hover-after"
+      ],
+      "reason": "擦除模式能高亮命中砖，但可见反馈呈粉紫色而非断言要求的清楚红色高亮。"
+    },
+    {
+      "id": "I10.2",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0168-S06-green-hover-after",
+        "J-0170-S06-green-delete-after",
+        "J-0178-S06-purple-hover-after",
+        "J-0180-S06-purple-delete-after"
+      ],
+      "reason": "点击分别移除命中的砖，其他砖保留；删除叠放的上层绿色砖后红色下层露出。"
+    },
+    {
+      "id": "I10.3",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0174-S06-camera-turn-after",
+        "J-0178-S06-purple-hover-after",
+        "J-0180-S06-purple-delete-after"
+      ],
+      "reason": "相机改变后，悬停和删除作用于新视角下当前命中的紫砖。"
+    },
+    {
+      "id": "I11.1",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0232-S07-open-confirm-after",
+        "J-0234-S07-confirm-after"
+      ],
+      "reason": "Clear打开遮罩和确认框；确认后砖被移除，底板及工具仍在。"
+    },
+    {
+      "id": "I11.2",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0222-S07-open-cancel-after",
+        "J-0226-S07-cancel-after",
+        "J-0228-S07-open-close-after",
+        "J-0230-S07-close-after"
+      ],
+      "reason": "取消或关闭弹窗后，已有实体仍保留。"
+    },
+    {
+      "id": "I12.1",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0186-S08-rebuild-on-red-preview-after",
+        "J-0188-S08-rebuild-on-red-placed-after"
+      ],
+      "reason": "删除原上层后，黄色预览落在剩余红砖的顶面高度，提交后形成贴合的叠层。"
+    },
+    {
+      "id": "I12.2",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0242-S08-clear-rebuild-base-placed-after",
+        "J-0246-S08-clear-rebuild-top-preview-after",
+        "J-0248-S08-clear-rebuild-top-placed-after"
+      ],
+      "reason": "清空后可再次放置底砖并在其上预览、提交第二层，未见残留ghost或卡死。"
+    },
+    {
+      "id": "V01.1",
+      "verdict": "scored",
+      "credit": 0.75,
+      "evidence": [
+        "J-0008-S00-reload-after"
+      ],
+      "reason": "浅灰工作区、居中底板、底部深色胶囊工具条和左上模式组均接近参考；底板在视口中的占比稍大。"
+    },
+    {
+      "id": "V02.1",
+      "verdict": "scored",
+      "credit": 0.75,
+      "evidence": [
+        "J-0008-S00-reload-after",
+        "J-0076-S02-side-angle-after",
+        "J-0118-S04-rotate-2-after"
+      ],
+      "reason": "砖体厚度、凸点和底板均具立体外观，多角度仍成立；凸点轮廓和比例与参考略有差异。"
+    },
+    {
+      "id": "V02.2",
+      "verdict": "scored",
+      "credit": 0.75,
+      "evidence": [
+        "J-0056-S02-primary-top-placed-after",
+        "J-0076-S02-side-angle-after",
+        "J-0118-S04-rotate-2-after"
+      ],
+      "reason": "存在真实三维透视和遮挡，叠层高度可辨；整体视角与参考有局部差别。"
+    },
+    {
+      "id": "V03.1",
+      "verdict": "scored",
+      "credit": 0.75,
+      "evidence": [
+        "J-0008-S00-reload-after",
+        "J-0076-S02-side-angle-after",
+        "J-0118-S04-rotate-2-after"
+      ],
+      "reason": "积木有塑料高光、阴影和环境光，底板与环境相近；材质明暗和阴影略显生硬。"
+    },
+    {
+      "id": "V04.1",
+      "verdict": "scored",
+      "credit": 0.75,
+      "evidence": [
+        "J-0018-S01-hover-a-after",
+        "J-0178-S06-purple-hover-after",
+        "J-0222-S07-open-cancel-after"
+      ],
+      "reason": "黄色半透明预览、擦除反馈、选色描边及清空弹窗均能辨认；擦除反馈颜色与参考红色有偏差。"
+    },
+    {
+      "id": "V05.1",
+      "verdict": "scored",
+      "credit": 0.75,
+      "evidence": [
+        "J-0114-S04-play-after",
+        "J-0116-S04-rotate-1-after",
+        "J-0118-S04-rotate-2-after",
+        "J-0120-S04-rotate-3-after",
+        "J-0122-S04-pause-after",
+        "J-0132-S05-drag-after"
+      ],
+      "reason": "连续展示帧中旋转和相机变化保持场景稳定；未见明显闪烁或操作导致的重置。"
+    },
+    {
+      "id": "U01.1",
+      "verdict": "scored",
+      "credit": 0.75,
+      "evidence": [
+        "J-0008-S00-reload-after",
+        "J-0038-S01-new-settings-after",
+        "J-0108-S03-swap-after",
+        "J-0166-S06-erase-mode-after"
+      ],
+      "reason": "模式、颜色和尺寸状态可辨，工具图标能识别；悬停提示虽有显示，但部分工具的文字提示较小。"
+    },
+    {
+      "id": "U02.1",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0008-S00-reload-after",
+        "J-0232-S07-open-confirm-after"
+      ],
+      "reason": "视口中工具栏和模式组可见且可操作，文字及尺寸数值可读，没有明显遮挡主要目标。"
+    },
+    {
+      "id": "U03.1",
+      "verdict": "scored",
+      "credit": 1,
+      "evidence": [
+        "J-0222-S07-open-cancel-after",
+        "J-0224-S07-modal-no-clickthrough-after",
+        "J-0226-S07-cancel-after",
+        "J-0230-S07-close-after",
+        "J-0234-S07-confirm-after"
+      ],
+      "reason": "取消、关闭和确认选项清楚区分，遮罩覆盖底板且无穿透放置。"
+    }
+  ]
+}

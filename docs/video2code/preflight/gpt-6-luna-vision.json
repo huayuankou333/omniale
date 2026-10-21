@@ -1,0 +1,163 @@
+{
+  "id": "resp_0e53da294e317b95016ad83b173bfc819a8edfed86a77dc052",
+  "object": "response",
+  "created_at": 1792555799,
+  "completed_at": 1792555800,
+  "status": "completed",
+  "background": false,
+  "frequency_penalty": 0,
+  "presence_penalty": 0,
+  "moderation": null,
+  "model": "gpt-6-luna",
+  "access_programs": null,
+  "previous_response_id": null,
+  "instructions": "You are checking image input and tool transport. Use the reporting tool.",
+  "output": [
+    {
+      "type": "function_call",
+      "id": "fc_0e53da294e317b95016ad83b17ed8c819a8654affb330ed334",
+      "call_id": "call_7613ae666a374b82b64551e100e287af",
+      "name": "report_image",
+      "arguments": "{\"left_color\":\"blue\",\"right_shape\":\"triangle\",\"visible_code\":\"Q7M-492\"}",
+      "status": "completed"
+    }
+  ],
+  "error": null,
+  "incomplete_details": null,
+  "tools": [
+    {
+      "type": "function",
+      "name": "report_image",
+      "description": "Report the actual contents of the supplied image.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "left_color": {
+            "type": "string"
+          },
+          "right_shape": {
+            "type": "string"
+          },
+          "visible_code": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "left_color",
+          "right_shape",
+          "visible_code"
+        ],
+        "type": "object"
+      },
+      "output_schema": null,
+      "strict": true
+    }
+  ],
+  "tool_choice": "auto",
+  "parallel_tool_calls": true,
+  "prompt_cache_key": "0338c7bf-b47e-4413-ac53-65924d4c4fe6",
+  "prompt_cache_retention": "24h",
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "top_p": 0.98,
+  "top_logprobs": 0,
+  "temperature": 1,
+  "reasoning": {
+    "effort": "high",
+    "context": "all_turns",
+    "summary": null,
+    "mode": "standard"
+  },
+  "user": null,
+  "usage": {
+    "input_tokens": 425,
+    "input_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "output_tokens": 33,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 458,
+    "attribution": {
+      "items": {
+        "fc_0e53da294e317b95016ad83b17ed8c819a8654affb330ed334": {
+          "input_tokens": 2,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "output_tokens": 33
+        },
+        "msg_0e53da294e317b95016ad83b173c70819a8452af77eab83ae7": {
+          "input_tokens": 355,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "output_tokens": 0,
+          "content": [
+            {
+              "input_tokens": 41,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "output_tokens": 0
+            },
+            {
+              "input_tokens": 314,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "output_tokens": 0
+            }
+          ]
+        }
+      },
+      "request_fields": {
+        "instructions": {
+          "input_tokens": 18,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "output_tokens": 0
+        },
+        "tools": {
+          "input_tokens": 50,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "output_tokens": 0
+        }
+      }
+    }
+  },
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "input_tokens_details": {
+        "text_tokens": 0,
+        "image_tokens": 0
+      },
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      }
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "safety_identifier": "user-8LfQR1wrbXHYXUsra6hadWzr",
+  "store": false,
+  "metadata": {},
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "service_tier": "default",
+  "truncation": "disabled",
+  "transport": {
+    "requested_model": "gpt-6-luna",
+    "attempt": 1,
+    "latency_ms": 1538,
+    "time": "2026-10-21T04:10:00.614Z"
+  }
+}

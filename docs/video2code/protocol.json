@@ -1,30 +1,24 @@
 {
   "case_id": "omniale-video2code-brick-v1",
-  "status": "design_prepared_not_run",
+  "status": "frozen_native_image_pilot",
   "date": "2026-10-21",
   "models": [
     "gpt-6-luna",
-    "glm-5.3",
-    "kimi-k3",
+    "glm-5.3-flash",
+    "k3",
     "gpt-6.1-sol"
   ],
-  "route": "shared_tools",
-  "raw_candidate_image_video_inputs": false,
+  "route": "native_images_shared_tools",
+  "raw_candidate_image_video_inputs": true,
   "budgets": {
     "model_logical_turns": 15,
     "tool_calls": 120,
-    "max_output_tokens_per_turn": 9000,
-    "max_output_tokens_total": 135000,
+    "max_output_tokens_per_turn": null,
+    "max_output_tokens_total": null,
     "reference_frames": 256,
     "candidate_frames": 120,
-    "asr_seconds": 0
-  },
-  "common_observer": {
-    "proposed_model": "gpt-6.1-sol",
-    "reasoning_effort": "low",
-    "must_freeze_version_and_prompt_before_run": true,
-    "candidate_family_overlap_must_be_disclosed": true,
-    "cache_hit_counts_against_budget": true
+    "asr_seconds": 0,
+    "requested_output_tokens_per_turn": 9000
   },
   "common_tools": [
     "list_files",
@@ -35,34 +29,65 @@
     "inspect_own_page",
     "browser_action"
   ],
-  "tools_note": "Proposed contract only; video/frame helper and scoring tools included. A sandboxed coding-agent orchestration runner is not yet implemented for this case.",
+  "tools_note": "Restricted browser-only coding tools; static trusted server and local vendored Three.js. No candidate server-side code, host shell, network, or host filesystem access. All candidates share the same contract.",
   "reasoning_effort": "high where supported; any API translation must be logged before pilot",
   "environment": {
-    "node": "22.x exact version to freeze",
-    "browser": "Chromium exact build to freeze",
+    "node": "22.19.0",
+    "browser": "Chromium 143.0.7499.4, build 1200; Playwright 1.64.1",
     "viewport": {
       "width": 1280,
       "height": 804
     },
     "device_scale_factor": 1,
     "runtime_network": "localhost only",
-    "implementation_libraries": "same pinned offline package cache for all"
+    "implementation_libraries": "three@0.180.0, JavaScript/HTML/CSS, identical local modules",
+    "isolation": "Trusted static server; candidate JS runs only in sandboxed Chromium with network route restricted to its own localhost origin; no Node evaluation of candidate code."
   },
   "judge": {
     "number": 2,
-    "model_ids": null,
+    "model_ids": [
+      "gpt-6.1-sol",
+      "k3"
+    ],
     "blind_model_identity": true,
     "require_distinct_judge_models": true,
     "manual_resolution_for_binary_disagreement": true,
-    "visual_disagreement_threshold": 0.25
+    "visual_disagreement_threshold": 0.25,
+    "temperature": "API default, no temperature override",
+    "candidate_family_overlap": "Both judges are also candidate families. They receive anonymous IDs, no model names or target scores.",
+    "adjudicator": "Primary Codex agent, disclosed agent adjudication; not an independent human."
   },
   "calibration": {
-    "effective_trials_per_model": 3,
-    "report_all_valid_trials": true,
+    "effective_trials_per_model": 1,
+    "scope": "Single-trial pilot; no robustness claim. The design proposed 3 trials, deferred until this pilot establishes the runner.",
+    "report_all_trials": true,
     "infra_restarts_max": 2,
     "infra_error_is_score": false,
-    "target": "mean <80 for each model; separately disclose whether all trials <80",
+    "target": "Check whether each observed score is <80; do not guarantee or tune scores after results.",
     "no_posthoc_reweight_or_trial_selection": true
   },
-  "freeze_status": "Input bytes fixed; design manifest exists. Full trial freeze blocked until readiness checklist completed."
+  "freeze_status": "Pilot protocol frozen before candidate generation; full independent reference calibration outstanding as disclosed in evaluator/PILOT.md",
+  "protocol_version": "1.2-native-call-budget-pilot",
+  "parent_design_manifest": "DESIGN_FREEZE.json",
+  "initial_frames_seconds": [
+    0,
+    3,
+    8,
+    12,
+    15,
+    18,
+    23,
+    25,
+    29,
+    32,
+    38,
+    40
+  ],
+  "transport_budget_note": "All four Responses routes ignored max_output_tokens in explicit preflight. This pilot enforces 15 logical turns, 120 tools and frame caps locally; output token limit 9000 is an advisory request only. Actual usage is reported, not claimed equal. Amendment before any candidate implementation or score existed. First GLM attempt excluded as budget-transport discovery.",
+  "generation_order": [
+    "gpt-6-luna",
+    "k3",
+    "gpt-6.1-sol",
+    "glm-5.3-flash"
+  ]
 }

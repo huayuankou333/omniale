@@ -1,0 +1,102 @@
+{
+  "case_id": "omniale-video2code-brick-v1",
+  "status": "completed_pilot_with_infrastructure_failures",
+  "date": "2026-10-21",
+  "models": [
+    "gpt-6-luna",
+    "glm-5.3-flash",
+    "k3",
+    "gpt-6.1-sol"
+  ],
+  "route": "native_images_shared_tools",
+  "raw_candidate_image_video_inputs": true,
+  "budgets": {
+    "model_logical_turns": 15,
+    "tool_calls": 120,
+    "max_output_tokens_per_turn": null,
+    "max_output_tokens_total": null,
+    "reference_frames": 256,
+    "candidate_frames": 120,
+    "asr_seconds": 0,
+    "requested_output_tokens_per_turn": 9000
+  },
+  "common_tools": [
+    "list_files",
+    "read_file",
+    "write_files",
+    "run_command",
+    "video_frames",
+    "inspect_own_page",
+    "browser_action"
+  ],
+  "tools_note": "Restricted browser-only coding tools; static trusted server and local vendored Three.js. No candidate server-side code, host shell, network, or host filesystem access. All candidates share the same contract.",
+  "reasoning_effort": "high where supported; any API translation must be logged before pilot",
+  "environment": {
+    "node": "22.19.0",
+    "browser": "Chromium 143.0.7499.4, build 1200; Playwright 1.64.1",
+    "viewport": {
+      "width": 1280,
+      "height": 804
+    },
+    "device_scale_factor": 1,
+    "runtime_network": "localhost only",
+    "implementation_libraries": "three@0.180.0, JavaScript/HTML/CSS, identical local modules",
+    "isolation": "Trusted static server; candidate JS runs only in sandboxed Chromium with network route restricted to its own localhost origin; no Node evaluation of candidate code."
+  },
+  "judge": {
+    "number": 2,
+    "model_ids": [
+      "gpt-6.1-sol",
+      "gpt-6-luna"
+    ],
+    "blind_model_identity": true,
+    "require_distinct_judge_models": true,
+    "manual_resolution_for_binary_disagreement": true,
+    "visual_disagreement_threshold": 0.25,
+    "temperature": "API default, no temperature override",
+    "candidate_family_overlap": "Both final judges are from the GPT family and candidate pool. Anonymous judging reduces identity cues but does not establish independent families.",
+    "adjudicator": "Primary Codex agent, disclosed agent adjudication; not an independent human."
+  },
+  "calibration": {
+    "effective_trials_per_model": 1,
+    "scope": "Single-trial pilot; no robustness claim. The design proposed 3 trials, deferred until this pilot establishes the runner.",
+    "report_all_trials": true,
+    "infra_restarts_max": null,
+    "infra_error_is_score": false,
+    "target": "Check whether each observed score is <80; do not guarantee or tune scores after results.",
+    "no_posthoc_reweight_or_trial_selection": true,
+    "observed_valid_candidates": 2,
+    "infra_restarts_note": "GLM transport repairs produced four retained attempts, including one excluded budget discovery; Kimi resumed the same run after 503. See amendments and all attempt status files."
+  },
+  "freeze_status": "Pilot protocol frozen before candidate generation; full independent reference calibration outstanding as disclosed in evaluator/PILOT.md",
+  "protocol_version": "1.2-native-call-budget-pilot",
+  "parent_design_manifest": "DESIGN_FREEZE.json",
+  "initial_frames_seconds": [
+    0,
+    3,
+    8,
+    12,
+    15,
+    18,
+    23,
+    25,
+    29,
+    32,
+    38,
+    40
+  ],
+  "transport_budget_note": "All four Responses routes ignored max_output_tokens in explicit preflight. This pilot enforces 15 logical turns, 120 tools and frame caps locally; output token limit 9000 is an advisory request only. Actual usage is reported, not claimed equal. Amendment before any candidate implementation or score existed. First GLM attempt excluded as budget-transport discovery.",
+  "generation_order": [
+    "gpt-6-luna",
+    "k3",
+    "gpt-6.1-sol",
+    "glm-5.3-flash"
+  ],
+  "documents_apply_in_order": [
+    "protocol.json",
+    "PILOT_AMENDMENT_01.json",
+    "INFRASTRUCTURE_AMENDMENT_02.json",
+    "INFRASTRUCTURE_AMENDMENT_03.json",
+    "PROTOCOL_EFFECTIVE.json"
+  ]
+}

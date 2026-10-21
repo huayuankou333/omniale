@@ -1,0 +1,42 @@
+{
+  "timestamp": "2026-10-21T05:40:44.752904+00:00",
+  "phase": "Infrastructure amendments before final scoring; rubric unchanged",
+  "changes": [
+    "Two fixed final judges are gpt-6.1-sol and gpt-6-luna for every valid candidate. k3 returned 503 even to tiny health checks on both supported routes; its original failures and the first Sol judgment are retained. Both final judges are from the GPT family and candidate pool; disclose dependence and agent adjudication.",
+    "GLM uses native Chat image route with high reasoning and requested max_tokens=9000. Responses ignored limits and long transfers terminated. Other families retain Responses; all have the same 15-turn/tool/frame hard caps and requested output budget, but actual token equality cannot be guaranteed by this gateway.",
+    "GLM transport losslessly encodes PNG as WebP. Each decoded RGB byte is checked for equality, dimensions unchanged. No screenshot/video information reduction. This allowed a 12-frame preflight but larger full task requests still failed.",
+    "Additional GLM transport repair attempt was allowed after successful identical-pixel multi-image preflight; it generated no valid scored candidate and is not outcome-based trial selection.",
+    "Browser services use separate localhost ports only to avoid interference; supplied npm launcher is verified on required port3000. Exact npm CLI environment fixed by restoring PATHEXT and profile variables.",
+    "Candidate code is never edited by the evaluator. No scoring weights, criteria, or reference video changed."
+  ],
+  "current_files": [
+    {
+      "path": "outputs/case2_video2code_v1_native/runner/run.mjs",
+      "sha256": "5eb7d62ac6f9a21d77e2f30aa4a061e6d3efbb4042ef0f2b2c325c7781bee7d2"
+    },
+    {
+      "path": "outputs/case2_video2code_v1_native/runner/browser.mjs",
+      "sha256": "4f79747cd889747fe7239cb0ddb5391eeead2dab5c9807b3cd9220ac0578d01b"
+    },
+    {
+      "path": "outputs/case2_video2code_v1_native/runner/eval-browser.mjs",
+      "sha256": "35fad257e666098c84fcade28475ece909ac7c1a61e370a362bec06a2ca51e1d"
+    },
+    {
+      "path": "outputs/case2_video2code_v1_native/runner/evaluate-server.mjs",
+      "sha256": "81f9efdf766e59476f9c17c11b0fef824a0acaf79519dbd6ac69fb4e73c6b99d"
+    },
+    {
+      "path": "work/video2code-gateway.mjs",
+      "sha256": "6cddfd4cfb37004411c6b08954fb0688b22beade4445b31cd6169224bc99844f"
+    },
+    {
+      "path": "work/video2code-chat-transport.mjs",
+      "sha256": "3f8b0ddb9b7b23425670182a355aa7a4aed669e61395a103e8bd7f63e1f6a5f2"
+    },
+    {
+      "path": "work/video2code-judge.mjs",
+      "sha256": "5a59f485e60793dbdb1d441d75164eca09e6f0092f01c18a0b155ea5f9bcbccd"
+    }
+  ]
+}

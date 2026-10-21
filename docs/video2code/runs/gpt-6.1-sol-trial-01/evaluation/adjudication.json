@@ -1,0 +1,50 @@
+{
+  "run_id": "gpt-6.1-sol-trial-01",
+  "candidate_hash": "696629f77e79300bf2735b59370cde5462b5bc583223ce21f65d527d38776e30",
+  "reviewer": "Primary Codex agent — evidence-based agent adjudication, not independent human review",
+  "items": [
+    {
+      "id": "I11.2",
+      "credit": 1,
+      "evidence": [
+        "SUP-0002-CANCEL-seed-after",
+        "SUP-0004-CANCEL-open-after",
+        "SUP-0006-CANCEL-cancel-after",
+        "SUP-cancel-browser-log"
+      ],
+      "reason": "补充独立回放直接点击可见Cancel按钮，之前没有点击遮罩外侧；前后截图中三块实体完全保留。原回放的外侧点击可能已关闭弹窗，后续坐标不能证明Cancel，因此以本补充证据修正取证，未修改候选代码。关闭×另有原回放证据。"
+    },
+    {
+      "id": "I02.1",
+      "credit": 1,
+      "evidence": [
+        "SUP-0010-SNAP-x-500-after",
+        "SUP-0012-SNAP-x-510-after",
+        "SUP-0018-SNAP-x-540-after",
+        "SUP-0026-SNAP-x-580-after",
+        "SUP-cancel-browser-log"
+      ],
+      "reason": "补采同一高度横向每10像素移动的连续序列。500与510位置保持同一预览格点；540及后续跨界位置按凸点间距跳到相邻格点，不连续跟随像素漂移。"
+    },
+    {
+      "id": "I10.1",
+      "credit": 0,
+      "evidence": [
+        "J-0168-S06-green-hover-after",
+        "J-0178-S06-purple-hover-after"
+      ],
+      "reason": "确实命中正确目标，但绿色砖被染成橙棕、紫色砖被染成品红，均未形成清楚红色高亮。按原二值断言要求判0；删除正确性在I10.2和I10.3独立给分。"
+    },
+    {
+      "id": "V05.1",
+      "credit": 1,
+      "evidence": [
+        "SUP-motion-sheet-1",
+        "SUP-motion-sheet-2",
+        "SUP-motion-sheet-3",
+        "browser-session"
+      ],
+      "reason": "补采27张相邻实际帧显示视角连续推进、上下层与实体关系稳定，没有可见闪烁、突然重置或穿帮。原完整录像包含相机操作。此项不要求固定60fps；未仅凭几个远隔截图推断平滑性。"
+    }
+  ]
+}

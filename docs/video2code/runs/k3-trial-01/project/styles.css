@@ -1,0 +1,70 @@
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:#dcdce2;font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;user-select:none;-webkit-user-select:none}
+#scene{position:fixed;inset:0;display:block}
+button{font-family:inherit;background:none;border:none;cursor:pointer;color:inherit}
+
+/* ---------- left modes ---------- */
+#modes{position:fixed;left:14px;top:14px;display:flex;flex-direction:column;gap:16px;z-index:20;transition:opacity .3s}
+.mode-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(120,120,135,.45);color:#fff;position:relative;transition:background .15s}
+.mode-btn svg{width:22px;height:22px}
+.mode-btn.active{background:#0c0e17}
+.mode-btn:hover{background:rgba(90,90,110,.6)}
+.mode-btn.active:hover{background:#0c0e17}
+
+/* tooltips */
+[data-tip]{position:relative}
+[data-tip]:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:#16192b;color:#e8e9f2;font-size:12px;padding:5px 10px;border-radius:6px;white-space:nowrap;pointer-events:none;z-index:60}
+.mode-btn[data-tip]:hover::after{left:calc(100% + 10px);top:50%;bottom:auto;transform:translateY(-50%)}
+
+/* ---------- top right ---------- */
+#topright{position:fixed;right:14px;top:12px;display:flex;gap:2px;z-index:20;transition:opacity .3s}
+.icon-plain{width:30px;height:30px;color:#3c3c46;display:flex;align-items:center;justify-content:center}
+.icon-plain svg{width:18px;height:18px}
+.icon-plain:hover{color:#15151c}
+
+/* ---------- toolbar ---------- */
+#toolbar{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);display:flex;align-items:center;gap:6px;background:#141828;border-radius:999px;padding:10px 18px;z-index:20;box-shadow:0 8px 30px rgba(10,10,30,.35);transition:opacity .3s}
+.tb-btn{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#c9cbdd;position:relative}
+.tb-btn svg{width:20px;height:20px}
+.tb-btn:hover{background:rgba(255,255,255,.08);color:#fff}
+.tb-btn.dim{opacity:.45}
+.tb-btn.danger{color:#e07a7a}
+.tb-btn.danger:hover{color:#ff9a9a;background:rgba(255,90,90,.12)}
+.tb-btn.dd{gap:2px;font-size:15px;font-weight:600;color:#dfe1ee;min-width:44px}
+.tb-btn.dd .chev{width:13px;height:13px;margin-top:2px}
+.sep{width:1px;height:26px;background:rgba(255,255,255,.14);margin:0 6px}
+
+#swatches{display:flex;gap:9px;align-items:center;padding:0 4px}
+.swatch{width:26px;height:26px;border-radius:50%;box-shadow:inset 0 -2px 4px rgba(0,0,0,.18);transition:transform .1s}
+.swatch:hover{transform:scale(1.12)}
+.swatch.sel{box-shadow:0 0 0 2px #141828,0 0 0 4px #fff,inset 0 -2px 4px rgba(0,0,0,.18)}
+.swatch.wheel{background:conic-gradient(#f44336,#ff9800,#ffeb3b,#4caf50,#03a9f4,#3f51b5,#9c27b0,#f44336)}
+
+/* dropdown menus */
+.dd-wrap{position:relative}
+.dd-menu{position:absolute;bottom:calc(100% + 14px);left:50%;transform:translateX(-50%);background:#fff;border-radius:10px;box-shadow:0 10px 32px rgba(0,0,0,.28);padding:6px;min-width:64px;display:none;z-index:50}
+.dd-menu.open{display:block}
+.dd-menu button{display:block;width:100%;text-align:center;padding:6px 14px;border-radius:7px;font-size:14px;color:#26283a;font-weight:500}
+.dd-menu button:hover{background:#eeeef6}
+.dd-menu button.cur{background:#eceffd;font-weight:700}
+
+/* ---------- pause ---------- */
+#pauseBtn{position:fixed;left:50%;bottom:34px;transform:translateX(-50%);display:none;gap:7px;z-index:25;padding:10px}
+#pauseBtn span{display:block;width:7px;height:26px;border-radius:3.5px;background:rgba(255,255,255,.92);box-shadow:0 1px 4px rgba(0,0,0,.25)}
+body.playing #pauseBtn{display:flex}
+body.playing #toolbar,body.playing #modes,body.playing #topright{opacity:0;pointer-events:none}
+
+/* ---------- dialog ---------- */
+#overlay{position:fixed;inset:0;background:rgba(10,10,16,.72);display:flex;align-items:center;justify-content:center;z-index:100}
+#dialog{position:relative;background:#fff;border-radius:14px;width:450px;max-width:92vw;padding:34px 34px 30px;box-shadow:0 24px 70px rgba(0,0,0,.4)}
+#dialog h2{font-size:25px;font-weight:700;color:#14151f;letter-spacing:-.02em}
+#dialog p{margin-top:14px;font-size:15px;line-height:1.5;color:#4b4d5c}
+.dlg-actions{display:flex;justify-content:flex-end;gap:12px;margin-top:30px}
+.dlg-actions button{font-size:15px;font-weight:600;padding:10px 24px;border-radius:999px}
+#dlgCancel{border:1.5px solid #d9dae4;color:#2b2d3a;background:#fff}
+#dlgCancel:hover{background:#f3f3f8}
+#dlgClear{background:#e05555;color:#fff}
+#dlgClear:hover{background:#cb4444}
+#dlgX{position:absolute;top:16px;right:16px;width:26px;height:26px;color:#55565f;display:flex;align-items:center;justify-content:center}
+#dlgX svg{width:15px;height:15px}
+#dlgX:hover{color:#111}

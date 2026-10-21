@@ -1,0 +1,72 @@
+{
+  "run_id": "gpt-6-luna-trial-01",
+  "candidate_hash": "100fc94a3f165faa2b98183a44e93eac1ad2ce14da75c18a4083ef5d365e5c4c",
+  "reviewer": "Primary Codex agent — evidence-based agent adjudication, not independent human review",
+  "items": [
+    {
+      "id": "E01.1",
+      "credit": 1,
+      "evidence": [
+        "npm-start-3000"
+      ],
+      "reason": "补采的真实 npm CLI 启动日志确认命令在3000端口返回HTTP 200；此前空输出由验收脚本环境变量不全造成，未改动候选代码。"
+    },
+    {
+      "id": "I02.2",
+      "credit": 1,
+      "evidence": [
+        "J-0074-S01-independent-1-placed-after",
+        "J-0078-S01-independent-2-placed-after",
+        "SUP-independent-sequence"
+      ],
+      "reason": "提交的实体保持固定格点位置。补充侧视图显示相邻实体边界和上下层分离，没有明显穿插。屏幕落点偏移已在I01/I04等对应断言处理，不把自然叠层误判成穿透。"
+    },
+    {
+      "id": "I03.1",
+      "credit": 1,
+      "evidence": [
+        "SUP-independent-sequence"
+      ],
+      "reason": "同样三次不同位置点击后仅改变相机，补采侧视图可辨认三个同时存在的红色2×2实体；没有轮播替换。"
+    },
+    {
+      "id": "I04.3",
+      "credit": 1,
+      "evidence": [
+        "J-0124-S02-side-angle-after"
+      ],
+      "reason": "侧视图左侧绿色塔确实有上下两块，层间贴合且下层保留。此原子断言检验实际层间几何；指定红底绿顶和异位置组合的失败已分别由I04.1、I04.4计分。"
+    },
+    {
+      "id": "I06.3",
+      "credit": 0,
+      "evidence": [
+        "J-0152-S03-purple32-placed-after",
+        "J-0158-S03-purple23-placed-after"
+      ],
+      "reason": "新尺寸确实生成实体，但在中部空白位置操作仍错误落到边缘已有结构附近，不满足在合法空白位置正常放置的完整断言。仅生成几何不能通过本项。"
+    },
+    {
+      "id": "V05.1",
+      "credit": 1,
+      "evidence": [
+        "SUP-motion-sheet-1",
+        "SUP-motion-sheet-2",
+        "SUP-motion-sheet-3",
+        "browser-session"
+      ],
+      "reason": "补采27张连续实际帧显示相机视角逐步变化，实体相对位置稳定，没有可见闪烁、突然重置或穿帮；原完整录像也包含手动相机操作。本项不要求固定60fps，播放退出故障单独由I08计分。"
+    },
+    {
+      "id": "I11.2",
+      "credit": 1,
+      "evidence": [
+        "SUP-0002-CANCEL-seed-after",
+        "SUP-0004-CANCEL-open-after",
+        "SUP-0006-CANCEL-cancel-after",
+        "SUP-cancel-browser-log"
+      ],
+      "reason": "补充独立回放直接点击可见Cancel按钮，之前没有点击遮罩外侧；前后截图中三块实体完全保留。原回放的外侧点击可能已关闭弹窗，后续坐标不能证明Cancel，因此以本补充证据修正取证，未修改候选代码。关闭×另有原回放证据。"
+    }
+  ]
+}

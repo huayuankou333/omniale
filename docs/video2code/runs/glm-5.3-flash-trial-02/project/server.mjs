@@ -1,0 +1,5 @@
+// Fixed trusted static launcher. Candidate files are only served, never imported by Node.
+import http from 'node:http';import fs from 'node:fs/promises';import path from 'node:path';
+const root=import.meta.dirname;const args=process.argv.slice(2);const port=Number(args[args.indexOf('--port')+1])||3000;
+const types={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.png':'image/png'};
+http.createServer(async(req,res)=>{try{const rel=decodeURIComponent(new URL(req.url,'http://localhost').pathname).replace(/^\/+/, '')||'index.html';let base=root;if(rel.startsWith('vendor/')){try{await fs.access(path.join(root,'vendor'))}catch{base=path.resolve(root,'../../../environment')}}const file=path.resolve(base,rel);if(!file.startsWith(base+path.sep))throw Error();res.setHeader('Content-Type',types[path.extname(file)]||'text/plain');res.end(await fs.readFile(file))}catch{res.writeHead(404);res.end('Not found')}}).listen(port,'0.0.0.0',()=>console.log('http://localhost:'+port));

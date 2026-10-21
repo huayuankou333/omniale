@@ -1,0 +1,5 @@
+import fs from 'node:fs/promises';import path from 'node:path';import {Browser,safePath} from './browser.mjs';
+const dir=path.resolve(import.meta.dirname,'../validation-runner');await fs.mkdir(dir,{recursive:true});
+await fs.writeFile(path.join(dir,'index.html'),'<html><body><button id="b">0</button><script type="module">import * as THREE from "/vendor/three/build/three.module.js";b.onclick=()=>b.textContent=Number(b.textContent)+1;document.title=THREE.REVISION;fetch("https://example.com").catch(()=>{});</script></body></html>');
+let rejects=0;for(const s of ['../protocol.json','C:/secret','../..']){try{safePath(dir,s)}catch{rejects++}}
+const b=new Browser(dir,path.join(dir,'evidence'));try{await b.start();await b.action({type:'click',x:15,y:15});const snap=await b.inspect();if(await b.page.title()!=='180'||snap.controls[0].text!=='1'||rejects!==3)throw Error('Smoke failed');console.log(JSON.stringify({pass:true,browser:b.version,click:snap.controls[0].text,three_revision:await b.page.title(),traversal_rejections:rejects,logs:b.logs}));}finally{await b.close()}
