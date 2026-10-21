@@ -1,0 +1,179 @@
+{
+  "status": "frozen_manual_browser_protocol",
+  "scenarios": [
+    {
+      "id": "S01",
+      "name": "基础编辑及双端绑定",
+      "chapter_ids": [
+        "01",
+        "02",
+        "03"
+      ],
+      "steps": [
+        "Reset确认",
+        "移动中间节点，检查两边",
+        "扩展宽高，更改两行标签和填充",
+        "更换目标和拖动方向复测"
+      ],
+      "items": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "G01"
+      ]
+    },
+    {
+      "id": "S02",
+      "name": "整体复制和身份隔离",
+      "chapter_ids": [
+        "04",
+        "05"
+      ],
+      "steps": [
+        "框选并组合三节点和两边",
+        "复制，移动整组副本",
+        "解组副本，编辑其中一个节点",
+        "拖动原组，确认副本保持"
+      ],
+      "items": [
+        "C05",
+        "G02",
+        "G03",
+        "G04"
+      ]
+    },
+    {
+      "id": "S03",
+      "name": "图层、命中与锁定",
+      "chapter_ids": [
+        "06",
+        "07"
+      ],
+      "steps": [
+        "新增矩形覆盖副本",
+        "置底并点击前景节点",
+        "锁定背景并尝试拖动",
+        "继续拖动前景"
+      ],
+      "items": [
+        "C06",
+        "N03"
+      ]
+    },
+    {
+      "id": "S04",
+      "name": "历史、分支和原子性",
+      "chapter_ids": [
+        "08",
+        "09",
+        "11"
+      ],
+      "steps": [
+        "移动副本节点→Undo→Redo",
+        "Undo→改色→Redo，应不恢复旧移动",
+        "选中原组删除，一次Undo恢复组与边",
+        "连续拖动只需一次Undo"
+      ],
+      "items": [
+        "H01",
+        "H02",
+        "H03",
+        "H04",
+        "H05",
+        "H06"
+      ]
+    },
+    {
+      "id": "S05",
+      "name": "坐标变换",
+      "chapter_ids": [
+        "10"
+      ],
+      "steps": [
+        "80%缩放",
+        "Space平移",
+        "拖动节点并调整尺寸",
+        "返回100%，确认文档关系不变"
+      ],
+      "items": [
+        "N01",
+        "N02"
+      ]
+    },
+    {
+      "id": "S06",
+      "name": "独立快照与事务",
+      "chapter_ids": [
+        "11",
+        "12",
+        "13"
+      ],
+      "steps": [
+        "保存快照，再改位置/标签/颜色",
+        "Restore取消→保持编辑",
+        "Restore确认→恢复快照",
+        "Undo→恢复前状态",
+        "Reset取消/确认"
+      ],
+      "items": [
+        "H07",
+        "P01",
+        "P02",
+        "P03",
+        "P04"
+      ]
+    },
+    {
+      "id": "S07",
+      "name": "文件往返与错误恢复",
+      "chapter_ids": [
+        "13",
+        "14",
+        "15",
+        "16",
+        "17"
+      ],
+      "steps": [
+        "导出本候选JSON",
+        "Reset后导入语法错误/结构错误，各自不变",
+        "导入原JSON，再导入一次不叠加",
+        "Reload",
+        "拖动已恢复节点和原组",
+        "Restore旧快照"
+      ],
+      "items": [
+        "C07",
+        "P05",
+        "P06",
+        "P07",
+        "P08",
+        "P09",
+        "G05"
+      ]
+    }
+  ],
+  "parameter_variants": {
+    "drag_screen_delta": [
+      [
+        40,
+        24
+      ],
+      [
+        -60,
+        35
+      ]
+    ],
+    "labels": [
+      "Risk review\n12h SLA",
+      "QA review\n36h SLA"
+    ],
+    "zoom": 0.8,
+    "invalid_json": [
+      "{ broken",
+      "{\"format\":\"broken\"}"
+    ]
+  },
+  "locating": "Use actual candidate controls and visual positions; do not assume reference coordinates. Record any adapter change; do not edit candidate source.",
+  "independence": "Begin with Reset. Construct minimum needed state per scenario; upstream setup failure requires separate evidence or N/A, not automatic blanket failures."
+}

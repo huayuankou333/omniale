@@ -1,0 +1,200 @@
+{
+  "status": "reference_replay_passed",
+  "checks": [
+    {
+      "name": "Initial 3 nodes and 2 bound arrows",
+      "pass": true
+    },
+    {
+      "name": "Moved Review retains two bindings",
+      "pass": true
+    },
+    {
+      "name": "Resized node, multiline text and fill",
+      "pass": true
+    },
+    {
+      "name": "Two independent 3-node groups",
+      "pass": true
+    },
+    {
+      "name": "Copy edits leave original unchanged",
+      "pass": true
+    },
+    {
+      "name": "Locked background cannot move",
+      "pass": true
+    },
+    {
+      "name": "Redo restores node and bindings",
+      "pass": true
+    },
+    {
+      "name": "New edit invalidates previous redo",
+      "pass": true
+    },
+    {
+      "name": "Zoomed drag converts screen to world coordinates",
+      "pass": true
+    },
+    {
+      "name": "Delete removes exactly the original group",
+      "pass": true
+    },
+    {
+      "name": "Undo restores original group relationships",
+      "pass": true
+    },
+    {
+      "name": "Restore cancel is non-mutating",
+      "pass": true
+    },
+    {
+      "name": "Snapshot restored positions and bindings",
+      "pass": true
+    },
+    {
+      "name": "Reset cancel is non-mutating",
+      "pass": true
+    },
+    {
+      "name": "Reset returns to initial graph",
+      "pass": true
+    },
+    {
+      "name": "Invalid import preserves board",
+      "pass": true
+    },
+    {
+      "name": "JSON round-trip preserves all bindings",
+      "pass": true
+    },
+    {
+      "name": "Reload preserves board geometry and relationships",
+      "pass": true
+    },
+    {
+      "name": "Restored graph remains editable",
+      "pass": true
+    },
+    {
+      "name": "Snapshot survives reset and reload",
+      "pass": true
+    },
+    {
+      "name": "No page runtime errors",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "events": [
+    {
+      "id": "01",
+      "title": "Start: three labeled nodes and two connected arrows",
+      "start_seconds": 1.463,
+      "keyframe_seconds": 4.741
+    },
+    {
+      "id": "02",
+      "title": "Move Review; both arrow endpoints follow",
+      "start_seconds": 4.741,
+      "keyframe_seconds": 10.308
+    },
+    {
+      "id": "03",
+      "title": "Resize, edit two-line label, change fill",
+      "start_seconds": 10.308,
+      "keyframe_seconds": 19.745
+    },
+    {
+      "id": "04",
+      "title": "Marquee select → Ctrl+G group → Ctrl+D duplicate",
+      "start_seconds": 19.745,
+      "keyframe_seconds": 30.905
+    },
+    {
+      "id": "05",
+      "title": "Ctrl+Shift+G ungroups only the copy; edit its middle node",
+      "start_seconds": 30.905,
+      "keyframe_seconds": 41.616
+    },
+    {
+      "id": "06",
+      "title": "R draws a background panel; Ctrl+Shift+[ sends it behind",
+      "start_seconds": 41.616,
+      "keyframe_seconds": 50.57
+    },
+    {
+      "id": "07",
+      "title": "Ctrl+Shift+L locks panel; attempted drag leaves it fixed",
+      "start_seconds": 50.57,
+      "keyframe_seconds": 57.389
+    },
+    {
+      "id": "08",
+      "title": "Move copied review, undo, redo; arrows follow every state",
+      "start_seconds": 57.389,
+      "keyframe_seconds": 65.704
+    },
+    {
+      "id": "09",
+      "title": "Undo move, then recolor; the old redo branch is discarded",
+      "start_seconds": 65.704,
+      "keyframe_seconds": 71.665
+    },
+    {
+      "id": "10",
+      "title": "Zoom to 80%, pan with Space, then edit in transformed coordinates",
+      "start_seconds": 72.341,
+      "keyframe_seconds": 81.411
+    },
+    {
+      "id": "11",
+      "title": "Save snapshot; delete original group; Undo restores the connected group",
+      "start_seconds": 82.106,
+      "keyframe_seconds": 89.606
+    },
+    {
+      "id": "12",
+      "title": "Restore snapshot: Cancel preserves edits; Restore rolls them back",
+      "start_seconds": 89.606,
+      "keyframe_seconds": 99.38
+    },
+    {
+      "id": "13",
+      "title": "Export editable JSON; reset Cancel then confirm Reset",
+      "start_seconds": 99.38,
+      "keyframe_seconds": 108.285
+    },
+    {
+      "id": "14",
+      "title": "Import invalid JSON: error, no partial changes; then import exported board",
+      "start_seconds": 108.286,
+      "keyframe_seconds": 115.78
+    },
+    {
+      "id": "15",
+      "title": "Reload browser; saved board stays editable",
+      "start_seconds": 115.781,
+      "keyframe_seconds": 120.826
+    },
+    {
+      "id": "16",
+      "title": "After reload, move a restored node; its imported arrows still follow",
+      "start_seconds": 120.826,
+      "keyframe_seconds": 126.333
+    },
+    {
+      "id": "17",
+      "title": "Restore saved snapshot after Reset/Import/Reload; snapshot is independent",
+      "start_seconds": 126.333,
+      "keyframe_seconds": 131.031
+    }
+  ],
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "browser": "143.0.7499.4",
+  "note": "Internal reference state is used only to validate the reference recording. Candidate evaluation must use observable UI/output evidence."
+}

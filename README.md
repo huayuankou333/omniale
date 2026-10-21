@@ -15,6 +15,7 @@
 - `docs/review/reproduction/`：独立复算终态的评分器快照。
 - `docs/review-v2/`：原v2展示归档；不与新版成绩混用。
 - `docs/video2code/`：D2 原生图像试测。WebCompass #78 三维积木录屏、24项/43个断言、15轮预算。Luna 67.00、Sol 93.56、Kimi重试89.75；GLM-5.3-Flash重试429/503为N/A。含代码ZIP、实际轨迹、双judge、代理复核和验收录像；详见该目录README与实际协议。
+- `docs/video2code-flowboard/`：独立原创 Flowboard 题。132.76 秒新录屏、17 阶段、40 项/53 个功能断言；组合、连线绑定、撤销分支、快照和 JSON 往返。参考回放与边界检查已通过，四模型尚未重测，不能宣称 ≤80。旧题成绩保留。
 
 ## 验证与预览
 
