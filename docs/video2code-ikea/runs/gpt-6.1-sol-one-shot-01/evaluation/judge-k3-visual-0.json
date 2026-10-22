@@ -1,0 +1,59 @@
+{
+  "judge": "k3",
+  "usage": {
+    "input_tokens": 14713,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 2680,
+    "output_tokens_details": {
+      "reasoning_tokens": 2174
+    },
+    "total_tokens": 17393
+  },
+  "transport": {
+    "requested_model": "k3",
+    "attempt": 1,
+    "latency_ms": 68383,
+    "time": "2026-10-22T06:26:02.281Z"
+  },
+  "items": [
+    {
+      "id": "V01",
+      "score": 0.75,
+      "reason": "Black top bar, IKEA header, nav, search and hero image grid match in structure/proportion/hierarchy; differences are local: category-chip icons are shifted/mismatched (Deals shows a tree instead of tag, Winter holiday shows a cabinet instead of tree, etc.), candidate shows a bottom cookie banner not present in reference home state, and the reference video pause overlay is absent (dynamic promo exempted).",
+      "evidence": [
+        "reference/home.png",
+        "0002-home-initial-after.png"
+      ]
+    },
+    {
+      "id": "V02",
+      "score": 0.5,
+      "reason": "Same wide Products mega-menu with active 'New & trending' pill and dimmed page background, but column structure differs materially: reference has three text columns (Trending / Seasonal / Food) with the orange YXSTABY card at lower right, while candidate drops the entire Food column, keeps only two text columns, and adds a dining photo above the orange promo card; right tab also shows full 'Kitchen, appliances & supplies' without the truncated arrow. One important section (Food column) is missing.",
+      "evidence": [
+        "reference/menu.png",
+        "0004-menu-after.png"
+      ]
+    },
+    {
+      "id": "V03",
+      "score": 0.75,
+      "reason": "Search 'besta', help banner, '87 items', design-your-own card, left filter rail, active white chip and 4-column product grid with IKEA Family price/discount hierarchy all match; key differences: candidate left Color filter is collapsed (reference shows expanded color swatches with White checked and counts), candidate adds 'Clear all', Best-seller badge and product order/assortment differ (3rd/4th tiles not identical). Same filtered state, local differences only.",
+      "evidence": [
+        "reference/filtered.png",
+        "0016-white-filter-after.png"
+      ]
+    },
+    {
+      "id": "V04",
+      "score": 1,
+      "reason": "Product comparison page matches: same title, two equal columns with remove-X, same BESTÅ product images, IKEA Family price labels, $55/$76 prices, 15%-off save lines, regular price/validity text, star ratings (1550)/(4773) and Key features section; column widths, spacing and separators align. Only trivial local icon placement (heart/bag) and a 'More options' link differ.",
+      "evidence": [
+        "reference/compare.png",
+        "0030-compare-correct-ids-after.png"
+      ]
+    }
+  ]
+}

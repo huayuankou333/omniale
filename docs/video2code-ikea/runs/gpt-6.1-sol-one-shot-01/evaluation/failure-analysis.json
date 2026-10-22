@@ -1,0 +1,27 @@
+{
+  "common_root_cause": "bagPage exists but render() omits bag branch, so bag routes fall through to productPage()",
+  "source_evidence": {
+    "file": "project/app.js",
+    "bag_page_definition_line": 47,
+    "render_omission_line": 51
+  },
+  "scored_by": "actual UI screenshots and visible controls; source only used to explain cause",
+  "affected_items": [
+    "E03",
+    "E04",
+    "N06",
+    "S01",
+    "S02",
+    "S03",
+    "S04",
+    "S05",
+    "S06",
+    "S07",
+    "S08",
+    "V10",
+    "V11"
+  ],
+  "not_independent_errors": true,
+  "no_candidate_repair": true,
+  "visual_review_method": "K3 single anonymous judge, with primary agent missing-state adjudication because GLM judge repeatedly returned 503. Not a two-model or human-certified visual result."
+}

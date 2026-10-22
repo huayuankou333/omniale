@@ -1,0 +1,279 @@
+{
+  "items": [
+    {
+      "id": "E01",
+      "score": 1,
+      "reason": "正常加载首页，存在可用搜索、分层导航和本地购物袋入口。",
+      "evidence": [
+        "0002-home-initial-after.png"
+      ]
+    },
+    {
+      "id": "N01",
+      "score": 1,
+      "reason": "Products展开可进入Storage & organization并列出子类；补充实测Escape关闭菜单。",
+      "evidence": [
+        "0004-menu-after.png",
+        "0006-submenu-after.png",
+        "supplementary/0004-menu-open-close-check-after.png",
+        "supplementary/0006-menu-escape-after.png"
+      ]
+    },
+    {
+      "id": "N02",
+      "score": 1,
+      "reason": "besta 输入出现5项联想及商品建议，Enter 跳本地搜索路由并保留查询。",
+      "evidence": [
+        "0010-search-suggest-after.png",
+        "0012-search-enter-after.png"
+      ]
+    },
+    {
+      "id": "I01",
+      "score": 1,
+      "reason": "白色筛选把165变87，出现white chip并移除棕色商品；Clear all恢复165与原列表。",
+      "evidence": [
+        "0016-white-filter-after.png",
+        "0018-clear-white-after.png"
+      ]
+    },
+    {
+      "id": "I02",
+      "score": 1,
+      "reason": "价格升序实际排列为8/8/12/12/17/20…，重新展开Sort选Best match后回到55/76/197。先前关闭排序后点击不存在选项为定位错误，已按UI重试。",
+      "evidence": [
+        "0022-sort-low-after.png",
+        "0028-restore-best-after.png"
+      ]
+    },
+    {
+      "id": "I03",
+      "score": 1,
+      "reason": "比较页为指定60245844/00245842，价格55/76、原价65/90，宽47¼/23⅝、高15/75⅝、深15¾对应。",
+      "evidence": [
+        "0030-compare-correct-ids-after.png"
+      ]
+    },
+    {
+      "id": "I04",
+      "score": 1,
+      "reason": "相似商品抽屉添加小柜体70245848后出现38美元第三列；移除高柜后55/38两件保留。",
+      "evidence": [
+        "0036-add-third-after.png",
+        "0038-remove-tall-after.png"
+      ]
+    },
+    {
+      "id": "N03",
+      "score": 1,
+      "reason": "列表点击原木色组合柜，进入本地s29209829，主图/名称/197会员价及240原价对应。",
+      "evidence": [
+        "0042-oak-from-list-after.png"
+      ]
+    },
+    {
+      "id": "I05",
+      "score": 1,
+      "reason": "缩略图切换后主图改变，All media弹层展示多张实际图片，可关闭返回原商品详情。",
+      "evidence": [
+        "0042-oak-from-list-after.png",
+        "0044-thumbnail-change-after.png",
+        "0046-all-media-after.png",
+        "0050-gallery-close-components-after.png"
+      ]
+    },
+    {
+      "id": "I06",
+      "score": 1,
+      "reason": "Measurement 显示组合柜尺寸图，宽120cm/47¼、高74cm/29⅛、深42cm/16½。",
+      "evidence": [
+        "0048-measurement-after.png"
+      ]
+    },
+    {
+      "id": "I07",
+      "score": 1,
+      "reason": "组件清单六种类型及数量为Frame1、Shelf4、STUBBARP2、Support leg1、Hinge2、Door2。",
+      "evidence": [
+        "0050-gallery-close-components-after.png"
+      ]
+    },
+    {
+      "id": "N04",
+      "score": 1,
+      "reason": "从组合组件清单进入20293568 STUBBARP详情，浏览器返回恢复s29209829上下文。",
+      "evidence": [
+        "0052-component-leg-after.png",
+        "0054-back-oak-after.png"
+      ]
+    },
+    {
+      "id": "N05",
+      "score": 1,
+      "reason": "变体按钮切换后进入s29612189，本地地址、胡桃木图片和black-brown/walnut名称同步改变。",
+      "evidence": [
+        "0072-walnut-variant-after.png"
+      ]
+    },
+    {
+      "id": "I08",
+      "score": 1,
+      "reason": "abc 显示Please enter a valid ZIP code且未保存，95054保存后顶部和Home delivery均更新。",
+      "evidence": [
+        "0076-zip-invalid-after.png",
+        "0078-zip-valid-after.png"
+      ]
+    },
+    {
+      "id": "I09",
+      "score": 1,
+      "reason": "选择East Palo Alto即保存，顶部门店、In stock、Click and collect及2美元/Family免费联动显示。",
+      "evidence": [
+        "0082-east-palo-alto-after.png"
+      ]
+    },
+    {
+      "id": "E02",
+      "score": 1,
+      "reason": "主要浏览测试未出现未捕获异常；购物袋错误属于路由渲染缺失，单独在E04/N06/S项记录。浏览器日志无pageerror。",
+      "evidence": [
+        "0104-bag-final-refresh-after.png"
+      ]
+    },
+    {
+      "id": "E03",
+      "score": 0,
+      "reason": "外网阻断时已实现页面图像正常，但清单要求的购物袋主要产品图和布局未出现：购物袋路由错误显示商品详情。",
+      "evidence": [
+        "0002-home-initial-after.png",
+        "0030-compare-correct-ids-after.png",
+        "0104-bag-final-refresh-after.png"
+      ]
+    },
+    {
+      "id": "E04",
+      "score": 0,
+      "reason": "搜索和组合深链可直接打开/刷新；shoppingcart和/cart都错误渲染原木组合详情，未得到对应购物袋页。",
+      "evidence": [
+        "0098-deeplink-search-refresh-after.png",
+        "0102-oak-direct-refresh-after.png",
+        "0070-bag-reload-after.png",
+        "0090-cart-independent-deeplink-after.png"
+      ]
+    },
+    {
+      "id": "N06",
+      "score": 0,
+      "reason": "加入独立柜脚和胡桃木组合后，点击Go to shopping bag只切换地址并显示原木色商品，无法完成袋→详情→袋往返。",
+      "evidence": [
+        "0088-walnut-and-leg-bag-after.png",
+        "0104-bag-final-refresh-after.png"
+      ]
+    },
+    {
+      "id": "S01",
+      "score": 0,
+      "reason": "实际已加入柜脚2包及胡桃木组合，计数随加入和刷新保留；但购物袋链接、直接shoppingcart和/cart及刷新均显示原木色详情，无商品行/金额、数量编辑、组件抽屉、安装选项、删除撤销或折扣表单。独立重入复核后仍不可操作，不能凭源码中未接入的功能计分。共同根因为购物袋未渲染，非8个独立算法错误。",
+      "evidence": [
+        "0064-leg-actual-two-add-after.png",
+        "0068-go-bag-from-drawer-after.png",
+        "0088-walnut-and-leg-bag-after.png",
+        "0090-cart-independent-deeplink-after.png",
+        "0104-bag-final-refresh-after.png"
+      ]
+    },
+    {
+      "id": "S02",
+      "score": 0,
+      "reason": "实际已加入柜脚2包及胡桃木组合，计数随加入和刷新保留；但购物袋链接、直接shoppingcart和/cart及刷新均显示原木色详情，无商品行/金额、数量编辑、组件抽屉、安装选项、删除撤销或折扣表单。独立重入复核后仍不可操作，不能凭源码中未接入的功能计分。共同根因为购物袋未渲染，非8个独立算法错误。",
+      "evidence": [
+        "0064-leg-actual-two-add-after.png",
+        "0068-go-bag-from-drawer-after.png",
+        "0088-walnut-and-leg-bag-after.png",
+        "0090-cart-independent-deeplink-after.png",
+        "0104-bag-final-refresh-after.png"
+      ]
+    },
+    {
+      "id": "S03",
+      "score": 0,
+      "reason": "实际已加入柜脚2包及胡桃木组合，计数随加入和刷新保留；但购物袋链接、直接shoppingcart和/cart及刷新均显示原木色详情，无商品行/金额、数量编辑、组件抽屉、安装选项、删除撤销或折扣表单。独立重入复核后仍不可操作，不能凭源码中未接入的功能计分。共同根因为购物袋未渲染，非8个独立算法错误。",
+      "evidence": [
+        "0064-leg-actual-two-add-after.png",
+        "0068-go-bag-from-drawer-after.png",
+        "0088-walnut-and-leg-bag-after.png",
+        "0090-cart-independent-deeplink-after.png",
+        "0104-bag-final-refresh-after.png"
+      ]
+    },
+    {
+      "id": "S04",
+      "score": 0,
+      "reason": "实际已加入柜脚2包及胡桃木组合，计数随加入和刷新保留；但购物袋链接、直接shoppingcart和/cart及刷新均显示原木色详情，无商品行/金额、数量编辑、组件抽屉、安装选项、删除撤销或折扣表单。独立重入复核后仍不可操作，不能凭源码中未接入的功能计分。共同根因为购物袋未渲染，非8个独立算法错误。",
+      "evidence": [
+        "0064-leg-actual-two-add-after.png",
+        "0068-go-bag-from-drawer-after.png",
+        "0088-walnut-and-leg-bag-after.png",
+        "0090-cart-independent-deeplink-after.png",
+        "0104-bag-final-refresh-after.png"
+      ]
+    },
+    {
+      "id": "S05",
+      "score": 0,
+      "reason": "实际已加入柜脚2包及胡桃木组合，计数随加入和刷新保留；但购物袋链接、直接shoppingcart和/cart及刷新均显示原木色详情，无商品行/金额、数量编辑、组件抽屉、安装选项、删除撤销或折扣表单。独立重入复核后仍不可操作，不能凭源码中未接入的功能计分。共同根因为购物袋未渲染，非8个独立算法错误。",
+      "evidence": [
+        "0064-leg-actual-two-add-after.png",
+        "0068-go-bag-from-drawer-after.png",
+        "0088-walnut-and-leg-bag-after.png",
+        "0090-cart-independent-deeplink-after.png",
+        "0104-bag-final-refresh-after.png"
+      ]
+    },
+    {
+      "id": "S06",
+      "score": 0,
+      "reason": "实际已加入柜脚2包及胡桃木组合，计数随加入和刷新保留；但购物袋链接、直接shoppingcart和/cart及刷新均显示原木色详情，无商品行/金额、数量编辑、组件抽屉、安装选项、删除撤销或折扣表单。独立重入复核后仍不可操作，不能凭源码中未接入的功能计分。共同根因为购物袋未渲染，非8个独立算法错误。",
+      "evidence": [
+        "0064-leg-actual-two-add-after.png",
+        "0068-go-bag-from-drawer-after.png",
+        "0088-walnut-and-leg-bag-after.png",
+        "0090-cart-independent-deeplink-after.png",
+        "0104-bag-final-refresh-after.png"
+      ]
+    },
+    {
+      "id": "S07",
+      "score": 0,
+      "reason": "实际已加入柜脚2包及胡桃木组合，计数随加入和刷新保留；但购物袋链接、直接shoppingcart和/cart及刷新均显示原木色详情，无商品行/金额、数量编辑、组件抽屉、安装选项、删除撤销或折扣表单。独立重入复核后仍不可操作，不能凭源码中未接入的功能计分。共同根因为购物袋未渲染，非8个独立算法错误。",
+      "evidence": [
+        "0064-leg-actual-two-add-after.png",
+        "0068-go-bag-from-drawer-after.png",
+        "0088-walnut-and-leg-bag-after.png",
+        "0090-cart-independent-deeplink-after.png",
+        "0104-bag-final-refresh-after.png"
+      ]
+    },
+    {
+      "id": "S08",
+      "score": 0,
+      "reason": "实际已加入柜脚2包及胡桃木组合，计数随加入和刷新保留；但购物袋链接、直接shoppingcart和/cart及刷新均显示原木色详情，无商品行/金额、数量编辑、组件抽屉、安装选项、删除撤销或折扣表单。独立重入复核后仍不可操作，不能凭源码中未接入的功能计分。共同根因为购物袋未渲染，非8个独立算法错误。",
+      "evidence": [
+        "0064-leg-actual-two-add-after.png",
+        "0068-go-bag-from-drawer-after.png",
+        "0088-walnut-and-leg-bag-after.png",
+        "0090-cart-independent-deeplink-after.png",
+        "0104-bag-final-refresh-after.png"
+      ]
+    },
+    {
+      "id": "I10",
+      "score": 1,
+      "reason": "评论弹层显示评分分布和多条评论；Lowest rated把默认Looks good…换成So disappointed…，截图显示第一条1星，随后1星及更高评分。",
+      "evidence": [
+        "0092-reviews-open-after.png",
+        "0096-reviews-lowest-after.png"
+      ]
+    }
+  ]
+}
