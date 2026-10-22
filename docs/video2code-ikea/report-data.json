@@ -403,6 +403,107 @@
           "reason": "The candidate reproduces the two-column reviews modal, rating breakdown, category scores, filtering controls, summary and matching review content. Multiple conspicuous differences remain: the overall rating is left-aligned rather than centered, rating-distribution bars have substantially different proportions, a vertical column divider is added, and filter/topic controls are outlined instead of mostly filled. Column widths, typography and review-action placement also differ."
         }
       ]
+    },
+    {
+      "model": "gpt-6-sol",
+      "states": [
+        {
+          "id": "V01",
+          "title": "首页与共同导航",
+          "reference": "reference/home.png",
+          "candidate": "runs/gpt-6-sol-one-shot-01/evaluation/0004-dismiss-cookie-after.png",
+          "score": 1,
+          "reason": "头部黑条(US|English / Shop new arrivals / ZIP / Select store)、IKEA标志、主导航、搜索框、分类胶囊行与主视觉栅格的结构、比例、层级均吻合：左大视频位+右上大图+下方双卡布局一致。左图与右上视频画面内容不同、缺少暂停键及'IKEA Family price'/'New'角标，属于动态宣传画面豁免项；仅搜索框图标位置(左右)与购物袋图标样式有细微差异，不影响整体样式吻合。"
+        },
+        {
+          "id": "V02",
+          "title": "分层菜单",
+          "reference": "reference/menu.png",
+          "candidate": "runs/gpt-6-sol-one-shot-01/evaluation/0006-products-menu-after.png",
+          "score": 0.75,
+          "reason": "宽幅分层菜单整体结构吻合：顶部胶囊行含高亮'New & trending'活动项、左侧粗体链接列(Explore all new/Limited collections/Home accessories shop/IKEA for Business)、分栏链接密度与下方背景页一致。差异：参考含Trending/Seasonal/Food三链接列，候选缺少'Food'列(其Food recipes并入Seasonal)；候选右侧多出沙发图片且橙色促销块文案不同(参考为YXSTABY/XBOX文案)；候选底部无cookie条(状态可接受)。属同状态关键布局正确、仅局部差异。"
+        },
+        {
+          "id": "V03",
+          "title": "搜索与白色筛选",
+          "reference": "reference/filtered.png",
+          "candidate": "runs/gpt-6-sol-one-shot-01/evaluation/0016-white-filter-after.png",
+          "score": 0.5,
+          "reason": "可辨认同页面：搜索'besta'、帮助横幅、'87 items for \"besta\"'标题、右侧Design your own BESTÅ框、'white'活动筛选chip、Compare复选框与商品栅格、IKEA Family price/价格/折扣文字层级均一致。但左侧筛选栏状态明显不同：参考Color筛选展开并显示彩色色板网格(Gray/White/Black/Beige/Brown/Green及数量，White带勾选圈)，候选全部筛选折叠为Sort/Size/Color/Type/Category等纯文字列表，色板区这一重要部分缺失，构成一个重要部分缺失。"
+        },
+        {
+          "id": "V04",
+          "title": "比较页面",
+          "reference": "reference/compare.png",
+          "candidate": "runs/gpt-6-sol-one-shot-01/evaluation/0026-compare-two-after.png",
+          "score": 1,
+          "reason": "Product comparison页结构吻合：标题、居中两列等宽对比卡、商品图、关闭X、心形、IKEA Family price蓝色标签、BESTÅ品名规格、大号价格$55/$76、折扣与常规价格行、星级评分(1550)/(4773)、蓝色圆形加购按钮及底部'Key features'分栏表位置均一致。仅局部细微差异：候选搜索框残留'besta'文本、第二件折扣写16%(参考15%)、多出'More options'链接、Key features表行略偏下未入视口。列宽、图片、价格与属性表分隔均吻合。"
+        },
+        {
+          "id": "V05",
+          "title": "原木色组合详情",
+          "reference": "reference/detail.png",
+          "candidate": "runs/gpt-6-sol-one-shot-01/evaluation/0034-oak-from-list-after.png",
+          "score": 0.75,
+          "reason": "同状态关键布局正确：面包屑、左侧缩略图列、中央主图、右侧价格/变体色板/Design it yourself 层级与官网一致；但候选截图整体比例偏大导致右栏文本左侧被裁切（如 BESTÅ 显示为 TA、价格 197 前 $ 缺失），主图下方的 All media/View in 3D 按钮及右上收藏心形在对应区域不可见，属少量局部差异。"
+        },
+        {
+          "id": "V06",
+          "title": "All media 弹层",
+          "reference": "reference/gallery.png",
+          "candidate": "runs/gpt-6-sol-one-shot-01/evaluation/0038-all-media-after.png",
+          "score": 0.75,
+          "reason": "白色大弹层、居中 All media/Video/Measurement 标签、右上关闭 X、主产品图+生活场景图的栅格均吻合；差异在于候选弹层上移覆盖了顶部黑色导航条（参考中黑条完整露出）、弹层内栅格继续展示更多图片行而参考为大量留白，且右侧滚动条样式不同，关键结构正确但有多处局部差异。"
+        },
+        {
+          "id": "V07",
+          "title": "详情组件标签",
+          "reference": "reference/components.png",
+          "candidate": "runs/gpt-6-sol-one-shot-01/evaluation/supplementary/0002-components-align-after.png",
+          "score": 0.75,
+          "reason": "What's included 横向标签栏（Overview/Product details/Measurements/What's included）、说明文字、四张组件卡片（1x Frame/4x Shelf/2x Leg STUBBARP/1x Support leg，含货号黑标）与右侧大图的布局、比例、样式高度一致；差异为候选滚动位置更靠上，缺少参考顶部的图库大图与缩略图条，右上方内容也不同（组装/退货提示 vs 支付信息），Frame 卡片缩略图角度略异。"
+        },
+        {
+          "id": "V08",
+          "title": "独立组件详情",
+          "reference": "reference/component.png",
+          "candidate": "runs/gpt-6-sol-one-shot-01/evaluation/0046-open-leg-component-after.png",
+          "score": 1,
+          "reason": "STUBBARP 配件页主要结构、比例、图片、层级和样式均吻合：面包屑、左侧三张缩略图、双木腿大图、右侧 IKEA Family price、$8.00/2 pack 价格与 20% off 说明、颜色变体缩略图（含选中描边）、数量步进器与蓝色 Add to bag、Collect 8 points 与退货信息位置全部对应；仅评论数（123 vs 867）等数据文本与个别小图标存在细微差别。"
+        },
+        {
+          "id": "V09",
+          "title": "胡桃木效果详情",
+          "reference": "reference/variant.png",
+          "candidate": "runs/gpt-6-sol-one-shot-01/evaluation/0066-walnut-variant-after.png",
+          "score": 0.75,
+          "reason": "Same product-detail state: walnut variant image, name, price block, color swatch grid, All media/View in 3D pills and Add-to-bag all match in structure and proportion. Local differences: candidate shows full site header above breadcrumb, discount text '18% off' vs '17% off', swatch grid lacks the '+12' overflow tile and shows a room-scene swatch instead, title wraps differently."
+        },
+        {
+          "id": "V10",
+          "title": "购物袋",
+          "reference": "reference/bag.png",
+          "candidate": "runs/gpt-6-sol-one-shot-01/evaluation/0076-two-sku-bag-after.png",
+          "score": 0.75,
+          "reason": "Key bag layout correct: delivery/pickup/collect summary row, two line items with thumbnails, prices, discount lines, availability dots, quantity steppers, right-side order summary with $260 total, Afterpay/Family savings and Continue-to-checkout button all present. Local differences: candidate lacks the black top utility bar (white header), item order reversed (STUBBARP first), BESTÅ quantity 2 vs 1, assembly-fee row values differ ($5.20 vs $58.50), extra payment-icon row under checkout button."
+        },
+        {
+          "id": "V11",
+          "title": "袋内组件抽屉",
+          "reference": "reference/bag-components.png",
+          "candidate": "runs/gpt-6-sol-one-shot-01/evaluation/0080-bag-components-after.png",
+          "score": 0.75,
+          "reason": "Dimmed background with right-side BESTÅ parts drawer matches: 'made up of 6 parts', same six part entries with correct quantities (2/8/4/2/4/4), dividers, spacing and close button. Local differences: part subtitles truncated/altered (no frame dimensions, 'Support leg, black-brown' vs 'gray, 3 7/8\"', 'Door, black-brown' vs 'brown/walnut effect, 23 5/8x25 1/4\"'), background bag scroll position differs."
+        },
+        {
+          "id": "V12",
+          "title": "评论抽屉",
+          "reference": "reference/reviews.png",
+          "candidate": "runs/gpt-6-sol-one-shot-01/evaluation/0096-reviews-open-after.png",
+          "score": 0.5,
+          "reason": "Recognizable reviews modal with matching 3.7 score, identical distribution bars (54/30/10/12/17) and sub-scores, but layout is single-column centered instead of the reference two-column panel; Filter/Sort-by buttons, country tabs, AI reviews summary, topics chips and the review content column are entirely absent in the visible state, close X is mid-left, and 'Customer reviews' heading sits at the bottom. Multiple obvious differences and the important review-list column missing."
+        }
+      ]
     }
   ],
   "evidence": [
@@ -5881,6 +5982,1101 @@
         [
           "视觉票 3",
           "runs/k3-one-shot-02/evaluation/judge-gpt-6.1-sol-visual-2.json"
+        ]
+      ]
+    },
+    {
+      "model": "gpt-6-sol",
+      "video": "runs/gpt-6-sol-one-shot-01/evaluation/evaluation.mp4",
+      "records": [
+        {
+          "label": "home",
+          "seconds": 0.0,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0002-home-after.png",
+          "url": "http://127.0.0.1:3482/",
+          "actions": [],
+          "note": ""
+        },
+        {
+          "label": "dismiss-cookie",
+          "seconds": 1.2,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0004-dismiss-cookie-after.png",
+          "url": "http://127.0.0.1:3482/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Ok"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "products-menu",
+          "seconds": 2.7,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0006-products-menu-after.png",
+          "url": "http://127.0.0.1:3482/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"nav\"][data-val=\"Products\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "storage-submenu",
+          "seconds": 4.2,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0008-storage-submenu-after.png",
+          "url": "http://127.0.0.1:3482/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Storage & organization"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "search-suggest",
+          "seconds": 34.2,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0010-search-suggest-after.png",
+          "url": "http://127.0.0.1:3482/",
+          "actions": [
+            {
+              "action": {
+                "type": "key",
+                "key": "Escape"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "fill",
+                "selector": "#searchInput",
+                "text": "besta"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "search-enter",
+          "seconds": 35.2,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0012-search-enter-after.png",
+          "url": "http://127.0.0.1:3482/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "key",
+                "key": "Enter"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "color-open",
+          "seconds": 36.0,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0014-color-open-after.png",
+          "url": "http://127.0.0.1:3482/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Color"
+              },
+              "error": "locator.click: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Color', exact: true }).first()\u001b[22m\n"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "white-filter",
+          "seconds": 65.3,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0016-white-filter-after.png",
+          "url": "http://127.0.0.1:3482/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"filter\"][data-val=\"Color\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"white\"]",
+                "index": 1
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "white-filter-lower",
+          "seconds": 66.6,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0018-white-filter-lower-after.png",
+          "url": "http://127.0.0.1:3482/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "scroll",
+                "dy": 1450
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "clear-white",
+          "seconds": 67.5,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0020-clear-white-after.png",
+          "url": "http://127.0.0.1:3482/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"clearWhite\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "scroll",
+                "dy": -2500
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "price-sort",
+          "seconds": 68.7,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0022-price-sort-after.png",
+          "url": "http://127.0.0.1:3482/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"filter\"][data-val=\"Sort\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"sort\"][data-val=\"Price: low to high\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "best-match-restore",
+          "seconds": 69.8,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0024-best-match-restore-after.png",
+          "url": "http://127.0.0.1:3482/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"filter\"][data-val=\"Sort\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"sort\"][data-val=\"Best match\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "compare-two",
+          "seconds": 85.8,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0026-compare-two-after.png",
+          "url": "http://127.0.0.1:3482/us/en/compare/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "input[data-action=\"compareToggle\"][data-id=\"60245844\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "input[data-action=\"compareToggle\"][data-id=\"00245842\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Compare products"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "compare-lower",
+          "seconds": 87.3,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0028-compare-lower-after.png",
+          "url": "http://127.0.0.1:3482/us/en/compare/",
+          "actions": [
+            {
+              "action": {
+                "type": "scroll",
+                "dy": 780
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "compare-remove",
+          "seconds": 88.1,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0030-compare-remove-after.png",
+          "url": "http://127.0.0.1:3482/us/en/compare/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".remove[data-id=\"00245842\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "compare-back-list",
+          "seconds": 88.9,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0032-compare-back-list-after.png",
+          "url": "http://127.0.0.1:3482/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Back to search results"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "oak-from-list",
+          "seconds": 90.0,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0034-oak-from-list-after.png",
+          "url": "http://127.0.0.1:3482/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".cardphotoclick[data-id=\"29209829\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "thumbnail-switch",
+          "seconds": 106.4,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0036-thumbnail-switch-after.png",
+          "url": "http://127.0.0.1:3482/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".thumbs img",
+                "index": 1
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "all-media",
+          "seconds": 107.5,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0038-all-media-after.png",
+          "url": "http://127.0.0.1:3482/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "All media",
+                "exact": false
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "gallery-measurement",
+          "seconds": 108.6,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0040-gallery-measurement-after.png",
+          "url": "http://127.0.0.1:3482/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Measurement"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "included-components",
+          "seconds": 109.6,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0042-included-components-after.png",
+          "url": "http://127.0.0.1:3482/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "key",
+                "key": "Escape"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"tab\"][data-val=\"What’s included\"]"
+              },
+              "error": "locator.click: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-action=\"tab\"][data-val=\"What’s included\"]').first()\u001b[22m\n"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "included-components-real",
+          "seconds": 124.1,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0044-included-components-real-after.png",
+          "url": "http://127.0.0.1:3482/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "What's included"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "wait",
+                "ms": 500
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "open-leg-component",
+          "seconds": 126.0,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0046-open-leg-component-after.png",
+          "url": "http://127.0.0.1:3482/us/en/p/stubbarp-leg-white-stained-oak-effect-20293568/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"component\"][data-id=\"20293568\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "leg-two-add",
+          "seconds": 158.3,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0048-leg-two-add-after.png",
+          "url": "http://127.0.0.1:3482/us/en/p/stubbarp-leg-white-stained-oak-effect-20293568/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "+"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Add to bag"
+              },
+              "error": "locator.click: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Add to bag', exact: true }).first()\u001b[22m\n"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "leg-cart",
+          "seconds": 161.6,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0050-leg-cart-after.png",
+          "url": "http://127.0.0.1:3482/us/en/p/stubbarp-leg-white-stained-oak-effect-20293568/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Go to shopping bag"
+              },
+              "error": "locator.click: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Go to shopping bag', exact: true }).first()\u001b[22m\n"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "component-history-return",
+          "seconds": 164.3,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0052-component-history-return-after.png",
+          "url": "http://127.0.0.1:3482/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "back"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "back"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "oak-again",
+          "seconds": 183.0,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0054-oak-again-after.png",
+          "url": "http://127.0.0.1:3482/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".cardphotoclick[data-id=\"29209829\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "components-visible",
+          "seconds": 183.9,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0056-components-visible-after.png",
+          "url": "http://127.0.0.1:3482/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "What's included"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "scroll",
+                "dy": 440
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "wait",
+                "ms": 600
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "leg-again",
+          "seconds": 186.2,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0058-leg-again-after.png",
+          "url": "http://127.0.0.1:3482/us/en/p/stubbarp-leg-white-stained-oak-effect-20293568/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"component\"][data-id=\"20293568\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "leg-two-submit",
+          "seconds": 187.5,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0060-leg-two-submit-after.png",
+          "url": "http://127.0.0.1:3482/us/en/p/stubbarp-leg-white-stained-oak-effect-20293568/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "+"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Add 2 items to cart"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "leg-cart-real",
+          "seconds": 189.0,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0062-leg-cart-real-after.png",
+          "url": "http://127.0.0.1:3482/us/en/shoppingbag/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Go to shopping bag"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "history-to-combination",
+          "seconds": 190.1,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0064-history-to-combination-after.png",
+          "url": "http://127.0.0.1:3482/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "back"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "back"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "walnut-variant",
+          "seconds": 191.4,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0066-walnut-variant-after.png",
+          "url": "http://127.0.0.1:3482/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".variantgrid img",
+                "index": 0
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "invalid-postcode",
+          "seconds": 212.9,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0068-invalid-postcode-after.png",
+          "url": "http://127.0.0.1:3482/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".topbar [data-val=\"zip\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "fill",
+                "selector": "#zipInput",
+                "text": "abc"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Save"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "valid-postcode",
+          "seconds": 213.9,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0070-valid-postcode-after.png",
+          "url": "http://127.0.0.1:3482/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "fill",
+                "selector": "#zipInput",
+                "text": "95054"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Save"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "store-select",
+          "seconds": 214.6,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0072-store-select-after.png",
+          "url": "http://127.0.0.1:3482/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".topbar [data-val=\"store\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "fill",
+                "selector": "#storeInput",
+                "text": "East Palo Alto"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"chooseStore\"][data-val=\"East Palo Alto, CA\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "walnut-add",
+          "seconds": 215.6,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0074-walnut-add-after.png",
+          "url": "http://127.0.0.1:3482/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Add to bag"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "two-sku-bag",
+          "seconds": 216.1,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0076-two-sku-bag-after.png",
+          "url": "http://127.0.0.1:3482/us/en/shoppingbag/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Go to shopping bag"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "bag-quantity-chain",
+          "seconds": 230.2,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0078-bag-quantity-chain-after.png",
+          "url": "http://127.0.0.1:3482/us/en/shoppingbag/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"bagqty\"][data-id=\"29612189\"][data-val=\"+\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"bagqty\"][data-id=\"20293568\"][data-val=\"-\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "bag-components",
+          "seconds": 230.9,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0080-bag-components-after.png",
+          "url": "http://127.0.0.1:3482/us/en/shoppingbag/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"parts\"][data-id=\"29612189\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "bag-refresh",
+          "seconds": 231.3,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0082-bag-refresh-after.png",
+          "url": "http://127.0.0.1:3482/us/en/shoppingbag/",
+          "actions": [
+            {
+              "action": {
+                "type": "key",
+                "key": "Escape"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "assembly-on",
+          "seconds": 232.4,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0084-assembly-on-after.png",
+          "url": "http://127.0.0.1:3482/us/en/shoppingbag/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"assembly\"][data-id=\"29612189\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "assembly-off",
+          "seconds": 232.9,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0086-assembly-off-after.png",
+          "url": "http://127.0.0.1:3482/us/en/shoppingbag/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"assembly\"][data-id=\"29612189\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "delete-leg",
+          "seconds": 253.7,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0088-delete-leg-after.png",
+          "url": "http://127.0.0.1:3482/us/en/shoppingbag/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"delete\"][data-id=\"20293568\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "undo-leg",
+          "seconds": 254.1,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0090-undo-leg-after.png",
+          "url": "http://127.0.0.1:3482/us/en/shoppingbag/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Undo"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "invalid-discount",
+          "seconds": 254.5,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0092-invalid-discount-after.png",
+          "url": "http://127.0.0.1:3482/us/en/shoppingbag/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"discount\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "fill",
+                "selector": "#discountInput",
+                "text": "OMNIALE-DEMO"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Apply"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "bag-return-product",
+          "seconds": 255.5,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0094-bag-return-product-after.png",
+          "url": "http://127.0.0.1:3482/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"product\"][data-id=\"29612189\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "reviews-open",
+          "seconds": 256.0,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0096-reviews-open-after.png",
+          "url": "http://127.0.0.1:3482/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Show all reviews"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "reviews-lowest",
+          "seconds": 280.0,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0098-reviews-lowest-after.png",
+          "url": "http://127.0.0.1:3482/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Sort by",
+                "exact": false
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"reviewSort\"][data-val=\"Lowest rated\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "header-bag-return",
+          "seconds": 280.7,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0100-header-bag-return-after.png",
+          "url": "http://127.0.0.1:3482/us/en/shoppingbag/",
+          "actions": [
+            {
+              "action": {
+                "type": "key",
+                "key": "Escape"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".header [data-action=\"bag\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "product-deeplink-reload",
+          "seconds": 281.5,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0102-product-deeplink-reload-after.png",
+          "url": "http://127.0.0.1:3482/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "goto",
+                "path": "/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "search-deeplink-reload",
+          "seconds": 282.7,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0104-search-deeplink-reload-after.png",
+          "url": "http://127.0.0.1:3482/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "goto",
+                "path": "/us/en/search/?q=besta"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "bag-deeplink-reload",
+          "seconds": 283.8,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0106-bag-deeplink-reload-after.png",
+          "url": "http://127.0.0.1:3482/us/en/shoppingbag/",
+          "actions": [
+            {
+              "action": {
+                "type": "goto",
+                "path": "/us/en/shoppingbag/"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "evaluation-complete",
+          "seconds": 304.0,
+          "file": "runs/gpt-6-sol-one-shot-01/evaluation/0108-evaluation-complete-after.png",
+          "url": "http://127.0.0.1:3482/us/en/shoppingbag/",
+          "actions": [],
+          "note": ""
+        }
+      ],
+      "prefix": "runs/gpt-6-sol-one-shot-01",
+      "evaluation": "runs/gpt-6-sol-one-shot-01/evaluation",
+      "links": [
+        [
+          "操作 JSON",
+          "runs/gpt-6-sol-one-shot-01/evaluation/operator-records.json"
+        ],
+        [
+          "浏览器日志",
+          "runs/gpt-6-sol-one-shot-01/evaluation/browser-log.json"
+        ],
+        [
+          "录像说明",
+          "runs/gpt-6-sol-one-shot-01/evaluation/operator-cleanup.json"
+        ],
+        [
+          "候选哈希",
+          "runs/gpt-6-sol-one-shot-01/candidate-manifest.json"
+        ],
+        [
+          "视觉票 1",
+          "runs/gpt-6-sol-one-shot-01/evaluation/judge-k3-visual-0.json"
+        ],
+        [
+          "视觉票 2",
+          "runs/gpt-6-sol-one-shot-01/evaluation/judge-k3-visual-1.json"
+        ],
+        [
+          "视觉票 3",
+          "runs/gpt-6-sol-one-shot-01/evaluation/judge-k3-visual-2.json"
+        ],
+        [
+          "组件视口补充核验",
+          "runs/gpt-6-sol-one-shot-01/evaluation/supplementary/operator-records.json"
         ]
       ]
     }

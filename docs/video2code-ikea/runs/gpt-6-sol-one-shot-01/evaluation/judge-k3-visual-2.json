@@ -1,0 +1,59 @@
+{
+  "judge": "k3",
+  "usage": {
+    "input_tokens": 14709,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1384,
+    "output_tokens_details": {
+      "reasoning_tokens": 819
+    },
+    "total_tokens": 16093
+  },
+  "transport": {
+    "requested_model": "k3",
+    "attempt": 1,
+    "latency_ms": 51476,
+    "time": "2026-10-22T08:21:43.277Z"
+  },
+  "items": [
+    {
+      "id": "V09",
+      "score": 0.75,
+      "reason": "Same product-detail state: walnut variant image, name, price block, color swatch grid, All media/View in 3D pills and Add-to-bag all match in structure and proportion. Local differences: candidate shows full site header above breadcrumb, discount text '18% off' vs '17% off', swatch grid lacks the '+12' overflow tile and shows a room-scene swatch instead, title wraps differently.",
+      "evidence": [
+        "reference/variant.png",
+        "0066-walnut-variant-after.png"
+      ]
+    },
+    {
+      "id": "V10",
+      "score": 0.75,
+      "reason": "Key bag layout correct: delivery/pickup/collect summary row, two line items with thumbnails, prices, discount lines, availability dots, quantity steppers, right-side order summary with $260 total, Afterpay/Family savings and Continue-to-checkout button all present. Local differences: candidate lacks the black top utility bar (white header), item order reversed (STUBBARP first), BESTÅ quantity 2 vs 1, assembly-fee row values differ ($5.20 vs $58.50), extra payment-icon row under checkout button.",
+      "evidence": [
+        "reference/bag.png",
+        "0076-two-sku-bag-after.png"
+      ]
+    },
+    {
+      "id": "V11",
+      "score": 0.75,
+      "reason": "Dimmed background with right-side BESTÅ parts drawer matches: 'made up of 6 parts', same six part entries with correct quantities (2/8/4/2/4/4), dividers, spacing and close button. Local differences: part subtitles truncated/altered (no frame dimensions, 'Support leg, black-brown' vs 'gray, 3 7/8\"', 'Door, black-brown' vs 'brown/walnut effect, 23 5/8x25 1/4\"'), background bag scroll position differs.",
+      "evidence": [
+        "reference/bag-components.png",
+        "0080-bag-components-after.png"
+      ]
+    },
+    {
+      "id": "V12",
+      "score": 0.5,
+      "reason": "Recognizable reviews modal with matching 3.7 score, identical distribution bars (54/30/10/12/17) and sub-scores, but layout is single-column centered instead of the reference two-column panel; Filter/Sort-by buttons, country tabs, AI reviews summary, topics chips and the review content column are entirely absent in the visible state, close X is mid-left, and 'Customer reviews' heading sits at the bottom. Multiple obvious differences and the important review-list column missing.",
+      "evidence": [
+        "reference/reviews.png",
+        "0096-reviews-open-after.png"
+      ]
+    }
+  ]
+}
