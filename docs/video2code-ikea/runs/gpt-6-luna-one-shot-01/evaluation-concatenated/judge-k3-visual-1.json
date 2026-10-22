@@ -1,0 +1,59 @@
+{
+  "judge": "k3",
+  "usage": {
+    "input_tokens": 14718,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 256
+    },
+    "output_tokens": 1403,
+    "output_tokens_details": {
+      "reasoning_tokens": 747
+    },
+    "total_tokens": 16121
+  },
+  "transport": {
+    "requested_model": "k3",
+    "attempt": 1,
+    "latency_ms": 59866,
+    "time": "2026-10-22T07:02:03.070Z"
+  },
+  "items": [
+    {
+      "id": "V05",
+      "score": 0.75,
+      "reason": "Key layout matches: left thumbnail column, large main product image, right info column with IKEA Family price/$197.00/17% off, ratings, color swatch grid, How to get it and Add to bag. Local differences: breadcrumb truncated (ends at 'BESTÅ', missing sideboards/product segments), search box contains 'besta' text, 'Design it yourself' section and All media/View in 3D overlay buttons missing, swatch grid composition differs (no '+12' overflow tile, different variant set).",
+      "evidence": [
+        "reference/detail.png",
+        "0028-oak-from-list-after.png"
+      ]
+    },
+    {
+      "id": "V06",
+      "score": 0.75,
+      "reason": "Same state: dimmed backdrop, large white modal, All media/Video/Measurement tabs with underline on active tab, close X at top right, image grid of same product photos. Differences: reference shows two large side-by-side images filling the modal width, candidate uses a denser 4-column grid of smaller images; candidate modal is narrower so the IKEA logo and right-side page content show outside the modal; no visible internal scrollbar.",
+      "evidence": [
+        "reference/gallery.png",
+        "0032-all-media-after.png"
+      ]
+    },
+    {
+      "id": "V07",
+      "score": 0.5,
+      "reason": "Recognizable same tab state: horizontal tabs with 'What's included' active, intro sentence, six components with quantities and images. Multiple clear differences: reference uses 2-column cards with black article-number chips and a large product image occupying the right third; candidate uses 3-column grid with no right-side large image (an important section missing), article numbers rendered as plain text and partially wrong (902.473.75 repeated for Shelf/Support leg/Door, '20293568' unformatted), and component images are paler/incorrect (white frame and shelf vs oak).",
+      "evidence": [
+        "reference/components.png",
+        "0052-included-components-visible-after.png"
+      ]
+    },
+    {
+      "id": "V08",
+      "score": 0.75,
+      "reason": "Same page structure and hierarchy: left thumbnails, large main image, right column with IKEA Family price, STUBBARP title, '$8.00 /2 pack', 20% off line, regular price, 867 ratings, Choose color swatches, quantity stepper and blue Add to bag. Differences: main image shows a single leg close-up under a cabinet instead of the two-leg product shot with visible screw tops; selected swatch highlight is on the dark variant while oak text/price shown; breadcrumb truncated to 'STUBBARP'; missing All media/View in 3D buttons and the yellow chat/return panel.",
+      "evidence": [
+        "reference/component.png",
+        "0054-component-leg-visible-after.png"
+      ]
+    }
+  ]
+}

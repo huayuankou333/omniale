@@ -8,84 +8,96 @@
           "title": "首页与共同导航",
           "reference": "reference/home.png",
           "candidate": "runs/gpt-6.1-sol-one-shot-01/evaluation/0002-home-initial-after.png",
-          "score": 0.75
+          "score": 0.75,
+          "reason": "Black top bar, IKEA header, nav, search and hero image grid match in structure/proportion/hierarchy; differences are local: category-chip icons are shifted/mismatched (Deals shows a tree instead of tag, Winter holiday shows a cabinet instead of tree, etc.), candidate shows a bottom cookie banner not present in reference home state, and the reference video pause overlay is absent (dynamic promo exempted)."
         },
         {
           "id": "V02",
           "title": "分层菜单",
           "reference": "reference/menu.png",
           "candidate": "runs/gpt-6.1-sol-one-shot-01/evaluation/0004-menu-after.png",
-          "score": 0.5
+          "score": 0.5,
+          "reason": "Same wide Products mega-menu with active 'New & trending' pill and dimmed page background, but column structure differs materially: reference has three text columns (Trending / Seasonal / Food) with the orange YXSTABY card at lower right, while candidate drops the entire Food column, keeps only two text columns, and adds a dining photo above the orange promo card; right tab also shows full 'Kitchen, appliances & supplies' without the truncated arrow. One important section (Food column) is missing."
         },
         {
           "id": "V03",
           "title": "搜索与白色筛选",
           "reference": "reference/filtered.png",
           "candidate": "runs/gpt-6.1-sol-one-shot-01/evaluation/0016-white-filter-after.png",
-          "score": 0.75
+          "score": 0.75,
+          "reason": "Search 'besta', help banner, '87 items', design-your-own card, left filter rail, active white chip and 4-column product grid with IKEA Family price/discount hierarchy all match; key differences: candidate left Color filter is collapsed (reference shows expanded color swatches with White checked and counts), candidate adds 'Clear all', Best-seller badge and product order/assortment differ (3rd/4th tiles not identical). Same filtered state, local differences only."
         },
         {
           "id": "V04",
           "title": "比较页面",
           "reference": "reference/compare.png",
           "candidate": "runs/gpt-6.1-sol-one-shot-01/evaluation/0030-compare-correct-ids-after.png",
-          "score": 1.0
+          "score": 1.0,
+          "reason": "Product comparison page matches: same title, two equal columns with remove-X, same BESTÅ product images, IKEA Family price labels, $55/$76 prices, 15%-off save lines, regular price/validity text, star ratings (1550)/(4773) and Key features section; column widths, spacing and separators align. Only trivial local icon placement (heart/bag) and a 'More options' link differ."
         },
         {
           "id": "V05",
           "title": "原木色组合详情",
           "reference": "reference/detail.png",
           "candidate": "runs/gpt-6.1-sol-one-shot-01/evaluation/0042-oak-from-list-after.png",
-          "score": 1.0
+          "score": 1.0,
+          "reason": "Overall structure matches: top bar, breadcrumb, left thumbnail column with large main oak cabinet image, right column with IKEA Family price $197.00, 17% off text, star rating (123), Choose color swatch grid with +12 tile, Design it yourself and How to get it sections, All media/View in 3D buttons. Only trivial difference: candidate renders an extra bordered (selected-looking) black swatch alongside the oak selection."
         },
         {
           "id": "V06",
           "title": "All media 弹层",
           "reference": "reference/gallery.png",
           "candidate": "runs/gpt-6.1-sol-one-shot-01/evaluation/0046-all-media-after.png",
-          "score": 0.75
+          "score": 0.75,
+          "reason": "Overlay with gray mask, white modal, All media/Video/Measurement tabs and top-right close X all match. Key layout correct but local differences: candidate shows a second row of thumbnails below the two large images and uses a white centered play triangle instead of the reference's dark circular play button; reference also shows a small list icon at lower-left of the lifestyle image which is absent."
         },
         {
           "id": "V07",
           "title": "详情组件标签",
           "reference": "reference/components.png",
           "candidate": "runs/gpt-6.1-sol-one-shot-01/evaluation/0050-gallery-close-components-after.png",
-          "score": 1.0
+          "score": 1.0,
+          "reason": "Matches reference: partial gallery header with thumbnails and main lifestyle image, More ways to pay / Afterpay / Visa card panel, horizontal tabs with 'What's included' active, four visible component cards (1x Frame, 4x Shelf, 2x Leg STUBBARP, 1x Support leg) with quantities, dimensions and black article-number chips, plus large cabinet image on right."
         },
         {
           "id": "V08",
           "title": "独立组件详情",
           "reference": "reference/component.png",
           "candidate": "runs/gpt-6.1-sol-one-shot-01/evaluation/0052-component-leg-after.png",
-          "score": 1.0
+          "score": 1.0,
+          "reason": "STUBBARP accessory page matches: breadcrumb ending in STUBBARP Leg, left thumbnails and large two-leg oak image, right panel with IKEA Family price $8.00/2 pack, 20% off save $2.00, regular price, rating (867), Choose color swatches with oak selected, How to get it, quantity stepper with Add to bag button, and Collect 8 points section. Layout, proportions and imagery align."
         },
         {
           "id": "V09",
           "title": "胡桃木效果详情",
           "reference": "reference/variant.png",
           "candidate": "runs/gpt-6.1-sol-one-shot-01/evaluation/0072-walnut-variant-after.png",
-          "score": 1.0
+          "score": 1.0,
+          "reason": "胡桃木变体状态完整吻合：主图切换为brown walnut效果柜体，名称/价格/折扣/评分与参考一致，变体缩略图网格选中态、左侧媒体栏、共用详情布局（Design it yourself、How to get it、Add to bag）均匹配；仅左侧媒体栏多一张缩略图和顶部导航可见性差异，属可忽略局部差异。"
         },
         {
           "id": "V10",
           "title": "购物袋",
           "reference": "reference/bag.png",
           "candidate": "runs/gpt-6.1-sol-one-shot-01/evaluation/0088-walnut-and-leg-bag-after.png",
-          "score": 0
+          "score": 0,
+          "reason": "实际候选功能缺失，不是评测环境不足。shoppingcart链接、/cart深链与刷新都可正常加载候选脚本并显示原木色商品详情；其他页面/资源正常且无运行异常。原始候选app.js第51行render()未接入bagPage()，虽然第47行定义了它。未修改/调用候选内部函数或注入状态。故V10购物袋及V11袋内组件状态确实不可通过合法UI到达，按冻结missing-state=0裁定；保留K3原始null票及理由。"
         },
         {
           "id": "V11",
           "title": "袋内组件抽屉",
           "reference": "reference/bag-components.png",
           "candidate": "runs/gpt-6.1-sol-one-shot-01/evaluation/0104-bag-final-refresh-after.png",
-          "score": 0
+          "score": 0,
+          "reason": "实际候选功能缺失，不是评测环境不足。shoppingcart链接、/cart深链与刷新都可正常加载候选脚本并显示原木色商品详情；其他页面/资源正常且无运行异常。原始候选app.js第51行render()未接入bagPage()，虽然第47行定义了它。未修改/调用候选内部函数或注入状态。故V10购物袋及V11袋内组件状态确实不可通过合法UI到达，按冻结missing-state=0裁定；保留K3原始null票及理由。"
         },
         {
           "id": "V12",
           "title": "评论抽屉",
           "reference": "reference/reviews.png",
           "candidate": "runs/gpt-6.1-sol-one-shot-01/evaluation/0106-reviews-correct-product-background-after.png",
-          "score": 1.0
+          "score": 1.0,
+          "reason": "评论抽屉双栏弹层完整吻合：3.7评分与星标、基于123条评论、5-1星分布条形及数量(54/30/10/12/17)、五项分项分数(4.3/3.9/3.5/3.6/3.7)、Write a review按钮、Filter/Sort by、United States/Other countries标签、AI评论摘要、Topics筛选药丸、首条评论'Looks good, functions bad'全文、Dylan署名、Report/Helpful?(1)及IKEA回复均一致；仅AI图标字形和背景页内容有细微差异。"
         }
       ]
     },
@@ -96,85 +108,299 @@
           "id": "V01",
           "title": "首页与共同导航",
           "reference": "reference/home.png",
-          "candidate": "runs/gpt-6-luna-one-shot-01/evaluation/0002-Luna-delivery-root-after.png",
-          "score": null
+          "candidate": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0004-cookie-dismiss-after.png",
+          "score": 0.75,
+          "reason": "Same overall structure: black utility bar, IKEA logo, main nav, centered search, login/wishlist icons, category chip row, and hero grid with identical large left drawer image plus right-side image stack. Differences: category chips lack the small thumbnail icons, cart/bag icon replaced, right-side promo images differ (dynamic content exempted but layout slots also slightly rearranged). Key layout correct with only local differences."
         },
         {
           "id": "V02",
           "title": "分层菜单",
           "reference": "reference/menu.png",
-          "candidate": "runs/gpt-6-luna-one-shot-01/evaluation/0002-Luna-delivery-root-after.png",
-          "score": null
+          "candidate": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0006-products-menu-after.png",
+          "score": 0.5,
+          "reason": "Recognizably the same open mega-menu state: left bold link column (Explore all/Limited collections/Home accessories/IKEA for Business), category columns, right promo area, dimmed page background. But the reference's category pill tab row (New & trending, Winter holiday shop, etc. with active outlined tab) is entirely missing, only 2 link columns vs 3 (Trending/Seasonal/Food), and right area shows a cabinet product photo instead of the orange promo card. One important part missing plus multiple density/content differences."
         },
         {
           "id": "V03",
           "title": "搜索与白色筛选",
           "reference": "reference/filtered.png",
-          "candidate": "runs/gpt-6-luna-one-shot-01/evaluation/0004-Luna-search-direct-after.png",
-          "score": null
+          "candidate": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0016-white-filter-after.png",
+          "score": 0.75,
+          "reason": "Same filtered search state: '87 items for \"besta\"', help banner, left filter rail with Sort/Size/Color and color swatches in identical arrangement, active 'white' filter pill, 4-column product grid with matching products, IKEA Family price labels and prices. Differences: search-suggestions dropdown left open over the page, white swatch lacks the selected check ring, product cards lack the heart and blue cart buttons, and candidate shows ratings/regular-price lines not visible in reference cards. Key layout correct with local differences."
         },
         {
           "id": "V04",
           "title": "比较页面",
           "reference": "reference/compare.png",
-          "candidate": "runs/gpt-6-luna-one-shot-01/evaluation/0004-Luna-search-direct-after.png",
-          "score": null
+          "candidate": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0022-compare-two-after.png",
+          "score": 0.75,
+          "reason": "Same comparison state: 'Product comparison' heading, two equal product columns with matching BESTÅ images, close-X on first column, family-price label, product names, $55.00/$76.00 prices, star ratings with counts, and Key features attribute rows (Width/Height/Depth). Differences: search-suggestions dropdown overlays the second column, heart/cart action buttons missing, discount ('15% off, save…') and price-validity text lines absent. Key layout correct with local differences."
         },
         {
           "id": "V05",
           "title": "原木色组合详情",
           "reference": "reference/detail.png",
-          "candidate": "runs/gpt-6-luna-one-shot-01/evaluation/0006-Luna-oak-direct-after.png",
-          "score": null
+          "candidate": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0028-oak-from-list-after.png",
+          "score": 0.75,
+          "reason": "Key layout matches: left thumbnail column, large main product image, right info column with IKEA Family price/$197.00/17% off, ratings, color swatch grid, How to get it and Add to bag. Local differences: breadcrumb truncated (ends at 'BESTÅ', missing sideboards/product segments), search box contains 'besta' text, 'Design it yourself' section and All media/View in 3D overlay buttons missing, swatch grid composition differs (no '+12' overflow tile, different variant set)."
         },
         {
           "id": "V06",
           "title": "All media 弹层",
           "reference": "reference/gallery.png",
-          "candidate": "runs/gpt-6-luna-one-shot-01/evaluation/0006-Luna-oak-direct-after.png",
-          "score": null
+          "candidate": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0032-all-media-after.png",
+          "score": 0.75,
+          "reason": "Same state: dimmed backdrop, large white modal, All media/Video/Measurement tabs with underline on active tab, close X at top right, image grid of same product photos. Differences: reference shows two large side-by-side images filling the modal width, candidate uses a denser 4-column grid of smaller images; candidate modal is narrower so the IKEA logo and right-side page content show outside the modal; no visible internal scrollbar."
         },
         {
           "id": "V07",
           "title": "详情组件标签",
           "reference": "reference/components.png",
-          "candidate": "runs/gpt-6-luna-one-shot-01/evaluation/0006-Luna-oak-direct-after.png",
-          "score": null
+          "candidate": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0052-included-components-visible-after.png",
+          "score": 0.5,
+          "reason": "Recognizable same tab state: horizontal tabs with 'What's included' active, intro sentence, six components with quantities and images. Multiple clear differences: reference uses 2-column cards with black article-number chips and a large product image occupying the right third; candidate uses 3-column grid with no right-side large image (an important section missing), article numbers rendered as plain text and partially wrong (902.473.75 repeated for Shelf/Support leg/Door, '20293568' unformatted), and component images are paler/incorrect (white frame and shelf vs oak)."
         },
         {
           "id": "V08",
           "title": "独立组件详情",
           "reference": "reference/component.png",
-          "candidate": "runs/gpt-6-luna-one-shot-01/evaluation/0008-Luna-component-direct-after.png",
-          "score": null
+          "candidate": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0054-component-leg-visible-after.png",
+          "score": 0.75,
+          "reason": "Same page structure and hierarchy: left thumbnails, large main image, right column with IKEA Family price, STUBBARP title, '$8.00 /2 pack', 20% off line, regular price, 867 ratings, Choose color swatches, quantity stepper and blue Add to bag. Differences: main image shows a single leg close-up under a cabinet instead of the two-leg product shot with visible screw tops; selected swatch highlight is on the dark variant while oak text/price shown; breadcrumb truncated to 'STUBBARP'; missing All media/View in 3D buttons and the yellow chat/return panel."
         },
         {
           "id": "V09",
           "title": "胡桃木效果详情",
           "reference": "reference/variant.png",
-          "candidate": "runs/gpt-6-luna-one-shot-01/evaluation/0010-Luna-walnut-direct-after.png",
-          "score": null
+          "candidate": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0060-walnut-variant-after.png",
+          "score": 0.75,
+          "reason": "共用详情布局吻合：面包屑、左侧缩略图列、主图与右侧信息面板（IKEA Family价格、BESTÅ、变体名、$197、17% off、评分、Choose color双行缩略图、Add to bag）结构、比例与样式均吻合，变体已正确切换为胡桃木效果。局部差异：缺少Design it yourself区块、Collect points条、主图上All media/View in 3D按钮、收藏心形图标与+12更多色块，评价数为867而非123。"
         },
         {
           "id": "V10",
           "title": "购物袋",
           "reference": "reference/bag.png",
-          "candidate": "runs/gpt-6-luna-one-shot-01/evaluation/0012-Luna-bag-direct-after.png",
-          "score": null
+          "candidate": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0068-walnut-add-cart-after.png",
+          "score": 0.75,
+          "reason": "购物袋关键布局正确：配送摘要三卡、两行商品（图片+名称+折扣蓝字+可用性圆点+Save for later+数量步进器+Assembly行）、右侧订单摘要$260、Afterpay、Apply discount code、Continue to checkout均吻合。局部差异：两件商品顺序对调（STUBBARB在前）、缺少IKEA Visa Credit Card推广块与Collect points/ Save $47条目样式不同、缺少'Pick up yourself at East Palo Alto'链接、支付图标行缺失。"
         },
         {
           "id": "V11",
           "title": "袋内组件抽屉",
           "reference": "reference/bag-components.png",
-          "candidate": "runs/gpt-6-luna-one-shot-01/evaluation/0012-Luna-bag-direct-after.png",
-          "score": null
+          "candidate": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0072-bag-components-after.png",
+          "score": 0.75,
+          "reason": "背景遮罩与右侧部件抽屉结构吻合：标题BESTÅ、'This product is made up of 6 parts'、6个部件分组（名称+Quantity）列表、分隔线与间距一致。局部差异：部件名称缺少尺寸描述（如Frame, black-brown, 47 1/4x15...），各部件数量与参考不同（2/8/4/2/4 vs 1/4/2/1/2/2），抽屉宽度略窄。"
         },
         {
           "id": "V12",
           "title": "评论抽屉",
           "reference": "reference/reviews.png",
-          "candidate": "runs/gpt-6-luna-one-shot-01/evaluation/0006-Luna-oak-direct-after.png",
-          "score": null
+          "candidate": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0086-reviews-open-after.png",
+          "score": 0.5,
+          "reason": "双栏弹层可辨认且多项吻合：左侧3.7大分数、星级、Based on 123 reviews、5-1星分布条、Write a review按钮；右侧Filter/Sort by、United States/Other countries标签、Reviews summary、Topics chips、评论卡（标题Looks good, functions bad、正文、Helpful?）。但完全缺失分项分数区块（Appearance 4.3/Ease of assembly/Product quality/Value for money/Works as expected），这是一个重要部分缺失；此外缺少Response from IKEA与Report按钮，评价人显示为Anonymous reviewer而非具名标签。"
+        }
+      ]
+    },
+    {
+      "model": "gpt-6-astra",
+      "states": [
+        {
+          "id": "V01",
+          "title": "首页与共同导航",
+          "reference": "reference/home.png",
+          "candidate": "runs/gpt-6-astra-one-shot-01/evaluation/0004-cookie-dismiss-after.png",
+          "score": 0.75,
+          "reason": "Header black bar, IKEA logo, nav links, search pill, login text and icons all match in structure, size and hierarchy; hero collage (large left Family-price image, right cooking pan image with 'New, must-try kitchen accessories' caption, bottom two tiles) matches with identical imagery and proportions. Local differences: category chip icons differ (Winter holiday shop shows a box icon instead of the reference's tree; Beds & mattresses icon is a lamp instead of a bed), and the hero video pause control visible in the reference is absent. These are small local deviations on an otherwise matching state."
+        },
+        {
+          "id": "V02",
+          "title": "分层菜单",
+          "reference": "reference/menu.png",
+          "candidate": "runs/gpt-6-astra-one-shot-01/evaluation/0008-storage-submenu-after.png",
+          "score": 0.75,
+          "reason": "Same wide dropdown-menu pattern: full-width panel with bold left link column, multi-column link lists, active tab outlined with dark border, and dimmed page background below — all matching the reference. Differences: a different tab is open (Storage & organization vs the reference's New & trending), the link area has 2 columns instead of the reference's 3 (Trending/Seasonal/Food), and the orange promo block content and position differ (candidate adds a photo above the orange box and shows 'Shop our newest arrivals' vs 'Game on with YXSTABY'). Key layout correct, moderate local differences."
+        },
+        {
+          "id": "V03",
+          "title": "搜索与白色筛选",
+          "reference": "reference/filtered.png",
+          "candidate": "runs/gpt-6-astra-one-shot-01/evaluation/0016-white-filter-after.png",
+          "score": 0.75,
+          "reason": "Same page state and skeleton: search field showing 'besta', '87 items for \"besta\"' heading, BESTÅ planning banner, 'Design your own BESTÅ storage' card at right, left filter sidebar, 'white ×' active filter chip, 4-column product grid with Compare checkboxes, IKEA Family price / BESTÅ / price / 15%-off promo hierarchy, blue cart buttons and hearts. Differences: the Color filter is collapsed so the reference's prominent color swatch grid (Gray/White checked/Black/Beige/Brown/Green) is not visible; a 'Clear all' link is added beside the chip; products from slot 3 onward differ (oak unit, shelving unit, Best-seller badge on slot 4 vs slot 3); the vertical mini-scrollbar between sidebar and grid in the reference is absent. Same key layout, several local differences."
+        },
+        {
+          "id": "V04",
+          "title": "比较页面",
+          "reference": "reference/compare.png",
+          "candidate": "runs/gpt-6-astra-one-shot-01/evaluation/0032-compare-two-after.png",
+          "score": 1,
+          "reason": "Essentially identical: 'Product comparison' heading, two comparison columns with × remove buttons, same product images, IKEA Family price labels, BESTÅ names, $55.00/$76.00 prices, 15%-off savings lines, regular price and validity text, star ratings with (1550)/(4773) counts, and 'Key features' section below. Only trivial deviations: candidate adds a small 'More options' link under each rating and the viewport is scrolled slightly higher so the Width attribute rows visible at the bottom of the reference are just out of frame. Structure, proportions, images, hierarchy and styling all match."
+        },
+        {
+          "id": "V05",
+          "title": "原木色组合详情",
+          "reference": "reference/detail.png",
+          "candidate": "runs/gpt-6-astra-one-shot-01/evaluation/0038-open-oak-from-list-after.png",
+          "score": 1,
+          "reason": "整体结构、比例与层级高度吻合：左侧缩略图列+主图、右侧IKEA Family价格/折扣/评分/颜色变体网格、顶部面包屑与导航均一致，主图为同一白蜡木纹BESTÅ组合。仅有微小差异：面包屑分隔间距略宽、变体选中框与'+12'位置略移、右下角聊天气泡位置略偏，均为局部细节。"
+        },
+        {
+          "id": "V06",
+          "title": "All media 弹层",
+          "reference": "reference/gallery.png",
+          "candidate": "runs/gpt-6-astra-one-shot-01/evaluation/0042-all-media-after.png",
+          "score": 0.75,
+          "reason": "关键布局正确：半透明遮罩、白色大弹层、右上关闭X、居中All media/Video/Measurement标签及下划线态、图片栅格均吻合，首行左产品图+右深蓝墙生活场景图一致。差异：参考图右图带视频播放按钮与左下滤镜按钮覆盖层，候选图无此覆盖图标；候选首屏多露出第二行两张镜像场景图，栅格可见内容与参考首屏略有不同。"
+        },
+        {
+          "id": "V07",
+          "title": "详情组件标签",
+          "reference": "reference/components.png",
+          "candidate": "runs/gpt-6-astra-one-shot-01/evaluation/0046-included-components-after.png",
+          "score": 0.75,
+          "reason": "核心结构吻合：横向Overview/Product details/Measurements/What's included标签（What's included激活下划线）、说明文案、左侧两列组件卡片（数量+名称+货号黑标签）、右侧大产品图均一致，候选完整展示六种组件（Frame/Shelf/Leg/Support leg/Hinge/Door），卡片图文与数量正确。差异：参考图在该滚动位置顶部仍露出主图库横条与右侧More ways to pay面板，候选同状态顶部直接为标签栏，首屏可见内容组成不同，卡片高度与间距也略紧凑。"
+        },
+        {
+          "id": "V08",
+          "title": "独立组件详情",
+          "reference": "reference/component.png",
+          "candidate": "runs/gpt-6-astra-one-shot-01/evaluation/0048-open-component-after.png",
+          "score": 1,
+          "reason": "结构、比例、图片与层级均吻合：STUBBARP配件大图（双木腿金属螺杆）、左侧缩略图、右侧IKEA Family价格$8.00/2 pack、折扣说明、评分(867)、颜色变体、数量步进器+蓝色Add to bag按钮、Collect points条目全部对应。仅局部细微差异：折扣文案'20% off'对'19% off'（实时数据差异）、心形收藏位置略偏、底部退货栏裁剪位置略不同。"
+        },
+        {
+          "id": "V09",
+          "title": "胡桃木效果详情",
+          "reference": "reference/variant.png",
+          "candidate": "runs/gpt-6-astra-one-shot-01/evaluation/0056-walnut-variant-after.png",
+          "score": 0.75,
+          "reason": "切换后的胡桃木主图、产品名称、价格、选中态变体缩略图与整体详情布局均吻合；差异为左侧图库多出一格米色变体缩略图（参考为4格含尺寸图），以及候选截图含完整页头而参考为下滚后的裁剪视图，属少量局部差异。"
+        },
+        {
+          "id": "V10",
+          "title": "购物袋",
+          "reference": "reference/bag.png",
+          "candidate": "runs/gpt-6-astra-one-shot-01/evaluation/0068-walnut-bag-after.png",
+          "score": 1,
+          "reason": "配送摘要三列、两行商品（BESTÅ与STUBBARP）、数量步进控件、原价/优惠价、右侧订单摘要（$260合计、Afterpay、Continue to checkout）结构与比例高度一致；仅到达日期Oct 27 vs Oct 26及次要折扣文案19% vs 20%等细微文本差异。"
+        },
+        {
+          "id": "V11",
+          "title": "袋内组件抽屉",
+          "reference": "reference/bag-components.png",
+          "candidate": "runs/gpt-6-astra-one-shot-01/evaluation/0072-bag-components-after.png",
+          "score": 0.75,
+          "reason": "背景遮罩、右侧部件抽屉、6项部件清单及数量（2/8/4/2/4/4）完全对应；但候选在部件行内加入了产品小图导致行高与间距与参考（纯文本行）明显不同，属关键布局正确下的局部差异。"
+        },
+        {
+          "id": "V12",
+          "title": "评论抽屉",
+          "reference": "reference/reviews.png",
+          "candidate": "runs/gpt-6-astra-one-shot-01/evaluation/0086-reviews-open-after.png",
+          "score": 1,
+          "reason": "双栏评论弹层、3.7总分与123条基数、5-1星分布条及计数、五项分项分数、筛选/排序、AI摘要、主题筛选丸、评论正文与IKEA回复均吻合；仅Durability丸完整显示而参考被截断、Helpful图标样式细微差别。"
+        }
+      ]
+    },
+    {
+      "model": "k3",
+      "states": [
+        {
+          "id": "V01",
+          "title": "首页与共同导航",
+          "reference": "reference/home.png",
+          "candidate": "runs/k3-one-shot-02/evaluation/0004-cookie-dismiss-after.png",
+          "score": 0.5,
+          "reason": "The black utility bar, navigation, category pills, and promotional mosaic are recognizable. However, the mosaic begins at y216 rather than y282 and is substantially shorter: the candidate reveals the next section while the reference imagery continues below the viewport. The upper-right tile is also shorter, and the search field and navigation are shifted left."
+        },
+        {
+          "id": "V02",
+          "title": "分层菜单",
+          "reference": "reference/menu.png",
+          "candidate": "runs/k3-one-shot-02/evaluation/0006-products-menu-after.png",
+          "score": 0.5,
+          "reason": "The wide menu includes the matching category tabs, active outline, and main link groups. Column proportions differ substantially: Trending begins near x318 instead of x466, and the links are vertically compressed. The menu ends near y557 instead of y627. The promotional card includes an additional image, and the underlying page is not dimmed as in the reference."
+        },
+        {
+          "id": "V03",
+          "title": "搜索与白色筛选",
+          "reference": "reference/filtered.png",
+          "candidate": "runs/k3-one-shot-02/evaluation/0014-white-filter-after.png",
+          "score": 0.5,
+          "reason": "The left filter sidebar, selected white swatch, active filter chip, and four-column product grid are present. However, product images begin around y410 instead of y512 and are smaller, substantially compressing the cards vertically. The third product shows a wood finish rather than white, and the fourth product is a shelving unit rather than the reference TV bench. Price and promotional information remain recognizable but differ in sizing and spacing."
+        },
+        {
+          "id": "V04",
+          "title": "比较页面",
+          "reference": "reference/compare.png",
+          "candidate": "runs/k3-one-shot-02/evaluation/0024-compare-two-after.png",
+          "score": 0.5,
+          "reason": "Both matching products, prices, promotional details, ratings, and the beginning of the feature comparison are present. The comparison columns are left-aligned rather than centered, leaving a large empty right side. Product images are smaller, the heading is larger, and the details are more vertically compressed. The visible feature row lacks the reference's gray cell backgrounds and dividing treatment."
+        },
+        {
+          "id": "V05",
+          "title": "原木色组合详情",
+          "reference": "reference/detail.png",
+          "candidate": "runs/k3-one-shot-02/evaluation/0030-oak-from-list-after.png",
+          "score": 0.75,
+          "reason": "The thumbnail rail, large oak cabinet image, breadcrumbs, pricing hierarchy and two-row variant selector match the reference structure. The gallery begins about 25 px higher, the product-information column sits farther left, and smaller text changes wrapping and spacing. The media buttons are centered beneath the image rather than aligned toward its lower-right corner."
+        },
+        {
+          "id": "V06",
+          "title": "All media 弹层",
+          "reference": "reference/gallery.png",
+          "candidate": "runs/k3-one-shot-02/evaluation/0034-all-media-after.png",
+          "score": 0.5,
+          "reason": "The dimmed backdrop, large white modal, media tabs and upper-right close control are present. However, the reference's two equally sized media tiles are not reproduced: the candidate enlarges the cabinet tile and renders the video preview as a small thumbnail with a detached play button. Additional images enter the bottom of the viewport, substantially changing the grid and whitespace."
+        },
+        {
+          "id": "V07",
+          "title": "详情组件标签",
+          "reference": "reference/components.png",
+          "candidate": "runs/k3-one-shot-02/evaluation/0046-component-return-after.png",
+          "score": 0.5,
+          "reason": "The component section is recognizable, with six illustrated component cards, quantities, article numbers and a large cabinet image on the right. The supplied view does not show the reference's horizontal tabs or sticky navigation, and the component section starts near the top instead of below the gallery and payment area. Wider rounded cards and the visible reviews section further change the composition."
+        },
+        {
+          "id": "V08",
+          "title": "独立组件详情",
+          "reference": "reference/component.png",
+          "candidate": "runs/k3-one-shot-02/evaluation/0040-open-component-after.png",
+          "score": 0.75,
+          "reason": "The large STUBBARP leg image, three-image thumbnail rail, family price with 2-pack notation, four color options, quantity stepper and blue add-to-bag button reproduce the key layout. The gallery starts higher, the information column shifts left, and smaller typography alters the price treatment. Extra spacing and dividers push the purchase controls lower, while the media buttons are centered rather than right-aligned."
+        },
+        {
+          "id": "V09",
+          "title": "胡桃木效果详情",
+          "reference": "reference/variant.png",
+          "candidate": "runs/k3-one-shot-02/evaluation/0048-walnut-variant-after.png",
+          "score": 0.5,
+          "reason": "The walnut product image, product name, pricing hierarchy and two-row variant selector correspond. However, the candidate retains a large navigation header, shifting the product area downward. The details column starts farther left, uses smaller typography and different wrapping, and pushes the Add to bag button below the viewport. Gallery thumbnails, variant ordering and media-button placement also differ."
+        },
+        {
+          "id": "V10",
+          "title": "购物袋",
+          "reference": "reference/bag.png",
+          "candidate": "runs/k3-one-shot-02/evaluation/0058-walnut-bag-after.png",
+          "score": 0.5,
+          "reason": "The delivery summary, product-list column and right-hand order summary are recognizable. However, the product rows are reversed, leaving the walnut cabinet largely below the viewport. The candidate lacks the reference's gray page background and distinct white panels, uses different product-row spacing and quantity-control alignment, and replaces the large rectangular checkout button with a shorter pill-shaped button."
+        },
+        {
+          "id": "V11",
+          "title": "袋内组件抽屉",
+          "reference": "reference/bag-components.png",
+          "candidate": "runs/k3-one-shot-02/evaluation/0070-bag-components-real-after.png",
+          "score": 0.5,
+          "reason": "The dimmed backdrop and right-side drawer contain the corresponding six components and quantities. The drawer is narrower, its heading and list begin substantially higher, and component text lacks the reference's reserved left gutter. The background is also at a substantially different scroll position, showing recommendations instead of the delivery summary and two product rows visible in the reference."
+        },
+        {
+          "id": "V12",
+          "title": "评论抽屉",
+          "reference": "reference/reviews.png",
+          "candidate": "runs/k3-one-shot-02/evaluation/0078-reviews-open-after.png",
+          "score": 0.5,
+          "reason": "The candidate reproduces the two-column reviews modal, rating breakdown, category scores, filtering controls, summary and matching review content. Multiple conspicuous differences remain: the overall rating is left-aligned rather than centered, rating-distribution bars have substantially different proportions, a vertical column divider is added, and filter/topic controls are outlined instead of mostly filled. Column widths, typography and review-action placement also differ."
         }
       ]
     }
@@ -1224,25 +1450,3363 @@
           "note": ""
         }
       ],
-      "prefix": "runs/gpt-6.1-sol-one-shot-01"
+      "prefix": "runs/gpt-6.1-sol-one-shot-01",
+      "evaluation": "runs/gpt-6.1-sol-one-shot-01/evaluation",
+      "links": [
+        [
+          "操作 JSON",
+          "runs/gpt-6.1-sol-one-shot-01/evaluation/operator-records.json"
+        ],
+        [
+          "浏览器日志",
+          "runs/gpt-6.1-sol-one-shot-01/evaluation/browser-log.json"
+        ],
+        [
+          "录像说明",
+          "runs/gpt-6.1-sol-one-shot-01/evaluation/operator-cleanup.json"
+        ],
+        [
+          "候选哈希",
+          "runs/gpt-6.1-sol-one-shot-01/candidate-manifest.json"
+        ],
+        [
+          "视觉票 1",
+          "runs/gpt-6.1-sol-one-shot-01/evaluation/judge-k3-visual-0.json"
+        ],
+        [
+          "视觉票 2",
+          "runs/gpt-6.1-sol-one-shot-01/evaluation/judge-k3-visual-1.json"
+        ],
+        [
+          "视觉票 3",
+          "runs/gpt-6.1-sol-one-shot-01/evaluation/judge-k3-visual-2.json"
+        ],
+        [
+          "菜单补充核验",
+          "runs/gpt-6.1-sol-one-shot-01/evaluation/supplementary/operator-records.json"
+        ]
+      ]
     },
     {
       "model": "gpt-6-luna",
-      "video": "runs/gpt-6-luna-one-shot-01/evaluation/evaluation.mp4",
+      "video": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/evaluation.mp4",
       "records": [
         {
-          "label": "Luna-delivery-root",
+          "label": "home",
           "seconds": 0.0,
-          "file": "runs/gpt-6-luna-one-shot-01/evaluation/0002-Luna-delivery-root-after.png",
-          "url": "http://127.0.0.1:3462/",
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0002-home-after.png",
+          "url": "http://127.0.0.1:3470/",
           "actions": [],
           "note": ""
         },
         {
-          "label": "Luna-search-direct",
-          "seconds": 0.3,
-          "file": "runs/gpt-6-luna-one-shot-01/evaluation/0004-Luna-search-direct-after.png",
-          "url": "http://127.0.0.1:3462/us/en/search/?q=besta",
+          "label": "cookie-dismiss",
+          "seconds": 18.8,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0004-cookie-dismiss-after.png",
+          "url": "http://127.0.0.1:3470/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Ok"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "products-menu",
+          "seconds": 19.4,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0006-products-menu-after.png",
+          "url": "http://127.0.0.1:3470/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Products"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "menu-escape",
+          "seconds": 20.0,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0008-menu-escape-after.png",
+          "url": "http://127.0.0.1:3470/",
+          "actions": [
+            {
+              "action": {
+                "type": "key",
+                "key": "Escape"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "search-suggest",
+          "seconds": 20.7,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0010-search-suggest-after.png",
+          "url": "http://127.0.0.1:3470/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Products"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "fill",
+                "selector": "#search",
+                "text": "besta"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "search-enter",
+          "seconds": 37.6,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0012-search-enter-after.png",
+          "url": "http://127.0.0.1:3470/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "key",
+                "key": "Enter"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "color-open",
+          "seconds": 38.4,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0014-color-open-after.png",
+          "url": "http://127.0.0.1:3470/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Color⌄"
+              },
+              "error": "locator.click: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Color⌄', exact: true }).first()\u001b[22m\n"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "white-filter",
+          "seconds": 61.8,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0016-white-filter-after.png",
+          "url": "http://127.0.0.1:3470/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Color",
+                "exact": false
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".swatch",
+                "index": 1
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "white-clear-sort",
+          "seconds": 62.5,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0018-white-clear-sort-after.png",
+          "url": "http://127.0.0.1:3470/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "white",
+                "exact": false
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Sort",
+                "exact": false
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "input[type=radio]",
+                "index": 1
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "sort-restore",
+          "seconds": 63.4,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0020-sort-restore-after.png",
+          "url": "http://127.0.0.1:3470/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "input[type=radio]",
+                "index": 0
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "compare-two",
+          "seconds": 63.9,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0022-compare-two-after.png",
+          "url": "http://127.0.0.1:3470/product-comparison",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".comparecheck input",
+                "index": 0
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".comparecheck input",
+                "index": 1
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Compare products"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "third-compare-attempt",
+          "seconds": 121.4,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0024-third-compare-attempt-after.png",
+          "url": "http://127.0.0.1:3470/product-comparison",
+          "actions": [
+            {
+              "action": {
+                "type": "back"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".comparecheck input",
+                "index": 4
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Compare products"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "compare-remove",
+          "seconds": 122.5,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0026-compare-remove-after.png",
+          "url": "http://127.0.0.1:3470/product-comparison",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".compareitem .close",
+                "index": 1
+              },
+              "error": "locator.click: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.compareitem .close').nth(1)\u001b[22m\n\u001b[2m    - locator resolved to <button class=\"close\" onclick=\"state.compare=state.compare.filter(x=>x!=='00245842');render()\">×</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div id=\"suggestions\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div id=\"suggestions\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    5 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div id=\"suggestions\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "oak-from-list",
+          "seconds": 125.1,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0028-oak-from-list-after.png",
+          "url": "http://127.0.0.1:3470/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "goto",
+                "path": "/search/?q=besta"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".productcard img",
+                "index": 2
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "gallery-thumb",
+          "seconds": 145.5,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0030-gallery-thumb-after.png",
+          "url": "http://127.0.0.1:3470/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".thumbs img",
+                "index": 1
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "all-media",
+          "seconds": 146.0,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0032-all-media-after.png",
+          "url": "http://127.0.0.1:3470/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".mainphoto"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "gallery-measurement",
+          "seconds": 146.6,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0034-gallery-measurement-after.png",
+          "url": "http://127.0.0.1:3470/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".modalhead b",
+                "index": 2
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "included-components",
+          "seconds": 147.1,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0036-included-components-after.png",
+          "url": "http://127.0.0.1:3470/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".modal .close"
+              },
+              "error": "locator.click: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.modal .close').first()\u001b[22m\n\u001b[2m    - locator resolved to <button class=\"close\" onclick=\"state.modal='';render()\">×</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"modalhead\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"modalhead\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    5 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"modalhead\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "component-leg",
+          "seconds": 149.7,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0038-component-leg-after.png",
+          "url": "http://127.0.0.1:3470/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".component a",
+                "index": 2
+              },
+              "error": "locator.click: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.component a').nth(2)\u001b[22m\n"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "component-qty-add",
+          "seconds": 152.4,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0040-component-qty-add-after.png",
+          "url": "http://127.0.0.1:3470/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "＋"
+              },
+              "error": "locator.click: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '＋', exact: true }).first()\u001b[22m\n"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "gallery-close-coordinate",
+          "seconds": 181.3,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0042-gallery-close-coordinate-after.png",
+          "url": "http://127.0.0.1:3470/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "click",
+                "x": 1261,
+                "y": 80
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "included-components-real",
+          "seconds": 182.3,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0044-included-components-real-after.png",
+          "url": "http://127.0.0.1:3470/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "What’s included"
+              },
+              "error": "locator.click: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'What’s included', exact: true }).first()\u001b[22m\n\u001b[2m    - locator resolved to <button class=\"\" onclick=\"state.tab='What’s included';render()\">What’s included</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <img src=\"/assets/media-317.jpg\"/> from <div class=\"modalbg\" onclick=\"state.modal='';render()\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <div class=\"modalbg\" onclick=\"state.modal='';render()\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <img src=\"/assets/media-317.jpg\"/> from <div class=\"modalbg\" onclick=\"state.modal='';render()\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <img src=\"/assets/media-317.jpg\"/> from <div class=\"modalbg\" onclick=\"state.modal='';render()\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <div class=\"modalbg\" onclick=\"state.modal='';render()\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m  3 × retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <img src=\"/assets/media-317.jpg\"/> from <div class=\"modalbg\" onclick=\"state.modal='';render()\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "component-leg-real",
+          "seconds": 185.2,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0046-component-leg-real-after.png",
+          "url": "http://127.0.0.1:3470/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".component a",
+                "index": 2
+              },
+              "error": "locator.click: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.component a').nth(2)\u001b[22m\n"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "component-qty-add-real",
+          "seconds": 187.8,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0048-component-qty-add-real-after.png",
+          "url": "http://127.0.0.1:3470/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "＋"
+              },
+              "error": "locator.click: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '＋', exact: true }).first()\u001b[22m\n"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "gallery-backdrop-close",
+          "seconds": 202.4,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0050-gallery-backdrop-close-after.png",
+          "url": "http://127.0.0.1:3470/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "click",
+                "x": 30,
+                "y": 450
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "included-components-visible",
+          "seconds": 203.0,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0052-included-components-visible-after.png",
+          "url": "http://127.0.0.1:3470/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "What’s included"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "component-leg-visible",
+          "seconds": 203.4,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0054-component-leg-visible-after.png",
+          "url": "http://127.0.0.1:3470/us/en/p/stubbarp-leg-white-stained-oak-effect-20293568/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".component a",
+                "index": 2
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "leg-qty-two-add",
+          "seconds": 236.6,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0056-leg-qty-two-add-after.png",
+          "url": "http://127.0.0.1:3470/shopping-bag",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "＋"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Add to bag"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Go to shopping bag"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "back-to-combo",
+          "seconds": 237.6,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0058-back-to-combo-after.png",
+          "url": "http://127.0.0.1:3470/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "back"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "back"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "walnut-variant",
+          "seconds": 238.6,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0060-walnut-variant-after.png",
+          "url": "http://127.0.0.1:3470/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".variations img",
+                "index": 0
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "invalid-zip",
+          "seconds": 239.1,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0062-invalid-zip-after.png",
+          "url": "http://127.0.0.1:3470/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Enter ZIP code",
+                "exact": false
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "fill",
+                "selector": "#zipInput",
+                "text": "abc"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Save"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "valid-zip",
+          "seconds": 240.0,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0064-valid-zip-after.png",
+          "url": "http://127.0.0.1:3470/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "fill",
+                "selector": "#zipInput",
+                "text": "95054"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Save"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "store-select",
+          "seconds": 295.6,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0066-store-select-after.png",
+          "url": "http://127.0.0.1:3470/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Select store",
+                "exact": false
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "fill",
+                "selector": ".drawer input",
+                "text": "East Palo Alto"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".store:visible"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "walnut-add-cart",
+          "seconds": 296.6,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0068-walnut-add-cart-after.png",
+          "url": "http://127.0.0.1:3470/shopping-bag",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Add to bag"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Go to shopping bag"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "cart-quantity-edit",
+          "seconds": 297.3,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0070-cart-quantity-edit-after.png",
+          "url": "http://127.0.0.1:3470/shopping-bag",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".bagitem .qty button",
+                "index": 0
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".bagitem .qty button",
+                "index": 3
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "bag-components",
+          "seconds": 297.9,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0072-bag-components-after.png",
+          "url": "http://127.0.0.1:3470/shopping-bag",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".bagitem a",
+                "index": 1
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "bag-refresh",
+          "seconds": 317.0,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0074-bag-refresh-after.png",
+          "url": "http://127.0.0.1:3470/shopping-bag",
+          "actions": [
+            {
+              "action": {
+                "type": "click",
+                "x": 700,
+                "y": 440
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "assembly-on",
+          "seconds": 318.1,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0076-assembly-on-after.png",
+          "url": "http://127.0.0.1:3470/shopping-bag",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".bagitem input[type=checkbox]",
+                "index": 1
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "assembly-off",
+          "seconds": 318.5,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0078-assembly-off-after.png",
+          "url": "http://127.0.0.1:3470/shopping-bag",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".bagitem input[type=checkbox]",
+                "index": 1
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "leg-delete",
+          "seconds": 318.9,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0080-leg-delete-after.png",
+          "url": "http://127.0.0.1:3470/shopping-bag",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "♜",
+                "index": 0
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "leg-undo",
+          "seconds": 319.3,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0082-leg-undo-after.png",
+          "url": "http://127.0.0.1:3470/shopping-bag",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".toast a"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "discount-invalid",
+          "seconds": 319.7,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0084-discount-invalid-after.png",
+          "url": "http://127.0.0.1:3470/shopping-bag",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".summary summary"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "fill",
+                "selector": "#discount",
+                "text": "OMNIALE-DEMO"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Apply"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "reviews-open",
+          "seconds": 378.7,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0086-reviews-open-after.png",
+          "url": "http://127.0.0.1:3470/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "back"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Show all reviews"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "review-lowest",
+          "seconds": 379.6,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0088-review-lowest-after.png",
+          "url": "http://127.0.0.1:3470/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Sort by",
+                "exact": false
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".reviewmodal input[type=radio]",
+                "index": 3
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "review-repaint",
+          "seconds": 380.2,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0090-review-repaint-after.png",
+          "url": "http://127.0.0.1:3470/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Sort by",
+                "exact": false
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "bag-return-header",
+          "seconds": 380.7,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0092-bag-return-header-after.png",
+          "url": "http://127.0.0.1:3470/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "click",
+                "x": 30,
+                "y": 440
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".right span",
+                "index": 4
+              },
+              "error": "locator.click: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.right span').nth(4)\u001b[22m\n"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "search-deeplink-refresh",
+          "seconds": 383.8,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0094-search-deeplink-refresh-after.png",
+          "url": "http://127.0.0.1:3470/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "goto",
+                "path": "/search/?q=besta"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "product-deeplink-refresh",
+          "seconds": 384.8,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0096-product-deeplink-refresh-after.png",
+          "url": "http://127.0.0.1:3470/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "goto",
+                "path": "/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "bag-deeplink-refresh",
+          "seconds": 386.0,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0098-bag-deeplink-refresh-after.png",
+          "url": "http://127.0.0.1:3470/shopping-bag",
+          "actions": [
+            {
+              "action": {
+                "type": "goto",
+                "path": "/shopping-bag"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "bag-via-header-real",
+          "seconds": 413.2,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0100-bag-via-header-real-after.png",
+          "url": "http://127.0.0.1:3470/shopping-bag",
+          "actions": [
+            {
+              "action": {
+                "type": "goto",
+                "path": "/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".right span",
+                "index": 3
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "menu-storage-submenu",
+          "seconds": 414.1,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0102-menu-storage-submenu-after.png",
+          "url": "http://127.0.0.1:3470/shopping-bag",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Products"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".navmenu b",
+                "index": 0
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Products"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "evaluation-complete",
+          "seconds": 440.1,
+          "file": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/0104-evaluation-complete-after.png",
+          "url": "http://127.0.0.1:3470/shopping-bag",
+          "actions": [],
+          "note": ""
+        }
+      ],
+      "prefix": "runs/gpt-6-luna-one-shot-01",
+      "evaluation": "runs/gpt-6-luna-one-shot-01/evaluation-concatenated",
+      "links": [
+        [
+          "操作 JSON",
+          "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/operator-records.json"
+        ],
+        [
+          "浏览器日志",
+          "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/browser-log.json"
+        ],
+        [
+          "录像说明",
+          "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/operator-cleanup.json"
+        ],
+        [
+          "候选哈希",
+          "runs/gpt-6-luna-one-shot-01/assembly-manifest.json"
+        ],
+        [
+          "视觉票 1",
+          "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/judge-k3-visual-0.json"
+        ],
+        [
+          "视觉票 2",
+          "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/judge-k3-visual-1.json"
+        ],
+        [
+          "视觉票 3",
+          "runs/gpt-6-luna-one-shot-01/evaluation-concatenated/judge-k3-visual-2.json"
+        ]
+      ]
+    },
+    {
+      "model": "gpt-6-astra",
+      "video": "runs/gpt-6-astra-one-shot-01/evaluation/evaluation.mp4",
+      "records": [
+        {
+          "label": "home",
+          "seconds": 0.0,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0002-home-after.png",
+          "url": "http://127.0.0.1:3472/",
+          "actions": [],
+          "note": ""
+        },
+        {
+          "label": "cookie-dismiss",
+          "seconds": 19.8,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0004-cookie-dismiss-after.png",
+          "url": "http://127.0.0.1:3472/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Ok"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "products-menu",
+          "seconds": 20.5,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0006-products-menu-after.png",
+          "url": "http://127.0.0.1:3472/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Products"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "storage-submenu",
+          "seconds": 41.4,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0008-storage-submenu-after.png",
+          "url": "http://127.0.0.1:3472/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Storage & organization",
+                "index": 1
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "search-suggestions",
+          "seconds": 41.9,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0010-search-suggestions-after.png",
+          "url": "http://127.0.0.1:3472/",
+          "actions": [
+            {
+              "action": {
+                "type": "key",
+                "key": "Escape"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "fill",
+                "selector": "#search-input",
+                "text": "besta"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "search-enter",
+          "seconds": 43.0,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0012-search-enter-after.png",
+          "url": "http://127.0.0.1:3472/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "key",
+                "key": "Enter"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "color-open",
+          "seconds": 55.0,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0014-color-open-after.png",
+          "url": "http://127.0.0.1:3472/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Color",
+                "exact": false
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "white-filter",
+          "seconds": 74.7,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0016-white-filter-after.png",
+          "url": "http://127.0.0.1:3472/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "White",
+                "exact": false
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "white-clear",
+          "seconds": 75.1,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0018-white-clear-after.png",
+          "url": "http://127.0.0.1:3472/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "white",
+                "exact": false
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "sort-open",
+          "seconds": 75.6,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0020-sort-open-after.png",
+          "url": "http://127.0.0.1:3472/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Sort",
+                "exact": false
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "price-low",
+          "seconds": 98.9,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0022-price-low-after.png",
+          "url": "http://127.0.0.1:3472/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "input[type=radio]",
+                "index": 1
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "best-restore",
+          "seconds": 99.3,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0024-best-restore-after.png",
+          "url": "http://127.0.0.1:3472/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Sort",
+                "exact": false
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "input[type=radio]",
+                "index": 0
+              },
+              "error": "locator.click: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[type=radio]').first()\u001b[22m\n"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "compare-two",
+          "seconds": 102.3,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0026-compare-two-after.png",
+          "url": "http://127.0.0.1:3472/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "input[type=checkbox]",
+                "index": 0
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "input[type=checkbox]",
+                "index": 1
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "best-restore-real",
+          "seconds": 125.1,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0028-best-restore-real-after.png",
+          "url": "http://127.0.0.1:3472/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Sort",
+                "exact": false
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "input[type=radio]",
+                "index": 0
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "compare-correct-products",
+          "seconds": 125.8,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0030-compare-correct-products-after.png",
+          "url": "http://127.0.0.1:3472/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "input[value=\"20293568\"]"
+              },
+              "error": "locator.click: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[value=\"20293568\"]').first()\u001b[22m\n"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "input[value=\"70488318\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "compare-two",
+          "seconds": 356.8,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0032-compare-two-after.png",
+          "url": "http://127.0.0.1:3472/us/en/compare-products/?ids=60245844,00245842",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-act=\"clear-compare\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "input[value=\"60245844\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "input[value=\"00245842\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "link",
+                "name": "Compare products"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "compare-add-remove",
+          "seconds": 369.6,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0036-compare-add-remove-after.png",
+          "url": "http://127.0.0.1:3472/us/en/compare-products/?ids=60245844,70245848",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-act=\"add-compare\"][data-id=\"70245848\"]"
+              },
+              "result": "done",
+              "capture": {
+                "file": "0034-compare-add-remove-1.png",
+                "view": {
+                  "url": "http://127.0.0.1:3472/us/en/compare-products/?ids=60245844,00245842,70245848",
+                  "scrollY": 585,
+                  "images": [
+                    {
+                      "src": "/assets/media-000.svg",
+                      "loaded": true
+                    },
+                    {
+                      "src": "/assets/media-136.jpg",
+                      "loaded": true
+                    },
+                    {
+                      "src": "/assets/media-140.jpg",
+                      "loaded": true
+                    },
+                    {
+                      "src": "/assets/media-142.jpg",
+                      "loaded": true
+                    }
+                  ],
+                  "controls": [
+                    {
+                      "tag": "A",
+                      "text": "",
+                      "aria": "IKEA home",
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 48,
+                        "y": 24,
+                        "w": 99,
+                        "h": 42
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "Products",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 203,
+                        "y": 28.84375,
+                        "w": 55.25,
+                        "h": 32.296875
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "Rooms",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 289.25,
+                        "y": 28.84375,
+                        "w": 44.359375,
+                        "h": 32.296875
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "A",
+                      "text": "Deals",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 364.609375,
+                        "y": 34.84375,
+                        "w": 35.796875,
+                        "h": 20.296875
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "Design & ideas",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 431.40625,
+                        "y": 28.84375,
+                        "w": 94.171875,
+                        "h": 32.296875
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "Services",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 556.578125,
+                        "y": 28.84375,
+                        "w": 53.6875,
+                        "h": 32.296875
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "INPUT",
+                      "text": "",
+                      "aria": "Search products",
+                      "title": null,
+                      "id": "search-input",
+                      "role": null,
+                      "value": "",
+                      "box": {
+                        "x": 745.6875,
+                        "y": 32.40625,
+                        "w": 246,
+                        "h": 25.1875
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "Hej! Log in or sign up",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 1083.6875,
+                        "y": 32,
+                        "w": 176.3125,
+                        "h": 26
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": "login"
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "",
+                      "aria": "Favorites",
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 1286,
+                        "y": 25,
+                        "w": 40,
+                        "h": 40
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": "iconbutton"
+                    },
+                    {
+                      "tag": "A",
+                      "text": "",
+                      "aria": "Shopping bag",
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 1352,
+                        "y": 25,
+                        "w": 40,
+                        "h": 40
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": "iconbutton"
+                    },
+                    {
+                      "tag": "A",
+                      "text": "BESTÅ\nFrame, white, 47 1/4x15 3/4x15 \"",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 254,
+                        "y": 5.890625,
+                        "w": 288,
+                        "h": 35
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "",
+                      "aria": "Add BESTÅ to bag",
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 498,
+                        "y": 7.390625,
+                        "w": 40,
+                        "h": 40
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": "card-add"
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "★★★★★(1550)",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 254,
+                        "y": 179.78125,
+                        "w": 125.109375,
+                        "h": 23.1875
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "A",
+                      "text": "BESTÅ\nFrame, white, 23 5/8x15 3/4x75 5/8 \"",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 576,
+                        "y": 5.890625,
+                        "w": 288,
+                        "h": 35
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "",
+                      "aria": "Add BESTÅ to bag",
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 820,
+                        "y": 7.390625,
+                        "w": 40,
+                        "h": 40
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": "card-add"
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "★★★★★(4773)",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 576,
+                        "y": 179.78125,
+                        "w": 125.109375,
+                        "h": 23.1875
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "A",
+                      "text": "BESTÅ\nFrame, white, 23 5/8x15 3/4x15 \"",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 898,
+                        "y": 5.890625,
+                        "w": 288,
+                        "h": 35
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "",
+                      "aria": "Add BESTÅ to bag",
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 1142,
+                        "y": 7.390625,
+                        "w": 40,
+                        "h": 40
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": "card-add"
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "★★★★★(4773)",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 898,
+                        "y": 179.78125,
+                        "w": 125.109375,
+                        "h": 23.1875
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "+ Add more products",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 634.703125,
+                        "y": 738.015625,
+                        "w": 170.578125,
+                        "h": 41.390625
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": "outline"
+                    },
+                    {
+                      "tag": "A",
+                      "text": "Back to search results",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 651.125,
+                        "y": 801.40625,
+                        "w": 137.734375,
+                        "h": 16
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": "link"
+                    }
+                  ],
+                  "rendered_svg": [
+                    {
+                      "tag": "circle",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 715.6875,
+                        "y": 37,
+                        "w": 12,
+                        "h": 12
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "path",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 726.6875,
+                        "y": 48,
+                        "w": 5,
+                        "h": 5
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "circle",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 1098.6875,
+                        "y": 36,
+                        "w": 6,
+                        "h": 6
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "path",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 1094.6875,
+                        "y": 44,
+                        "w": 14,
+                        "h": 10
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "path",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 1297,
+                        "y": 35.999996185302734,
+                        "w": 18,
+                        "h": 17.000003814697266
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "path",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 1363,
+                        "y": 43,
+                        "w": 18,
+                        "h": 9
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "path",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 1368,
+                        "y": 36,
+                        "w": 8,
+                        "h": 8
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "path",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 508.8333435058594,
+                        "y": 19.140625,
+                        "w": 18.333343505859375,
+                        "h": 16.5
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "path",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 830.8333129882812,
+                        "y": 19.140625,
+                        "w": 18.3333740234375,
+                        "h": 16.5
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "path",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 1152.8333740234375,
+                        "y": 19.140625,
+                        "w": 18.333251953125,
+                        "h": 16.5
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    }
+                  ],
+                  "bodyText": "US | English\nShop new arrivals\nEnter ZIP code\nSelect store\nProducts\nRooms\nDeals\nDesign & ideas\nServices\nHej! Log in or sign up\nProduct comparison\n×\nIKEA Family price\nBESTÅ\nFrame, white, 47 1/4x15 3/4x15 \"\n$55.00\n15% off, save $10.00\nRegular price $65.00\nPrice valid Oct 7, 2026 - Nov 11, 2026 or while supply lasts\n★★★★★(1550)\nMore options\n×\nIKEA Family price\nBESTÅ\nFrame, white, 23 5/8x15 3/4x75 5/8 \"\n$76.00\n15% off, save $14.00\nRegular price $90.00\nPrice valid Oct 7, 2026 - Nov 11, 2026 or while supply lasts\n★★★★★(4773)\nMore options\n×\nIKEA Family price\nBESTÅ\nFrame, white, 23 5/8x15 3/4x15 \"\n$38.00\n15% off, save $7.00\nRegular price $45.00\nPrice valid Oct 7, 2026 - Nov 11, 2026 or while supply lasts\n★★★★★(4773)\nMore options\nKey features\nWidth\n47 1/4 \"\nWidth\n23 5/8 \"\nWidth\n23 5/8 \"\nHeight\n15 \"\nHeight\n75 5/8 \"\nHeight\n15 \"\nDepth\n15 3/4 \"\nDepth\n15 3/4 \"\nDepth\n15 3/4 \"\nColor\nwhite\nColor\nwhite\nColor\nwhite\nMaterial\nParticleboard, Paper foil\nMaterial\nParticleboard, Paper foil\nMaterial\nParticleboard, Paper foil\nArticle number\n602.458.44\nArticle number\n002.458.42\nArticle number\n702.458.48\n+ Add more products\nBack to search results"
+                },
+                "logs": []
+              }
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Remove 00245842 from comparison"
+              },
+              "result": "done",
+              "capture": {
+                "file": "0035-compare-add-remove-2.png",
+                "view": {
+                  "url": "http://127.0.0.1:3472/us/en/compare-products/?ids=60245844,70245848",
+                  "scrollY": 0,
+                  "images": [
+                    {
+                      "src": "/assets/media-000.svg",
+                      "loaded": true
+                    },
+                    {
+                      "src": "/assets/media-136.jpg",
+                      "loaded": true
+                    },
+                    {
+                      "src": "/assets/media-142.jpg",
+                      "loaded": true
+                    },
+                    {
+                      "src": "/assets/media-140.jpg",
+                      "loaded": true
+                    }
+                  ],
+                  "controls": [
+                    {
+                      "tag": "BUTTON",
+                      "text": "Enter ZIP code",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 1104.921875,
+                        "y": 11,
+                        "w": 141.140625,
+                        "h": 26
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "Select store",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 1270.0625,
+                        "y": 11,
+                        "w": 121.9375,
+                        "h": 26
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "A",
+                      "text": "",
+                      "aria": "IKEA home",
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 48,
+                        "y": 72,
+                        "w": 99,
+                        "h": 42
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "Products",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 203,
+                        "y": 76.84375,
+                        "w": 55.25,
+                        "h": 32.296875
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "Rooms",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 289.25,
+                        "y": 76.84375,
+                        "w": 44.359375,
+                        "h": 32.296875
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "A",
+                      "text": "Deals",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 364.609375,
+                        "y": 82.84375,
+                        "w": 35.796875,
+                        "h": 20.296875
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "Design & ideas",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 431.40625,
+                        "y": 76.84375,
+                        "w": 94.171875,
+                        "h": 32.296875
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "Services",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 556.578125,
+                        "y": 76.84375,
+                        "w": 53.6875,
+                        "h": 32.296875
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "INPUT",
+                      "text": "",
+                      "aria": "Search products",
+                      "title": null,
+                      "id": "search-input",
+                      "role": null,
+                      "value": "",
+                      "box": {
+                        "x": 745.6875,
+                        "y": 80.40625,
+                        "w": 246,
+                        "h": 25.1875
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "Hej! Log in or sign up",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 1083.6875,
+                        "y": 80,
+                        "w": 176.3125,
+                        "h": 26
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": "login"
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "",
+                      "aria": "Favorites",
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 1286,
+                        "y": 73,
+                        "w": 40,
+                        "h": 40
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": "iconbutton"
+                    },
+                    {
+                      "tag": "A",
+                      "text": "",
+                      "aria": "Shopping bag",
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 1352,
+                        "y": 73,
+                        "w": 40,
+                        "h": 40
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": "iconbutton"
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "×",
+                      "aria": "Remove 60245844 from comparison",
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 415,
+                        "y": 230.390625,
+                        "w": 26.015625,
+                        "h": 40
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": "remove-compare"
+                    },
+                    {
+                      "tag": "A",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 415,
+                        "y": 270.390625,
+                        "w": 288,
+                        "h": 288
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "",
+                      "aria": "Save BESTÅ to favorites",
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 656,
+                        "y": 511.390625,
+                        "w": 42,
+                        "h": 42
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": "favorite"
+                    },
+                    {
+                      "tag": "A",
+                      "text": "BESTÅ\nFrame, white, 47 1/4x15 3/4x15 \"",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 415,
+                        "y": 590.890625,
+                        "w": 288,
+                        "h": 35
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "",
+                      "aria": "Add BESTÅ to bag",
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 659,
+                        "y": 592.390625,
+                        "w": 40,
+                        "h": 40
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": "card-add"
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "★★★★★(1550)",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 415,
+                        "y": 764.78125,
+                        "w": 125.109375,
+                        "h": 23.1875
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "×",
+                      "aria": "Remove 70245848 from comparison",
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 737,
+                        "y": 230.390625,
+                        "w": 26.015625,
+                        "h": 40
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": "remove-compare"
+                    },
+                    {
+                      "tag": "A",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 737,
+                        "y": 270.390625,
+                        "w": 288,
+                        "h": 288
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "",
+                      "aria": "Save BESTÅ to favorites",
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 978,
+                        "y": 511.390625,
+                        "w": 42,
+                        "h": 42
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": "favorite"
+                    },
+                    {
+                      "tag": "A",
+                      "text": "BESTÅ\nFrame, white, 23 5/8x15 3/4x15 \"",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 737,
+                        "y": 590.890625,
+                        "w": 288,
+                        "h": 35
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "",
+                      "aria": "Add BESTÅ to bag",
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 981,
+                        "y": 592.390625,
+                        "w": 40,
+                        "h": 40
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": "card-add"
+                    },
+                    {
+                      "tag": "BUTTON",
+                      "text": "★★★★★(4773)",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 737,
+                        "y": 764.78125,
+                        "w": 125.109375,
+                        "h": 23.1875
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    }
+                  ],
+                  "rendered_svg": [
+                    {
+                      "tag": "circle",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 51,
+                        "y": 15,
+                        "w": 18,
+                        "h": 18
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "path",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 51,
+                        "y": 21,
+                        "w": 18,
+                        "h": 6
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "path",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 579,
+                        "y": 22,
+                        "w": 18,
+                        "h": 9
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "path",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 584,
+                        "y": 15,
+                        "w": 8,
+                        "h": 8
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "path",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 1112.921875,
+                        "y": 17,
+                        "w": 20,
+                        "h": 12
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "circle",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 1114.921875,
+                        "y": 28,
+                        "w": 4,
+                        "h": 4
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "circle",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 1126.921875,
+                        "y": 28,
+                        "w": 4,
+                        "h": 4
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "path",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 1279.0625,
+                        "y": 16,
+                        "w": 18,
+                        "h": 16
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "circle",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 715.6875,
+                        "y": 85,
+                        "w": 12,
+                        "h": 12
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "path",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 726.6875,
+                        "y": 96,
+                        "w": 5,
+                        "h": 5
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "circle",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 1098.6875,
+                        "y": 84,
+                        "w": 6,
+                        "h": 6
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "path",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 1094.6875,
+                        "y": 92,
+                        "w": 14,
+                        "h": 10
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "path",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 1297,
+                        "y": 84,
+                        "w": 18,
+                        "h": 17
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "path",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 1363,
+                        "y": 91,
+                        "w": 18,
+                        "h": 9
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "path",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 1368,
+                        "y": 84,
+                        "w": 8,
+                        "h": 8
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "path",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 668,
+                        "y": 523.390625,
+                        "w": 18,
+                        "h": 17
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "path",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 669.8333129882812,
+                        "y": 604.140625,
+                        "w": 18.3333740234375,
+                        "h": 16.5
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "path",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 990,
+                        "y": 523.390625,
+                        "w": 18,
+                        "h": 17
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    },
+                    {
+                      "tag": "path",
+                      "text": "",
+                      "aria": null,
+                      "title": null,
+                      "id": "",
+                      "role": null,
+                      "box": {
+                        "x": 991.8333129882812,
+                        "y": 604.140625,
+                        "w": 18.3333740234375,
+                        "h": 16.5
+                      },
+                      "fill": null,
+                      "stroke": null,
+                      "className": null
+                    }
+                  ],
+                  "bodyText": "US | English\nShop new arrivals\nEnter ZIP code\nSelect store\nProducts\nRooms\nDeals\nDesign & ideas\nServices\nHej! Log in or sign up\nProduct comparison\n×\nIKEA Family price\nBESTÅ\nFrame, white, 47 1/4x15 3/4x15 \"\n$55.00\n15% off, save $10.00\nRegular price $65.00\nPrice valid Oct 7, 2026 - Nov 11, 2026 or while supply lasts\n★★★★★(1550)\nMore options\n×\nIKEA Family price\nBESTÅ\nFrame, white, 23 5/8x15 3/4x15 \"\n$38.00\n15% off, save $7.00\nRegular price $45.00\nPrice valid Oct 7, 2026 - Nov 11, 2026 or while supply lasts\n★★★★★(4773)\nMore options\nKey features\nWidth\n47 1/4 \"\nWidth\n23 5/8 \"\nHeight\n15 \"\nHeight\n15 \"\nDepth\n15 3/4 \"\nDepth\n15 3/4 \"\nColor\nwhite\nColor\nwhite\nMaterial\nParticleboard, Paper foil\nMaterial\nParticleboard, Paper foil\nArticle number\n602.458.44\nArticle number\n702.458.48\n+ Add more products\nBESTÅ\nFrame, white, 23 5/8x15 3/4x75 5/8 \"\n+ Add to comparison\nBack to search results"
+                },
+                "logs": []
+              }
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "open-oak-from-list",
+          "seconds": 370.4,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0038-open-oak-from-list-after.png",
+          "url": "http://127.0.0.1:3472/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "link",
+                "name": "Back to search results"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "a[href*=\"29209829\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "gallery-thumbnail",
+          "seconds": 378.7,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0040-gallery-thumbnail-after.png",
+          "url": "http://127.0.0.1:3472/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "View image 2"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "all-media",
+          "seconds": 379.2,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0042-all-media-after.png",
+          "url": "http://127.0.0.1:3472/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "All media"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "gallery-measurement",
+          "seconds": 399.0,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0044-gallery-measurement-after.png",
+          "url": "http://127.0.0.1:3472/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Measurement"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "included-components",
+          "seconds": 399.5,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0046-included-components-after.png",
+          "url": "http://127.0.0.1:3472/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Close"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "What's included"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "open-component",
+          "seconds": 435.3,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0048-open-component-after.png",
+          "url": "http://127.0.0.1:3472/us/en/p/stubbarp-leg-white-stained-oak-effect-20293568/",
+          "actions": [
+            {
+              "action": {
+                "type": "link",
+                "name": "2 x Leg",
+                "exact": false
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "leg-two-add",
+          "seconds": 435.8,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0050-leg-two-add-after.png",
+          "url": "http://127.0.0.1:3472/us/en/p/stubbarp-leg-white-stained-oak-effect-20293568/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Increase quantity"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Add to bag"
+              },
+              "error": "locator.click: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Add to bag', exact: true }).first()\u001b[22m\n"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "leg-two-bag",
+          "seconds": 447.7,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0052-leg-two-bag-after.png",
+          "url": "http://127.0.0.1:3472/us/en/shoppingbag/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Add 2 items to cart"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Go to shopping bag"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "return-original-combo",
+          "seconds": 448.5,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0054-return-original-combo-after.png",
+          "url": "http://127.0.0.1:3472/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "back"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "back"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "walnut-variant",
+          "seconds": 471.1,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0056-walnut-variant-after.png",
+          "url": "http://127.0.0.1:3472/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "black-brown Lappviken/Stubbarp/brown walnut effect"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "invalid-zip",
+          "seconds": 471.6,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0058-invalid-zip-after.png",
+          "url": "http://127.0.0.1:3472/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Enter ZIP code"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "fill",
+                "selector": "#zip-input",
+                "text": "abc"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "key",
+                "key": "Enter"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "valid-zip",
+          "seconds": 472.8,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0060-valid-zip-after.png",
+          "url": "http://127.0.0.1:3472/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "fill",
+                "selector": "#zip-input",
+                "text": "95054"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "key",
+                "key": "Enter"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "select-store",
+          "seconds": 473.7,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0062-select-store-after.png",
+          "url": "http://127.0.0.1:3472/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Select store"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "store-confirm",
+          "seconds": 480.6,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0064-store-confirm-after.png",
+          "url": "http://127.0.0.1:3472/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "East Palo Alto, CA",
+                "exact": false
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "store-saved",
+          "seconds": 498.2,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0066-store-saved-after.png",
+          "url": "http://127.0.0.1:3472/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Select this store"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "walnut-bag",
+          "seconds": 498.8,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0068-walnut-bag-after.png",
+          "url": "http://127.0.0.1:3472/us/en/shoppingbag/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Add to bag"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Go to shopping bag"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "quantity-edit",
+          "seconds": 499.6,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0070-quantity-edit-after.png",
+          "url": "http://127.0.0.1:3472/us/en/shoppingbag/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-act=\"bag-qty\"][data-id=\"29612189\"][data-delta=\"1\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-act=\"bag-qty\"][data-id=\"20293568\"][data-delta=\"-1\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "bag-components",
+          "seconds": 518.8,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0072-bag-components-after.png",
+          "url": "http://127.0.0.1:3472/us/en/shoppingbag/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Show included parts"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "bag-refresh",
+          "seconds": 519.3,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0074-bag-refresh-after.png",
+          "url": "http://127.0.0.1:3472/us/en/shoppingbag/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Close"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "assembly-on",
+          "seconds": 520.3,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0076-assembly-on-after.png",
+          "url": "http://127.0.0.1:3472/us/en/shoppingbag/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "input[data-change=\"assembly\"][data-id=\"29612189\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "assembly-off",
+          "seconds": 520.9,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0078-assembly-off-after.png",
+          "url": "http://127.0.0.1:3472/us/en/shoppingbag/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "input[data-change=\"assembly\"][data-id=\"29612189\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "delete-leg",
+          "seconds": 540.8,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0080-delete-leg-after.png",
+          "url": "http://127.0.0.1:3472/us/en/shoppingbag/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Remove STUBBARP"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "undo-leg",
+          "seconds": 541.3,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0082-undo-leg-after.png",
+          "url": "http://127.0.0.1:3472/us/en/shoppingbag/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-act=\"undo\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "invalid-discount",
+          "seconds": 541.8,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0084-invalid-discount-after.png",
+          "url": "http://127.0.0.1:3472/us/en/shoppingbag/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-act=\"discount\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "fill",
+                "selector": "#discount-code",
+                "text": "OMNIALE-DEMO"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "key",
+                "key": "Enter"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "reviews-open",
+          "seconds": 561.7,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0086-reviews-open-after.png",
+          "url": "http://127.0.0.1:3472/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "a[href*=\"29612189\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Show all reviews"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "reviews-lowest",
+          "seconds": 562.4,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0088-reviews-lowest-after.png",
+          "url": "http://127.0.0.1:3472/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "↓☷　Sort by"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "input[name=\"review-sort\"][value=\"Lowest rated\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "bag-header-return",
+          "seconds": 589.6,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0090-bag-header-return-after.png",
+          "url": "http://127.0.0.1:3472/us/en/shoppingbag/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Close reviews"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "link",
+                "name": "Shopping bag"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "search-direct-refresh",
+          "seconds": 590.3,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0092-search-direct-refresh-after.png",
+          "url": "http://127.0.0.1:3472/us/en/search/?q=besta",
           "actions": [
             {
               "action": {
@@ -1261,42 +4825,10 @@
           "note": ""
         },
         {
-          "label": "Luna-oak-direct",
-          "seconds": 1.5,
-          "file": "runs/gpt-6-luna-one-shot-01/evaluation/0006-Luna-oak-direct-after.png",
-          "url": "http://127.0.0.1:3462/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
-          "actions": [
-            {
-              "action": {
-                "type": "goto",
-                "path": "/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/"
-              },
-              "result": "done"
-            }
-          ],
-          "note": ""
-        },
-        {
-          "label": "Luna-component-direct",
-          "seconds": 2.3,
-          "file": "runs/gpt-6-luna-one-shot-01/evaluation/0008-Luna-component-direct-after.png",
-          "url": "http://127.0.0.1:3462/us/en/p/stubbarp-leg-white-stained-oak-effect-20293568/",
-          "actions": [
-            {
-              "action": {
-                "type": "goto",
-                "path": "/us/en/p/stubbarp-leg-white-stained-oak-effect-20293568/"
-              },
-              "result": "done"
-            }
-          ],
-          "note": ""
-        },
-        {
-          "label": "Luna-walnut-direct",
-          "seconds": 3.0,
-          "file": "runs/gpt-6-luna-one-shot-01/evaluation/0010-Luna-walnut-direct-after.png",
-          "url": "http://127.0.0.1:3462/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "label": "product-direct-refresh",
+          "seconds": 591.5,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0094-product-direct-refresh-after.png",
+          "url": "http://127.0.0.1:3472/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
           "actions": [
             {
               "action": {
@@ -1304,20 +4836,10 @@
                 "path": "/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/"
               },
               "result": "done"
-            }
-          ],
-          "note": ""
-        },
-        {
-          "label": "Luna-bag-direct",
-          "seconds": 3.8,
-          "file": "runs/gpt-6-luna-one-shot-01/evaluation/0012-Luna-bag-direct-after.png",
-          "url": "http://127.0.0.1:3462/us/en/shoppingcart/",
-          "actions": [
+            },
             {
               "action": {
-                "type": "goto",
-                "path": "/us/en/shoppingcart/"
+                "type": "reload"
               },
               "result": "done"
             }
@@ -1325,15 +4847,1042 @@
           "note": ""
         },
         {
-          "label": "Luna-evaluation-closed",
-          "seconds": 20.7,
-          "file": "runs/gpt-6-luna-one-shot-01/evaluation/0014-Luna-evaluation-closed-after.png",
-          "url": "http://127.0.0.1:3462/us/en/shoppingcart/",
+          "label": "bag-direct-refresh",
+          "seconds": 592.7,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0096-bag-direct-refresh-after.png",
+          "url": "http://127.0.0.1:3472/us/en/shoppingbag/",
+          "actions": [
+            {
+              "action": {
+                "type": "goto",
+                "path": "/us/en/shoppingbag/"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "evaluation-complete",
+          "seconds": 613.1,
+          "file": "runs/gpt-6-astra-one-shot-01/evaluation/0098-evaluation-complete-after.png",
+          "url": "http://127.0.0.1:3472/us/en/shoppingbag/",
           "actions": [],
           "note": ""
         }
       ],
-      "prefix": "runs/gpt-6-luna-one-shot-01"
+      "prefix": "runs/gpt-6-astra-one-shot-01",
+      "evaluation": "runs/gpt-6-astra-one-shot-01/evaluation",
+      "links": [
+        [
+          "操作 JSON",
+          "runs/gpt-6-astra-one-shot-01/evaluation/operator-records.json"
+        ],
+        [
+          "浏览器日志",
+          "runs/gpt-6-astra-one-shot-01/evaluation/browser-log.json"
+        ],
+        [
+          "录像说明",
+          "runs/gpt-6-astra-one-shot-01/evaluation/operator-cleanup.json"
+        ],
+        [
+          "候选哈希",
+          "runs/gpt-6-astra-one-shot-01/candidate-manifest.json"
+        ],
+        [
+          "视觉票 1",
+          "runs/gpt-6-astra-one-shot-01/evaluation/judge-k3-visual-0.json"
+        ],
+        [
+          "视觉票 2",
+          "runs/gpt-6-astra-one-shot-01/evaluation/judge-k3-visual-1.json"
+        ],
+        [
+          "视觉票 3",
+          "runs/gpt-6-astra-one-shot-01/evaluation/judge-k3-visual-2.json"
+        ]
+      ]
+    },
+    {
+      "model": "k3",
+      "video": "runs/k3-one-shot-02/evaluation/evaluation.mp4",
+      "records": [
+        {
+          "label": "home",
+          "seconds": 0.0,
+          "file": "runs/k3-one-shot-02/evaluation/0002-home-after.png",
+          "url": "http://127.0.0.1:3474/",
+          "actions": [],
+          "note": ""
+        },
+        {
+          "label": "cookie-dismiss",
+          "seconds": 13.9,
+          "file": "runs/k3-one-shot-02/evaluation/0004-cookie-dismiss-after.png",
+          "url": "http://127.0.0.1:3474/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Ok"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "products-menu",
+          "seconds": 14.6,
+          "file": "runs/k3-one-shot-02/evaluation/0006-products-menu-after.png",
+          "url": "http://127.0.0.1:3474/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Products"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "storage-submenu",
+          "seconds": 33.1,
+          "file": "runs/k3-one-shot-02/evaluation/0008-storage-submenu-after.png",
+          "url": "http://127.0.0.1:3474/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Storage & organization"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "key",
+                "key": "Escape"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "search-suggestions",
+          "seconds": 34.1,
+          "file": "runs/k3-one-shot-02/evaluation/0010-search-suggestions-after.png",
+          "url": "http://127.0.0.1:3474/",
+          "actions": [
+            {
+              "action": {
+                "type": "fill",
+                "selector": "#header-search",
+                "text": "besta"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "search-enter",
+          "seconds": 34.7,
+          "file": "runs/k3-one-shot-02/evaluation/0012-search-enter-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "key",
+                "key": "Enter"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "white-filter",
+          "seconds": 35.5,
+          "file": "runs/k3-one-shot-02/evaluation/0014-white-filter-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/search/?q=besta&color=white",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"facet\"][data-f=\"color\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"color-pick\"][data-color=\"white\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "clear-white",
+          "seconds": 60.1,
+          "file": "runs/k3-one-shot-02/evaluation/0016-clear-white-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"chip-clear\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "sort-open",
+          "seconds": 60.6,
+          "file": "runs/k3-one-shot-02/evaluation/0018-sort-open-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Sort"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "price-low",
+          "seconds": 77.5,
+          "file": "runs/k3-one-shot-02/evaluation/0020-price-low-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/search/?q=besta&sort=price-asc",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "input[name=\"sort\"][value=\"price-asc\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "best-restore",
+          "seconds": 77.9,
+          "file": "runs/k3-one-shot-02/evaluation/0022-best-restore-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "input[name=\"sort\"][value=\"best\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "compare-two",
+          "seconds": 78.4,
+          "file": "runs/k3-one-shot-02/evaluation/0024-compare-two-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/compare/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".cmp-cb[data-id=\"60245844\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".cmp-cb[data-id=\"00245842\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Compare products"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "compare-inspect-and-remove",
+          "seconds": 96.8,
+          "file": "runs/k3-one-shot-02/evaluation/0026-compare-inspect-and-remove-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/compare/",
+          "actions": [
+            {
+              "action": {
+                "type": "scroll",
+                "dy": 650
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"compare-remove\"][data-id=\"00245842\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "storage-submenu-visible",
+          "seconds": 97.7,
+          "file": "runs/k3-one-shot-02/evaluation/0028-storage-submenu-visible-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/compare/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Products"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Storage & organization"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "oak-from-list",
+          "seconds": 98.3,
+          "file": "runs/k3-one-shot-02/evaluation/0030-oak-from-list-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "key",
+                "key": "Escape"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/us/en/search/?q=besta"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-nav*=\"29209829\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "thumbnail-switch",
+          "seconds": 112.0,
+          "file": "runs/k3-one-shot-02/evaluation/0032-thumbnail-switch-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"pdp-thumb\"][data-i=\"1\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "all-media",
+          "seconds": 112.7,
+          "file": "runs/k3-one-shot-02/evaluation/0034-all-media-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "All media"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "gallery-measurement",
+          "seconds": 134.4,
+          "file": "runs/k3-one-shot-02/evaluation/0036-gallery-measurement-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"media-tab\"][data-t=\"meas\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "included-components",
+          "seconds": 134.9,
+          "file": "runs/k3-one-shot-02/evaluation/0038-included-components-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "key",
+                "key": "Escape"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"tab-scroll\"][data-t=\"sec-included\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "open-component",
+          "seconds": 158.4,
+          "file": "runs/k3-one-shot-02/evaluation/0040-open-component-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/p/stubbarp-leg-white-stained-oak-effect-20293568/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-nav*=\"20293568\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "leg-two-bag",
+          "seconds": 158.9,
+          "file": "runs/k3-one-shot-02/evaluation/0042-leg-two-bag-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/p/stubbarp-leg-white-stained-oak-effect-20293568/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"qty-inc\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Add 2 items to cart"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "leg-two-cart",
+          "seconds": 190.9,
+          "file": "runs/k3-one-shot-02/evaluation/0044-leg-two-cart-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/bag/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Go to shopping bag"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "component-return",
+          "seconds": 191.4,
+          "file": "runs/k3-one-shot-02/evaluation/0046-component-return-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/p/besta-storage-combination-with-doors-white-stained-oak-effect-lappviken-stubbarp-white-stained-oak-effect-s29209829/",
+          "actions": [
+            {
+              "action": {
+                "type": "back"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "back"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"tab-scroll\"][data-t=\"sec-included\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "wait",
+                "ms": 1000
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "walnut-variant",
+          "seconds": 193.9,
+          "file": "runs/k3-one-shot-02/evaluation/0048-walnut-variant-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".sw[data-nav*=\"29612189\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "wait",
+                "ms": 700
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "invalid-zip",
+          "seconds": 210.2,
+          "file": "runs/k3-one-shot-02/evaluation/0050-invalid-zip-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"open-zip\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "fill",
+                "selector": "#zip-input",
+                "text": "abc"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Save"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "valid-zip",
+          "seconds": 211.2,
+          "file": "runs/k3-one-shot-02/evaluation/0052-valid-zip-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "fill",
+                "selector": "#zip-input",
+                "text": "95054"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Save"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "store-open",
+          "seconds": 212.0,
+          "file": "runs/k3-one-shot-02/evaluation/0054-store-open-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"open-store\"]"
+              },
+              "error": "locator.click: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-action=\"open-store\"]').first()\u001b[22m\n\u001b[2m    - locator resolved to <span class=\"tb-item\" data-action=\"open-store\">…</span>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"drawer-scroll\">…</div> from <div id=\"overlay-root\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"drawer-scroll\">…</div> from <div id=\"overlay-root\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    5 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"drawer-scroll\">…</div> from <div id=\"overlay-root\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "store-saved",
+          "seconds": 230.2,
+          "file": "runs/k3-one-shot-02/evaluation/0056-store-saved-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "East Palo Alto, CA",
+                "exact": false
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "walnut-bag",
+          "seconds": 230.8,
+          "file": "runs/k3-one-shot-02/evaluation/0058-walnut-bag-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/bag/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Add to bag"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Go to shopping bag"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "quantity-edit",
+          "seconds": 231.5,
+          "file": "runs/k3-one-shot-02/evaluation/0060-quantity-edit-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/bag/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"bag-inc\"][data-id=\"29612189\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"bag-dec\"][data-id=\"20293568\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "bag-components",
+          "seconds": 247.9,
+          "file": "runs/k3-one-shot-02/evaluation/0062-bag-components-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/bag/",
+          "actions": [
+            {
+              "action": {
+                "type": "link",
+                "name": "Show included parts"
+              },
+              "error": "locator.click: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'Show included parts', exact: true }).first()\u001b[22m\n"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "bag-refresh",
+          "seconds": 250.6,
+          "file": "runs/k3-one-shot-02/evaluation/0064-bag-refresh-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/bag/",
+          "actions": [
+            {
+              "action": {
+                "type": "key",
+                "key": "Escape"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "assembly-on",
+          "seconds": 251.7,
+          "file": "runs/k3-one-shot-02/evaluation/0066-assembly-on-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/bag/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".asm-cb[data-id=\"29612189\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "assembly-off",
+          "seconds": 252.2,
+          "file": "runs/k3-one-shot-02/evaluation/0068-assembly-off-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/bag/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".asm-cb[data-id=\"29612189\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "bag-components-real",
+          "seconds": 268.7,
+          "file": "runs/k3-one-shot-02/evaluation/0070-bag-components-real-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/bag/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"show-parts\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "delete-leg",
+          "seconds": 269.1,
+          "file": "runs/k3-one-shot-02/evaluation/0072-delete-leg-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/bag/",
+          "actions": [
+            {
+              "action": {
+                "type": "key",
+                "key": "Escape"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"bag-remove\"][data-id=\"20293568\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "undo-leg",
+          "seconds": 270.0,
+          "file": "runs/k3-one-shot-02/evaluation/0074-undo-leg-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/bag/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"undo-remove\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "invalid-discount",
+          "seconds": 270.4,
+          "file": "runs/k3-one-shot-02/evaluation/0076-invalid-discount-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/bag/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-action=\"disc-toggle\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "fill",
+                "selector": "#disc-input",
+                "text": "OMNIALE-DEMO"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Apply"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "reviews-open",
+          "seconds": 283.2,
+          "file": "runs/k3-one-shot-02/evaluation/0078-reviews-open-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "[data-nav*=\"29612189\"]"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "button",
+                "name": "Show all reviews"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "wait",
+                "ms": 500
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "reviews-lowest",
+          "seconds": 284.7,
+          "file": "runs/k3-one-shot-02/evaluation/0080-reviews-lowest-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "button",
+                "name": "Sort by"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "input[name=\"rev-sort\"][value=\"low\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "bag-via-header",
+          "seconds": 313.4,
+          "file": "runs/k3-one-shot-02/evaluation/0082-bag-via-header-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "key",
+                "key": "Escape"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "domclick",
+                "selector": ".bag-icon"
+              },
+              "error": "locator.click: Timeout 2500ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.bag-icon').first()\u001b[22m\n"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "bag-real-header",
+          "seconds": 513.0,
+          "file": "runs/k3-one-shot-02/evaluation/0084-bag-real-header-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/bag/",
+          "actions": [
+            {
+              "action": {
+                "type": "domclick",
+                "selector": "button[data-nav=\"/us/en/bag/\"]"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "direct-product-reload",
+          "seconds": 533.5,
+          "file": "runs/k3-one-shot-02/evaluation/0086-direct-product-reload-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/",
+          "actions": [
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/us/en/p/besta-storage-combination-with-doors-black-brown-lappviken-stubbarp-brown-walnut-effect-s29612189/"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "wait",
+                "ms": 500
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "direct-bag-reload",
+          "seconds": 535.4,
+          "file": "runs/k3-one-shot-02/evaluation/0088-direct-bag-reload-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/bag/",
+          "actions": [
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/us/en/bag/"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "direct-search-reload",
+          "seconds": 560.7,
+          "file": "runs/k3-one-shot-02/evaluation/0090-direct-search-reload-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/search/?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/us/en/search/?q=besta"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "evaluation-complete",
+          "seconds": 561.8,
+          "file": "runs/k3-one-shot-02/evaluation/0092-evaluation-complete-after.png",
+          "url": "http://127.0.0.1:3474/#/us/en/search/?q=besta",
+          "actions": [],
+          "note": ""
+        }
+      ],
+      "prefix": "runs/k3-one-shot-02",
+      "evaluation": "runs/k3-one-shot-02/evaluation",
+      "links": [
+        [
+          "操作 JSON",
+          "runs/k3-one-shot-02/evaluation/operator-records.json"
+        ],
+        [
+          "浏览器日志",
+          "runs/k3-one-shot-02/evaluation/browser-log.json"
+        ],
+        [
+          "录像说明",
+          "runs/k3-one-shot-02/evaluation/operator-cleanup.json"
+        ],
+        [
+          "候选哈希",
+          "runs/k3-one-shot-02/candidate-manifest.json"
+        ],
+        [
+          "视觉票 1",
+          "runs/k3-one-shot-02/evaluation/judge-gpt-6.1-sol-visual-0.json"
+        ],
+        [
+          "视觉票 2",
+          "runs/k3-one-shot-02/evaluation/judge-gpt-6.1-sol-visual-1.json"
+        ],
+        [
+          "视觉票 3",
+          "runs/k3-one-shot-02/evaluation/judge-gpt-6.1-sol-visual-2.json"
+        ]
+      ]
     }
   ]
 }

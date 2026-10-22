@@ -1675,38 +1675,40 @@
         "GLM视觉judge接口503不可用，原始失败记录保留；实际judge及任何代理裁定逐项披露。",
         "交付失败与业务能力分开解释；不对候选代码做人工修复。"
       ],
-      "generated_at": "2026-10-22T06:34:25.388627+00:00"
+      "generated_at": "2026-10-22T06:34:25.388627+00:00",
+      "run_id": "gpt-6.1-sol-one-shot-01",
+      "evaluation_folder": "evaluation"
     },
     {
       "model": "gpt-6-luna",
       "protocol": "one-shot-v1",
-      "score": null,
+      "score": 78.125,
       "max": 100,
       "categories": {
         "execution": {
-          "score": null,
+          "score": 10.0,
           "max": 10.0,
-          "unjudgeable": 4
+          "unjudgeable": 0
         },
         "navigation": {
-          "score": null,
+          "score": 12.5,
           "max": 15.0,
-          "unjudgeable": 6
+          "unjudgeable": 0
         },
         "interaction": {
-          "score": null,
+          "score": 20.0,
           "max": 25.0,
-          "unjudgeable": 10
+          "unjudgeable": 0
         },
         "state": {
-          "score": null,
+          "score": 15.0,
           "max": 20.0,
-          "unjudgeable": 8
+          "unjudgeable": 0
         },
         "visual": {
-          "score": null,
+          "score": 20.625,
           "max": 30.0,
-          "unjudgeable": 12
+          "unjudgeable": 0
         }
       },
       "status": {
@@ -2497,7 +2499,9 @@
         "bytes": 2359211,
         "eventCount": 8859
       },
-      "candidate_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "run_id": "gpt-6-luna-one-shot-01",
+      "evaluation_folder": "evaluation-concatenated",
+      "candidate_hash": "7698df1a72727e3b8c8a9e7dc341ad3053b6bcbab373fb78e5d2bd613bf14a3f",
       "freeze_verified": true,
       "candidate_unmodified": true,
       "items": [
@@ -2508,17 +2512,14 @@
           "assertion": "空白项目由固定服务启动后，渲染可用 IKEA 首页，存在可用搜索/导航。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 1,
+          "reason": "首页可用；输入besta出现联想，Enter显示并保留查询",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0004-cookie-dismiss-after.png",
+            "0010-search-suggest-after.png",
+            "0012-search-enter-after.png"
           ],
-          "points": null
+          "points": 2.5
         },
         {
           "id": "E02",
@@ -2527,17 +2528,16 @@
           "assertion": "从搜索到详情、组件和购物袋的实际测试无导致流程中断的未捕获运行错误。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 1,
+          "reason": "完整流程无未捕获运行错误；浏览器外网阻断，首页列表比较详情组件购物袋主要资源正常加载",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0004-cookie-dismiss-after.png",
+            "0022-compare-two-after.png",
+            "0028-oak-from-list-after.png",
+            "0054-component-leg-visible-after.png",
+            "0068-walnut-add-cart-after.png"
           ],
-          "points": null
+          "points": 2.5
         },
         {
           "id": "E03",
@@ -2546,17 +2546,16 @@
           "assertion": "外网阻断时首页、列表、比较、详情、组件和购物袋的主要产品图与布局正常加载，不依赖跳回官网。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 1,
+          "reason": "完整流程无未捕获运行错误；浏览器外网阻断，首页列表比较详情组件购物袋主要资源正常加载",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0004-cookie-dismiss-after.png",
+            "0022-compare-two-after.png",
+            "0028-oak-from-list-after.png",
+            "0054-component-leg-visible-after.png",
+            "0068-walnut-add-cart-after.png"
           ],
-          "points": null
+          "points": 2.5
         },
         {
           "id": "E04",
@@ -2565,17 +2564,14 @@
           "assertion": "新标签或直接打开搜索、组合详情与购物袋本地地址并刷新，能得到对应页面。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 1,
+          "reason": "搜索、商品、购物袋各自深链直接打开并刷新显示相应页面",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0094-search-deeplink-refresh-after.png",
+            "0096-product-deeplink-refresh-after.png",
+            "0098-bag-deeplink-refresh-after.png"
           ],
-          "points": null
+          "points": 2.5
         },
         {
           "id": "N01",
@@ -2584,17 +2580,13 @@
           "assertion": "Products 展开后可进入 Storage & organization 子菜单，展示对应子类并可关闭。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 0,
+          "reason": "Products可展开关闭，但Storage & organization是静态标题，点击不进入第二级菜单",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0006-products-menu-after.png",
+            "0102-menu-storage-submenu-after.png"
           ],
-          "points": null
+          "points": 0.0
         },
         {
           "id": "N02",
@@ -2603,17 +2595,14 @@
           "assertion": "输入 besta 出现相关联想，Enter 提交后显示搜索结果并保留查询。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 1,
+          "reason": "首页可用；输入besta出现联想，Enter显示并保留查询",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0004-cookie-dismiss-after.png",
+            "0010-search-suggest-after.png",
+            "0012-search-enter-after.png"
           ],
-          "points": null
+          "points": 2.5
         },
         {
           "id": "N03",
@@ -2622,17 +2611,12 @@
           "assertion": "点击列表中的原木色组合柜进入对应商品详情，身份/图片对应且地址为本地。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 1,
+          "reason": "从列表点击原木色组合进入29209829详情",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0028-oak-from-list-after.png"
           ],
-          "points": null
+          "points": 2.5
         },
         {
           "id": "N04",
@@ -2641,17 +2625,14 @@
           "assertion": "从组合组件清单打开 STUBBARP 20293568 详情后可返回原组合；不强制新标签。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 1,
+          "reason": "从组件清单打开20293568并使用浏览器后退返回29209829",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0052-included-components-visible-after.png",
+            "0054-component-leg-visible-after.png",
+            "0058-back-to-combo-after.png"
           ],
-          "points": null
+          "points": 2.5
         },
         {
           "id": "N05",
@@ -2660,17 +2641,12 @@
           "assertion": "切换到胡桃木效果 29612189 后详情名称、主图及本地商品地址对应改变。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 1,
+          "reason": "切换胡桃木后本地地址29612189，商品名称和图片改变",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0060-walnut-variant-after.png"
           ],
-          "points": null
+          "points": 2.5
         },
         {
           "id": "N06",
@@ -2679,17 +2655,12 @@
           "assertion": "从购物袋返回详情、再次通过购物袋入口进入，维持此前加入的商品与数量。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 1,
+          "reason": "袋返回详情后通过头部购物袋入口保留组合2、脚1、总额490",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0100-bag-via-header-real-after.png"
           ],
-          "points": null
+          "points": 2.5
         },
         {
           "id": "I01",
@@ -2698,17 +2669,14 @@
           "assertion": "选择白色后出现活动筛选且可见结果/变体变化，清除后恢复；允许固定汇总165/87。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 1,
+          "reason": "白色筛选改变可见列表，可清除；低价排序为38/55/76/76/136/145/197/197，恢复原顺序",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0016-white-filter-after.png",
+            "0018-white-clear-sort-after.png",
+            "0020-sort-restore-after.png"
           ],
-          "points": null
+          "points": 2.5
         },
         {
           "id": "I02",
@@ -2717,17 +2685,14 @@
           "assertion": "切换 Price: low to high 后当前代表性商品按展示售价升序排列，恢复 Best match 后排序可恢复。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 1,
+          "reason": "白色筛选改变可见列表，可清除；低价排序为38/55/76/76/136/145/197/197，恢复原顺序",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0016-white-filter-after.png",
+            "0018-white-clear-sort-after.png",
+            "0020-sort-restore-after.png"
           ],
-          "points": null
+          "points": 2.5
         },
         {
           "id": "I03",
@@ -2736,17 +2701,12 @@
           "assertion": "选择 60245844 与 00245842，比较页显示二者对应价格及宽高深差异，而非固定无关表格。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 1,
+          "reason": "选择60245844/00245842后显示两者对应价格和不同宽高深",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0022-compare-two-after.png"
           ],
-          "points": null
+          "points": 2.5
         },
         {
           "id": "I04",
@@ -2755,17 +2715,13 @@
           "assertion": "从相似商品加入 70245848 出现第三列；移除 00245842 后保留另两件。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 0,
+          "reason": "比较可加入第三列，但实际第三件为60245919；指定70245848缺少可达入口。移除按钮亦被叠层拦截，未完成指定增删场景",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0024-third-compare-attempt-after.png",
+            "0026-compare-remove-after.png"
           ],
-          "points": null
+          "points": 0.0
         },
         {
           "id": "I05",
@@ -2774,17 +2730,16 @@
           "assertion": "缩略图更换主图，All media 打开真实图片画廊，关闭返回原详情。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 1,
+          "reason": "图库主图和Measurement可用；关闭按钮被modalhead遮挡，但点击遮罩可正常关闭；组件实际显示六种、数量1/4/2/1/2/2",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0030-gallery-thumb-after.png",
+            "0032-all-media-after.png",
+            "0034-gallery-measurement-after.png",
+            "0050-gallery-backdrop-close-after.png",
+            "0052-included-components-visible-after.png"
           ],
-          "points": null
+          "points": 2.5
         },
         {
           "id": "I06",
@@ -2793,17 +2748,16 @@
           "assertion": "Measurements 或画廊 Measurement 能显示当前组合柜的尺寸图及对应尺寸，不是空标签。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 1,
+          "reason": "图库主图和Measurement可用；关闭按钮被modalhead遮挡，但点击遮罩可正常关闭；组件实际显示六种、数量1/4/2/1/2/2",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0030-gallery-thumb-after.png",
+            "0032-all-media-after.png",
+            "0034-gallery-measurement-after.png",
+            "0050-gallery-backdrop-close-after.png",
+            "0052-included-components-visible-after.png"
           ],
-          "points": null
+          "points": 2.5
         },
         {
           "id": "I07",
@@ -2812,17 +2766,16 @@
           "assertion": "原木色组合的六种组件及数量分别为1/4/2/1/2/2，且能辨别柜体、层板、柜脚、支撑腿、铰链和门。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 1,
+          "reason": "图库主图和Measurement可用；关闭按钮被modalhead遮挡，但点击遮罩可正常关闭；组件实际显示六种、数量1/4/2/1/2/2",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0030-gallery-thumb-after.png",
+            "0032-all-media-after.png",
+            "0034-gallery-measurement-after.png",
+            "0050-gallery-backdrop-close-after.png",
+            "0052-included-components-visible-after.png"
           ],
-          "points": null
+          "points": 2.5
         },
         {
           "id": "I08",
@@ -2831,17 +2784,13 @@
           "assertion": "abc 被拒绝且显示错误；改为95054可保存并更新顶部及配送显示。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 1,
+          "reason": "abc被拒绝显示错误，95054保存并显示顶部及配送区域",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0062-invalid-zip-after.png",
+            "0064-valid-zip-after.png"
           ],
-          "points": null
+          "points": 2.5
         },
         {
           "id": "I09",
@@ -2850,17 +2799,12 @@
           "assertion": "选择 East Palo Alto, CA 后顶部和当前商品库存/Click & collect 反映该门店。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 1,
+          "reason": "选择East Palo Alto后顶部及商品库存区域均更新",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0066-store-select-after.png"
           ],
-          "points": null
+          "points": 2.5
         },
         {
           "id": "I10",
@@ -2869,17 +2813,14 @@
           "assertion": "评论抽屉显示实际评论与评分分布；最低评分排序后首条评分不高于后续，且顺序相对默认发生变化。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 0,
+          "reason": "最低评分选项改变文本顺序但首条仍渲染两星、下一条一星，未按评分升序。选择后直到其他重绘才更新。",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0086-reviews-open-after.png",
+            "0088-review-lowest-after.png",
+            "0090-review-repaint-after.png"
           ],
-          "points": null
+          "points": 0.0
         },
         {
           "id": "S01",
@@ -2888,17 +2829,12 @@
           "assertion": "STUBBARP 20293568 数量选2加入后有独立行、数量2、原价行金额20；不能把两包装误当两美元或与组合内部柜脚混合。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 1,
+          "reason": "独立STUBBARP一行，数量2，原价行金额20",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0056-leg-qty-two-add-after.png"
           ],
-          "points": null
+          "points": 2.5
         },
         {
           "id": "S02",
@@ -2907,17 +2843,12 @@
           "assertion": "已有两包独立柜脚时加入1个胡桃木组合，购物袋两行身份正确，原价产品合计260；Family优惠独立显示。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 1,
+          "reason": "原木独立柜脚2包20，胡桃木组合1个240，产品260，Family优惠独立47",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0068-walnut-add-cart-after.png"
           ],
-          "points": null
+          "points": 2.5
         },
         {
           "id": "S03",
@@ -2926,17 +2857,12 @@
           "assertion": "组合从1增至2、独立柜脚从2减至1后行金额为480与10，产品合计490。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 1,
+          "reason": "独立柜脚2减至1，组合1增至2，行金额10和480，合计490",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0070-cart-quantity-edit-after.png"
           ],
-          "points": null
+          "points": 2.5
         },
         {
           "id": "S04",
@@ -2945,17 +2871,12 @@
           "assertion": "2个组合的袋内组件清单数量为2/8/4/2/4/4，独立原木色柜脚行不被倍增或吞并。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 0,
+          "reason": "两件组合的袋内组件仍显示1/4/2/1/2/2，未倍增为2/8/4/2/4/4；独立行保留",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0072-bag-components-after.png"
           ],
-          "points": null
+          "points": 0.0
         },
         {
           "id": "S05",
@@ -2964,17 +2885,12 @@
           "assertion": "上述2个组合、1包柜脚、总额490及95054/门店在刷新后仍成立。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 1,
+          "reason": "刷新后组合2、独立脚1、产品490及邮编门店保留",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0074-bag-refresh-after.png"
           ],
-          "points": null
+          "points": 2.5
         },
         {
           "id": "S06",
@@ -2983,17 +2899,13 @@
           "assertion": "为2个组合开启安装服务新增117，合计607；关闭后恢复490，不能修改商品数量。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 0,
+          "reason": "安装服务标价117，但勾选及取消后总额均490，未加至607",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0076-assembly-on-after.png",
+            "0078-assembly-off-after.png"
           ],
-          "points": null
+          "points": 0.0
         },
         {
           "id": "S07",
@@ -3002,17 +2914,13 @@
           "assertion": "删除独立柜脚后产品合计480，Undo恢复原行、数量1及490。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 1,
+          "reason": "删除独立脚产品变480，Undo恢复数量1与490",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0080-leg-delete-after.png",
+            "0082-leg-undo-after.png"
           ],
-          "points": null
+          "points": 2.5
         },
         {
           "id": "S08",
@@ -3021,17 +2929,12 @@
           "assertion": "应用 OMNIALE-DEMO 显示无效提示，产品合计和各商品数量保持不变。",
           "weight": 2.5,
           "scoring": "binary_visible_evidence",
-          "score": null,
-          "reason": "交付格式失败，未产生可验收项目；独立路由均返回Not found。该项目不提供功能逐项能力分与可比较总分，避免将三个同名app.js导致的格式失败误当成业务能力全部缺失。未修复或重新调用模型。",
+          "score": 1,
+          "reason": "无效折扣码显示提示，行数量及总额490不变",
           "evidence": [
-            "0002-Luna-delivery-root-after.png",
-            "0004-Luna-search-direct-after.png",
-            "0006-Luna-oak-direct-after.png",
-            "0008-Luna-component-direct-after.png",
-            "0010-Luna-walnut-direct-after.png",
-            "0012-Luna-bag-direct-after.png"
+            "0084-discount-invalid-after.png"
           ],
-          "points": null
+          "points": 2.5
         },
         {
           "id": "V01",
@@ -3041,28 +2944,12 @@
           "reference": "reference/home.png",
           "criteria": "头部黑条、品牌标志、搜索、导航、主视觉图片的结构、尺寸、层级；动态宣传画面内容差异豁免",
           "scoring": "0|0.25|0.5|0.75|1",
-          "score": null,
-          "votes": [
-            {
-              "judge": "k3",
-              "id": "V01",
-              "score": 0,
-              "reason": "Candidate renders only a plain 'Not found' text page on a blank white background. None of the reference homepage structures exist: no black utility top bar (US|English, Shop new arrivals, ZIP/store), no IKEA logo, no Products/Rooms/Deals navigation row, no search input, no category chip carousel, and no hero image grid. Operator note confirms the delivered project was rejected (duplicate app.js paths) and an independent retry of the local route returned 'Not found' with no UI, so the state is genuinely absent in the delivered artifact rather than a temporary locator miss.",
-              "evidence": [
-                "reference/home.png",
-                "0002-Luna-delivery-root-after.png"
-              ]
-            }
-          ],
-          "adjudication": {
-            "score": null,
-            "reason": "交付失败，未形成可验收网站。三份同名app.js被冻结提取器拒绝；为避免把交付格式因素误当作40项业务/视觉缺失，本轮不提供可比较总分。保留实际Not found证据与judge原始分歧。"
-          },
-          "reason": "交付失败，未形成可验收网站。三份同名app.js被冻结提取器拒绝；为避免把交付格式因素误当作40项业务/视觉缺失，本轮不提供可比较总分。保留实际Not found证据与judge原始分歧。",
+          "score": 0.75,
+          "reason": "Same overall structure: black utility bar, IKEA logo, main nav, centered search, login/wishlist icons, category chip row, and hero grid with identical large left drawer image plus right-side image stack. Differences: category chips lack the small thumbnail icons, cart/bag icon replaced, right-side promo images differ (dynamic content exempted but layout slots also slightly rearranged). Key layout correct with only local differences.",
           "evidence": [
-            "0002-Luna-delivery-root-after.png"
+            "0004-cookie-dismiss-after.png"
           ],
-          "points": null
+          "points": 1.875
         },
         {
           "id": "V02",
@@ -3072,28 +2959,12 @@
           "reference": "reference/menu.png",
           "criteria": "宽幅菜单分栏、类别密度、活动项和下方背景",
           "scoring": "0|0.25|0.5|0.75|1",
-          "score": null,
-          "votes": [
-            {
-              "judge": "k3",
-              "id": "V02",
-              "score": 0,
-              "reason": "Candidate shows only 'Not found' on a blank page. The reference mega-menu state is entirely missing: no outlined category tab row (New & trending, Winter holiday shop, etc.), no left column of bold links (Explore all new, Limited collections), no Trending/Seasonal/Food link columns, no orange promotional card, no dimmed background content and no cookie consent bar. No menu layout, typography, or spacing correspondence exists.",
-              "evidence": [
-                "reference/menu.png",
-                "0002-Luna-delivery-root-after.png"
-              ]
-            }
-          ],
-          "adjudication": {
-            "score": null,
-            "reason": "交付失败，未形成可验收网站。三份同名app.js被冻结提取器拒绝；为避免把交付格式因素误当作40项业务/视觉缺失，本轮不提供可比较总分。保留实际Not found证据与judge原始分歧。"
-          },
-          "reason": "交付失败，未形成可验收网站。三份同名app.js被冻结提取器拒绝；为避免把交付格式因素误当作40项业务/视觉缺失，本轮不提供可比较总分。保留实际Not found证据与judge原始分歧。",
+          "score": 0.5,
+          "reason": "Recognizably the same open mega-menu state: left bold link column (Explore all/Limited collections/Home accessories/IKEA for Business), category columns, right promo area, dimmed page background. But the reference's category pill tab row (New & trending, Winter holiday shop, etc. with active outlined tab) is entirely missing, only 2 link columns vs 3 (Trending/Seasonal/Food), and right area shows a cabinet product photo instead of the orange promo card. One important part missing plus multiple density/content differences.",
           "evidence": [
-            "0002-Luna-delivery-root-after.png"
+            "0006-products-menu-after.png"
           ],
-          "points": null
+          "points": 1.25
         },
         {
           "id": "V03",
@@ -3103,28 +2974,12 @@
           "reference": "reference/filtered.png",
           "criteria": "左侧筛选栏、商品栅格、活动筛选、文字价格/促销层级",
           "scoring": "0|0.25|0.5|0.75|1",
-          "score": null,
-          "votes": [
-            {
-              "judge": "k3",
-              "id": "V03",
-              "score": 0,
-              "reason": "Candidate displays only 'Not found' text. The reference search/filter results state is absent in full: no header with 'besta' query in the search box, no results count heading, no left filter rail (Sort/Size/Color swatches with counts), no active 'white' filter pill, no 4-column product grid with images, Compare checkboxes, IKEA Family price labels, prices and discount lines. There is no correspondence at any structural level.",
-              "evidence": [
-                "reference/filtered.png",
-                "0004-Luna-search-direct-after.png"
-              ]
-            }
-          ],
-          "adjudication": {
-            "score": null,
-            "reason": "交付失败，未形成可验收网站。三份同名app.js被冻结提取器拒绝；为避免把交付格式因素误当作40项业务/视觉缺失，本轮不提供可比较总分。保留实际Not found证据与judge原始分歧。"
-          },
-          "reason": "交付失败，未形成可验收网站。三份同名app.js被冻结提取器拒绝；为避免把交付格式因素误当作40项业务/视觉缺失，本轮不提供可比较总分。保留实际Not found证据与judge原始分歧。",
+          "score": 0.75,
+          "reason": "Same filtered search state: '87 items for \"besta\"', help banner, left filter rail with Sort/Size/Color and color swatches in identical arrangement, active 'white' filter pill, 4-column product grid with matching products, IKEA Family price labels and prices. Differences: search-suggestions dropdown left open over the page, white swatch lacks the selected check ring, product cards lack the heart and blue cart buttons, and candidate shows ratings/regular-price lines not visible in reference cards. Key layout correct with local differences.",
           "evidence": [
-            "0004-Luna-search-direct-after.png"
+            "0016-white-filter-after.png"
           ],
-          "points": null
+          "points": 1.875
         },
         {
           "id": "V04",
@@ -3134,28 +2989,12 @@
           "reference": "reference/compare.png",
           "criteria": "对比列宽、商品图、价格、属性表与分隔",
           "scoring": "0|0.25|0.5|0.75|1",
-          "score": null,
-          "votes": [
-            {
-              "judge": "k3",
-              "id": "V04",
-              "score": 0,
-              "reason": "Candidate renders only 'Not found' on a blank page. The reference comparison state is entirely missing: no 'Product comparison' heading, no two comparison columns with product images, close buttons, wishlist hearts, product names/prices/discount and rating rows, and no 'Key features' attribute table with dividers. The state is not implemented in the delivered artifact (delivery rejected, route retried independently and returned Not found).",
-              "evidence": [
-                "reference/compare.png",
-                "0004-Luna-search-direct-after.png"
-              ]
-            }
-          ],
-          "adjudication": {
-            "score": null,
-            "reason": "交付失败，未形成可验收网站。三份同名app.js被冻结提取器拒绝；为避免把交付格式因素误当作40项业务/视觉缺失，本轮不提供可比较总分。保留实际Not found证据与judge原始分歧。"
-          },
-          "reason": "交付失败，未形成可验收网站。三份同名app.js被冻结提取器拒绝；为避免把交付格式因素误当作40项业务/视觉缺失，本轮不提供可比较总分。保留实际Not found证据与judge原始分歧。",
+          "score": 0.75,
+          "reason": "Same comparison state: 'Product comparison' heading, two equal product columns with matching BESTÅ images, close-X on first column, family-price label, product names, $55.00/$76.00 prices, star ratings with counts, and Key features attribute rows (Width/Height/Depth). Differences: search-suggestions dropdown overlays the second column, heart/cart action buttons missing, discount ('15% off, save…') and price-validity text lines absent. Key layout correct with local differences.",
           "evidence": [
-            "0004-Luna-search-direct-after.png"
+            "0022-compare-two-after.png"
           ],
-          "points": null
+          "points": 1.875
         },
         {
           "id": "V05",
@@ -3165,28 +3004,12 @@
           "reference": "reference/detail.png",
           "criteria": "左侧图库缩略图/主图、右侧价格/变体、顶部面包屑与留白",
           "scoring": "0|0.25|0.5|0.75|1",
-          "score": null,
-          "votes": [
-            {
-              "judge": "k3",
-              "id": "V05",
-              "score": null,
-              "reason": "Candidate screenshot shows only a 'Not found' page with no product detail UI. Failure note attributes this to delivery/extraction infrastructure rejection (duplicate app.js paths rejected by frozen extractor), not to a demonstrably missing implementation; no usable UI evidence exists to compare against reference detail layout (gallery, price/variants, breadcrumb). Infrastructure insufficiency -> unjudgeable (null).",
-              "evidence": [
-                "reference/detail.png",
-                "0006-Luna-oak-direct-after.png"
-              ]
-            }
-          ],
-          "adjudication": {
-            "score": null,
-            "reason": "交付失败，未形成可验收网站。三份同名app.js被冻结提取器拒绝；为避免把交付格式因素误当作40项业务/视觉缺失，本轮不提供可比较总分。保留实际Not found证据与judge原始分歧。"
-          },
-          "reason": "交付失败，未形成可验收网站。三份同名app.js被冻结提取器拒绝；为避免把交付格式因素误当作40项业务/视觉缺失，本轮不提供可比较总分。保留实际Not found证据与judge原始分歧。",
+          "score": 0.75,
+          "reason": "Key layout matches: left thumbnail column, large main product image, right info column with IKEA Family price/$197.00/17% off, ratings, color swatch grid, How to get it and Add to bag. Local differences: breadcrumb truncated (ends at 'BESTÅ', missing sideboards/product segments), search box contains 'besta' text, 'Design it yourself' section and All media/View in 3D overlay buttons missing, swatch grid composition differs (no '+12' overflow tile, different variant set).",
           "evidence": [
-            "0006-Luna-oak-direct-after.png"
+            "0028-oak-from-list-after.png"
           ],
-          "points": null
+          "points": 1.875
         },
         {
           "id": "V06",
@@ -3196,28 +3019,12 @@
           "reference": "reference/gallery.png",
           "criteria": "遮罩、白色大弹层、媒体标签、图片栅格及关闭位置",
           "scoring": "0|0.25|0.5|0.75|1",
-          "score": null,
-          "votes": [
-            {
-              "judge": "k3",
-              "id": "V06",
-              "score": null,
-              "reason": "Candidate shows blank 'Not found' page; no All media overlay, mask, tabs, or grid present. Note indicates route unreachable due to extractor/environment rejection rather than confirmed missing feature, so visual comparison is impossible. Infrastructure insufficiency -> unjudgeable (null).",
-              "evidence": [
-                "reference/gallery.png",
-                "0006-Luna-oak-direct-after.png"
-              ]
-            }
-          ],
-          "adjudication": {
-            "score": null,
-            "reason": "交付失败，未形成可验收网站。三份同名app.js被冻结提取器拒绝；为避免把交付格式因素误当作40项业务/视觉缺失，本轮不提供可比较总分。保留实际Not found证据与judge原始分歧。"
-          },
-          "reason": "交付失败，未形成可验收网站。三份同名app.js被冻结提取器拒绝；为避免把交付格式因素误当作40项业务/视觉缺失，本轮不提供可比较总分。保留实际Not found证据与judge原始分歧。",
+          "score": 0.75,
+          "reason": "Same state: dimmed backdrop, large white modal, All media/Video/Measurement tabs with underline on active tab, close X at top right, image grid of same product photos. Differences: reference shows two large side-by-side images filling the modal width, candidate uses a denser 4-column grid of smaller images; candidate modal is narrower so the IKEA logo and right-side page content show outside the modal; no visible internal scrollbar.",
           "evidence": [
-            "0006-Luna-oak-direct-after.png"
+            "0032-all-media-after.png"
           ],
-          "points": null
+          "points": 1.875
         },
         {
           "id": "V07",
@@ -3227,28 +3034,12 @@
           "reference": "reference/components.png",
           "criteria": "横向标签、六种组件图文、数量、右侧大图和层级",
           "scoring": "0|0.25|0.5|0.75|1",
-          "score": null,
-          "votes": [
-            {
-              "judge": "k3",
-              "id": "V07",
-              "score": null,
-              "reason": "Candidate screenshot is a 'Not found' page with no tabs, component cards, or right-side image. Per note, local route returned Not found due to delivery pipeline rejection; state could not be inspected. Evidence insufficient due to environment failure -> unjudgeable (null).",
-              "evidence": [
-                "reference/components.png",
-                "0006-Luna-oak-direct-after.png"
-              ]
-            }
-          ],
-          "adjudication": {
-            "score": null,
-            "reason": "交付失败，未形成可验收网站。三份同名app.js被冻结提取器拒绝；为避免把交付格式因素误当作40项业务/视觉缺失，本轮不提供可比较总分。保留实际Not found证据与judge原始分歧。"
-          },
-          "reason": "交付失败，未形成可验收网站。三份同名app.js被冻结提取器拒绝；为避免把交付格式因素误当作40项业务/视觉缺失，本轮不提供可比较总分。保留实际Not found证据与judge原始分歧。",
+          "score": 0.5,
+          "reason": "Recognizable same tab state: horizontal tabs with 'What's included' active, intro sentence, six components with quantities and images. Multiple clear differences: reference uses 2-column cards with black article-number chips and a large product image occupying the right third; candidate uses 3-column grid with no right-side large image (an important section missing), article numbers rendered as plain text and partially wrong (902.473.75 repeated for Shelf/Support leg/Door, '20293568' unformatted), and component images are paler/incorrect (white frame and shelf vs oak).",
           "evidence": [
-            "0006-Luna-oak-direct-after.png"
+            "0052-included-components-visible-after.png"
           ],
-          "points": null
+          "points": 1.25
         },
         {
           "id": "V08",
@@ -3258,28 +3049,12 @@
           "reference": "reference/component.png",
           "criteria": "STUBBARP 配件大图、2 pack价格说明、数量步进与加入按钮",
           "scoring": "0|0.25|0.5|0.75|1",
-          "score": null,
-          "votes": [
-            {
-              "judge": "k3",
-              "id": "V08",
-              "score": null,
-              "reason": "Candidate shows only 'Not found' text; no STUBBARP accessory page, price/pack info, stepper, or add button visible. Failure is attributed to infrastructure (extractor rejected project paths), not verified missing UI, so per frozen rules this is unjudgeable -> null.",
-              "evidence": [
-                "reference/component.png",
-                "0008-Luna-component-direct-after.png"
-              ]
-            }
-          ],
-          "adjudication": {
-            "score": null,
-            "reason": "交付失败，未形成可验收网站。三份同名app.js被冻结提取器拒绝；为避免把交付格式因素误当作40项业务/视觉缺失，本轮不提供可比较总分。保留实际Not found证据与judge原始分歧。"
-          },
-          "reason": "交付失败，未形成可验收网站。三份同名app.js被冻结提取器拒绝；为避免把交付格式因素误当作40项业务/视觉缺失，本轮不提供可比较总分。保留实际Not found证据与judge原始分歧。",
+          "score": 0.75,
+          "reason": "Same page structure and hierarchy: left thumbnails, large main image, right column with IKEA Family price, STUBBARP title, '$8.00 /2 pack', 20% off line, regular price, 867 ratings, Choose color swatches, quantity stepper and blue Add to bag. Differences: main image shows a single leg close-up under a cabinet instead of the two-leg product shot with visible screw tops; selected swatch highlight is on the dark variant while oak text/price shown; breadcrumb truncated to 'STUBBARP'; missing All media/View in 3D buttons and the yellow chat/return panel.",
           "evidence": [
-            "0008-Luna-component-direct-after.png"
+            "0054-component-leg-visible-after.png"
           ],
-          "points": null
+          "points": 1.875
         },
         {
           "id": "V09",
@@ -3289,28 +3064,12 @@
           "reference": "reference/variant.png",
           "criteria": "切换后的图片、名称、变体缩略图与共用详情布局",
           "scoring": "0|0.25|0.5|0.75|1",
-          "score": null,
-          "votes": [
-            {
-              "judge": "k3",
-              "id": "V09",
-              "score": null,
-              "reason": "Candidate route returned plain 'Not found' text with no UI at all; per operator note no valid project was delivered (duplicate app.js paths rejected by frozen extractor) and the local route does not resolve. This is an environment/infrastructure failure, not a verifiably unimplemented state, so the item is unjudgeable; no comparison against the walnut-variant detail layout possible.",
-              "evidence": [
-                "reference/variant.png",
-                "0010-Luna-walnut-direct-after.png"
-              ]
-            }
-          ],
-          "adjudication": {
-            "score": null,
-            "reason": "交付失败，未形成可验收网站。三份同名app.js被冻结提取器拒绝；为避免把交付格式因素误当作40项业务/视觉缺失，本轮不提供可比较总分。保留实际Not found证据与judge原始分歧。"
-          },
-          "reason": "交付失败，未形成可验收网站。三份同名app.js被冻结提取器拒绝；为避免把交付格式因素误当作40项业务/视觉缺失，本轮不提供可比较总分。保留实际Not found证据与judge原始分歧。",
+          "score": 0.75,
+          "reason": "共用详情布局吻合：面包屑、左侧缩略图列、主图与右侧信息面板（IKEA Family价格、BESTÅ、变体名、$197、17% off、评分、Choose color双行缩略图、Add to bag）结构、比例与样式均吻合，变体已正确切换为胡桃木效果。局部差异：缺少Design it yourself区块、Collect points条、主图上All media/View in 3D按钮、收藏心形图标与+12更多色块，评价数为867而非123。",
           "evidence": [
-            "0010-Luna-walnut-direct-after.png"
+            "0060-walnut-variant-after.png"
           ],
-          "points": null
+          "points": 1.875
         },
         {
           "id": "V10",
@@ -3320,28 +3079,12 @@
           "reference": "reference/bag.png",
           "criteria": "配送摘要、两行商品、数量控件、原价/优惠、右侧订单摘要",
           "scoring": "0|0.25|0.5|0.75|1",
-          "score": null,
-          "votes": [
-            {
-              "judge": "k3",
-              "id": "V10",
-              "score": null,
-              "reason": "Candidate screenshot shows only a 'Not found' response on a blank page; no shopping bag UI, delivery summary, item rows, quantity controls, or order summary exist to compare. Note attributes this to extractor rejection of the delivered project (infrastructure insufficiency), so unjudgeable rather than a confirmed missing state.",
-              "evidence": [
-                "reference/bag.png",
-                "0012-Luna-bag-direct-after.png"
-              ]
-            }
-          ],
-          "adjudication": {
-            "score": null,
-            "reason": "交付失败，未形成可验收网站。三份同名app.js被冻结提取器拒绝；为避免把交付格式因素误当作40项业务/视觉缺失，本轮不提供可比较总分。保留实际Not found证据与judge原始分歧。"
-          },
-          "reason": "交付失败，未形成可验收网站。三份同名app.js被冻结提取器拒绝；为避免把交付格式因素误当作40项业务/视觉缺失，本轮不提供可比较总分。保留实际Not found证据与judge原始分歧。",
+          "score": 0.75,
+          "reason": "购物袋关键布局正确：配送摘要三卡、两行商品（图片+名称+折扣蓝字+可用性圆点+Save for later+数量步进器+Assembly行）、右侧订单摘要$260、Afterpay、Apply discount code、Continue to checkout均吻合。局部差异：两件商品顺序对调（STUBBARB在前）、缺少IKEA Visa Credit Card推广块与Collect points/ Save $47条目样式不同、缺少'Pick up yourself at East Palo Alto'链接、支付图标行缺失。",
           "evidence": [
-            "0012-Luna-bag-direct-after.png"
+            "0068-walnut-add-cart-after.png"
           ],
-          "points": null
+          "points": 1.875
         },
         {
           "id": "V11",
@@ -3351,28 +3094,12 @@
           "reference": "reference/bag-components.png",
           "criteria": "背景遮罩、右侧部件清单、数量和间距",
           "scoring": "0|0.25|0.5|0.75|1",
-          "score": null,
-          "votes": [
-            {
-              "judge": "k3",
-              "id": "V11",
-              "score": null,
-              "reason": "Candidate shows 'Not found' with no page content; the components drawer state (overlay mask, right-side parts list, quantities) cannot be reached or inspected. Delivery failure due to frozen extractor rejection makes this an infrastructure insufficiency, hence null.",
-              "evidence": [
-                "reference/bag-components.png",
-                "0012-Luna-bag-direct-after.png"
-              ]
-            }
-          ],
-          "adjudication": {
-            "score": null,
-            "reason": "交付失败，未形成可验收网站。三份同名app.js被冻结提取器拒绝；为避免把交付格式因素误当作40项业务/视觉缺失，本轮不提供可比较总分。保留实际Not found证据与judge原始分歧。"
-          },
-          "reason": "交付失败，未形成可验收网站。三份同名app.js被冻结提取器拒绝；为避免把交付格式因素误当作40项业务/视觉缺失，本轮不提供可比较总分。保留实际Not found证据与judge原始分歧。",
+          "score": 0.75,
+          "reason": "背景遮罩与右侧部件抽屉结构吻合：标题BESTÅ、'This product is made up of 6 parts'、6个部件分组（名称+Quantity）列表、分隔线与间距一致。局部差异：部件名称缺少尺寸描述（如Frame, black-brown, 47 1/4x15...），各部件数量与参考不同（2/8/4/2/4 vs 1/4/2/1/2/2），抽屉宽度略窄。",
           "evidence": [
-            "0012-Luna-bag-direct-after.png"
+            "0072-bag-components-after.png"
           ],
-          "points": null
+          "points": 1.875
         },
         {
           "id": "V12",
@@ -3382,43 +3109,2192 @@
           "reference": "reference/reviews.png",
           "criteria": "评分分布、分项分数、筛选排序、评论内容和双栏弹层",
           "scoring": "0|0.25|0.5|0.75|1",
-          "score": null,
-          "votes": [
-            {
-              "judge": "k3",
-              "id": "V12",
-              "score": null,
-              "reason": "Candidate route returns 'Not found' only; no reviews modal, rating distribution, sub-scores, filters, or review content present. Operator note indicates no valid project was delivered (extractor failure), so evidence is insufficient to judge; unjudgeable.",
-              "evidence": [
-                "reference/reviews.png",
-                "0006-Luna-oak-direct-after.png"
-              ]
-            }
-          ],
-          "adjudication": {
-            "score": null,
-            "reason": "交付失败，未形成可验收网站。三份同名app.js被冻结提取器拒绝；为避免把交付格式因素误当作40项业务/视觉缺失，本轮不提供可比较总分。保留实际Not found证据与judge原始分歧。"
-          },
-          "reason": "交付失败，未形成可验收网站。三份同名app.js被冻结提取器拒绝；为避免把交付格式因素误当作40项业务/视觉缺失，本轮不提供可比较总分。保留实际Not found证据与judge原始分歧。",
+          "score": 0.5,
+          "reason": "双栏弹层可辨认且多项吻合：左侧3.7大分数、星级、Based on 123 reviews、5-1星分布条、Write a review按钮；右侧Filter/Sort by、United States/Other countries标签、Reviews summary、Topics chips、评论卡（标题Looks good, functions bad、正文、Helpful?）。但完全缺失分项分数区块（Appearance 4.3/Ease of assembly/Product quality/Value for money/Works as expected），这是一个重要部分缺失；此外缺少Response from IKEA与Report按钮，评价人显示为Anonymous reviewer而非具名标签。",
           "evidence": [
-            "0006-Luna-oak-direct-after.png"
+            "0086-reviews-open-after.png"
           ],
-          "points": null
+          "points": 1.25
         }
       ],
       "judges": [
         "k3"
       ],
-      "delivery_failure": true,
+      "delivery_failure": false,
+      "assembly_exception": true,
       "limitations": [
-        "仅各一次候选生成，分数不代表总体能力。",
-        "输入是同一录屏的60张无损定点帧，非原生视频接口。",
-        "未主动设时间或输出token上限；reasoning effort=high，不代表能取消服务自身推理限制。",
-        "GLM视觉judge接口503不可用，原始失败记录保留；实际judge及任何代理裁定逐项披露。",
-        "交付失败与业务能力分开解释；不对候选代码做人工修复。"
+        "single valid generation",
+        "single available anonymous visual judge",
+        "User-authorized original-order newline concatenation of duplicate app.js entries; original delivery failure retained."
       ],
-      "generated_at": "2026-10-22T06:34:25.390898+00:00"
+      "generated_at": "2026-10-22T07:49:25.660950+00:00"
+    },
+    {
+      "model": "gpt-6-astra",
+      "protocol": "one-shot-v1",
+      "score": 95.625,
+      "max": 100,
+      "categories": {
+        "execution": {
+          "score": 10.0,
+          "max": 10.0,
+          "unjudgeable": 0
+        },
+        "navigation": {
+          "score": 15.0,
+          "max": 15.0,
+          "unjudgeable": 0
+        },
+        "interaction": {
+          "score": 25.0,
+          "max": 25.0,
+          "unjudgeable": 0
+        },
+        "state": {
+          "score": 20.0,
+          "max": 20.0,
+          "unjudgeable": 0
+        },
+        "visual": {
+          "score": 25.625,
+          "max": 30.0,
+          "unjudgeable": 0
+        }
+      },
+      "status": {
+        "model": "gpt-6-astra",
+        "returned_model": "gpt-6-astra",
+        "status": "delivered",
+        "provider_status": "completed",
+        "incomplete_details": null,
+        "usage": {
+          "input_tokens": 115230,
+          "input_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "output_tokens": 26521,
+          "output_tokens_details": {
+            "reasoning_tokens": 506
+          },
+          "total_tokens": 141751,
+          "attribution": {
+            "items": {
+              "fc_01609329f8b353a0016ad9b2c3fa4c8197ba72310a39cf899d": {
+                "input_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 26015
+              },
+              "msg_01609329f8b353a0016ad9b29b57e08197830dd1fded4a2b55": {
+                "input_tokens": 115036,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 20535,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1567,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 8,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  },
+                  {
+                    "input_tokens": 1568,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "rs_01609329f8b353a0016ad9b2c3c7cc819781cdb4c818766dcf": {
+                "input_tokens": 2,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 506
+              }
+            },
+            "request_fields": {
+              "instructions": {
+                "input_tokens": 59,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0
+              },
+              "tools": {
+                "input_tokens": 133,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0
+              }
+            }
+          }
+        },
+        "elapsed_seconds": 652.109,
+        "responses": 1,
+        "delivery_calls": 1,
+        "self_test_calls": 0,
+        "repairs": 0,
+        "files": 4,
+        "total_code_bytes": 87586
+      },
+      "run_id": "gpt-6-astra-one-shot-01",
+      "evaluation_folder": "evaluation",
+      "candidate_hash": "ba44a1584779a989f3fcf31637cdebe9306597f32e01b99018ef8d34aa77c83b",
+      "freeze_verified": true,
+      "candidate_unmodified": true,
+      "items": [
+        {
+          "id": "E01",
+          "category": "execution",
+          "title": "启动与可操作首页",
+          "assertion": "空白项目由固定服务启动后，渲染可用 IKEA 首页，存在可用搜索/导航。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "首页可用；Products可进入Storage二级类别并Escape关闭；besta联想与Enter搜索保留查询",
+          "evidence": [
+            "0004-cookie-dismiss-after.png",
+            "0008-storage-submenu-after.png",
+            "0010-search-suggestions-after.png",
+            "0012-search-enter-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "E02",
+          "category": "execution",
+          "title": "主流程稳定",
+          "assertion": "从搜索到详情、组件和购物袋的实际测试无导致流程中断的未捕获运行错误。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "主链路无未捕获运行错误；阻断外网下六类页面主要本地资源可见",
+          "evidence": [
+            "0042-all-media-after.png",
+            "0046-included-components-after.png",
+            "0068-walnut-bag-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "E03",
+          "category": "execution",
+          "title": "离线资源",
+          "assertion": "外网阻断时首页、列表、比较、详情、组件和购物袋的主要产品图与布局正常加载，不依赖跳回官网。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "主链路无未捕获运行错误；阻断外网下六类页面主要本地资源可见",
+          "evidence": [
+            "0042-all-media-after.png",
+            "0046-included-components-after.png",
+            "0068-walnut-bag-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "E04",
+          "category": "execution",
+          "title": "本地深链",
+          "assertion": "新标签或直接打开搜索、组合详情与购物袋本地地址并刷新，能得到对应页面。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "搜索、商品、购物袋本地深链直接打开并刷新成功",
+          "evidence": [
+            "0092-search-direct-refresh-after.png",
+            "0094-product-direct-refresh-after.png",
+            "0096-bag-direct-refresh-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "N01",
+          "category": "navigation",
+          "title": "两级菜单",
+          "assertion": "Products 展开后可进入 Storage & organization 子菜单，展示对应子类并可关闭。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "首页可用；Products可进入Storage二级类别并Escape关闭；besta联想与Enter搜索保留查询",
+          "evidence": [
+            "0004-cookie-dismiss-after.png",
+            "0008-storage-submenu-after.png",
+            "0010-search-suggestions-after.png",
+            "0012-search-enter-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "N02",
+          "category": "navigation",
+          "title": "搜索联想与提交",
+          "assertion": "输入 besta 出现相关联想，Enter 提交后显示搜索结果并保留查询。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "首页可用；Products可进入Storage二级类别并Escape关闭；besta联想与Enter搜索保留查询",
+          "evidence": [
+            "0004-cookie-dismiss-after.png",
+            "0008-storage-submenu-after.png",
+            "0010-search-suggestions-after.png",
+            "0012-search-enter-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "N03",
+          "category": "navigation",
+          "title": "列表进入组合详情",
+          "assertion": "点击列表中的原木色组合柜进入对应商品详情，身份/图片对应且地址为本地。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "从列表点击原木色商品进入s29209829对应详情",
+          "evidence": [
+            "0038-open-oak-from-list-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "N04",
+          "category": "navigation",
+          "title": "组件跳转与返回",
+          "assertion": "从组合组件清单打开 STUBBARP 20293568 详情后可返回原组合；不强制新标签。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "组件清单打开20293568并通过浏览器返回原组合",
+          "evidence": [
+            "0048-open-component-after.png",
+            "0054-return-original-combo-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "N05",
+          "category": "navigation",
+          "title": "变体本地导航",
+          "assertion": "切换到胡桃木效果 29612189 后详情名称、主图及本地商品地址对应改变。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "变体名称图片与s29612189本地地址同时改变",
+          "evidence": [
+            "0056-walnut-variant-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "N06",
+          "category": "navigation",
+          "title": "跨页购物袋状态",
+          "assertion": "从购物袋返回详情、再次通过购物袋入口进入，维持此前加入的商品与数量。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "离开袋到详情再从头部购物袋返回，保留两组合一柜脚490",
+          "evidence": [
+            "0090-bag-header-return-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "I01",
+          "category": "interaction",
+          "title": "颜色筛选与清除",
+          "assertion": "选择白色后出现活动筛选且可见结果/变体变化，清除后恢复；允许固定汇总165/87。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "白色筛选显示87并过滤变体；清除恢复165",
+          "evidence": [
+            "0016-white-filter-after.png",
+            "0018-white-clear-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "I02",
+          "category": "interaction",
+          "title": "价格排序",
+          "assertion": "切换 Price: low to high 后当前代表性商品按展示售价升序排列，恢复 Best match 后排序可恢复。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "低价排序按实际价格升序，Best match恢复55/76/197/136等原次序",
+          "evidence": [
+            "0022-price-low-after.png",
+            "0028-best-restore-real-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "I03",
+          "category": "interaction",
+          "title": "双商品比较",
+          "assertion": "选择 60245844 与 00245842，比较页显示二者对应价格及宽高深差异，而非固定无关表格。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "两件正确商品价格55/76与宽高深差异实际显示",
+          "evidence": [
+            "0032-compare-two-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "I04",
+          "category": "interaction",
+          "title": "比较增删",
+          "assertion": "从相似商品加入 70245848 出现第三列；移除 00245842 后保留另两件。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "相似商品加入70245848形成第三列，移除00245842后仅保留60245844和70245848",
+          "evidence": [
+            "0036-compare-add-remove-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "I05",
+          "category": "interaction",
+          "title": "图库与弹层",
+          "assertion": "缩略图更换主图，All media 打开真实图片画廊，关闭返回原详情。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "缩略图主图变化，All media展示商品照片并正常关闭",
+          "evidence": [
+            "0040-gallery-thumbnail-after.png",
+            "0042-all-media-after.png",
+            "0046-included-components-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "I06",
+          "category": "interaction",
+          "title": "尺寸展示",
+          "assertion": "Measurements 或画廊 Measurement 能显示当前组合柜的尺寸图及对应尺寸，不是空标签。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "Measurement有当前尺寸图及47 1/4×16 1/2×29 1/8尺寸",
+          "evidence": [
+            "0044-gallery-measurement-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "I07",
+          "category": "interaction",
+          "title": "组合清单",
+          "assertion": "原木色组合的六种组件及数量分别为1/4/2/1/2/2，且能辨别柜体、层板、柜脚、支撑腿、铰链和门。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "组件清单逐项显示1/4/2/1/2/2及六种正确类别",
+          "evidence": [
+            "0046-included-components-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "I08",
+          "category": "interaction",
+          "title": "邮编验证",
+          "assertion": "abc 被拒绝且显示错误；改为95054可保存并更新顶部及配送显示。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "abc显示无效错误；95054保存并出现在顶部和配送区",
+          "evidence": [
+            "0058-invalid-zip-after.png",
+            "0060-valid-zip-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "I09",
+          "category": "interaction",
+          "title": "门店库存",
+          "assertion": "选择 East Palo Alto, CA 后顶部和当前商品库存/Click & collect 反映该门店。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "East Palo Alto同时更新顶部、库存及Click and collect",
+          "evidence": [
+            "0066-store-saved-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "I10",
+          "category": "interaction",
+          "title": "评论排序",
+          "assertion": "评论抽屉显示实际评论与评分分布；最低评分排序后首条评分不高于后续，且顺序相对默认发生变化。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "默认2/4/4星变为最低排序1/1/1星，首条改为So disappointed并有评分分布",
+          "evidence": [
+            "0086-reviews-open-after.png",
+            "0088-reviews-lowest-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "S01",
+          "category": "state",
+          "title": "独立组件入袋",
+          "assertion": "STUBBARP 20293568 数量选2加入后有独立行、数量2、原价行金额20；不能把两包装误当两美元或与组合内部柜脚混合。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "独立STUBBARP行数量2、金额20",
+          "evidence": [
+            "0052-leg-two-bag-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "S02",
+          "category": "state",
+          "title": "正确变体与初始总额",
+          "assertion": "已有两包独立柜脚时加入1个胡桃木组合，购物袋两行身份正确，原价产品合计260；Family优惠独立显示。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "两行正确身份及原价产品合计260，Family优惠单列",
+          "evidence": [
+            "0068-walnut-bag-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "S03",
+          "category": "state",
+          "title": "改数量后金额",
+          "assertion": "组合从1增至2、独立柜脚从2减至1后行金额为480与10，产品合计490。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "数量改为2组合1柜脚，行金额480/10、产品合计490",
+          "evidence": [
+            "0070-quantity-edit-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "S04",
+          "category": "state",
+          "title": "组成数量倍增",
+          "assertion": "2个组合的袋内组件清单数量为2/8/4/2/4/4，独立原木色柜脚行不被倍增或吞并。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "袋内六类组件2/8/4/2/4/4，独立配件仍1包",
+          "evidence": [
+            "0072-bag-components-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "S05",
+          "category": "state",
+          "title": "刷新恢复",
+          "assertion": "上述2个组合、1包柜脚、总额490及95054/门店在刷新后仍成立。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "刷新保留2组合1配件490与95054和门店",
+          "evidence": [
+            "0074-bag-refresh-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "S06",
+          "category": "state",
+          "title": "安装费联动",
+          "assertion": "为2个组合开启安装服务新增117，合计607；关闭后恢复490，不能修改商品数量。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "开安装117合计607，关闭490，数量不变",
+          "evidence": [
+            "0076-assembly-on-after.png",
+            "0078-assembly-off-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "S07",
+          "category": "state",
+          "title": "删除与撤销",
+          "assertion": "删除独立柜脚后产品合计480，Undo恢复原行、数量1及490。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "删除独立柜脚合计480，Undo恢复1包和490",
+          "evidence": [
+            "0080-delete-leg-after.png",
+            "0082-undo-leg-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "S08",
+          "category": "state",
+          "title": "折扣码失败不改金额",
+          "assertion": "应用 OMNIALE-DEMO 显示无效提示，产品合计和各商品数量保持不变。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "无效码明确报错，商品数量和产品合计490保持",
+          "evidence": [
+            "0084-invalid-discount-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "V01",
+          "category": "visual",
+          "title": "首页与共同导航",
+          "weight": 2.5,
+          "reference": "reference/home.png",
+          "criteria": "头部黑条、品牌标志、搜索、导航、主视觉图片的结构、尺寸、层级；动态宣传画面内容差异豁免",
+          "scoring": "0|0.25|0.5|0.75|1",
+          "score": 0.75,
+          "reason": "Header black bar, IKEA logo, nav links, search pill, login text and icons all match in structure, size and hierarchy; hero collage (large left Family-price image, right cooking pan image with 'New, must-try kitchen accessories' caption, bottom two tiles) matches with identical imagery and proportions. Local differences: category chip icons differ (Winter holiday shop shows a box icon instead of the reference's tree; Beds & mattresses icon is a lamp instead of a bed), and the hero video pause control visible in the reference is absent. These are small local deviations on an otherwise matching state.",
+          "evidence": [
+            "0004-cookie-dismiss-after.png"
+          ],
+          "points": 1.875
+        },
+        {
+          "id": "V02",
+          "category": "visual",
+          "title": "分层菜单",
+          "weight": 2.5,
+          "reference": "reference/menu.png",
+          "criteria": "宽幅菜单分栏、类别密度、活动项和下方背景",
+          "scoring": "0|0.25|0.5|0.75|1",
+          "score": 0.75,
+          "reason": "Same wide dropdown-menu pattern: full-width panel with bold left link column, multi-column link lists, active tab outlined with dark border, and dimmed page background below — all matching the reference. Differences: a different tab is open (Storage & organization vs the reference's New & trending), the link area has 2 columns instead of the reference's 3 (Trending/Seasonal/Food), and the orange promo block content and position differ (candidate adds a photo above the orange box and shows 'Shop our newest arrivals' vs 'Game on with YXSTABY'). Key layout correct, moderate local differences.",
+          "evidence": [
+            "0008-storage-submenu-after.png"
+          ],
+          "points": 1.875
+        },
+        {
+          "id": "V03",
+          "category": "visual",
+          "title": "搜索与白色筛选",
+          "weight": 2.5,
+          "reference": "reference/filtered.png",
+          "criteria": "左侧筛选栏、商品栅格、活动筛选、文字价格/促销层级",
+          "scoring": "0|0.25|0.5|0.75|1",
+          "score": 0.75,
+          "reason": "Same page state and skeleton: search field showing 'besta', '87 items for \"besta\"' heading, BESTÅ planning banner, 'Design your own BESTÅ storage' card at right, left filter sidebar, 'white ×' active filter chip, 4-column product grid with Compare checkboxes, IKEA Family price / BESTÅ / price / 15%-off promo hierarchy, blue cart buttons and hearts. Differences: the Color filter is collapsed so the reference's prominent color swatch grid (Gray/White checked/Black/Beige/Brown/Green) is not visible; a 'Clear all' link is added beside the chip; products from slot 3 onward differ (oak unit, shelving unit, Best-seller badge on slot 4 vs slot 3); the vertical mini-scrollbar between sidebar and grid in the reference is absent. Same key layout, several local differences.",
+          "evidence": [
+            "0016-white-filter-after.png"
+          ],
+          "points": 1.875
+        },
+        {
+          "id": "V04",
+          "category": "visual",
+          "title": "比较页面",
+          "weight": 2.5,
+          "reference": "reference/compare.png",
+          "criteria": "对比列宽、商品图、价格、属性表与分隔",
+          "scoring": "0|0.25|0.5|0.75|1",
+          "score": 1,
+          "reason": "Essentially identical: 'Product comparison' heading, two comparison columns with × remove buttons, same product images, IKEA Family price labels, BESTÅ names, $55.00/$76.00 prices, 15%-off savings lines, regular price and validity text, star ratings with (1550)/(4773) counts, and 'Key features' section below. Only trivial deviations: candidate adds a small 'More options' link under each rating and the viewport is scrolled slightly higher so the Width attribute rows visible at the bottom of the reference are just out of frame. Structure, proportions, images, hierarchy and styling all match.",
+          "evidence": [
+            "0032-compare-two-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "V05",
+          "category": "visual",
+          "title": "原木色组合详情",
+          "weight": 2.5,
+          "reference": "reference/detail.png",
+          "criteria": "左侧图库缩略图/主图、右侧价格/变体、顶部面包屑与留白",
+          "scoring": "0|0.25|0.5|0.75|1",
+          "score": 1,
+          "reason": "整体结构、比例与层级高度吻合：左侧缩略图列+主图、右侧IKEA Family价格/折扣/评分/颜色变体网格、顶部面包屑与导航均一致，主图为同一白蜡木纹BESTÅ组合。仅有微小差异：面包屑分隔间距略宽、变体选中框与'+12'位置略移、右下角聊天气泡位置略偏，均为局部细节。",
+          "evidence": [
+            "0038-open-oak-from-list-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "V06",
+          "category": "visual",
+          "title": "All media 弹层",
+          "weight": 2.5,
+          "reference": "reference/gallery.png",
+          "criteria": "遮罩、白色大弹层、媒体标签、图片栅格及关闭位置",
+          "scoring": "0|0.25|0.5|0.75|1",
+          "score": 0.75,
+          "reason": "关键布局正确：半透明遮罩、白色大弹层、右上关闭X、居中All media/Video/Measurement标签及下划线态、图片栅格均吻合，首行左产品图+右深蓝墙生活场景图一致。差异：参考图右图带视频播放按钮与左下滤镜按钮覆盖层，候选图无此覆盖图标；候选首屏多露出第二行两张镜像场景图，栅格可见内容与参考首屏略有不同。",
+          "evidence": [
+            "0042-all-media-after.png"
+          ],
+          "points": 1.875
+        },
+        {
+          "id": "V07",
+          "category": "visual",
+          "title": "详情组件标签",
+          "weight": 2.5,
+          "reference": "reference/components.png",
+          "criteria": "横向标签、六种组件图文、数量、右侧大图和层级",
+          "scoring": "0|0.25|0.5|0.75|1",
+          "score": 0.75,
+          "reason": "核心结构吻合：横向Overview/Product details/Measurements/What's included标签（What's included激活下划线）、说明文案、左侧两列组件卡片（数量+名称+货号黑标签）、右侧大产品图均一致，候选完整展示六种组件（Frame/Shelf/Leg/Support leg/Hinge/Door），卡片图文与数量正确。差异：参考图在该滚动位置顶部仍露出主图库横条与右侧More ways to pay面板，候选同状态顶部直接为标签栏，首屏可见内容组成不同，卡片高度与间距也略紧凑。",
+          "evidence": [
+            "0046-included-components-after.png"
+          ],
+          "points": 1.875
+        },
+        {
+          "id": "V08",
+          "category": "visual",
+          "title": "独立组件详情",
+          "weight": 2.5,
+          "reference": "reference/component.png",
+          "criteria": "STUBBARP 配件大图、2 pack价格说明、数量步进与加入按钮",
+          "scoring": "0|0.25|0.5|0.75|1",
+          "score": 1,
+          "reason": "结构、比例、图片与层级均吻合：STUBBARP配件大图（双木腿金属螺杆）、左侧缩略图、右侧IKEA Family价格$8.00/2 pack、折扣说明、评分(867)、颜色变体、数量步进器+蓝色Add to bag按钮、Collect points条目全部对应。仅局部细微差异：折扣文案'20% off'对'19% off'（实时数据差异）、心形收藏位置略偏、底部退货栏裁剪位置略不同。",
+          "evidence": [
+            "0048-open-component-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "V09",
+          "category": "visual",
+          "title": "胡桃木效果详情",
+          "weight": 2.5,
+          "reference": "reference/variant.png",
+          "criteria": "切换后的图片、名称、变体缩略图与共用详情布局",
+          "scoring": "0|0.25|0.5|0.75|1",
+          "score": 0.75,
+          "reason": "切换后的胡桃木主图、产品名称、价格、选中态变体缩略图与整体详情布局均吻合；差异为左侧图库多出一格米色变体缩略图（参考为4格含尺寸图），以及候选截图含完整页头而参考为下滚后的裁剪视图，属少量局部差异。",
+          "evidence": [
+            "0056-walnut-variant-after.png"
+          ],
+          "points": 1.875
+        },
+        {
+          "id": "V10",
+          "category": "visual",
+          "title": "购物袋",
+          "weight": 2.5,
+          "reference": "reference/bag.png",
+          "criteria": "配送摘要、两行商品、数量控件、原价/优惠、右侧订单摘要",
+          "scoring": "0|0.25|0.5|0.75|1",
+          "score": 1,
+          "reason": "配送摘要三列、两行商品（BESTÅ与STUBBARP）、数量步进控件、原价/优惠价、右侧订单摘要（$260合计、Afterpay、Continue to checkout）结构与比例高度一致；仅到达日期Oct 27 vs Oct 26及次要折扣文案19% vs 20%等细微文本差异。",
+          "evidence": [
+            "0068-walnut-bag-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "V11",
+          "category": "visual",
+          "title": "袋内组件抽屉",
+          "weight": 2.5,
+          "reference": "reference/bag-components.png",
+          "criteria": "背景遮罩、右侧部件清单、数量和间距",
+          "scoring": "0|0.25|0.5|0.75|1",
+          "score": 0.75,
+          "reason": "背景遮罩、右侧部件抽屉、6项部件清单及数量（2/8/4/2/4/4）完全对应；但候选在部件行内加入了产品小图导致行高与间距与参考（纯文本行）明显不同，属关键布局正确下的局部差异。",
+          "evidence": [
+            "0072-bag-components-after.png"
+          ],
+          "points": 1.875
+        },
+        {
+          "id": "V12",
+          "category": "visual",
+          "title": "评论抽屉",
+          "weight": 2.5,
+          "reference": "reference/reviews.png",
+          "criteria": "评分分布、分项分数、筛选排序、评论内容和双栏弹层",
+          "scoring": "0|0.25|0.5|0.75|1",
+          "score": 1,
+          "reason": "双栏评论弹层、3.7总分与123条基数、5-1星分布条及计数、五项分项分数、筛选/排序、AI摘要、主题筛选丸、评论正文与IKEA回复均吻合；仅Durability丸完整显示而参考被截断、Helpful图标样式细微差别。",
+          "evidence": [
+            "0086-reviews-open-after.png"
+          ],
+          "points": 2.5
+        }
+      ],
+      "judges": [
+        "k3"
+      ],
+      "delivery_failure": false,
+      "assembly_exception": false,
+      "limitations": [
+        "single valid generation",
+        "single available anonymous visual judge"
+      ],
+      "generated_at": "2026-10-22T07:49:25.660950+00:00"
+    },
+    {
+      "model": "k3",
+      "protocol": "one-shot-v1",
+      "score": 83.75,
+      "max": 100,
+      "categories": {
+        "execution": {
+          "score": 10.0,
+          "max": 10.0,
+          "unjudgeable": 0
+        },
+        "navigation": {
+          "score": 15.0,
+          "max": 15.0,
+          "unjudgeable": 0
+        },
+        "interaction": {
+          "score": 22.5,
+          "max": 25.0,
+          "unjudgeable": 0
+        },
+        "state": {
+          "score": 20.0,
+          "max": 20.0,
+          "unjudgeable": 0
+        },
+        "visual": {
+          "score": 16.25,
+          "max": 30.0,
+          "unjudgeable": 0
+        }
+      },
+      "status": {
+        "model": "k3",
+        "returned_model": "k3",
+        "status": "delivered",
+        "provider_status": "completed",
+        "incomplete_details": null,
+        "usage": {
+          "input_tokens": 124835,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 81765,
+          "output_tokens_details": {
+            "reasoning_tokens": 39369
+          },
+          "total_tokens": 206600
+        },
+        "elapsed_seconds": 2485.03,
+        "responses": 1,
+        "delivery_calls": 1,
+        "self_test_calls": 0,
+        "repairs": 0,
+        "files": 4,
+        "total_code_bytes": 127012
+      },
+      "run_id": "k3-one-shot-02",
+      "evaluation_folder": "evaluation",
+      "candidate_hash": "6ad18db7a8b6f1e828b3f9b7dcba257653c11350cee80cf31672f25479c7166a",
+      "freeze_verified": true,
+      "candidate_unmodified": true,
+      "items": [
+        {
+          "id": "E01",
+          "category": "execution",
+          "title": "启动与可操作首页",
+          "assertion": "空白项目由固定服务启动后，渲染可用 IKEA 首页，存在可用搜索/导航。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "首页渲染且有可用导航搜索",
+          "evidence": [
+            "0004-cookie-dismiss-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "E02",
+          "category": "execution",
+          "title": "主流程稳定",
+          "assertion": "从搜索到详情、组件和购物袋的实际测试无导致流程中断的未捕获运行错误。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "搜索至详情、组件、购物袋全流程无未捕获运行错误，浏览器错误日志为空",
+          "evidence": [
+            "0086-direct-product-reload-after.png",
+            "0088-direct-bag-reload-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "E03",
+          "category": "execution",
+          "title": "离线资源",
+          "assertion": "外网阻断时首页、列表、比较、详情、组件和购物袋的主要产品图与布局正常加载，不依赖跳回官网。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "外网阻断下首页、列表、比较、详情、组件与购物袋主要本地资源加载正常",
+          "evidence": [
+            "0004-cookie-dismiss-after.png",
+            "0014-white-filter-after.png",
+            "0024-compare-two-after.png",
+            "0030-oak-from-list-after.png",
+            "0040-open-component-after.png",
+            "0058-walnut-bag-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "E04",
+          "category": "execution",
+          "title": "本地深链",
+          "assertion": "新标签或直接打开搜索、组合详情与购物袋本地地址并刷新，能得到对应页面。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "搜索、商品和购物袋本地hash深链直接进入与刷新均正常",
+          "evidence": [
+            "0090-direct-search-reload-after.png",
+            "0086-direct-product-reload-after.png",
+            "0088-direct-bag-reload-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "N01",
+          "category": "navigation",
+          "title": "两级菜单",
+          "assertion": "Products 展开后可进入 Storage & organization 子菜单，展示对应子类并可关闭。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "Products的Storage标签切换至对应子类并Escape关闭",
+          "evidence": [
+            "0028-storage-submenu-visible-after.png",
+            "0030-oak-from-list-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "N02",
+          "category": "navigation",
+          "title": "搜索联想与提交",
+          "assertion": "输入 besta 出现相关联想，Enter 提交后显示搜索结果并保留查询。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "besta联想显示并Enter进入保留查询的本地搜索页",
+          "evidence": [
+            "0010-search-suggestions-after.png",
+            "0012-search-enter-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "N03",
+          "category": "navigation",
+          "title": "列表进入组合详情",
+          "assertion": "点击列表中的原木色组合柜进入对应商品详情，身份/图片对应且地址为本地。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "列表原木色组合进入s29209829且商品身份图片对应",
+          "evidence": [
+            "0030-oak-from-list-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "N04",
+          "category": "navigation",
+          "title": "组件跳转与返回",
+          "assertion": "从组合组件清单打开 STUBBARP 20293568 详情后可返回原组合；不强制新标签。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "组件详情打开20293568，加入后通过历史返回原组合",
+          "evidence": [
+            "0040-open-component-after.png",
+            "0046-component-return-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "N05",
+          "category": "navigation",
+          "title": "变体本地导航",
+          "assertion": "切换到胡桃木效果 29612189 后详情名称、主图及本地商品地址对应改变。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "胡桃木变体本地s29612189、名称和主图同步改变",
+          "evidence": [
+            "0048-walnut-variant-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "N06",
+          "category": "navigation",
+          "title": "跨页购物袋状态",
+          "assertion": "从购物袋返回详情、再次通过购物袋入口进入，维持此前加入的商品与数量。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "购物袋图标从商品详情返回本地购物袋，保持两组合一柜脚及490",
+          "evidence": [
+            "0084-bag-real-header-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "I01",
+          "category": "interaction",
+          "title": "颜色筛选与清除",
+          "assertion": "选择白色后出现活动筛选且可见结果/变体变化，清除后恢复；允许固定汇总165/87。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "白色筛选保留活动项、87结果与过滤商品；清除恢复165",
+          "evidence": [
+            "0014-white-filter-after.png",
+            "0016-clear-white-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "I02",
+          "category": "interaction",
+          "title": "价格排序",
+          "assertion": "切换 Price: low to high 后当前代表性商品按展示售价升序排列，恢复 Best match 后排序可恢复。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "低价排序按8/12/12/20...升序，Best match恢复55/76/197/136",
+          "evidence": [
+            "0020-price-low-after.png",
+            "0022-best-restore-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "I03",
+          "category": "interaction",
+          "title": "双商品比较",
+          "assertion": "选择 60245844 与 00245842，比较页显示二者对应价格及宽高深差异，而非固定无关表格。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "正确两商品55/76与宽高深差异",
+          "evidence": [
+            "0024-compare-two-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "I04",
+          "category": "interaction",
+          "title": "比较增删",
+          "assertion": "从相似商品加入 70245848 出现第三列；移除 00245842 后保留另两件。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 0,
+          "reason": "比较页无相似商品或Add more入口，无法加入70245848；移除00245842可用但未完成要求的三列增删",
+          "evidence": [
+            "0024-compare-two-after.png",
+            "0026-compare-inspect-and-remove-after.png"
+          ],
+          "points": 0.0
+        },
+        {
+          "id": "I05",
+          "category": "interaction",
+          "title": "图库与弹层",
+          "assertion": "缩略图更换主图，All media 打开真实图片画廊，关闭返回原详情。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "缩略图更换主图，All media打开真实图片且Escape正常返回",
+          "evidence": [
+            "0032-thumbnail-switch-after.png",
+            "0034-all-media-after.png",
+            "0038-included-components-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "I06",
+          "category": "interaction",
+          "title": "尺寸展示",
+          "assertion": "Measurements 或画廊 Measurement 能显示当前组合柜的尺寸图及对应尺寸，不是空标签。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "尺寸标签显示当前组合尺寸图与47 1/4、16 1/2、29 1/8尺寸",
+          "evidence": [
+            "0036-gallery-measurement-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "I07",
+          "category": "interaction",
+          "title": "组合清单",
+          "assertion": "原木色组合的六种组件及数量分别为1/4/2/1/2/2，且能辨别柜体、层板、柜脚、支撑腿、铰链和门。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "六类组件及1/4/2/1/2/2数量正确",
+          "evidence": [
+            "0038-included-components-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "I08",
+          "category": "interaction",
+          "title": "邮编验证",
+          "assertion": "abc 被拒绝且显示错误；改为95054可保存并更新顶部及配送显示。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "abc拒绝，95054保存并更新顶部和配送",
+          "evidence": [
+            "0050-invalid-zip-after.png",
+            "0056-store-saved-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "I09",
+          "category": "interaction",
+          "title": "门店库存",
+          "assertion": "选择 East Palo Alto, CA 后顶部和当前商品库存/Click & collect 反映该门店。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "East Palo Alto更新顶部、In stock和Click and collect",
+          "evidence": [
+            "0056-store-saved-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "I10",
+          "category": "interaction",
+          "title": "评论排序",
+          "assertion": "评论抽屉显示实际评论与评分分布；最低评分排序后首条评分不高于后续，且顺序相对默认发生变化。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "评论最低评分排序后第一条由Dylan两星变为So disappointed一星，列表按评分升序变化",
+          "evidence": [
+            "0078-reviews-open-after.png",
+            "0080-reviews-lowest-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "S01",
+          "category": "state",
+          "title": "独立组件入袋",
+          "assertion": "STUBBARP 20293568 数量选2加入后有独立行、数量2、原价行金额20；不能把两包装误当两美元或与组合内部柜脚混合。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "STUBBARP独立行2包、原价金额20，与组合内部配件分离",
+          "evidence": [
+            "0044-leg-two-cart-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "S02",
+          "category": "state",
+          "title": "正确变体与初始总额",
+          "assertion": "已有两包独立柜脚时加入1个胡桃木组合，购物袋两行身份正确，原价产品合计260；Family优惠独立显示。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "胡桃木组合240加独立两包柜脚20合计260，优惠单列",
+          "evidence": [
+            "0058-walnut-bag-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "S03",
+          "category": "state",
+          "title": "改数量后金额",
+          "assertion": "组合从1增至2、独立柜脚从2减至1后行金额为480与10，产品合计490。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "两组合480加1配件10，产品合计490",
+          "evidence": [
+            "0060-quantity-edit-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "S04",
+          "category": "state",
+          "title": "组成数量倍增",
+          "assertion": "2个组合的袋内组件清单数量为2/8/4/2/4/4，独立原木色柜脚行不被倍增或吞并。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "两组合清单2/8/4/2/4/4，独立柜脚未吞并",
+          "evidence": [
+            "0070-bag-components-real-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "S05",
+          "category": "state",
+          "title": "刷新恢复",
+          "assertion": "上述2个组合、1包柜脚、总额490及95054/门店在刷新后仍成立。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "刷新保持两组合一柜脚490以及95054和门店",
+          "evidence": [
+            "0064-bag-refresh-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "S06",
+          "category": "state",
+          "title": "安装费联动",
+          "assertion": "为2个组合开启安装服务新增117，合计607；关闭后恢复490，不能修改商品数量。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "开启安装费117合计607，关闭恢复490，数量不变",
+          "evidence": [
+            "0066-assembly-on-after.png",
+            "0068-assembly-off-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "S07",
+          "category": "state",
+          "title": "删除与撤销",
+          "assertion": "删除独立柜脚后产品合计480，Undo恢复原行、数量1及490。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "删独立柜脚480、Undo恢复1包及490",
+          "evidence": [
+            "0072-delete-leg-after.png",
+            "0074-undo-leg-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "S08",
+          "category": "state",
+          "title": "折扣码失败不改金额",
+          "assertion": "应用 OMNIALE-DEMO 显示无效提示，产品合计和各商品数量保持不变。",
+          "weight": 2.5,
+          "scoring": "binary_visible_evidence",
+          "score": 1,
+          "reason": "OMNIALE-DEMO报Please enter a valid discount code，产品490及数量不变",
+          "evidence": [
+            "0076-invalid-discount-after.png"
+          ],
+          "points": 2.5
+        },
+        {
+          "id": "V01",
+          "category": "visual",
+          "title": "首页与共同导航",
+          "weight": 2.5,
+          "reference": "reference/home.png",
+          "criteria": "头部黑条、品牌标志、搜索、导航、主视觉图片的结构、尺寸、层级；动态宣传画面内容差异豁免",
+          "scoring": "0|0.25|0.5|0.75|1",
+          "score": 0.5,
+          "reason": "The black utility bar, navigation, category pills, and promotional mosaic are recognizable. However, the mosaic begins at y216 rather than y282 and is substantially shorter: the candidate reveals the next section while the reference imagery continues below the viewport. The upper-right tile is also shorter, and the search field and navigation are shifted left.",
+          "evidence": [
+            "0004-cookie-dismiss-after.png"
+          ],
+          "points": 1.25
+        },
+        {
+          "id": "V02",
+          "category": "visual",
+          "title": "分层菜单",
+          "weight": 2.5,
+          "reference": "reference/menu.png",
+          "criteria": "宽幅菜单分栏、类别密度、活动项和下方背景",
+          "scoring": "0|0.25|0.5|0.75|1",
+          "score": 0.5,
+          "reason": "The wide menu includes the matching category tabs, active outline, and main link groups. Column proportions differ substantially: Trending begins near x318 instead of x466, and the links are vertically compressed. The menu ends near y557 instead of y627. The promotional card includes an additional image, and the underlying page is not dimmed as in the reference.",
+          "evidence": [
+            "0006-products-menu-after.png"
+          ],
+          "points": 1.25
+        },
+        {
+          "id": "V03",
+          "category": "visual",
+          "title": "搜索与白色筛选",
+          "weight": 2.5,
+          "reference": "reference/filtered.png",
+          "criteria": "左侧筛选栏、商品栅格、活动筛选、文字价格/促销层级",
+          "scoring": "0|0.25|0.5|0.75|1",
+          "score": 0.5,
+          "reason": "The left filter sidebar, selected white swatch, active filter chip, and four-column product grid are present. However, product images begin around y410 instead of y512 and are smaller, substantially compressing the cards vertically. The third product shows a wood finish rather than white, and the fourth product is a shelving unit rather than the reference TV bench. Price and promotional information remain recognizable but differ in sizing and spacing.",
+          "evidence": [
+            "0014-white-filter-after.png"
+          ],
+          "points": 1.25
+        },
+        {
+          "id": "V04",
+          "category": "visual",
+          "title": "比较页面",
+          "weight": 2.5,
+          "reference": "reference/compare.png",
+          "criteria": "对比列宽、商品图、价格、属性表与分隔",
+          "scoring": "0|0.25|0.5|0.75|1",
+          "score": 0.5,
+          "reason": "Both matching products, prices, promotional details, ratings, and the beginning of the feature comparison are present. The comparison columns are left-aligned rather than centered, leaving a large empty right side. Product images are smaller, the heading is larger, and the details are more vertically compressed. The visible feature row lacks the reference's gray cell backgrounds and dividing treatment.",
+          "evidence": [
+            "0024-compare-two-after.png"
+          ],
+          "points": 1.25
+        },
+        {
+          "id": "V05",
+          "category": "visual",
+          "title": "原木色组合详情",
+          "weight": 2.5,
+          "reference": "reference/detail.png",
+          "criteria": "左侧图库缩略图/主图、右侧价格/变体、顶部面包屑与留白",
+          "scoring": "0|0.25|0.5|0.75|1",
+          "score": 0.75,
+          "reason": "The thumbnail rail, large oak cabinet image, breadcrumbs, pricing hierarchy and two-row variant selector match the reference structure. The gallery begins about 25 px higher, the product-information column sits farther left, and smaller text changes wrapping and spacing. The media buttons are centered beneath the image rather than aligned toward its lower-right corner.",
+          "evidence": [
+            "0030-oak-from-list-after.png"
+          ],
+          "points": 1.875
+        },
+        {
+          "id": "V06",
+          "category": "visual",
+          "title": "All media 弹层",
+          "weight": 2.5,
+          "reference": "reference/gallery.png",
+          "criteria": "遮罩、白色大弹层、媒体标签、图片栅格及关闭位置",
+          "scoring": "0|0.25|0.5|0.75|1",
+          "score": 0.5,
+          "reason": "The dimmed backdrop, large white modal, media tabs and upper-right close control are present. However, the reference's two equally sized media tiles are not reproduced: the candidate enlarges the cabinet tile and renders the video preview as a small thumbnail with a detached play button. Additional images enter the bottom of the viewport, substantially changing the grid and whitespace.",
+          "evidence": [
+            "0034-all-media-after.png"
+          ],
+          "points": 1.25
+        },
+        {
+          "id": "V07",
+          "category": "visual",
+          "title": "详情组件标签",
+          "weight": 2.5,
+          "reference": "reference/components.png",
+          "criteria": "横向标签、六种组件图文、数量、右侧大图和层级",
+          "scoring": "0|0.25|0.5|0.75|1",
+          "score": 0.5,
+          "reason": "The component section is recognizable, with six illustrated component cards, quantities, article numbers and a large cabinet image on the right. The supplied view does not show the reference's horizontal tabs or sticky navigation, and the component section starts near the top instead of below the gallery and payment area. Wider rounded cards and the visible reviews section further change the composition.",
+          "evidence": [
+            "0046-component-return-after.png"
+          ],
+          "points": 1.25
+        },
+        {
+          "id": "V08",
+          "category": "visual",
+          "title": "独立组件详情",
+          "weight": 2.5,
+          "reference": "reference/component.png",
+          "criteria": "STUBBARP 配件大图、2 pack价格说明、数量步进与加入按钮",
+          "scoring": "0|0.25|0.5|0.75|1",
+          "score": 0.75,
+          "reason": "The large STUBBARP leg image, three-image thumbnail rail, family price with 2-pack notation, four color options, quantity stepper and blue add-to-bag button reproduce the key layout. The gallery starts higher, the information column shifts left, and smaller typography alters the price treatment. Extra spacing and dividers push the purchase controls lower, while the media buttons are centered rather than right-aligned.",
+          "evidence": [
+            "0040-open-component-after.png"
+          ],
+          "points": 1.875
+        },
+        {
+          "id": "V09",
+          "category": "visual",
+          "title": "胡桃木效果详情",
+          "weight": 2.5,
+          "reference": "reference/variant.png",
+          "criteria": "切换后的图片、名称、变体缩略图与共用详情布局",
+          "scoring": "0|0.25|0.5|0.75|1",
+          "score": 0.5,
+          "reason": "The walnut product image, product name, pricing hierarchy and two-row variant selector correspond. However, the candidate retains a large navigation header, shifting the product area downward. The details column starts farther left, uses smaller typography and different wrapping, and pushes the Add to bag button below the viewport. Gallery thumbnails, variant ordering and media-button placement also differ.",
+          "evidence": [
+            "0048-walnut-variant-after.png"
+          ],
+          "points": 1.25
+        },
+        {
+          "id": "V10",
+          "category": "visual",
+          "title": "购物袋",
+          "weight": 2.5,
+          "reference": "reference/bag.png",
+          "criteria": "配送摘要、两行商品、数量控件、原价/优惠、右侧订单摘要",
+          "scoring": "0|0.25|0.5|0.75|1",
+          "score": 0.5,
+          "reason": "The delivery summary, product-list column and right-hand order summary are recognizable. However, the product rows are reversed, leaving the walnut cabinet largely below the viewport. The candidate lacks the reference's gray page background and distinct white panels, uses different product-row spacing and quantity-control alignment, and replaces the large rectangular checkout button with a shorter pill-shaped button.",
+          "evidence": [
+            "0058-walnut-bag-after.png"
+          ],
+          "points": 1.25
+        },
+        {
+          "id": "V11",
+          "category": "visual",
+          "title": "袋内组件抽屉",
+          "weight": 2.5,
+          "reference": "reference/bag-components.png",
+          "criteria": "背景遮罩、右侧部件清单、数量和间距",
+          "scoring": "0|0.25|0.5|0.75|1",
+          "score": 0.5,
+          "reason": "The dimmed backdrop and right-side drawer contain the corresponding six components and quantities. The drawer is narrower, its heading and list begin substantially higher, and component text lacks the reference's reserved left gutter. The background is also at a substantially different scroll position, showing recommendations instead of the delivery summary and two product rows visible in the reference.",
+          "evidence": [
+            "0070-bag-components-real-after.png"
+          ],
+          "points": 1.25
+        },
+        {
+          "id": "V12",
+          "category": "visual",
+          "title": "评论抽屉",
+          "weight": 2.5,
+          "reference": "reference/reviews.png",
+          "criteria": "评分分布、分项分数、筛选排序、评论内容和双栏弹层",
+          "scoring": "0|0.25|0.5|0.75|1",
+          "score": 0.5,
+          "reason": "The candidate reproduces the two-column reviews modal, rating breakdown, category scores, filtering controls, summary and matching review content. Multiple conspicuous differences remain: the overall rating is left-aligned rather than centered, rating-distribution bars have substantially different proportions, a vertical column divider is added, and filter/topic controls are outlined instead of mostly filled. Column widths, typography and review-action placement also differ.",
+          "evidence": [
+            "0078-reviews-open-after.png"
+          ],
+          "points": 1.25
+        }
+      ],
+      "judges": [
+        "gpt-6.1-sol"
+      ],
+      "delivery_failure": false,
+      "assembly_exception": false,
+      "limitations": [
+        "single valid generation",
+        "single available anonymous visual judge"
+      ],
+      "generated_at": "2026-10-22T07:49:25.660950+00:00"
+    },
+    {
+      "model": "glm-5.3-flash",
+      "score": null,
+      "max": 100,
+      "categories": {
+        "execution": {
+          "score": null,
+          "max": 10.0,
+          "unjudgeable": 4
+        },
+        "navigation": {
+          "score": null,
+          "max": 15.0,
+          "unjudgeable": 6
+        },
+        "interaction": {
+          "score": null,
+          "max": 25.0,
+          "unjudgeable": 10
+        },
+        "state": {
+          "score": null,
+          "max": 20.0,
+          "unjudgeable": 8
+        },
+        "visual": {
+          "score": null,
+          "max": 30.0,
+          "unjudgeable": 12
+        }
+      },
+      "status": {
+        "status": "channel_blocked",
+        "candidate_generations": 0,
+        "error": "New supplied key lists Claude models only; glm-5.3-flash preflight returned 503. Prior GPT/Kimi keys returned 404; original GLM key returned 401."
+      },
+      "items": [],
+      "delivery_failure": false,
+      "run_id": null,
+      "limitations": [
+        "No GLM candidate output; N/A is not zero."
+      ]
     }
   ],
-  "frozen_at": "2026-10-22T06:01:24.359633+00:00"
+  "frozen_at": "2026-10-22T06:01:24.359633+00:00",
+  "extension": {
+    "created_at": "2026-10-22T06:49:50.623000+00:00",
+    "unchanged_frozen_inputs": "DESIGN_FREEZE.json",
+    "new_candidate_models": [
+      "k3",
+      "gpt-6-astra",
+      "glm-5.3-flash"
+    ],
+    "budget": "one response, one delivery; no active request timeout/max output token limit; provider limits remain; no candidate repair",
+    "luna_exception": "User-authorized concatenation of duplicate-path entries in original submission order, separated only by a newline. No content edits, no model regeneration. Original response, status and raw entries remain unchanged.",
+    "evaluation_rubric": "evaluator/checklist.json unchanged; no posthoc weights",
+    "visual_method": "K3 independent anonymous judge with explicit primary-agent adjudication for unavailable states; disclose if judge unavailable; no self-judge for K3, use independent GPT Sol or GLM instead",
+    "transport_notes": {
+      "kimi": "First request HTTP400 before generation: specified tool choice incompatible with thinking. Retained as k3-one-shot-01. One effective generation in k3-one-shot-02 uses tool_choice auto with same task, frames and submit_project schema.",
+      "glm": "No candidate generation due unavailable GLM channel; not replaced by Claude."
+    }
+  },
+  "updated_at": "2026-10-22T07:49:25.660950+00:00",
+  "note": "Original protocol retained; added models follow extension. No score cap or posthoc reweighting."
 }
