@@ -1,0 +1,87 @@
+{
+  "item_ids": [
+    "C04",
+    "G02",
+    "G04",
+    "H06"
+  ],
+  "notes": [
+    "Minimal independent group test: fresh reset, marquee three nodes, Ctrl+G, click blank, then drag one member. Do not confuse a retained multiselection with a persistent group.",
+    "A second fresh scenario duplicates the original group, moves the copy, ungroups only the copy, clears selection, then drags an original member before any snapshot restore.",
+    "Color test changes a middle node green, then selects the blue Proposal node. Inspect whether the properties panel actually indicates the current color.",
+    "Atomic deletion supplement explicitly selects the full original graph with a correctly bounded marquee; Undo is followed immediately by editing without snapshot restore.",
+    "Judge the exact assertions, and do not infer results only from button presence."
+  ],
+  "evidence": [
+    {
+      "id": "state-SUP-fresh-group-initial",
+      "kind": "candidate",
+      "path": "0379-SUP-fresh-group-initial-after.png"
+    },
+    {
+      "id": "state-SUP-fresh-group-create",
+      "kind": "candidate",
+      "path": "0384-SUP-fresh-group-create-after.png"
+    },
+    {
+      "id": "state-SUP-fresh-group-drag",
+      "kind": "candidate",
+      "path": "0387-SUP-fresh-group-drag-after.png"
+    },
+    {
+      "id": "state-SUP-ungroup-setup",
+      "kind": "candidate",
+      "path": "0400-SUP-ungroup-setup-after.png"
+    },
+    {
+      "id": "state-SUP-ungroup-move-copy",
+      "kind": "candidate",
+      "path": "0404-SUP-ungroup-move-copy-after.png"
+    },
+    {
+      "id": "state-SUP-ungroup-copy-only",
+      "kind": "candidate",
+      "path": "0409-SUP-ungroup-copy-only-after.png"
+    },
+    {
+      "id": "state-SUP-ungroup-original-drag",
+      "kind": "candidate",
+      "path": "0412-SUP-ungroup-original-drag-after.png"
+    },
+    {
+      "id": "state-SUP-color-variant",
+      "kind": "candidate",
+      "path": "0199-SUP-color-variant-after.png"
+    },
+    {
+      "id": "state-SUP-property-switch",
+      "kind": "candidate",
+      "path": "0202-SUP-property-switch-after.png"
+    },
+    {
+      "id": "state-SUP-atomic-marquee",
+      "kind": "candidate",
+      "path": "0350-SUP-atomic-marquee-after.png"
+    },
+    {
+      "id": "state-SUP-atomic-delete",
+      "kind": "candidate",
+      "path": "0353-SUP-atomic-delete-after.png"
+    },
+    {
+      "id": "state-SUP-atomic-undo",
+      "kind": "candidate",
+      "path": "0356-SUP-atomic-undo-after.png"
+    },
+    {
+      "id": "state-SUP-atomic-edit",
+      "kind": "candidate",
+      "path": "0359-SUP-atomic-edit-after.png"
+    },
+    {
+      "id": "supplement-log",
+      "kind": "log",
+      "text": "[{\"label\": \"SUP-fresh-group-initial\", \"actions\": [{\"action\": {\"type\": \"button\", \"name\": \"Reset board\"}, \"error\": null}, {\"action\": {\"type\": \"button\", \"name\": \"Reset\"}, \"error\": null}]}, {\"label\": \"SUP-fresh-group-create\", \"actions\": [{\"action\": {\"type\": \"drag\", \"x\": 260, \"y\": 235, \"to_x\": 1140, \"to_y\": 370}, \"error\": null}, {\"action\": {\"type\": \"key\", \"key\": \"Control+g\"}, \"error\": null}, {\"action\": {\"type\": \"click\", \"x\": 1250, \"y\": 700, \"count\": 1}, \"error\": null}]}, {\"label\": \"SUP-fresh-group-drag\", \"actions\": [{\"action\": {\"type\": \"drag\", \"x\": 701.2946166992188, \"y\": 301, \"to_x\": 741.2946166992188, \"to_y\": 325}, \"error\": null}]}, {\"label\": \"SUP-ungroup-setup\", \"actions\": [{\"action\": {\"type\": \"drag\", \"x\": 260, \"y\": 235, \"to_x\": 1140, \"to_y\": 370}, \"error\": null}, {\"action\": {\"type\": \"key\", \"key\": \"Control+g\"}, \"error\": null}, {\"action\": {\"type\": \"key\", \"key\": \"Control+d\"}, \"error\": null}]}, {\"label\": \"SUP-ungroup-move-copy\", \"actions\": [{\"action\": {\"type\": \"drag\", \"x\": 711.2946166992188, \"y\": 311, \"to_x\": 711.2946166992188, \"to_y\": 561}, \"error\": null}, {\"action\": {\"type\": \"click\", \"x\": 1250, \"y\": 700, \"count\": 1}, \"error\": null}]}, {\"label\": \"SUP-ungroup-copy-only\", \"actions\": [{\"action\": {\"type\": \"click\", \"x\": 711.2946166992188, \"y\": 561, \"count\": 1}, \"error\": null}, {\"action\": {\"type\": \"key\", \"key\": \"Control+Shift+g\"}, \"error\": null}, {\"action\": {\"type\": \"click\", \"x\": 1250, \"y\": 800, \"count\": 1}, \"error\": null}]}, {\"label\": \"SUP-ungroup-original-drag\", \"actions\": [{\"action\": {\"type\": \"drag\", \"x\": 701.2946166992188, \"y\": 301, \"to_x\": 731.2946166992188, \"to_y\": 281}, \"error\": null}]}, {\"label\": \"SUP-color-variant\", \"actions\": [{\"action\": {\"type\": \"button\", \"name\": \"Background #b2f2bb\"}, \"error\": null}]}, {\"label\": \"SUP-property-switch\", \"actions\": [{\"action\": {\"type\": \"click\", \"x\": 370, \"y\": 300, \"count\": 1}, \"error\": null}]}, {\"label\": \"SUP-atomic-marquee\", \"actions\": [{\"action\": {\"type\": \"drag\", \"x\": 314.8457336425781, \"y\": 290.8267822265625, \"to_x\": 1185.2735595703125, \"to_y\": 561.71728515625}, \"error\": null}]}, {\"label\": \"SUP-atomic-delete\", \"actions\": [{\"action\": {\"type\": \"key\", \"key\": \"Delete\"}, \"error\": null}]}, {\"label\": \"SUP-atomic-undo\", \"actions\": [{\"action\": {\"type\": \"key\", \"key\": \"Control+z\"}, \"error\": null}]}, {\"label\": \"SUP-atomic-edit\", \"actions\": [{\"action\": {\"type\": \"drag\", \"x\": 826.2964172363281, \"y\": 485.50001525878906, \"to_x\": 856.2964172363281, \"to_y\": 500.50001525878906}, \"error\": null}]}]"
+    }
+  ]
+}

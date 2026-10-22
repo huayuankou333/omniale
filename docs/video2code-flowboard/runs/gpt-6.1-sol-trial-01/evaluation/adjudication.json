@@ -1,0 +1,32 @@
+{
+  "adjudicator": "Codex primary agent; not an independent human reviewer",
+  "functional": {
+    "P07.1": {
+      "pass": true,
+      "reason": "补充导出文本域的实际内容与导入输入逐字匹配，JSON 解析成功，SHA256 相同；导入后直接拖动背景未移动，前景节点和连线可继续编辑。两名 judge 在补充包中的唯一疑问是数据来源，已由原始 DOM 记录及 receipt 排除。",
+      "labels": [
+        "S07-export",
+        "S07-import",
+        "SUP-import-lock-baseline",
+        "SUP-import-lock-drag",
+        "SUP-import-front-drag"
+      ]
+    },
+    "P07.2": {
+      "pass": true,
+      "reason": "第一次和第二次导入后的可见 SVG DOM 数量及文本节点数量一致；随后刷新并移动副本，没有留在原位的重叠副本。以真实 DOM 观察和拖动排除截图中可能完全重叠的重复对象。",
+      "labels": [
+        "S07-import",
+        "S07-import-again",
+        "S07-reload",
+        "S07-edit-after-reload"
+      ]
+    }
+  },
+  "visual": {},
+  "receipt": "export-import-receipt.json",
+  "notes": [
+    "功能裁定补足证据，不改变冻结权重。",
+    "视觉逐状态采用两份独立锚点评分的平均值；无超过 0.25 的分歧。"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+ "date":"2026-10-22",
+ "rubric_unchanged":true,
+ "events":[
+  {"stage":"preflight","model":"glm-5.3-flash","issue":"Sandbox blocked child Python conversion","resolution":"Retried with explicitly granted process execution; lossless conversion succeeded; gateway then returned 503"},
+  {"stage":"generation","model":"gpt-6-luna","issue":"Gateway concurrency limit at turn 5 while other candidates were active","resolution":"Preserve trial-01, resume exact tool history only after other generations finish. No prior own-browser state existed, so supported runner resume is lossless. Counts remain from original attempt."}
+ ],
+ "execution_update":"Remaining generations and any infrastructure resumes will run sequentially to avoid gateway concurrency limits; initial simultaneous attempts preserved.",
+ "note":"Provider errors are N/A/infrastructure, not candidate reasoning or functionality failures."
+}

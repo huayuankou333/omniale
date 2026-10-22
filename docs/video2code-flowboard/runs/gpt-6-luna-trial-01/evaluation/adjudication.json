@@ -1,0 +1,28 @@
+{
+  "adjudicator": "Codex primary agent; not an independent human reviewer",
+  "functional": {
+    "G04.1": {
+      "pass": true,
+      "reason": "主流程 S02-ungroup-copy 后紧接 S02-copy-node-move，只有副本中间节点平移，另两个副本节点未动；两个初评 judge 均判通过。后续关系补充包中一名 judge 忽略了已提供的主流程证据而报缺证，代理依据完整前后截图维持通过。",
+      "labels": [
+        "S02-ungroup-copy",
+        "S02-copy-node-move"
+      ]
+    },
+    "H05.1": {
+      "pass": false,
+      "reason": "删除原组成员后，截图及可见 SVG DOM 仍显示上方 Proposal 和 Release；仅上方 Review 及其两边消失。冻结断言要求删除原组全部节点、文字和内部连线，因此失败。两名初评 judge 的通过判定与实际画面不符，代理按原始记录纠正。",
+      "labels": [
+        "S06-save",
+        "S04-delete-group",
+        "S04-undo-group"
+      ]
+    }
+  },
+  "visual": {},
+  "notes": [
+    "关系补测证实多选移动不等于持久组合；新证据仅检验冻结断言，没有新增评分条件。",
+    "可解析 JSON 来源由 export-import-receipt.json 证明；原生标签弹窗和缩放坐标问题的取证修正完整保留。",
+    "视觉分歧均不超过 0.25，采用固定锚点平均。"
+  ]
+}

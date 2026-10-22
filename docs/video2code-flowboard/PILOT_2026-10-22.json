@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-22",
+  "case_id": "omniale-flowboard-v1",
+  "scope": "One effective pilot per requested model; all infrastructure attempts retained",
+  "generation_models": ["gpt-6-luna", "glm-5.3-flash", "k3", "gpt-6.1-sol"],
+  "budgets": {"logical_turns":15,"tool_calls":120,"reference_frames":256,"own_frames":120},
+  "execution": "Independent simultaneous candidates with separate browser ports and directories; no shared candidate history or output",
+  "judge_models_preferred": ["gpt-6.1-sol","k3"],
+  "judge_fallback": "Use gpt-6-luna if a preferred provider cannot complete; disclose same-family and candidate-overlap bias",
+  "adjudicator": "Primary Codex agent from original UI evidence; not independent human review",
+  "frozen_inputs": "DESIGN_FREEZE.json verified before preflight; no rubric changes",
+  "evaluation": "Manual browser protocol and per-candidate control adapters allowed; never modify candidate implementation",
+  "infra_error": "N/A, not 0; maximum two fresh infrastructure restarts per model in this pilot, preserve all attempts",
+  "token_cap": "Requested 9000 per response only; gateway known not to enforce reliably; actual usage disclosed",
+  "scope_note": "This pilot does not implement the recommended 3 independent effective trials per model and cannot establish stable scores or guarantee <=80."
+}

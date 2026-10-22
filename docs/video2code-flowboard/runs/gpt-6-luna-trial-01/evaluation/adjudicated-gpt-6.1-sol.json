@@ -1,0 +1,2685 @@
+{
+  "trial_status": "valid",
+  "functional": {
+    "E01.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0001-initial-before.png",
+        "0002-initial-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "E01.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "environment-log",
+            "state-initial"
+          ],
+          "reason": "The fixed npm start command launched the candidate on port 3000 with HTTP 200, and the initial browser view shows the usable board rather than a loading placeholder.",
+          "judge_file": "judge-gpt-6-luna-editing.json"
+        },
+        {
+          "id": "E01.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "environment-log",
+            "state-initial",
+            "operation-log/initial"
+          ],
+          "reason": "固定启动命令成功运行，HTTP 状态为 200；首屏显示完整编辑界面、三节点及两箭头，不是加载占位。",
+          "judge_file": "judge-gpt-6.1-sol-editing.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "E02.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0001-initial-before.png",
+        "0002-initial-after.png",
+        "0168-S07-reload-before.png",
+        "0170-S07-reload-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "E02.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "environment-log",
+            "state-initial",
+            "state-S07-reload"
+          ],
+          "reason": "The browser policy aborted external requests; the board rendered with its editor controls and handwritten text both initially and after reload. The supplied browser log contains no errors.",
+          "judge_file": "judge-gpt-6-luna-editing.json"
+        },
+        {
+          "id": "E02.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "environment-log",
+            "state-initial",
+            "state-S07-reload",
+            "operation-log/S07-reload"
+          ],
+          "reason": "浏览器策略明确阻断全部外部请求。初始页面及刷新后均正常显示手写字体、工具图标和图形；刷新后的节点拖动也成功。",
+          "judge_file": "judge-gpt-6.1-sol-editing.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "E03.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0254-SUP-final-before.png",
+        "0258-SUP-final-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "E03.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "environment-log",
+            "state-SUP-final"
+          ],
+          "reason": "The scenario list records the full run through SUP-end, the observed action records show no action errors, and the final browser view remains functional. No uncaught browser errors are reported.",
+          "judge_file": "judge-gpt-6-luna-editing.json"
+        },
+        {
+          "id": "E03.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "environment-log",
+            "operation-log/SUP-final",
+            "state-SUP-final"
+          ],
+          "reason": "记录覆盖编辑、复制、图层、重置、导入、刷新及恢复流程，最终仍可恢复快照并操作页面。浏览器日志无未捕获错误；局部功能未实现不等于页面崩溃。",
+          "judge_file": "judge-gpt-6.1-sol-editing.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "E04.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0001-initial-before.png",
+        "0002-initial-after.png",
+        "0146-S06-reset-confirm-before.png",
+        "0149-S06-reset-confirm-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "E04.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "state-initial",
+            "state-S06-reset-confirm"
+          ],
+          "reason": "The initial view has three nodes and two arrows; after confirming Reset, the board again shows the same three-node, two-arrow initial diagram.",
+          "judge_file": "judge-gpt-6-luna-editing.json"
+        },
+        {
+          "id": "E04.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "state-initial",
+            "operation-log/initial",
+            "operation-log/S06-reset-confirm",
+            "state-S06-reset-confirm"
+          ],
+          "reason": "初始画面为三节点两箭头。修改后的双图场景执行 Reset board、Continue 后，恢复相同标签、颜色、尺寸及位置的初始图。",
+          "judge_file": "judge-gpt-6.1-sol-editing.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "C01.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0001-initial-before.png",
+        "0002-initial-after.png",
+        "0003-S01-move-before.png",
+        "0006-S01-move-after.png",
+        "0184-SUP-opposite-move-before.png",
+        "0186-SUP-opposite-move-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "C01.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0003-S01-move-before.png",
+            "0004-S01-move-1.png",
+            "0005-S01-move-2.png",
+            "0006-S01-move-after.png"
+          ],
+          "reason": "The Review node is selected and dragged from its initial position to the pointer destination; Proposal and Release remain in place.",
+          "judge_file": "judge-gpt-6-luna-editing.json"
+        },
+        {
+          "id": "C01.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "state-initial",
+            "operation-log/S01-move",
+            "state-S01-move"
+          ],
+          "reason": "点击 Review 后拖动指针位移为 (+40,+120)，节点从 (609,255) 移至 (649,375)，选择框落在该节点；Proposal 和 Release 位置不变。",
+          "judge_file": "judge-gpt-6.1-sol-editing.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "C01.2": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0001-initial-before.png",
+        "0002-initial-after.png",
+        "0003-S01-move-before.png",
+        "0006-S01-move-after.png",
+        "0184-SUP-opposite-move-before.png",
+        "0186-SUP-opposite-move-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "C01.2",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0184-SUP-opposite-move-before.png",
+            "0185-SUP-opposite-move-1.png",
+            "0186-SUP-opposite-move-after.png"
+          ],
+          "reason": "The reverse drag selects and moves Release, while Proposal and Review remain unchanged; the arrow still terminates at the moved node boundary.",
+          "judge_file": "judge-gpt-6-luna-editing.json"
+        },
+        {
+          "id": "C01.2",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log/SUP-opposite-move",
+            "state-SUP-opposite-move"
+          ],
+          "reason": "另一节点 Release 按指针位移 (-60,+35) 从 (939,255) 移至 (879,290)。选择框对应 Release，其余节点未移动，没有误选连线。",
+          "judge_file": "judge-gpt-6.1-sol-editing.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "C02.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0003-S01-move-before.png",
+        "0006-S01-move-after.png",
+        "0007-S01-resize-before.png",
+        "0009-S01-resize-after.png",
+        "0193-SUP-shrink-before.png",
+        "0195-SUP-shrink-after.png",
+        "0196-SUP-shrink-hit-before.png",
+        "0199-SUP-shrink-hit-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "C02.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0007-S01-resize-before.png",
+            "0008-S01-resize-1.png",
+            "0009-S01-resize-after.png"
+          ],
+          "reason": "Dragging the selected Review node’s lower-right handle increases its rendered width and height; its text remains inside and both connecting lines update their endpoints.",
+          "judge_file": "judge-gpt-6-luna-editing.json"
+        },
+        {
+          "id": "C02.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "state-S01-move",
+            "operation-log/S01-resize",
+            "state-S01-resize"
+          ],
+          "reason": "拖动右下角后 Review 实际边界由 182×91 变为 252×121，左上角保持不变，文字仍居中且完整包含在节点内。",
+          "judge_file": "judge-gpt-6.1-sol-editing.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "C02.2": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0003-S01-move-before.png",
+        "0006-S01-move-after.png",
+        "0007-S01-resize-before.png",
+        "0009-S01-resize-after.png",
+        "0193-SUP-shrink-before.png",
+        "0195-SUP-shrink-after.png",
+        "0196-SUP-shrink-hit-before.png",
+        "0199-SUP-shrink-hit-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "C02.2",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0193-SUP-shrink-before.png",
+            "0194-SUP-shrink-1.png",
+            "0195-SUP-shrink-after.png",
+            "0196-SUP-shrink-hit-before.png",
+            "0198-SUP-shrink-hit-2.png",
+            "0199-SUP-shrink-hit-after.png"
+          ],
+          "reason": "Review is reduced from 182×91 to 162×81 with text still contained. A subsequent click-and-drag within the reduced node selects and moves it, and both connections follow.",
+          "judge_file": "judge-gpt-6-luna-editing.json"
+        },
+        {
+          "id": "C02.2",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log/SUP-shrink",
+            "state-SUP-shrink",
+            "operation-log/SUP-shrink-hit",
+            "state-SUP-shrink-hit"
+          ],
+          "reason": "缩小操作将节点从 182×91 改为 162×81，文字未溢出，选择框同步缩小。取消选择后重新拖动该节点成功，尺寸和选择框仍对应缩小后的边界。",
+          "judge_file": "judge-gpt-6.1-sol-editing.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "C03.1": {
+      "observed": true,
+      "pass": false,
+      "evidence": [
+        "operator-records.json",
+        "0010-S01-label-before.png",
+        "0013-S01-label-after.png",
+        "0200-SUP-label-variant-before.png",
+        "0203-SUP-label-variant-after.png",
+        "0246-SUP-label2-before.png",
+        "0249-SUP-label2-after.png",
+        "0250-SUP-label2-move-before.png",
+        "0253-SUP-label2-move-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "C03.1",
+          "verdict": "fail",
+          "score": 0,
+          "evidence": [
+            "0010-S01-label-before.png",
+            "0011-S01-label-1.png",
+            "0012-S01-label-2.png",
+            "0013-S01-label-after.png"
+          ],
+          "reason": "Although the prompt action records the requested two-line label, the post-action visible text still reads Review; the evidence does not show the requested edit taking effect.",
+          "judge_file": "judge-gpt-6-luna-editing.json"
+        },
+        {
+          "id": "C03.1",
+          "verdict": "fail",
+          "score": 0,
+          "evidence": [
+            "operation-log/S01-label",
+            "state-S01-label"
+          ],
+          "reason": "在 Review 标签中心双击并准备输入两行 Legal review / 48h SLA 后，没有出现编辑输入或对话框，操作后仍显示单行 Review。所要求的两行文字提交未实现。",
+          "judge_file": "judge-gpt-6.1-sol-editing.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "C03.2": {
+      "observed": true,
+      "pass": false,
+      "evidence": [
+        "operator-records.json",
+        "0010-S01-label-before.png",
+        "0013-S01-label-after.png",
+        "0200-SUP-label-variant-before.png",
+        "0203-SUP-label-variant-after.png",
+        "0246-SUP-label2-before.png",
+        "0249-SUP-label2-after.png",
+        "0250-SUP-label2-move-before.png",
+        "0253-SUP-label2-move-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "C03.2",
+          "verdict": "fail",
+          "score": 0,
+          "evidence": [
+            "0200-SUP-label-variant-before.png",
+            "0201-SUP-label-variant-1.png",
+            "0202-SUP-label-variant-2.png",
+            "0203-SUP-label-variant-after.png",
+            "0246-SUP-label2-before.png",
+            "0248-SUP-label2-2.png",
+            "0253-SUP-label2-move-after.png"
+          ],
+          "reason": "The variant prompt and subsequent move are recorded, but the observed node text remains Review before and after; the changed two-line label is not demonstrated as bound to the moved node.",
+          "judge_file": "judge-gpt-6-luna-editing.json"
+        },
+        {
+          "id": "C03.2",
+          "verdict": "fail",
+          "score": 0,
+          "evidence": [
+            "operation-log/SUP-label-variant",
+            "state-SUP-label-variant",
+            "operation-log/SUP-label2",
+            "state-SUP-label2",
+            "operation-log/SUP-label2-move",
+            "state-SUP-label2-move"
+          ],
+          "reason": "不同短标签 Risk review / 12h SLA 在原节点和副本上的双击重试均未生效，画面始终保留 Review。后续移动只证明原有文字跟随，不能满足替换后的两行文字绑定要求。",
+          "judge_file": "judge-gpt-6.1-sol-editing.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "C04.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0014-S01-style-before.png",
+        "0017-S01-style-after.png",
+        "0204-SUP-color-variant-before.png",
+        "0206-SUP-color-variant-after.png",
+        "0207-SUP-property-switch-before.png",
+        "0209-SUP-property-switch-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "C04.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "state-SUP-color-variant"
+          ],
+          "reason": "The selected Review node changes from yellow to green; Proposal and Release retain their original blue and green fills.",
+          "judge_file": "judge-gpt-6-luna-relations.json"
+        },
+        {
+          "id": "C04.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "state-SUP-fresh-group-drag",
+            "state-SUP-color-variant",
+            "supplement-log"
+          ],
+          "reason": "点击绿色填充后，被选中的 Review 变为绿色；未选中的 Proposal 仍为蓝色，Release 保留原来的浅绿色。",
+          "judge_file": "judge-gpt-6.1-sol-relations.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "C04.2": {
+      "observed": true,
+      "pass": false,
+      "evidence": [
+        "operator-records.json",
+        "0014-S01-style-before.png",
+        "0017-S01-style-after.png",
+        "0204-SUP-color-variant-before.png",
+        "0206-SUP-color-variant-after.png",
+        "0207-SUP-property-switch-before.png",
+        "0209-SUP-property-switch-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "C04.2",
+          "verdict": "fail",
+          "score": 0,
+          "evidence": [
+            "state-SUP-property-switch"
+          ],
+          "reason": "After selecting Proposal, the node is visibly blue, but the properties palette shows no visible indication of its current fill color. The screenshot does not establish that the panel reflects the selected node’s actual color rather than retaining a prior value.",
+          "judge_file": "judge-gpt-6-luna-relations.json"
+        },
+        {
+          "id": "C04.2",
+          "verdict": "fail",
+          "score": 0,
+          "evidence": [
+            "state-SUP-color-variant",
+            "state-SUP-property-switch",
+            "supplement-log"
+          ],
+          "reason": "从绿色 Review 切换选择蓝色 Proposal 后，画布选择框正确切换，但属性面板仍只显示同一组色块，没有当前蓝色的选中标记或颜色值，不能反映所选对象的实际颜色。",
+          "judge_file": "judge-gpt-6.1-sol-relations.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "C05.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0027-S02-marquee-group-before.png",
+        "0030-S02-marquee-group-after.png",
+        "0056-S02-copy-finished-before.png",
+        "0058-S02-copy-finished-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "C05.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0027-S02-marquee-group-before.png",
+            "0028-S02-marquee-group-1.png",
+            "0029-S02-marquee-group-2.png",
+            "0030-S02-marquee-group-after.png"
+          ],
+          "reason": "The marquee spans all three nodes and both arrows while the independent heading remains outside it; the subsequent group command leaves a selection boundary around the diagram, not the heading.",
+          "judge_file": "judge-gpt-6-luna-editing.json"
+        },
+        {
+          "id": "C05.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log/S02-marquee-group",
+            "state-S02-marquee-group",
+            "operation-log/S02-duplicate",
+            "state-S02-move-copy"
+          ],
+          "reason": "框选范围包含三节点及两箭头而排除上方独立标题。后续复制和移动得到包含三个标签及两条内部箭头的完整副本，标题没有被复制或随之移动，验证了选择集合。",
+          "judge_file": "judge-gpt-6.1-sol-editing.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "C05.2": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0027-S02-marquee-group-before.png",
+        "0030-S02-marquee-group-after.png",
+        "0056-S02-copy-finished-before.png",
+        "0058-S02-copy-finished-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "C05.2",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0056-S02-copy-finished-before.png",
+            "0057-S02-copy-finished-1.png",
+            "0058-S02-copy-finished-after.png"
+          ],
+          "reason": "Clicking blank canvas removes the selection boundary without changing the original or duplicated diagram’s content or layout.",
+          "judge_file": "judge-gpt-6-luna-editing.json"
+        },
+        {
+          "id": "C05.2",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log/S02-copy-finished",
+            "state-S02-copy-finished"
+          ],
+          "reason": "点击空白 (1250,700) 后选择框和属性面板消失；操作前后六个节点、标签及四条连线的渲染位置和颜色保持不变。",
+          "judge_file": "judge-gpt-6.1-sol-editing.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "C06.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0059-S03-panel-front-before.png",
+        "0063-S03-panel-front-after.png",
+        "0064-S03-panel-back-before.png",
+        "0066-S03-panel-back-after.png",
+        "0072-S04-move-before.png",
+        "0074-S04-move-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "C06.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0059-S03-panel-front-before.png",
+            "0060-S03-panel-front-1.png",
+            "0061-S03-panel-front-2.png",
+            "0062-S03-panel-front-3.png",
+            "0063-S03-panel-front-after.png"
+          ],
+          "reason": "The R-tool drag creates a rendered 910×285 blue rectangle with a visible boundary; it is selected and recolored, demonstrating selection and fill editing.",
+          "judge_file": "judge-gpt-6-luna-editing.json"
+        },
+        {
+          "id": "C06.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log/S03-panel-front",
+            "state-S03-panel-front"
+          ],
+          "reason": "按 R 后从 (260,505) 拖至 (1170,790)，生成实际 910×285 的矩形并显示相应选择框；点击蓝色色块后矩形填充变蓝，且在前层遮住副本。",
+          "judge_file": "judge-gpt-6.1-sol-editing.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "C06.2": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0059-S03-panel-front-before.png",
+        "0063-S03-panel-front-after.png",
+        "0064-S03-panel-back-before.png",
+        "0066-S03-panel-back-after.png",
+        "0072-S04-move-before.png",
+        "0074-S04-move-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "C06.2",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0064-S03-panel-back-before.png",
+            "0065-S03-panel-back-1.png",
+            "0066-S03-panel-back-after.png",
+            "0072-S04-move-before.png",
+            "0074-S04-move-after.png"
+          ],
+          "reason": "After the send-to-back shortcut, the rectangle renders behind the nodes and arrows. A later drag moves a foreground Review node independently, showing it remains separately hittable.",
+          "judge_file": "judge-gpt-6-luna-editing.json"
+        },
+        {
+          "id": "C06.2",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "state-S03-panel-front",
+            "operation-log/S03-panel-back",
+            "state-S03-panel-back",
+            "operation-log/S04-move",
+            "state-S04-move"
+          ],
+          "reason": "置底后副本节点、文字和箭头重新可见。随后在背景矩形内部拖动 Review，只移动该前景节点 (+40,+20)，背景和其他节点不动，显示顺序与命中顺序一致。",
+          "judge_file": "judge-gpt-6.1-sol-editing.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "C07.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0210-SUP-dialog-isolation-before.png",
+        "0215-SUP-dialog-isolation-after.png",
+        "0216-SUP-dialog-cancel-before.png",
+        "0218-SUP-dialog-cancel-after.png",
+        "0219-SUP-edit-after-dialog-before.png",
+        "0221-SUP-edit-after-dialog-after.png",
+        "0296-SUP-input-before-before.png",
+        "0299-SUP-input-before-after.png",
+        "0300-SUP-input-selected-before.png",
+        "0302-SUP-input-selected-after.png",
+        "0303-SUP-input-deleted-before.png",
+        "0305-SUP-input-deleted-after.png",
+        "0306-SUP-input-cancel-before.png",
+        "0308-SUP-input-cancel-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "C07.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0297-SUP-input-before-1.png",
+            "0299-SUP-input-before-after.png",
+            "0300-SUP-input-selected-before.png",
+            "0301-SUP-input-selected-1.png",
+            "0302-SUP-input-selected-after.png"
+          ],
+          "reason": "Ctrl+A is issued with the Import JSON textarea focused; the text is selected, while the board contents and their geometry remain unchanged.",
+          "judge_file": "judge-gpt-6-luna-editing.json"
+        },
+        {
+          "id": "C07.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log/SUP-input-before",
+            "state-SUP-input-before",
+            "operation-log/SUP-input-selected",
+            "state-SUP-input-selected",
+            "input-select-all-intermediate"
+          ],
+          "reason": "JSON 输入框含 temporary input 时按 Ctrl+A，截图显示仅这段输入文字被高亮；画布没有变为全部对象选择，已有单对象选择保持不变。",
+          "judge_file": "judge-gpt-6.1-sol-editing.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "C07.2": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0210-SUP-dialog-isolation-before.png",
+        "0215-SUP-dialog-isolation-after.png",
+        "0216-SUP-dialog-cancel-before.png",
+        "0218-SUP-dialog-cancel-after.png",
+        "0219-SUP-edit-after-dialog-before.png",
+        "0221-SUP-edit-after-dialog-after.png",
+        "0296-SUP-input-before-before.png",
+        "0299-SUP-input-before-after.png",
+        "0300-SUP-input-selected-before.png",
+        "0302-SUP-input-selected-after.png",
+        "0303-SUP-input-deleted-before.png",
+        "0305-SUP-input-deleted-after.png",
+        "0306-SUP-input-cancel-before.png",
+        "0308-SUP-input-cancel-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "C07.2",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0298-SUP-input-before-2.png",
+            "0303-SUP-input-deleted-before.png",
+            "0304-SUP-input-deleted-1.png",
+            "0305-SUP-input-deleted-after.png",
+            "0307-SUP-input-cancel-1.png",
+            "0219-SUP-edit-after-dialog-before.png",
+            "0221-SUP-edit-after-dialog-after.png"
+          ],
+          "reason": "Delete empties the focused textarea without changing the canvas objects. Cancel closes the dialog, and a later drag successfully edits the canvas.",
+          "judge_file": "judge-gpt-6-luna-editing.json"
+        },
+        {
+          "id": "C07.2",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log/SUP-input-deleted",
+            "state-SUP-input-deleted",
+            "operation-log/SUP-input-cancel",
+            "state-SUP-input-cancel",
+            "operation-log/SUP-dialog-cancel",
+            "operation-log/SUP-edit-after-dialog",
+            "state-SUP-edit-after-dialog"
+          ],
+          "reason": "Delete 清空输入框而未删除画布对象，取消后图形仍完整。另一次相同输入隔离流程取消后，Proposal 可继续按指针位移 (+40,+24) 拖动。",
+          "judge_file": "judge-gpt-6.1-sol-editing.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "G01.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0003-S01-move-before.png",
+        "0006-S01-move-after.png",
+        "0007-S01-resize-before.png",
+        "0009-S01-resize-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "G01.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0003-S01-move-before.png",
+            "0006-S01-move-after.png"
+          ],
+          "reason": "Moving the intermediate Review node changes both connection geometries; the incoming and outgoing arrows continue to meet the moved node’s boundary and their respective neighboring nodes.",
+          "judge_file": "judge-gpt-6-luna-editing.json"
+        },
+        {
+          "id": "G01.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "state-initial",
+            "operation-log/S01-move",
+            "state-S01-move"
+          ],
+          "reason": "中间节点移动后，入边仍从 Proposal 右边界连接 Review 左边界，出边从 Review 右边界连接 Release 左边界，两条线均随节点改变方向。",
+          "judge_file": "judge-gpt-6.1-sol-editing.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "G01.2": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0003-S01-move-before.png",
+        "0006-S01-move-after.png",
+        "0007-S01-resize-before.png",
+        "0009-S01-resize-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "G01.2",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0007-S01-resize-before.png",
+            "0009-S01-resize-after.png"
+          ],
+          "reason": "After Review is resized, both arrow endpoints recalculate to its new boundary rather than remaining at the old coordinates.",
+          "judge_file": "judge-gpt-6-luna-editing.json"
+        },
+        {
+          "id": "G01.2",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "state-S01-move",
+            "operation-log/S01-resize",
+            "state-S01-resize"
+          ],
+          "reason": "Review 扩大后，入边终点移到新左边界中点 (649,435.5)，出边起点移到新右边界中点 (901,435.5)，没有停在原端点或穿入标签中心。",
+          "judge_file": "judge-gpt-6.1-sol-editing.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "G02.1": {
+      "observed": true,
+      "pass": false,
+      "evidence": [
+        "operator-records.json",
+        "0027-S02-marquee-group-before.png",
+        "0030-S02-marquee-group-after.png",
+        "0031-S02-group-move-before.png",
+        "0033-S02-group-move-after.png",
+        "0034-S02-group-move-undo-before.png",
+        "0036-S02-group-move-undo-after.png",
+        "0230-SUP-restored-group-move-before.png",
+        "0232-SUP-restored-group-move-after.png",
+        "0383-SUP-fresh-group-create-before.png",
+        "0387-SUP-fresh-group-create-after.png",
+        "0388-SUP-fresh-group-drag-before.png",
+        "0390-SUP-fresh-group-drag-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "G02.1",
+          "verdict": "fail",
+          "score": 0,
+          "evidence": [
+            "state-SUP-fresh-group-create",
+            "state-SUP-fresh-group-drag",
+            "supplement-log"
+          ],
+          "reason": "After clearing selection and dragging one member of the newly created group, only Review moves; Proposal and Release remain in place. The connected arrows change angle rather than moving as part of the group.",
+          "judge_file": "judge-gpt-6-luna-relations.json"
+        },
+        {
+          "id": "G02.1",
+          "verdict": "fail",
+          "score": 0,
+          "evidence": [
+            "state-SUP-fresh-group-initial",
+            "state-SUP-fresh-group-create",
+            "state-SUP-fresh-group-drag",
+            "supplement-log"
+          ],
+          "reason": "独立 Reset 场景中，框选三节点、执行 Ctrl+G 并清空选择后拖动 Review，只有 Review 及其标签移动；Proposal、Release 未移动，两条边只是重新连接端点，并未整体平移。",
+          "judge_file": "judge-gpt-6.1-sol-relations.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "G02.2": {
+      "observed": true,
+      "pass": false,
+      "evidence": [
+        "operator-records.json",
+        "0027-S02-marquee-group-before.png",
+        "0030-S02-marquee-group-after.png",
+        "0031-S02-group-move-before.png",
+        "0033-S02-group-move-after.png",
+        "0034-S02-group-move-undo-before.png",
+        "0036-S02-group-move-undo-after.png",
+        "0230-SUP-restored-group-move-before.png",
+        "0232-SUP-restored-group-move-after.png",
+        "0383-SUP-fresh-group-create-before.png",
+        "0387-SUP-fresh-group-create-after.png",
+        "0388-SUP-fresh-group-drag-before.png",
+        "0390-SUP-fresh-group-drag-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "G02.2",
+          "verdict": "fail",
+          "score": 0,
+          "evidence": [
+            "state-SUP-fresh-group-drag",
+            "supplement-log"
+          ],
+          "reason": "The drag changes the relative layout: Review shifts while Proposal and Release remain fixed. The title is independent, but the required group-layout preservation is not demonstrated and is contradicted by the screenshot.",
+          "judge_file": "judge-gpt-6-luna-relations.json"
+        },
+        {
+          "id": "G02.2",
+          "verdict": "fail",
+          "score": 0,
+          "evidence": [
+            "state-SUP-fresh-group-create",
+            "state-SUP-fresh-group-drag",
+            "supplement-log"
+          ],
+          "reason": "拖动后中间节点相对另外两个节点发生位移，原先水平排列变为折线布局。组外标题确实未动，但组内相对布局不变这一条件失败。",
+          "judge_file": "judge-gpt-6.1-sol-relations.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "G03.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0037-S02-duplicate-before.png",
+        "0039-S02-duplicate-after.png",
+        "0040-S02-move-copy-before.png",
+        "0043-S02-move-copy-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "G03.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0037-S02-duplicate-before.png",
+            "0039-S02-duplicate-after.png"
+          ],
+          "reason": "The duplicate operation visibly adds a complete second diagram containing three nodes and two internal arrows.",
+          "judge_file": "judge-gpt-6-luna-editing.json"
+        },
+        {
+          "id": "G03.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log/S02-duplicate",
+            "state-S02-duplicate",
+            "state-S02-move-copy"
+          ],
+          "reason": "Ctrl+D 产生三个新节点及对应文字、两条新内部箭头。将副本移开后，原图和完整副本均可直接辨认，独立标题没有重复。",
+          "judge_file": "judge-gpt-6.1-sol-editing.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "G03.2": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0037-S02-duplicate-before.png",
+        "0039-S02-duplicate-after.png",
+        "0040-S02-move-copy-before.png",
+        "0043-S02-move-copy-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "G03.2",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0040-S02-move-copy-before.png",
+            "0043-S02-move-copy-after.png"
+          ],
+          "reason": "Dragging the selected copy moves its three nodes and two arrows while the original diagram remains at its original positions.",
+          "judge_file": "judge-gpt-6-luna-editing.json"
+        },
+        {
+          "id": "G03.2",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log/S02-move-copy",
+            "state-S02-move-copy"
+          ],
+          "reason": "副本整体向下移动 250 像素，原图节点和连线保持不动。副本两箭头继续连接副本自身节点，没有连接回原图。",
+          "judge_file": "judge-gpt-6.1-sol-editing.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "G04.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0044-S02-ungroup-copy-before.png",
+        "0048-S02-ungroup-copy-after.png",
+        "0049-S02-copy-node-move-before.png",
+        "0051-S02-copy-node-move-after.png"
+      ],
+      "reason": "主流程 S02-ungroup-copy 后紧接 S02-copy-node-move，只有副本中间节点平移，另两个副本节点未动；两个初评 judge 均判通过。后续关系补充包中一名 judge 忽略了已提供的主流程证据而报缺证，代理依据完整前后截图维持通过。",
+      "judge_results": [
+        {
+          "id": "G04.1",
+          "verdict": "unjudgeable",
+          "score": null,
+          "evidence": [
+            "state-SUP-ungroup-copy-only",
+            "state-SUP-ungroup-original-drag",
+            "supplement-log"
+          ],
+          "reason": "The copy is ungrouped, but no supplied post-ungroup action or screenshot shows an individual copy node being dragged to verify that the other two copy nodes remain still.",
+          "judge_file": "judge-gpt-6-luna-relations.json"
+        },
+        {
+          "id": "G04.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "state-S02-ungroup-copy",
+            "state-S02-copy-node-move",
+            "state-S04-move",
+            "late-actual-actions"
+          ],
+          "reason": "副本解组后的拖动证据显示，副本 Review 可单独改变位置，副本 Proposal 与 Release 保持原位。此处只判独立移动结果，不据此推定持久组合已成功实现。",
+          "judge_file": "judge-gpt-6.1-sol-relations.json"
+        }
+      ],
+      "adjudicated": true
+    },
+    "G04.2": {
+      "observed": true,
+      "pass": false,
+      "evidence": [
+        "operator-records.json",
+        "0044-S02-ungroup-copy-before.png",
+        "0048-S02-ungroup-copy-after.png",
+        "0049-S02-copy-node-move-before.png",
+        "0051-S02-copy-node-move-after.png",
+        "0230-SUP-restored-group-move-before.png",
+        "0232-SUP-restored-group-move-after.png",
+        "0408-SUP-ungroup-copy-only-before.png",
+        "0412-SUP-ungroup-copy-only-after.png",
+        "0413-SUP-ungroup-original-drag-before.png",
+        "0415-SUP-ungroup-original-drag-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "G04.2",
+          "verdict": "fail",
+          "score": 0,
+          "evidence": [
+            "state-SUP-ungroup-original-drag",
+            "supplement-log"
+          ],
+          "reason": "The original Review node moves independently while the other original nodes remain in place. Its two arrows remain attached, but the original group does not remain operable as a whole, so the combined assertion fails.",
+          "judge_file": "judge-gpt-6-luna-relations.json"
+        },
+        {
+          "id": "G04.2",
+          "verdict": "fail",
+          "score": 0,
+          "evidence": [
+            "state-S02-copy-node-move",
+            "state-S04-move",
+            "state-SUP-ungroup-copy-only",
+            "state-SUP-ungroup-original-drag",
+            "supplement-log",
+            "late-actual-actions"
+          ],
+          "reason": "副本节点移动时两条边仍连接节点，但在只对副本执行解组并清空选择后，拖动原图 Review 也只移动该节点，原图另外两个节点不动；原组仍可整体操作这一条件失败。",
+          "judge_file": "judge-gpt-6.1-sol-relations.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "G05.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0168-S07-reload-before.png",
+        "0170-S07-reload-after.png",
+        "0173-S07-edit-after-reload-before.png",
+        "0175-S07-edit-after-reload-after.png",
+        "0226-SUP-restore-relations-before.png",
+        "0229-SUP-restore-relations-after.png",
+        "0230-SUP-restored-group-move-before.png",
+        "0232-SUP-restored-group-move-after.png",
+        "0236-SUP-restored-copy-move-before.png",
+        "0238-SUP-restored-copy-move-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "G05.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0168-S07-reload-before.png",
+            "0169-S07-reload-1.png",
+            "0170-S07-reload-after.png",
+            "0173-S07-edit-after-reload-before.png",
+            "0175-S07-edit-after-reload-after.png"
+          ],
+          "reason": "After reload, dragging the copied Review node changes the incoming and outgoing arrow endpoints to meet its new boundary; the original diagram remains unchanged.",
+          "judge_file": "judge-gpt-6-luna-editing.json"
+        },
+        {
+          "id": "G05.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log/S07-reload",
+            "state-S07-reload",
+            "operation-log/S07-edit-after-reload",
+            "state-S07-edit-after-reload"
+          ],
+          "reason": "刷新保留了双图场景。随后副本 Review 移动 (+50,-20)，入边终点更新到其新左边界，出边起点更新到其新右边界并仍连接副本 Release；原图未改变。",
+          "judge_file": "judge-gpt-6.1-sol-editing.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "G05.2": {
+      "observed": true,
+      "pass": false,
+      "evidence": [
+        "operator-records.json",
+        "0168-S07-reload-before.png",
+        "0170-S07-reload-after.png",
+        "0173-S07-edit-after-reload-before.png",
+        "0175-S07-edit-after-reload-after.png",
+        "0226-SUP-restore-relations-before.png",
+        "0229-SUP-restore-relations-after.png",
+        "0230-SUP-restored-group-move-before.png",
+        "0232-SUP-restored-group-move-after.png",
+        "0236-SUP-restored-copy-move-before.png",
+        "0238-SUP-restored-copy-move-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "G05.2",
+          "verdict": "fail",
+          "score": 0,
+          "evidence": [
+            "0230-SUP-restored-group-move-before.png",
+            "0231-SUP-restored-group-move-1.png",
+            "0232-SUP-restored-group-move-after.png",
+            "0236-SUP-restored-copy-move-before.png",
+            "0238-SUP-restored-copy-move-after.png"
+          ],
+          "reason": "After restoring the snapshot, dragging the top diagram’s Review moves only that node, not the other top nodes, so the restored original group does not behave as one unit. A lower copied node can be edited independently, but that does not satisfy the required restored-group behavior.",
+          "judge_file": "judge-gpt-6-luna-editing.json"
+        },
+        {
+          "id": "G05.2",
+          "verdict": "fail",
+          "score": 0,
+          "evidence": [
+            "operation-log/SUP-restore-relations",
+            "state-SUP-restore-relations",
+            "operation-log/SUP-restored-group-move",
+            "state-SUP-restored-group-move",
+            "operation-log/SUP-restored-copy-move",
+            "state-SUP-restored-copy-move"
+          ],
+          "reason": "恢复独立快照后，拖动原图 Review 仅使该节点移动 (-35,+20)，原图另外两个节点不动，选择框也仅包围 Review，原组未保持整体操作能力。副本仍可单独移动，但不足以通过同时要求原组关系恢复的断言。",
+          "judge_file": "judge-gpt-6.1-sol-editing.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "H01.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0072-S04-move-before.png",
+        "0074-S04-move-after.png",
+        "0075-S04-undo-before.png",
+        "0077-S04-undo-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "H01.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0073-S04-move-1.png",
+            "0074-S04-move-after.png",
+            "0077-S04-undo-after.png"
+          ],
+          "reason": "移动 Review 后，一次 Undo 将它从移动后的位置恢复到原位置；两条相连箭头端点随节点回到原几何位置。",
+          "judge_file": "judge-gpt-6-luna-recovery.json"
+        },
+        {
+          "id": "H01.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log",
+            "state-S04-move",
+            "state-S04-undo"
+          ],
+          "reason": "连续拖动使下方 Review 从 (619,625) 移至 (659,645)。随后一次 Control+z 将其恢复至 (619,625)，标签及两条箭头的关联端点同时恢复到拖动前位置。",
+          "judge_file": "judge-gpt-6.1-sol-recovery.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "H02.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0075-S04-undo-before.png",
+        "0077-S04-undo-after.png",
+        "0078-S04-redo-before.png",
+        "0080-S04-redo-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "H02.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0077-S04-undo-after.png",
+            "0080-S04-redo-after.png"
+          ],
+          "reason": "一次 Redo 重现移动后的 Review 位置及两条关联箭头几何，画面未出现重复对象。",
+          "judge_file": "judge-gpt-6-luna-recovery.json"
+        },
+        {
+          "id": "H02.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log",
+            "state-S04-undo",
+            "state-S04-redo",
+            "state-S04-move"
+          ],
+          "reason": "一次 Control+Shift+z 将 Review 再次移至 (659,645)，标签和两条箭头几何与首次移动结果一致；渲染对象数量未增加。",
+          "judge_file": "judge-gpt-6.1-sol-recovery.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "H03.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0078-S04-redo-before.png",
+        "0080-S04-redo-after.png",
+        "0081-S04-branch-before.png",
+        "0084-S04-branch-after.png",
+        "0085-S04-branch-redo-before.png",
+        "0088-S04-branch-redo-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "H03.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0082-S04-branch-1.png",
+            "0083-S04-branch-2.png",
+            "0084-S04-branch-after.png",
+            "0086-S04-branch-redo-1.png",
+            "0088-S04-branch-redo-after.png"
+          ],
+          "reason": "Undo 移动后改色；之后 Redo 没有恢复已撤销的移动，节点保持原位置并显示改后的颜色。",
+          "judge_file": "judge-gpt-6-luna-recovery.json"
+        },
+        {
+          "id": "H03.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log",
+            "state-S04-redo",
+            "state-S04-branch",
+            "state-S04-branch-redo"
+          ],
+          "reason": "撤销移动后将 Review 填充改为绿色，再执行 Redo，节点仍停留在撤销后位置 (619,625)，绿色和连线保持不变，旧移动未被恢复。",
+          "judge_file": "judge-gpt-6.1-sol-recovery.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "H04.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0072-S04-move-before.png",
+        "0074-S04-move-after.png",
+        "0075-S04-undo-before.png",
+        "0077-S04-undo-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "H04.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0073-S04-move-1.png",
+            "0074-S04-move-after.png",
+            "0077-S04-undo-after.png"
+          ],
+          "reason": "连续拖动后一次 Undo 即恢复原位置，证据不显示需要按拖动事件次数重复撤销。",
+          "judge_file": "judge-gpt-6-luna-recovery.json"
+        },
+        {
+          "id": "H04.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log",
+            "state-S04-move",
+            "state-S04-undo"
+          ],
+          "reason": "日志记录一次连续拖动，取证说明每次拖动包含 20 次 pointer-move。一次 Control+z 即撤销全部 (40,20) 位移，而不是仅撤销末次移动事件。",
+          "judge_file": "judge-gpt-6.1-sol-recovery.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "H05.1": {
+      "observed": true,
+      "pass": false,
+      "evidence": [
+        "operator-records.json",
+        "0104-S06-save-before.png",
+        "0106-S06-save-after.png",
+        "0107-S04-delete-group-before.png",
+        "0110-S04-delete-group-after.png",
+        "0111-S04-undo-group-before.png",
+        "0113-S04-undo-group-after.png"
+      ],
+      "reason": "删除原组成员后，截图及可见 SVG DOM 仍显示上方 Proposal 和 Release；仅上方 Review 及其两边消失。冻结断言要求删除原组全部节点、文字和内部连线，因此失败。两名初评 judge 的通过判定与实际画面不符，代理按原始记录纠正。",
+      "judge_results": [
+        {
+          "id": "H05.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0107-S04-delete-group-before.png",
+            "0110-S04-delete-group-after.png"
+          ],
+          "reason": "删除后原组的 Review、文字及两条内部箭头消失；另一组的节点、文字和箭头仍完整。",
+          "judge_file": "judge-gpt-6-luna-recovery.json"
+        },
+        {
+          "id": "H05.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log",
+            "state-S04-delete-group",
+            "state-SUP-atomic-marquee",
+            "state-SUP-atomic-delete"
+          ],
+          "reason": "首次 S04-delete-group 实际只选中了 Review，不能据此证明整组删除。补测通过框选选中上方三个节点，再按 Delete：三个节点、各自文字和两条内部箭头全部消失，下方另一组及蓝色背景完整保留。",
+          "judge_file": "judge-gpt-6.1-sol-recovery.json"
+        }
+      ],
+      "adjudicated": true
+    },
+    "H06.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0107-S04-delete-group-before.png",
+        "0110-S04-delete-group-after.png",
+        "0111-S04-undo-group-before.png",
+        "0113-S04-undo-group-after.png",
+        "0230-SUP-restored-group-move-before.png",
+        "0232-SUP-restored-group-move-after.png",
+        "0351-SUP-atomic-marquee-before.png",
+        "0353-SUP-atomic-marquee-after.png",
+        "0354-SUP-atomic-delete-before.png",
+        "0356-SUP-atomic-delete-after.png",
+        "0357-SUP-atomic-undo-before.png",
+        "0359-SUP-atomic-undo-after.png",
+        "0360-SUP-atomic-edit-before.png",
+        "0362-SUP-atomic-edit-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "H06.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "state-SUP-atomic-marquee",
+            "state-SUP-atomic-delete",
+            "state-SUP-atomic-undo",
+            "state-SUP-atomic-edit",
+            "supplement-log"
+          ],
+          "reason": "After the original graph is deleted, one Undo restores its nodes and arrows together. The immediate subsequent drag moves Review and the arrows remain attached, providing UI evidence of restored editable bindings rather than only a restored appearance.",
+          "judge_file": "judge-gpt-6-luna-relations.json"
+        },
+        {
+          "id": "H06.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "state-SUP-atomic-marquee",
+            "state-SUP-atomic-delete",
+            "state-SUP-atomic-undo",
+            "state-SUP-atomic-edit",
+            "supplement-log"
+          ],
+          "reason": "完整框选并删除上方图后，一次 Ctrl+Z 同时恢复三节点、标签和两条边。紧接着拖动恢复的 Review，节点可编辑且两条边更新端点，证明恢复的是对象及绑定，而非外观图片；持久组合的缺陷另在 G02 判定。",
+          "judge_file": "judge-gpt-6.1-sol-relations.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "H07.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0114-S06-dirty-before.png",
+        "0116-S06-dirty-after.png",
+        "0123-S06-restore-confirm-before.png",
+        "0126-S06-restore-confirm-after.png",
+        "0127-S06-undo-restore-before.png",
+        "0130-S06-undo-restore-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "H07.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0119-S06-restore-dialog-after.png",
+            "0126-S06-restore-confirm-after.png",
+            "0130-S06-undo-restore-after.png"
+          ],
+          "reason": "恢复对话框明确写有“This action is undoable”；确认恢复后一次 Undo 将文档恢复到恢复前的编辑位置。",
+          "judge_file": "judge-gpt-6-luna-recovery.json"
+        },
+        {
+          "id": "H07.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log",
+            "state-S06-dirty",
+            "state-S06-restore-dialog",
+            "state-S06-restore-confirm",
+            "state-S06-undo-restore"
+          ],
+          "reason": "恢复对话框明确显示该操作可撤销。确认恢复后 Review 从编辑位置 x=620.2 回到快照位置 x=575.2；一次 Control+z 又回到 x=620.2，并恢复编辑前对应的标签和连线几何。",
+          "judge_file": "judge-gpt-6.1-sol-recovery.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "P01.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0104-S06-save-before.png",
+        "0106-S06-save-after.png",
+        "0114-S06-dirty-before.png",
+        "0116-S06-dirty-after.png",
+        "0123-S06-restore-confirm-before.png",
+        "0126-S06-restore-confirm-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "P01.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0106-S06-save-after.png",
+            "0116-S06-dirty-after.png",
+            "0126-S06-restore-confirm-after.png"
+          ],
+          "reason": "保存快照后移动对象，再恢复快照，对象回到保存时的位置；实时移动没有覆盖快照内容。",
+          "judge_file": "judge-gpt-6-luna-recovery.json"
+        },
+        {
+          "id": "P01.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log",
+            "state-S06-save",
+            "state-S06-dirty",
+            "state-S06-restore-confirm"
+          ],
+          "reason": "点击 Save snapshot 时下方 Review 位于 x=575.2。之后将其右移 45 像素，确认恢复仍返回 x=575.2，说明保存的快照未被后续实时编辑覆盖。",
+          "judge_file": "judge-gpt-6.1-sol-recovery.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "P02.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0114-S06-dirty-before.png",
+        "0116-S06-dirty-after.png",
+        "0117-S06-restore-dialog-before.png",
+        "0119-S06-restore-dialog-after.png",
+        "0120-S06-restore-cancel-before.png",
+        "0122-S06-restore-cancel-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "P02.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0120-S06-restore-cancel-before.png",
+            "0121-S06-restore-cancel-1.png",
+            "0122-S06-restore-cancel-after.png"
+          ],
+          "reason": "Cancel 后恢复对话框关闭，节点几何与连线保持取消前的编辑状态，没有发生恢复替换。",
+          "judge_file": "judge-gpt-6-luna-recovery.json"
+        },
+        {
+          "id": "P02.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log",
+            "state-S06-dirty",
+            "state-S06-restore-dialog",
+            "state-S06-restore-cancel",
+            "state-SUP-snapshot-size",
+            "state-SUP-snapshot-cancel"
+          ],
+          "reason": "移动后的文档打开 Restore snapshot 并 Cancel 后，节点位置、标签、颜色、连线及背景层级均不变。补测在改色和调整尺寸后再次取消恢复，修改后的颜色与尺寸也完整保留。",
+          "judge_file": "judge-gpt-6.1-sol-recovery.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "P03.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0104-S06-save-before.png",
+        "0106-S06-save-after.png",
+        "0123-S06-restore-confirm-before.png",
+        "0126-S06-restore-confirm-after.png",
+        "0242-SUP-restored-lock-before.png",
+        "0245-SUP-restored-lock-after.png",
+        "0259-SUP-snapshot-baseline-before.png",
+        "0262-SUP-snapshot-baseline-after.png",
+        "0267-SUP-snapshot-style-before.png",
+        "0269-SUP-snapshot-style-after.png",
+        "0270-SUP-snapshot-size-before.png",
+        "0272-SUP-snapshot-size-after.png",
+        "0273-SUP-snapshot-cancel-before.png",
+        "0276-SUP-snapshot-cancel-after.png",
+        "0277-SUP-snapshot-restored-before.png",
+        "0280-SUP-snapshot-restored-after.png",
+        "supplement-late/0006-LATE-save-before.png",
+        "supplement-late/0008-LATE-save-after.png",
+        "supplement-late/0015-LATE-restore-before.png",
+        "supplement-late/0018-LATE-restore-after.png",
+        "supplement-late/0019-LATE-restored-lock-before.png",
+        "supplement-late/0021-LATE-restored-lock-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "P03.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "state-S06-save",
+            "state-SUP-snapshot-baseline",
+            "state-SUP-snapshot-style",
+            "state-SUP-snapshot-size",
+            "state-SUP-snapshot-restored",
+            "state-SUP-restored-lock",
+            "LOG EVIDENCE snapshot-and-import-actions"
+          ],
+          "reason": "The saved document is altered in color and size, then Restore returns the baseline node appearance and dimensions. The title and object layout remain present; the background remains behind foreground objects, and the restored background resists the recorded drag.",
+          "judge_file": "judge-gpt-6-luna-relations.json"
+        },
+        {
+          "id": "P03.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "state-S06-save",
+            "state-SUP-snapshot-baseline",
+            "state-SUP-snapshot-style",
+            "state-SUP-snapshot-size",
+            "state-SUP-snapshot-restored",
+            "snapshot-and-import-actions",
+            "state-LATE-save",
+            "state-LATE-dirty",
+            "state-LATE-restore",
+            "state-LATE-restored-lock",
+            "late-actual-actions"
+          ],
+          "reason": "修改填充和尺寸后确认 Restore，Review 恢复保存时的绿色及尺寸。补测中移动前景节点后 Restore 将其恢复原位；已有标签和背景层叠关系保持，恢复后从实际背景内部拖动也未改变背景位置或尺寸。未要求恢复从未保存成功的新标签。",
+          "judge_file": "judge-gpt-6.1-sol-relations.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "P04.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0142-S06-reset-cancel-before.png",
+        "0145-S06-reset-cancel-after.png",
+        "0146-S06-reset-confirm-before.png",
+        "0149-S06-reset-confirm-after.png",
+        "0176-S07-restore-final-before.png",
+        "0179-S07-restore-final-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "P04.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0142-S06-reset-cancel-before.png",
+            "0144-S06-reset-cancel-2.png",
+            "0145-S06-reset-cancel-after.png"
+          ],
+          "reason": "Reset 对话框取消后，编辑文档的节点、颜色和连线几何与取消前一致。",
+          "judge_file": "judge-gpt-6-luna-recovery.json"
+        },
+        {
+          "id": "P04.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log",
+            "state-S06-reset-cancel"
+          ],
+          "reason": "日志记录 Reset board → Cancel，前后渲染几何、文字、填充、连线及 80% 视图均一致，编辑后的双组文档未被修改。",
+          "judge_file": "judge-gpt-6.1-sol-recovery.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "P04.2": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0142-S06-reset-cancel-before.png",
+        "0145-S06-reset-cancel-after.png",
+        "0146-S06-reset-confirm-before.png",
+        "0149-S06-reset-confirm-after.png",
+        "0176-S07-restore-final-before.png",
+        "0179-S07-restore-final-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "P04.2",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0149-S06-reset-confirm-after.png",
+            "0179-S07-restore-final-after.png"
+          ],
+          "reason": "确认 Reset 后画布显示初始三节点图；后续仍能恢复快照中的文档，支持快照在重置后保留。",
+          "judge_file": "judge-gpt-6-luna-recovery.json"
+        },
+        {
+          "id": "P04.2",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log",
+            "state-S06-save",
+            "state-S06-reset-confirm",
+            "state-S07-restore-final"
+          ],
+          "reason": "确认 Reset 后显示初始三节点水平流程图，缩放回到 100%。之后仍能恢复此前保存的双组快照，包括绿色 Review 和蓝色背景，证明 Reset 未删除用户快照。",
+          "judge_file": "judge-gpt-6.1-sol-recovery.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "P05.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0134-S07-export-before.png",
+        "0136-S07-export-after.png",
+        "0159-S07-import-before.png",
+        "0162-S07-import-after.png",
+        "0173-S07-edit-after-reload-before.png",
+        "0175-S07-edit-after-reload-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "P05.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "state-S07-export",
+            "state-S07-import",
+            "state-S07-edit-after-reload",
+            "LOG EVIDENCE export-import-receipt"
+          ],
+          "reason": "The visible export contains document objects, the supplied receipt records successful JSON parsing and an exact export/import hash match, and the imported Review object is subsequently moved in the UI.",
+          "judge_file": "judge-gpt-6-luna-relations.json"
+        },
+        {
+          "id": "P05.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "state-S07-export",
+            "export-import-receipt",
+            "state-S07-import",
+            "state-S07-edit-after-reload",
+            "snapshot-and-import-actions"
+          ],
+          "reason": "可见导出内容为包含具体对象数据的 JSON，解析回执成功且导入字节与导出一致。导入后可单独拖动绿色 Review，两条关联边随之更新，不是仅保存图片。",
+          "judge_file": "judge-gpt-6.1-sol-relations.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "P06.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0146-S06-reset-confirm-before.png",
+        "0149-S06-reset-confirm-after.png",
+        "0150-S07-invalid-syntax-before.png",
+        "0154-S07-invalid-syntax-after.png",
+        "0155-S07-invalid-structure-before.png",
+        "0158-S07-invalid-structure-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "P06.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0150-S07-invalid-syntax-before.png",
+            "0154-S07-invalid-syntax-after.png"
+          ],
+          "reason": "格式错误输入显示明确解析错误；错误前后初始图的节点和样式保持不变。",
+          "judge_file": "judge-gpt-6-luna-recovery.json"
+        },
+        {
+          "id": "P06.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log",
+            "state-S06-reset-confirm",
+            "state-S07-invalid-syntax"
+          ],
+          "reason": "输入格式错误的“{ broken”并点击 Import 后，界面明确显示 JSON 解析错误。日志中的导入前后节点、标签和样式一致，未替换原图。",
+          "judge_file": "judge-gpt-6.1-sol-recovery.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "P06.2": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0146-S06-reset-confirm-before.png",
+        "0149-S06-reset-confirm-after.png",
+        "0150-S07-invalid-syntax-before.png",
+        "0154-S07-invalid-syntax-after.png",
+        "0155-S07-invalid-structure-before.png",
+        "0158-S07-invalid-structure-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "P06.2",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0155-S07-invalid-structure-before.png",
+            "0158-S07-invalid-structure-after.png"
+          ],
+          "reason": "可解析但结构不合法的 JSON 显示“Invalid document structure”；原画布内容没有被清空或部分替换。",
+          "judge_file": "judge-gpt-6-luna-recovery.json"
+        },
+        {
+          "id": "P06.2",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log",
+            "state-S07-invalid-syntax",
+            "state-S07-invalid-structure"
+          ],
+          "reason": "输入可解析但结构不合法的 {\"format\":\"broken\"} 后，显示“Import failed: Invalid document structure”；原文档的渲染对象及几何保持不变，没有清空或部分替换。",
+          "judge_file": "judge-gpt-6.1-sol-recovery.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "P07.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0134-S07-export-before.png",
+        "0136-S07-export-after.png",
+        "0159-S07-import-before.png",
+        "0162-S07-import-after.png",
+        "0163-S07-import-again-before.png",
+        "0167-S07-import-again-after.png",
+        "0242-SUP-restored-lock-before.png",
+        "0245-SUP-restored-lock-after.png",
+        "0363-SUP-import-lock-baseline-before.png",
+        "0368-SUP-import-lock-baseline-after.png",
+        "0369-SUP-import-lock-drag-before.png",
+        "0371-SUP-import-lock-drag-after.png",
+        "0372-SUP-import-front-drag-before.png",
+        "0374-SUP-import-front-drag-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "P07.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "state-S07-import",
+            "state-SUP-import-lock-baseline",
+            "state-SUP-import-lock-drag",
+            "state-SUP-import-front-drag",
+            "LOG EVIDENCE export-import-receipt"
+          ],
+          "reason": "Importing the candidate’s own exported JSON restores the title, nodes, arrows, colors, and background. The receipt confirms the exact exported text was imported; the background remains stationary under the recorded drag while a foreground node can be moved.",
+          "judge_file": "judge-gpt-6-luna-relations.json"
+        },
+        {
+          "id": "P07.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "state-S07-export",
+            "export-import-receipt",
+            "state-S07-import",
+            "state-LATE-import",
+            "state-LATE-lock-initial",
+            "state-LATE-dirty",
+            "late-actual-actions"
+          ],
+          "reason": "使用候选自身导出数据导入后，标题、六个节点及标签、四条边和背景均恢复，颜色、尺寸及背景位于前景之后的关系对应导出文档。补测在背景实际可见范围内拖动，背景保持不动，而前景 Review 可以移动，提供了锁定恢复的 UI 证据。",
+          "judge_file": "judge-gpt-6.1-sol-relations.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "P07.2": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0134-S07-export-before.png",
+        "0136-S07-export-after.png",
+        "0159-S07-import-before.png",
+        "0162-S07-import-after.png",
+        "0163-S07-import-again-before.png",
+        "0167-S07-import-again-after.png",
+        "0242-SUP-restored-lock-before.png",
+        "0245-SUP-restored-lock-after.png",
+        "0363-SUP-import-lock-baseline-before.png",
+        "0368-SUP-import-lock-baseline-after.png",
+        "0369-SUP-import-lock-drag-before.png",
+        "0371-SUP-import-lock-drag-after.png",
+        "0372-SUP-import-front-drag-before.png",
+        "0374-SUP-import-front-drag-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "P07.2",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "state-S07-import",
+            "state-S07-import-again",
+            "LOG EVIDENCE export-import-receipt",
+            "LOG EVIDENCE snapshot-and-import-actions"
+          ],
+          "reason": "The screenshot after the second import shows the same two three-node diagrams and background, rather than an additional duplicated set. The recorded second import uses the same JSON input.",
+          "judge_file": "judge-gpt-6-luna-relations.json"
+        },
+        {
+          "id": "P07.2",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "state-S07-import",
+            "state-S07-edit-after-reload",
+            "state-S07-import-again",
+            "snapshot-and-import-actions",
+            "export-import-receipt"
+          ],
+          "reason": "首次导入后移动的 Review，在再次导入相同导出数据后回到导出位置，旧位置没有遗留节点；画面仍为两套三节点图、一个标题和一个背景，没有累加副本。",
+          "judge_file": "judge-gpt-6.1-sol-relations.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "P08.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0163-S07-import-again-before.png",
+        "0167-S07-import-again-after.png",
+        "0168-S07-reload-before.png",
+        "0170-S07-reload-after.png",
+        "0173-S07-edit-after-reload-before.png",
+        "0175-S07-edit-after-reload-after.png",
+        "0285-SUP-viewport-before-before.png",
+        "0289-SUP-viewport-before-after.png",
+        "0290-SUP-viewport-reloaded-before.png",
+        "0292-SUP-viewport-reloaded-after.png",
+        "0293-SUP-viewport-edit-before.png",
+        "0295-SUP-viewport-edit-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "P08.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0170-S07-reload-after.png",
+            "0175-S07-edit-after-reload-after.png",
+            "0289-SUP-viewport-before-after.png",
+            "0292-SUP-viewport-reloaded-after.png",
+            "0295-SUP-viewport-edit-after.png"
+          ],
+          "reason": "刷新后文档内容保留；单独的视口复测显示平移后的位置在 Reload 后保留，且刷新后仍能继续拖动编辑。",
+          "judge_file": "judge-gpt-6-luna-recovery.json"
+        },
+        {
+          "id": "P08.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log",
+            "state-S07-import-again",
+            "state-S07-reload",
+            "state-S07-edit-after-reload",
+            "state-SUP-viewport-before",
+            "state-SUP-viewport-reloaded",
+            "state-SUP-viewport-edit"
+          ],
+          "reason": "首次刷新保留双组文档，随后节点仍可拖动并更新连线。补测在 60% 缩放及平移后刷新，节点屏幕位置、尺寸和缩放值均保持一致；刷新后再次拖动 Review 成功。选中态和属性面板重置不影响判定。",
+          "judge_file": "judge-gpt-6.1-sol-recovery.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "P09.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0104-S06-save-before.png",
+        "0106-S06-save-after.png",
+        "0146-S06-reset-confirm-before.png",
+        "0149-S06-reset-confirm-after.png",
+        "0159-S07-import-before.png",
+        "0162-S07-import-after.png",
+        "0168-S07-reload-before.png",
+        "0170-S07-reload-after.png",
+        "0176-S07-restore-final-before.png",
+        "0179-S07-restore-final-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "P09.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0149-S06-reset-confirm-after.png",
+            "0162-S07-import-after.png",
+            "0170-S07-reload-after.png",
+            "0179-S07-restore-final-after.png"
+          ],
+          "reason": "Reset、Import 和 Reload 后仍能恢复此前保存的快照；恢复结果与快照内容相符，未被当前导入文档替换。",
+          "judge_file": "judge-gpt-6-luna-recovery.json"
+        },
+        {
+          "id": "P09.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log",
+            "state-S06-save",
+            "state-S06-reset-confirm",
+            "state-S07-import",
+            "state-S07-reload",
+            "state-S07-edit-after-reload",
+            "state-S07-restore-final"
+          ],
+          "reason": "保存快照后依次执行 Reset、Import、Reload，并继续移动当前文档对象。最后 Restore 仍返回原快照的双组内容、绿色节点位置和 80% 视图，而不是当前导入并编辑后的状态。",
+          "judge_file": "judge-gpt-6.1-sol-recovery.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "N01.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0085-S04-branch-redo-before.png",
+        "0088-S04-branch-redo-after.png",
+        "0089-S05-zoom-before.png",
+        "0092-S05-zoom-after.png",
+        "0101-S05-reset-zoom-before.png",
+        "0103-S05-reset-zoom-after.png",
+        "supplement-late/0037-LATE-zoom-out-before.png",
+        "supplement-late/0040-LATE-zoom-out-after.png",
+        "supplement-late/0041-LATE-reset-zoom-locator-before.png",
+        "supplement-late/0043-LATE-reset-zoom-locator-after.png",
+        "supplement-late/0044-LATE-reset-zoom-double-before.png",
+        "supplement-late/0046-LATE-reset-zoom-double-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "N01.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "state-LATE-zoom-out",
+            "LOG EVIDENCE late-actual-actions"
+          ],
+          "reason": "Two direct clicks on the observed minus control result in a displayed 80% zoom; the document objects are correspondingly smaller on screen.",
+          "judge_file": "judge-gpt-6-luna-relations.json"
+        },
+        {
+          "id": "N01.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "state-LATE-locked-drag",
+            "state-LATE-zoom-out",
+            "late-actual-actions"
+          ],
+          "reason": "连续点击两次缩小控件后显示 80%。节点宽度约由 182 像素变为 146 像素，背景宽度约由 910 像素变为 728 像素，文字与间距也相应缩小，与数值一致。",
+          "judge_file": "judge-gpt-6.1-sol-relations.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "N01.2": {
+      "observed": true,
+      "pass": false,
+      "evidence": [
+        "operator-records.json",
+        "0085-S04-branch-redo-before.png",
+        "0088-S04-branch-redo-after.png",
+        "0089-S05-zoom-before.png",
+        "0092-S05-zoom-after.png",
+        "0101-S05-reset-zoom-before.png",
+        "0103-S05-reset-zoom-after.png",
+        "supplement-late/0037-LATE-zoom-out-before.png",
+        "supplement-late/0040-LATE-zoom-out-after.png",
+        "supplement-late/0041-LATE-reset-zoom-locator-before.png",
+        "supplement-late/0043-LATE-reset-zoom-locator-after.png",
+        "supplement-late/0044-LATE-reset-zoom-double-before.png",
+        "supplement-late/0046-LATE-reset-zoom-double-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "N01.2",
+          "verdict": "fail",
+          "score": 0,
+          "evidence": [
+            "state-LATE-reset-zoom-locator",
+            "state-LATE-reset-zoom-double",
+            "LOG EVIDENCE late-actual-actions"
+          ],
+          "reason": "After zooming out, clicking the exact observed percentage element and retrying with a double-click leaves the display at 80%. The recorded control inventory identifies no separate reset-zoom control.",
+          "judge_file": "judge-gpt-6-luna-relations.json"
+        },
+        {
+          "id": "N01.2",
+          "verdict": "fail",
+          "score": 0,
+          "evidence": [
+            "state-LATE-zoom-out",
+            "state-LATE-reset-zoom-locator",
+            "state-LATE-reset-zoom-double",
+            "late-actual-actions"
+          ],
+          "reason": "在 80% 状态准确点击可见百分比 DOM 元素，并重试双击后，数值和画面仍保持 80%，未回到 100%。控件清单及精确定位重试已保留，不是仅因坐标偏移判失败。",
+          "judge_file": "judge-gpt-6.1-sol-relations.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "N02.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0089-S05-zoom-before.png",
+        "0092-S05-zoom-after.png",
+        "0093-S05-pan-before.png",
+        "0097-S05-pan-after.png",
+        "0098-S05-transformed-drag-before.png",
+        "0100-S05-transformed-drag-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "N02.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0093-S05-pan-before.png",
+            "0094-S05-pan-1.png",
+            "0095-S05-pan-2.png",
+            "0096-S05-pan-3.png",
+            "0097-S05-pan-after.png"
+          ],
+          "reason": "按住 Space 拖动后视图内容整体平移约 40 屏幕像素，节点没有被单独拖动。",
+          "judge_file": "judge-gpt-6-luna-recovery.json"
+        },
+        {
+          "id": "N02.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log",
+            "state-S05-zoom",
+            "state-S05-pan"
+          ],
+          "reason": "按住 Space 从 (1180,650) 拖至 (1220,690) 后，所有可比较节点、标签和箭头统一平移 (40,40)，尺寸和相对位置保持不变，没有单独拖动节点。",
+          "judge_file": "judge-gpt-6.1-sol-recovery.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "N02.2": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0089-S05-zoom-before.png",
+        "0092-S05-zoom-after.png",
+        "0093-S05-pan-before.png",
+        "0097-S05-pan-after.png",
+        "0098-S05-transformed-drag-before.png",
+        "0100-S05-transformed-drag-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "N02.2",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "0098-S05-transformed-drag-before.png",
+            "0099-S05-transformed-drag-1.png",
+            "0100-S05-transformed-drag-after.png"
+          ],
+          "reason": "80% 缩放和平移后，节点屏幕位移约为 (40,-24)，对应世界位移约 (50,-30)，且命中了目标节点并同步调整关联箭头。",
+          "judge_file": "judge-gpt-6-luna-recovery.json"
+        },
+        {
+          "id": "N02.2",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "operation-log",
+            "state-S05-pan",
+            "state-S05-transformed-drag"
+          ],
+          "reason": "80% 缩放和平移后，从 Review 标签处拖动 (40,-24) 屏幕像素，正确命中下方 Review，其矩形及标签恰好移动 (40,-24)，尺寸不变，箭头端点同步更新；该位移与 80% 下世界位移 (50,-30) 相容。",
+          "judge_file": "judge-gpt-6.1-sol-recovery.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "N03.1": {
+      "observed": true,
+      "pass": true,
+      "evidence": [
+        "operator-records.json",
+        "0064-S03-panel-back-before.png",
+        "0066-S03-panel-back-after.png",
+        "0067-S03-lock-attempt-before.png",
+        "0071-S03-lock-attempt-after.png",
+        "0072-S04-move-before.png",
+        "0074-S04-move-after.png",
+        "supplement-late/0026-LATE-panel-create-before.png",
+        "supplement-late/0029-LATE-panel-create-after.png",
+        "supplement-late/0030-LATE-lock-feedback-before.png",
+        "supplement-late/0032-LATE-lock-feedback-after.png",
+        "supplement-late/0033-LATE-locked-drag-before.png",
+        "supplement-late/0036-LATE-locked-drag-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "N03.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "state-LATE-panel-create",
+            "state-LATE-lock-feedback",
+            "state-LATE-locked-drag",
+            "state-LATE-dirty",
+            "state-LATE-restore",
+            "state-LATE-restored-lock",
+            "LOG EVIDENCE late-actual-actions"
+          ],
+          "reason": "The background panel is locked, then a drag at its visible bounds leaves it in place. After a foreground edit and Restore, the recorded drag again leaves the panel stationary.",
+          "judge_file": "judge-gpt-6-luna-relations.json"
+        },
+        {
+          "id": "N03.1",
+          "verdict": "pass",
+          "score": 1,
+          "evidence": [
+            "state-LATE-panel-create",
+            "state-LATE-lock-feedback",
+            "state-LATE-locked-drag",
+            "state-LATE-import",
+            "state-LATE-lock-initial",
+            "late-actual-actions"
+          ],
+          "reason": "新建背景执行锁定后清空选择，再从背景内部拖动，背景边界未改变。导入已锁定背景的独立场景也从实际背景内部拖动，位置和尺寸保持不变。",
+          "judge_file": "judge-gpt-6.1-sol-relations.json"
+        }
+      ],
+      "adjudicated": false
+    },
+    "N03.2": {
+      "observed": true,
+      "pass": false,
+      "evidence": [
+        "operator-records.json",
+        "0064-S03-panel-back-before.png",
+        "0066-S03-panel-back-after.png",
+        "0067-S03-lock-attempt-before.png",
+        "0071-S03-lock-attempt-after.png",
+        "0072-S04-move-before.png",
+        "0074-S04-move-after.png",
+        "supplement-late/0026-LATE-panel-create-before.png",
+        "supplement-late/0029-LATE-panel-create-after.png",
+        "supplement-late/0030-LATE-lock-feedback-before.png",
+        "supplement-late/0032-LATE-lock-feedback-after.png",
+        "supplement-late/0033-LATE-locked-drag-before.png",
+        "supplement-late/0036-LATE-locked-drag-after.png"
+      ],
+      "reason": "两名匿名 judge 对实际操作证据的判定一致。",
+      "judge_results": [
+        {
+          "id": "N03.2",
+          "verdict": "fail",
+          "score": 0,
+          "evidence": [
+            "state-LATE-lock-feedback",
+            "state-LATE-locked-drag",
+            "state-SUP-import-front-drag",
+            "LOG EVIDENCE late-actual-actions"
+          ],
+          "reason": "The foreground node can be selected and moved while the background is behind it, so the panel does not block foreground interaction. However, the supplied lock-feedback screenshot shows no clear visible locked-state indicator or changed lock control feedback; the combined assertion is therefore not met.",
+          "judge_file": "judge-gpt-6-luna-relations.json"
+        },
+        {
+          "id": "N03.2",
+          "verdict": "fail",
+          "score": 0,
+          "evidence": [
+            "state-SUP-import-lock-baseline",
+            "state-SUP-import-front-drag",
+            "snapshot-and-import-actions",
+            "state-LATE-panel-create",
+            "state-LATE-lock-feedback",
+            "late-actual-actions"
+          ],
+          "reason": "锁定背景没有阻止前景 Review 的选择和拖动，且前景有选择框；但执行锁定后的即时截图与锁定前相同，仍显示普通选择框和“Lock”按钮，没有明确的已锁定标记、按钮状态或提示，因此锁定反馈清楚这一条件未满足。",
+          "judge_file": "judge-gpt-6.1-sol-relations.json"
+        }
+      ],
+      "adjudicated": false
+    }
+  },
+  "visual": {
+    "V01": {
+      "01-initial": {
+        "observed": true,
+        "score": 0.75,
+        "evidence": [
+          "operator-records.json",
+          "0001-initial-before.png",
+          "0002-initial-after.png"
+        ],
+        "reason": "Header height, centered toolbar, initial node arrangement, canvas whitespace, and bottom-left zoom/history placement closely correspond. The candidate toolbar is narrower, the menu and Library controls are absent, and the bottom controls have somewhat different spacing.",
+        "judge_result": {
+          "id": "V01/01-initial",
+          "score": 0.75,
+          "evidence": [
+            "reference-01-initial",
+            "candidate-01-initial"
+          ],
+          "reason": "Header height, centered toolbar, initial node arrangement, canvas whitespace, and bottom-left zoom/history placement closely correspond. The candidate toolbar is narrower, the menu and Library controls are absent, and the bottom controls have somewhat different spacing.",
+          "judge_file": "judge-gpt-6.1-sol-visual.json"
+        },
+        "adjudicated": false
+      },
+      "24-final": {
+        "observed": true,
+        "score": 0.5,
+        "evidence": [
+          "operator-records.json",
+          "0176-S07-restore-final-before.png",
+          "0179-S07-restore-final-after.png"
+        ],
+        "reason": "The header, toolbar, two flow rows, and lower blue panel remain recognizable. However, the candidate shows 80% rather than 100% zoom, making the main diagram substantially smaller, and retains a large properties sidebar and selection box absent from the reference final state.",
+        "judge_result": {
+          "id": "V01/24-final",
+          "score": 0.5,
+          "evidence": [
+            "reference-24-final",
+            "candidate-24-final"
+          ],
+          "reason": "The header, toolbar, two flow rows, and lower blue panel remain recognizable. However, the candidate shows 80% rather than 100% zoom, making the main diagram substantially smaller, and retains a large properties sidebar and selection box absent from the reference final state.",
+          "judge_file": "judge-gpt-6.1-sol-visual.json"
+        },
+        "adjudicated": false
+      }
+    },
+    "V02": {
+      "02-bound-move": {
+        "observed": true,
+        "score": 0.5,
+        "evidence": [
+          "operator-records.json",
+          "0003-S01-move-before.png",
+          "0006-S01-move-after.png"
+        ],
+        "reason": "Node dimensions, rounded corners, fills, and centered labels closely correspond. The candidate uses uniformly smooth outlines rather than the reference's hand-drawn treatment, noticeably smaller arrowheads, and side-center connector attachments that produce substantially different connector slopes despite closely aligned node positions.",
+        "judge_result": {
+          "id": "V02/02-bound-move",
+          "score": 0.5,
+          "evidence": [
+            "reference-02-bound-move",
+            "candidate-02-bound-move"
+          ],
+          "reason": "Node dimensions, rounded corners, fills, and centered labels closely correspond. The candidate uses uniformly smooth outlines rather than the reference's hand-drawn treatment, noticeably smaller arrowheads, and side-center connector attachments that produce substantially different connector slopes despite closely aligned node positions.",
+          "judge_file": "judge-gpt-6.1-sol-visual.json"
+        },
+        "adjudicated": false
+      },
+      "08-panel-back": {
+        "observed": true,
+        "score": 0.5,
+        "evidence": [
+          "operator-records.json",
+          "0064-S03-panel-back-before.png",
+          "0066-S03-panel-back-after.png"
+        ],
+        "reason": "Both screenshots show two connected three-node flows with the lower flow over a blue rounded panel. The candidate has smooth, more uniform outlines, smaller arrowheads, and markedly steeper side-center connections. Its enlarged middle nodes contain only a short single-line label instead of the reference's two-line labels, changing text-to-node proportions.",
+        "judge_result": {
+          "id": "V02/08-panel-back",
+          "score": 0.5,
+          "evidence": [
+            "reference-08-panel-back",
+            "candidate-08-panel-back"
+          ],
+          "reason": "Both screenshots show two connected three-node flows with the lower flow over a blue rounded panel. The candidate has smooth, more uniform outlines, smaller arrowheads, and markedly steeper side-center connections. Its enlarged middle nodes contain only a short single-line label instead of the reference's two-line labels, changing text-to-node proportions.",
+          "judge_file": "judge-gpt-6.1-sol-visual.json"
+        },
+        "adjudicated": false
+      },
+      "24-final": {
+        "observed": true,
+        "score": 0.5,
+        "evidence": [
+          "operator-records.json",
+          "0176-S07-restore-final-before.png",
+          "0179-S07-restore-final-after.png"
+        ],
+        "reason": "The colored rounded-node and blue-panel composition corresponds, but the candidate's diagram is visibly smaller, outlines are uniformly smooth, and arrowheads are smaller with different attachment geometry. Both middle nodes retain short single-line labels instead of the reference's two-line text.",
+        "judge_result": {
+          "id": "V02/24-final",
+          "score": 0.5,
+          "evidence": [
+            "reference-24-final",
+            "candidate-24-final"
+          ],
+          "reason": "The colored rounded-node and blue-panel composition corresponds, but the candidate's diagram is visibly smaller, outlines are uniformly smooth, and arrowheads are smaller with different attachment geometry. Both middle nodes retain short single-line labels instead of the reference's two-line text.",
+          "judge_file": "judge-gpt-6.1-sol-visual.json"
+        },
+        "adjudicated": false
+      }
+    },
+    "V03": {
+      "01-initial": {
+        "observed": true,
+        "score": 0.75,
+        "evidence": [
+          "operator-records.json",
+          "0001-initial-before.png",
+          "0002-initial-after.png"
+        ],
+        "reason": "The handwritten-style node labels are centered and similarly sized, and the pastel blue, yellow, and green fills closely correspond without clipping. The candidate's canvas title is noticeably smaller and narrower, and its lettering appears darker than the reference.",
+        "judge_result": {
+          "id": "V03/01-initial",
+          "score": 0.75,
+          "evidence": [
+            "reference-01-initial",
+            "candidate-01-initial"
+          ],
+          "reason": "The handwritten-style node labels are centered and similarly sized, and the pastel blue, yellow, and green fills closely correspond without clipping. The candidate's canvas title is noticeably smaller and narrower, and its lettering appears darker than the reference.",
+          "judge_file": "judge-gpt-6.1-sol-visual.json"
+        },
+        "adjudicated": false
+      },
+      "03-resize-label-style": {
+        "observed": true,
+        "score": 0.5,
+        "evidence": [
+          "operator-records.json",
+          "0014-S01-style-before.png",
+          "0017-S01-style-after.png"
+        ],
+        "reason": "The resized middle node has the corresponding pink fill, and labels remain centered and unobscured. However, it still displays 'Review' rather than the reference's two-line 'Legal review / 48h SLA' label, so the intended line spacing and text block are absent. The canvas title is also smaller and darker.",
+        "judge_result": {
+          "id": "V03/03-resize-label-style",
+          "score": 0.5,
+          "evidence": [
+            "reference-03-resize-label-style",
+            "candidate-03-resize-label-style"
+          ],
+          "reason": "The resized middle node has the corresponding pink fill, and labels remain centered and unobscured. However, it still displays 'Review' rather than the reference's two-line 'Legal review / 48h SLA' label, so the intended line spacing and text block are absent. The canvas title is also smaller and darker.",
+          "judge_file": "judge-gpt-6.1-sol-visual.json"
+        },
+        "adjudicated": false
+      },
+      "12-history-branch": {
+        "observed": true,
+        "score": 0.5,
+        "evidence": [
+          "operator-records.json",
+          "0081-S04-branch-before.png",
+          "0084-S04-branch-after.png"
+        ],
+        "reason": "The blue panel, pink upper middle node, and green lower middle node reproduce the main color hierarchy. Both middle labels remain single-line 'Review' rather than the reference's two-line labels. The title is smaller, and the properties sidebar omits most of the reference's labeled styling sections and selected-color feedback.",
+        "judge_result": {
+          "id": "V03/12-history-branch",
+          "score": 0.5,
+          "evidence": [
+            "reference-12-history-branch",
+            "candidate-12-history-branch"
+          ],
+          "reason": "The blue panel, pink upper middle node, and green lower middle node reproduce the main color hierarchy. Both middle labels remain single-line 'Review' rather than the reference's two-line labels. The title is smaller, and the properties sidebar omits most of the reference's labeled styling sections and selected-color feedback.",
+          "judge_file": "judge-gpt-6.1-sol-visual.json"
+        },
+        "adjudicated": false
+      }
+    },
+    "V04": {
+      "04-group": {
+        "observed": true,
+        "score": 0.5,
+        "evidence": [
+          "operator-records.json",
+          "0027-S02-marquee-group-before.png",
+          "0030-S02-marquee-group-after.png"
+        ],
+        "reason": "A dashed group-selection rectangle surrounds the corresponding flow in approximately the same position and dimensions. The candidate shows only a lower-right handle rather than the reference's corner handles and rotation control. Its sidebar retains the outer panel placement but replaces the extensive property controls with two swatch rows and plain action buttons.",
+        "judge_result": {
+          "id": "V04/04-group",
+          "score": 0.5,
+          "evidence": [
+            "reference-04-group",
+            "candidate-04-group"
+          ],
+          "reason": "A dashed group-selection rectangle surrounds the corresponding flow in approximately the same position and dimensions. The candidate shows only a lower-right handle rather than the reference's corner handles and rotation control. Its sidebar retains the outer panel placement but replaces the extensive property controls with two swatch rows and plain action buttons.",
+          "judge_file": "judge-gpt-6.1-sol-visual.json"
+        },
+        "adjudicated": false
+      },
+      "07-panel-front": {
+        "observed": true,
+        "score": 0.5,
+        "evidence": [
+          "operator-records.json",
+          "0059-S03-panel-front-before.png",
+          "0063-S03-panel-front-after.png"
+        ],
+        "reason": "The selected blue foreground panel occupies closely corresponding bounds and obscures the lower flow as in the reference. The selection border is dashed with only one visible resize handle, rather than the reference's multi-handle selection and rotation control. The sidebar lacks the reference's fill, stroke, opacity, and layer-control sections.",
+        "judge_result": {
+          "id": "V04/07-panel-front",
+          "score": 0.5,
+          "evidence": [
+            "reference-07-panel-front",
+            "candidate-07-panel-front"
+          ],
+          "reason": "The selected blue foreground panel occupies closely corresponding bounds and obscures the lower flow as in the reference. The selection border is dashed with only one visible resize handle, rather than the reference's multi-handle selection and rotation control. The sidebar lacks the reference's fill, stroke, opacity, and layer-control sections.",
+          "judge_file": "judge-gpt-6.1-sol-visual.json"
+        },
+        "adjudicated": false
+      },
+      "09-locked": {
+        "observed": true,
+        "score": 0.5,
+        "evidence": [
+          "operator-records.json",
+          "0067-S03-lock-attempt-before.png",
+          "0071-S03-lock-attempt-after.png"
+        ],
+        "reason": "The sidebar and object bounding box are absent in both screenshots, and the blue panel remains behind the lower flow. The candidate nevertheless shows conspicuous blue browser-style text-selection highlights across the title and every node label, which are absent from the reference's clean locked state.",
+        "judge_result": {
+          "id": "V04/09-locked",
+          "score": 0.5,
+          "evidence": [
+            "reference-09-locked",
+            "candidate-09-locked"
+          ],
+          "reason": "The sidebar and object bounding box are absent in both screenshots, and the blue panel remains behind the lower flow. The candidate nevertheless shows conspicuous blue browser-style text-selection highlights across the title and every node label, which are absent from the reference's clean locked state.",
+          "judge_file": "judge-gpt-6.1-sol-visual.json"
+        },
+        "adjudicated": false
+      },
+      "13-zoom-pan-edit": {
+        "observed": true,
+        "score": 0.5,
+        "evidence": [
+          "operator-records.json",
+          "0098-S05-transformed-drag-before.png",
+          "0100-S05-transformed-drag-after.png"
+        ],
+        "reason": "Both screenshots show 80% zoom, a selected green middle node, and a left properties panel. The candidate's selection uses a dashed border and one resize handle instead of the reference's corner and rotation handles. Most sidebar controls are missing, and the diagram sits substantially farther up and left than in the reference transformed view.",
+        "judge_result": {
+          "id": "V04/13-zoom-pan-edit",
+          "score": 0.5,
+          "evidence": [
+            "reference-13-zoom-pan-edit",
+            "candidate-13-zoom-pan-edit"
+          ],
+          "reason": "Both screenshots show 80% zoom, a selected green middle node, and a left properties panel. The candidate's selection uses a dashed border and one resize handle instead of the reference's corner and rotation handles. Most sidebar controls are missing, and the diagram sits substantially farther up and left than in the reference transformed view.",
+          "judge_file": "judge-gpt-6.1-sol-visual.json"
+        },
+        "adjudicated": false
+      }
+    },
+    "V05": {
+      "16-restore-dialog": {
+        "observed": true,
+        "score": 0.5,
+        "evidence": [
+          "operator-records.json",
+          "0117-S06-restore-dialog-before.png",
+          "0119-S06-restore-dialog-after.png"
+        ],
+        "reason": "A centered white rounded confirmation dialog, dimming overlay, title, body, and secondary/primary buttons are present. The candidate dialog is substantially wider and shorter, its overlay is lighter, and its smaller one-line body and generic 'Continue' button differ visibly from the reference's two-line explanation and 'Restore' action.",
+        "judge_result": {
+          "id": "V05/16-restore-dialog",
+          "score": 0.5,
+          "evidence": [
+            "reference-16-restore-dialog",
+            "candidate-16-restore-dialog"
+          ],
+          "reason": "A centered white rounded confirmation dialog, dimming overlay, title, body, and secondary/primary buttons are present. The candidate dialog is substantially wider and shorter, its overlay is lighter, and its smaller one-line body and generic 'Continue' button differ visibly from the reference's two-line explanation and 'Restore' action.",
+          "judge_file": "judge-gpt-6.1-sol-visual.json"
+        },
+        "adjudicated": false
+      },
+      "18-export": {
+        "observed": true,
+        "score": 0.5,
+        "evidence": [
+          "operator-records.json",
+          "0134-S07-export-before.png",
+          "0136-S07-export-after.png"
+        ],
+        "reason": "The export state has a centered modal with a title and visible JSON content. However, the candidate replaces the reference's explanatory paragraph and bordered, monospace JSON text area with densely wrapped proportional text. The modal is smaller, the overlay is lighter, and Cancel/Continue buttons replace the single Close button. JSON field names are not penalized.",
+        "judge_result": {
+          "id": "V05/18-export",
+          "score": 0.5,
+          "evidence": [
+            "reference-18-export",
+            "candidate-18-export"
+          ],
+          "reason": "The export state has a centered modal with a title and visible JSON content. However, the candidate replaces the reference's explanatory paragraph and bordered, monospace JSON text area with densely wrapped proportional text. The modal is smaller, the overlay is lighter, and Cancel/Continue buttons replace the single Close button. JSON field names are not penalized.",
+          "judge_file": "judge-gpt-6.1-sol-visual.json"
+        },
+        "adjudicated": false
+      },
+      "20-invalid-import": {
+        "observed": true,
+        "score": 0.5,
+        "evidence": [
+          "operator-records.json",
+          "0155-S07-invalid-structure-before.png",
+          "0158-S07-invalid-structure-after.png"
+        ],
+        "reason": "The candidate presents the corresponding import modal, populated JSON text area, visible error message, and Cancel/Import button hierarchy. Its modal and text area are smaller, explanatory text is missing, and the error appears as muted gray text rather than the reference's prominent red-tinted error strip. The overlay is also noticeably lighter.",
+        "judge_result": {
+          "id": "V05/20-invalid-import",
+          "score": 0.5,
+          "evidence": [
+            "reference-20-invalid-import",
+            "candidate-20-invalid-import"
+          ],
+          "reason": "The candidate presents the corresponding import modal, populated JSON text area, visible error message, and Cancel/Import button hierarchy. Its modal and text area are smaller, explanatory text is missing, and the error appears as muted gray text rather than the reference's prominent red-tinted error strip. The overlay is also noticeably lighter.",
+          "judge_file": "judge-gpt-6.1-sol-visual.json"
+        },
+        "adjudicated": false
+      }
+    }
+  },
+  "judge": "gpt-6.1-sol",
+  "adjudicator": "Codex primary agent; not an independent human reviewer"
+}
