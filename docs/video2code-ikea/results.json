@@ -3127,7 +3127,7 @@
         "single available anonymous visual judge",
         "User-authorized original-order newline concatenation of duplicate app.js entries; original delivery failure retained."
       ],
-      "generated_at": "2026-10-23T04:51:16.611605+00:00"
+      "generated_at": "2026-10-23T05:20:20.453643+00:00"
     },
     {
       "model": "gpt-6-astra",
@@ -4563,7 +4563,7 @@
         "single valid generation",
         "single available anonymous visual judge"
       ],
-      "generated_at": "2026-10-23T04:51:16.611605+00:00"
+      "generated_at": "2026-10-23T05:20:20.453643+00:00"
     },
     {
       "model": "k3",
@@ -5231,7 +5231,7 @@
         "single valid generation",
         "single available anonymous visual judge"
       ],
-      "generated_at": "2026-10-23T04:51:16.611605+00:00"
+      "generated_at": "2026-10-23T05:20:20.453643+00:00"
     },
     {
       "model": "gpt-6-sol",
@@ -6659,7 +6659,7 @@
         "single valid generation",
         "single available anonymous visual judge"
       ],
-      "generated_at": "2026-10-23T04:51:16.611605+00:00"
+      "generated_at": "2026-10-23T05:20:20.453643+00:00"
     },
     {
       "model": "glm-5.3-flash",
@@ -6826,7 +6826,7 @@
           },
           "output_tokens": 65536,
           "output_tokens_details": {
-            "reasoning_tokens": 44176
+            "reasoning_tokens": 25946
           },
           "total_tokens": 138859,
           "x_details": [
@@ -6839,8 +6839,8 @@
                 "image_tokens": 47640
               },
               "output_tokens_details": {
-                "text_tokens": 21359,
-                "reasoning_tokens": 44176
+                "text_tokens": 39589,
+                "reasoning_tokens": 25946
               },
               "image_tokens": 47640,
               "prompt_tokens_details": {
@@ -6851,20 +6851,24 @@
           ]
         },
         "error": "Expected exactly one project delivery; got 0",
-        "elapsed_seconds": 652.763,
+        "elapsed_seconds": 835.009,
         "responses": 1,
         "repairs": 0,
-        "bytes": 4804972,
-        "eventCount": 19417
+        "bytes": 4042111,
+        "eventCount": 16540
       },
       "items": [],
       "delivery_failure": true,
-      "run_id": "deepseek-v4.1-flash-one-shot-01",
+      "run_id": "deepseek-v4.1-flash-one-shot-02",
       "pending": false,
       "limitations": [
         "No complete valid project submitted. No repairs or second generation after content feedback. N/A is not zero.",
         "Provider output and connection limits retained in raw evidence."
-      ]
+      ],
+      "attempt": 2,
+      "transport_attempts": 2,
+      "prior_run_id": "deepseek-v4.1-flash-one-shot-01",
+      "selection": "User-requested retry; first attempt retained; no best-of selection"
     }
   ],
   "frozen_at": "2026-10-22T06:01:24.359633+00:00",
@@ -6885,7 +6889,7 @@
       "glm": "No candidate generation due unavailable GLM channel; not replaced by Claude."
     }
   },
-  "updated_at": "2026-10-23T04:51:16.611605+00:00",
+  "updated_at": "2026-10-23T05:20:20.453643+00:00",
   "note": "Original protocol retained; added models follow extension. No score cap or posthoc reweighting.",
   "additional_extension": {
     "created_at": "2026-10-22T08:07:58.375Z",
@@ -7010,5 +7014,108 @@
       }
     },
     "public_redactions": "Nonessential upstream routing/session/masked credential metadata omitted from public preflights; private original responses retained."
+  },
+  "deepseek_retry": {
+    "created_at": "2026-10-23T05:20:19.081219+00:00",
+    "model": "deepseek-v4.1-flash",
+    "authorization": "User explicitly requested one additional independent attempt without an output-token limit.",
+    "prior_run": "deepseek-v4.1-flash-one-shot-01",
+    "current_run": "deepseek-v4.1-flash-one-shot-02",
+    "candidate_generations_requested_across_both_runs": 2,
+    "same_exact_request_body_sha256": "70eeb520fc1eb57710dabe4bbdd80a5baf7f6dad0ffdaa4a44562947944de470",
+    "same_input_packet_freeze_sha256": "9afec45301d30be6e085f477aaa7ead32eeda9d6dec64bc9aac8eef1721528fc",
+    "max_output_tokens_field": false,
+    "max_tokens_field": false,
+    "client_timeout": null,
+    "requested_reasoning": "high",
+    "delivery_calls_per_attempt": 1,
+    "self_tests": 0,
+    "repairs": 0,
+    "feedback_to_model": false,
+    "selection": "Display the user-requested second attempt, regardless of score, while preserving the first attempt. No best-of selection.",
+    "provider_limit_caveat": "The first request already omitted all output limits. The provider nevertheless stopped at 65536 output tokens. Omitting a parameter does not override provider limits.",
+    "final_outcome": {
+      "model": "deepseek-v4.1-flash",
+      "status": "delivery_failed",
+      "provider_status": "incomplete",
+      "incomplete_details": {
+        "reason": "max_output_tokens"
+      },
+      "usage": {
+        "input_tokens": 73323,
+        "input_tokens_details": {
+          "cached_tokens": 0
+        },
+        "output_tokens": 65536,
+        "output_tokens_details": {
+          "reasoning_tokens": 25946
+        },
+        "total_tokens": 138859,
+        "x_details": [
+          {
+            "input_tokens": 73323,
+            "output_tokens": 65536,
+            "total_tokens": 138859,
+            "input_tokens_details": {
+              "text_tokens": 25683,
+              "image_tokens": 47640
+            },
+            "output_tokens_details": {
+              "text_tokens": 39589,
+              "reasoning_tokens": 25946
+            },
+            "image_tokens": 47640,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "x_billing_type": "response_api"
+          }
+        ]
+      },
+      "error": "Expected exactly one project delivery; got 0",
+      "elapsed_seconds": 835.009,
+      "responses": 1,
+      "repairs": 0,
+      "bytes": 4042111,
+      "eventCount": 16540
+    },
+    "valid_project_delivered": false,
+    "final_score": null,
+    "delivery_validation": {
+      "source": "Unmodified concatenation of response.function_call_arguments.delta values for the sole tool-call item; not executable code or a repaired submission.",
+      "characters": 112808,
+      "bytes": 112913,
+      "valid_json": false,
+      "json_error": {
+        "message": "Unterminated string starting at",
+        "position": 62174,
+        "line": 1,
+        "column": 62175
+      },
+      "event_counts": {
+        "response.created": 1,
+        "response.in_progress": 1,
+        "response.output_item.added": 3,
+        "response.reasoning_text.delta": 8366,
+        "response.reasoning_text.done": 1,
+        "response.output_item.done": 2,
+        "response.content_part.added": 1,
+        "response.output_text.delta": 47,
+        "response.output_text.done": 1,
+        "response.content_part.done": 1,
+        "response.function_call_arguments.delta": 8114,
+        "response.function_call_arguments.done": 1,
+        "response.incomplete": 1
+      },
+      "client_output_limit": null,
+      "client_timeout": null,
+      "provider_stop": {
+        "reason": "max_output_tokens"
+      },
+      "output_tokens": 65536,
+      "reasoning_tokens": 25946,
+      "candidate_modified": false,
+      "repairs": 0
+    }
   }
 }
