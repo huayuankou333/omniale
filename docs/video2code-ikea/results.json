@@ -3127,7 +3127,7 @@
         "single available anonymous visual judge",
         "User-authorized original-order newline concatenation of duplicate app.js entries; original delivery failure retained."
       ],
-      "generated_at": "2026-10-23T04:21:44.845877+00:00"
+      "generated_at": "2026-10-23T04:51:16.611605+00:00"
     },
     {
       "model": "gpt-6-astra",
@@ -4563,7 +4563,7 @@
         "single valid generation",
         "single available anonymous visual judge"
       ],
-      "generated_at": "2026-10-23T04:21:44.845877+00:00"
+      "generated_at": "2026-10-23T04:51:16.611605+00:00"
     },
     {
       "model": "k3",
@@ -5231,7 +5231,7 @@
         "single valid generation",
         "single available anonymous visual judge"
       ],
-      "generated_at": "2026-10-23T04:21:44.845877+00:00"
+      "generated_at": "2026-10-23T04:51:16.611605+00:00"
     },
     {
       "model": "gpt-6-sol",
@@ -6659,7 +6659,7 @@
         "single valid generation",
         "single available anonymous visual judge"
       ],
-      "generated_at": "2026-10-23T04:21:44.845877+00:00"
+      "generated_at": "2026-10-23T04:51:16.611605+00:00"
     },
     {
       "model": "glm-5.3-flash",
@@ -6736,15 +6736,46 @@
         }
       },
       "status": {
-        "status": "running",
-        "started_at": "2026-10-23T03:47:28.086Z",
-        "snapshot_at": "2026-10-23T04:21:44.845877+00:00",
-        "note": "No response headers or candidate received at report snapshot; request remains active."
+        "model": "claude-opus-5",
+        "status": "transport_incomplete",
+        "provider_status": null,
+        "incomplete_details": {
+          "reason": "native_stream_closed_without_stop_reason"
+        },
+        "usage": {
+          "input_tokens": 135903,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens": 5,
+          "service_tier": "standard"
+        },
+        "error": "Native stream ended after message_start, thinking content_block_start and ping; no message_delta stop_reason, message_stop, text delta or project tool_use. No candidate received.",
+        "stage": "receiving",
+        "elapsed_seconds": 102.853,
+        "bytes": 1715,
+        "events": 3,
+        "responses_received": 1,
+        "repairs": 0,
+        "usage_partial": true,
+        "complete_responses_received": 0,
+        "received_streams": 1,
+        "candidate_submissions_received": 0,
+        "prior_unreceived_transport_attempts": 4,
+        "native_event_counts": {
+          "message_start": 1,
+          "content_block_start": 1,
+          "ping": 1
+        },
+        "normalization_note": "Original runner misclassified any saved response as a delivery failure and defaulted missing stop_reason to completed. Corrected metadata only; original raw stream, runner and original metadata retained. No candidate code modified."
       },
       "items": [],
       "delivery_failure": false,
-      "run_id": "claude-opus-5-one-shot-02",
-      "pending": true,
+      "run_id": "claude-opus-5-one-shot-05",
+      "pending": false,
       "limitations": [
         "No complete valid project submitted. No repairs or second generation after content feedback. N/A is not zero.",
         "Provider output and connection limits retained in raw evidence."
@@ -6854,7 +6885,7 @@
       "glm": "No candidate generation due unavailable GLM channel; not replaced by Claude."
     }
   },
-  "updated_at": "2026-10-23T04:21:44.845877+00:00",
+  "updated_at": "2026-10-23T04:51:16.611605+00:00",
   "note": "Original protocol retained; added models follow extension. No score cap or posthoc reweighting.",
   "additional_extension": {
     "created_at": "2026-10-22T08:07:58.375Z",
@@ -6906,7 +6937,78 @@
         "retry": "claude-opus-5-one-shot-02",
         "change": "Node https transport without header/body timeout; request body and task unchanged; no model feedback or repairs",
         "comparison_limit": "An earlier server-side generation cannot be ruled out after lost connection. Only one received submission will be evaluated; all attempts retained."
+      },
+      {
+        "model": "claude-opus-5",
+        "attempt": "claude-opus-5-one-shot-02",
+        "status": "transport_switched",
+        "reason": "Full Responses request remained without headers or output for more than 40 minutes; minimal Chat image/tool preflight passed. Client connection closed to switch transport. No code feedback, repairs, or complete candidate received. Server-side generation cannot be ruled out.",
+        "elapsed_seconds": 2624.24769,
+        "responses_received": 0,
+        "bytes": 0,
+        "eventCount": 0,
+        "repairs": 0,
+        "next_run": "claude-opus-5-one-shot-03"
+      },
+      {
+        "attempt": "claude-opus-5-one-shot-03",
+        "model": "claude-opus-5",
+        "status": "transport_switched",
+        "reason": "Original PNG request body 32889566 bytes; no response headers or candidate received. Switching to lossless WebP transport with identical RGBA pixels and dimensions for all 60 frames, reducing request body size. Payload-size cause remains a hypothesis; no provider limit error received.",
+        "elapsed_seconds": 459.455906,
+        "bytes": 0,
+        "events": 0,
+        "responses_received": 0,
+        "repairs": 0,
+        "next_run": "claude-opus-5-one-shot-04"
+      },
+      {
+        "attempt": "claude-opus-5-one-shot-04",
+        "model": "claude-opus-5",
+        "status": "transport_switched",
+        "reason": "Full Chat request with pixel-identical lossless WebP still returned no headers or candidate. Native Anthropic Messages preflight accepts high/adaptive thinking, omitted max_tokens, image input and tool_use. Switch to native transport with same task and images; no feedback or repairs.",
+        "elapsed_seconds": 325.662972,
+        "bytes": 0,
+        "events": 0,
+        "responses_received": 0,
+        "repairs": 0,
+        "next_run": "claude-opus-5-one-shot-05"
       }
-    ]
+    ],
+    "opus_current_transport": "/v1/messages native; max_tokens omitted; thinking adaptive, effort high; same lossless WebP pixels; run 05; all earlier attempts unreceived, server-side generations unknown",
+    "opus_lossless_encoding": {
+      "manifest": "transport/opus-lossless-webp/manifest.json",
+      "original_frame_count": 60,
+      "transport_frame_count": 60,
+      "decoded_RGBA_pixels_equal": true,
+      "dimensions_equal": true,
+      "frame_timestamps_and_order_equal": true,
+      "task_text_catalog_assets_unchanged": true,
+      "payload_limit_hypothesis_not_confirmed": true,
+      "new_run": "claude-opus-5-one-shot-04"
+    },
+    "final_outcomes": {
+      "claude-opus-5": {
+        "status": "transport_incomplete",
+        "valid_submissions": 0,
+        "score": null,
+        "event_counts": {
+          "message_start": 1,
+          "content_block_start": 1,
+          "ping": 1
+        },
+        "received_complete_responses": 0,
+        "prior_unreceived_transports": 4
+      },
+      "deepseek-v4.1-flash": {
+        "status": "delivery_failed",
+        "valid_submissions": 0,
+        "score": null,
+        "provider_stop": "max_output_tokens",
+        "output_tokens": 65536,
+        "reasoning_tokens": 44176
+      }
+    },
+    "public_redactions": "Nonessential upstream routing/session/masked credential metadata omitted from public preflights; private original responses retained."
   }
 }
