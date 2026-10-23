@@ -1,0 +1,33 @@
+{
+  "created_at": "2026-10-23T03:40:52.508590+00:00",
+  "models_requested": [
+    "claude-opus-5",
+    "deepseek-v4.1-flash"
+  ],
+  "same_frozen_inputs": "DESIGN_FREEZE.json",
+  "input": "same 60 timestamped PNG frames, TASK.md, chapters.json, catalog.json and asset manifest",
+  "budget": {
+    "candidate_responses": 1,
+    "delivery_calls": 1,
+    "max_output_tokens": null,
+    "request_timeout": null,
+    "reasoning_effort_requested": "high",
+    "self_test_calls": 0,
+    "repairs": 0
+  },
+  "endpoint": "https://amf.thedevlabel.site/v1/responses",
+  "tool_choice": "auto for both; same one-submit tool schema; never continue after a completed generation",
+  "visual_judge": "AMF kimi-k3, anonymous; original NJU k3 checked twice and returned 503. Same frozen 12-state rules; channel difference disclosed, historical scores unchanged.",
+  "functional_judge": "primary agent browser operations; same 28 binary items",
+  "provider_limits": "Actual reasoning execution, output limits and model identity depend on provider; returned metadata retained. No forced score cap.",
+  "transport_incidents": [
+    {
+      "model": "claude-opus-5",
+      "attempt": "claude-opus-5-one-shot-01",
+      "status": "connection failed after 307.432 seconds; zero response bytes or events; no candidate received",
+      "retry": "claude-opus-5-one-shot-02",
+      "change": "Node https transport without header/body timeout; request body and task unchanged; no model feedback or repairs",
+      "comparison_limit": "An earlier server-side generation cannot be ruled out after lost connection. Only one received submission will be evaluated; all attempts retained."
+    }
+  ]
+}

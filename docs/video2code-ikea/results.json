@@ -3127,7 +3127,7 @@
         "single available anonymous visual judge",
         "User-authorized original-order newline concatenation of duplicate app.js entries; original delivery failure retained."
       ],
-      "generated_at": "2026-10-22T08:22:24.930913+00:00"
+      "generated_at": "2026-10-23T04:21:44.845877+00:00"
     },
     {
       "model": "gpt-6-astra",
@@ -4563,7 +4563,7 @@
         "single valid generation",
         "single available anonymous visual judge"
       ],
-      "generated_at": "2026-10-22T08:22:24.930913+00:00"
+      "generated_at": "2026-10-23T04:21:44.845877+00:00"
     },
     {
       "model": "k3",
@@ -5231,7 +5231,7 @@
         "single valid generation",
         "single available anonymous visual judge"
       ],
-      "generated_at": "2026-10-22T08:22:24.930913+00:00"
+      "generated_at": "2026-10-23T04:21:44.845877+00:00"
     },
     {
       "model": "gpt-6-sol",
@@ -6659,7 +6659,7 @@
         "single valid generation",
         "single available anonymous visual judge"
       ],
-      "generated_at": "2026-10-22T08:22:24.930913+00:00"
+      "generated_at": "2026-10-23T04:21:44.845877+00:00"
     },
     {
       "model": "glm-5.3-flash",
@@ -6695,7 +6695,7 @@
       "status": {
         "status": "channel_blocked",
         "candidate_generations": 0,
-        "error": "New supplied key lists Claude models only; glm-5.3-flash preflight returned 503. Prior GPT/Kimi keys returned 404; original GLM key returned 401."
+        "error": "GLM-5.3-Flash has no available channel. New AMF key exposes GLM-5.3 text-only; Responses explicitly rejects image input. No GLM candidate generated."
       },
       "items": [],
       "delivery_failure": false,
@@ -6736,15 +6736,103 @@
         }
       },
       "status": {
-        "status": "channel_blocked",
-        "candidate_generations": 0,
-        "error": "Advertised in model list, but Responses, Chat Completions and Messages probes all returned HTTP 404: no configured account supports claude-opus-5 in this group."
+        "status": "running",
+        "started_at": "2026-10-23T03:47:28.086Z",
+        "snapshot_at": "2026-10-23T04:21:44.845877+00:00",
+        "note": "No response headers or candidate received at report snapshot; request remains active."
       },
       "items": [],
       "delivery_failure": false,
-      "run_id": null,
+      "run_id": "claude-opus-5-one-shot-02",
+      "pending": true,
       "limitations": [
-        "No Claude candidate output; N/A is not zero."
+        "No complete valid project submitted. No repairs or second generation after content feedback. N/A is not zero.",
+        "Provider output and connection limits retained in raw evidence."
+      ]
+    },
+    {
+      "model": "deepseek-v4.1-flash",
+      "score": null,
+      "max": 100,
+      "categories": {
+        "execution": {
+          "score": null,
+          "max": 10.0,
+          "unjudgeable": 4
+        },
+        "navigation": {
+          "score": null,
+          "max": 15.0,
+          "unjudgeable": 6
+        },
+        "interaction": {
+          "score": null,
+          "max": 25.0,
+          "unjudgeable": 10
+        },
+        "state": {
+          "score": null,
+          "max": 20.0,
+          "unjudgeable": 8
+        },
+        "visual": {
+          "score": null,
+          "max": 30.0,
+          "unjudgeable": 12
+        }
+      },
+      "status": {
+        "model": "deepseek-v4.1-flash",
+        "status": "delivery_failed",
+        "provider_status": "incomplete",
+        "incomplete_details": {
+          "reason": "max_output_tokens"
+        },
+        "usage": {
+          "input_tokens": 73323,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens": 65536,
+          "output_tokens_details": {
+            "reasoning_tokens": 44176
+          },
+          "total_tokens": 138859,
+          "x_details": [
+            {
+              "input_tokens": 73323,
+              "output_tokens": 65536,
+              "total_tokens": 138859,
+              "input_tokens_details": {
+                "text_tokens": 25683,
+                "image_tokens": 47640
+              },
+              "output_tokens_details": {
+                "text_tokens": 21359,
+                "reasoning_tokens": 44176
+              },
+              "image_tokens": 47640,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              },
+              "x_billing_type": "response_api"
+            }
+          ]
+        },
+        "error": "Expected exactly one project delivery; got 0",
+        "elapsed_seconds": 652.763,
+        "responses": 1,
+        "repairs": 0,
+        "bytes": 4804972,
+        "eventCount": 19417
+      },
+      "items": [],
+      "delivery_failure": true,
+      "run_id": "deepseek-v4.1-flash-one-shot-01",
+      "pending": false,
+      "limitations": [
+        "No complete valid project submitted. No repairs or second generation after content feedback. N/A is not zero.",
+        "Provider output and connection limits retained in raw evidence."
       ]
     }
   ],
@@ -6766,7 +6854,7 @@
       "glm": "No candidate generation due unavailable GLM channel; not replaced by Claude."
     }
   },
-  "updated_at": "2026-10-22T08:22:24.930913+00:00",
+  "updated_at": "2026-10-23T04:21:44.845877+00:00",
   "note": "Original protocol retained; added models follow extension. No score cap or posthoc reweighting.",
   "additional_extension": {
     "created_at": "2026-10-22T08:07:58.375Z",
@@ -6787,5 +6875,38 @@
     "visual_judge": "k3 anonymous judge; same 12-state frozen rubric",
     "existing_judges": "K3 for Sol6.1/Luna/Astra; GPT6.1Sol for K3; existing scores preserved",
     "opus_preflight": "Advertised but HTTP404 on Responses/Chat/Messages. No formal candidate generation; no substitute model."
+  },
+  "amf_extension": {
+    "created_at": "2026-10-23T03:40:52.508590+00:00",
+    "models_requested": [
+      "claude-opus-5",
+      "deepseek-v4.1-flash"
+    ],
+    "same_frozen_inputs": "DESIGN_FREEZE.json",
+    "input": "same 60 timestamped PNG frames, TASK.md, chapters.json, catalog.json and asset manifest",
+    "budget": {
+      "candidate_responses": 1,
+      "delivery_calls": 1,
+      "max_output_tokens": null,
+      "request_timeout": null,
+      "reasoning_effort_requested": "high",
+      "self_test_calls": 0,
+      "repairs": 0
+    },
+    "endpoint": "https://amf.thedevlabel.site/v1/responses",
+    "tool_choice": "auto for both; same one-submit tool schema; never continue after a completed generation",
+    "visual_judge": "AMF kimi-k3, anonymous; original NJU k3 checked twice and returned 503. Same frozen 12-state rules; channel difference disclosed, historical scores unchanged.",
+    "functional_judge": "primary agent browser operations; same 28 binary items",
+    "provider_limits": "Actual reasoning execution, output limits and model identity depend on provider; returned metadata retained. No forced score cap.",
+    "transport_incidents": [
+      {
+        "model": "claude-opus-5",
+        "attempt": "claude-opus-5-one-shot-01",
+        "status": "connection failed after 307.432 seconds; zero response bytes or events; no candidate received",
+        "retry": "claude-opus-5-one-shot-02",
+        "change": "Node https transport without header/body timeout; request body and task unchanged; no model feedback or repairs",
+        "comparison_limit": "An earlier server-side generation cannot be ruled out after lost connection. Only one received submission will be evaluated; all attempts retained."
+      }
+    ]
   }
 }

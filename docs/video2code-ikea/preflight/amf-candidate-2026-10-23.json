@@ -1,0 +1,222 @@
+{
+  "observed_at": "2026-10-23T03:40:19.561Z",
+  "base_url": "https://amf.thedevlabel.site",
+  "checks": [
+    {
+      "model": "deepseek-v4.1-flash",
+      "endpoint": "/v1/responses",
+      "http_status": 200,
+      "response": {
+        "id": "resp_36eefd0e-991d-9bb4-bca1-7ab5ee4830ed",
+        "created_at": 1792726814,
+        "error": null,
+        "incomplete_details": null,
+        "instructions": "Read the image and call record_check with its code and shapes.",
+        "metadata": {},
+        "model": "deepseek-v4.1-flash",
+        "object": "response",
+        "output": [
+          {
+            "id": "msg_318a2aa9-601e-46e1-9181-ff125030de27",
+            "summary": [],
+            "type": "reasoning",
+            "content": [
+              {
+                "text": "The image shows code \"WG6KTSSL\" and shapes: a red square and a green circle.",
+                "type": "reasoning_text"
+              }
+            ],
+            "encrypted_content": null,
+            "status": null
+          },
+          {
+            "arguments": "{\"code\": \"WG6KTSSL\", \"shapes\": \"red square, green circle\"}",
+            "call_id": "call_face68d218184eb182411614",
+            "name": "record_check",
+            "type": "function_call",
+            "id": "msg_847a529f-fcd8-4d83-b683-9317c3002ffa",
+            "status": "completed"
+          }
+        ],
+        "parallel_tool_calls": false,
+        "temperature": 1,
+        "tool_choice": "auto",
+        "tools": [
+          {
+            "name": "record_check",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "shapes": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "code",
+                "shapes"
+              ],
+              "additionalProperties": false
+            },
+            "strict": null,
+            "type": "function",
+            "description": "Record the visual check."
+          }
+        ],
+        "top_p": 1,
+        "background": false,
+        "conversation": null,
+        "max_output_tokens": null,
+        "max_tool_calls": null,
+        "previous_response_id": null,
+        "prompt": null,
+        "prompt_cache_key": null,
+        "prompt_cache_retention": null,
+        "reasoning": {
+          "effort": "high",
+          "generate_summary": null,
+          "summary": null
+        },
+        "safety_identifier": null,
+        "service_tier": "default",
+        "status": "completed",
+        "text": null,
+        "top_logprobs": 0,
+        "truncation": null,
+        "usage": {
+          "input_tokens": 543,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens": 83,
+          "output_tokens_details": {
+            "reasoning_tokens": 21
+          },
+          "total_tokens": 626,
+          "x_details": [
+            {
+              "input_tokens": 543,
+              "output_tokens": 83,
+              "total_tokens": 626,
+              "input_tokens_details": {
+                "text_tokens": 357,
+                "image_tokens": 186
+              },
+              "output_tokens_details": {
+                "text_tokens": 61,
+                "reasoning_tokens": 21
+              },
+              "image_tokens": 186,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              },
+              "x_billing_type": "response_api"
+            }
+          ]
+        },
+        "user": null,
+        "completed_at": 1792726815,
+        "frequency_penalty": 0,
+        "presence_penalty": 0,
+        "store": false,
+        "moderation": null,
+        "billing": null
+      },
+      "elapsed_seconds": 3.843
+    },
+    {
+      "model": "claude-opus-5",
+      "endpoint": "/v1/responses",
+      "http_status": 200,
+      "response": {
+        "id": "chatcmpl-202610230340127631178808268d9d6C7kxEkMf",
+        "object": "response",
+        "created_at": 1792726817,
+        "status": "completed",
+        "instructions": null,
+        "max_output_tokens": 0,
+        "model": "claude-opus-5",
+        "output": [
+          {
+            "type": "message",
+            "id": "msg_bdrk_o6cmjpzdoorb2gz4mlj2t7fwy2gjbtqk3uv4pamnxoiiwgvgyxyq_msg_0",
+            "status": "completed",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "output_text",
+                "text": "I'll record the code and shapes from the image.",
+                "annotations": []
+              }
+            ],
+            "quality": "",
+            "size": ""
+          },
+          {
+            "type": "function_call",
+            "id": "toolu_bdrk_014LgPZTHoFXERpAcRMGCBM1",
+            "status": "completed",
+            "role": "",
+            "content": null,
+            "quality": "",
+            "size": "",
+            "call_id": "toolu_bdrk_014LgPZTHoFXERpAcRMGCBM1",
+            "name": "record_check",
+            "arguments": "{\"code\":\"WG6KTSSL\",\"shapes\":\"a red square and a green circle\"}"
+          }
+        ],
+        "parallel_tool_calls": false,
+        "previous_response_id": null,
+        "reasoning": null,
+        "store": false,
+        "temperature": 0,
+        "tool_choice": null,
+        "tools": null,
+        "top_p": 0,
+        "truncation": null,
+        "usage": {
+          "prompt_tokens": 752,
+          "completion_tokens": 97,
+          "total_tokens": 849,
+          "usage_semantic": "openai",
+          "usage_source": "anthropic",
+          "billing_usage": {
+            "source": "claude_messages",
+            "semantic": "anthropic",
+            "claude_usage": {
+              "input_tokens": 752,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 97,
+              "cache_creation": {},
+              "claude_cache_creation_5_m_tokens": 0,
+              "claude_cache_creation_1_h_tokens": 0
+            }
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "text_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0
+          },
+          "completion_tokens_details": {
+            "text_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "input_tokens": 752,
+          "output_tokens": 97,
+          "input_tokens_details": null,
+          "claude_cache_creation_5_m_tokens": 0,
+          "claude_cache_creation_1_h_tokens": 0
+        },
+        "user": null,
+        "metadata": null
+      },
+      "elapsed_seconds": 5.886
+    }
+  ]
+}

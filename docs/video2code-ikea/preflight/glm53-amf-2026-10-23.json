@@ -1,0 +1,198 @@
+{
+  "case_id": "omniale-ikea-besta-v1",
+  "requested_model": "glm-5.3",
+  "base_url": "https://amf.thedevlabel.site",
+  "status": "image_input_channel_blocked",
+  "score": null,
+  "formal_candidate_generations": 0,
+  "capability_checks": {
+    "observed_at": "2026-10-23T03:31:40.988Z",
+    "base_url": "https://amf.thedevlabel.site",
+    "model": "glm-5.3",
+    "checks": [
+      {
+        "label": "image-input",
+        "status": 200,
+        "elapsed_seconds": 8.374,
+        "response": {
+          "id": "msg_d871004d-b2bb-989f-8db3-46f6fa6250a1",
+          "type": "message",
+          "role": "assistant",
+          "model": "glm-5.3",
+          "content": [
+            {
+              "type": "thinking",
+              "signature": "",
+              "thinking": "The user asks me to inspect a screenshot, but no screenshot has actually been provided in this conversation. There's no image attached to the message. I cannot see any image.\n\nI should be honest about this — I can't answer what brand name and navigation labels are visible because no screenshot was actually included. I should briefly say that no image was attached and ask them to share it.\n\nI shouldn't make up an answer like \"Apple\" and \"Store, Mac\" — that would be fabricating information. The correct behavior is to note the missing image."
+            },
+            {
+              "type": "text",
+              "text": "I don't see a screenshot attached to your message — no image came through. Could you try uploading it again? Once it's visible, I can identify the brand name and navigation labels for you."
+            }
+          ],
+          "stop_reason": "end_turn",
+          "stop_sequence": null,
+          "usage": {
+            "input_tokens": 30,
+            "output_tokens": 153,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          }
+        }
+      },
+      {
+        "label": "tool-submission",
+        "status": 200,
+        "elapsed_seconds": 2.037,
+        "response": {
+          "id": "msg_f2df20e8-64a8-961a-805d-a95ae7e858a7",
+          "type": "message",
+          "role": "assistant",
+          "model": "glm-5.3",
+          "content": [
+            {
+              "type": "thinking",
+              "signature": "",
+              "thinking": "The user wants me to call record_check with value \"OK\". This is a simple tool call. I'll invoke the function with the value \"OK\"."
+            },
+            {
+              "type": "tool_use",
+              "id": "toolu_7bafc367d25b4f7eab4a91fb",
+              "name": "record_check",
+              "input": {
+                "value": "OK"
+              }
+            }
+          ],
+          "stop_reason": "tool_use",
+          "stop_sequence": null,
+          "usage": {
+            "input_tokens": 159,
+            "output_tokens": 42,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          }
+        }
+      }
+    ],
+    "completed_at": "2026-10-23T03:31:51.401Z",
+    "formal_candidate_generations": 0
+  },
+  "vision_transport_checks": {
+    "observed_at": "2026-10-23T03:32:59.129Z",
+    "base_url": "https://amf.thedevlabel.site",
+    "expected": {
+      "code": "WG6KTSSL",
+      "shapes": [
+        "red square",
+        "green circle"
+      ]
+    },
+    "checks": [
+      {
+        "model": "glm-5.3",
+        "transport": "chat",
+        "status": 200,
+        "exact_code_read": false,
+        "response": {
+          "id": "chatcmpl-e8816a0c-9235-9a74-a654-cad9e63acdd2",
+          "object": "chat.completion",
+          "created": 1792726369,
+          "model": "glm-5.3",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "reasoning_content": "The user is asking me to read an 8-character code from an image and describe two colored shapes. However, I don't see any image attached to this conversation. There's no image content provided in the human turn.\n\nThe instruction explicitly says \"Do not guess if the image is unavailable.\" This is a clear directive. Since no image is actually present in the conversation, I should not fabricate or hallucinate an answer. I should honestly state that no image is available.\n\nThis is important - I need to be careful not to make up a code or describe shapes that don't exist. The honest response is to tell the user that I don't see any image attached.\n\nLet me formulate a clear, honest response.",
+                "content": "I don't see any image attached to your message. Since no image is available for me to view, I cannot read the 8-character code or describe any colored shapes, and I won't guess or fabricate an answer.\n\nIf you'd like me to help, please try attaching the image again and I'll be happy to describe what's actually shown in it."
+              },
+              "finish_reason": "stop",
+              "logprobs": null
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 38,
+            "total_tokens": 258,
+            "completion_tokens": 220,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 145
+            }
+          }
+        }
+      },
+      {
+        "model": "glm-5.3",
+        "transport": "messages",
+        "status": 200,
+        "exact_code_read": false,
+        "response": {
+          "id": "msg_fcd83de0-2343-9afe-9f48-1123de482f7c",
+          "type": "message",
+          "role": "assistant",
+          "model": "glm-5.3",
+          "content": [
+            {
+              "type": "thinking",
+              "signature": "",
+              "thinking": "The user is asking me to read an exact 8-character code from an image and describe two colored shapes. However, there's a critical issue here: I don't see any image attached to this conversation. The user mentions \"the image\" but no image has actually been provided in the message.\n\nThe user explicitly says \"Do not guess if the image is unavailable.\" This is a clear instruction that if I cannot see an image, I should not fabricate or guess its contents. This seems like a test of whether I'll hallucinate content for a non-existent image.\n\nSince no image is attached to this conversation, I should honestly state that I don't see any image and therefore cannot read any code or describe any shapes. I should not make up an 8-character code or invent descriptions of colored shapes, as that would be exactly the kind of hallucination the user is warning against.\n\nI'll respond clearly and honestly that no image is visible to me."
+            },
+            {
+              "type": "text",
+              "text": "I don't see any image attached to your message. Since you've asked me not to guess when the image is unavailable, I won't fabricate a code or invent descriptions of shapes.\n\nIf you meant to include an image, please try uploading it again, and I'll be happy to read the 8-character code and describe the colored shapes for you."
+            }
+          ],
+          "stop_reason": "end_turn",
+          "stop_sequence": null,
+          "usage": {
+            "input_tokens": 38,
+            "output_tokens": 266,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          }
+        }
+      },
+      {
+        "model": "ZHIPU/GLM-5.3",
+        "transport": "messages",
+        "status": 400,
+        "exact_code_read": false,
+        "response": {
+          "error": {
+            "type": "bad_response_status_code",
+            "message": "The model `ZHIPU/GLM-5.3` does not exist or you do not have access to it. (request id: 202610230332488155538208268d9d6pHptH2q5)"
+          },
+          "type": "error"
+        }
+      },
+      {
+        "model": "glm-5.3",
+        "transport": "responses",
+        "status": 400,
+        "exact_code_read": false,
+        "response": {
+          "error": {
+            "message": "<400> ***.***.InvalidParameter: The current model only supports text modality and does not support image input. Please remove the image content from your messages and retry.",
+            "type": "invalid_request_error",
+            "param": "",
+            "code": "InvalidParameter"
+          }
+        }
+      }
+    ],
+    "formal_candidate_generations": 0
+  },
+  "conclusion": "Messages and Chat accepted HTTP requests but returned answers stating no image was present; Responses explicitly rejected images because the current model only supports text. No formal candidate generation, repair, substitution, or score assigned."
+}
