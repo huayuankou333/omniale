@@ -1,0 +1,81 @@
+{
+  "judge": "k3",
+  "usage": {
+    "input_tokens": 15043,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 618,
+    "output_tokens_details": {
+      "reasoning_tokens": 241
+    },
+    "total_tokens": 15661,
+    "x_details": [
+      {
+        "input_tokens": 15043,
+        "output_tokens": 618,
+        "total_tokens": 15661,
+        "input_tokens_details": {
+          "text_tokens": 1283,
+          "image_tokens": 13760
+        },
+        "output_tokens_details": {
+          "text_tokens": 377,
+          "reasoning_tokens": 241
+        },
+        "image_tokens": 13760,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "x_billing_type": "response_api"
+      }
+    ]
+  },
+  "transport": {
+    "requested_model": "k3",
+    "wire_model": "kimi-k3",
+    "base_url": "https://amf.thedevlabel.site",
+    "attempt": 1,
+    "latency_ms": 24716,
+    "time": "2026-10-23T05:52:17.321Z",
+    "note": "Original NJU K3 judge endpoint returned 503 twice; AMF kimi-k3 replacement channel disclosed."
+  },
+  "items": [
+    {
+      "id": "V05",
+      "score": 0,
+      "reason": "Candidate viewport is entirely blank white with no header, breadcrumb, gallery thumbnails, main product image, price/variant panel, or any text/controls; no structural correspondence to the reference product-detail state. Note reports independent reset/reload still blank and assets served, so this is a genuinely missing state rather than infrastructure insufficiency.",
+      "evidence": [
+        "reference/detail.png",
+        "0036-I06-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "V06",
+      "score": 0,
+      "reason": "Candidate shows a blank white viewport; the reference All media modal state (dim overlay, large white dialog, All media/Video/Measurement tabs, media grid, top-right close) is absent with no matching layout or controls. Reachable=false after reset/reload with assets OK, so genuinely missing state = 0.",
+      "evidence": [
+        "reference/gallery.png",
+        "0034-I05-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "V07",
+      "score": 0,
+      "reason": "Candidate is blank with no horizontal tabs, component cards, quantities/article numbers, right-side large image, or content hierarchy; nothing corresponds to the reference What's included/components state. Reset route reload remains blank and infrastructure is reported healthy, so not unjudgeable.",
+      "evidence": [
+        "reference/components.png",
+        "0038-I07-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "V08",
+      "score": 0,
+      "reason": "Candidate renders only a blank viewport; reference STUBBARP detail state with accessory large image, 2-pack price, color choices, quantity stepper and Add to bag is entirely missing. Closest reachable screenshot has no UI correspondence and note marks state genuinely missing with assets served.",
+      "evidence": [
+        "reference/component.png",
+        "0046-S01-independent-start-route-after.png"
+      ]
+    }
+  ]
+}

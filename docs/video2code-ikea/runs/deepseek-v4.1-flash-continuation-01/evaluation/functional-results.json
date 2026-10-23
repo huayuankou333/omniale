@@ -1,0 +1,232 @@
+{
+  "method": "28 independent route resets and hard reloads, matched visible blank UI and browser parse errors; HTTP 200 and served source hashes rule out resource-serving failure. No deductions inferred from code alone.",
+  "correlated_failure": "All 28 zeros share a single startup parse failure, not 28 independently demonstrated algorithmic weaknesses.",
+  "syntax_diagnostic": "syntax-diagnostic.json",
+  "resource_check": "environment-resource-check.json",
+  "items": [
+    {
+      "id": "E01",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。Fresh home has no rendered app, search or navigation.",
+      "evidence": [
+        "0006-E01-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "E02",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。Main shopping flow cannot begin: script fails to parse before registering UI.",
+      "evidence": [
+        "0008-E02-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "E03",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。Local resources return HTTP 200, but no product images or page UI render.",
+      "evidence": [
+        "0010-E03-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "E04",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。Direct local bag route and hard refresh remain blank; search and product independently tested.",
+      "evidence": [
+        "0012-E04-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "N01",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No Products or Storage controls render.",
+      "evidence": [
+        "0014-N01-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "N02",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No search input, suggestions or submit UI render.",
+      "evidence": [
+        "0016-N02-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "N03",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。Search route has no product list or product-detail link.",
+      "evidence": [
+        "0018-N03-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "N04",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。Combination detail has no component link or return navigation.",
+      "evidence": [
+        "0020-N04-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "N05",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。Walnut detail route remains blank; no variant or updated product UI.",
+      "evidence": [
+        "0022-N05-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "N06",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。Bag and cross-page navigation do not render.",
+      "evidence": [
+        "0024-N06-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "I01",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No white filter or clear control renders.",
+      "evidence": [
+        "0026-I01-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "I02",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No sort control or visible priced products render.",
+      "evidence": [
+        "0028-I02-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "I03",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。Direct compare route has no product columns, prices or dimensions.",
+      "evidence": [
+        "0030-I03-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "I04",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No compare add/remove controls or product columns render.",
+      "evidence": [
+        "0032-I04-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "I05",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No thumbnails, All media control or gallery render.",
+      "evidence": [
+        "0034-I05-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "I06",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No product measurements control or dimension image renders.",
+      "evidence": [
+        "0036-I06-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "I07",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No components tab, component identities or counts render.",
+      "evidence": [
+        "0038-I07-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "I08",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No postcode input or validation UI renders.",
+      "evidence": [
+        "0040-I08-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "I09",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No store selector or availability UI renders.",
+      "evidence": [
+        "0042-I09-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "I10",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No review drawer, review list or sorting control renders.",
+      "evidence": [
+        "0044-I10-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "S01",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。Standalone leg route has no quantity control or Add to bag.",
+      "evidence": [
+        "0046-S01-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "S02",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No two-SKU bag rows or total render.",
+      "evidence": [
+        "0048-S02-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "S03",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No quantity steppers or computed totals render.",
+      "evidence": [
+        "0050-S03-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "S04",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No bag components drawer or multiplied quantities render.",
+      "evidence": [
+        "0052-S04-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "S05",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。Hard refresh leaves blank UI; no saved quantities, totals or location visible.",
+      "evidence": [
+        "0054-S05-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "S06",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No installation-service control or fee totals render.",
+      "evidence": [
+        "0056-S06-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "S07",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No delete or Undo control renders.",
+      "evidence": [
+        "0058-S07-independent-start-route-after.png"
+      ]
+    },
+    {
+      "id": "S08",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No discount field, validation or bag totals render.",
+      "evidence": [
+        "0060-S08-independent-start-route-after.png"
+      ]
+    }
+  ]
+}

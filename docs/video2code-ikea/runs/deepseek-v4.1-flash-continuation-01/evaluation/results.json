@@ -1,0 +1,732 @@
+{
+  "model": "deepseek-v4.1-flash",
+  "protocol": "multi-call-continuation-v1",
+  "score": 0.0,
+  "max": 100,
+  "categories": {
+    "execution": {
+      "score": 0.0,
+      "max": 10.0
+    },
+    "navigation": {
+      "score": 0.0,
+      "max": 15.0
+    },
+    "interaction": {
+      "score": 0.0,
+      "max": 25.0
+    },
+    "state": {
+      "score": 0.0,
+      "max": 20.0
+    },
+    "visual": {
+      "score": 0.0,
+      "max": 30.0
+    }
+  },
+  "items": [
+    {
+      "id": "E01",
+      "category": "execution",
+      "title": "启动与可操作首页",
+      "assertion": "空白项目由固定服务启动后，渲染可用 IKEA 首页，存在可用搜索/导航。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。Fresh home has no rendered app, search or navigation.",
+      "evidence": [
+        "0006-E01-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "E02",
+      "category": "execution",
+      "title": "主流程稳定",
+      "assertion": "从搜索到详情、组件和购物袋的实际测试无导致流程中断的未捕获运行错误。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。Main shopping flow cannot begin: script fails to parse before registering UI.",
+      "evidence": [
+        "0008-E02-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "E03",
+      "category": "execution",
+      "title": "离线资源",
+      "assertion": "外网阻断时首页、列表、比较、详情、组件和购物袋的主要产品图与布局正常加载，不依赖跳回官网。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。Local resources return HTTP 200, but no product images or page UI render.",
+      "evidence": [
+        "0010-E03-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "E04",
+      "category": "execution",
+      "title": "本地深链",
+      "assertion": "新标签或直接打开搜索、组合详情与购物袋本地地址并刷新，能得到对应页面。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。Direct local bag route and hard refresh remain blank; search and product independently tested.",
+      "evidence": [
+        "0012-E04-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "N01",
+      "category": "navigation",
+      "title": "两级菜单",
+      "assertion": "Products 展开后可进入 Storage & organization 子菜单，展示对应子类并可关闭。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No Products or Storage controls render.",
+      "evidence": [
+        "0014-N01-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "N02",
+      "category": "navigation",
+      "title": "搜索联想与提交",
+      "assertion": "输入 besta 出现相关联想，Enter 提交后显示搜索结果并保留查询。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No search input, suggestions or submit UI render.",
+      "evidence": [
+        "0016-N02-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "N03",
+      "category": "navigation",
+      "title": "列表进入组合详情",
+      "assertion": "点击列表中的原木色组合柜进入对应商品详情，身份/图片对应且地址为本地。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。Search route has no product list or product-detail link.",
+      "evidence": [
+        "0018-N03-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "N04",
+      "category": "navigation",
+      "title": "组件跳转与返回",
+      "assertion": "从组合组件清单打开 STUBBARP 20293568 详情后可返回原组合；不强制新标签。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。Combination detail has no component link or return navigation.",
+      "evidence": [
+        "0020-N04-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "N05",
+      "category": "navigation",
+      "title": "变体本地导航",
+      "assertion": "切换到胡桃木效果 29612189 后详情名称、主图及本地商品地址对应改变。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。Walnut detail route remains blank; no variant or updated product UI.",
+      "evidence": [
+        "0022-N05-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "N06",
+      "category": "navigation",
+      "title": "跨页购物袋状态",
+      "assertion": "从购物袋返回详情、再次通过购物袋入口进入，维持此前加入的商品与数量。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。Bag and cross-page navigation do not render.",
+      "evidence": [
+        "0024-N06-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "I01",
+      "category": "interaction",
+      "title": "颜色筛选与清除",
+      "assertion": "选择白色后出现活动筛选且可见结果/变体变化，清除后恢复；允许固定汇总165/87。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No white filter or clear control renders.",
+      "evidence": [
+        "0026-I01-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "I02",
+      "category": "interaction",
+      "title": "价格排序",
+      "assertion": "切换 Price: low to high 后当前代表性商品按展示售价升序排列，恢复 Best match 后排序可恢复。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No sort control or visible priced products render.",
+      "evidence": [
+        "0028-I02-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "I03",
+      "category": "interaction",
+      "title": "双商品比较",
+      "assertion": "选择 60245844 与 00245842，比较页显示二者对应价格及宽高深差异，而非固定无关表格。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。Direct compare route has no product columns, prices or dimensions.",
+      "evidence": [
+        "0030-I03-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "I04",
+      "category": "interaction",
+      "title": "比较增删",
+      "assertion": "从相似商品加入 70245848 出现第三列；移除 00245842 后保留另两件。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No compare add/remove controls or product columns render.",
+      "evidence": [
+        "0032-I04-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "I05",
+      "category": "interaction",
+      "title": "图库与弹层",
+      "assertion": "缩略图更换主图，All media 打开真实图片画廊，关闭返回原详情。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No thumbnails, All media control or gallery render.",
+      "evidence": [
+        "0034-I05-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "I06",
+      "category": "interaction",
+      "title": "尺寸展示",
+      "assertion": "Measurements 或画廊 Measurement 能显示当前组合柜的尺寸图及对应尺寸，不是空标签。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No product measurements control or dimension image renders.",
+      "evidence": [
+        "0036-I06-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "I07",
+      "category": "interaction",
+      "title": "组合清单",
+      "assertion": "原木色组合的六种组件及数量分别为1/4/2/1/2/2，且能辨别柜体、层板、柜脚、支撑腿、铰链和门。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No components tab, component identities or counts render.",
+      "evidence": [
+        "0038-I07-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "I08",
+      "category": "interaction",
+      "title": "邮编验证",
+      "assertion": "abc 被拒绝且显示错误；改为95054可保存并更新顶部及配送显示。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No postcode input or validation UI renders.",
+      "evidence": [
+        "0040-I08-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "I09",
+      "category": "interaction",
+      "title": "门店库存",
+      "assertion": "选择 East Palo Alto, CA 后顶部和当前商品库存/Click & collect 反映该门店。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No store selector or availability UI renders.",
+      "evidence": [
+        "0042-I09-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "I10",
+      "category": "interaction",
+      "title": "评论排序",
+      "assertion": "评论抽屉显示实际评论与评分分布；最低评分排序后首条评分不高于后续，且顺序相对默认发生变化。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No review drawer, review list or sorting control renders.",
+      "evidence": [
+        "0044-I10-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "S01",
+      "category": "state",
+      "title": "独立组件入袋",
+      "assertion": "STUBBARP 20293568 数量选2加入后有独立行、数量2、原价行金额20；不能把两包装误当两美元或与组合内部柜脚混合。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。Standalone leg route has no quantity control or Add to bag.",
+      "evidence": [
+        "0046-S01-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "S02",
+      "category": "state",
+      "title": "正确变体与初始总额",
+      "assertion": "已有两包独立柜脚时加入1个胡桃木组合，购物袋两行身份正确，原价产品合计260；Family优惠独立显示。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No two-SKU bag rows or total render.",
+      "evidence": [
+        "0048-S02-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "S03",
+      "category": "state",
+      "title": "改数量后金额",
+      "assertion": "组合从1增至2、独立柜脚从2减至1后行金额为480与10，产品合计490。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No quantity steppers or computed totals render.",
+      "evidence": [
+        "0050-S03-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "S04",
+      "category": "state",
+      "title": "组成数量倍增",
+      "assertion": "2个组合的袋内组件清单数量为2/8/4/2/4/4，独立原木色柜脚行不被倍增或吞并。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No bag components drawer or multiplied quantities render.",
+      "evidence": [
+        "0052-S04-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "S05",
+      "category": "state",
+      "title": "刷新恢复",
+      "assertion": "上述2个组合、1包柜脚、总额490及95054/门店在刷新后仍成立。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。Hard refresh leaves blank UI; no saved quantities, totals or location visible.",
+      "evidence": [
+        "0054-S05-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "S06",
+      "category": "state",
+      "title": "安装费联动",
+      "assertion": "为2个组合开启安装服务新增117，合计607；关闭后恢复490，不能修改商品数量。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No installation-service control or fee totals render.",
+      "evidence": [
+        "0056-S06-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "S07",
+      "category": "state",
+      "title": "删除与撤销",
+      "assertion": "删除独立柜脚后产品合计480，Undo恢复原行、数量1及490。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No delete or Undo control renders.",
+      "evidence": [
+        "0058-S07-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "S08",
+      "category": "state",
+      "title": "折扣码失败不改金额",
+      "assertion": "应用 OMNIALE-DEMO 显示无效提示，产品合计和各商品数量保持不变。",
+      "weight": 2.5,
+      "scoring": "binary_visible_evidence",
+      "score": 0,
+      "reason": "独立清空状态、直接进入对应本地页面并刷新后，仍无任何可见控件或正文，浏览器复现同一脚本语法错误。No discount field, validation or bag totals render.",
+      "evidence": [
+        "0060-S08-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "V01",
+      "category": "visual",
+      "title": "首页与共同导航",
+      "weight": 2.5,
+      "reference": "reference/home.png",
+      "criteria": "头部黑条、品牌标志、搜索、导航、主视觉图片的结构、尺寸、层级；动态宣传画面内容差异豁免",
+      "scoring": "0|0.25|0.5|0.75|1",
+      "score": 0,
+      "reason": "Candidate viewport is completely blank: no black utility bar, no IKEA logo, no navigation links, no search field, no category chips, and no hero/promo imagery. The failure note confirms the route was independently reset and reloaded with infrastructure serving assets successfully, so this is a genuinely missing state, not an environment failure. No structural, proportional, image, or typographic correspondence to the reference exists.",
+      "evidence": [
+        "reference/home.png",
+        "0006-E01-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "V02",
+      "category": "visual",
+      "title": "分层菜单",
+      "weight": 2.5,
+      "reference": "reference/menu.png",
+      "criteria": "宽幅菜单分栏、类别密度、活动项和下方背景",
+      "scoring": "0|0.25|0.5|0.75|1",
+      "score": 0,
+      "reason": "Candidate viewport is entirely blank: no expanded mega-menu with category pill row, no multi-column link groups (Trending/Seasonal/Food), no left heading column, no orange promo card, and no dimmed background page. Operator note confirms the menu state could not be rendered after independent reset and reload; per frozen rubric a genuinely missing state scores 0.",
+      "evidence": [
+        "reference/menu.png",
+        "0014-N01-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "V03",
+      "category": "visual",
+      "title": "搜索与白色筛选",
+      "weight": 2.5,
+      "reference": "reference/filtered.png",
+      "criteria": "左侧筛选栏、商品栅格、活动筛选、文字价格/促销层级",
+      "scoring": "0|0.25|0.5|0.75|1",
+      "score": 0,
+      "reason": "Candidate viewport is blank: no search query in the header field, no '87 items' heading, no left filter panel (Sort/Size/Color swatches), no active 'white' filter chip, no product grid with images, prices, IKEA Family price banners, or compare checkboxes. Screenshot is the closest reachable state after reset/reload; state genuinely unimplemented, score 0.",
+      "evidence": [
+        "reference/filtered.png",
+        "0026-I01-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "V04",
+      "category": "visual",
+      "title": "比较页面",
+      "weight": 2.5,
+      "reference": "reference/compare.png",
+      "criteria": "对比列宽、商品图、价格、属性表与分隔",
+      "scoring": "0|0.25|0.5|0.75|1",
+      "score": 0,
+      "reason": "Candidate viewport is blank: no 'Product comparison' heading, no side-by-side product columns, no product images, prices, discount text, ratings, or Key features attribute table. Operator independently reset and reloaded the route with assets served successfully; the comparison state simply does not render, so it scores 0 per the frozen rubric.",
+      "evidence": [
+        "reference/compare.png",
+        "0030-I03-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "V05",
+      "category": "visual",
+      "title": "原木色组合详情",
+      "weight": 2.5,
+      "reference": "reference/detail.png",
+      "criteria": "左侧图库缩略图/主图、右侧价格/变体、顶部面包屑与留白",
+      "scoring": "0|0.25|0.5|0.75|1",
+      "score": 0,
+      "reason": "Candidate viewport is entirely blank white with no header, breadcrumb, gallery thumbnails, main product image, price/variant panel, or any text/controls; no structural correspondence to the reference product-detail state. Note reports independent reset/reload still blank and assets served, so this is a genuinely missing state rather than infrastructure insufficiency.",
+      "evidence": [
+        "reference/detail.png",
+        "0036-I06-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "V06",
+      "category": "visual",
+      "title": "All media 弹层",
+      "weight": 2.5,
+      "reference": "reference/gallery.png",
+      "criteria": "遮罩、白色大弹层、媒体标签、图片栅格及关闭位置",
+      "scoring": "0|0.25|0.5|0.75|1",
+      "score": 0,
+      "reason": "Candidate shows a blank white viewport; the reference All media modal state (dim overlay, large white dialog, All media/Video/Measurement tabs, media grid, top-right close) is absent with no matching layout or controls. Reachable=false after reset/reload with assets OK, so genuinely missing state = 0.",
+      "evidence": [
+        "reference/gallery.png",
+        "0034-I05-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "V07",
+      "category": "visual",
+      "title": "详情组件标签",
+      "weight": 2.5,
+      "reference": "reference/components.png",
+      "criteria": "横向标签、六种组件图文、数量、右侧大图和层级",
+      "scoring": "0|0.25|0.5|0.75|1",
+      "score": 0,
+      "reason": "Candidate is blank with no horizontal tabs, component cards, quantities/article numbers, right-side large image, or content hierarchy; nothing corresponds to the reference What's included/components state. Reset route reload remains blank and infrastructure is reported healthy, so not unjudgeable.",
+      "evidence": [
+        "reference/components.png",
+        "0038-I07-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "V08",
+      "category": "visual",
+      "title": "独立组件详情",
+      "weight": 2.5,
+      "reference": "reference/component.png",
+      "criteria": "STUBBARP 配件大图、2 pack价格说明、数量步进与加入按钮",
+      "scoring": "0|0.25|0.5|0.75|1",
+      "score": 0,
+      "reason": "Candidate renders only a blank viewport; reference STUBBARP detail state with accessory large image, 2-pack price, color choices, quantity stepper and Add to bag is entirely missing. Closest reachable screenshot has no UI correspondence and note marks state genuinely missing with assets served.",
+      "evidence": [
+        "reference/component.png",
+        "0046-S01-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "V09",
+      "category": "visual",
+      "title": "胡桃木效果详情",
+      "weight": 2.5,
+      "reference": "reference/variant.png",
+      "criteria": "切换后的图片、名称、变体缩略图与共用详情布局",
+      "scoring": "0|0.25|0.5|0.75|1",
+      "score": 0,
+      "reason": "Candidate viewport is completely blank: no product image, name, price block, color variant thumbnails, or any detail layout is rendered. The walnut-effect variant state is entirely absent while the reference shows the full product detail page with selected black-brown/walnut variant thumbnails.",
+      "evidence": [
+        "reference/variant.png",
+        "0022-N05-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "V10",
+      "category": "visual",
+      "title": "购物袋",
+      "weight": 2.5,
+      "reference": "reference/bag.png",
+      "criteria": "配送摘要、两行商品、数量控件、原价/优惠、右侧订单摘要",
+      "scoring": "0|0.25|0.5|0.75|1",
+      "score": 0,
+      "reason": "Candidate renders a blank white page with no shopping bag content: no delivery/pickup summary, no BESTÅ/STUBBARB item rows, no quantity controls, no savings text, and no right-side order summary column. Reference shows a fully populated two-column bag page.",
+      "evidence": [
+        "reference/bag.png",
+        "0048-S02-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "V11",
+      "category": "visual",
+      "title": "袋内组件抽屉",
+      "weight": 2.5,
+      "reference": "reference/bag-components.png",
+      "criteria": "背景遮罩、右侧部件清单、数量和间距",
+      "scoring": "0|0.25|0.5|0.75|1",
+      "score": 0,
+      "reason": "Candidate shows no content at all: no dimmed background bag page and no right-side drawer listing the 6 BESTÅ components with quantities. Reference shows the overlay with mask, drawer title, and spaced component list.",
+      "evidence": [
+        "reference/bag-components.png",
+        "0052-S04-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    },
+    {
+      "id": "V12",
+      "category": "visual",
+      "title": "评论抽屉",
+      "weight": 2.5,
+      "reference": "reference/reviews.png",
+      "criteria": "评分分布、分项分数、筛选排序、评论内容和双栏弹层",
+      "scoring": "0|0.25|0.5|0.75|1",
+      "score": 0,
+      "reason": "Candidate viewport is empty: no reviews modal, no 3.7 rating summary, no star distribution bars, no sub-score dots, no filter/sort controls, and no two-column review panel. Reference shows the full customer reviews dialog over the product page.",
+      "evidence": [
+        "reference/reviews.png",
+        "0044-I10-independent-start-route-after.png"
+      ],
+      "points": 0.0
+    }
+  ],
+  "candidate_hash": "72e02e4ba028fb9874cb50faf62acc69720f0050ad4193cca3fbf4f723628553",
+  "audit": {
+    "verified_at": "2026-10-23T05:55:15.763458+00:00",
+    "files_verified": 5,
+    "frozen_inputs_verified": 469,
+    "source_run": "deepseek-v4.1-flash-one-shot-02",
+    "source_complete_files_unchanged": 4,
+    "source_app_prefix_bytes": 48376,
+    "all_append_offsets_and_hashes_match": true,
+    "candidate_hash": "72e02e4ba028fb9874cb50faf62acc69720f0050ad4193cca3fbf4f723628553",
+    "continuation_calls": 4,
+    "generations_for_this_candidate": 5,
+    "source_output_tokens": 65536,
+    "continuation_output_tokens": 30595,
+    "total_output_tokens_including_source": 96131,
+    "code_repairs": 0,
+    "runtime_feedback_calls": 0,
+    "self_browser_tests": 0,
+    "outcome": "complete_file_delivery_but_startup_parse_error",
+    "syntax_diagnostic": {
+      "candidate_syntax_check_exit": 1,
+      "candidate_syntax_stderr": "C:\\Users\\33317\\Documents\\Codex\\2026-10-20\\d-omniale-omniale-case-case-https-3\\outputs\\case4_video2code_ikea_v1\\evaluation-one-shot-v1\\runs\\deepseek-v4.1-flash-continuation-01\\project\\app.js:263\r\n      '<div class=\"info\">\r\n      ^^^^^^^^^^^^^^^^^^^\r\n\r\nSyntaxError: Invalid or unexpected token\r\n    at wrapSafe (node:internal/modules/cjs/loader:1638:18)\r\n    at checkSyntax (node:internal/main/check_syntax:78:3)\r\n\r\nNode.js v22.19.0\r\n",
+      "data_syntax_check_exit": 0,
+      "line": 263,
+      "source_line": "      '<div class=\"info\">",
+      "byte_offset": 18360,
+      "in_original_seed_prefix": true,
+      "original_prefix_unchanged": true,
+      "no_code_edits": true,
+      "no_feedback_to_model": true
+    }
+  },
+  "status": {
+    "model": "deepseek-v4.1-flash",
+    "status": "delivered",
+    "protocol": "multi-call-continuation-v1",
+    "seed_run": "deepseek-v4.1-flash-one-shot-02",
+    "continuation_calls": 4,
+    "source_generation_calls": 1,
+    "total_generation_calls": 5,
+    "usage": {
+      "input_tokens": 473728,
+      "output_tokens": 30595,
+      "reasoning_tokens": 20017
+    },
+    "source_usage": {
+      "input_tokens": 73323,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 65536,
+      "output_tokens_details": {
+        "reasoning_tokens": 25946
+      },
+      "total_tokens": 138859,
+      "x_details": [
+        {
+          "input_tokens": 73323,
+          "output_tokens": 65536,
+          "total_tokens": 138859,
+          "input_tokens_details": {
+            "text_tokens": 25683,
+            "image_tokens": 47640
+          },
+          "output_tokens_details": {
+            "text_tokens": 39589,
+            "reasoning_tokens": 25946
+          },
+          "image_tokens": 47640,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "x_billing_type": "response_api"
+        }
+      ]
+    },
+    "elapsed_seconds": 832.815,
+    "repairs": 0,
+    "self_test_calls": 0,
+    "immutable_prefix": true,
+    "files": [
+      {
+        "path": "index.html",
+        "bytes": 431,
+        "complete": true
+      },
+      {
+        "path": "README.md",
+        "bytes": 3183,
+        "complete": true
+      },
+      {
+        "path": "data.js",
+        "bytes": 25545,
+        "complete": true
+      },
+      {
+        "path": "styles.css",
+        "bytes": 31890,
+        "complete": true
+      },
+      {
+        "path": "app.js",
+        "bytes": 82148,
+        "complete": true
+      }
+    ],
+    "last_error": null
+  },
+  "visual_judge": {
+    "channel": "AMF",
+    "wire_model": "kimi-k3",
+    "anonymous": true,
+    "groups": 3,
+    "states": 12,
+    "human_judge": false
+  },
+  "limitation": "All failed points share one unmodified startup syntax error in the source prefix; do not interpret this as 40 independent capability failures. Extra calls differ from one-shot baselines."
+}

@@ -1,0 +1,110 @@
+{
+  "id": "resp_184025f3-14d5-95d0-9e5e-8cc2ebdcdaf0",
+  "created_at": 1792734717,
+  "error": null,
+  "incomplete_details": null,
+  "instructions": "You are an independent visual evaluator. Evaluate only supplied matched evidence and frozen rubric; return JSON.",
+  "metadata": {},
+  "model": "kimi-k3",
+  "object": "response",
+  "output": [
+    {
+      "id": "msg_57c45928-2766-4bee-a43e-4be79e2a8e83",
+      "summary": [
+        {
+          "text": "All candidate screenshots are blank. Frozen rubric: missing state = 0. Return JSON only.",
+          "type": "summary_text"
+        }
+      ],
+      "type": "reasoning",
+      "content": null,
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "msg_3ce94ef4-76f0-4dc7-9bf5-07c16b67ad52",
+      "content": [
+        {
+          "annotations": [],
+          "text": "```json\n{\n  \"items\": [\n    {\n      \"id\": \"V01\",\n      \"score\": 0,\n      \"reason\": \"Candidate viewport is completely blank: no black utility bar, no IKEA logo, no navigation links, no search field, no category chips, and no hero/promo imagery. The failure note confirms the route was independently reset and reloaded with infrastructure serving assets successfully, so this is a genuinely missing state, not an environment failure. No structural, proportional, image, or typographic correspondence to the reference exists.\",\n      \"evidence\": [\"reference/home.png\", \"0006-E01-independent-start-route-after.png\"]\n    },\n    {\n      \"id\": \"V02\",\n      \"score\": 0,\n      \"reason\": \"Candidate viewport is entirely blank: no expanded mega-menu with category pill row, no multi-column link groups (Trending/Seasonal/Food), no left heading column, no orange promo card, and no dimmed background page. Operator note confirms the menu state could not be rendered after independent reset and reload; per frozen rubric a genuinely missing state scores 0.\",\n      \"evidence\": [\"reference/menu.png\", \"0014-N01-independent-start-route-after.png\"]\n    },\n    {\n      \"id\": \"V03\",\n      \"score\": 0,\n      \"reason\": \"Candidate viewport is blank: no search query in the header field, no '87 items' heading, no left filter panel (Sort/Size/Color swatches), no active 'white' filter chip, no product grid with images, prices, IKEA Family price banners, or compare checkboxes. Screenshot is the closest reachable state after reset/reload; state genuinely unimplemented, score 0.\",\n      \"evidence\": [\"reference/filtered.png\", \"0026-I01-independent-start-route-after.png\"]\n    },\n    {\n      \"id\": \"V04\",\n      \"score\": 0,\n      \"reason\": \"Candidate viewport is blank: no 'Product comparison' heading, no side-by-side product columns, no product images, prices, discount text, ratings, or Key features attribute table. Operator independently reset and reloaded the route with assets served successfully; the comparison state simply does not render, so it scores 0 per the frozen rubric.\",\n      \"evidence\": [\"reference/compare.png\", \"0030-I03-independent-start-route-after.png\"]\n    }\n  ]\n}\n```",
+          "type": "output_text",
+          "logprobs": null
+        }
+      ],
+      "role": "assistant",
+      "status": "completed",
+      "type": "message"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "temperature": 1,
+  "tool_choice": "auto",
+  "tools": [],
+  "top_p": 1,
+  "background": false,
+  "conversation": null,
+  "max_output_tokens": 5000,
+  "max_tool_calls": null,
+  "previous_response_id": null,
+  "prompt": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": null,
+  "reasoning": {
+    "effort": "high",
+    "generate_summary": null,
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "status": "completed",
+  "text": null,
+  "top_logprobs": 0,
+  "truncation": null,
+  "usage": {
+    "input_tokens": 15039,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 533,
+    "output_tokens_details": {
+      "reasoning_tokens": 20
+    },
+    "total_tokens": 15572,
+    "x_details": [
+      {
+        "input_tokens": 15039,
+        "output_tokens": 533,
+        "total_tokens": 15572,
+        "input_tokens_details": {
+          "text_tokens": 1279,
+          "image_tokens": 13760
+        },
+        "output_tokens_details": {
+          "text_tokens": 513,
+          "reasoning_tokens": 20
+        },
+        "image_tokens": 13760,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "x_billing_type": "response_api"
+      }
+    ]
+  },
+  "user": null,
+  "completed_at": 1792734728,
+  "frequency_penalty": 0,
+  "presence_penalty": 0,
+  "store": false,
+  "moderation": null,
+  "billing": null,
+  "transport": {
+    "requested_model": "k3",
+    "wire_model": "kimi-k3",
+    "base_url": "https://amf.thedevlabel.site",
+    "attempt": 1,
+    "latency_ms": 20620,
+    "time": "2026-10-23T05:52:11.371Z",
+    "note": "Original NJU K3 judge endpoint returned 503 twice; AMF kimi-k3 replacement channel disclosed."
+  }
+}

@@ -504,6 +504,107 @@
           "reason": "Recognizable reviews modal with matching 3.7 score, identical distribution bars (54/30/10/12/17) and sub-scores, but layout is single-column centered instead of the reference two-column panel; Filter/Sort-by buttons, country tabs, AI reviews summary, topics chips and the review content column are entirely absent in the visible state, close X is mid-left, and 'Customer reviews' heading sits at the bottom. Multiple obvious differences and the important review-list column missing."
         }
       ]
+    },
+    {
+      "model": "deepseek-v4.1-flash · 多次续接",
+      "states": [
+        {
+          "id": "V01",
+          "title": "首页与共同导航",
+          "reference": "reference/home.png",
+          "candidate": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0006-E01-independent-start-route-after.png",
+          "score": 0,
+          "reason": "Candidate viewport is completely blank: no black utility bar, no IKEA logo, no navigation links, no search field, no category chips, and no hero/promo imagery. The failure note confirms the route was independently reset and reloaded with infrastructure serving assets successfully, so this is a genuinely missing state, not an environment failure. No structural, proportional, image, or typographic correspondence to the reference exists."
+        },
+        {
+          "id": "V02",
+          "title": "分层菜单",
+          "reference": "reference/menu.png",
+          "candidate": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0014-N01-independent-start-route-after.png",
+          "score": 0,
+          "reason": "Candidate viewport is entirely blank: no expanded mega-menu with category pill row, no multi-column link groups (Trending/Seasonal/Food), no left heading column, no orange promo card, and no dimmed background page. Operator note confirms the menu state could not be rendered after independent reset and reload; per frozen rubric a genuinely missing state scores 0."
+        },
+        {
+          "id": "V03",
+          "title": "搜索与白色筛选",
+          "reference": "reference/filtered.png",
+          "candidate": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0026-I01-independent-start-route-after.png",
+          "score": 0,
+          "reason": "Candidate viewport is blank: no search query in the header field, no '87 items' heading, no left filter panel (Sort/Size/Color swatches), no active 'white' filter chip, no product grid with images, prices, IKEA Family price banners, or compare checkboxes. Screenshot is the closest reachable state after reset/reload; state genuinely unimplemented, score 0."
+        },
+        {
+          "id": "V04",
+          "title": "比较页面",
+          "reference": "reference/compare.png",
+          "candidate": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0030-I03-independent-start-route-after.png",
+          "score": 0,
+          "reason": "Candidate viewport is blank: no 'Product comparison' heading, no side-by-side product columns, no product images, prices, discount text, ratings, or Key features attribute table. Operator independently reset and reloaded the route with assets served successfully; the comparison state simply does not render, so it scores 0 per the frozen rubric."
+        },
+        {
+          "id": "V05",
+          "title": "原木色组合详情",
+          "reference": "reference/detail.png",
+          "candidate": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0036-I06-independent-start-route-after.png",
+          "score": 0,
+          "reason": "Candidate viewport is entirely blank white with no header, breadcrumb, gallery thumbnails, main product image, price/variant panel, or any text/controls; no structural correspondence to the reference product-detail state. Note reports independent reset/reload still blank and assets served, so this is a genuinely missing state rather than infrastructure insufficiency."
+        },
+        {
+          "id": "V06",
+          "title": "All media 弹层",
+          "reference": "reference/gallery.png",
+          "candidate": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0034-I05-independent-start-route-after.png",
+          "score": 0,
+          "reason": "Candidate shows a blank white viewport; the reference All media modal state (dim overlay, large white dialog, All media/Video/Measurement tabs, media grid, top-right close) is absent with no matching layout or controls. Reachable=false after reset/reload with assets OK, so genuinely missing state = 0."
+        },
+        {
+          "id": "V07",
+          "title": "详情组件标签",
+          "reference": "reference/components.png",
+          "candidate": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0038-I07-independent-start-route-after.png",
+          "score": 0,
+          "reason": "Candidate is blank with no horizontal tabs, component cards, quantities/article numbers, right-side large image, or content hierarchy; nothing corresponds to the reference What's included/components state. Reset route reload remains blank and infrastructure is reported healthy, so not unjudgeable."
+        },
+        {
+          "id": "V08",
+          "title": "独立组件详情",
+          "reference": "reference/component.png",
+          "candidate": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0046-S01-independent-start-route-after.png",
+          "score": 0,
+          "reason": "Candidate renders only a blank viewport; reference STUBBARP detail state with accessory large image, 2-pack price, color choices, quantity stepper and Add to bag is entirely missing. Closest reachable screenshot has no UI correspondence and note marks state genuinely missing with assets served."
+        },
+        {
+          "id": "V09",
+          "title": "胡桃木效果详情",
+          "reference": "reference/variant.png",
+          "candidate": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0022-N05-independent-start-route-after.png",
+          "score": 0,
+          "reason": "Candidate viewport is completely blank: no product image, name, price block, color variant thumbnails, or any detail layout is rendered. The walnut-effect variant state is entirely absent while the reference shows the full product detail page with selected black-brown/walnut variant thumbnails."
+        },
+        {
+          "id": "V10",
+          "title": "购物袋",
+          "reference": "reference/bag.png",
+          "candidate": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0048-S02-independent-start-route-after.png",
+          "score": 0,
+          "reason": "Candidate renders a blank white page with no shopping bag content: no delivery/pickup summary, no BESTÅ/STUBBARB item rows, no quantity controls, no savings text, and no right-side order summary column. Reference shows a fully populated two-column bag page."
+        },
+        {
+          "id": "V11",
+          "title": "袋内组件抽屉",
+          "reference": "reference/bag-components.png",
+          "candidate": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0052-S04-independent-start-route-after.png",
+          "score": 0,
+          "reason": "Candidate shows no content at all: no dimmed background bag page and no right-side drawer listing the 6 BESTÅ components with quantities. Reference shows the overlay with mask, drawer title, and spaced component list."
+        },
+        {
+          "id": "V12",
+          "title": "评论抽屉",
+          "reference": "reference/reviews.png",
+          "candidate": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0044-I10-independent-start-route-after.png",
+          "score": 0,
+          "reason": "Candidate viewport is empty: no reviews modal, no 3.7 rating summary, no star distribution bars, no sub-score dots, no filter/sort controls, and no two-column review panel. Reference shows the full customer reviews dialog over the product page."
+        }
+      ]
     }
   ],
   "evidence": [
@@ -7077,6 +7178,898 @@
         [
           "组件视口补充核验",
           "runs/gpt-6-sol-one-shot-01/evaluation/supplementary/operator-records.json"
+        ]
+      ]
+    },
+    {
+      "model": "deepseek-v4.1-flash · 多次续接",
+      "video": "runs/deepseek-v4.1-flash-continuation-01/evaluation/evaluation.mp4",
+      "records": [
+        {
+          "label": "home-initial",
+          "seconds": 0.0,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0002-home-initial-after.png",
+          "url": "http://127.0.0.1:3491/",
+          "actions": [],
+          "note": ""
+        },
+        {
+          "label": "direct-search-and-reload",
+          "seconds": 91.4,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0004-direct-search-and-reload-after.png",
+          "url": "http://127.0.0.1:3491/#/search?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/search?q=besta"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": ""
+        },
+        {
+          "label": "E01-independent-start-route",
+          "seconds": 213.7,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0006-E01-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. Fresh home has no rendered app, search or navigation."
+        },
+        {
+          "label": "E02-independent-start-route",
+          "seconds": 215.4,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0008-E02-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/#/search?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/search?q=besta"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. Main shopping flow cannot begin: script fails to parse before registering UI."
+        },
+        {
+          "label": "E03-independent-start-route",
+          "seconds": 217.0,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0010-E03-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/#/p/29209829",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/p/29209829"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. Local resources return HTTP 200, but no product images or page UI render."
+        },
+        {
+          "label": "E04-independent-start-route",
+          "seconds": 218.5,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0012-E04-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/#/bag",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/bag"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. Direct local bag route and hard refresh remain blank; search and product independently tested."
+        },
+        {
+          "label": "N01-independent-start-route",
+          "seconds": 220.1,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0014-N01-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. No Products or Storage controls render."
+        },
+        {
+          "label": "N02-independent-start-route",
+          "seconds": 221.8,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0016-N02-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. No search input, suggestions or submit UI render."
+        },
+        {
+          "label": "N03-independent-start-route",
+          "seconds": 223.6,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0018-N03-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/#/search?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/search?q=besta"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. Search route has no product list or product-detail link."
+        },
+        {
+          "label": "N04-independent-start-route",
+          "seconds": 225.2,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0020-N04-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/#/p/29209829",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/p/29209829"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. Combination detail has no component link or return navigation."
+        },
+        {
+          "label": "N05-independent-start-route",
+          "seconds": 226.9,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0022-N05-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/#/p/29612189",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/p/29612189"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. Walnut detail route remains blank; no variant or updated product UI."
+        },
+        {
+          "label": "N06-independent-start-route",
+          "seconds": 228.5,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0024-N06-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/#/bag",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/bag"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. Bag and cross-page navigation do not render."
+        },
+        {
+          "label": "I01-independent-start-route",
+          "seconds": 230.2,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0026-I01-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/#/search?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/search?q=besta"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. No white filter or clear control renders."
+        },
+        {
+          "label": "I02-independent-start-route",
+          "seconds": 231.8,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0028-I02-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/#/search?q=besta",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/search?q=besta"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. No sort control or visible priced products render."
+        },
+        {
+          "label": "I03-independent-start-route",
+          "seconds": 233.5,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0030-I03-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/#/compare",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/compare"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. Direct compare route has no product columns, prices or dimensions."
+        },
+        {
+          "label": "I04-independent-start-route",
+          "seconds": 235.2,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0032-I04-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/#/compare",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/compare"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. No compare add/remove controls or product columns render."
+        },
+        {
+          "label": "I05-independent-start-route",
+          "seconds": 237.0,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0034-I05-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/#/p/29209829",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/p/29209829"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. No thumbnails, All media control or gallery render."
+        },
+        {
+          "label": "I06-independent-start-route",
+          "seconds": 238.7,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0036-I06-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/#/p/29209829",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/p/29209829"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. No product measurements control or dimension image renders."
+        },
+        {
+          "label": "I07-independent-start-route",
+          "seconds": 240.4,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0038-I07-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/#/p/29209829",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/p/29209829"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. No components tab, component identities or counts render."
+        },
+        {
+          "label": "I08-independent-start-route",
+          "seconds": 242.2,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0040-I08-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. No postcode input or validation UI renders."
+        },
+        {
+          "label": "I09-independent-start-route",
+          "seconds": 244.1,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0042-I09-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. No store selector or availability UI renders."
+        },
+        {
+          "label": "I10-independent-start-route",
+          "seconds": 246.2,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0044-I10-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/#/p/29209829",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/p/29209829"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. No review drawer, review list or sorting control renders."
+        },
+        {
+          "label": "S01-independent-start-route",
+          "seconds": 248.0,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0046-S01-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/#/p/20293568",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/p/20293568"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. Standalone leg route has no quantity control or Add to bag."
+        },
+        {
+          "label": "S02-independent-start-route",
+          "seconds": 249.7,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0048-S02-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/#/bag",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/bag"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. No two-SKU bag rows or total render."
+        },
+        {
+          "label": "S03-independent-start-route",
+          "seconds": 251.6,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0050-S03-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/#/bag",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/bag"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. No quantity steppers or computed totals render."
+        },
+        {
+          "label": "S04-independent-start-route",
+          "seconds": 253.4,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0052-S04-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/#/bag",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/bag"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. No bag components drawer or multiplied quantities render."
+        },
+        {
+          "label": "S05-independent-start-route",
+          "seconds": 255.2,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0054-S05-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/#/bag",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/bag"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. Hard refresh leaves blank UI; no saved quantities, totals or location visible."
+        },
+        {
+          "label": "S06-independent-start-route",
+          "seconds": 257.0,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0056-S06-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/#/bag",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/bag"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. No installation-service control or fee totals render."
+        },
+        {
+          "label": "S07-independent-start-route",
+          "seconds": 258.8,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0058-S07-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/#/bag",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/bag"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. No delete or Undo control renders."
+        },
+        {
+          "label": "S08-independent-start-route",
+          "seconds": 260.6,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0060-S08-independent-start-route-after.png",
+          "url": "http://127.0.0.1:3491/#/bag",
+          "actions": [
+            {
+              "action": {
+                "type": "reset"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "goto",
+                "path": "/#/bag"
+              },
+              "result": "done"
+            },
+            {
+              "action": {
+                "type": "reload"
+              },
+              "result": "done"
+            }
+          ],
+          "note": "Independent storage reset, direct local entry and hard reload. No discount field, validation or bag totals render."
+        },
+        {
+          "label": "close-evaluation",
+          "seconds": 295.8,
+          "file": "runs/deepseek-v4.1-flash-continuation-01/evaluation/0062-close-evaluation-after.png",
+          "url": "http://127.0.0.1:3491/#/bag",
+          "actions": [],
+          "note": ""
+        }
+      ],
+      "prefix": "runs/deepseek-v4.1-flash-continuation-01",
+      "evaluation": "runs/deepseek-v4.1-flash-continuation-01/evaluation",
+      "links": [
+        [
+          "操作 JSON",
+          "runs/deepseek-v4.1-flash-continuation-01/evaluation/operator-records.json"
+        ],
+        [
+          "浏览器日志",
+          "runs/deepseek-v4.1-flash-continuation-01/evaluation/browser-log.json"
+        ],
+        [
+          "录像说明",
+          "runs/deepseek-v4.1-flash-continuation-01/evaluation/operator-cleanup.json"
+        ],
+        [
+          "候选哈希",
+          "runs/deepseek-v4.1-flash-continuation-01/candidate-manifest.json"
+        ],
+        [
+          "视觉票 1",
+          "runs/deepseek-v4.1-flash-continuation-01/evaluation/judge-k3-visual-0.json"
+        ],
+        [
+          "视觉票 2",
+          "runs/deepseek-v4.1-flash-continuation-01/evaluation/judge-k3-visual-1.json"
+        ],
+        [
+          "视觉票 3",
+          "runs/deepseek-v4.1-flash-continuation-01/evaluation/judge-k3-visual-2.json"
+        ],
+        [
+          "语法与前缀定位",
+          "runs/deepseek-v4.1-flash-continuation-01/evaluation/syntax-diagnostic.json"
+        ],
+        [
+          "资源与源码哈希",
+          "runs/deepseek-v4.1-flash-continuation-01/evaluation/environment-resource-check.json"
+        ],
+        [
+          "片段与前缀审计",
+          "runs/deepseek-v4.1-flash-continuation-01/evaluation/provenance-audit.json"
+        ],
+        [
+          "独立结果",
+          "runs/deepseek-v4.1-flash-continuation-01/evaluation/results.json"
+        ],
+        [
+          "续接原始响应 1",
+          "runs/deepseek-v4.1-flash-continuation-01/turn-001/response.json"
+        ],
+        [
+          "续接原始响应 2",
+          "runs/deepseek-v4.1-flash-continuation-01/turn-002/response.json"
+        ],
+        [
+          "续接原始响应 3",
+          "runs/deepseek-v4.1-flash-continuation-01/turn-003/response.json"
+        ],
+        [
+          "续接原始响应 4",
+          "runs/deepseek-v4.1-flash-continuation-01/turn-004/response.json"
         ]
       ]
     }

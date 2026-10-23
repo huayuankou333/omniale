@@ -1,0 +1,146 @@
+{
+  "created_at": "2026-10-23T05:56:06.073529+00:00",
+  "protocol": "multi-call-continuation-v1",
+  "model": "deepseek-v4.1-flash",
+  "run_id": "deepseek-v4.1-flash-continuation-01",
+  "authorization": "User explicitly authorized multiple calls until DeepSeek returns one complete project, overriding the previous single-response delivery restriction.",
+  "source_run": "deepseek-v4.1-flash-one-shot-02",
+  "original_full_video_frames": 60,
+  "continuation_video_frames_per_call": 60,
+  "task_assets_catalog_rubric_unchanged": true,
+  "frozen_inputs": "DESIGN_FREEZE.json",
+  "seed_extraction": "Completed JSON objects decoded without changes. The incomplete final string was decoded with an in-memory JSON closing quote only; no source character added, removed or corrected.",
+  "immutable_prefixes": true,
+  "continuation_mechanism": "Model appends raw source content with UTF-8 byte offsets using append_file_chunk; complete files and all earlier prefixes remain byte-identical. Chunks are mechanically concatenated, without operator code edits.",
+  "budget": {
+    "total_calls": null,
+    "total_output_tokens": null,
+    "per_request_max_output_tokens": null,
+    "client_timeout": null,
+    "reasoning": "high",
+    "chunk_guidance": "about 12000 source characters per chunk, not a project or API-token cap",
+    "self_browser_tests": 0,
+    "runtime_feedback": false,
+    "grading_feedback": false,
+    "code_repairs": 0
+  },
+  "comparison_limit": "This protocol grants additional calls and differs from one-shot baselines. It is a separate row; original failures and all previous model scores are retained.",
+  "source_generation_count_for_this_candidate": 1,
+  "other_failed_generations_not_used": [
+    "deepseek-v4.1-flash-one-shot-01"
+  ],
+  "current_status": {
+    "model": "deepseek-v4.1-flash",
+    "status": "delivered",
+    "protocol": "multi-call-continuation-v1",
+    "seed_run": "deepseek-v4.1-flash-one-shot-02",
+    "continuation_calls": 4,
+    "source_generation_calls": 1,
+    "total_generation_calls": 5,
+    "usage": {
+      "input_tokens": 473728,
+      "output_tokens": 30595,
+      "reasoning_tokens": 20017
+    },
+    "source_usage": {
+      "input_tokens": 73323,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 65536,
+      "output_tokens_details": {
+        "reasoning_tokens": 25946
+      },
+      "total_tokens": 138859,
+      "x_details": [
+        {
+          "input_tokens": 73323,
+          "output_tokens": 65536,
+          "total_tokens": 138859,
+          "input_tokens_details": {
+            "text_tokens": 25683,
+            "image_tokens": 47640
+          },
+          "output_tokens_details": {
+            "text_tokens": 39589,
+            "reasoning_tokens": 25946
+          },
+          "image_tokens": 47640,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "x_billing_type": "response_api"
+        }
+      ]
+    },
+    "elapsed_seconds": 832.815,
+    "repairs": 0,
+    "self_test_calls": 0,
+    "immutable_prefix": true,
+    "files": [
+      {
+        "path": "index.html",
+        "bytes": 431,
+        "complete": true
+      },
+      {
+        "path": "README.md",
+        "bytes": 3183,
+        "complete": true
+      },
+      {
+        "path": "data.js",
+        "bytes": 25545,
+        "complete": true
+      },
+      {
+        "path": "styles.css",
+        "bytes": 31890,
+        "complete": true
+      },
+      {
+        "path": "app.js",
+        "bytes": 82148,
+        "complete": true
+      }
+    ],
+    "last_error": null
+  },
+  "candidate": {
+    "files": [
+      {
+        "path": "app.js",
+        "bytes": 82148,
+        "sha256": "63648c0168ef45e04450b7d900bad4eeecea7636cddc4fbb890f4eb89ce6671a"
+      },
+      {
+        "path": "data.js",
+        "bytes": 25545,
+        "sha256": "b8cd71d70ca6d9ff6d82f5c31ddd407d88cb9091847660f21979438477af6aa4"
+      },
+      {
+        "path": "index.html",
+        "bytes": 431,
+        "sha256": "fd14d04eda5cf3d6e35520a8cf7093d6e11296c4146f1b46b839f1e79383ee74"
+      },
+      {
+        "path": "README.md",
+        "bytes": 3183,
+        "sha256": "495d99b03540f393b8c61bb5172fe0d8cc38cdca53419bd9771f3179d5c66e6f"
+      },
+      {
+        "path": "styles.css",
+        "bytes": 31890,
+        "sha256": "58a84d62798d70b0b6d4bb2a59e28f3412a91a4bf32feca62143762b7d6ae15e"
+      }
+    ],
+    "candidate_hash": "72e02e4ba028fb9874cb50faf62acc69720f0050ad4193cca3fbf4f723628553",
+    "frozen_at": "2026-10-23T05:44:54.922Z",
+    "protocol": "multi-call-continuation-v1",
+    "source_run": "deepseek-v4.1-flash-one-shot-02",
+    "seed_sha256": "7168b92fd35a0ea46cd754f0629a50560c17d52ac63b42f674cbccb1a86cad2d",
+    "no_repair": true,
+    "all_seed_prefixes_unmodified": true,
+    "continuation_calls": 4
+  }
+}
