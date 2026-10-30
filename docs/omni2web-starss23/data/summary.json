@@ -1,0 +1,1050 @@
+{
+  "case": "starss23",
+  "protocol": {
+    "case_id": "case8_starss_single_delivery",
+    "version": 1,
+    "frozen_at": "2026-10-29T15:05:02.166Z",
+    "models": [
+      "gpt-6-luna",
+      "gpt-6.1-sol"
+    ],
+    "repetitions": 1,
+    "reasoning_effort": "high",
+    "product_rounds": 1,
+    "maximum_submissions": 1,
+    "budgets": {
+      "evidence_batches": 2,
+      "evidence_tool_calls": 12,
+      "reference_frames": 12,
+      "model_requests": 3,
+      "max_output_tokens": 20000
+    },
+    "initial_frames": [
+      1,
+      20,
+      40
+    ],
+    "candidate_browser_access": false,
+    "candidate_execution_access": false,
+    "post_submission_feedback": false,
+    "post_submission_edits": false,
+    "scoring": {
+      "perception": 50,
+      "implementation": 50,
+      "driver": "evaluator/evaluate-ui-compatible.mjs"
+    },
+    "notes": [
+      "A round means one product submission, not one HTTP request. Tool results require follow-up model requests; at most two read-only evidence batches plus one final submission.",
+      "Both models start with empty projects; no previous traces, outputs, scores or gold annotations are passed.",
+      "Same source clip and shared audio tools as the original case. No native audio input.",
+      "Image/frame budget reduced equally to12 to control image-upload latency. No general comparison with the prior iterative protocol.",
+      "The previously corrected UI driver is selected and hashed BEFORE these fresh runs."
+    ]
+  },
+  "rows": [
+    {
+      "model": "gpt-6-luna",
+      "status": {
+        "run_id": "gpt-6-luna-single-delivery-01",
+        "model": "gpt-6-luna",
+        "status": "candidate_complete",
+        "phase": "sealed",
+        "error": null,
+        "product_rounds": 1,
+        "submissions": 1,
+        "model_requests": 2,
+        "evidence_tool_calls": 4,
+        "reference_frames": 7,
+        "input_tokens": 55005,
+        "output_tokens": 8235,
+        "started": "2026-10-29T15:06:13.038Z",
+        "updated": "2026-10-29T15:08:09.182Z"
+      },
+      "evaluation": {
+        "driver_version": "supplementary-ui-compatible-v1.1",
+        "original_driver_preserved": true,
+        "project": "runs\\gpt-6-luna-single-delivery-01\\project",
+        "evaluated_at": "2026-10-29T15:11:09.107Z",
+        "score": 69.3,
+        "maximum": 100,
+        "perception": {
+          "score": 21.3008,
+          "maximum": 50,
+          "temporal": {
+            "score": 6.081976187609991,
+            "macro_f1": 0.30409880938049955,
+            "per_class": {
+              "door": {
+                "tp": 20,
+                "fp": 3,
+                "fn": 29,
+                "f1": 0.5555555555555556
+              },
+              "footsteps": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 24,
+                "f1": 0
+              },
+              "instrument": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 94,
+                "f1": 0
+              },
+              "laughter": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 21,
+                "f1": 0
+              },
+              "speech": {
+                "tp": 430,
+                "fp": 99,
+                "fn": 35,
+                "f1": 0.8651911468812877
+              },
+              "water": {
+                "tp": 21,
+                "fp": 0,
+                "fn": 62,
+                "f1": 0.40384615384615385
+              }
+            }
+          },
+          "joint_location": {
+            "score": 11.804236669101533,
+            "f1": 0.5902118334550767,
+            "tp": 404,
+            "fp": 174,
+            "fn": 387,
+            "angular_tolerance": 25
+          },
+          "episodes": {
+            "score": 3.414634146341464,
+            "f1": 0.34146341463414637,
+            "matched": 7,
+            "predicted": 15,
+            "gold": 26,
+            "iou_threshold": 0.3
+          },
+          "errors": []
+        },
+        "implementation": {
+          "score": 48,
+          "maximum": 50,
+          "checks": [
+            {
+              "name": "asset_readiness_no_autoplay",
+              "max": 3,
+              "score": 3,
+              "fraction": 1,
+              "state": {
+                "t": 0,
+                "paused": true,
+                "duration": 60,
+                "muted": true,
+                "ready": 4
+              },
+              "errors": []
+            },
+            {
+              "name": "live_panorama_projection",
+              "max": 4,
+              "score": 4,
+              "fraction": 1,
+              "samples": [
+                {
+                  "t": 5,
+                  "y": -90,
+                  "trimmed_mae": 0.37549650842462684,
+                  "image_std": 56.169333034020916,
+                  "pass": true
+                },
+                {
+                  "t": 26,
+                  "y": 135,
+                  "trimmed_mae": 0.4989842932496209,
+                  "image_std": 58.166807433225635,
+                  "pass": true
+                }
+              ]
+            },
+            {
+              "name": "panorama_drag",
+              "max": 2,
+              "score": 2,
+              "fraction": 1,
+              "before": 135,
+              "after": 123
+            },
+            {
+              "name": "marker_projection_and_visibility",
+              "max": 8,
+              "score": 8,
+              "fraction": 1,
+              "samples": [
+                {
+                  "id": "sp-a-01",
+                  "position": true,
+                  "outside": true,
+                  "inactive": true
+                },
+                {
+                  "id": "sp-b-01",
+                  "position": true,
+                  "outside": true,
+                  "inactive": true
+                },
+                {
+                  "id": "sp-a-02",
+                  "position": true,
+                  "outside": true,
+                  "inactive": true
+                },
+                {
+                  "id": "kitchen-door-01",
+                  "position": true,
+                  "outside": true,
+                  "inactive": true
+                },
+                {
+                  "id": "sp-b-02",
+                  "position": true,
+                  "outside": true,
+                  "inactive": true
+                },
+                {
+                  "id": "kitchen-water-01",
+                  "position": true,
+                  "outside": true,
+                  "inactive": true
+                },
+                {
+                  "id": "kitchen-door-02",
+                  "position": true,
+                  "outside": true,
+                  "inactive": true
+                },
+                {
+                  "id": "sp-a-03",
+                  "position": true,
+                  "outside": true,
+                  "inactive": true
+                },
+                {
+                  "id": "sp-b-03",
+                  "position": true,
+                  "outside": true,
+                  "inactive": true
+                },
+                {
+                  "id": "sp-a-04",
+                  "position": true,
+                  "outside": true,
+                  "inactive": true
+                }
+              ]
+            },
+            {
+              "name": "event_navigation",
+              "max": 4,
+              "score": 4,
+              "fraction": 1,
+              "samples": [
+                {
+                  "id": "sp-b-05",
+                  "clock": {
+                    "t": 45.1,
+                    "paused": true,
+                    "duration": 60,
+                    "muted": true,
+                    "ready": 4
+                  },
+                  "yaw": 164,
+                  "pass": true
+                },
+                {
+                  "id": "sp-b-02",
+                  "clock": {
+                    "t": 16.35,
+                    "paused": true,
+                    "duration": 60,
+                    "muted": true,
+                    "ready": 4
+                  },
+                  "yaw": -41,
+                  "pass": true
+                },
+                {
+                  "id": "sp-b-06",
+                  "clock": {
+                    "t": 57.1,
+                    "paused": true,
+                    "duration": 60,
+                    "muted": true,
+                    "ready": 4
+                  },
+                  "yaw": -55,
+                  "pass": true
+                },
+                {
+                  "id": "sp-b-01",
+                  "clock": {
+                    "t": 6.5,
+                    "paused": true,
+                    "duration": 60,
+                    "muted": true,
+                    "ready": 4
+                  },
+                  "yaw": 10,
+                  "pass": true
+                }
+              ]
+            },
+            {
+              "name": "event_class_filter",
+              "max": 2,
+              "score": 2,
+              "fraction": 1,
+              "chosen": "speech",
+              "visible": [
+                "sp-a-01",
+                "sp-b-01",
+                "sp-a-02",
+                "sp-b-02",
+                "sp-a-03",
+                "sp-b-03",
+                "sp-a-04",
+                "sp-b-04",
+                "sp-a-05",
+                "sp-b-05",
+                "sp-a-06",
+                "sp-b-06"
+              ],
+              "expected": [
+                "sp-a-01",
+                "sp-b-01",
+                "sp-a-02",
+                "sp-b-02",
+                "sp-a-03",
+                "sp-b-03",
+                "sp-a-04",
+                "sp-b-04",
+                "sp-a-05",
+                "sp-b-05",
+                "sp-a-06",
+                "sp-b-06"
+              ]
+            },
+            {
+              "name": "play_pause_and_scrub",
+              "max": 4,
+              "score": 4,
+              "fraction": 1,
+              "playing": {
+                "t": 8.833032,
+                "paused": false,
+                "duration": 60,
+                "muted": true,
+                "ready": 4
+              },
+              "stopped": {
+                "t": 8.880038,
+                "paused": true,
+                "duration": 60,
+                "muted": true,
+                "ready": 4
+              },
+              "scrub": {
+                "t": 36,
+                "paused": true,
+                "duration": 60,
+                "muted": true,
+                "ready": 4
+              }
+            },
+            {
+              "name": "segment_loop",
+              "max": 4,
+              "score": 4,
+              "fraction": 1,
+              "times": [
+                6.638949,
+                6.776182,
+                6.91877,
+                5,
+                5.111676,
+                5.251627,
+                5.390407,
+                5.534526,
+                5.671751,
+                5.809291,
+                5.947701,
+                6.076555,
+                6.21215,
+                6.352076,
+                6.494941,
+                6.63643,
+                6.775158,
+                6.915225,
+                5,
+                5.098647,
+                5.22614,
+                5.363505,
+                5.490155,
+                5.628202
+              ],
+              "wraps": true
+            },
+            {
+              "name": "responsive_layout_and_evidence",
+              "max": 3,
+              "score": 3,
+              "fraction": 1,
+              "layout": {
+                "width": 390,
+                "scroll": 390,
+                "viewport": 344
+              },
+              "evidence_length": 3109
+            },
+            {
+              "name": "actual_foa_decoder",
+              "max": 9,
+              "score": 9,
+              "fraction": 1,
+              "rows": [
+                {
+                  "yaw": 0,
+                  "expected_ratio": 4,
+                  "observed_ratio": 3.999353696562662,
+                  "blocks": 21,
+                  "rmsL": 0.0839144846759984,
+                  "rmsR": 0.020982011355514932,
+                  "frequency": 453.1250000000001,
+                  "videoTime": 10.558953714285716,
+                  "seconds": 0.8959999999999998,
+                  "pass": true
+                },
+                {
+                  "yaw": 90,
+                  "expected_ratio": 0.6666666666666666,
+                  "observed_ratio": 0.6668132204787091,
+                  "blocks": 21,
+                  "rmsL": 0.04204315789957761,
+                  "rmsR": 0.06305087632994827,
+                  "frequency": 457.58928571428584,
+                  "videoTime": 10.77674919047619,
+                  "seconds": 0.8959999999999998,
+                  "pass": true
+                },
+                {
+                  "yaw": 180,
+                  "expected_ratio": 0.25,
+                  "observed_ratio": 0.25004064809608423,
+                  "blocks": 21,
+                  "rmsL": 0.02099186953670684,
+                  "rmsR": 0.0839538278937759,
+                  "frequency": 455.35714285714295,
+                  "videoTime": 10.761170047619046,
+                  "seconds": 0.8959999999999998,
+                  "pass": true
+                }
+              ]
+            },
+            {
+              "name": "actual_master_volume_and_pause",
+              "max": 3,
+              "score": 3,
+              "fraction": 1,
+              "full": {
+                "blocks": 14,
+                "rmsL": 0.08388985740840425,
+                "rmsR": 0.020975816586719744,
+                "frequency": 473.7723214285714,
+                "videoTime": 11.989495571428572,
+                "seconds": 0.5973333333333334
+              },
+              "low": {
+                "blocks": 14,
+                "rmsL": 0.0209643395482936,
+                "rmsR": 0.005241921780745686,
+                "frequency": 490.51339285714283,
+                "videoTime": 12.940902928571429,
+                "seconds": 0.5973333333333334
+              },
+              "quiet": {
+                "blocks": 10,
+                "rmsL": 0,
+                "rmsR": 0,
+                "frequency": 0,
+                "videoTime": 13.284657,
+                "seconds": 0.42666666666666675
+              },
+              "ratio": 0.249903149152252
+            },
+            {
+              "name": "actual_audio_video_sync",
+              "max": 4,
+              "score": 2,
+              "fraction": 0.5,
+              "regular": {
+                "blocks": 28,
+                "rmsL": 0.08417628946633328,
+                "rmsR": 0.021047545742882326,
+                "frequency": 903.1808035714288,
+                "videoTime": 40.923652107142864,
+                "seconds": 1.1946666666666663,
+                "audioTime": 40.212053571428584,
+                "error": 0.7115985357142804
+              },
+              "loop": {
+                "blocks": 19,
+                "rmsL": 0.0841370770750988,
+                "rmsR": 0.021037701602227517,
+                "frequency": 429.27631578947376,
+                "videoTime": 8.685741684210527,
+                "seconds": 0.8106666666666665,
+                "audioTime": 8.618421052631584,
+                "error": 0.06732063157894252
+              }
+            }
+          ]
+        },
+        "note": "Perception measured against official annotations; implementation measured in browser and actual WebAudio output. Generic perception helpers are shared. One case; no native audio model claim."
+      },
+      "seconds": 116.14,
+      "manifest": {
+        "run_id": "gpt-6-luna-single-delivery-01",
+        "submitted_at": "2026-10-29T15:08:09.178Z",
+        "submissions": 1,
+        "files": [
+          {
+            "path": "index.html",
+            "sha256": "d55a726a230600757993e0f9c7faf8c69267fda1906a1ea12529e9136350f7df"
+          },
+          {
+            "path": "events.json",
+            "sha256": "da8be0991519aa8a758d0a293388f54d02a26c53780e4f26cbe0524f1a6fb544"
+          },
+          {
+            "path": "evidence.md",
+            "sha256": "4e7d71231ee9be8301c74d5567f6b870ee3a6b5b93ba4e6c6c60cd74682f66d8"
+          }
+        ],
+        "candidate_hash": "2a8f72fef9eb8fce10ec357a4e30d877d5347c01f7d9570f21d705dd70e5f77e",
+        "no_model_tests_or_revisions": true
+      },
+      "events": 8
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "status": {
+        "run_id": "gpt-6.1-sol-single-delivery-01",
+        "model": "gpt-6.1-sol",
+        "status": "candidate_complete",
+        "phase": "sealed",
+        "error": null,
+        "product_rounds": 1,
+        "submissions": 1,
+        "model_requests": 3,
+        "evidence_tool_calls": 5,
+        "reference_frames": 12,
+        "input_tokens": 117001,
+        "output_tokens": 20297,
+        "started": "2026-10-29T15:06:20.069Z",
+        "updated": "2026-10-29T15:17:38.804Z"
+      },
+      "evaluation": {
+        "driver_version": "supplementary-ui-compatible-v1.1",
+        "original_driver_preserved": true,
+        "project": "runs\\gpt-6.1-sol-single-delivery-01\\project",
+        "evaluated_at": "2026-10-29T15:20:19.859Z",
+        "score": 83.24,
+        "maximum": 100,
+        "perception": {
+          "score": 33.2367,
+          "maximum": 50,
+          "temporal": {
+            "score": 12.160665174314856,
+            "macro_f1": 0.6080332587157428,
+            "per_class": {
+              "door": {
+                "tp": 22,
+                "fp": 0,
+                "fn": 27,
+                "f1": 0.6197183098591549
+              },
+              "footsteps": {
+                "tp": 24,
+                "fp": 46,
+                "fn": 0,
+                "f1": 0.5106382978723404
+              },
+              "instrument": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 94,
+                "f1": 0
+              },
+              "laughter": {
+                "tp": 10,
+                "fp": 0,
+                "fn": 11,
+                "f1": 0.6451612903225806
+              },
+              "speech": {
+                "tp": 433,
+                "fp": 13,
+                "fn": 32,
+                "f1": 0.9506037321624589
+              },
+              "water": {
+                "tp": 71,
+                "fp": 0,
+                "fn": 12,
+                "f1": 0.922077922077922
+              }
+            }
+          },
+          "joint_location": {
+            "score": 15.118549511854951,
+            "f1": 0.7559274755927475,
+            "tp": 542,
+            "fp": 101,
+            "fn": 249,
+            "angular_tolerance": 25
+          },
+          "episodes": {
+            "score": 5.957446808510638,
+            "f1": 0.5957446808510638,
+            "matched": 14,
+            "predicted": 21,
+            "gold": 26,
+            "iou_threshold": 0.3
+          },
+          "errors": []
+        },
+        "implementation": {
+          "score": 50,
+          "maximum": 50,
+          "checks": [
+            {
+              "name": "asset_readiness_no_autoplay",
+              "max": 3,
+              "score": 3,
+              "fraction": 1,
+              "state": {
+                "t": 0,
+                "paused": true,
+                "duration": 60,
+                "muted": true,
+                "ready": 4
+              },
+              "errors": []
+            },
+            {
+              "name": "live_panorama_projection",
+              "max": 4,
+              "score": 4,
+              "fraction": 1,
+              "samples": [
+                {
+                  "t": 5,
+                  "y": -90,
+                  "trimmed_mae": 0.46133976903207663,
+                  "image_std": 56.152914889677874,
+                  "pass": true
+                },
+                {
+                  "t": 26,
+                  "y": 135,
+                  "trimmed_mae": 1.247981574904652,
+                  "image_std": 53.73255068683482,
+                  "pass": true
+                }
+              ]
+            },
+            {
+              "name": "panorama_drag",
+              "max": 2,
+              "score": 2,
+              "fraction": 1,
+              "before": 135,
+              "after": 146.9
+            },
+            {
+              "name": "marker_projection_and_visibility",
+              "max": 8,
+              "score": 8,
+              "fraction": 1,
+              "samples": [
+                {
+                  "id": "speech-right-01",
+                  "position": true,
+                  "outside": true,
+                  "inactive": true
+                },
+                {
+                  "id": "speech-center-01",
+                  "position": true,
+                  "outside": true,
+                  "inactive": true
+                },
+                {
+                  "id": "laughter-left-01",
+                  "position": true,
+                  "outside": true,
+                  "inactive": true
+                },
+                {
+                  "id": "speech-left-01",
+                  "position": true,
+                  "outside": true,
+                  "inactive": true
+                },
+                {
+                  "id": "steps-center-01",
+                  "position": true,
+                  "outside": true,
+                  "inactive": true
+                },
+                {
+                  "id": "speech-right-02",
+                  "position": true,
+                  "outside": true,
+                  "inactive": true
+                },
+                {
+                  "id": "steps-right-01",
+                  "position": true,
+                  "outside": true,
+                  "inactive": true
+                },
+                {
+                  "id": "door-01",
+                  "position": true,
+                  "outside": true,
+                  "inactive": true
+                },
+                {
+                  "id": "water-01",
+                  "position": true,
+                  "outside": true,
+                  "inactive": true
+                },
+                {
+                  "id": "door-02",
+                  "position": true,
+                  "outside": true,
+                  "inactive": true
+                }
+              ]
+            },
+            {
+              "name": "event_navigation",
+              "max": 4,
+              "score": 4,
+              "fraction": 1,
+              "samples": [
+                {
+                  "id": "speech-left-04",
+                  "clock": {
+                    "t": 45.55,
+                    "paused": true,
+                    "duration": 60,
+                    "muted": true,
+                    "ready": 4
+                  },
+                  "yaw": 164,
+                  "pass": true
+                },
+                {
+                  "id": "speech-left-02",
+                  "clock": {
+                    "t": 31.45,
+                    "paused": true,
+                    "duration": 60,
+                    "muted": true,
+                    "ready": 4
+                  },
+                  "yaw": 164,
+                  "pass": true
+                },
+                {
+                  "id": "water-01",
+                  "clock": {
+                    "t": 17.65,
+                    "paused": true,
+                    "duration": 60,
+                    "muted": true,
+                    "ready": 4
+                  },
+                  "yaw": -38,
+                  "pass": true
+                },
+                {
+                  "id": "speech-right-08",
+                  "clock": {
+                    "t": 57.25,
+                    "paused": true,
+                    "duration": 60,
+                    "muted": true,
+                    "ready": 4
+                  },
+                  "yaw": -56,
+                  "pass": true
+                }
+              ]
+            },
+            {
+              "name": "event_class_filter",
+              "max": 2,
+              "score": 2,
+              "fraction": 1,
+              "chosen": "speech",
+              "visible": [
+                "speech-right-01",
+                "speech-right-02",
+                "speech-right-03",
+                "speech-right-04",
+                "speech-right-05",
+                "speech-right-06",
+                "speech-right-07",
+                "speech-right-08",
+                "speech-center-01",
+                "speech-left-01",
+                "speech-left-02",
+                "speech-left-03",
+                "speech-left-04",
+                "speech-left-05"
+              ],
+              "expected": [
+                "speech-right-01",
+                "speech-center-01",
+                "speech-left-01",
+                "speech-right-02",
+                "speech-right-03",
+                "speech-left-02",
+                "speech-right-04",
+                "speech-right-05",
+                "speech-left-03",
+                "speech-right-06",
+                "speech-left-04",
+                "speech-right-07",
+                "speech-left-05",
+                "speech-right-08"
+              ]
+            },
+            {
+              "name": "play_pause_and_scrub",
+              "max": 4,
+              "score": 4,
+              "fraction": 1,
+              "playing": {
+                "t": 9.116237,
+                "paused": false,
+                "duration": 60,
+                "muted": true,
+                "ready": 4
+              },
+              "stopped": {
+                "t": 9.152256,
+                "paused": true,
+                "duration": 60,
+                "muted": true,
+                "ready": 4
+              },
+              "scrub": {
+                "t": 36,
+                "paused": true,
+                "duration": 60,
+                "muted": true,
+                "ready": 4
+              }
+            },
+            {
+              "name": "segment_loop",
+              "max": 4,
+              "score": 4,
+              "fraction": 1,
+              "times": [
+                6.637038,
+                6.761539,
+                6.887729,
+                5,
+                5.081434,
+                5.20521,
+                5.332773,
+                5.472267,
+                5.612789,
+                5.748774,
+                5.874375,
+                6.013542,
+                6.138388,
+                6.280687,
+                6.41658,
+                6.548051,
+                6.681084,
+                6.820272,
+                6.965149,
+                5.029842,
+                5.157081,
+                5.297003,
+                5.43447,
+                5.560741
+              ],
+              "wraps": true
+            },
+            {
+              "name": "responsive_layout_and_evidence",
+              "max": 3,
+              "score": 3,
+              "fraction": 1,
+              "layout": {
+                "width": 390,
+                "scroll": 390,
+                "viewport": 349
+              },
+              "evidence_length": 9337
+            },
+            {
+              "name": "actual_foa_decoder",
+              "max": 9,
+              "score": 9,
+              "fraction": 1,
+              "rows": [
+                {
+                  "yaw": 0,
+                  "expected_ratio": 4,
+                  "observed_ratio": 3.9993504420148436,
+                  "blocks": 21,
+                  "rmsL": 0.08474656289542369,
+                  "rmsR": 0.02119008177056097,
+                  "frequency": 462.05357142857156,
+                  "videoTime": 10.769136047619048,
+                  "seconds": 0.8959999999999998,
+                  "pass": true
+                },
+                {
+                  "yaw": 90,
+                  "expected_ratio": 0.6666666666666666,
+                  "observed_ratio": 0.6668132332313932,
+                  "blocks": 21,
+                  "rmsL": 0.042383731679906875,
+                  "rmsR": 0.0635616235066516,
+                  "frequency": 462.05357142857156,
+                  "videoTime": 10.767767904761904,
+                  "seconds": 0.8959999999999998,
+                  "pass": true
+                },
+                {
+                  "yaw": 180,
+                  "expected_ratio": 0.25,
+                  "observed_ratio": 0.2500403506034808,
+                  "blocks": 21,
+                  "rmsL": 0.021187536833351367,
+                  "rmsR": 0.08473647066249322,
+                  "frequency": 462.05357142857156,
+                  "videoTime": 10.790290476190474,
+                  "seconds": 0.8959999999999998,
+                  "pass": true
+                }
+              ]
+            },
+            {
+              "name": "actual_master_volume_and_pause",
+              "max": 3,
+              "score": 3,
+              "fraction": 1,
+              "full": {
+                "blocks": 14,
+                "rmsL": 0.08476279666510092,
+                "rmsR": 0.021194075799514576,
+                "frequency": 480.46874999999994,
+                "videoTime": 12.016751357142857,
+                "seconds": 0.5973333333333334
+              },
+              "low": {
+                "blocks": 14,
+                "rmsL": 0.021188341362548883,
+                "rmsR": 0.005297934868054421,
+                "frequency": 495.5357142857142,
+                "videoTime": 12.967462142857142,
+                "seconds": 0.5973333333333334
+              },
+              "quiet": {
+                "blocks": 10,
+                "rmsL": 0,
+                "rmsR": 0,
+                "frequency": 0,
+                "videoTime": 13.317314,
+                "seconds": 0.42666666666666675
+              },
+              "ratio": 0.2499721835071622
+            },
+            {
+              "name": "actual_audio_video_sync",
+              "max": 4,
+              "score": 4,
+              "fraction": 1,
+              "regular": {
+                "blocks": 28,
+                "rmsL": 0.08453874555709741,
+                "rmsR": 0.021138173161331333,
+                "frequency": 914.8995535714288,
+                "videoTime": 40.923223785714285,
+                "seconds": 1.1946666666666663,
+                "audioTime": 40.993303571428584,
+                "error": 0.07007978571429874
+              },
+              "loop": {
+                "blocks": 18,
+                "rmsL": 0.08475536016842007,
+                "rmsR": 0.021192294263524588,
+                "frequency": 430.98958333333337,
+                "videoTime": 8.693851555555556,
+                "seconds": 0.7679999999999999,
+                "audioTime": 8.732638888888891,
+                "error": 0.03878733333333528
+              }
+            }
+          ]
+        },
+        "note": "Perception measured against official annotations; implementation measured in browser and actual WebAudio output. Generic perception helpers are shared. One case; no native audio model claim."
+      },
+      "seconds": 678.73,
+      "manifest": {
+        "run_id": "gpt-6.1-sol-single-delivery-01",
+        "submitted_at": "2026-10-29T15:17:38.799Z",
+        "submissions": 1,
+        "files": [
+          {
+            "path": "index.html",
+            "sha256": "e1059089b381e672df761793f196bb65e9946349bbd364b836efbb1a300e773f"
+          },
+          {
+            "path": "styles.css",
+            "sha256": "2dd81405b09b8a2ef73660a2ae6f73d7f413592ffaab175fa8a6c52bab7e4ed3"
+          },
+          {
+            "path": "events.json",
+            "sha256": "5d50fc71db61495653579285813c8625d1f1610ed7267c6c12e13bbbf61e4389"
+          },
+          {
+            "path": "app.js",
+            "sha256": "2e3663454f576c30ee016e28a04993331f69cfb083b033f7f68226b45f83c56e"
+          },
+          {
+            "path": "evidence.md",
+            "sha256": "83365aa579ec814a9549d18d995efeb18cecb986c0bac7b9988d7df3294081e6"
+          }
+        ],
+        "candidate_hash": "5b3ed92a1db29725adf6fb5a8ffc9fb02795da07f0da00fadcf2452d77caa539",
+        "no_model_tests_or_revisions": true
+      },
+      "events": 10
+    }
+  ]
+}

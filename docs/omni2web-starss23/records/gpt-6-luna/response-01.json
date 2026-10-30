@@ -1,0 +1,308 @@
+{
+  "id": "resp_019496ecbe5dd1c4016ae360e691508198b14fe5d786bc07b8",
+  "object": "response",
+  "created_at": 1793286375,
+  "completed_at": 1793286377,
+  "status": "completed",
+  "background": false,
+  "frequency_penalty": 0,
+  "presence_penalty": 0,
+  "moderation": null,
+  "model": "gpt-6-luna",
+  "access_programs": null,
+  "previous_response_id": null,
+  "instructions": "Complete ONE product-delivery round. You may batch read-only perception tool calls before submitting. NEVER request a browser, execute/test code, preview a product, revise a submission, or ask for feedback. Your sole write is ONE submit_project call containing all finished files. Evidence collection is not a product revision. At most two evidence-response batches are available; batch independent evidence calls to save time. Submit early if ready.",
+  "output": [
+    {
+      "type": "function_call",
+      "id": "fc_019496ecbe5dd1c4016ae360e8683881989215bf3978200307",
+      "call_id": "call_db7efd974cd04f9d888128be886cfe2e",
+      "name": "audio_evidence",
+      "arguments": "{\"start\": 0, \"end\": 20, \"kind\": \"all\"}",
+      "status": "completed"
+    },
+    {
+      "type": "function_call",
+      "id": "fc_019496ecbe5dd1c4016ae360e92d4881989c19bd15e3cfc61b",
+      "call_id": "call_0d4e5d32b78c42ba9873d0b7dd5ab921",
+      "name": "audio_evidence",
+      "arguments": "{\"start\": 20, \"end\": 40, \"kind\": \"all\"}",
+      "status": "completed"
+    },
+    {
+      "type": "function_call",
+      "id": "fc_019496ecbe5dd1c4016ae360e92d4881989478a7e4e18de1a9",
+      "call_id": "call_8889af1678ba4398b094087ceaaf60df",
+      "name": "audio_evidence",
+      "arguments": "{\"start\": 40, \"end\": 60, \"kind\": \"all\"}",
+      "status": "completed"
+    },
+    {
+      "type": "function_call",
+      "id": "fc_019496ecbe5dd1c4016ae360e92d488198a5ee570abea7fc06",
+      "call_id": "call_69a4b4a34a8b4aec91bf2bfca1034415",
+      "name": "video_frames",
+      "arguments": "{\"seconds\": [5, 10, 30, 50]}",
+      "status": "completed"
+    }
+  ],
+  "error": null,
+  "incomplete_details": null,
+  "tools": [
+    {
+      "type": "function",
+      "name": "video_frames",
+      "description": "Inspect exact real video frames. At most9 additional frames in total (3 initial frames are already supplied). Batch requested seconds. Optional pixel crop [x,y,width,height] within1920x960.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "crop": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "seconds": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "seconds"
+        ],
+        "type": "object"
+      },
+      "output_schema": null,
+      "strict": false
+    },
+    {
+      "type": "function",
+      "name": "audio_evidence",
+      "description": "Actual cached audio analysis: ASR, general YAMNet class predictions and FOA energy directions. NOT official labels; can miss or confuse sounds. Each call covers at most20s. Batch0–20,20–40,40–60 in the same response to inspect the whole clip.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "end": {
+            "type": "number"
+          },
+          "kind": {
+            "enum": [
+              "all",
+              "asr",
+              "classes",
+              "directions"
+            ],
+            "type": "string"
+          },
+          "start": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "start",
+          "end"
+        ],
+        "type": "object"
+      },
+      "output_schema": null,
+      "strict": false
+    },
+    {
+      "type": "function",
+      "name": "submit_project",
+      "description": "FINAL AND IRREVERSIBLE. Submit every complete project file in this single call. No incremental writes, tests, previews, feedback or revisions. Include index.html, events.json, evidence.md and all local code/styles.",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "files": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "content": {
+                  "type": "string"
+                },
+                "path": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path",
+                "content"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "files"
+        ],
+        "type": "object"
+      },
+      "output_schema": null,
+      "strict": false
+    }
+  ],
+  "tool_choice": "auto",
+  "parallel_tool_calls": true,
+  "prompt_cache_key": "c581120f-3a18-4dc8-bbc8-6c53a6935031",
+  "prompt_cache_retention": "24h",
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "top_p": 0.98,
+  "top_logprobs": 0,
+  "temperature": 1,
+  "reasoning": {
+    "effort": "high",
+    "context": "all_turns",
+    "summary": null,
+    "mode": "standard"
+  },
+  "user": null,
+  "usage": {
+    "input_tokens": 8644,
+    "input_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "output_tokens": 110,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 8754,
+    "attribution": {
+      "items": {
+        "fc_019496ecbe5dd1c4016ae360e8683881989215bf3978200307": {
+          "input_tokens": 2,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "output_tokens": 42
+        },
+        "fc_019496ecbe5dd1c4016ae360e92d4881989478a7e4e18de1a9": {
+          "input_tokens": 0,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "output_tokens": 23
+        },
+        "fc_019496ecbe5dd1c4016ae360e92d4881989c19bd15e3cfc61b": {
+          "input_tokens": 0,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "output_tokens": 23
+        },
+        "fc_019496ecbe5dd1c4016ae360e92d488198a5ee570abea7fc06": {
+          "input_tokens": 0,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "output_tokens": 22
+        },
+        "msg_019496ecbe5dd1c4016ae360e692548198b0381d5319fb1925": {
+          "input_tokens": 8315,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "output_tokens": 0,
+          "content": [
+            {
+              "input_tokens": 1810,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "output_tokens": 0
+            },
+            {
+              "input_tokens": 7,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "output_tokens": 0
+            },
+            {
+              "input_tokens": 2161,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "output_tokens": 0
+            },
+            {
+              "input_tokens": 7,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "output_tokens": 0
+            },
+            {
+              "input_tokens": 2161,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "output_tokens": 0
+            },
+            {
+              "input_tokens": 7,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "output_tokens": 0
+            },
+            {
+              "input_tokens": 2162,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "output_tokens": 0
+            }
+          ]
+        }
+      },
+      "request_fields": {
+        "instructions": {
+          "input_tokens": 87,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "output_tokens": 0
+        },
+        "tools": {
+          "input_tokens": 240,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "output_tokens": 0
+        }
+      }
+    }
+  },
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "input_tokens_details": {
+        "text_tokens": 0,
+        "image_tokens": 0
+      },
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      }
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "safety_identifier": "user-7AviHLuUS6XbecaVaLSa4CEJ",
+  "store": false,
+  "metadata": {},
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "service_tier": "default",
+  "truncation": "disabled",
+  "transport": {
+    "content_encoding": "gzip",
+    "uncompressed_bytes": 2976911,
+    "wire_bytes": 2238835,
+    "roundtrip_identical": true,
+    "request_body_sha256": "8254267027306e997dfaac0d3af0f6994b8218303b1c876772aa5c788ebaa542",
+    "requested_model": "gpt-6-luna",
+    "attempt": 1,
+    "latency_ms": 6644,
+    "time": "2026-10-29T15:06:27.479Z"
+  }
+}

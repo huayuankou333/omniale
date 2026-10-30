@@ -1,0 +1,454 @@
+{
+  "driver_version": "supplementary-ui-compatible-v1.1",
+  "original_driver_preserved": true,
+  "project": "runs\\gpt-6-luna-single-delivery-01\\project",
+  "evaluated_at": "2026-10-29T15:11:09.107Z",
+  "score": 69.3,
+  "maximum": 100,
+  "perception": {
+    "score": 21.3008,
+    "maximum": 50,
+    "temporal": {
+      "score": 6.081976187609991,
+      "macro_f1": 0.30409880938049955,
+      "per_class": {
+        "door": {
+          "tp": 20,
+          "fp": 3,
+          "fn": 29,
+          "f1": 0.5555555555555556
+        },
+        "footsteps": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 24,
+          "f1": 0
+        },
+        "instrument": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 94,
+          "f1": 0
+        },
+        "laughter": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 21,
+          "f1": 0
+        },
+        "speech": {
+          "tp": 430,
+          "fp": 99,
+          "fn": 35,
+          "f1": 0.8651911468812877
+        },
+        "water": {
+          "tp": 21,
+          "fp": 0,
+          "fn": 62,
+          "f1": 0.40384615384615385
+        }
+      }
+    },
+    "joint_location": {
+      "score": 11.804236669101533,
+      "f1": 0.5902118334550767,
+      "tp": 404,
+      "fp": 174,
+      "fn": 387,
+      "angular_tolerance": 25
+    },
+    "episodes": {
+      "score": 3.414634146341464,
+      "f1": 0.34146341463414637,
+      "matched": 7,
+      "predicted": 15,
+      "gold": 26,
+      "iou_threshold": 0.3
+    },
+    "errors": []
+  },
+  "implementation": {
+    "score": 48,
+    "maximum": 50,
+    "checks": [
+      {
+        "name": "asset_readiness_no_autoplay",
+        "max": 3,
+        "score": 3,
+        "fraction": 1,
+        "state": {
+          "t": 0,
+          "paused": true,
+          "duration": 60,
+          "muted": true,
+          "ready": 4
+        },
+        "errors": []
+      },
+      {
+        "name": "live_panorama_projection",
+        "max": 4,
+        "score": 4,
+        "fraction": 1,
+        "samples": [
+          {
+            "t": 5,
+            "y": -90,
+            "trimmed_mae": 0.37549650842462684,
+            "image_std": 56.169333034020916,
+            "pass": true
+          },
+          {
+            "t": 26,
+            "y": 135,
+            "trimmed_mae": 0.4989842932496209,
+            "image_std": 58.166807433225635,
+            "pass": true
+          }
+        ]
+      },
+      {
+        "name": "panorama_drag",
+        "max": 2,
+        "score": 2,
+        "fraction": 1,
+        "before": 135,
+        "after": 123
+      },
+      {
+        "name": "marker_projection_and_visibility",
+        "max": 8,
+        "score": 8,
+        "fraction": 1,
+        "samples": [
+          {
+            "id": "sp-a-01",
+            "position": true,
+            "outside": true,
+            "inactive": true
+          },
+          {
+            "id": "sp-b-01",
+            "position": true,
+            "outside": true,
+            "inactive": true
+          },
+          {
+            "id": "sp-a-02",
+            "position": true,
+            "outside": true,
+            "inactive": true
+          },
+          {
+            "id": "kitchen-door-01",
+            "position": true,
+            "outside": true,
+            "inactive": true
+          },
+          {
+            "id": "sp-b-02",
+            "position": true,
+            "outside": true,
+            "inactive": true
+          },
+          {
+            "id": "kitchen-water-01",
+            "position": true,
+            "outside": true,
+            "inactive": true
+          },
+          {
+            "id": "kitchen-door-02",
+            "position": true,
+            "outside": true,
+            "inactive": true
+          },
+          {
+            "id": "sp-a-03",
+            "position": true,
+            "outside": true,
+            "inactive": true
+          },
+          {
+            "id": "sp-b-03",
+            "position": true,
+            "outside": true,
+            "inactive": true
+          },
+          {
+            "id": "sp-a-04",
+            "position": true,
+            "outside": true,
+            "inactive": true
+          }
+        ]
+      },
+      {
+        "name": "event_navigation",
+        "max": 4,
+        "score": 4,
+        "fraction": 1,
+        "samples": [
+          {
+            "id": "sp-b-05",
+            "clock": {
+              "t": 45.1,
+              "paused": true,
+              "duration": 60,
+              "muted": true,
+              "ready": 4
+            },
+            "yaw": 164,
+            "pass": true
+          },
+          {
+            "id": "sp-b-02",
+            "clock": {
+              "t": 16.35,
+              "paused": true,
+              "duration": 60,
+              "muted": true,
+              "ready": 4
+            },
+            "yaw": -41,
+            "pass": true
+          },
+          {
+            "id": "sp-b-06",
+            "clock": {
+              "t": 57.1,
+              "paused": true,
+              "duration": 60,
+              "muted": true,
+              "ready": 4
+            },
+            "yaw": -55,
+            "pass": true
+          },
+          {
+            "id": "sp-b-01",
+            "clock": {
+              "t": 6.5,
+              "paused": true,
+              "duration": 60,
+              "muted": true,
+              "ready": 4
+            },
+            "yaw": 10,
+            "pass": true
+          }
+        ]
+      },
+      {
+        "name": "event_class_filter",
+        "max": 2,
+        "score": 2,
+        "fraction": 1,
+        "chosen": "speech",
+        "visible": [
+          "sp-a-01",
+          "sp-b-01",
+          "sp-a-02",
+          "sp-b-02",
+          "sp-a-03",
+          "sp-b-03",
+          "sp-a-04",
+          "sp-b-04",
+          "sp-a-05",
+          "sp-b-05",
+          "sp-a-06",
+          "sp-b-06"
+        ],
+        "expected": [
+          "sp-a-01",
+          "sp-b-01",
+          "sp-a-02",
+          "sp-b-02",
+          "sp-a-03",
+          "sp-b-03",
+          "sp-a-04",
+          "sp-b-04",
+          "sp-a-05",
+          "sp-b-05",
+          "sp-a-06",
+          "sp-b-06"
+        ]
+      },
+      {
+        "name": "play_pause_and_scrub",
+        "max": 4,
+        "score": 4,
+        "fraction": 1,
+        "playing": {
+          "t": 8.833032,
+          "paused": false,
+          "duration": 60,
+          "muted": true,
+          "ready": 4
+        },
+        "stopped": {
+          "t": 8.880038,
+          "paused": true,
+          "duration": 60,
+          "muted": true,
+          "ready": 4
+        },
+        "scrub": {
+          "t": 36,
+          "paused": true,
+          "duration": 60,
+          "muted": true,
+          "ready": 4
+        }
+      },
+      {
+        "name": "segment_loop",
+        "max": 4,
+        "score": 4,
+        "fraction": 1,
+        "times": [
+          6.638949,
+          6.776182,
+          6.91877,
+          5,
+          5.111676,
+          5.251627,
+          5.390407,
+          5.534526,
+          5.671751,
+          5.809291,
+          5.947701,
+          6.076555,
+          6.21215,
+          6.352076,
+          6.494941,
+          6.63643,
+          6.775158,
+          6.915225,
+          5,
+          5.098647,
+          5.22614,
+          5.363505,
+          5.490155,
+          5.628202
+        ],
+        "wraps": true
+      },
+      {
+        "name": "responsive_layout_and_evidence",
+        "max": 3,
+        "score": 3,
+        "fraction": 1,
+        "layout": {
+          "width": 390,
+          "scroll": 390,
+          "viewport": 344
+        },
+        "evidence_length": 3109
+      },
+      {
+        "name": "actual_foa_decoder",
+        "max": 9,
+        "score": 9,
+        "fraction": 1,
+        "rows": [
+          {
+            "yaw": 0,
+            "expected_ratio": 4,
+            "observed_ratio": 3.999353696562662,
+            "blocks": 21,
+            "rmsL": 0.0839144846759984,
+            "rmsR": 0.020982011355514932,
+            "frequency": 453.1250000000001,
+            "videoTime": 10.558953714285716,
+            "seconds": 0.8959999999999998,
+            "pass": true
+          },
+          {
+            "yaw": 90,
+            "expected_ratio": 0.6666666666666666,
+            "observed_ratio": 0.6668132204787091,
+            "blocks": 21,
+            "rmsL": 0.04204315789957761,
+            "rmsR": 0.06305087632994827,
+            "frequency": 457.58928571428584,
+            "videoTime": 10.77674919047619,
+            "seconds": 0.8959999999999998,
+            "pass": true
+          },
+          {
+            "yaw": 180,
+            "expected_ratio": 0.25,
+            "observed_ratio": 0.25004064809608423,
+            "blocks": 21,
+            "rmsL": 0.02099186953670684,
+            "rmsR": 0.0839538278937759,
+            "frequency": 455.35714285714295,
+            "videoTime": 10.761170047619046,
+            "seconds": 0.8959999999999998,
+            "pass": true
+          }
+        ]
+      },
+      {
+        "name": "actual_master_volume_and_pause",
+        "max": 3,
+        "score": 3,
+        "fraction": 1,
+        "full": {
+          "blocks": 14,
+          "rmsL": 0.08388985740840425,
+          "rmsR": 0.020975816586719744,
+          "frequency": 473.7723214285714,
+          "videoTime": 11.989495571428572,
+          "seconds": 0.5973333333333334
+        },
+        "low": {
+          "blocks": 14,
+          "rmsL": 0.0209643395482936,
+          "rmsR": 0.005241921780745686,
+          "frequency": 490.51339285714283,
+          "videoTime": 12.940902928571429,
+          "seconds": 0.5973333333333334
+        },
+        "quiet": {
+          "blocks": 10,
+          "rmsL": 0,
+          "rmsR": 0,
+          "frequency": 0,
+          "videoTime": 13.284657,
+          "seconds": 0.42666666666666675
+        },
+        "ratio": 0.249903149152252
+      },
+      {
+        "name": "actual_audio_video_sync",
+        "max": 4,
+        "score": 2,
+        "fraction": 0.5,
+        "regular": {
+          "blocks": 28,
+          "rmsL": 0.08417628946633328,
+          "rmsR": 0.021047545742882326,
+          "frequency": 903.1808035714288,
+          "videoTime": 40.923652107142864,
+          "seconds": 1.1946666666666663,
+          "audioTime": 40.212053571428584,
+          "error": 0.7115985357142804
+        },
+        "loop": {
+          "blocks": 19,
+          "rmsL": 0.0841370770750988,
+          "rmsR": 0.021037701602227517,
+          "frequency": 429.27631578947376,
+          "videoTime": 8.685741684210527,
+          "seconds": 0.8106666666666665,
+          "audioTime": 8.618421052631584,
+          "error": 0.06732063157894252
+        }
+      }
+    ]
+  },
+  "note": "Perception measured against official annotations; implementation measured in browser and actual WebAudio output. Generic perception helpers are shared. One case; no native audio model claim."
+}

@@ -1,0 +1,41 @@
+{
+  "case_id": "case8_starss_single_delivery",
+  "version": 1,
+  "frozen_at": "2026-10-29T15:05:02.166Z",
+  "models": [
+    "gpt-6-luna",
+    "gpt-6.1-sol"
+  ],
+  "repetitions": 1,
+  "reasoning_effort": "high",
+  "product_rounds": 1,
+  "maximum_submissions": 1,
+  "budgets": {
+    "evidence_batches": 2,
+    "evidence_tool_calls": 12,
+    "reference_frames": 12,
+    "model_requests": 3,
+    "max_output_tokens": 20000
+  },
+  "initial_frames": [
+    1,
+    20,
+    40
+  ],
+  "candidate_browser_access": false,
+  "candidate_execution_access": false,
+  "post_submission_feedback": false,
+  "post_submission_edits": false,
+  "scoring": {
+    "perception": 50,
+    "implementation": 50,
+    "driver": "evaluator/evaluate-ui-compatible.mjs"
+  },
+  "notes": [
+    "A round means one product submission, not one HTTP request. Tool results require follow-up model requests; at most two read-only evidence batches plus one final submission.",
+    "Both models start with empty projects; no previous traces, outputs, scores or gold annotations are passed.",
+    "Same source clip and shared audio tools as the original case. No native audio input.",
+    "Image/frame budget reduced equally to12 to control image-upload latency. No general comparison with the prior iterative protocol.",
+    "The previously corrected UI driver is selected and hashed BEFORE these fresh runs."
+  ]
+}

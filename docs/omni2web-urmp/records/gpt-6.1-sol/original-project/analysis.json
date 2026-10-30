@@ -1,0 +1,53 @@
+{
+  "version": 2,
+  "tracks": [
+    {"id":"a","slot":2,"instrument":"violin","description":"Glasses · light jacket","confidence":"moderate"},
+    {"id":"b","slot":3,"instrument":"cello","description":"Striped top · cello","confidence":"high"},
+    {"id":"c","slot":1,"instrument":"viola","description":"Pale gray long-sleeved shirt","confidence":"moderate-high"},
+    {"id":"d","slot":4,"instrument":"violin","description":"Light printed T-shirt · no glasses","confidence":"moderate"},
+    {"id":"e","slot":5,"instrument":"viola","description":"Red polo shirt","confidence":"moderate-high"}
+  ],
+  "cards": [
+    {
+      "id":"q1","title":"Second viola handoff","start":53.87,"end":57.44,"target":"c",
+      "gains":{"a":1,"b":1,"c":0,"d":1,"e":1},"master":0.8,
+      "reason":"Red-polo stem e has an internal gap about 53.38–57.44 s, following its earlier qualifying gap around 18.11–21.85 s. Gray-shirt stem c continues a moving line: its first detected attack inside this second gap is 53.87 s. Loop to the red player's next attack, not the end of the gray phrase. Frames show the red player's lowered bow while gray continues. Confidence is moderate: quiet attacks can precede the detector, and the 57.44/57.52 pitch split is treated as one octave-confused attack.",
+      "evidence":[
+        {"call":"E09","kind":"audio","track":"e","start":17.6,"end":22.5},
+        {"call":"E03","kind":"audio","track":"e","start":53,"end":58},
+        {"call":"E03","kind":"audio","track":"c","start":53,"end":58},
+        {"call":"E11","kind":"audio","track":"c","start":53,"end":56},
+        {"call":"E05","kind":"video","slot":1,"start":53,"end":57},
+        {"call":"E05","kind":"video","slot":5,"start":53,"end":57}
+      ]
+    },
+    {
+      "id":"q2","title":"Return of the printed-shirt violin","start":56.18,"end":60.17,"target":"d",
+      "gains":{"a":0,"b":0.6,"c":0,"d":0.6,"e":0},"master":0.7,
+      "reason":"Printed-shirt violin is estimated as d. Its first qualifying second-half return is near 56.18 s after the internal 53.68–56.18 s rest. The first three notes are D5–E5–D5; the fourth is the next D5 at 59.84–60.17 s, so the intervening silence belongs inside this four-note loop. Frames show the printed-shirt player resting and then returning. Confidence is moderate: the rest is close to the 2.5 s threshold, the third note is quiet, and the two violin stems return almost together here.",
+      "evidence":[
+        {"call":"E02","kind":"audio","track":"d","start":52,"end":60},
+        {"call":"E10","kind":"audio","track":"d","start":59.5,"end":60.43},
+        {"call":"E05","kind":"video","slot":4,"start":53,"end":57},
+        {"call":"E04","kind":"audio","track":"a","start":39,"end":41.3},
+        {"call":"E04","kind":"audio","track":"d","start":39,"end":41.3},
+        {"call":"E12","kind":"video","slot":4,"start":39,"end":41.1}
+      ]
+    },
+    {
+      "id":"q3","title":"Staggered violin return","start":39.12,"end":41.3,"target":"a",
+      "gains":{"a":0,"b":0.8,"c":0.7,"d":0.5,"e":0.3},"master":0.75,
+      "reason":"Both violin stems are silent together from about 36.62 to 39.12 s (2.50 s). Stem a returns at 39.12; d follows at 40.44, a 1.32 s stagger. The earlier common rest near 18 s ends in nearly simultaneous attacks and does not qualify. End at the later violin's third note release, about 41.30 s. Target a is the glasses/light-jacket player, not the later printed-shirt player. Confidence is moderate: bow preparation complicates the visual binding, but the audio stagger is clear.",
+      "evidence":[
+        {"call":"E01","kind":"audio","track":"a","start":17.25,"end":21.92},
+        {"call":"E01","kind":"audio","track":"d","start":17.25,"end":21.92},
+        {"call":"E04","kind":"audio","track":"a","start":35,"end":41.3},
+        {"call":"E04","kind":"audio","track":"d","start":35,"end":41.3},
+        {"call":"E06","kind":"video","slot":2,"start":37,"end":41},
+        {"call":"E06","kind":"video","slot":4,"start":37,"end":41},
+        {"call":"E12","kind":"video","slot":2,"start":39,"end":41.1},
+        {"call":"E12","kind":"video","slot":4,"start":39,"end":41.1}
+      ]
+    }
+  ]
+}

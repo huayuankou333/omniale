@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EnsembleLab — Rehearsal room</title>
+<link rel="stylesheet" href="styles.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<header class="masthead"><a class="brand" href="./" aria-label="EnsembleLab home"><span class="brand-icon">≋</span> EnsembleLab <small>v2</small></a><span class="local-badge"><i></i> LOCAL REHEARSAL ROOM</span></header>
+<main>
+<div class="page-heading"><div><p class="eyebrow">FIVE PLAYERS. YOUR PART.</p><h1>Step into the ensemble.</h1><p class="subtitle">Follow the handoff, isolate a return, or take the lead. One synchronized performance.</p></div><div class="session-badge"><strong>90<span>s</span></strong><span>URMP EXCERPT<br>5 independent stems</span></div></div>
+<section class="room" aria-label="Performance and mixer">
+<div class="section-bar"><span><i class="live-dot"></i> PERFORMANCE / REORDERED PANELS</span><span>Video muted · original stems only</span></div>
+<video data-testid="scene-video" id="scene" src="../../media/ensemble.mp4" muted playsinline preload="auto" aria-label="Five synchronized URMP performers in slots one through five"></video>
+<div class="performers" id="performers"></div>
+<div class="transport">
+<button data-testid="play" id="play" class="primary play-button" type="button" disabled>▶ Play</button>
+<div class="seek-group"><div class="seek-label"><span id="clock">00:00.00</span><span>01:30.00</span></div><input data-testid="seek" id="seek" aria-label="Seek in seconds" type="range" min="0" max="90" step="0.01" value="0"></div>
+<label class="master-control" for="master"><span>Master <output id="master-value">0.80</output></span><input data-testid="master" id="master" type="range" min="0" max="1" step="0.01" value="0.8"></label>
+</div>
+<div class="loop-bar"><label class="loop-toggle"><input data-testid="loop" id="loop" type="checkbox"><span>↻ Loop A–B</span></label><label>A <input data-testid="loop-start" id="loop-start" type="number" min="0" max="90" step="0.01" value="0" aria-label="Loop start in seconds"></label><span class="loop-dash">—</span><label>B <input data-testid="loop-end" id="loop-end" type="number" min="0" max="90" step="0.01" value="90" aria-label="Loop end in seconds"></label><span class="seconds">seconds</span><button id="reset" class="text-button" type="button">Reset room</button></div>
+<div class="status-line"><span id="status" role="status" aria-live="polite">Loading rehearsal plans…</span><span id="active-label">Free rehearsal</span></div>
+</section>
+<section class="timeline-section" aria-label="Rehearsal passage timeline"><div class="section-heading compact"><h2>Passage map</h2><span>Task clock · seconds</span></div><div class="ruler"><span>0</span><span>15</span><span>30</span><span>45</span><span>60</span><span>75</span><span>90</span></div><div id="timeline"></div><p class="timeline-hint">Each marker is the submitted A–B interval; labels identify the visual target.</p></section>
+<section class="rehearsals-section"><div class="section-heading"><div><p class="eyebrow">THREE WAYS IN</p><h2>Your rehearsal cards</h2></div><p>Choose a passage to set its loop, mix, and target.<br>All controls remain editable.</p></div><div id="rehearsals" class="rehearsal-grid"></div></section>
+<section class="method-note"><span class="note-symbol">↳</span><div><h3>Evidence, not stage order.</h3><p>Track-to-panel bindings and note boundaries are estimates from local signal analysis and exact video frames. Quiet notes, octave errors, and bow preparation introduce uncertainty. The anonymous filenames are not part numbers.</p><a href="evidence.md">Read the evidence notebook ↗</a><a href="analysis.json">Open the submitted plan ↗</a></div></section>
+</main>
+<footer><span>EnsembleLab / a local practice space</span><p>Source: University of Rochester Multi-Modal Music Performance (URMP) dataset, Li et al. Separately recorded, author-synchronized performers. This supplied 90-second derivative crops and reorders the panels. No score, MIDI, synthesized audio, or reference mix is used.</p></footer>
+<noscript>This rehearsal room requires JavaScript for its local five-stem WebAudio mixer.</noscript>
+</body></html>

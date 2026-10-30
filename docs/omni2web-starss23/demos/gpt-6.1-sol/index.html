@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101a1d">
+<title>RoomSound — Spatial scene explorer</title>
+<link rel="stylesheet" href="styles.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+<a class="brand" href="./" aria-label="RoomSound home"><span class="brand-mark"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 13v6m6-13v20m6-17v14m6-10v6"/></svg></span>RoomSound<span class="brand-divider"></span><span class="brand-sub">SPATIAL FIELDNOTES</span></a>
+<a class="about-link" href="#about">About this recording <span>↗</span></a>
+</header>
+<main>
+<section class="intro"><div><div class="eyebrow"><span class="live-dot"></span> SCENE 01 / AN EVERYDAY ROOM</div><h1>A room, in every direction.</h1><p>Follow the conversation. Turn toward the details. Explore one minute of spatial sound.</p></div><div class="recording-spec"><span>360° VIDEO</span><span>FIRST-ORDER AMBISONICS</span><strong>60 <small>SECONDS</small></strong></div></section>
+<div class="workspace">
+<section class="scene-panel" aria-label="Panoramic recording and transport">
+<div class="viewport" data-testid="viewport" tabindex="0" aria-label="Room panorama. Drag to rotate, or use left and right arrow keys.">
+<canvas id="panorama" aria-label="Live panoramic video"></canvas>
+<div id="markers"></div>
+<div class="view-top"><span class="glass-tag"><i></i> ROOM VIEW <b>120° × 90°</b></span><span class="glass-tag" id="view-state">PAUSED</span></div>
+<div class="crosshair" aria-hidden="true"></div>
+<div class="view-bottom"><span>↔ &nbsp; Drag to look around</span><span id="view-heading">0° · FRONT</span></div>
+<div id="video-loading">Loading the room…</div>
+</div>
+<video data-testid="scene-video" id="scene-video" src="../../media/scene.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
+<div class="transport">
+<div class="transport-top"><button data-testid="play" id="play" class="play-button" aria-label="Play recording"><span id="play-symbol">▶</span><span id="play-label">Play</span></button><div class="timecode"><strong id="clock">00:00.0</strong><span> / 01:00</span></div><div class="audio-status"><span class="live-dot"></span><span id="status" role="status">Loading FOA audio…</span></div><label class="volume-label" for="volume"><span aria-hidden="true">◖))</span><span class="sr-only">Master volume</span><input data-testid="volume" id="volume" type="range" min="0" max="1" step="0.01" value="0.8"><output id="volume-output">80%</output></label></div>
+<div class="seek-wrap"><div id="seek-loop"></div><input data-testid="seek" id="seek" aria-label="Recording time in seconds" type="range" min="0" max="60" value="0" step="0.01"></div>
+<div class="transport-bottom"><div class="loop-controls"><label class="toggle-label"><input data-testid="loop" id="loop" type="checkbox"><span>↻ &nbsp; Loop segment</span></label><label class="number-label"><span class="sr-only">Loop start in seconds</span><input data-testid="loop-start" id="loop-start" type="number" min="0" max="59.9" step="0.1" value="10"> <span>s</span></label><span class="range-dash">—</span><label class="number-label"><span class="sr-only">Loop end in seconds</span><input data-testid="loop-end" id="loop-end" type="number" min="0.1" max="60" step="0.1" value="20"> <span>s</span></label></div><span class="shortcut">SPACE <span>play / pause</span></span></div>
+</div>
+<div class="yaw-control"><div class="yaw-title"><label for="yaw">Listening direction</label><button id="reset-yaw" class="text-button">Reset to front ↺</button></div><div class="yaw-slider"><span>−180°</span><input data-testid="yaw" id="yaw" type="range" min="-180" max="180" value="0" step="0.1" aria-label="Listening yaw in degrees; increasing turns left"><span>+180°</span><output id="yaw-output">0°</output></div><div class="yaw-note">Your view and stereo listening direction rotate together. Headphones recommended.</div></div>
+</section>
+<aside class="inspector">
+<div class="panel-heading"><span class="eyebrow">THE LISTENING FIELD</span><span class="tiny-badge">LIVE</span></div>
+<h2>Put sound in context.</h2><p class="aside-intro">The highlighted wedge is your view. Dots show estimated directions of active sounds.</p>
+<div class="radar-wrap"><canvas id="radar" width="560" height="340" role="img" aria-label="Interactive overhead sound-direction map. Click to turn toward a direction."></canvas><span class="radar-hint">CLICK THE FIELD TO TURN</span></div>
+<div class="now-heading"><h3>Audible now</h3><span id="active-count">0 sources</span></div><div id="active-sources" class="active-sources"></div>
+<div class="selection" id="selection"><div class="eyebrow">EXPLORE AN EVENT</div><h3>Small sounds. Shared space.</h3><p>Select any colored interval below to pause, jump to that moment, and face its source.</p></div>
+<div class="mix-note"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8"/><path d="M10 9v5m0-9v1"/></svg><p>One mixed soundscape, not separate stems. Filters change the visual annotations only.</p></div>
+</aside>
+</div>
+<section class="timeline-section" aria-labelledby="timeline-title"><div class="timeline-header"><div><div class="eyebrow">A MINUTE, MAPPED</div><h2 id="timeline-title">Explore the soundscape</h2></div><div class="timeline-tools"><span id="event-count"></span><label for="filter" class="sr-only">Filter event classes</label><select data-testid="filter" id="filter"><option value="all">All sound types</option></select></div></div><div class="legend" id="legend"></div><div class="timeline-scroll"><div class="timeline" id="timeline"><div class="timeline-ruler"><span class="ruler-label">SOURCE / TYPE</span><div id="ruler-ticks"></div></div><div id="timeline-lanes"></div></div></div><div class="timeline-foot"><span><i class="estimate-dot"></i> Estimated activity · independent intervals preserve overlap</span><span>Click an interval to locate it &nbsp;↗</span></div></section>
+<section id="about" class="about-section"><div><div class="eyebrow">ABOUT THE RECORDING</div><h2>Real room. Real overlap.</h2><p>A synchronized 360° room recording from <strong>STARSS23</strong>, by SONY and Tampere University. The original four-channel audio is decoded live as you turn.</p></div><div><h3>A spatial preview, not binaural rendering</h3><p>This horizontal FOA-to-stereo decoder uses W, Y and X; Z is unused. It is not an HRTF simulation. Play starts audio only after your gesture. Drag the panorama or adjust yaw; scrub to explore, or mark a segment to repeat.</p><details><summary>How to read these annotations</summary><p>Speech is strongly supported by automatic transcription and classification. Door and water estimates combine acoustic evidence with the scene. Quiet footsteps and brief laughter are more tentative. Directions, boundaries and moving paths are estimates, not official labels. Visible activity alone does not establish a sound.</p><p>Read the <a href="evidence.md">full evidence and uncertainty notes ↗</a> or inspect <a href="events.json">events.json ↗</a>.</p></details></div></section>
+</main><footer><span class="footer-brand">RoomSound</span><span>A closer listen to everyday space.</span><span>STARSS23 · SONY / Tampere University</span></footer>
+</body></html>

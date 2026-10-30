@@ -1,0 +1,557 @@
+{
+  "driver_version": "urmp-v2-single-delivery-v1",
+  "evaluated_at": "2026-10-30T05:42:27.987Z",
+  "project": "runs\\gpt-6-luna-single-delivery-01\\project",
+  "score": 40,
+  "maximum": 100,
+  "reasoning": {
+    "score": 34,
+    "maximum": 60,
+    "mapping_score": 9,
+    "plans_score": 20,
+    "evidence_score": 5,
+    "mapping": [
+      {
+        "id": "a",
+        "expected_slot": 2,
+        "expected_instrument": "violin",
+        "predicted": {
+          "id": "a",
+          "slot": 4,
+          "instrument": "violin"
+        },
+        "slot_points": 0,
+        "instrument_points": 1
+      },
+      {
+        "id": "b",
+        "expected_slot": 3,
+        "expected_instrument": "cello",
+        "predicted": {
+          "id": "b",
+          "slot": 3,
+          "instrument": "cello"
+        },
+        "slot_points": 2,
+        "instrument_points": 1
+      },
+      {
+        "id": "c",
+        "expected_slot": 1,
+        "expected_instrument": "viola",
+        "predicted": {
+          "id": "c",
+          "slot": 2,
+          "instrument": "viola"
+        },
+        "slot_points": 0,
+        "instrument_points": 1
+      },
+      {
+        "id": "d",
+        "expected_slot": 4,
+        "expected_instrument": "violin",
+        "predicted": {
+          "id": "d",
+          "slot": 1,
+          "instrument": "violin"
+        },
+        "slot_points": 0,
+        "instrument_points": 1
+      },
+      {
+        "id": "e",
+        "expected_slot": 5,
+        "expected_instrument": "viola",
+        "predicted": {
+          "id": "e",
+          "slot": 5,
+          "instrument": "viola"
+        },
+        "slot_points": 2,
+        "instrument_points": 1
+      }
+    ],
+    "cards": [
+      {
+        "id": "q1",
+        "score": 15,
+        "plan_points": 12,
+        "evidence_points": 3,
+        "points": {
+          "start": 3,
+          "end": 3,
+          "target": 3,
+          "mix": 3
+        },
+        "evidence": {
+          "audio": 1,
+          "video": 1,
+          "linked": 1
+        },
+        "refs": [
+          {
+            "call": "E05",
+            "kind": "audio",
+            "track": "c",
+            "start": 53.8,
+            "end": 57.2,
+            "accepted": true,
+            "reason": "Target-track local audio observed near selected event"
+          },
+          {
+            "call": "E05",
+            "kind": "audio",
+            "track": "e",
+            "start": 50,
+            "end": 58,
+            "accepted": false,
+            "reason": "No matching observation"
+          },
+          {
+            "call": "E08",
+            "kind": "video",
+            "slot": 2,
+            "start": 53,
+            "end": 57,
+            "accepted": true,
+            "reason": "Corresponding claimed visual slot observed near selected event"
+          }
+        ],
+        "submitted": {
+          "id": "q1",
+          "title": "Second viola handoff",
+          "start": 53.87,
+          "end": 57.44,
+          "target": "c",
+          "gains": {
+            "a": 1,
+            "b": 1,
+            "c": 0,
+            "d": 1,
+            "e": 1
+          },
+          "master": 0.8,
+          "reason": "The red-polo part (e) sustains through roughly 53.4 s, then has a long gap before its next clear attack around 57.4 s. During that interval c carries a moving mid-register phrase beginning near 53.9 s; the local candidates show successive changing pitches rather than a single held overlap. The target is the continuing pale-shirt viola (slot 2), muted so the player can take that line.",
+          "evidence": [
+            {
+              "call": "E05",
+              "kind": "audio",
+              "track": "c",
+              "start": 53.8,
+              "end": 57.2
+            },
+            {
+              "call": "E05",
+              "kind": "audio",
+              "track": "e",
+              "start": 50,
+              "end": 58
+            },
+            {
+              "call": "E08",
+              "kind": "video",
+              "slot": 2,
+              "start": 53,
+              "end": 57
+            }
+          ]
+        },
+        "gold": {
+          "id": "q1",
+          "start": 53.791,
+          "end": 57.508,
+          "target": "c",
+          "gains": {
+            "a": 1,
+            "b": 1,
+            "c": 0,
+            "d": 1,
+            "e": 1
+          },
+          "master": 0.8,
+          "predicate": {
+            "red_rest_start": 53.381,
+            "red_rest_end": 57.508,
+            "ordinal": 2,
+            "minimum_rest": 3.5
+          },
+          "start_tolerance": 0.4,
+          "end_tolerance": 0.4
+        },
+        "start_error": 0.07900000000000063,
+        "end_error": -0.06800000000000495
+      },
+      {
+        "id": "q2",
+        "score": 3,
+        "plan_points": 2,
+        "evidence_points": 1,
+        "points": {
+          "start": 0,
+          "end": 0,
+          "target": 0,
+          "mix": 2
+        },
+        "evidence": {
+          "audio": 1,
+          "video": 0,
+          "linked": 0
+        },
+        "refs": [
+          {
+            "call": "E07",
+            "kind": "audio",
+            "track": "a",
+            "start": 72,
+            "end": 77,
+            "accepted": true,
+            "reason": "Target-track local audio observed near selected event"
+          },
+          {
+            "call": "E07",
+            "kind": "audio",
+            "track": "b",
+            "start": 72,
+            "end": 77,
+            "accepted": false,
+            "reason": "No matching observation"
+          },
+          {
+            "call": "E08",
+            "kind": "video",
+            "slot": 4,
+            "start": 53,
+            "end": 57,
+            "accepted": false,
+            "reason": "No matching observation"
+          }
+        ],
+        "submitted": {
+          "id": "q2",
+          "title": "Printed-shirt violin returns",
+          "start": 74.54,
+          "end": 76.43,
+          "target": "a",
+          "gains": {
+            "a": 0.6,
+            "b": 0.6,
+            "c": 0,
+            "d": 0,
+            "e": 0
+          },
+          "master": 0.7,
+          "reason": "In the second half, a is quiet through the shared lull after about 72 s and resumes at 74.54 s. Four perceptual attacks are estimated near 74.54, 75.12, 75.52 and 76.01 s; the fourth release is placed near 76.43 s. The rising short sequence and visible bowing in the printed-shirt violin panel support this return. Stem pitch-run segmentation can split one note or merge repeated notes, so the four-note boundary is approximate.",
+          "evidence": [
+            {
+              "call": "E07",
+              "kind": "audio",
+              "track": "a",
+              "start": 72,
+              "end": 77
+            },
+            {
+              "call": "E07",
+              "kind": "audio",
+              "track": "b",
+              "start": 72,
+              "end": 77
+            },
+            {
+              "call": "E08",
+              "kind": "video",
+              "slot": 4,
+              "start": 53,
+              "end": 57
+            }
+          ]
+        },
+        "gold": {
+          "id": "q2",
+          "start": 56.167,
+          "end": 57.496,
+          "target": "d",
+          "gains": {
+            "a": 0,
+            "b": 0.6,
+            "c": 0,
+            "d": 0.6,
+            "e": 0
+          },
+          "master": 0.7,
+          "predicate": {
+            "violin_rest_start": 53.665,
+            "four_notes": [
+              {
+                "id": "d-132",
+                "track": "d",
+                "start": 56.167,
+                "end": 56.481,
+                "midi": 86
+              },
+              {
+                "id": "d-133",
+                "track": "d",
+                "start": 56.482,
+                "end": 56.789,
+                "midi": 86
+              },
+              {
+                "id": "d-134",
+                "track": "d",
+                "start": 56.794,
+                "end": 57.148,
+                "midi": 88
+              },
+              {
+                "id": "d-135",
+                "track": "d",
+                "start": 57.154,
+                "end": 57.496,
+                "midi": 86
+              }
+            ]
+          },
+          "start_tolerance": 0.4,
+          "end_tolerance": 0.4
+        },
+        "start_error": 18.373000000000005,
+        "end_error": 18.934000000000005
+      },
+      {
+        "id": "q3",
+        "score": 7,
+        "plan_points": 6,
+        "evidence_points": 1,
+        "points": {
+          "start": 0,
+          "end": 0,
+          "target": 3,
+          "mix": 3
+        },
+        "evidence": {
+          "audio": 1,
+          "video": 0,
+          "linked": 0
+        },
+        "refs": [
+          {
+            "call": "E07",
+            "kind": "audio",
+            "track": "a",
+            "start": 72,
+            "end": 77,
+            "accepted": true,
+            "reason": "Target-track local audio observed near selected event"
+          },
+          {
+            "call": "E07",
+            "kind": "audio",
+            "track": "d",
+            "start": 72,
+            "end": 77,
+            "accepted": false,
+            "reason": "No matching observation"
+          },
+          {
+            "call": "E09",
+            "kind": "video",
+            "slot": 4,
+            "start": 58,
+            "end": 62,
+            "accepted": false,
+            "reason": "No matching observation"
+          }
+        ],
+        "submitted": {
+          "id": "q3",
+          "title": "Staggered violin re-entry",
+          "start": 74.54,
+          "end": 76.73,
+          "target": "a",
+          "gains": {
+            "a": 0,
+            "b": 0.8,
+            "c": 0.7,
+            "d": 0.5,
+            "e": 0.3
+          },
+          "master": 0.75,
+          "reason": "The first later passage with a shared violin quiet window is around 72.2–74.5 s: a's first return is estimated at 74.54, while d waits until about 75.84, over a second later. The loop ends after d's third new attack, near 76.73 s. a is the earlier violin and is intentionally removed; the remaining requested balance is cello b .8, pale-shirt viola c .7, red-polo viola e .3 and later violin d .5. Brief residual energy and uncertain note segmentation make the exact silent-window boundary less certain than the stagger.",
+          "evidence": [
+            {
+              "call": "E07",
+              "kind": "audio",
+              "track": "a",
+              "start": 72,
+              "end": 77
+            },
+            {
+              "call": "E07",
+              "kind": "audio",
+              "track": "d",
+              "start": 72,
+              "end": 77
+            },
+            {
+              "call": "E09",
+              "kind": "video",
+              "slot": 4,
+              "start": 58,
+              "end": 62
+            }
+          ]
+        },
+        "gold": {
+          "id": "q3",
+          "start": 39.153,
+          "end": 41.289,
+          "target": "a",
+          "gains": {
+            "a": 0,
+            "b": 0.8,
+            "c": 0.7,
+            "d": 0.5,
+            "e": 0.3
+          },
+          "master": 0.75,
+          "predicate": {
+            "early_original": 2,
+            "late_original": 1,
+            "early_onset": 39.153,
+            "late_onset": 40.459
+          },
+          "start_tolerance": 0.4,
+          "end_tolerance": 0.4
+        },
+        "start_error": 35.38700000000001,
+        "end_error": 35.441
+      }
+    ],
+    "issues": []
+  },
+  "execution": {
+    "score": 6,
+    "maximum": 40,
+    "checks": [
+      {
+        "name": "real_media_no_autoplay",
+        "max": 4,
+        "fraction": 1,
+        "state": {
+          "t": 0,
+          "paused": true,
+          "ready": 4,
+          "duration": 90,
+          "muted": true,
+          "source": "http://127.0.0.1:5032/media/ensemble.mp4"
+        },
+        "audio": {
+          "blocks": 5,
+          "amplitudes": [
+            0.030588954261346116,
+            0.004729705506843899,
+            0.000844013863704335,
+            0.0002649904953866663,
+            0.0001467605725670271
+          ],
+          "rms": 0.028814723983063582,
+          "sync": [
+            {
+              "id": "a",
+              "audio": 3.229025617512485,
+              "video": 14.815333,
+              "error": 11.586307382487515
+            },
+            {
+              "id": "b",
+              "audio": 49.48996264141772,
+              "video": 14.815333,
+              "error": 34.67462964141772
+            },
+            {
+              "id": "a",
+              "audio": 5.154018996623108,
+              "video": 22.683999,
+              "error": 17.52998000337689
+            },
+            {
+              "id": "a",
+              "audio": 5.144002211775581,
+              "video": 32.221999,
+              "error": 27.077996788224418
+            },
+            {
+              "id": "a",
+              "audio": 9.616816403972923,
+              "video": 43.408,
+              "error": 33.79118359602708
+            },
+            {
+              "id": "b",
+              "audio": 48.28473145037558,
+              "video": 43.408,
+              "error": 4.87673145037558
+            }
+          ]
+        },
+        "errors": [],
+        "score": 4
+      },
+      {
+        "name": "responsive_source_evidence",
+        "max": 2,
+        "fraction": 1,
+        "layout": {
+          "width": 390,
+          "scroll": 390
+        },
+        "evidence_length": 4395,
+        "score": 2
+      },
+      {
+        "name": "ordinary_mixer",
+        "max": 3,
+        "fraction": 0,
+        "score": 0,
+        "error": "locator.isChecked: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"loop\"]')\u001b[22m\n"
+      },
+      {
+        "name": "ordinary_transport",
+        "max": 3,
+        "fraction": 0,
+        "score": 0,
+        "error": "locator.isChecked: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"loop\"]')\u001b[22m\n"
+      },
+      {
+        "name": "rehearsal_q1",
+        "max": 8,
+        "fraction": 0,
+        "score": 0,
+        "error": "locator.isChecked: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"loop\"]')\u001b[22m\n"
+      },
+      {
+        "name": "rehearsal_q2",
+        "max": 8,
+        "fraction": 0,
+        "score": 0,
+        "error": "locator.isChecked: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"loop\"]')\u001b[22m\n"
+      },
+      {
+        "name": "rehearsal_q3",
+        "max": 8,
+        "fraction": 0,
+        "score": 0,
+        "error": "locator.isChecked: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"loop\"]')\u001b[22m\n"
+      },
+      {
+        "name": "switching_and_manual_control",
+        "max": 4,
+        "fraction": 0,
+        "score": 0,
+        "error": "locator.isChecked: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"loop\"]')\u001b[22m\n"
+      }
+    ]
+  },
+  "limitations": "One excerpt/one run per gateway alias; native audio unavailable, local signal evidence only. Execution checks submitted plan, reasoning checks official requested plan. No model received browser checks or score feedback."
+}

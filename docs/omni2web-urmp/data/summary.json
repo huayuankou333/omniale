@@ -1,0 +1,2618 @@
+{
+  "case": "urmp",
+  "protocol": {
+    "case_id": "case9_urmp_v2_rehearsal_requests",
+    "models": [
+      "gpt-6-luna",
+      "gpt-6.1-sol"
+    ],
+    "repetitions": 1,
+    "reasoning_effort": "high",
+    "product_rounds": 1,
+    "maximum_submissions": 1,
+    "duration": 90,
+    "budgets": {
+      "evidence_batches": 2,
+      "evidence_tool_calls": 12,
+      "reference_frames": 32,
+      "audio_track_seconds": 96,
+      "audio_window_seconds": 8,
+      "tracks_per_window": 2,
+      "frames_per_probe": 8,
+      "video_window_seconds": 4,
+      "model_requests": 3,
+      "max_output_tokens": 20000
+    },
+    "initial_frames": [
+      1,
+      28,
+      55,
+      82
+    ],
+    "scoring": {
+      "reasoning": 60,
+      "execution": 40
+    },
+    "candidate_preview": false,
+    "candidate_revisions": false,
+    "native_audio": false,
+    "limitations": "One real public excerpt, one run per gateway alias; cropped/reordered visual panels; tool-assisted audio, no native-audio claim; v1 and v2 differ in task, scoring and evidence budgets, so totals are not a paired difficulty metric."
+  },
+  "rows": [
+    {
+      "model": "gpt-6-luna",
+      "status": {
+        "run_id": "gpt-6-luna-single-delivery-01",
+        "model": "gpt-6-luna",
+        "status": "candidate_complete",
+        "phase": "sealed",
+        "error": null,
+        "product_rounds": 1,
+        "submissions": 1,
+        "model_requests": 3,
+        "evidence_tool_calls": 9,
+        "reference_frames": 20,
+        "audio_track_seconds": 64,
+        "input_tokens": 65242,
+        "output_tokens": 11384,
+        "started": "2026-10-30T05:38:17.474Z",
+        "updated": "2026-10-30T05:40:26.790Z"
+      },
+      "evaluation": {
+        "driver_version": "urmp-v2-single-delivery-v1",
+        "evaluated_at": "2026-10-30T05:42:27.987Z",
+        "project": "runs\\gpt-6-luna-single-delivery-01\\project",
+        "score": 40,
+        "maximum": 100,
+        "reasoning": {
+          "score": 34,
+          "maximum": 60,
+          "mapping_score": 9,
+          "plans_score": 20,
+          "evidence_score": 5,
+          "mapping": [
+            {
+              "id": "a",
+              "expected_slot": 2,
+              "expected_instrument": "violin",
+              "predicted": {
+                "id": "a",
+                "slot": 4,
+                "instrument": "violin"
+              },
+              "slot_points": 0,
+              "instrument_points": 1
+            },
+            {
+              "id": "b",
+              "expected_slot": 3,
+              "expected_instrument": "cello",
+              "predicted": {
+                "id": "b",
+                "slot": 3,
+                "instrument": "cello"
+              },
+              "slot_points": 2,
+              "instrument_points": 1
+            },
+            {
+              "id": "c",
+              "expected_slot": 1,
+              "expected_instrument": "viola",
+              "predicted": {
+                "id": "c",
+                "slot": 2,
+                "instrument": "viola"
+              },
+              "slot_points": 0,
+              "instrument_points": 1
+            },
+            {
+              "id": "d",
+              "expected_slot": 4,
+              "expected_instrument": "violin",
+              "predicted": {
+                "id": "d",
+                "slot": 1,
+                "instrument": "violin"
+              },
+              "slot_points": 0,
+              "instrument_points": 1
+            },
+            {
+              "id": "e",
+              "expected_slot": 5,
+              "expected_instrument": "viola",
+              "predicted": {
+                "id": "e",
+                "slot": 5,
+                "instrument": "viola"
+              },
+              "slot_points": 2,
+              "instrument_points": 1
+            }
+          ],
+          "cards": [
+            {
+              "id": "q1",
+              "score": 15,
+              "plan_points": 12,
+              "evidence_points": 3,
+              "points": {
+                "start": 3,
+                "end": 3,
+                "target": 3,
+                "mix": 3
+              },
+              "evidence": {
+                "audio": 1,
+                "video": 1,
+                "linked": 1
+              },
+              "refs": [
+                {
+                  "call": "E05",
+                  "kind": "audio",
+                  "track": "c",
+                  "start": 53.8,
+                  "end": 57.2,
+                  "accepted": true,
+                  "reason": "Target-track local audio observed near selected event"
+                },
+                {
+                  "call": "E05",
+                  "kind": "audio",
+                  "track": "e",
+                  "start": 50,
+                  "end": 58,
+                  "accepted": false,
+                  "reason": "No matching observation"
+                },
+                {
+                  "call": "E08",
+                  "kind": "video",
+                  "slot": 2,
+                  "start": 53,
+                  "end": 57,
+                  "accepted": true,
+                  "reason": "Corresponding claimed visual slot observed near selected event"
+                }
+              ],
+              "submitted": {
+                "id": "q1",
+                "title": "Second viola handoff",
+                "start": 53.87,
+                "end": 57.44,
+                "target": "c",
+                "gains": {
+                  "a": 1,
+                  "b": 1,
+                  "c": 0,
+                  "d": 1,
+                  "e": 1
+                },
+                "master": 0.8,
+                "reason": "The red-polo part (e) sustains through roughly 53.4 s, then has a long gap before its next clear attack around 57.4 s. During that interval c carries a moving mid-register phrase beginning near 53.9 s; the local candidates show successive changing pitches rather than a single held overlap. The target is the continuing pale-shirt viola (slot 2), muted so the player can take that line.",
+                "evidence": [
+                  {
+                    "call": "E05",
+                    "kind": "audio",
+                    "track": "c",
+                    "start": 53.8,
+                    "end": 57.2
+                  },
+                  {
+                    "call": "E05",
+                    "kind": "audio",
+                    "track": "e",
+                    "start": 50,
+                    "end": 58
+                  },
+                  {
+                    "call": "E08",
+                    "kind": "video",
+                    "slot": 2,
+                    "start": 53,
+                    "end": 57
+                  }
+                ]
+              },
+              "gold": {
+                "id": "q1",
+                "start": 53.791,
+                "end": 57.508,
+                "target": "c",
+                "gains": {
+                  "a": 1,
+                  "b": 1,
+                  "c": 0,
+                  "d": 1,
+                  "e": 1
+                },
+                "master": 0.8,
+                "predicate": {
+                  "red_rest_start": 53.381,
+                  "red_rest_end": 57.508,
+                  "ordinal": 2,
+                  "minimum_rest": 3.5
+                },
+                "start_tolerance": 0.4,
+                "end_tolerance": 0.4
+              },
+              "start_error": 0.07900000000000063,
+              "end_error": -0.06800000000000495
+            },
+            {
+              "id": "q2",
+              "score": 3,
+              "plan_points": 2,
+              "evidence_points": 1,
+              "points": {
+                "start": 0,
+                "end": 0,
+                "target": 0,
+                "mix": 2
+              },
+              "evidence": {
+                "audio": 1,
+                "video": 0,
+                "linked": 0
+              },
+              "refs": [
+                {
+                  "call": "E07",
+                  "kind": "audio",
+                  "track": "a",
+                  "start": 72,
+                  "end": 77,
+                  "accepted": true,
+                  "reason": "Target-track local audio observed near selected event"
+                },
+                {
+                  "call": "E07",
+                  "kind": "audio",
+                  "track": "b",
+                  "start": 72,
+                  "end": 77,
+                  "accepted": false,
+                  "reason": "No matching observation"
+                },
+                {
+                  "call": "E08",
+                  "kind": "video",
+                  "slot": 4,
+                  "start": 53,
+                  "end": 57,
+                  "accepted": false,
+                  "reason": "No matching observation"
+                }
+              ],
+              "submitted": {
+                "id": "q2",
+                "title": "Printed-shirt violin returns",
+                "start": 74.54,
+                "end": 76.43,
+                "target": "a",
+                "gains": {
+                  "a": 0.6,
+                  "b": 0.6,
+                  "c": 0,
+                  "d": 0,
+                  "e": 0
+                },
+                "master": 0.7,
+                "reason": "In the second half, a is quiet through the shared lull after about 72 s and resumes at 74.54 s. Four perceptual attacks are estimated near 74.54, 75.12, 75.52 and 76.01 s; the fourth release is placed near 76.43 s. The rising short sequence and visible bowing in the printed-shirt violin panel support this return. Stem pitch-run segmentation can split one note or merge repeated notes, so the four-note boundary is approximate.",
+                "evidence": [
+                  {
+                    "call": "E07",
+                    "kind": "audio",
+                    "track": "a",
+                    "start": 72,
+                    "end": 77
+                  },
+                  {
+                    "call": "E07",
+                    "kind": "audio",
+                    "track": "b",
+                    "start": 72,
+                    "end": 77
+                  },
+                  {
+                    "call": "E08",
+                    "kind": "video",
+                    "slot": 4,
+                    "start": 53,
+                    "end": 57
+                  }
+                ]
+              },
+              "gold": {
+                "id": "q2",
+                "start": 56.167,
+                "end": 57.496,
+                "target": "d",
+                "gains": {
+                  "a": 0,
+                  "b": 0.6,
+                  "c": 0,
+                  "d": 0.6,
+                  "e": 0
+                },
+                "master": 0.7,
+                "predicate": {
+                  "violin_rest_start": 53.665,
+                  "four_notes": [
+                    {
+                      "id": "d-132",
+                      "track": "d",
+                      "start": 56.167,
+                      "end": 56.481,
+                      "midi": 86
+                    },
+                    {
+                      "id": "d-133",
+                      "track": "d",
+                      "start": 56.482,
+                      "end": 56.789,
+                      "midi": 86
+                    },
+                    {
+                      "id": "d-134",
+                      "track": "d",
+                      "start": 56.794,
+                      "end": 57.148,
+                      "midi": 88
+                    },
+                    {
+                      "id": "d-135",
+                      "track": "d",
+                      "start": 57.154,
+                      "end": 57.496,
+                      "midi": 86
+                    }
+                  ]
+                },
+                "start_tolerance": 0.4,
+                "end_tolerance": 0.4
+              },
+              "start_error": 18.373000000000005,
+              "end_error": 18.934000000000005
+            },
+            {
+              "id": "q3",
+              "score": 7,
+              "plan_points": 6,
+              "evidence_points": 1,
+              "points": {
+                "start": 0,
+                "end": 0,
+                "target": 3,
+                "mix": 3
+              },
+              "evidence": {
+                "audio": 1,
+                "video": 0,
+                "linked": 0
+              },
+              "refs": [
+                {
+                  "call": "E07",
+                  "kind": "audio",
+                  "track": "a",
+                  "start": 72,
+                  "end": 77,
+                  "accepted": true,
+                  "reason": "Target-track local audio observed near selected event"
+                },
+                {
+                  "call": "E07",
+                  "kind": "audio",
+                  "track": "d",
+                  "start": 72,
+                  "end": 77,
+                  "accepted": false,
+                  "reason": "No matching observation"
+                },
+                {
+                  "call": "E09",
+                  "kind": "video",
+                  "slot": 4,
+                  "start": 58,
+                  "end": 62,
+                  "accepted": false,
+                  "reason": "No matching observation"
+                }
+              ],
+              "submitted": {
+                "id": "q3",
+                "title": "Staggered violin re-entry",
+                "start": 74.54,
+                "end": 76.73,
+                "target": "a",
+                "gains": {
+                  "a": 0,
+                  "b": 0.8,
+                  "c": 0.7,
+                  "d": 0.5,
+                  "e": 0.3
+                },
+                "master": 0.75,
+                "reason": "The first later passage with a shared violin quiet window is around 72.2–74.5 s: a's first return is estimated at 74.54, while d waits until about 75.84, over a second later. The loop ends after d's third new attack, near 76.73 s. a is the earlier violin and is intentionally removed; the remaining requested balance is cello b .8, pale-shirt viola c .7, red-polo viola e .3 and later violin d .5. Brief residual energy and uncertain note segmentation make the exact silent-window boundary less certain than the stagger.",
+                "evidence": [
+                  {
+                    "call": "E07",
+                    "kind": "audio",
+                    "track": "a",
+                    "start": 72,
+                    "end": 77
+                  },
+                  {
+                    "call": "E07",
+                    "kind": "audio",
+                    "track": "d",
+                    "start": 72,
+                    "end": 77
+                  },
+                  {
+                    "call": "E09",
+                    "kind": "video",
+                    "slot": 4,
+                    "start": 58,
+                    "end": 62
+                  }
+                ]
+              },
+              "gold": {
+                "id": "q3",
+                "start": 39.153,
+                "end": 41.289,
+                "target": "a",
+                "gains": {
+                  "a": 0,
+                  "b": 0.8,
+                  "c": 0.7,
+                  "d": 0.5,
+                  "e": 0.3
+                },
+                "master": 0.75,
+                "predicate": {
+                  "early_original": 2,
+                  "late_original": 1,
+                  "early_onset": 39.153,
+                  "late_onset": 40.459
+                },
+                "start_tolerance": 0.4,
+                "end_tolerance": 0.4
+              },
+              "start_error": 35.38700000000001,
+              "end_error": 35.441
+            }
+          ],
+          "issues": []
+        },
+        "execution": {
+          "score": 6,
+          "maximum": 40,
+          "checks": [
+            {
+              "name": "real_media_no_autoplay",
+              "max": 4,
+              "fraction": 1,
+              "state": {
+                "t": 0,
+                "paused": true,
+                "ready": 4,
+                "duration": 90,
+                "muted": true,
+                "source": "http://127.0.0.1:5032/media/ensemble.mp4"
+              },
+              "audio": {
+                "blocks": 5,
+                "amplitudes": [
+                  0.030588954261346116,
+                  0.004729705506843899,
+                  0.000844013863704335,
+                  0.0002649904953866663,
+                  0.0001467605725670271
+                ],
+                "rms": 0.028814723983063582,
+                "sync": [
+                  {
+                    "id": "a",
+                    "audio": 3.229025617512485,
+                    "video": 14.815333,
+                    "error": 11.586307382487515
+                  },
+                  {
+                    "id": "b",
+                    "audio": 49.48996264141772,
+                    "video": 14.815333,
+                    "error": 34.67462964141772
+                  },
+                  {
+                    "id": "a",
+                    "audio": 5.154018996623108,
+                    "video": 22.683999,
+                    "error": 17.52998000337689
+                  },
+                  {
+                    "id": "a",
+                    "audio": 5.144002211775581,
+                    "video": 32.221999,
+                    "error": 27.077996788224418
+                  },
+                  {
+                    "id": "a",
+                    "audio": 9.616816403972923,
+                    "video": 43.408,
+                    "error": 33.79118359602708
+                  },
+                  {
+                    "id": "b",
+                    "audio": 48.28473145037558,
+                    "video": 43.408,
+                    "error": 4.87673145037558
+                  }
+                ]
+              },
+              "errors": [],
+              "score": 4
+            },
+            {
+              "name": "responsive_source_evidence",
+              "max": 2,
+              "fraction": 1,
+              "layout": {
+                "width": 390,
+                "scroll": 390
+              },
+              "evidence_length": 4395,
+              "score": 2
+            },
+            {
+              "name": "ordinary_mixer",
+              "max": 3,
+              "fraction": 0,
+              "score": 0,
+              "error": "locator.isChecked: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"loop\"]')\u001b[22m\n"
+            },
+            {
+              "name": "ordinary_transport",
+              "max": 3,
+              "fraction": 0,
+              "score": 0,
+              "error": "locator.isChecked: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"loop\"]')\u001b[22m\n"
+            },
+            {
+              "name": "rehearsal_q1",
+              "max": 8,
+              "fraction": 0,
+              "score": 0,
+              "error": "locator.isChecked: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"loop\"]')\u001b[22m\n"
+            },
+            {
+              "name": "rehearsal_q2",
+              "max": 8,
+              "fraction": 0,
+              "score": 0,
+              "error": "locator.isChecked: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"loop\"]')\u001b[22m\n"
+            },
+            {
+              "name": "rehearsal_q3",
+              "max": 8,
+              "fraction": 0,
+              "score": 0,
+              "error": "locator.isChecked: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"loop\"]')\u001b[22m\n"
+            },
+            {
+              "name": "switching_and_manual_control",
+              "max": 4,
+              "fraction": 0,
+              "score": 0,
+              "error": "locator.isChecked: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"loop\"]')\u001b[22m\n"
+            }
+          ]
+        },
+        "limitations": "One excerpt/one run per gateway alias; native audio unavailable, local signal evidence only. Execution checks submitted plan, reasoning checks official requested plan. No model received browser checks or score feedback."
+      },
+      "seconds": 129.312,
+      "manifest": {
+        "run_id": "gpt-6-luna-single-delivery-01",
+        "submitted_at": "2026-10-30T05:40:26.786Z",
+        "submissions": 1,
+        "files": [
+          {
+            "path": "index.html",
+            "sha256": "fa8b5ddd3dbfd7b3face52ad0f57b4da1962bbe65e9d6875c917f680c3e087d6"
+          },
+          {
+            "path": "styles.css",
+            "sha256": "951e48a5d74ce53cc56fc2059cd6616f5bcdda2f55b2ae6bd048a81350abb8f3"
+          },
+          {
+            "path": "analysis.json",
+            "sha256": "c3c072e14ae94580e53b13e7ffd540437ebec7def066258773b18a390f087432"
+          },
+          {
+            "path": "app.js",
+            "sha256": "1189acdba395f35a50e7aef65fdd5acbc6f4eefdb3de880afd2321752b21392d"
+          },
+          {
+            "path": "evidence.md",
+            "sha256": "2de179642a7898e502a7ff4a63a5a7e8c12847ae80622395ef3731c32d471dce"
+          }
+        ],
+        "candidate_hash": "fce54db73fc3747d5ba2a6fdb38971251a5c781077f0416bbdcd6f5c0a17dda2",
+        "no_model_tests_or_revisions": true
+      },
+      "events": 17
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "status": {
+        "run_id": "gpt-6.1-sol-single-delivery-01",
+        "model": "gpt-6.1-sol",
+        "status": "candidate_complete",
+        "phase": "sealed",
+        "error": null,
+        "product_rounds": 1,
+        "submissions": 1,
+        "model_requests": 3,
+        "evidence_tool_calls": 12,
+        "reference_frames": 26,
+        "audio_track_seconds": 93,
+        "input_tokens": 102805,
+        "output_tokens": 15052,
+        "started": "2026-10-30T05:38:17.140Z",
+        "updated": "2026-10-30T05:44:20.109Z"
+      },
+      "evaluation": {
+        "driver_version": "urmp-v2-single-delivery-v1",
+        "evaluated_at": "2026-10-30T05:46:04.048Z",
+        "project": "runs\\gpt-6.1-sol-single-delivery-01\\project",
+        "score": 97,
+        "maximum": 100,
+        "reasoning": {
+          "score": 57,
+          "maximum": 60,
+          "mapping_score": 15,
+          "plans_score": 33,
+          "evidence_score": 9,
+          "mapping": [
+            {
+              "id": "a",
+              "expected_slot": 2,
+              "expected_instrument": "violin",
+              "predicted": {
+                "id": "a",
+                "slot": 2,
+                "instrument": "violin",
+                "description": "Glasses · light jacket",
+                "confidence": "moderate"
+              },
+              "slot_points": 2,
+              "instrument_points": 1
+            },
+            {
+              "id": "b",
+              "expected_slot": 3,
+              "expected_instrument": "cello",
+              "predicted": {
+                "id": "b",
+                "slot": 3,
+                "instrument": "cello",
+                "description": "Striped top · cello",
+                "confidence": "high"
+              },
+              "slot_points": 2,
+              "instrument_points": 1
+            },
+            {
+              "id": "c",
+              "expected_slot": 1,
+              "expected_instrument": "viola",
+              "predicted": {
+                "id": "c",
+                "slot": 1,
+                "instrument": "viola",
+                "description": "Pale gray long-sleeved shirt",
+                "confidence": "moderate-high"
+              },
+              "slot_points": 2,
+              "instrument_points": 1
+            },
+            {
+              "id": "d",
+              "expected_slot": 4,
+              "expected_instrument": "violin",
+              "predicted": {
+                "id": "d",
+                "slot": 4,
+                "instrument": "violin",
+                "description": "Light printed T-shirt · no glasses",
+                "confidence": "moderate"
+              },
+              "slot_points": 2,
+              "instrument_points": 1
+            },
+            {
+              "id": "e",
+              "expected_slot": 5,
+              "expected_instrument": "viola",
+              "predicted": {
+                "id": "e",
+                "slot": 5,
+                "instrument": "viola",
+                "description": "Red polo shirt",
+                "confidence": "moderate-high"
+              },
+              "slot_points": 2,
+              "instrument_points": 1
+            }
+          ],
+          "cards": [
+            {
+              "id": "q1",
+              "score": 15,
+              "plan_points": 12,
+              "evidence_points": 3,
+              "points": {
+                "start": 3,
+                "end": 3,
+                "target": 3,
+                "mix": 3
+              },
+              "evidence": {
+                "audio": 1,
+                "video": 1,
+                "linked": 1
+              },
+              "refs": [
+                {
+                  "call": "E09",
+                  "kind": "audio",
+                  "track": "e",
+                  "start": 17.6,
+                  "end": 22.5,
+                  "accepted": false,
+                  "reason": "No matching observation"
+                },
+                {
+                  "call": "E03",
+                  "kind": "audio",
+                  "track": "e",
+                  "start": 53,
+                  "end": 58,
+                  "accepted": false,
+                  "reason": "No matching observation"
+                },
+                {
+                  "call": "E03",
+                  "kind": "audio",
+                  "track": "c",
+                  "start": 53,
+                  "end": 58,
+                  "accepted": true,
+                  "reason": "Target-track local audio observed near selected event"
+                },
+                {
+                  "call": "E11",
+                  "kind": "audio",
+                  "track": "c",
+                  "start": 53,
+                  "end": 56,
+                  "accepted": true,
+                  "reason": "Target-track local audio observed near selected event"
+                },
+                {
+                  "call": "E05",
+                  "kind": "video",
+                  "slot": 1,
+                  "start": 53,
+                  "end": 57,
+                  "accepted": true,
+                  "reason": "Corresponding claimed visual slot observed near selected event"
+                },
+                {
+                  "call": "E05",
+                  "kind": "video",
+                  "slot": 5,
+                  "start": 53,
+                  "end": 57,
+                  "accepted": false,
+                  "reason": "No matching observation"
+                }
+              ],
+              "submitted": {
+                "id": "q1",
+                "title": "Second viola handoff",
+                "start": 53.87,
+                "end": 57.44,
+                "target": "c",
+                "gains": {
+                  "a": 1,
+                  "b": 1,
+                  "c": 0,
+                  "d": 1,
+                  "e": 1
+                },
+                "master": 0.8,
+                "reason": "Red-polo stem e has an internal gap about 53.38–57.44 s, following its earlier qualifying gap around 18.11–21.85 s. Gray-shirt stem c continues a moving line: its first detected attack inside this second gap is 53.87 s. Loop to the red player's next attack, not the end of the gray phrase. Frames show the red player's lowered bow while gray continues. Confidence is moderate: quiet attacks can precede the detector, and the 57.44/57.52 pitch split is treated as one octave-confused attack.",
+                "evidence": [
+                  {
+                    "call": "E09",
+                    "kind": "audio",
+                    "track": "e",
+                    "start": 17.6,
+                    "end": 22.5
+                  },
+                  {
+                    "call": "E03",
+                    "kind": "audio",
+                    "track": "e",
+                    "start": 53,
+                    "end": 58
+                  },
+                  {
+                    "call": "E03",
+                    "kind": "audio",
+                    "track": "c",
+                    "start": 53,
+                    "end": 58
+                  },
+                  {
+                    "call": "E11",
+                    "kind": "audio",
+                    "track": "c",
+                    "start": 53,
+                    "end": 56
+                  },
+                  {
+                    "call": "E05",
+                    "kind": "video",
+                    "slot": 1,
+                    "start": 53,
+                    "end": 57
+                  },
+                  {
+                    "call": "E05",
+                    "kind": "video",
+                    "slot": 5,
+                    "start": 53,
+                    "end": 57
+                  }
+                ]
+              },
+              "gold": {
+                "id": "q1",
+                "start": 53.791,
+                "end": 57.508,
+                "target": "c",
+                "gains": {
+                  "a": 1,
+                  "b": 1,
+                  "c": 0,
+                  "d": 1,
+                  "e": 1
+                },
+                "master": 0.8,
+                "predicate": {
+                  "red_rest_start": 53.381,
+                  "red_rest_end": 57.508,
+                  "ordinal": 2,
+                  "minimum_rest": 3.5
+                },
+                "start_tolerance": 0.4,
+                "end_tolerance": 0.4
+              },
+              "start_error": 0.07900000000000063,
+              "end_error": -0.06800000000000495
+            },
+            {
+              "id": "q2",
+              "score": 12,
+              "plan_points": 9,
+              "evidence_points": 3,
+              "points": {
+                "start": 3,
+                "end": 0,
+                "target": 3,
+                "mix": 3
+              },
+              "evidence": {
+                "audio": 1,
+                "video": 1,
+                "linked": 1
+              },
+              "refs": [
+                {
+                  "call": "E02",
+                  "kind": "audio",
+                  "track": "d",
+                  "start": 52,
+                  "end": 60,
+                  "accepted": true,
+                  "reason": "Target-track local audio observed near selected event"
+                },
+                {
+                  "call": "E10",
+                  "kind": "audio",
+                  "track": "d",
+                  "start": 59.5,
+                  "end": 60.43,
+                  "accepted": true,
+                  "reason": "Target-track local audio observed near selected event"
+                },
+                {
+                  "call": "E05",
+                  "kind": "video",
+                  "slot": 4,
+                  "start": 53,
+                  "end": 57,
+                  "accepted": true,
+                  "reason": "Corresponding claimed visual slot observed near selected event"
+                },
+                {
+                  "call": "E04",
+                  "kind": "audio",
+                  "track": "a",
+                  "start": 39,
+                  "end": 41.3,
+                  "accepted": false,
+                  "reason": "No matching observation"
+                },
+                {
+                  "call": "E04",
+                  "kind": "audio",
+                  "track": "d",
+                  "start": 39,
+                  "end": 41.3,
+                  "accepted": false,
+                  "reason": "No matching observation"
+                },
+                {
+                  "call": "E12",
+                  "kind": "video",
+                  "slot": 4,
+                  "start": 39,
+                  "end": 41.1,
+                  "accepted": false,
+                  "reason": "No matching observation"
+                }
+              ],
+              "submitted": {
+                "id": "q2",
+                "title": "Return of the printed-shirt violin",
+                "start": 56.18,
+                "end": 60.17,
+                "target": "d",
+                "gains": {
+                  "a": 0,
+                  "b": 0.6,
+                  "c": 0,
+                  "d": 0.6,
+                  "e": 0
+                },
+                "master": 0.7,
+                "reason": "Printed-shirt violin is estimated as d. Its first qualifying second-half return is near 56.18 s after the internal 53.68–56.18 s rest. The first three notes are D5–E5–D5; the fourth is the next D5 at 59.84–60.17 s, so the intervening silence belongs inside this four-note loop. Frames show the printed-shirt player resting and then returning. Confidence is moderate: the rest is close to the 2.5 s threshold, the third note is quiet, and the two violin stems return almost together here.",
+                "evidence": [
+                  {
+                    "call": "E02",
+                    "kind": "audio",
+                    "track": "d",
+                    "start": 52,
+                    "end": 60
+                  },
+                  {
+                    "call": "E10",
+                    "kind": "audio",
+                    "track": "d",
+                    "start": 59.5,
+                    "end": 60.43
+                  },
+                  {
+                    "call": "E05",
+                    "kind": "video",
+                    "slot": 4,
+                    "start": 53,
+                    "end": 57
+                  },
+                  {
+                    "call": "E04",
+                    "kind": "audio",
+                    "track": "a",
+                    "start": 39,
+                    "end": 41.3
+                  },
+                  {
+                    "call": "E04",
+                    "kind": "audio",
+                    "track": "d",
+                    "start": 39,
+                    "end": 41.3
+                  },
+                  {
+                    "call": "E12",
+                    "kind": "video",
+                    "slot": 4,
+                    "start": 39,
+                    "end": 41.1
+                  }
+                ]
+              },
+              "gold": {
+                "id": "q2",
+                "start": 56.167,
+                "end": 57.496,
+                "target": "d",
+                "gains": {
+                  "a": 0,
+                  "b": 0.6,
+                  "c": 0,
+                  "d": 0.6,
+                  "e": 0
+                },
+                "master": 0.7,
+                "predicate": {
+                  "violin_rest_start": 53.665,
+                  "four_notes": [
+                    {
+                      "id": "d-132",
+                      "track": "d",
+                      "start": 56.167,
+                      "end": 56.481,
+                      "midi": 86
+                    },
+                    {
+                      "id": "d-133",
+                      "track": "d",
+                      "start": 56.482,
+                      "end": 56.789,
+                      "midi": 86
+                    },
+                    {
+                      "id": "d-134",
+                      "track": "d",
+                      "start": 56.794,
+                      "end": 57.148,
+                      "midi": 88
+                    },
+                    {
+                      "id": "d-135",
+                      "track": "d",
+                      "start": 57.154,
+                      "end": 57.496,
+                      "midi": 86
+                    }
+                  ]
+                },
+                "start_tolerance": 0.4,
+                "end_tolerance": 0.4
+              },
+              "start_error": 0.012999999999998124,
+              "end_error": 2.6739999999999995
+            },
+            {
+              "id": "q3",
+              "score": 15,
+              "plan_points": 12,
+              "evidence_points": 3,
+              "points": {
+                "start": 3,
+                "end": 3,
+                "target": 3,
+                "mix": 3
+              },
+              "evidence": {
+                "audio": 1,
+                "video": 1,
+                "linked": 1
+              },
+              "refs": [
+                {
+                  "call": "E01",
+                  "kind": "audio",
+                  "track": "a",
+                  "start": 17.25,
+                  "end": 21.92,
+                  "accepted": false,
+                  "reason": "No matching observation"
+                },
+                {
+                  "call": "E01",
+                  "kind": "audio",
+                  "track": "d",
+                  "start": 17.25,
+                  "end": 21.92,
+                  "accepted": false,
+                  "reason": "No matching observation"
+                },
+                {
+                  "call": "E04",
+                  "kind": "audio",
+                  "track": "a",
+                  "start": 35,
+                  "end": 41.3,
+                  "accepted": true,
+                  "reason": "Target-track local audio observed near selected event"
+                },
+                {
+                  "call": "E04",
+                  "kind": "audio",
+                  "track": "d",
+                  "start": 35,
+                  "end": 41.3,
+                  "accepted": false,
+                  "reason": "No matching observation"
+                },
+                {
+                  "call": "E06",
+                  "kind": "video",
+                  "slot": 2,
+                  "start": 37,
+                  "end": 41,
+                  "accepted": true,
+                  "reason": "Corresponding claimed visual slot observed near selected event"
+                },
+                {
+                  "call": "E06",
+                  "kind": "video",
+                  "slot": 4,
+                  "start": 37,
+                  "end": 41,
+                  "accepted": false,
+                  "reason": "No matching observation"
+                },
+                {
+                  "call": "E12",
+                  "kind": "video",
+                  "slot": 2,
+                  "start": 39,
+                  "end": 41.1,
+                  "accepted": true,
+                  "reason": "Corresponding claimed visual slot observed near selected event"
+                },
+                {
+                  "call": "E12",
+                  "kind": "video",
+                  "slot": 4,
+                  "start": 39,
+                  "end": 41.1,
+                  "accepted": false,
+                  "reason": "No matching observation"
+                }
+              ],
+              "submitted": {
+                "id": "q3",
+                "title": "Staggered violin return",
+                "start": 39.12,
+                "end": 41.3,
+                "target": "a",
+                "gains": {
+                  "a": 0,
+                  "b": 0.8,
+                  "c": 0.7,
+                  "d": 0.5,
+                  "e": 0.3
+                },
+                "master": 0.75,
+                "reason": "Both violin stems are silent together from about 36.62 to 39.12 s (2.50 s). Stem a returns at 39.12; d follows at 40.44, a 1.32 s stagger. The earlier common rest near 18 s ends in nearly simultaneous attacks and does not qualify. End at the later violin's third note release, about 41.30 s. Target a is the glasses/light-jacket player, not the later printed-shirt player. Confidence is moderate: bow preparation complicates the visual binding, but the audio stagger is clear.",
+                "evidence": [
+                  {
+                    "call": "E01",
+                    "kind": "audio",
+                    "track": "a",
+                    "start": 17.25,
+                    "end": 21.92
+                  },
+                  {
+                    "call": "E01",
+                    "kind": "audio",
+                    "track": "d",
+                    "start": 17.25,
+                    "end": 21.92
+                  },
+                  {
+                    "call": "E04",
+                    "kind": "audio",
+                    "track": "a",
+                    "start": 35,
+                    "end": 41.3
+                  },
+                  {
+                    "call": "E04",
+                    "kind": "audio",
+                    "track": "d",
+                    "start": 35,
+                    "end": 41.3
+                  },
+                  {
+                    "call": "E06",
+                    "kind": "video",
+                    "slot": 2,
+                    "start": 37,
+                    "end": 41
+                  },
+                  {
+                    "call": "E06",
+                    "kind": "video",
+                    "slot": 4,
+                    "start": 37,
+                    "end": 41
+                  },
+                  {
+                    "call": "E12",
+                    "kind": "video",
+                    "slot": 2,
+                    "start": 39,
+                    "end": 41.1
+                  },
+                  {
+                    "call": "E12",
+                    "kind": "video",
+                    "slot": 4,
+                    "start": 39,
+                    "end": 41.1
+                  }
+                ]
+              },
+              "gold": {
+                "id": "q3",
+                "start": 39.153,
+                "end": 41.289,
+                "target": "a",
+                "gains": {
+                  "a": 0,
+                  "b": 0.8,
+                  "c": 0.7,
+                  "d": 0.5,
+                  "e": 0.3
+                },
+                "master": 0.75,
+                "predicate": {
+                  "early_original": 2,
+                  "late_original": 1,
+                  "early_onset": 39.153,
+                  "late_onset": 40.459
+                },
+                "start_tolerance": 0.4,
+                "end_tolerance": 0.4
+              },
+              "start_error": -0.03300000000000125,
+              "end_error": 0.01099999999999568
+            }
+          ],
+          "issues": []
+        },
+        "execution": {
+          "score": 40,
+          "maximum": 40,
+          "checks": [
+            {
+              "name": "real_media_no_autoplay",
+              "max": 4,
+              "fraction": 1,
+              "state": {
+                "t": 0,
+                "paused": true,
+                "ready": 4,
+                "duration": 90,
+                "muted": true,
+                "source": "http://127.0.0.1:7042/media/ensemble.mp4"
+              },
+              "audio": {
+                "blocks": 5,
+                "amplitudes": [
+                  0.028009534779404016,
+                  0.0041050921306468174,
+                  0.0013832710925775176,
+                  0.00025132116046974295,
+                  0.00016393727370508864
+                ],
+                "rms": 0.02685676008100104,
+                "sync": [
+                  {
+                    "id": "a",
+                    "audio": 3.2469193361255066,
+                    "video": 0.703884,
+                    "error": 2.5430353361255067
+                  },
+                  {
+                    "id": "b",
+                    "audio": 49.53359350845464,
+                    "video": 0.703884,
+                    "error": 48.82970950845464
+                  },
+                  {
+                    "id": "a",
+                    "audio": 5.1873102662053725,
+                    "video": 0.874457,
+                    "error": 4.312853266205373
+                  },
+                  {
+                    "id": "a",
+                    "audio": 5.143337918176655,
+                    "video": 1.04386,
+                    "error": 4.099477918176655
+                  },
+                  {
+                    "id": "a",
+                    "audio": 9.654969787676794,
+                    "video": 1.213453,
+                    "error": 8.441516787676795
+                  },
+                  {
+                    "id": "b",
+                    "audio": 48.365102916208045,
+                    "video": 1.213453,
+                    "error": 47.151649916208044
+                  }
+                ]
+              },
+              "errors": [],
+              "score": 4
+            },
+            {
+              "name": "responsive_source_evidence",
+              "max": 2,
+              "fraction": 1,
+              "layout": {
+                "width": 390,
+                "scroll": 390
+              },
+              "evidence_length": 8540,
+              "score": 2
+            },
+            {
+              "name": "ordinary_mixer",
+              "max": 3,
+              "fraction": 1,
+              "rows": [
+                {
+                  "blocks": 5,
+                  "amplitudes": [
+                    0.09599178447504707,
+                    0.09599634810316293,
+                    0.09599521268535743,
+                    0.09598823271059809,
+                    0.0959949577534414
+                  ],
+                  "rms": 0.15183280351319997,
+                  "sync": [
+                    {
+                      "id": "a",
+                      "audio": 4.82233715104731,
+                      "video": 4.946232,
+                      "error": 0.12389484895269032
+                    },
+                    {
+                      "id": "b",
+                      "audio": 4.824771777743718,
+                      "video": 4.946232,
+                      "error": 0.12146022225628261
+                    },
+                    {
+                      "id": "c",
+                      "audio": 4.817264388272951,
+                      "video": 4.946232,
+                      "error": 0.12896761172704885
+                    },
+                    {
+                      "id": "d",
+                      "audio": 4.808875996079678,
+                      "video": 4.946232,
+                      "error": 0.13735600392032232
+                    },
+                    {
+                      "id": "e",
+                      "audio": 4.808573520658411,
+                      "video": 4.946232,
+                      "error": 0.1376584793415896
+                    },
+                    {
+                      "id": "a",
+                      "audio": 4.977775261661213,
+                      "video": 5.116858,
+                      "error": 0.1390827383387867
+                    },
+                    {
+                      "id": "b",
+                      "audio": 4.985932314610887,
+                      "video": 5.116858,
+                      "error": 0.13092568538911298
+                    },
+                    {
+                      "id": "c",
+                      "audio": 4.996135237382669,
+                      "video": 5.116858,
+                      "error": 0.12072276261733084
+                    },
+                    {
+                      "id": "d",
+                      "audio": 4.991994140181442,
+                      "video": 5.116858,
+                      "error": 0.12486385981855808
+                    },
+                    {
+                      "id": "e",
+                      "audio": 4.982915119289828,
+                      "video": 5.116858,
+                      "error": 0.13394288071017169
+                    },
+                    {
+                      "id": "a",
+                      "audio": 5.157773425338189,
+                      "video": 5.287397,
+                      "error": 0.12962357466181107
+                    },
+                    {
+                      "id": "b",
+                      "audio": 5.149723253472279,
+                      "video": 5.287397,
+                      "error": 0.1376737465277209
+                    },
+                    {
+                      "id": "c",
+                      "audio": 5.150573430222721,
+                      "video": 5.287397,
+                      "error": 0.13682356977727927
+                    },
+                    {
+                      "id": "d",
+                      "audio": 5.164524013040818,
+                      "video": 5.287397,
+                      "error": 0.12287298695918203
+                    },
+                    {
+                      "id": "e",
+                      "audio": 5.165703652045067,
+                      "video": 5.287397,
+                      "error": 0.12169334795493292
+                    },
+                    {
+                      "id": "a",
+                      "audio": 5.3375379778705225,
+                      "video": 5.455976,
+                      "error": 0.11843802212947718
+                    },
+                    {
+                      "id": "b",
+                      "audio": 5.332603143132223,
+                      "video": 5.455976,
+                      "error": 0.12337285686777655
+                    },
+                    {
+                      "id": "c",
+                      "audio": 5.323517179206692,
+                      "video": 5.455976,
+                      "error": 0.13245882079330773
+                    },
+                    {
+                      "id": "d",
+                      "audio": 5.319148577858823,
+                      "video": 5.455976,
+                      "error": 0.1368274221411765
+                    },
+                    {
+                      "id": "e",
+                      "audio": 5.32893445845284,
+                      "video": 5.455976,
+                      "error": 0.1270415415471593
+                    }
+                  ],
+                  "expected_effective_gains": [
+                    0.8,
+                    0.8,
+                    0.8,
+                    0.8,
+                    0.8
+                  ],
+                  "pass": true
+                },
+                {
+                  "blocks": 5,
+                  "amplitudes": [
+                    0.009599273661596847,
+                    0.028798419643751766,
+                    0.047998857646702364,
+                    0.0671947893965304,
+                    0.08639267505513971
+                  ],
+                  "rms": 0.0872252091233861,
+                  "sync": [
+                    {
+                      "id": "a",
+                      "audio": 6.360026707101741,
+                      "video": 6.486866,
+                      "error": 0.1268392928982589
+                    },
+                    {
+                      "id": "b",
+                      "audio": 6.351187832128494,
+                      "video": 6.486866,
+                      "error": 0.13567816787150644
+                    },
+                    {
+                      "id": "c",
+                      "audio": 6.349033727698043,
+                      "video": 6.486866,
+                      "error": 0.13783227230195738
+                    },
+                    {
+                      "id": "d",
+                      "audio": 6.361813724354761,
+                      "video": 6.486866,
+                      "error": 0.12505227564523924
+                    },
+                    {
+                      "id": "e",
+                      "audio": 6.366623416142284,
+                      "video": 6.486866,
+                      "error": 0.12024258385771613
+                    },
+                    {
+                      "id": "a",
+                      "audio": 6.537085815457755,
+                      "video": 6.65781,
+                      "error": 0.12072418454224465
+                    },
+                    {
+                      "id": "b",
+                      "audio": 6.534497600076452,
+                      "video": 6.65781,
+                      "error": 0.12331239992354792
+                    },
+                    {
+                      "id": "c",
+                      "audio": 6.525602511167017,
+                      "video": 6.65781,
+                      "error": 0.13220748883298228
+                    },
+                    {
+                      "id": "d",
+                      "audio": 6.519278668117249,
+                      "video": 6.65781,
+                      "error": 0.13853133188275013
+                    },
+                    {
+                      "id": "e",
+                      "audio": 6.524747086504339,
+                      "video": 6.65781,
+                      "error": 0.13306291349566024
+                    },
+                    {
+                      "id": "a",
+                      "audio": 6.690807251420108,
+                      "video": 6.826365,
+                      "error": 0.13555774857989178
+                    },
+                    {
+                      "id": "b",
+                      "audio": 6.7042617382358,
+                      "video": 6.826365,
+                      "error": 0.12210326176419972
+                    },
+                    {
+                      "id": "c",
+                      "audio": 6.707683470459324,
+                      "video": 6.826365,
+                      "error": 0.11868152954067579
+                    },
+                    {
+                      "id": "d",
+                      "audio": 6.700541163833305,
+                      "video": 6.826365,
+                      "error": 0.12582383616669546
+                    },
+                    {
+                      "id": "e",
+                      "audio": 6.691943898182399,
+                      "video": 6.826365,
+                      "error": 0.13442110181760114
+                    },
+                    {
+                      "id": "a",
+                      "audio": 6.866151724239609,
+                      "video": 6.995963,
+                      "error": 0.12981127576039064
+                    },
+                    {
+                      "id": "b",
+                      "audio": 6.860477559387755,
+                      "video": 6.995963,
+                      "error": 0.13548544061224455
+                    },
+                    {
+                      "id": "c",
+                      "audio": 6.867453561683123,
+                      "video": 6.995963,
+                      "error": 0.12850943831687633
+                    },
+                    {
+                      "id": "d",
+                      "audio": 6.878682245909795,
+                      "video": 6.995963,
+                      "error": 0.11728075409020455
+                    },
+                    {
+                      "id": "e",
+                      "audio": 6.875179973275408,
+                      "video": 6.995963,
+                      "error": 0.12078302672459174
+                    }
+                  ],
+                  "expected_effective_gains": [
+                    0.08000000000000002,
+                    0.24,
+                    0.4,
+                    0.5599999999999999,
+                    0.7200000000000001
+                  ],
+                  "pass": true
+                },
+                {
+                  "blocks": 5,
+                  "amplitudes": [
+                    0.0029998171895685897,
+                    0.008999781879780724,
+                    0.014998826169094854,
+                    0.020998688521021897,
+                    0.0269980179608118
+                  ],
+                  "rms": 0.02725719896703768,
+                  "sync": [
+                    {
+                      "id": "b",
+                      "audio": 7.900756519144989,
+                      "video": 8.026175,
+                      "error": 0.12541848085501162
+                    },
+                    {
+                      "id": "c",
+                      "audio": 7.9081872631161785,
+                      "video": 8.026175,
+                      "error": 0.1179877368838218
+                    },
+                    {
+                      "id": "d",
+                      "audio": 7.9027177612156265,
+                      "video": 8.026175,
+                      "error": 0.12345723878437376
+                    },
+                    {
+                      "id": "e",
+                      "audio": 7.893668486572915,
+                      "video": 8.026175,
+                      "error": 0.13250651342708508
+                    },
+                    {
+                      "id": "b",
+                      "audio": 8.061050643705311,
+                      "video": 8.196387,
+                      "error": 0.13533635629468854
+                    },
+                    {
+                      "id": "c",
+                      "audio": 8.064081221936567,
+                      "video": 8.196387,
+                      "error": 0.1323057780634329
+                    },
+                    {
+                      "id": "d",
+                      "audio": 8.077668331980249,
+                      "video": 8.196387,
+                      "error": 0.11871866801975095
+                    },
+                    {
+                      "id": "e",
+                      "audio": 8.076866720555973,
+                      "video": 8.196387,
+                      "error": 0.11952027944402666
+                    },
+                    {
+                      "id": "b",
+                      "audio": 8.24327173576919,
+                      "video": 8.366323,
+                      "error": 0.12305126423080992
+                    },
+                    {
+                      "id": "c",
+                      "audio": 8.234331787364999,
+                      "video": 8.366323,
+                      "error": 0.13199121263500047
+                    },
+                    {
+                      "id": "d",
+                      "audio": 8.231469016699112,
+                      "video": 8.366323,
+                      "error": 0.1348539833008875
+                    },
+                    {
+                      "id": "e",
+                      "audio": 8.243511159688296,
+                      "video": 8.366323,
+                      "error": 0.12281184031170334
+                    },
+                    {
+                      "id": "b",
+                      "audio": 8.419483624301233,
+                      "video": 8.536422,
+                      "error": 0.11693837569876742
+                    },
+                    {
+                      "id": "c",
+                      "audio": 8.417628608397127,
+                      "video": 8.536422,
+                      "error": 0.11879339160287294
+                    },
+                    {
+                      "id": "d",
+                      "audio": 8.408866890722402,
+                      "video": 8.536422,
+                      "error": 0.12755510927759772
+                    },
+                    {
+                      "id": "e",
+                      "audio": 8.402105917147036,
+                      "video": 8.536422,
+                      "error": 0.1343160828529637
+                    }
+                  ],
+                  "expected_effective_gains": [
+                    0.025,
+                    0.075,
+                    0.125,
+                    0.175,
+                    0.225
+                  ],
+                  "pass": true
+                }
+              ],
+              "score": 3
+            },
+            {
+              "name": "ordinary_transport",
+              "max": 3,
+              "fraction": 1,
+              "pauseOK": true,
+              "syncOK": true,
+              "loopOK": true,
+              "playing": {
+                "t": 12.462803,
+                "paused": false,
+                "ready": 4,
+                "duration": 90,
+                "muted": true,
+                "source": "http://127.0.0.1:38835/media/ensemble.mp4"
+              },
+              "a": {
+                "t": 12.456333,
+                "paused": true,
+                "ready": 4,
+                "duration": 90,
+                "muted": true,
+                "source": "http://127.0.0.1:38835/media/ensemble.mp4"
+              },
+              "z": {
+                "t": 12.456333,
+                "paused": true,
+                "ready": 4,
+                "duration": 90,
+                "muted": true,
+                "source": "http://127.0.0.1:38835/media/ensemble.mp4"
+              },
+              "quiet": {
+                "blocks": 3,
+                "amplitudes": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "rms": 0,
+                "sync": []
+              },
+              "sync": {
+                "blocks": 5,
+                "amplitudes": [
+                  0.09599442416232697,
+                  0.09599319226143264,
+                  0.09599257480417817,
+                  0.09599916255253646,
+                  0.09599056575249719
+                ],
+                "rms": 0.15185374797934822,
+                "sync": [
+                  {
+                    "id": "a",
+                    "audio": 62.96202964207723,
+                    "video": 63.106973,
+                    "error": 0.14494335792277013
+                  },
+                  {
+                    "id": "b",
+                    "audio": 62.973625850711734,
+                    "video": 63.106973,
+                    "error": 0.1333471492882694
+                  },
+                  {
+                    "id": "c",
+                    "audio": 62.98013217853308,
+                    "video": 63.106973,
+                    "error": 0.12684082146692077
+                  },
+                  {
+                    "id": "d",
+                    "audio": 62.97425379366223,
+                    "video": 63.106973,
+                    "error": 0.13271920633777512
+                  },
+                  {
+                    "id": "e",
+                    "audio": 62.965260227899854,
+                    "video": 63.106973,
+                    "error": 0.1417127721001492
+                  },
+                  {
+                    "id": "a",
+                    "audio": 63.142728519534,
+                    "video": 63.276936,
+                    "error": 0.13420748046599584
+                  },
+                  {
+                    "id": "b",
+                    "audio": 63.13561417281439,
+                    "video": 63.276936,
+                    "error": 0.1413218271856067
+                  },
+                  {
+                    "id": "c",
+                    "audio": 63.13909615806606,
+                    "video": 63.276936,
+                    "error": 0.13783984193393906
+                  },
+                  {
+                    "id": "d",
+                    "audio": 63.15250975968429,
+                    "video": 63.276936,
+                    "error": 0.1244262403157066
+                  },
+                  {
+                    "id": "e",
+                    "audio": 63.1513436462762,
+                    "video": 63.276936,
+                    "error": 0.12559235372379618
+                  },
+                  {
+                    "id": "a",
+                    "audio": 63.32675344488973,
+                    "video": 63.446792,
+                    "error": 0.12003855511026984
+                  },
+                  {
+                    "id": "b",
+                    "audio": 63.32055371289871,
+                    "video": 63.446792,
+                    "error": 0.1262382871012946
+                  },
+                  {
+                    "id": "c",
+                    "audio": 63.31161607258896,
+                    "video": 63.446792,
+                    "error": 0.13517592741104067
+                  },
+                  {
+                    "id": "d",
+                    "audio": 63.308834630597815,
+                    "video": 63.446792,
+                    "error": 0.13795736940218717
+                  },
+                  {
+                    "id": "e",
+                    "audio": 63.32097789565451,
+                    "video": 63.446792,
+                    "error": 0.12581410434549412
+                  },
+                  {
+                    "id": "a",
+                    "audio": 63.48392100307382,
+                    "video": 63.617,
+                    "error": 0.13307899692618008
+                  },
+                  {
+                    "id": "b",
+                    "audio": 63.496845732251174,
+                    "video": 63.617,
+                    "error": 0.12015426774882343
+                  },
+                  {
+                    "id": "c",
+                    "audio": 63.49491747230286,
+                    "video": 63.617,
+                    "error": 0.12208252769713823
+                  },
+                  {
+                    "id": "d",
+                    "audio": 63.486141873807085,
+                    "video": 63.617,
+                    "error": 0.13085812619291204
+                  },
+                  {
+                    "id": "e",
+                    "audio": 63.47941793635,
+                    "video": 63.617,
+                    "error": 0.1375820636499938
+                  }
+                ],
+                "expected_effective_gains": [
+                  0.8,
+                  0.8,
+                  0.8,
+                  0.8,
+                  0.8
+                ],
+                "pass": true
+              },
+              "times": [
+                7.8,
+                6.209852,
+                6.331384,
+                6.439464,
+                6.546598,
+                6.657212,
+                6.764815,
+                6.873245,
+                6.982973,
+                7.088293,
+                7.200816
+              ],
+              "score": 3
+            },
+            {
+              "name": "rehearsal_q1",
+              "max": 8,
+              "fraction": 1,
+              "bounds": true,
+              "selection": true,
+              "sound": {
+                "blocks": 5,
+                "amplitudes": [
+                  0.0959901501618975,
+                  0.09599566354862585,
+                  0.0000013074578339885893,
+                  0.09599096634039556,
+                  0.09599170952265404
+                ],
+                "rms": 0.13579159834119142,
+                "sync": [
+                  {
+                    "id": "a",
+                    "audio": 54.625793057347494,
+                    "video": 54.738788,
+                    "error": 0.11299494265250587
+                  },
+                  {
+                    "id": "b",
+                    "audio": 54.6280545312228,
+                    "video": 54.738788,
+                    "error": 0.11073346877719814
+                  },
+                  {
+                    "id": "d",
+                    "audio": 54.61214028568092,
+                    "video": 54.738788,
+                    "error": 0.12664771431907695
+                  },
+                  {
+                    "id": "e",
+                    "audio": 54.61198382115508,
+                    "video": 54.738788,
+                    "error": 0.126804178844921
+                  },
+                  {
+                    "id": "a",
+                    "audio": 54.7811075059313,
+                    "video": 54.90877,
+                    "error": 0.12766249406869434
+                  },
+                  {
+                    "id": "b",
+                    "audio": 54.78947857782996,
+                    "video": 54.90877,
+                    "error": 0.1192914221700363
+                  },
+                  {
+                    "id": "d",
+                    "audio": 54.79523400985927,
+                    "video": 54.90877,
+                    "error": 0.11353599014072557
+                  },
+                  {
+                    "id": "e",
+                    "audio": 54.78614744478254,
+                    "video": 54.90877,
+                    "error": 0.12262255521745402
+                  },
+                  {
+                    "id": "a",
+                    "audio": 54.96099214523908,
+                    "video": 55.078706,
+                    "error": 0.11771385476091467
+                  },
+                  {
+                    "id": "b",
+                    "audio": 54.95299952585965,
+                    "video": 55.078706,
+                    "error": 0.12570647414034397
+                  },
+                  {
+                    "id": "d",
+                    "audio": 54.9679590460989,
+                    "video": 55.078706,
+                    "error": 0.11074695390109923
+                  },
+                  {
+                    "id": "e",
+                    "audio": 54.968980943623684,
+                    "video": 55.078706,
+                    "error": 0.10972505637631258
+                  },
+                  {
+                    "id": "a",
+                    "audio": 55.14086901535482,
+                    "video": 55.258971,
+                    "error": 0.11810198464517896
+                  },
+                  {
+                    "id": "b",
+                    "audio": 55.13583785637893,
+                    "video": 55.258971,
+                    "error": 0.12313314362107519
+                  },
+                  {
+                    "id": "d",
+                    "audio": 55.122492420039364,
+                    "video": 55.258971,
+                    "error": 0.13647857996063806
+                  },
+                  {
+                    "id": "e",
+                    "audio": 55.13248071479129,
+                    "video": 55.258971,
+                    "error": 0.12649028520871042
+                  }
+                ],
+                "expected_effective_gains": [
+                  0.8,
+                  0.8,
+                  0,
+                  0.8,
+                  0.8
+                ],
+                "pass": true
+              },
+              "wrap": true,
+              "bounded": true,
+              "values": {
+                "a": 53.87,
+                "z": 57.44,
+                "on": true
+              },
+              "state": {
+                "t": 54.175111,
+                "paused": false,
+                "ready": 4,
+                "duration": 90,
+                "muted": true,
+                "source": "http://127.0.0.1:38835/media/ensemble.mp4"
+              },
+              "selected": [
+                1
+              ],
+              "times": [
+                57.408707,
+                53.927741,
+                54.038071,
+                54.148901,
+                54.256947,
+                54.366437,
+                54.471814,
+                54.579013,
+                54.692164,
+                54.803416,
+                54.907408,
+                55.015954,
+                55.129017,
+                55.234187,
+                55.343251
+              ],
+              "score": 8
+            },
+            {
+              "name": "rehearsal_q2",
+              "max": 8,
+              "fraction": 1,
+              "bounds": true,
+              "selection": true,
+              "sound": {
+                "blocks": 5,
+                "amplitudes": [
+                  5.545164343826926e-7,
+                  0.05039835417220531,
+                  4.88114103250868e-7,
+                  0.05039369117830978,
+                  4.820385761202179e-7
+                ],
+                "rms": 0.050410064135539626,
+                "sync": [
+                  {
+                    "id": "b",
+                    "audio": 56.9533082809563,
+                    "video": 57.051498,
+                    "error": 0.09818971904370244
+                  },
+                  {
+                    "id": "d",
+                    "audio": 56.93735931124775,
+                    "video": 57.051498,
+                    "error": 0.11413868875225575
+                  },
+                  {
+                    "id": "b",
+                    "audio": 57.11829447898035,
+                    "video": 57.221038,
+                    "error": 0.10274352101964723
+                  },
+                  {
+                    "id": "d",
+                    "audio": 57.119947885169765,
+                    "video": 57.221038,
+                    "error": 0.10109011483023522
+                  },
+                  {
+                    "id": "b",
+                    "audio": 57.278346378961395,
+                    "video": 57.390533,
+                    "error": 0.11218662103860311
+                  },
+                  {
+                    "id": "d",
+                    "audio": 57.29507524684077,
+                    "video": 57.390533,
+                    "error": 0.09545775315923066
+                  },
+                  {
+                    "id": "b",
+                    "audio": 57.46050237509835,
+                    "video": 57.560917,
+                    "error": 0.10041462490165287
+                  },
+                  {
+                    "id": "d",
+                    "audio": 57.44884405878147,
+                    "video": 57.560917,
+                    "error": 0.1120729412185355
+                  }
+                ],
+                "expected_effective_gains": [
+                  0,
+                  0.42,
+                  0,
+                  0.42,
+                  0
+                ],
+                "pass": true
+              },
+              "wrap": true,
+              "bounded": true,
+              "values": {
+                "a": 56.18,
+                "z": 60.17,
+                "on": true
+              },
+              "state": {
+                "t": 56.468303,
+                "paused": false,
+                "ready": 4,
+                "duration": 90,
+                "muted": true,
+                "source": "http://127.0.0.1:38835/media/ensemble.mp4"
+              },
+              "selected": [
+                4
+              ],
+              "times": [
+                60.089598,
+                56.216528,
+                56.32491,
+                56.437839,
+                56.543382,
+                56.650031,
+                56.764966,
+                56.868918,
+                56.977573,
+                57.07812,
+                57.180406,
+                57.289179,
+                57.399133,
+                57.503372,
+                57.598595
+              ],
+              "score": 8
+            },
+            {
+              "name": "rehearsal_q3",
+              "max": 8,
+              "fraction": 1,
+              "bounds": true,
+              "selection": true,
+              "sound": {
+                "blocks": 5,
+                "amplitudes": [
+                  7.511293703851458e-7,
+                  0.07199643446341328,
+                  0.0629948355229,
+                  0.04499844255702403,
+                  0.026996462693060174
+                ],
+                "rms": 0.07718977660463641,
+                "sync": [
+                  {
+                    "id": "b",
+                    "audio": 39.86021615863592,
+                    "video": 39.911334,
+                    "error": 0.051117841364074934
+                  },
+                  {
+                    "id": "c",
+                    "audio": 39.851725215109035,
+                    "video": 39.911334,
+                    "error": 0.059608784890961886
+                  },
+                  {
+                    "id": "d",
+                    "audio": 39.851033284544975,
+                    "video": 39.911334,
+                    "error": 0.06030071545502125
+                  },
+                  {
+                    "id": "e",
+                    "audio": 39.864664490231554,
+                    "video": 39.911334,
+                    "error": 0.0466695097684422
+                  },
+                  {
+                    "id": "b",
+                    "audio": 40.03875411381216,
+                    "video": 40.080512,
+                    "error": 0.04175788618783827
+                  },
+                  {
+                    "id": "c",
+                    "audio": 40.03491227193272,
+                    "video": 40.080512,
+                    "error": 0.04559972806728041
+                  },
+                  {
+                    "id": "d",
+                    "audio": 40.025847833533405,
+                    "video": 40.080512,
+                    "error": 0.05466416646659411
+                  },
+                  {
+                    "id": "e",
+                    "audio": 40.02045361102646,
+                    "video": 40.080512,
+                    "error": 0.060058388973537546
+                  },
+                  {
+                    "id": "b",
+                    "audio": 40.192991188514746,
+                    "video": 40.25093,
+                    "error": 0.057938811485250596
+                  },
+                  {
+                    "id": "c",
+                    "audio": 40.20690743759692,
+                    "video": 40.25093,
+                    "error": 0.04402256240307878
+                  },
+                  {
+                    "id": "d",
+                    "audio": 40.20852168413912,
+                    "video": 40.25093,
+                    "error": 0.042408315860875234
+                  },
+                  {
+                    "id": "e",
+                    "audio": 40.20073723588202,
+                    "video": 40.25093,
+                    "error": 0.050192764117973354
+                  },
+                  {
+                    "id": "b",
+                    "audio": 40.366433776031386,
+                    "video": 40.421129,
+                    "error": 0.054695223968614926
+                  },
+                  {
+                    "id": "c",
+                    "audio": 40.36179082527078,
+                    "video": 40.421129,
+                    "error": 0.05933817472921987
+                  },
+                  {
+                    "id": "d",
+                    "audio": 40.37100965186319,
+                    "video": 40.421129,
+                    "error": 0.050119348136810515
+                  },
+                  {
+                    "id": "e",
+                    "audio": 40.38020026066488,
+                    "video": 40.421129,
+                    "error": 0.04092873933512209
+                  }
+                ],
+                "expected_effective_gains": [
+                  0,
+                  0.6000000000000001,
+                  0.5249999999999999,
+                  0.375,
+                  0.22499999999999998
+                ],
+                "pass": true
+              },
+              "wrap": true,
+              "bounded": true,
+              "values": {
+                "a": 39.12,
+                "z": 41.3,
+                "on": true
+              },
+              "state": {
+                "t": 39.36615,
+                "paused": false,
+                "ready": 4,
+                "duration": 90,
+                "muted": true,
+                "source": "http://127.0.0.1:38835/media/ensemble.mp4"
+              },
+              "selected": [
+                2
+              ],
+              "times": [
+                41.223398,
+                39.155,
+                39.222432,
+                39.330146,
+                39.445911,
+                39.54903,
+                39.657729,
+                39.766111,
+                39.862703,
+                39.969743,
+                40.07771,
+                40.188391,
+                40.296514,
+                40.402737,
+                40.514103
+              ],
+              "score": 8
+            },
+            {
+              "name": "switching_and_manual_control",
+              "max": 4,
+              "fraction": 1,
+              "restored": {
+                "blocks": 5,
+                "amplitudes": [
+                  5.249274161372591e-7,
+                  0.05039707738324302,
+                  5.022416791792279e-7,
+                  0.05039870521945247,
+                  4.679928284376362e-7
+                ],
+                "rms": 0.050397029404547725,
+                "sync": [
+                  {
+                    "id": "b",
+                    "audio": 56.85076480753592,
+                    "video": 56.936151,
+                    "error": 0.0853861924640853
+                  },
+                  {
+                    "id": "d",
+                    "audio": 56.841784678326164,
+                    "video": 56.936151,
+                    "error": 0.09436632167383863
+                  },
+                  {
+                    "id": "b",
+                    "audio": 57.02944260957584,
+                    "video": 57.106218,
+                    "error": 0.07677539042416015
+                  },
+                  {
+                    "id": "d",
+                    "audio": 57.01640437934775,
+                    "video": 57.106218,
+                    "error": 0.08981362065225085
+                  },
+                  {
+                    "id": "b",
+                    "audio": 57.18376079818713,
+                    "video": 57.277451,
+                    "error": 0.09369020181286913
+                  },
+                  {
+                    "id": "d",
+                    "audio": 57.199127206615415,
+                    "video": 57.277451,
+                    "error": 0.07832379338458395
+                  },
+                  {
+                    "id": "b",
+                    "audio": 57.35699059222325,
+                    "video": 57.446633,
+                    "error": 0.08964240777675059
+                  },
+                  {
+                    "id": "d",
+                    "audio": 57.36192580161196,
+                    "video": 57.446633,
+                    "error": 0.08470719838803831
+                  }
+                ],
+                "expected_effective_gains": [
+                  0,
+                  0.42,
+                  0,
+                  0.42,
+                  0
+                ],
+                "pass": true
+              },
+              "manual": {
+                "blocks": 5,
+                "amplitudes": [
+                  0.011998079918264284,
+                  0.03599724083276252,
+                  3.8918923853963325e-7,
+                  0.03599915471227597,
+                  3.4400408751333226e-7
+                ],
+                "rms": 0.03698662583399142,
+                "sync": [
+                  {
+                    "id": "a",
+                    "audio": 58.334727987669055,
+                    "video": 58.436211,
+                    "error": 0.10148301233094514
+                  },
+                  {
+                    "id": "b",
+                    "audio": 58.33772966256756,
+                    "video": 58.436211,
+                    "error": 0.09848133743243892
+                  },
+                  {
+                    "id": "d",
+                    "audio": 58.350542052121,
+                    "video": 58.436211,
+                    "error": 0.08566894787900026
+                  },
+                  {
+                    "id": "a",
+                    "audio": 58.5169654066357,
+                    "video": 58.605818,
+                    "error": 0.08885259336430096
+                  },
+                  {
+                    "id": "b",
+                    "audio": 58.50801399472139,
+                    "video": 58.605818,
+                    "error": 0.09780400527861133
+                  },
+                  {
+                    "id": "d",
+                    "audio": 58.51714735097384,
+                    "video": 58.605818,
+                    "error": 0.08867064902615596
+                  },
+                  {
+                    "id": "a",
+                    "audio": 58.693134983611195,
+                    "video": 58.776013,
+                    "error": 0.0828780163888041
+                  },
+                  {
+                    "id": "b",
+                    "audio": 58.691312718309064,
+                    "video": 58.776013,
+                    "error": 0.08470028169093524
+                  },
+                  {
+                    "id": "d",
+                    "audio": 58.675776306725126,
+                    "video": 58.776013,
+                    "error": 0.10023669327487283
+                  },
+                  {
+                    "id": "a",
+                    "audio": 58.84680739622579,
+                    "video": 58.945562,
+                    "error": 0.09875460377421064
+                  },
+                  {
+                    "id": "b",
+                    "audio": 58.859737698410115,
+                    "video": 58.945562,
+                    "error": 0.08582430158988785
+                  },
+                  {
+                    "id": "d",
+                    "audio": 58.857499113361975,
+                    "video": 58.945562,
+                    "error": 0.08806288663802775
+                  }
+                ],
+                "expected_effective_gains": [
+                  0.1,
+                  0.3,
+                  0,
+                  0.3,
+                  0
+                ],
+                "pass": true
+              },
+              "before": 57.927,
+              "after": {
+                "t": 59.340931,
+                "paused": false,
+                "ready": 4,
+                "duration": 90,
+                "muted": true,
+                "source": "http://127.0.0.1:38835/media/ensemble.mp4"
+              },
+              "score": 4
+            }
+          ]
+        },
+        "limitations": "One excerpt/one run per gateway alias; native audio unavailable, local signal evidence only. Execution checks submitted plan, reasoning checks official requested plan. No model received browser checks or score feedback."
+      },
+      "seconds": 362.966,
+      "manifest": {
+        "run_id": "gpt-6.1-sol-single-delivery-01",
+        "submitted_at": "2026-10-30T05:44:20.106Z",
+        "submissions": 1,
+        "files": [
+          {
+            "path": "index.html",
+            "sha256": "4b9ea788aa11ad4ef5d3173e2c203152da6f18da0905840431af9b9043773cd4"
+          },
+          {
+            "path": "styles.css",
+            "sha256": "94f078c016625ea7dcfe036a54ed4e420fdbc54d562f569e687a8d30b0086ca5"
+          },
+          {
+            "path": "analysis.json",
+            "sha256": "6edcff9675f2e79835b25bf5beb7199901ad44ce8fc93e5cf95fe81b1d9b4204"
+          },
+          {
+            "path": "app.js",
+            "sha256": "73a9d5c0e5855b266514607aa47cc2c7000fc92780cf29715a96c44ee6d09a0a"
+          },
+          {
+            "path": "evidence.md",
+            "sha256": "6640a90b265f456a725a4848fc178c4443e558f1e2fec487f1bc8199220c78ca"
+          }
+        ],
+        "candidate_hash": "8814d56cabebff04eb4046c00dd02c597a17f4c575205a2b8c3426a06308e96a",
+        "no_model_tests_or_revisions": true
+      },
+      "events": 20
+    }
+  ]
+}
