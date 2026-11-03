@@ -14,7 +14,11 @@ const read=rel=>fs.readFile(path.join(site,rel),'utf8');
 const json=async rel=>JSON.parse(await read(rel));
 const sha=buffer=>crypto.createHash('sha256').update(buffer).digest('hex');
 const data=await json('data/case.json');
-assert.equal(data.case_version,'2.1.0');assert.equal(data.models.length,2);
+assert.equal(data.case_version,'2.1.0');assert(data.models.length>=2);
+const analysis=await json('data/detailed-analysis.json');
+assert.equal(analysis.case_version,data.case_version);assert.equal(analysis.final_score,null);
+assert.deepEqual(analysis.models.map(m=>m.id),data.models.map(m=>m.id));
+const homepage=await read('index.html');let analysisFindings=0,analysisPhases=0,errorChains=0;
 const audit=await json('data/publication-audit.json');assert.equal(audit.private_evaluator_material_published,false);assert.equal(audit.raw_api_responses_published,false);assert.equal(audit.original_submissions_unchanged,true);
 const forbidden=/\b(?:github_pat_[A-Za-z0-9_]{20,}|ghp_[A-Za-z0-9]{20,}|sk-[A-Za-z0-9_-]{20,})/;
 let files=0,links=0;let totalBytes=0;
@@ -52,10 +56,27 @@ for(const model of data.models){
  const pages=await json(record+'pages.json');assert.equal(pages.length,model.pages);
  for(const p of pages)await fs.access(path.join(site,record,p.image));
  assert.equal(model.final_score,null);
+ const detail=analysis.models.find(m=>m.id===model.id);
+ const sourceTimes=[...new Set(tools.filter(e=>e.action==='extract_frames'&&e.status==='ok').flatMap(e=>e.params.times))].sort((a,b)=>a-b);
+ assert.deepEqual(detail.source_times_seconds,sourceTimes,`Source evidence count mismatch: ${model.id}`);
+ for(const finding of detail.findings){
+  analysisFindings++;assert(homepage.includes(`id="${finding.id}"`));
+  for(const n of finding.tools){assert(tools.some(t=>t.tool_call===n));assert(homepage.includes(`#trajectory-${model.id}-tool-${n}`));}
+  for(const n of finding.pages)assert(n>=1&&n<=model.pages);
+  assert(finding.observation&&finding.impact&&finding.boundary);
+  if(finding.image)await fs.access(path.join(site,finding.image));
+ }
+ for(const phase of detail.phases){analysisPhases++;assert(phase.first_tool<=phase.last_tool);assert(tools.some(t=>t.tool_call===phase.first_tool));assert(tools.some(t=>t.tool_call===phase.last_tool));}
+ assert.equal(detail.recoverable_errors.length,model.recoverable_tool_errors);
+ for(const chain of detail.recoverable_errors){errorChains++;assert.equal(tools.find(t=>t.tool_call===chain.tool).status,'error');assert.equal(tools.find(t=>t.tool_call===chain.recovery_tool).status,'ok');}
 }
+for(const match of homepage.matchAll(/href="#trajectory-([^"]+)-tool-(\d+)"/g)){
+ const model=data.models.find(m=>m.id===match[1]);assert(model,`Unknown trace model: ${match[1]}`);assert(Number(match[2])>=1&&Number(match[2])<=model.tool_calls);
+}
+const pending=await json('data/evaluation-status.json');assert.equal(pending.formal_evaluation_started,false);assert.equal(pending.score,null);assert.equal(pending.http_status,401);assert.equal(pending.artifact,null);
 const report={static_checks_passed:true,case_version:data.case_version,files,links,total_bytes:totalBytes,
   models:data.models.map(m=>({model:m.id,tools:m.tool_calls,pages:m.pages,original_artifacts_hash_match:true})),
-  historical_images:{preserved,missing,overwritten_images_substituted:false},browser_checks:'not_requested'};
+  historical_images:{preserved,missing,overwritten_images_substituted:false},analysis:{findings:analysisFindings,phases:analysisPhases,recoverable_error_chains:errorChains},browser_checks:'not_requested'};
 
 if(process.argv.includes('--browser')){
  const require=createRequire(import.meta.url);const {chromium}=require(process.env.CASE6B_PLAYWRIGHT_MODULE||'playwright');
@@ -78,23 +99,42 @@ if(process.argv.includes('--browser')){
  try{
   await page.goto(base,{waitUntil:'networkidle'});await page.locator('.trace-event').first().waitFor();
   assert((await page.locator('#task').textContent()).includes('加入至少两项常见问题的可逆排查与恢复方法'));
-  assert.equal(await page.locator('.trace-event').count(),36);
+  assert.equal(await page.locator('.trace-event').count(),data.models[0].tool_calls+data.models[0].api_retries);
   await page.screenshot({path:path.join(output,'case-desktop-top.png')});
   await page.locator('#inputs').screenshot({path:path.join(output,'case-inputs.png')});
   await page.locator('#results').screenshot({path:path.join(output,'case-results.png')});
+  await page.locator('#analysis .finding[open] img').evaluateAll(async images=>{await Promise.all(images.map(image=>{image.loading='eager';return image.decode();}));});
+  await page.locator('#analysis').screenshot({path:path.join(output,'case-analysis-desktop.png')});
+  await page.locator('#source-coverage summary').click();await page.locator('#source-coverage').screenshot({path:path.join(output,'case-source-coverage.png')});
+  await page.locator('#source-coverage summary').click();
+  await page.locator('#phases-gpt-6.1-sol summary').click();await page.locator('#phases-gpt-6.1-sol').screenshot({path:path.join(output,'case-sol-phases.png')});
+  await page.locator('#phases-gpt-6.1-sol summary').click();
   await page.locator('video').evaluate(v=>{v.load();v.play().catch(()=>{});});
   await page.waitForFunction(()=>document.querySelector('video').readyState>=1,{},{timeout:15000});
   report.media=await page.locator('video').evaluate(v=>({duration:v.duration,readyState:v.readyState,codec:v.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"')}));
   await page.waitForFunction(()=>document.querySelector('video').currentTime>0.05,{},{timeout:15000});
   await page.locator('video').evaluate(v=>v.pause());
   const duration=await page.locator('video').evaluate(v=>v.duration);assert(Math.abs(duration-797.884)<1,`Video duration ${duration}`);
-  await page.selectOption('#trace-model','gpt-6.1-sol');await page.waitForFunction(()=>document.querySelectorAll('.trace-event').length===51);
-  await page.selectOption('#trace-filter','errors');await page.waitForFunction(()=>document.querySelectorAll('.trace-event').length===5);
+  const sol=data.models.find(m=>m.id==='gpt-6.1-sol');
+  await page.selectOption('#trace-model',sol.id);await page.waitForFunction(n=>document.querySelectorAll('.trace-event').length===n,sol.tool_calls+sol.api_retries);
+  await page.selectOption('#trace-filter','errors');await page.waitForFunction(n=>document.querySelectorAll('.trace-event').length===n,sol.recoverable_tool_errors+sol.api_retries);
   await page.selectOption('#trace-filter','images');await page.locator('.trace-event summary').first().click();await page.locator('.trace-images img').first().waitFor();
   await page.locator('.trace-images img').first().evaluate(img=>img.decode());
   await page.locator('#trajectory').screenshot({path:path.join(output,'case-trajectory.png')});
   await page.fill('#trace-search','NO_MATCH_TEST_903824');await page.waitForFunction(()=>document.querySelectorAll('.trace-event').length===0);
   await page.fill('#trace-search','');
+  await page.selectOption('#trace-filter','errors');await page.fill('#trace-search','NO_MATCH_TEST');
+  await page.goto(base+'#trajectory-gpt-6-luna-tool-26');
+  await page.waitForFunction(()=>document.querySelector('#trace-gpt-6-luna-tool-26')?.open===true);
+  assert.equal(await page.locator('#trace-model').inputValue(),'gpt-6-luna');assert.equal(await page.locator('#trace-filter').inputValue(),'all');assert.equal(await page.locator('#trace-search').inputValue(),'');
+  assert((await page.locator('#trace-gpt-6-luna-tool-26').textContent()).includes('author_additions'));
+  await page.goto(base+'#trajectory-gpt-6.1-sol-tool-44');await page.waitForFunction(()=>document.getElementById('trace-gpt-6.1-sol-tool-44')?.open===true);
+  assert.equal(await page.locator('#trace-model').inputValue(),'gpt-6.1-sol');
+  assert((await page.locator('[data-tool="44"]').textContent()).includes('non-zero exit status 1'));
+  await page.screenshot({path:path.join(output,'case-tool-deeplink.png')});
+  await page.goto(base+'#analysis');await page.locator('#sol-rc03 a[href="#trajectory-gpt-6.1-sol-tool-49"]').click();
+  await page.waitForFunction(()=>document.querySelector('[data-tool="49"]')?.open===true);
+  assert((await page.locator('[data-tool="49"]').textContent()).includes('mechanical_only'));
   for(const model of data.models){
    await page.goto(base+model.viewer,{waitUntil:'networkidle'});
    await page.locator('#pdf-page').evaluate(img=>img.decode());await page.screenshot({path:path.join(output,model.id+'-reader.png')});
@@ -106,10 +146,16 @@ if(process.argv.includes('--browser')){
   await page.setViewportSize({width:390,height:844});await page.goto(base,{waitUntil:'networkidle'});
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'Mobile horizontal overflow');
   await page.screenshot({path:path.join(output,'case-mobile-top.png')});
+  await page.locator('#luna-rc01').screenshot({path:path.join(output,'case-analysis-mobile.png')});
+  await page.locator('#sol-rc03').screenshot({path:path.join(output,'case-sol-error-mobile.png')});
+  await page.goto(base+'#trajectory-gpt-6.1-sol-tool-42');await page.waitForFunction(()=>document.querySelector('[data-tool="42"]')?.open===true);
+  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'Mobile tool deep-link overflow');
+  assert((await page.locator('[data-tool="42"]').textContent()).includes('Invalid \\escape'));
+  await page.screenshot({path:path.join(output,'case-tool-mobile.png')});
   await page.goto(base+'deliverables/gpt-6.1-sol/',{waitUntil:'networkidle'});
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'Mobile reader overflow');
   await page.screenshot({path:path.join(output,'sol-mobile-reader.png')});
-  assert.deepEqual(errors,[]);report.browser_checks='passed';report.browser_validated=['desktop and mobile layout','video duration and range playback','34/50 tool traces plus retries','error and image filters','search','historical image rendering','both PDF readers','page navigation, deep links and zoom','no page errors or missing local assets'];
+  assert.deepEqual(errors,[]);report.browser_checks='passed';report.browser_validated=['desktop and mobile layout','detailed analysis and source-time chart','phase tables','cross-model tool deep links reset filters and search','analysis links open the original tool result','malformed JSON tool event displays safely','video duration and range playback','all tool traces plus retries','error and image filters','search','historical image rendering','all PDF readers','page navigation, deep links and zoom','no page errors or missing local assets'];
  }catch(error){report.browser_checks='failed';report.failure=error.stack;report.media=await page.locator('video').evaluate(v=>v?({readyState:v.readyState,networkState:v.networkState,error:v.error?{code:v.error.code,message:v.error.message}:null,currentSrc:v.currentSrc,codec:v.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"')}):null).catch(()=>null);await fs.writeFile(path.join(output,'validation.json'),JSON.stringify(report,null,2)+'\n');throw error;}
  finally{await browser.close();await new Promise(resolve=>server.close(resolve));}
 }
