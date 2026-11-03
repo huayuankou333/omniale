@@ -22,7 +22,9 @@ async function renderTrace(){
     for(const event of events){
       const d=make('details',undefined,'trace-event');const summary=make('summary');
       if(event.kind==='api_retry'){
-        summary.append(make('span',`请求 ${event.request}`,'event-number'),make('span','API 重试','event-action event-error'),make('span','网关限流；按原协议自动重试','event-reason'));
+        const cause=/429|concurrency_limit/.test(event.error)?'网关限流':/closed connection|RemoteDisconnected/.test(event.error)?'连接断开':'接口请求失败';
+        const recovery=event.transport_recovery?'原上下文重试，保留原始限时':'自动重试';
+        summary.append(make('span',`请求 ${event.request}`,'event-number'),make('span','API 重试','event-action event-error'),make('span',`${cause}；${recovery}`,'event-reason'));
         d.append(summary,make('pre',event.error));root.append(d);continue;
       }
       summary.append(make('span',`#${String(event.tool_call).padStart(2,'0')} · ${clock(event.elapsed_seconds)}`,'event-number'),make('span',event.action,'event-action'+(event.status==='error'?' event-error':'')),make('span',event.reason,'event-reason'),make('span',event.status==='error'?'工具错误':`${event.images.length?event.images.length+' 幅图像':'完成'}`,event.status==='error'?'event-error':'subtle'));

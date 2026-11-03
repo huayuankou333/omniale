@@ -45,7 +45,20 @@ assert.equal(sha(await fs.readFile(path.join(site,data.preview.path))),data.prev
 let preserved=0,missing=0;
 for(const model of data.models){
  const record='records/'+model.id+'/';
- for(const [filename,digest] of Object.entries(model.artifact_sha256))assert.equal(sha(await fs.readFile(path.join(site,record,filename))),digest,`Original submission modified: ${model.id}/${filename}`);
+ for(const [filename,digest] of Object.entries(model.artifact_sha256)){
+  let bytes;
+  if(model.artifact_urls?.[filename]){
+   const url=model.artifact_urls[filename];assert(url.startsWith('https://github.com/huayuankou333/omniale/releases/download/'));
+   assert.equal(model.external_artifact_digests[filename],'sha256:'+digest);
+   console.log(`Verifying original external artifact: ${model.id}/${filename}`);
+   if(process.env.CASE6B_EXTERNAL_ARTIFACT_CACHE){
+    bytes=await fs.readFile(path.join(process.env.CASE6B_EXTERNAL_ARTIFACT_CACHE,model.id,filename));
+   }else{
+    const response=await fetch(url,{signal:AbortSignal.timeout(180000)});assert.equal(response.status,200);bytes=Buffer.from(await response.arrayBuffer());
+   }
+  }else bytes=await fs.readFile(path.join(site,record,filename));
+  assert.equal(sha(bytes),digest,`Original submission modified: ${model.id}/${filename}`);
+ }
  const trace=await json(record+'trajectory.json');const tools=trace.events.filter(e=>e.kind==='tool');
  assert.equal(tools.length,model.tool_calls);assert.equal(trace.events.filter(e=>e.kind==='api_retry').length,model.api_retries);
  assert.equal(trace.events.flatMap(e=>e.images||[]).length,model.observations);
@@ -68,7 +81,9 @@ for(const model of data.models){
  }
  for(const phase of detail.phases){analysisPhases++;assert(phase.first_tool<=phase.last_tool);assert(tools.some(t=>t.tool_call===phase.first_tool));assert(tools.some(t=>t.tool_call===phase.last_tool));}
  assert.equal(detail.recoverable_errors.length,model.recoverable_tool_errors);
- for(const chain of detail.recoverable_errors){errorChains++;assert.equal(tools.find(t=>t.tool_call===chain.tool).status,'error');assert.equal(tools.find(t=>t.tool_call===chain.recovery_tool).status,'ok');}
+ for(const chain of detail.recoverable_errors){errorChains++;assert.equal(tools.find(t=>t.tool_call===chain.tool).status,'error');if(chain.recovery_tool!==null)assert.equal(tools.find(t=>t.tool_call===chain.recovery_tool).status,'ok');else assert(chain.outcome);}
+ if(model.historical_image_method==='exact_outgoing_image_snapshots')assert.equal(trace.counts.missing_images,0);
+ if(model.transport_recovery){for(const file of model.transport_recovery_records||['transport-recovery.json']){const recovery=await json(record+file);assert(recovery.same_context&&recovery.original_started_at_and_budgets_retained&&!recovery.new_model_hints);}assert(homepage.includes('id="transport-'+model.id+'"'));}
 }
 for(const match of homepage.matchAll(/href="#trajectory-([^"]+)-tool-(\d+)"/g)){
  const model=data.models.find(m=>m.id===match[1]);assert(model,`Unknown trace model: ${match[1]}`);assert(Number(match[2])>=1&&Number(match[2])<=model.tool_calls);
@@ -81,6 +96,7 @@ for(const entry of statusEntries){
  if(entry.status==='not_started_api_unsupported'){assert.equal(entry.formal_evaluation_started,false);assert.equal(entry.http_status,404);}
 }
 const report={static_checks_passed:true,case_version:data.case_version,files,links,total_bytes:totalBytes,
+  external_artifact_source:process.env.CASE6B_EXTERNAL_ARTIFACT_CACHE?'separately downloaded cache, verified against frozen SHA256':'live Release download, verified against frozen SHA256',
   models:data.models.map(m=>({model:m.id,tools:m.tool_calls,pages:m.pages,original_artifacts_hash_match:true})),
   historical_images:{preserved,missing,overwritten_images_substituted:false},analysis:{findings:analysisFindings,phases:analysisPhases,recoverable_error_chains:errorChains},browser_checks:'not_requested'};
 
@@ -141,6 +157,19 @@ if(process.argv.includes('--browser')){
   await page.goto(base+'#analysis');await page.locator('#sol-rc03 a[href="#trajectory-gpt-6.1-sol-tool-49"]').click();
   await page.waitForFunction(()=>document.querySelector('[data-tool="49"]')?.open===true);
   assert((await page.locator('[data-tool="49"]').textContent()).includes('mechanical_only'));
+  for(const model of data.models.slice(2)){
+   await page.goto(base+'#trajectory-'+model.id+'-tool-1');
+   await page.waitForFunction(id=>document.getElementById('trace-'+id+'-tool-1')?.open===true,model.id);
+   assert.equal(await page.locator('#trace-model').inputValue(),model.id);
+   await page.selectOption('#trace-filter','errors');
+   await page.waitForFunction(n=>document.querySelectorAll('.trace-event').length===n,model.recoverable_tool_errors+model.api_retries);
+   await page.goto(base+'#analysis-'+model.id);
+   const article=page.locator('[id="analysis-'+model.id+'"]');
+   await article.locator('.finding').first().evaluate(element=>element.open=true);
+   await article.screenshot({path:path.join(output,model.id+'-analysis.png')});
+   const phase=page.locator('[id="phases-'+model.id+'"]');await phase.locator('summary').click();
+   await phase.screenshot({path:path.join(output,model.id+'-phases.png')});
+  }
   for(const model of data.models){
    await page.goto(base+model.viewer,{waitUntil:'networkidle'});
    await page.locator('#pdf-page').evaluate(img=>img.decode());await page.screenshot({path:path.join(output,model.id+'-reader.png')});
@@ -162,6 +191,14 @@ if(process.argv.includes('--browser')){
   await page.goto(base+'deliverables/gpt-6.1-sol/',{waitUntil:'networkidle'});
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'Mobile reader overflow');
   await page.screenshot({path:path.join(output,'sol-mobile-reader.png')});
+  for(const model of data.models.slice(2)){
+   await page.goto(base+model.viewer,{waitUntil:'networkidle'});
+   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'Additional mobile reader overflow');
+   await page.screenshot({path:path.join(output,model.id+'-mobile-reader.png')});
+   await page.goto(base+'#analysis-'+model.id);await page.locator('[id="analysis-'+model.id+'"] .finding').first().evaluate(element=>element.open=true);
+   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'Additional mobile analysis overflow');
+   await page.screenshot({path:path.join(output,model.id+'-mobile-analysis.png')});
+  }
   assert.deepEqual(errors,[]);report.browser_checks='passed';report.browser_validated=['desktop and mobile layout','detailed analysis and source-time chart','phase tables','cross-model tool deep links reset filters and search','analysis links open the original tool result','malformed JSON tool event displays safely','video duration and range playback','all tool traces plus retries','error and image filters','search','historical image rendering','all PDF readers','page navigation, deep links and zoom','no page errors or missing local assets'];
  }catch(error){report.browser_checks='failed';report.failure=error.stack;report.media=await page.locator('video').evaluate(v=>v?({readyState:v.readyState,networkState:v.networkState,error:v.error?{code:v.error.code,message:v.error.message}:null,currentSrc:v.currentSrc,codec:v.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"')}):null).catch(()=>null);await fs.writeFile(path.join(output,'validation.json'),JSON.stringify(report,null,2)+'\n');throw error;}
  finally{await browser.close();await new Promise(resolve=>server.close(resolve));}
