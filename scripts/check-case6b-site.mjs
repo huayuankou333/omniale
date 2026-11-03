@@ -197,7 +197,7 @@ if(process.argv.includes('--browser')){
    await page.screenshot({path:path.join(output,model.id+'-mobile-reader.png')});
    await page.goto(base+'#analysis-'+model.id);await page.locator('[id="analysis-'+model.id+'"] .finding').first().evaluate(element=>element.open=true);
    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'Additional mobile analysis overflow');
-   await page.screenshot({path:path.join(output,model.id+'-mobile-analysis.png')});
+   await page.locator('[id="analysis-'+model.id+'"]').screenshot({path:path.join(output,model.id+'-mobile-analysis.png')});
   }
   assert.deepEqual(errors,[]);report.browser_checks='passed';report.browser_validated=['desktop and mobile layout','detailed analysis and source-time chart','phase tables','cross-model tool deep links reset filters and search','analysis links open the original tool result','malformed JSON tool event displays safely','video duration and range playback','all tool traces plus retries','error and image filters','search','historical image rendering','all PDF readers','page navigation, deep links and zoom','no page errors or missing local assets'];
  }catch(error){report.browser_checks='failed';report.failure=error.stack;report.media=await page.locator('video').evaluate(v=>v?({readyState:v.readyState,networkState:v.networkState,error:v.error?{code:v.error.code,message:v.error.message}:null,currentSrc:v.currentSrc,codec:v.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"')}):null).catch(()=>null);await fs.writeFile(path.join(output,'validation.json'),JSON.stringify(report,null,2)+'\n');throw error;}
