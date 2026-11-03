@@ -15,10 +15,35 @@ const json=async rel=>JSON.parse(await read(rel));
 const sha=buffer=>crypto.createHash('sha256').update(buffer).digest('hex');
 const data=await json('data/case.json');
 assert.equal(data.case_version,'2.1.0');assert(data.models.length>=2);
+let scoring=null,rubric=null;
+if(data.active_scoring){
+ scoring=await json(data.active_scoring.comparison);rubric=await json(data.active_scoring.rubric);
+ assert.equal(rubric.rubric_version,'3.0.0');assert.equal(rubric.items.length,20);
+ assert.equal(new Set(rubric.items.map(i=>i.id)).size,20);assert.equal(rubric.items.reduce((s,i)=>s+i.weight,0),100);
+ assert.equal(sha(await fs.readFile(path.join(site,data.active_scoring.rubric))),scoring.rubric_sha256);
+ assert.deepEqual(scoring.reviews.map(r=>r.model),data.models.map(m=>m.id));
+ for(const r of scoring.reviews){
+  assert.equal(r.criteria.length,20);assert.deepEqual(r.criteria.map(i=>i.id),rubric.items.map(i=>i.id));
+  assert.equal(r.final_score,null);assert.equal(r.reviewer.blind,false);
+  assert.deepEqual(await json(`scoring/v3/reviews/${r.model}.json`),r);
+  for(const [n,i] of r.criteria.entries()){
+   assert([0,2.5,5].includes(i.score));assert.equal(i.anchor,rubric.items[n].anchors[String(i.score)]);
+   assert(i.observed_evidence&&i.rationale);if(i.score<5)assert(i.gap);
+   assert(i.pdf_pages.every(p=>p>=1&&p<=data.models.find(m=>m.id===r.model).pages));
+  }
+  assert.equal(r.criteria.reduce((s,i)=>s+i.score,0),r.raw_score);
+  assert.equal(Math.min(r.raw_score,...r.caps.filter(c=>c.status==='applied').map(c=>c.maximum)),r.provisional_score);
+  const original=data.models.find(m=>m.id===r.model);
+  assert.equal(original.raw_score,r.previous_evaluation.raw_score);assert.equal(original.provisional_score,r.previous_evaluation.provisional_score);
+ }
+ const check=await json('scoring/v3/validation.json');assert.equal(check.passed,true);assert.equal(check.revision_baseline_files_unchanged,387);
+ assert.equal(check.candidate_inputs_unchanged,true);assert.equal(check.score_ceiling_target_used,false);
+}
 const analysis=await json('data/detailed-analysis.json');
 assert.equal(analysis.case_version,data.case_version);assert.equal(analysis.final_score,null);
 assert.deepEqual(analysis.models.map(m=>m.id),data.models.map(m=>m.id));
 const homepage=await read('index.html');let analysisFindings=0,analysisPhases=0,errorChains=0;
+if(scoring){assert.equal([...homepage.matchAll(/class="rubric-detail"/g)].length,20);assert.equal([...homepage.matchAll(/class="rubric-model"/g)].length,60);assert(homepage.includes('评后修订'));}
 const audit=await json('data/publication-audit.json');assert.equal(audit.private_evaluator_material_published,false);assert.equal(audit.raw_api_responses_published,false);assert.equal(audit.original_submissions_unchanged,true);
 const forbidden=/\b(?:github_pat_[A-Za-z0-9_]{20,}|ghp_[A-Za-z0-9]{20,}|sk-[A-Za-z0-9_-]{20,})/;
 let files=0,links=0;let totalBytes=0;
@@ -96,6 +121,7 @@ for(const entry of statusEntries){
  if(entry.status==='not_started_api_unsupported'){assert.equal(entry.formal_evaluation_started,false);assert.equal(entry.http_status,404);}
 }
 const report={static_checks_passed:true,case_version:data.case_version,files,links,total_bytes:totalBytes,
+  scoring:scoring?{version:scoring.rubric_version,items:20,item_reviews:60,calculations_and_anchors_verified:true,post_hoc:true}:null,
   external_artifact_source:process.env.CASE6B_EXTERNAL_ARTIFACT_CACHE?'separately downloaded cache, verified against frozen SHA256':'live Release download, verified against frozen SHA256',
   models:data.models.map(m=>({model:m.id,tools:m.tool_calls,pages:m.pages,original_artifacts_hash_match:true})),
   historical_images:{preserved,missing,overwritten_images_substituted:false},analysis:{findings:analysisFindings,phases:analysisPhases,recoverable_error_chains:errorChains},browser_checks:'not_requested'};
@@ -125,6 +151,19 @@ if(process.argv.includes('--browser')){
   await page.screenshot({path:path.join(output,'case-desktop-top.png')});
   await page.locator('#inputs').screenshot({path:path.join(output,'case-inputs.png')});
   await page.locator('#results').screenshot({path:path.join(output,'case-results.png')});
+  if(scoring){
+   await page.goto(base+'#rubric-V01');await page.waitForFunction(()=>document.getElementById('rubric-V01')?.open===true);
+   assert.equal(await page.locator('#rubric-V01 .rubric-model').count(),3);
+   await page.locator('#rubric-V01').screenshot({path:path.join(output,'case-rubric-visual-evidence.png')});
+   await page.locator('#rubric-V01 summary').click();
+   await page.locator('a[href="#rubric-C03"]').click();await page.waitForFunction(()=>document.getElementById('rubric-C03')?.open===true);
+   assert((await page.locator('#rubric-C03 [data-model="gpt-6.1-sol"]').textContent()).includes('0/5'));
+   assert((await page.locator('#rubric-C03 [data-model="gpt-6-astra"]').textContent()).includes('5/5'));
+   await page.locator('#rubric-C03').screenshot({path:path.join(output,'case-rubric-current-state.png')});
+   await page.locator('#rubric-C03 a[href="deliverables/gpt-6.1-sol/#page=12"]').click();
+   await page.waitForFunction(()=>document.getElementById('page-select')?.value==='12');
+   await page.goto(base,{waitUntil:'networkidle'});
+  }
   await page.locator('#analysis .finding[open] img').evaluateAll(async images=>{await Promise.all(images.map(image=>{image.loading='eager';return image.decode();}));});
   await page.locator('#analysis').screenshot({path:path.join(output,'case-analysis-desktop.png')});
   await page.locator('#source-coverage summary').click();await page.locator('#source-coverage').screenshot({path:path.join(output,'case-source-coverage.png')});
@@ -181,6 +220,12 @@ if(process.argv.includes('--browser')){
   await page.setViewportSize({width:390,height:844});await page.goto(base,{waitUntil:'networkidle'});
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'Mobile horizontal overflow');
   await page.screenshot({path:path.join(output,'case-mobile-top.png')});
+  if(scoring){
+   await page.goto(base+'#rubric-R02');await page.waitForFunction(()=>document.getElementById('rubric-R02')?.open===true);
+   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'Mobile rubric overflow');
+   await page.locator('#rubric-R02').screenshot({path:path.join(output,'case-rubric-mobile.png')});
+   await page.locator('#rubric-R02 summary').click();
+  }
   await page.locator('#analysis .finding[open] img').evaluateAll(async images=>{await Promise.all(images.map(image=>{image.loading='eager';return image.decode();}));});
   await page.locator('#luna-rc01').screenshot({path:path.join(output,'case-analysis-mobile.png')});
   await page.locator('#sol-rc03').screenshot({path:path.join(output,'case-sol-error-mobile.png')});

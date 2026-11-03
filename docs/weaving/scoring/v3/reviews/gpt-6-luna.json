@@ -1,0 +1,746 @@
+{
+  "rubric_version": "3.0.0",
+  "rubric_sha256": "1f2fd82c1b55255bee87652de1d47ecb032e0533376d1b5acdb7f5675c4b4b3c",
+  "case_version": "2.1.0",
+  "model": "gpt-6-luna",
+  "run_id": "gpt-6-luna-v21-20261103-r1",
+  "reviewed_at": "2026-11-04T01:35:33.179687+08:00",
+  "reviewer": {
+    "type": "host_model_author_review",
+    "independent_of_solver": true,
+    "independent_of_case_author": false,
+    "blind": false
+  },
+  "design_disclosure": "评后修订；作者已知三份交付及旧分。用户希望更充分体现欠缺并提出Astra/Sol低于80的期望；该期望不构成评分条件。先固定本量表，再逐项记录证据，不按模型名或目标分数调整单项。",
+  "method": "全部终稿页图逐页复核；用冻结题面、来源索引和已有源片状态证据评价可观察教学充分性。不是独立编织专家判定，也未开展实物/新手实验。",
+  "artifact_sha256": {
+    "evidence_map.json": "ba684b5ef1954a195b2d026359cee15537d90b0f3a05d7562d7119c1a34c7d62",
+    "tutorial.pdf": "058d5db866a3a149a6dcad60337f8288a0aceba4a044f852d06e5767914cba26"
+  },
+  "criteria": [
+    {
+      "id": "T01",
+      "dimension": "教程内容",
+      "title": "材料、底座与起始状态",
+      "maximum": 5,
+      "score": 2.5,
+      "status": "partial",
+      "anchor": "起始流程有帮助，但工作端数量、底座或起结动作有关键缺口。",
+      "pdf_pages": [
+        1,
+        2
+      ],
+      "figure_ids": [
+        "fig-coordinates",
+        "fig-first-loop"
+      ],
+      "input_assets": [],
+      "source_interval_seconds": [
+        189,
+        264
+      ],
+      "observed_evidence": "区分两芯与活动绳，要求预装底座；有松首结与检查点。",
+      "gap": "只命名两活动绳；首结绕行和起始工作端状态不完整。",
+      "rationale": "起步有帮助，未满足可检查起始状态的全部要求。",
+      "uncertainty": null
+    },
+    {
+      "id": "T02",
+      "dimension": "教程内容",
+      "title": "新增工作绳的可执行说明",
+      "maximum": 5,
+      "score": 0,
+      "status": "does_not_meet",
+      "anchor": "漏掉加绳，或没有可执行的新增绳动作。",
+      "pdf_pages": [
+        2,
+        3
+      ],
+      "figure_ids": [
+        "fig-first-loop",
+        "fig-cross-loop",
+        "fig-tighten"
+      ],
+      "input_assets": [],
+      "source_interval_seconds": [
+        227,
+        264
+      ],
+      "observed_evidence": "第2页起结后直接进入第3页重复编结。",
+      "gap": "没有新增第二根工作绳的操作，也没有固定后的四工作端状态。",
+      "rationale": "缺失整个加绳动作，命中0分锚点。",
+      "uncertainty": "未判定相反拓扑；该项评可观察的说明充分性。"
+    },
+    {
+      "id": "T03",
+      "dimension": "教程内容",
+      "title": "左右半步的完整操作说明",
+      "maximum": 5,
+      "score": 2.5,
+      "status": "partial",
+      "anchor": "左右操作基本存在，但至少一处决定性的芯前后、绕对象或回程关系不明确。",
+      "pdf_pages": [
+        3
+      ],
+      "figure_ids": [
+        "fig-cross-loop",
+        "fig-tighten"
+      ],
+      "input_assets": [],
+      "source_interval_seconds": [
+        268,
+        421
+      ],
+      "observed_evidence": "可见正文有上侧端穿双芯中间、越下股、回中间及换侧轻拉。",
+      "gap": "未确定相对每条芯的前后、去回程与对侧下尾；左右操作没有逐对象展开。",
+      "rationale": "有基本动作顺序；关键空间关系不明确，按部分满足。",
+      "uncertainty": null
+    },
+    {
+      "id": "T04",
+      "dimension": "教程内容",
+      "title": "稳定身份与跨步选绳",
+      "maximum": 5,
+      "score": 0,
+      "status": "does_not_meet",
+      "anchor": "没有建立四端身份，或依赖颜色/远端位置代替身份。",
+      "pdf_pages": [
+        1,
+        3,
+        5,
+        6,
+        7
+      ],
+      "figure_ids": [
+        "fig-coordinates",
+        "fig-cross-loop",
+        "fig-tighten",
+        "fig-rc01",
+        "fig-rc02a",
+        "fig-rc02b",
+        "fig-rc03a",
+        "fig-rc03b"
+      ],
+      "input_assets": [
+        "input/learner_cards/RC01_1.png",
+        "input/learner_cards/RC02_1.png",
+        "input/learner_cards/RC02_2.png",
+        "input/learner_cards/RC03_1.png",
+        "input/learner_cards/RC03_2.png"
+      ],
+      "source_interval_seconds": [
+        245,
+        439
+      ],
+      "observed_evidence": "将活动绳称为浅S/深D，建议逐股追根。",
+      "gap": "没有建立四自由端身份与一轮更新；配色代替稳定身份。",
+      "rationale": "追根建议不能补足四端跨步跟踪。",
+      "uncertainty": null
+    },
+    {
+      "id": "T05",
+      "dimension": "教程内容",
+      "title": "整形、重复与停止条件",
+      "maximum": 5,
+      "score": 5,
+      "status": "meets",
+      "anchor": "本半步推齐、张力/形态检查、何时换侧重复及何时停止均可执行。",
+      "pdf_pages": [
+        3,
+        4
+      ],
+      "figure_ids": [
+        "fig-cross-loop",
+        "fig-tighten",
+        "fig-finished"
+      ],
+      "input_assets": [],
+      "source_interval_seconds": [
+        342,
+        628
+      ],
+      "observed_evidence": "明确交替两侧、逐段收紧推齐；检查交织纹路、两芯、宽度，按预设尺寸并接近时试戴。",
+      "gap": "",
+      "rationale": "换侧、整形和停止条件均有可执行说明；不因其他项目缺失重复扣分。",
+      "uncertainty": null
+    },
+    {
+      "id": "T06",
+      "dimension": "教程内容",
+      "title": "完整收尾与安全验收",
+      "maximum": 5,
+      "score": 2.5,
+      "status": "partial",
+      "anchor": "有剪封/交熟练者/拉检，但工作尾交接和固定完成状态不完整。",
+      "pdf_pages": [
+        4,
+        8
+      ],
+      "figure_ids": [
+        "fig-finished",
+        "fig-rc04a",
+        "fig-rc04b"
+      ],
+      "input_assets": [
+        "input/learner_cards/RC04_1.png",
+        "input/learner_cards/RC04_2.png"
+      ],
+      "source_interval_seconds": [
+        628,
+        695
+      ],
+      "observed_evidence": "有熟练者固定剪封、冷却拉检和保护使用者的安全建议。",
+      "gap": "没有明确四工作尾逐尾导背/固定和保护芯扣的可检查交接状态。",
+      "rationale": "存在收尾建议，但完整工作尾交接不足。",
+      "uncertainty": null
+    },
+    {
+      "id": "C01",
+      "dimension": "照片续作",
+      "title": "RC01当前状态到下一检查状态",
+      "maximum": 5,
+      "score": 0,
+      "status": "does_not_meet",
+      "anchor": "当前阶段或第一动作错误，或只有泛化建议无法从该卡继续。",
+      "pdf_pages": [
+        5
+      ],
+      "figure_ids": [
+        "fig-rc01"
+      ],
+      "input_assets": [
+        "input/learner_cards/RC01_1.png"
+      ],
+      "source_interval_seconds": [
+        245,
+        268
+      ],
+      "observed_evidence": "RC01图下写尚无完成编结、首结待开始，并要求按第2页搭首结。",
+      "gap": "照片已有固定结与四工作尾；重新搭首结是错误的当前阶段/首动作。",
+      "rationale": "是可见阶段误判，不把所有含混绳路额外判为确定拓扑错误。",
+      "uncertainty": null
+    },
+    {
+      "id": "C02",
+      "dimension": "照片续作",
+      "title": "RC02当前状态到下一检查状态",
+      "maximum": 5,
+      "score": 2.5,
+      "status": "partial",
+      "anchor": "阶段和动作方向有用，但当前操作/保持/目标对象仍不够唯一，或检查/禁忌有缺口。",
+      "pdf_pages": [
+        6
+      ],
+      "figure_ids": [
+        "fig-rc02a",
+        "fig-rc02b"
+      ],
+      "input_assets": [
+        "input/learner_cards/RC02_1.png",
+        "input/learner_cards/RC02_2.png"
+      ],
+      "source_interval_seconds": [
+        302,
+        350
+      ],
+      "observed_evidence": "正确说明镜像、松环、先移手追线再收紧推齐，避免猛拉。",
+      "gap": "未定位已经回到原侧的活动尾和被绕的对侧下尾，仍要求读者自行辨认。",
+      "rationale": "续作方向有帮助，当前对象不够唯一。",
+      "uncertainty": null
+    },
+    {
+      "id": "C03",
+      "dimension": "照片续作",
+      "title": "RC03当前状态到下一检查状态",
+      "maximum": 5,
+      "score": 2.5,
+      "status": "partial",
+      "anchor": "阶段和动作方向有用，但当前操作/保持/目标对象仍不够唯一，或检查/禁忌有缺口。",
+      "pdf_pages": [
+        7
+      ],
+      "figure_ids": [
+        "fig-rc03a",
+        "fig-rc03b"
+      ],
+      "input_assets": [
+        "input/learner_cards/RC03_1.png",
+        "input/learner_cards/RC03_2.png"
+      ],
+      "source_interval_seconds": [
+        354,
+        421
+      ],
+      "observed_evidence": "正确说明旋转180度，先停拉保留已成结，必要时补看。",
+      "gap": "没有辨明左半步已回程；第一动作主要是泛化追线和条件式重穿。",
+      "rationale": "方位和停手策略有用，无法直接确定本卡的具体保持端与收紧端。",
+      "uncertainty": null
+    },
+    {
+      "id": "C04",
+      "dimension": "照片续作",
+      "title": "RC04当前状态到下一检查状态",
+      "maximum": 5,
+      "score": 2.5,
+      "status": "partial",
+      "anchor": "识别收尾或证据不足，但固定交接/首次动作/验收仍泛化。",
+      "pdf_pages": [
+        8
+      ],
+      "figure_ids": [
+        "fig-rc04a",
+        "fig-rc04b"
+      ],
+      "input_assets": [
+        "input/learner_cards/RC04_1.png",
+        "input/learner_cards/RC04_2.png"
+      ],
+      "source_interval_seconds": [
+        628,
+        683
+      ],
+      "observed_evidence": "先不剪，承认隐藏固定不可确认，要求补看正背面并由熟练者收尾。",
+      "gap": "没有明确两图所示长尾待固定的交接；允许回去续编，首次检查仍泛化。",
+      "rationale": "安全边界有效，但当前收尾动作和固定交接不完整。",
+      "uncertainty": null
+    },
+    {
+      "id": "V01",
+      "dimension": "图文教学",
+      "title": "加绳关键层次在图中可辨",
+      "maximum": 5,
+      "score": 0,
+      "status": "does_not_meet",
+      "anchor": "虽有照片/横向箭头/标题，但决定性的加绳前后层次没有被视觉证据解决。",
+      "pdf_pages": [
+        2,
+        3
+      ],
+      "figure_ids": [
+        "fig-first-loop",
+        "fig-cross-loop",
+        "fig-tighten"
+      ],
+      "input_assets": [],
+      "source_interval_seconds": [
+        227,
+        264
+      ],
+      "observed_evidence": "对应页只有首结和后续循环截图。",
+      "gap": "没有加绳关键状态图片或层次解释。",
+      "rationale": "视觉加绳证据缺失；与T02分别影响视觉辨认和操作说明。",
+      "uncertainty": "未判定相反拓扑；该项评可观察的说明充分性。"
+    },
+    {
+      "id": "V02",
+      "dimension": "图文教学",
+      "title": "右半步交叉路径在图中可辨",
+      "maximum": 5,
+      "score": 2.5,
+      "status": "partial",
+      "anchor": "图可定位部分对象或动作，但至少一段关键前后/绕行/回程仍依赖纯文字或自行猜线。",
+      "pdf_pages": [
+        3
+      ],
+      "figure_ids": [
+        "fig-cross-loop",
+        "fig-tighten"
+      ],
+      "input_assets": [],
+      "source_interval_seconds": [
+        268,
+        350
+      ],
+      "observed_evidence": "源帧能看到大松环、两芯与部分交叉。",
+      "gap": "没有图内对象标注，关键去回程和芯前后未被视觉解释。",
+      "rationale": "照片提供部分对象和动作，尚不能追踪完整右半步。",
+      "uncertainty": null
+    },
+    {
+      "id": "V03",
+      "dimension": "图文教学",
+      "title": "左半步交叉路径在图中可辨",
+      "maximum": 5,
+      "score": 2.5,
+      "status": "partial",
+      "anchor": "图可定位部分对象或动作，但至少一段关键前后/绕行/回程仍依赖纯文字或自行猜线。",
+      "pdf_pages": [
+        3,
+        7
+      ],
+      "figure_ids": [
+        "fig-cross-loop",
+        "fig-tighten",
+        "fig-rc03a",
+        "fig-rc03b"
+      ],
+      "input_assets": [
+        "input/learner_cards/RC03_1.png",
+        "input/learner_cards/RC03_2.png"
+      ],
+      "source_interval_seconds": [
+        354,
+        421
+      ],
+      "observed_evidence": "循环截图及RC03原始照片可看到左侧交叉与部分回程轮廓。",
+      "gap": "没有解开手部遮挡、关键绕对象和返回关系。",
+      "rationale": "保留原片照片的部分视觉帮助，不因缺少自绘图一概给0。",
+      "uncertainty": null
+    },
+    {
+      "id": "V04",
+      "dimension": "图文教学",
+      "title": "关键引线与对象唯一对应",
+      "maximum": 5,
+      "score": 0,
+      "status": "does_not_meet",
+      "anchor": "普遍没有实体标注，或确认关键图文实体矛盾。含混本身不算确认错指。",
+      "pdf_pages": [
+        2,
+        3,
+        5,
+        6,
+        7,
+        8
+      ],
+      "figure_ids": [
+        "fig-first-loop",
+        "fig-cross-loop",
+        "fig-tighten",
+        "fig-rc01",
+        "fig-rc02a",
+        "fig-rc02b",
+        "fig-rc03a",
+        "fig-rc03b",
+        "fig-rc04a",
+        "fig-rc04b"
+      ],
+      "input_assets": [
+        "input/learner_cards/RC01_1.png",
+        "input/learner_cards/RC02_1.png",
+        "input/learner_cards/RC02_2.png",
+        "input/learner_cards/RC03_1.png",
+        "input/learner_cards/RC03_2.png",
+        "input/learner_cards/RC04_1.png",
+        "input/learner_cards/RC04_2.png"
+      ],
+      "source_interval_seconds": [
+        215,
+        500
+      ],
+      "observed_evidence": "截图与练习照片仅加标题/排版，没有关键对象引线。",
+      "gap": "活动端、保持端和目标没有对应实体标注。",
+      "rationale": "普遍缺少关键实体标注，符合0分锚点。",
+      "uncertainty": null
+    },
+    {
+      "id": "R01",
+      "dimension": "可逆纠错",
+      "title": "两项可逆恢复的操作闭环",
+      "maximum": 5,
+      "score": 2.5,
+      "status": "partial",
+      "anchor": "只有一项闭环，或两项都有帮助但退回顺序/复原状态仍泛化。",
+      "pdf_pages": [
+        9
+      ],
+      "figure_ids": [
+        "fig-troubleshoot-route"
+      ],
+      "input_assets": [],
+      "source_interval_seconds": [
+        439,
+        585
+      ],
+      "observed_evidence": "有停手、不剪、松最近结、保留正确旧结；另一项是逐段分配松量。",
+      "gap": "按首结重穿、逆序放松缺少具体退回顺序和已知复原状态。",
+      "rationale": "两种建议有帮助，但未形成两项完整操作闭环。",
+      "uncertainty": null
+    },
+    {
+      "id": "R02",
+      "dimension": "可逆纠错",
+      "title": "恢复图确实帮助选对象或退路",
+      "maximum": 5,
+      "score": 0,
+      "status": "does_not_meet",
+      "anchor": "只有文字框、装饰截图或泛化交叉，没有实际恢复对象/路径关系。",
+      "pdf_pages": [
+        9
+      ],
+      "figure_ids": [
+        "fig-troubleshoot-route"
+      ],
+      "input_assets": [],
+      "source_interval_seconds": [
+        439,
+        585
+      ],
+      "observed_evidence": "图为两芯加两条通用交叉曲线，文字称找环口。",
+      "gap": "图未给实际环口或对应恢复对象/退路。",
+      "rationale": "泛化交叉不能确定具体恢复关系。",
+      "uncertainty": null
+    },
+    {
+      "id": "E01",
+      "dimension": "证据与交付",
+      "title": "来源索引完整且与成品相符",
+      "maximum": 5,
+      "score": 2.5,
+      "status": "partial",
+      "anchor": "可解析、主要来源可回查，但存在空必填引用、部分实体/来源错配或遗漏。",
+      "pdf_pages": [
+        1,
+        5
+      ],
+      "figure_ids": [
+        "fig-coordinates",
+        "fig-rc01"
+      ],
+      "input_assets": [
+        "input/learner_cards/RC01_1.png"
+      ],
+      "source_interval_seconds": [
+        125,
+        268
+      ],
+      "observed_evidence": "JSON可解析且机械检查通过，大部分页与图可回查。",
+      "gap": "RC01区间125—215秒不覆盖实际256秒状态；worker字段还混入芯。",
+      "rationale": "能查主要来源，存在关键状态错配和实体类别错配。",
+      "uncertainty": null
+    },
+    {
+      "id": "E02",
+      "dimension": "证据与交付",
+      "title": "事实边界、补充与署名",
+      "maximum": 5,
+      "score": 2.5,
+      "status": "partial",
+      "anchor": "有署名和边界意识，但存在误称源片缺失、未标补充或范围过宽等问题。",
+      "pdf_pages": [
+        1,
+        4,
+        9
+      ],
+      "figure_ids": [
+        "fig-coordinates",
+        "fig-finished",
+        "fig-troubleshoot-route"
+      ],
+      "input_assets": [],
+      "source_interval_seconds": [
+        664,
+        683
+      ],
+      "observed_evidence": "保留作者、片名、来源、许可版本边界及中文改编声明。",
+      "gap": "把原片已有剪封示范泛称为没有完整示范末端热封，未限定真正遮挡的微动作。",
+      "rationale": "署名与补充意识完整，但事实边界有可核查偏差。",
+      "uncertainty": null
+    },
+    {
+      "id": "L01",
+      "dimension": "阅读与排版",
+      "title": "正文、图例及打印可读性",
+      "maximum": 5,
+      "score": 5,
+      "status": "meets",
+      "anchor": "实际页图中正文、表格、图内文字清楚；无影响使用的裁切/重叠/畸变，关键细节可放大阅读。",
+      "pdf_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "figure_ids": [
+        "fig-coordinates",
+        "fig-first-loop",
+        "fig-cross-loop",
+        "fig-tighten",
+        "fig-finished",
+        "fig-rc01",
+        "fig-rc02a",
+        "fig-rc02b",
+        "fig-rc03a",
+        "fig-rc03b",
+        "fig-rc04a",
+        "fig-rc04b",
+        "fig-troubleshoot-route"
+      ],
+      "input_assets": [
+        "input/learner_cards/RC01_1.png",
+        "input/learner_cards/RC02_1.png",
+        "input/learner_cards/RC02_2.png",
+        "input/learner_cards/RC03_1.png",
+        "input/learner_cards/RC03_2.png",
+        "input/learner_cards/RC04_1.png",
+        "input/learner_cards/RC04_2.png"
+      ],
+      "source_interval_seconds": [
+        0,
+        797.884
+      ],
+      "observed_evidence": "9页渲染正文与图像均可读，没有影响使用的重叠、裁切或畸变。",
+      "gap": "",
+      "rationale": "大面积留白属于利用率问题，未达到可读性扣分锚点。",
+      "uncertainty": null
+    },
+    {
+      "id": "L02",
+      "dimension": "阅读与排版",
+      "title": "步骤组织、图文就近与查阅",
+      "maximum": 5,
+      "score": 5,
+      "status": "meets",
+      "anchor": "全流程顺序清楚；重复有明确复用方式；四卡易查，图文相邻或引用明确，不因结构跳跃漏掉必需动作。",
+      "pdf_pages": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "figure_ids": [
+        "fig-first-loop",
+        "fig-cross-loop",
+        "fig-tighten",
+        "fig-finished",
+        "fig-rc01",
+        "fig-rc02a",
+        "fig-rc02b",
+        "fig-rc03a",
+        "fig-rc03b",
+        "fig-rc04a",
+        "fig-rc04b",
+        "fig-troubleshoot-route"
+      ],
+      "input_assets": [
+        "input/learner_cards/RC01_1.png",
+        "input/learner_cards/RC02_1.png",
+        "input/learner_cards/RC02_2.png",
+        "input/learner_cards/RC03_1.png",
+        "input/learner_cards/RC03_2.png",
+        "input/learner_cards/RC04_1.png",
+        "input/learner_cards/RC04_2.png"
+      ],
+      "source_interval_seconds": [
+        0,
+        797.884
+      ],
+      "observed_evidence": "起步、循环、结束、四卡与排错各有明确位置；相关引用和配图就近。",
+      "gap": "",
+      "rationale": "内容缺失在对应内容项评分，结构本身可查阅。",
+      "uncertainty": null
+    }
+  ],
+  "dimension_scores": [
+    {
+      "dimension": "教程内容",
+      "maximum": 30,
+      "score": 12.5
+    },
+    {
+      "dimension": "照片续作",
+      "maximum": 20,
+      "score": 7.5
+    },
+    {
+      "dimension": "图文教学",
+      "maximum": 20,
+      "score": 5.0
+    },
+    {
+      "dimension": "可逆纠错",
+      "maximum": 10,
+      "score": 2.5
+    },
+    {
+      "dimension": "证据与交付",
+      "maximum": 10,
+      "score": 5.0
+    },
+    {
+      "dimension": "阅读与排版",
+      "maximum": 10,
+      "score": 10
+    }
+  ],
+  "raw_score": 42.5,
+  "caps": [
+    {
+      "id": "C01",
+      "status": "not_confirmed_not_applied",
+      "maximum": 49,
+      "reason": "循环路径严重不明确，但实际可见第3页又有中间回穿说明，不把含混直接判为确定反向绳路。"
+    },
+    {
+      "id": "C02",
+      "status": "applied",
+      "maximum": 69,
+      "reason": "第4页没有给出工作尾转背/逐尾固定/保护芯与扣具的交接结构，笼统交给熟练者完成；缺失完整收尾说明。原始分已低于此上限。"
+    },
+    {
+      "id": "C03",
+      "status": "not_present",
+      "maximum": 39,
+      "reason": "未指导危险热操作；由熟练者并冷却后验收。"
+    },
+    {
+      "id": "C04",
+      "status": "not_confirmed_not_applied",
+      "maximum": 59,
+      "reason": "缺少对象标注且示意过于笼统，未用隐含关系强判明确相反图文。"
+    }
+  ],
+  "provisional_score": 42.5,
+  "final_score": null,
+  "unknown_items": [],
+  "score_interval": [
+    42.5,
+    42.5
+  ],
+  "previous_evaluation": {
+    "raw_score": 41.5,
+    "provisional_score": 41.5,
+    "final_score": null,
+    "source": "original semantic_review.json retained byte-for-byte"
+  },
+  "calibration": {
+    "independent_expert": "not_run",
+    "novice_trial": "not_run",
+    "physical_recovery": "not_run"
+  },
+  "scope_limit": "单项得分是作者对成品可观察要求的暂评，不等于验证实际跟做成功、全部微观拓扑或模型稳定排名。",
+  "visual_review": {
+    "pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "render_sha256": {
+      "page-1.png": "d1a72c6f6c5235a008bedf1e221cc0cc83cd5210ab62e3772a646e0e110866a8",
+      "page-2.png": "185ab2511a3097e587127aef69a1bc068d5dc740f693c39edba85f85510d30c7",
+      "page-3.png": "76bc64a290c0d4d53bbf12392a377c39cb02483188d4dd94d169fe3cbf7f6ac2",
+      "page-4.png": "fe9cfb17f4743818e3343a012fbb72f6eb2992f18cc9591c8c2e3ce13b371bec",
+      "page-5.png": "7eea651044bb3bff5d5e30a260703e14dcb1b9f555ee62dcc0e5cefb6cc8494d",
+      "page-6.png": "2620264e805ffabd30f8224c4f596be557d882d10e1311e9513c8aec45ba3fa9",
+      "page-7.png": "3356ce9f6bef06c4228cb46ae6be96d397034660245b0dfbcbbd4238de002d62",
+      "page-8.png": "71ed4ca93c881ebacd208c50563ac6a818499d6d5426253036d577e4173285a0",
+      "page-9.png": "0cb7ce12499861fdc2014386c3beac9ea548b41a7b68e2096802f92d44770087"
+    },
+    "actual_rendered_pages_reviewed": true
+  }
+}

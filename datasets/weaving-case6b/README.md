@@ -33,3 +33,7 @@ ZIP SHA-256：`3b9d79b445bcab125dfc4998196873cca196478c9e5fd19ae9317c8f2af1903d`
 Astra遇到网关429和连接断开，在同一上下文恢复原逻辑请求；原始开始时间、工具/请求计数和60分钟限时保留，停机时间计入总耗时。未加入内容指导；此传输历史与旧两路不同，网页单列披露。Astra全部历史图像采用运行时逐次保存的实际输出字节快照，旧两路的缺失标记维持原状。
 
 GLM 5.3与Kimi K3 Pro在原API试调用均返回404 model_not_found，无配置通道，未开始正式评测，没有分数或交付物。Claude Opus 5此前401未运行，后由用户改为本次Astra请求。状态见evaluation-status.json；各模型公开元数据见case.json。
+
+## 评分修订 v3.0.0
+
+2026-11-04增加20条独立rubric，每项0/2.5/5。该量表是已知旧提交后的修订，尚无独立专家/盲评校准。当前暂评：Luna 42.5；Sol原始72.5、封顶59；Astra82.5。正式专家分仍为null。原始运行包保留旧评测元数据，当前量表与逐项证据单独保存于[网页评分区](https://huayuankou333.github.io/omniale/weaving/#rubric-v3)及[scoring/v3](https://github.com/huayuankou333/omniale/tree/main/docs/weaving/scoring/v3)。候选题目与输入包没有变更。
