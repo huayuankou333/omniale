@@ -34,6 +34,11 @@ jobs:
         run: python scripts/check-resolve-site.py
       - name: Install browser testing client
         run: npm install --prefix "$RUNNER_TEMP/resolve-qa" playwright@1.56.1
+      - name: Install Chinese fonts for visual verification
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-noto-cjk
+          fc-match -f '%{family}\n' ':lang=zh'
       - name: Test desktop, mobile, videos and trajectory controls
         shell: bash
         run: |
