@@ -72,7 +72,7 @@ if(process.argv.includes('--browser')){
   }catch{res.writeHead(404).end('Not found');}
  });
  await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));const base=`http://127.0.0.1:${server.address().port}/weaving/`;
- const browser=await chromium.launch({headless:true});const errors=[];
+ const browser=await chromium.launch({channel:'chrome',headless:true,args:['--autoplay-policy=no-user-gesture-required']});const errors=[];
  const page=await browser.newPage({viewport:{width:1440,height:1050},deviceScaleFactor:1});
  page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400&&r.url().startsWith(base))errors.push(`HTTP ${r.status()} ${r.url()}`);});
  try{
@@ -82,7 +82,11 @@ if(process.argv.includes('--browser')){
   await page.screenshot({path:path.join(output,'case-desktop-top.png')});
   await page.locator('#inputs').screenshot({path:path.join(output,'case-inputs.png')});
   await page.locator('#results').screenshot({path:path.join(output,'case-results.png')});
-  await page.waitForFunction(()=>document.querySelector('video').readyState>=1);
+  await page.locator('video').evaluate(v=>{v.load();v.play().catch(()=>{});});
+  await page.waitForFunction(()=>document.querySelector('video').readyState>=1,{},{timeout:15000});
+  report.media=await page.locator('video').evaluate(v=>({duration:v.duration,readyState:v.readyState,codec:v.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"')}));
+  await page.waitForFunction(()=>document.querySelector('video').currentTime>0.05,{},{timeout:15000});
+  await page.locator('video').evaluate(v=>v.pause());
   const duration=await page.locator('video').evaluate(v=>v.duration);assert(Math.abs(duration-797.884)<1,`Video duration ${duration}`);
   await page.selectOption('#trace-model','gpt-6.1-sol');await page.waitForFunction(()=>document.querySelectorAll('.trace-event').length===51);
   await page.selectOption('#trace-filter','errors');await page.waitForFunction(()=>document.querySelectorAll('.trace-event').length===5);
@@ -106,7 +110,7 @@ if(process.argv.includes('--browser')){
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'Mobile reader overflow');
   await page.screenshot({path:path.join(output,'sol-mobile-reader.png')});
   assert.deepEqual(errors,[]);report.browser_checks='passed';report.browser_validated=['desktop and mobile layout','video duration and range playback','34/50 tool traces plus retries','error and image filters','search','historical image rendering','both PDF readers','page navigation, deep links and zoom','no page errors or missing local assets'];
- }catch(error){report.browser_checks='failed';report.failure=error.stack;await fs.writeFile(path.join(output,'validation.json'),JSON.stringify(report,null,2)+'\n');throw error;}
+ }catch(error){report.browser_checks='failed';report.failure=error.stack;report.media=await page.locator('video').evaluate(v=>v?({readyState:v.readyState,networkState:v.networkState,error:v.error?{code:v.error.code,message:v.error.message}:null,currentSrc:v.currentSrc,codec:v.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"')}):null).catch(()=>null);await fs.writeFile(path.join(output,'validation.json'),JSON.stringify(report,null,2)+'\n');throw error;}
  finally{await browser.close();await new Promise(resolve=>server.close(resolve));}
 }
 await fs.writeFile(path.join(output,'validation.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));

@@ -24,7 +24,7 @@ jobs:
       - name: Install browser for validation
         run: |
           npm install --prefix "$RUNNER_TEMP/case6b-browser" playwright@1.56.1
-          "$RUNNER_TEMP/case6b-browser/node_modules/.bin/playwright" install --with-deps chromium
+          "$RUNNER_TEMP/case6b-browser/node_modules/.bin/playwright" install --with-deps chrome
       - name: Validate artifacts and browser interactions
         env:
           CASE6B_PLAYWRIGHT_MODULE: ${{ runner.temp }}/case6b-browser/node_modules/playwright
