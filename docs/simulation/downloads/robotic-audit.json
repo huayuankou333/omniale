@@ -1,0 +1,206 @@
+{
+  "run": "[local evidence path]",
+  "checks": {
+    "frozen_raw_hash_matches_manifest": true,
+    "frozen_raw_hash_matches_result": true,
+    "frozen_normalized_hash_matches_evaluator": true,
+    "frozen_bytes_equal_selected_submission": true,
+    "attempt_1_source_equals_api_response": true,
+    "attempt_2_source_equals_api_response": true,
+    "evaluator_hash_matches": true,
+    "shared_primitives_hash_matches": true,
+    "development_and_final_seeds_disjoint": true,
+    "all_final_seeds_present": true,
+    "replay_all_passed": true,
+    "all_episode_evidence_consistent": true,
+    "result_matches_final_summary": true
+  },
+  "all_checks_passed": true,
+  "frozen_raw_sha256": "c41d34b9f9d6b7a1c3c384d2c574a489897308a28c54483db272bdd4c798f392",
+  "frozen_text_sha256": "059b74bbb1ed1cd7a233d5fcf1a5996740749ef2e6833f9ac284c609a4cb087d",
+  "attempts": [
+    {
+      "attempt": 1,
+      "source_equals_api_response": true,
+      "successes": 0,
+      "episodes": 3,
+      "diagnosis": "The starter transforms an already world-frame hole pose a second time, shifting the commanded insertion corridor away from the physical aperture. Its open-loop TCP transfer can also preserve grasp and tracking errors until contact. The repair removes that frame error and uses the supplied peg-feedback controller to align behind the aperture before advancing axially.",
+      "changes": [
+        "Use the measured hole pose directly as a world-frame transform; remove the erroneous second rotation about an arbitrary reference point.",
+        "Specify insertion targets by peg-head clearance, accounting for the peg half-length.",
+        "Use the provided measured-feedback move_peg primitive for transfer, alignment, and insertion.",
+        "Separate elevated transfer, aperture alignment, and axial insertion, with a final feedback correction and a maximum of 585 control steps.",
+        "Check api.done between motions."
+      ],
+      "inference_seconds": 45.672988699996495
+    },
+    {
+      "attempt": 2,
+      "source_equals_api_response": true,
+      "successes": 3,
+      "episodes": 3,
+      "diagnosis": "The world-frame correction improved transverse placement, but all three runs still stalled near the same axial coordinate, about -0.105 m. This is consistent with contact at the entrance rather than insufficient insertion duration. The previous sequence lowered and aligned with the head already at -0.070 m, potentially engaging the surrounding geometry before alignment was complete. This revision aligns farther back, approaches axially, and withdraws before retrying a persistent stall.",
+      "changes": [
+        "Move the initial alignment waypoint farther behind the aperture instead of lowering the peg with its head already near or inside the obstructing geometry.",
+        "Complete a separate, slow approach to a head clearance of 0.135 m before axial insertion.",
+        "Retain measured peg tracking throughout transport and insertion.",
+        "Use the remaining budget for a withdrawal-and-realignment recovery if the measured head remains stalled well outside the aperture.",
+        "Limit all motions to a total of 600 control steps."
+      ],
+      "inference_seconds": 70.31773979999707
+    }
+  ],
+  "episodes": [
+    {
+      "seed": 2000,
+      "steps": 423,
+      "recorded_criterion_satisfied": true,
+      "evidence_consistent": true
+    },
+    {
+      "seed": 2001,
+      "steps": 423,
+      "recorded_criterion_satisfied": true,
+      "evidence_consistent": true
+    },
+    {
+      "seed": 2002,
+      "steps": 423,
+      "recorded_criterion_satisfied": true,
+      "evidence_consistent": true
+    },
+    {
+      "seed": 2003,
+      "steps": 423,
+      "recorded_criterion_satisfied": true,
+      "evidence_consistent": true
+    },
+    {
+      "seed": 2004,
+      "steps": 423,
+      "recorded_criterion_satisfied": true,
+      "evidence_consistent": true
+    },
+    {
+      "seed": 2005,
+      "steps": 423,
+      "recorded_criterion_satisfied": true,
+      "evidence_consistent": true
+    },
+    {
+      "seed": 2006,
+      "steps": 423,
+      "recorded_criterion_satisfied": true,
+      "evidence_consistent": true
+    },
+    {
+      "seed": 2007,
+      "steps": 423,
+      "recorded_criterion_satisfied": true,
+      "evidence_consistent": true
+    },
+    {
+      "seed": 2008,
+      "steps": 423,
+      "recorded_criterion_satisfied": true,
+      "evidence_consistent": true
+    },
+    {
+      "seed": 2009,
+      "steps": 423,
+      "recorded_criterion_satisfied": true,
+      "evidence_consistent": true
+    },
+    {
+      "seed": 2010,
+      "steps": 423,
+      "recorded_criterion_satisfied": true,
+      "evidence_consistent": true
+    },
+    {
+      "seed": 2011,
+      "steps": 423,
+      "recorded_criterion_satisfied": true,
+      "evidence_consistent": true
+    },
+    {
+      "seed": 2012,
+      "steps": 423,
+      "recorded_criterion_satisfied": true,
+      "evidence_consistent": true
+    },
+    {
+      "seed": 2013,
+      "steps": 423,
+      "recorded_criterion_satisfied": true,
+      "evidence_consistent": true
+    },
+    {
+      "seed": 2014,
+      "steps": 423,
+      "recorded_criterion_satisfied": true,
+      "evidence_consistent": true
+    },
+    {
+      "seed": 2015,
+      "steps": 423,
+      "recorded_criterion_satisfied": true,
+      "evidence_consistent": true
+    },
+    {
+      "seed": 2016,
+      "steps": 423,
+      "recorded_criterion_satisfied": true,
+      "evidence_consistent": true
+    },
+    {
+      "seed": 2017,
+      "steps": 423,
+      "recorded_criterion_satisfied": true,
+      "evidence_consistent": true
+    },
+    {
+      "seed": 2018,
+      "steps": 423,
+      "recorded_criterion_satisfied": true,
+      "evidence_consistent": true
+    },
+    {
+      "seed": 2019,
+      "steps": 423,
+      "recorded_criterion_satisfied": true,
+      "evidence_consistent": true
+    }
+  ],
+  "action_replay": {
+    "all_passed": true,
+    "checks": [
+      {
+        "seed": 2000,
+        "actions": 423,
+        "max_raw_pose_component_error": 0.0,
+        "success_match": true,
+        "success": true,
+        "passed": true
+      },
+      {
+        "seed": 2010,
+        "actions": 423,
+        "max_raw_pose_component_error": 0.0,
+        "success_match": true,
+        "success": true,
+        "passed": true
+      },
+      {
+        "seed": 2019,
+        "actions": 423,
+        "max_raw_pose_component_error": 0.0,
+        "success_match": true,
+        "success": true,
+        "passed": true
+      }
+    ],
+    "tolerance": 0.0001,
+    "scope": "Deterministic action/state replay; does not independently validate PhysX."
+  }
+}
