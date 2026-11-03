@@ -150,7 +150,7 @@ if(process.argv.includes('--browser')){
   await page.locator('#sol-rc03').screenshot({path:path.join(output,'case-sol-error-mobile.png')});
   await page.goto(base+'#trajectory-gpt-6.1-sol-tool-42');await page.waitForFunction(()=>document.querySelector('[data-tool="42"]')?.open===true);
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'Mobile tool deep-link overflow');
-  assert((await page.locator('[data-tool="42"]').textContent()).includes('Invalid \\escape'));
+  assert((await page.locator('[data-tool="42"]').textContent()).includes('JSONDecodeError'));
   await page.screenshot({path:path.join(output,'case-tool-mobile.png')});
   await page.goto(base+'deliverables/gpt-6.1-sol/',{waitUntil:'networkidle'});
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'Mobile reader overflow');
