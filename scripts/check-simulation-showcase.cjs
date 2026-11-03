@@ -12,6 +12,7 @@ const server=http.createServer(async(req,res)=>{try{let p=decodeURIComponent(req
  const errors=[],checks=[];
  const context=await browser.newContext({viewport:{width:1440,height:1100}});
  const page=await context.newPage();
+ page.setDefaultTimeout(15000);
  page.on('pageerror',e=>errors.push(e.message));
  page.on('response',r=>{if(r.status()>=400)errors.push(r.status()+' '+r.url())});
  for(const key of ['index','robotic','building','circuit','cfd','structure']){
@@ -30,7 +31,8 @@ const server=http.createServer(async(req,res)=>{try{let p=decodeURIComponent(req
     if(await page.locator('#execution details[open]').count()<1)throw Error('details failed');
    }
    if(key==='robotic'){
-    await page.locator('#frame-slider').fill('0');
+    await page.locator('#frame-slider').focus();
+    await page.keyboard.press('Home');
     if(!(await page.locator('#frame-state').innerText()).includes('initial'))throw Error('robot frame slider failed');
     await page.waitForFunction(()=>document.querySelector('video').readyState>=1);
     checks.push({video:await page.locator('video').evaluate(v=>({duration:v.duration,width:v.videoWidth,height:v.videoHeight}))});
@@ -53,5 +55,5 @@ const server=http.createServer(async(req,res)=>{try{let p=decodeURIComponent(req
  await fs.writeFile('artifacts/simulationle/browser-verification.json',JSON.stringify({checks,errors},null,2));
  console.log(JSON.stringify({checks,errors},null,2));
  await browser.close();server.close();if(errors.length)process.exitCode=1;
-})().catch(e=>{console.error(e);server.close();process.exitCode=1});
+})().catch(e=>{console.error(e);server.close();process.exit(1)});
 
