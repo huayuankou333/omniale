@@ -1,0 +1,434 @@
+{
+  "version": "v3.0-retrospective-24-items",
+  "at": "2026-11-03T15:24:13.089637+00:00",
+  "item_counts_before": {
+    "C": 24,
+    "O": 11,
+    "E": 4
+  },
+  "item_counts_after": {
+    "C": 13,
+    "O": 8,
+    "E": 3
+  },
+  "category_maxima": {
+    "C": 50,
+    "O": 40,
+    "E": 10
+  },
+  "candidate_generation_rerun": false,
+  "candidate_deliverables_modified": false,
+  "review_status": "回溯开发集修订，单助手暂定；音频连续听评与独立共识未完成。",
+  "pure_aggregation": false,
+  "rule_changes": [
+    "24 content topics merged into13 independently scored narrative modules, weighted with integers summing50.",
+    "Suggested20-point attribution allocation split into8/6/6 mutually exclusive event classes.",
+    "Remaining suggested20 Omni points merged into5 modules; source subcriteria retained for audit.",
+    "Engineering4 old items merged into3 items, retaining10 points.",
+    "Content module completeness and attribution trust use explicit0/0.5/1 scales; this is a scoring-rule change, not pure relabeling."
+  ],
+  "source_scores_url": "files/scores.v2.1.all-models.json",
+  "source_report_url": "data/report.v2.1.json",
+  "source_scores_sha256": "a730ddebdf07f1b0f66587d879797ba68bf17d617c4533f1792692cd4356e03e",
+  "models": [
+    {
+      "model": "gpt-6-luna",
+      "before": 38.67,
+      "after": 43.5,
+      "category_totals": {
+        "C": 14.5,
+        "O": 19.5,
+        "E": 9.5
+      },
+      "core_errors": 0,
+      "events": [
+        {
+          "event_id": "L-lcd-listener",
+          "owner": "O01",
+          "kind": "sustained_closeup_ambiguity",
+          "output_range": [
+            89,
+            134
+          ],
+          "source_range": [
+            600,
+            645
+          ],
+          "actual_speaker": "A/B",
+          "displayed_person": "C",
+          "evidence": "删减与计价段持续展示C，无明确画外音身份提示；未判为明确核心错署名。"
+        },
+        {
+          "event_id": "L-room-listener",
+          "owner": "O02",
+          "kind": "sustained_closeup_ambiguity",
+          "output_range": [
+            269,
+            305
+          ],
+          "source_range": [
+            1460,
+            1496
+          ],
+          "actual_speaker": "C",
+          "displayed_person": "B",
+          "evidence": "room词义误会片段主讲C却持续展示B。实际完整澄清未入片，该遗漏只在C09处理。"
+        },
+        {
+          "event_id": "L-equipment-listener",
+          "owner": "O03",
+          "kind": "sustained_closeup_ambiguity",
+          "output_range": [
+            305,
+            340
+          ],
+          "source_range": [
+            1622,
+            1657
+          ],
+          "actual_speaker": "A",
+          "displayed_person": "B",
+          "evidence": "设备批评段主讲A但持续展示B；B后续追问不足以交代此前主讲者。"
+        },
+        {
+          "event_id": "L-global-map",
+          "owner": "O04",
+          "kind": "unestablished_global_mapping",
+          "evidence": "S2/S3均为C，临时代号未形成四人一对一脸/声/机位关系。"
+        },
+        {
+          "event_id": "L-relocation",
+          "owner": "O04",
+          "kind": "lost_relocated_speaker",
+          "output_range": [
+            224,
+            269
+          ],
+          "source_range": [
+            1280,
+            1325
+          ],
+          "actual_speaker": "C",
+          "displayed_person": "D",
+          "evidence": "C离座评价后的构想段持续采用D近景；只在动态连续性处理。"
+        }
+      ],
+      "subtitle_zero_total": 43.5,
+      "subtitle_full_total": 47.5
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "before": 83.33,
+      "after": 79.5,
+      "category_totals": {
+        "C": 42.0,
+        "O": 27.5,
+        "E": 10.0
+      },
+      "core_errors": 1,
+      "events": [
+        {
+          "event_id": "sol-lcd",
+          "owner": "O01",
+          "kind": "core_misattribution",
+          "output_range": [
+            57.48,
+            68.88
+          ],
+          "source_range": [
+            582.76,
+            594.16
+          ],
+          "actual_speaker": "A / S3",
+          "attributed_speaker": "C / S1",
+          "evidence": "删LCD与高级芯片的建议明确错署为S1/C；同一标题、画面及附件合并为一个事件。"
+        }
+      ],
+      "subtitle_zero_total": 79.5,
+      "subtitle_full_total": 83.5
+    },
+    {
+      "model": "gpt-6-astra",
+      "before": 85.75,
+      "after": 78.0,
+      "category_totals": {
+        "C": 42.5,
+        "O": 25.5,
+        "E": 10.0
+      },
+      "core_errors": 2,
+      "events": [
+        {
+          "event_id": "astra-material-speaker",
+          "owner": "O02",
+          "kind": "core_misattribution",
+          "output_range": [
+            124.88,
+            128.4
+          ],
+          "source_range": [
+            772.42,
+            774.51
+          ],
+          "actual_speaker": "A / S3",
+          "attributed_speaker": "D / S2",
+          "evidence": "Play-Doh不足的客观纠正错署为D。"
+        },
+        {
+          "event_id": "astra-layout-speaker",
+          "owner": "O01",
+          "kind": "core_misattribution",
+          "output_range": [
+            152,
+            157.8
+          ],
+          "source_range": [
+            887.8,
+            893.6
+          ],
+          "actual_speaker": "A / S3",
+          "attributed_speaker": "B / S4",
+          "evidence": "保留熟悉电话布局的设计理由错署为B。"
+        }
+      ],
+      "subtitle_zero_total": 74.0,
+      "subtitle_full_total": 78.0
+    }
+  ],
+  "mappings": [
+    {
+      "id": "C01",
+      "category": "C",
+      "weight": 4,
+      "source_version": "v2.1",
+      "source_ids": [
+        "C01",
+        "C02"
+      ]
+    },
+    {
+      "id": "C02",
+      "category": "C",
+      "weight": 4,
+      "source_version": "v2.1",
+      "source_ids": [
+        "C03",
+        "C05"
+      ]
+    },
+    {
+      "id": "C03",
+      "category": "C",
+      "weight": 4,
+      "source_version": "v2.1",
+      "source_ids": [
+        "C04",
+        "C09"
+      ]
+    },
+    {
+      "id": "C04",
+      "category": "C",
+      "weight": 5,
+      "source_version": "v2.1",
+      "source_ids": [
+        "C06",
+        "C07",
+        "C08"
+      ]
+    },
+    {
+      "id": "C05",
+      "category": "C",
+      "weight": 4,
+      "source_version": "v2.1",
+      "source_ids": [
+        "C10",
+        "C11"
+      ]
+    },
+    {
+      "id": "C06",
+      "category": "C",
+      "weight": 4,
+      "source_version": "v2.1",
+      "source_ids": [
+        "C12",
+        "C13"
+      ]
+    },
+    {
+      "id": "C07",
+      "category": "C",
+      "weight": 4,
+      "source_version": "v2.1",
+      "source_ids": [
+        "C14",
+        "C15"
+      ]
+    },
+    {
+      "id": "C08",
+      "category": "C",
+      "weight": 3,
+      "source_version": "v2.1",
+      "source_ids": [
+        "C16"
+      ]
+    },
+    {
+      "id": "C09",
+      "category": "C",
+      "weight": 4,
+      "source_version": "v2.1",
+      "source_ids": [
+        "C17",
+        "C18"
+      ]
+    },
+    {
+      "id": "C10",
+      "category": "C",
+      "weight": 3,
+      "source_version": "v2.1",
+      "source_ids": [
+        "C19"
+      ]
+    },
+    {
+      "id": "C11",
+      "category": "C",
+      "weight": 5,
+      "source_version": "v2.1",
+      "source_ids": [
+        "C20",
+        "C21"
+      ]
+    },
+    {
+      "id": "C12",
+      "category": "C",
+      "weight": 4,
+      "source_version": "v2.1",
+      "source_ids": [
+        "C22",
+        "C23"
+      ]
+    },
+    {
+      "id": "C13",
+      "category": "C",
+      "weight": 2,
+      "source_version": "v2.1",
+      "source_ids": [
+        "C24"
+      ]
+    },
+    {
+      "id": "O01",
+      "category": "O",
+      "weight": 8,
+      "source_version": "v2.1",
+      "source_ids": [
+        "O02"
+      ]
+    },
+    {
+      "id": "O02",
+      "category": "O",
+      "weight": 6,
+      "source_version": "v2.1",
+      "source_ids": [
+        "O02"
+      ]
+    },
+    {
+      "id": "O03",
+      "category": "O",
+      "weight": 6,
+      "source_version": "v2.1",
+      "source_ids": [
+        "O02"
+      ]
+    },
+    {
+      "id": "O04",
+      "category": "O",
+      "weight": 4,
+      "source_version": "v2.1",
+      "source_ids": [
+        "O01",
+        "O03"
+      ]
+    },
+    {
+      "id": "O05",
+      "category": "O",
+      "weight": 2,
+      "source_version": "v2.1",
+      "source_ids": [
+        "O04"
+      ]
+    },
+    {
+      "id": "O06",
+      "category": "O",
+      "weight": 6,
+      "source_version": "v2.1",
+      "source_ids": [
+        "O05",
+        "O06"
+      ]
+    },
+    {
+      "id": "O07",
+      "category": "O",
+      "weight": 3,
+      "source_version": "v2.1",
+      "source_ids": [
+        "O08",
+        "O07"
+      ]
+    },
+    {
+      "id": "O08",
+      "category": "O",
+      "weight": 5,
+      "source_version": "v2.1",
+      "source_ids": [
+        "O09",
+        "O10",
+        "O11"
+      ]
+    },
+    {
+      "id": "E01",
+      "category": "E",
+      "weight": 4,
+      "source_version": "v2.1",
+      "source_ids": [
+        "E01"
+      ]
+    },
+    {
+      "id": "E02",
+      "category": "E",
+      "weight": 2,
+      "source_version": "v2.1",
+      "source_ids": [
+        "E02"
+      ]
+    },
+    {
+      "id": "E03",
+      "category": "E",
+      "weight": 4,
+      "source_version": "v2.1",
+      "source_ids": [
+        "E03",
+        "E04"
+      ]
+    }
+  ],
+  "interpretation": "减少条目数本身不降分；当前差异来自内容完整性规则、归属分类规则及子权重重分配。Sol若两个字幕子分恢复满分为83.50，Astra为78.00，不宣称同一字幕条件下两者均低于80。"
+}

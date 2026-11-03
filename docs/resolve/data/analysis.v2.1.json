@@ -1,0 +1,3209 @@
+{
+  "updated_date": "2026-11-03",
+  "scope": "Actual unchanged submissions; source-aligned provisional single-assistant review",
+  "metrics_definition": "ASR coverage is the union of actual returned mixed-track time windows, not semantic comprehension or native audio listening. Frames count observations, including repeated timestamps; tutorial frames remain undistributed.",
+  "models": [
+    {
+      "model": "gpt-6-luna",
+      "id": "luna",
+      "tool_calls": 38,
+      "api_requests": 38,
+      "active_minutes": 16.12,
+      "unused_active_minutes": 73.88,
+      "remaining_tool_calls": 122,
+      "action_counts": {
+        "list_files": 2,
+        "read_file": 6,
+        "asr": 4,
+        "frames": 2,
+        "resolve_lua": 7,
+        "add_titles": 4,
+        "render_video": 4,
+        "render_audio": 1,
+        "write_file": 4,
+        "export_project": 2,
+        "loudness": 1,
+        "finish": 1
+      },
+      "returned_error_count": 3,
+      "returned_errors": [
+        {
+          "tool_call": 2,
+          "action": "read_file",
+          "message": "[Errno 2] No such file or directory: '[local]/\\omniale\\\\case\\\\case3a-resolve剪辑\\\\evaluations\\\\20261102-234147\\\\gpt-6-luna\\\\input\\\\media\\\\MEDIA_MANIFEST.json'"
+        },
+        {
+          "tool_call": 14,
+          "action": "add_titles",
+          "message": "Native response exceeded size limit; request less data"
+        },
+        {
+          "tool_call": 17,
+          "action": "resolve_lua",
+          "message": "...pt-channel\\d1cd0f02a6af4010a9ede51208559f97\\00000555.lua:211: [string \"candidate-resolve-lua\"]:1: unexpected symbol near 'end'"
+        }
+      ],
+      "asr_observations": [
+        {
+          "tool_call": 4,
+          "source": "input/media/audio/ES2002d.Mix-Headset.wav",
+          "range": [
+            0,
+            300
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 5,
+          "source": "input/media/audio/ES2002d.Mix-Headset.wav",
+          "range": [
+            600,
+            900
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 6,
+          "source": "input/media/audio/ES2002d.Mix-Headset.wav",
+          "range": [
+            1200,
+            1500
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 12,
+          "source": "input/media/audio/ES2002d.Mix-Headset.wav",
+          "range": [
+            1500,
+            1800
+          ],
+          "category": "meeting"
+        }
+      ],
+      "mix_asr_union": [
+        [
+          0,
+          300
+        ],
+        [
+          600,
+          900
+        ],
+        [
+          1200,
+          1800
+        ]
+      ],
+      "mix_asr_unobserved": [
+        [
+          300,
+          600
+        ],
+        [
+          900,
+          1200
+        ],
+        [
+          1800,
+          2624.16
+        ]
+      ],
+      "mix_asr_seconds": 1200,
+      "mix_asr_fraction": 0.4572891896835559,
+      "frame_observations": [
+        {
+          "tool_call": 11,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 35,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 11,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 190,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 11,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 610,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 11,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 760,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 11,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 1210,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 11,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 1285,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 11,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 1465,
+          "category": "meeting"
+        }
+      ],
+      "frame_counts": {
+        "meeting": 7
+      },
+      "tutorial_frame_count": 4,
+      "render_measurements": [
+        {
+          "tool_call": 19,
+          "action": "render_video",
+          "integrated_lufs": "-42.89",
+          "true_peak_dbtp": "-18.05",
+          "loudness_range_lu": "12.20",
+          "measurement_only": true
+        },
+        {
+          "tool_call": 21,
+          "action": "render_video",
+          "integrated_lufs": "-21.00",
+          "true_peak_dbtp": "0.03",
+          "loudness_range_lu": "12.20",
+          "measurement_only": true
+        },
+        {
+          "tool_call": 23,
+          "action": "render_video",
+          "integrated_lufs": "-21.99",
+          "true_peak_dbtp": "0.03",
+          "loudness_range_lu": "12.20",
+          "measurement_only": true
+        },
+        {
+          "tool_call": 24,
+          "action": "render_audio",
+          "integrated_lufs": "-21.99",
+          "true_peak_dbtp": "0.03",
+          "loudness_range_lu": "12.20",
+          "measurement_only": true
+        },
+        {
+          "tool_call": 35,
+          "action": "render_video",
+          "integrated_lufs": "-21.99",
+          "true_peak_dbtp": "0.03",
+          "loudness_range_lu": "12.20",
+          "measurement_only": true
+        }
+      ],
+      "native_clip_counts": {
+        "video_clips": 8,
+        "active_audio_clips": 8,
+        "editable_title_clips": 74
+      },
+      "added_mapping_difference_frames": 0,
+      "trace_sha256": "f228dc428043c162b2f2e2f78ad4472b4155b1108ef133ff6b279ed8ce85f256"
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "id": "sol",
+      "tool_calls": 108,
+      "api_requests": 109,
+      "active_minutes": 76.3,
+      "unused_active_minutes": 13.7,
+      "remaining_tool_calls": 52,
+      "action_counts": {
+        "list_files": 2,
+        "read_file": 18,
+        "asr": 19,
+        "frames": 16,
+        "audio_stats": 6,
+        "resolve_lua": 23,
+        "loudness": 1,
+        "render_audio": 3,
+        "add_titles": 7,
+        "render_video": 3,
+        "export_project": 2,
+        "write_file": 7,
+        "finish": 1
+      },
+      "returned_error_count": 5,
+      "returned_errors": [
+        {
+          "tool_call": 39,
+          "action": "resolve_lua",
+          "message": "...pt-channel\\d1cd0f02a6af4010a9ede51208559f97\\00000766.lua:214: ...pt-channel\\d1cd0f02a6af4010a9ede51208559f97\\00000766.lua:176: API method unavailable: Save"
+        },
+        {
+          "tool_call": 53,
+          "action": "resolve_lua",
+          "message": "...pt-channel\\d1cd0f02a6af4010a9ede51208559f97\\00000778.lua:214: ...pt-channel\\d1cd0f02a6af4010a9ede51208559f97\\00000778.lua:176: API method unavailable: NORMALIZE_AUDIO_SET_LEVEL_INDEPENDENT"
+        },
+        {
+          "tool_call": 59,
+          "action": "resolve_lua",
+          "message": "...pt-channel\\d1cd0f02a6af4010a9ede51208559f97\\00000782.lua:214: ...pt-channel\\d1cd0f02a6af4010a9ede51208559f97\\00000782.lua:176: API method unavailable: AddTake"
+        },
+        {
+          "tool_call": 70,
+          "action": "add_titles",
+          "message": "Invalid title size or vertical center"
+        },
+        {
+          "tool_call": 82,
+          "action": "resolve_lua",
+          "message": "...pt-channel\\8faf0905b3e94068823a57186efddcda\\00000087.lua:214: ...pt-channel\\8faf0905b3e94068823a57186efddcda\\00000087.lua:176: API method unavailable: SetOutputBlanking"
+        }
+      ],
+      "asr_observations": [
+        {
+          "tool_call": 3,
+          "source": "input/media/audio/ES2002d.Mix-Headset.wav",
+          "range": [
+            0,
+            300
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 5,
+          "source": "input/media/audio/ES2002d.Mix-Headset.wav",
+          "range": [
+            300,
+            600
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 6,
+          "source": "input/media/audio/ES2002d.Mix-Headset.wav",
+          "range": [
+            600,
+            900
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 7,
+          "source": "input/media/audio/ES2002d.Mix-Headset.wav",
+          "range": [
+            900,
+            1200
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 8,
+          "source": "input/media/audio/ES2002d.Mix-Headset.wav",
+          "range": [
+            1200,
+            1500
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 9,
+          "source": "input/media/audio/ES2002d.Mix-Headset.wav",
+          "range": [
+            1500,
+            1800
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 10,
+          "source": "input/media/audio/ES2002d.Mix-Headset.wav",
+          "range": [
+            1800,
+            2100
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 11,
+          "source": "input/media/audio/ES2002d.Mix-Headset.wav",
+          "range": [
+            2100,
+            2400
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 12,
+          "source": "input/media/audio/ES2002d.Mix-Headset.wav",
+          "range": [
+            2400,
+            2624.16
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 19,
+          "source": "input/media/audio/ES2002d.Headset-3.wav",
+          "range": [
+            755,
+            823.0
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 22,
+          "source": "input/tutorial/DaVinci-Resolve-17-Fairlight-WorkingwithAudioTrackLayers.mp4",
+          "range": [
+            0,
+            180.0
+          ],
+          "category": "tutorial"
+        },
+        {
+          "tool_call": 24,
+          "source": "input/media/audio/ES2002d.Headset-2.wav",
+          "range": [
+            1680,
+            1763.0
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 25,
+          "source": "input/media/audio/ES2002d.Headset-0.wav",
+          "range": [
+            1730,
+            1764.0
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 26,
+          "source": "input/media/audio/ES2002d.Headset-3.wav",
+          "range": [
+            75,
+            115.0
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 27,
+          "source": "input/media/audio/ES2002d.Headset-1.wav",
+          "range": [
+            1080,
+            1102.0
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 28,
+          "source": "input/media/audio/ES2002d.Headset-2.wav",
+          "range": [
+            1080,
+            1102.0
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 62,
+          "source": "input/media/audio/ES2002d.Headset-0.wav",
+          "range": [
+            524,
+            537.0
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 93,
+          "source": "input/media/audio/ES2002d.Headset-2.wav",
+          "range": [
+            2338,
+            2347.0
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 95,
+          "source": "input/media/audio/ES2002d.Headset-3.wav",
+          "range": [
+            2338,
+            2347.0
+          ],
+          "category": "meeting"
+        }
+      ],
+      "mix_asr_union": [
+        [
+          0,
+          2624.16
+        ]
+      ],
+      "mix_asr_unobserved": [],
+      "mix_asr_seconds": 2624.16,
+      "mix_asr_fraction": 1.0,
+      "frame_observations": [
+        {
+          "tool_call": 13,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 40,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 13,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 88,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 13,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 560,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 13,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 770,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 13,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 805,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 13,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 950,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 13,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 1010,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 13,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 1090,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 13,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 1630,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 13,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 1715,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 13,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 2180,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 13,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 2335,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 14,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 40,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 14,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 88,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 14,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 570,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 14,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 773,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 14,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 810,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 14,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 1090,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 14,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 1514,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 14,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 1630,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 14,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 1719,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 14,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 1735,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 14,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 2180,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 14,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 2335,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 15,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 40,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 15,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 88,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 15,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 570,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 15,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 773,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 15,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 805,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 15,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 819,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 15,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 1090,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 15,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 1514,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 15,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 1630,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 15,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 1735,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 15,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 2180,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 15,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 2335,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 16,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 40,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 16,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 88,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 16,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 570,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 16,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 765,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 16,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 773,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 16,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 803,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 16,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 812,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 16,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 1514,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 16,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 1630,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 16,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 1735,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 16,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 2180,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 16,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 2335,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 17,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 40,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 17,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 88,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 17,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 569,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 17,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 765,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 17,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 773,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 17,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 805,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 17,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 819,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 17,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 1514,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 17,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 1643,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 17,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 1719,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 17,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 2180,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 17,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 2335,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 32,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 69,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 32,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 72,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 32,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 79,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 32,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 82,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 32,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 86,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 32,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 92,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 32,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 97,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 32,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 150,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 32,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 175,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 32,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 183,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 32,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 224,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 32,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 740,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 33,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 1622,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 33,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 1625,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 33,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 1634,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 33,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 1644,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 33,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 1731,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 33,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 1735,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 33,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 1748,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 33,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 2244,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 33,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 2252,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 33,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 2283,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 33,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 2305,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 33,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 2338,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 78,
+          "source": "run/submission/final.mp4",
+          "time": 1,
+          "category": "output"
+        },
+        {
+          "tool_call": 78,
+          "source": "run/submission/final.mp4",
+          "time": 7,
+          "category": "output"
+        },
+        {
+          "tool_call": 78,
+          "source": "run/submission/final.mp4",
+          "time": 16.5,
+          "category": "output"
+        },
+        {
+          "tool_call": 78,
+          "source": "run/submission/final.mp4",
+          "time": 27,
+          "category": "output"
+        },
+        {
+          "tool_call": 78,
+          "source": "run/submission/final.mp4",
+          "time": 51.5,
+          "category": "output"
+        },
+        {
+          "tool_call": 78,
+          "source": "run/submission/final.mp4",
+          "time": 74,
+          "category": "output"
+        },
+        {
+          "tool_call": 78,
+          "source": "run/submission/final.mp4",
+          "time": 80,
+          "category": "output"
+        },
+        {
+          "tool_call": 78,
+          "source": "run/submission/final.mp4",
+          "time": 95.5,
+          "category": "output"
+        },
+        {
+          "tool_call": 78,
+          "source": "run/submission/final.mp4",
+          "time": 110,
+          "category": "output"
+        },
+        {
+          "tool_call": 78,
+          "source": "run/submission/final.mp4",
+          "time": 118,
+          "category": "output"
+        },
+        {
+          "tool_call": 78,
+          "source": "run/submission/final.mp4",
+          "time": 130.5,
+          "category": "output"
+        },
+        {
+          "tool_call": 78,
+          "source": "run/submission/final.mp4",
+          "time": 141,
+          "category": "output"
+        },
+        {
+          "tool_call": 79,
+          "source": "run/submission/final.mp4",
+          "time": 158,
+          "category": "output"
+        },
+        {
+          "tool_call": 79,
+          "source": "run/submission/final.mp4",
+          "time": 167,
+          "category": "output"
+        },
+        {
+          "tool_call": 79,
+          "source": "run/submission/final.mp4",
+          "time": 185,
+          "category": "output"
+        },
+        {
+          "tool_call": 79,
+          "source": "run/submission/final.mp4",
+          "time": 205,
+          "category": "output"
+        },
+        {
+          "tool_call": 79,
+          "source": "run/submission/final.mp4",
+          "time": 220,
+          "category": "output"
+        },
+        {
+          "tool_call": 79,
+          "source": "run/submission/final.mp4",
+          "time": 235,
+          "category": "output"
+        },
+        {
+          "tool_call": 79,
+          "source": "run/submission/final.mp4",
+          "time": 245,
+          "category": "output"
+        },
+        {
+          "tool_call": 79,
+          "source": "run/submission/final.mp4",
+          "time": 259,
+          "category": "output"
+        },
+        {
+          "tool_call": 79,
+          "source": "run/submission/final.mp4",
+          "time": 275,
+          "category": "output"
+        },
+        {
+          "tool_call": 79,
+          "source": "run/submission/final.mp4",
+          "time": 292,
+          "category": "output"
+        },
+        {
+          "tool_call": 79,
+          "source": "run/submission/final.mp4",
+          "time": 332,
+          "category": "output"
+        },
+        {
+          "tool_call": 79,
+          "source": "run/submission/final.mp4",
+          "time": 355,
+          "category": "output"
+        },
+        {
+          "tool_call": 80,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 1028,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 80,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 1064,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 80,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 1299.32,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 80,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 1306,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 80,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 1315,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 80,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 1320,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 80,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 1465,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 81,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 1028,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 81,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 1299.32,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 81,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 1306,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 81,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 1315,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 81,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 1320,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 81,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 1350,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 81,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 1400,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 81,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 1465,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 81,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 2305,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 81,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 2335,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 88,
+          "source": "run/submission/final.mp4",
+          "time": 115,
+          "category": "output"
+        },
+        {
+          "tool_call": 88,
+          "source": "run/submission/final.mp4",
+          "time": 121,
+          "category": "output"
+        },
+        {
+          "tool_call": 88,
+          "source": "run/submission/final.mp4",
+          "time": 142,
+          "category": "output"
+        },
+        {
+          "tool_call": 88,
+          "source": "run/submission/final.mp4",
+          "time": 205,
+          "category": "output"
+        },
+        {
+          "tool_call": 88,
+          "source": "run/submission/final.mp4",
+          "time": 270,
+          "category": "output"
+        },
+        {
+          "tool_call": 88,
+          "source": "run/submission/final.mp4",
+          "time": 338,
+          "category": "output"
+        },
+        {
+          "tool_call": 88,
+          "source": "run/submission/final.mp4",
+          "time": 348,
+          "category": "output"
+        },
+        {
+          "tool_call": 96,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 2341,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 96,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 2341.8,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 96,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 2342.2,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 96,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 2342.6,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 103,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 2221,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 103,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 2295,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 103,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 2341,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 103,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 2399,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 103,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 2479,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 103,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 2620,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 103,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 2686,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 107,
+          "source": "run/submission/final.mp4",
+          "time": 352,
+          "category": "output"
+        },
+        {
+          "tool_call": 107,
+          "source": "run/submission/final.mp4",
+          "time": 355,
+          "category": "output"
+        }
+      ],
+      "frame_counts": {
+        "meeting": 112,
+        "output": 33
+      },
+      "tutorial_frame_count": 3,
+      "render_measurements": [
+        {
+          "tool_call": 41,
+          "action": "render_audio",
+          "integrated_lufs": "-19.50",
+          "true_peak_dbtp": "0.08",
+          "loudness_range_lu": "11.70",
+          "measurement_only": true
+        },
+        {
+          "tool_call": 65,
+          "action": "render_audio",
+          "integrated_lufs": "-21.89",
+          "true_peak_dbtp": "-5.01",
+          "loudness_range_lu": "6.50",
+          "measurement_only": true
+        },
+        {
+          "tool_call": 77,
+          "action": "render_video",
+          "integrated_lufs": "-19.15",
+          "true_peak_dbtp": "-1.51",
+          "loudness_range_lu": "8.60",
+          "measurement_only": true
+        },
+        {
+          "tool_call": 85,
+          "action": "render_video",
+          "integrated_lufs": "-19.15",
+          "true_peak_dbtp": "-1.51",
+          "loudness_range_lu": "8.60",
+          "measurement_only": true
+        },
+        {
+          "tool_call": 86,
+          "action": "render_audio",
+          "integrated_lufs": "-19.14",
+          "true_peak_dbtp": "-1.51",
+          "loudness_range_lu": "8.60",
+          "measurement_only": true
+        },
+        {
+          "tool_call": 104,
+          "action": "render_video",
+          "integrated_lufs": "-19.15",
+          "true_peak_dbtp": "-1.51",
+          "loudness_range_lu": "8.60",
+          "measurement_only": true
+        }
+      ],
+      "native_clip_counts": {
+        "video_clips": 45,
+        "active_audio_clips": 40,
+        "editable_title_clips": 208
+      },
+      "added_mapping_difference_frames": 1,
+      "trace_sha256": "6cf85aa4e1a667bd0c291ac2a6eec034d3646444a4fca8f821621e3c2a333451"
+    },
+    {
+      "model": "gpt-6-astra",
+      "id": "astra",
+      "tool_calls": 85,
+      "api_requests": 86,
+      "active_minutes": 83.28,
+      "unused_active_minutes": 6.72,
+      "remaining_tool_calls": 75,
+      "action_counts": {
+        "list_files": 2,
+        "read_file": 6,
+        "asr": 15,
+        "frames": 12,
+        "audio_stats": 9,
+        "resolve_lua": 18,
+        "loudness": 1,
+        "add_titles": 7,
+        "render_audio": 6,
+        "render_video": 3,
+        "write_file": 4,
+        "export_project": 1,
+        "finish": 1
+      },
+      "returned_error_count": 5,
+      "returned_errors": [
+        {
+          "tool_call": 41,
+          "action": "add_titles",
+          "message": "Native response exceeded size limit; request less data"
+        },
+        {
+          "tool_call": 44,
+          "action": "add_titles",
+          "message": "...pt-channel\\dd5627d187e94558b5d8cd3e693b8478\\00000032.lua:135: Resolve refused the scratch seek; no title inserted"
+        },
+        {
+          "tool_call": 49,
+          "action": "add_titles",
+          "message": "...pt-channel\\dd5627d187e94558b5d8cd3e693b8478\\00000037.lua:135: Resolve refused the scratch seek; no title inserted"
+        },
+        {
+          "tool_call": 52,
+          "action": "add_titles",
+          "message": "...pt-channel\\dd5627d187e94558b5d8cd3e693b8478\\00000040.lua:135: Resolve refused the scratch seek; no title inserted"
+        },
+        {
+          "tool_call": 67,
+          "action": "render_video",
+          "message": "...pt-channel\\dd5627d187e94558b5d8cd3e693b8478\\00000871.lua:122: bad argument #1 to 'assert' (value expected)"
+        }
+      ],
+      "asr_observations": [
+        {
+          "tool_call": 3,
+          "source": "input/tutorial/DaVinci-Resolve-17-Fairlight-WorkingwithAudioTrackLayers.mp4",
+          "range": [
+            0,
+            240
+          ],
+          "category": "tutorial"
+        },
+        {
+          "tool_call": 4,
+          "source": "input/media/audio/ES2002d.Mix-Headset.wav",
+          "range": [
+            0,
+            300
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 6,
+          "source": "input/media/audio/ES2002d.Mix-Headset.wav",
+          "range": [
+            300,
+            600
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 7,
+          "source": "input/media/audio/ES2002d.Mix-Headset.wav",
+          "range": [
+            600,
+            900
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 8,
+          "source": "input/media/audio/ES2002d.Mix-Headset.wav",
+          "range": [
+            900,
+            1200
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 9,
+          "source": "input/media/audio/ES2002d.Mix-Headset.wav",
+          "range": [
+            1200,
+            1500
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 10,
+          "source": "input/media/audio/ES2002d.Mix-Headset.wav",
+          "range": [
+            1500,
+            1800
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 11,
+          "source": "input/media/audio/ES2002d.Mix-Headset.wav",
+          "range": [
+            1800,
+            2100
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 12,
+          "source": "input/media/audio/ES2002d.Mix-Headset.wav",
+          "range": [
+            2100,
+            2400
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 13,
+          "source": "input/media/audio/ES2002d.Mix-Headset.wav",
+          "range": [
+            2400,
+            2624.16
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 22,
+          "source": "input/media/audio/ES2002d.Headset-2.wav",
+          "range": [
+            1680,
+            1764.0
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 23,
+          "source": "input/media/audio/ES2002d.Headset-0.wav",
+          "range": [
+            1730,
+            1764.0
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 24,
+          "source": "input/media/audio/ES2002d.Headset-3.wav",
+          "range": [
+            75,
+            110.0
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 25,
+          "source": "input/media/audio/ES2002d.Headset-1.wav",
+          "range": [
+            545,
+            745
+          ],
+          "category": "meeting"
+        },
+        {
+          "tool_call": 26,
+          "source": "input/media/audio/ES2002d.Headset-2.wav",
+          "range": [
+            1080,
+            1122.0
+          ],
+          "category": "meeting"
+        }
+      ],
+      "mix_asr_union": [
+        [
+          0,
+          2624.16
+        ]
+      ],
+      "mix_asr_unobserved": [],
+      "mix_asr_seconds": 2624.16,
+      "mix_asr_fraction": 1.0,
+      "frame_observations": [
+        {
+          "tool_call": 14,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 40,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 14,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 90,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 14,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 565,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 14,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 770,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 14,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 805,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 14,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 1010,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 14,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 1096,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 14,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 1173,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 14,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 1305,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 14,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 1630,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 14,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 1735,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 14,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 2335,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 15,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 40,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 15,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 90,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 15,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 568,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 15,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 770,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 15,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 805,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 15,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 1096,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 15,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 1630,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 15,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 1735,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 15,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 2180,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 15,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 2335,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 16,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 40,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 16,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 90,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 16,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 570,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 16,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 770,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 16,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 805,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 16,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 1630,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 16,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 1735,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 16,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 2180,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 17,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 40,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 17,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 90,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 17,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 570,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 17,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 770,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 17,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 805,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 17,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 1630,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 17,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 1735,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 17,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 2180,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 18,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 40,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 18,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 90,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 18,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 562,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 18,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 571,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 18,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 770,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 18,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 804,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 18,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 818,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 18,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 1514,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 18,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 1643,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 18,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 2180,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 27,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 69,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 27,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 76,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 27,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 82,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 27,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 95,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 27,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 148,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 27,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 185,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 27,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 240,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 27,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 765,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 27,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 768,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 27,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 772,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 27,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 811,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 27,
+          "source": "run/input/media/resolve/ES2002d.Closeup2.mp4",
+          "time": 814,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 28,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 70,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 28,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 85,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 28,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 120,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 28,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 160,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 28,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 230,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 28,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 765,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 28,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 803,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 28,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 813,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 28,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 2245,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 28,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 2296,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 28,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 2305,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 28,
+          "source": "run/input/media/resolve/ES2002d.Closeup3.mp4",
+          "time": 2335,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 31,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 72,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 31,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 153,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 31,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 222,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 31,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 750,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 31,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 755,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 31,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 767,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 31,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 802,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 31,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 812,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 31,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 2245,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 31,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 2255,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 31,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 2295,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 31,
+          "source": "run/input/media/resolve/ES2002d.Closeup1.mp4",
+          "time": 2305,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 38,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 71,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 38,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 82,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 38,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 100,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 38,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 150,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 38,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 741,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 38,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 746,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 38,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 2244,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 38,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 2248,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 38,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 2252,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 38,
+          "source": "run/input/media/resolve/ES2002d.Closeup4.mp4",
+          "time": 2295,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 70,
+          "source": "run/submission/final.mp4",
+          "time": 2,
+          "category": "output"
+        },
+        {
+          "tool_call": 70,
+          "source": "run/submission/final.mp4",
+          "time": 9,
+          "category": "output"
+        },
+        {
+          "tool_call": 70,
+          "source": "run/submission/final.mp4",
+          "time": 24,
+          "category": "output"
+        },
+        {
+          "tool_call": 70,
+          "source": "run/submission/final.mp4",
+          "time": 58,
+          "category": "output"
+        },
+        {
+          "tool_call": 70,
+          "source": "run/submission/final.mp4",
+          "time": 80,
+          "category": "output"
+        },
+        {
+          "tool_call": 70,
+          "source": "run/submission/final.mp4",
+          "time": 122,
+          "category": "output"
+        },
+        {
+          "tool_call": 70,
+          "source": "run/submission/final.mp4",
+          "time": 136,
+          "category": "output"
+        },
+        {
+          "tool_call": 70,
+          "source": "run/submission/final.mp4",
+          "time": 161,
+          "category": "output"
+        },
+        {
+          "tool_call": 70,
+          "source": "run/submission/final.mp4",
+          "time": 180,
+          "category": "output"
+        },
+        {
+          "tool_call": 70,
+          "source": "run/submission/final.mp4",
+          "time": 242,
+          "category": "output"
+        },
+        {
+          "tool_call": 70,
+          "source": "run/submission/final.mp4",
+          "time": 294,
+          "category": "output"
+        },
+        {
+          "tool_call": 70,
+          "source": "run/submission/final.mp4",
+          "time": 354,
+          "category": "output"
+        },
+        {
+          "tool_call": 81,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 2399,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 81,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 2445,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 81,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 2480,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 81,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 2510,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 81,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 2560,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 81,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 2623,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 81,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 2650,
+          "category": "meeting"
+        },
+        {
+          "tool_call": 81,
+          "source": "run/input/media/resolve/ES2002d.Corner.mp4",
+          "time": 2686,
+          "category": "meeting"
+        }
+      ],
+      "frame_counts": {
+        "meeting": 102,
+        "output": 12
+      },
+      "tutorial_frame_count": 2,
+      "render_measurements": [
+        {
+          "tool_call": 55,
+          "action": "render_audio",
+          "integrated_lufs": "-19.38",
+          "true_peak_dbtp": "0.08",
+          "loudness_range_lu": "11.40",
+          "measurement_only": true
+        },
+        {
+          "tool_call": 60,
+          "action": "render_audio",
+          "integrated_lufs": "-24.91",
+          "true_peak_dbtp": "0.05",
+          "loudness_range_lu": "11.40",
+          "measurement_only": true
+        },
+        {
+          "tool_call": 62,
+          "action": "render_audio",
+          "integrated_lufs": "-48.74",
+          "true_peak_dbtp": "-17.19",
+          "loudness_range_lu": "11.40",
+          "measurement_only": true
+        },
+        {
+          "tool_call": 68,
+          "action": "render_audio",
+          "integrated_lufs": "-20.11",
+          "true_peak_dbtp": "-0.97",
+          "loudness_range_lu": "8.20",
+          "measurement_only": true
+        },
+        {
+          "tool_call": 69,
+          "action": "render_video",
+          "integrated_lufs": "-20.12",
+          "true_peak_dbtp": "-0.96",
+          "loudness_range_lu": "8.20",
+          "measurement_only": true
+        },
+        {
+          "tool_call": 75,
+          "action": "render_audio",
+          "integrated_lufs": "-19.73",
+          "true_peak_dbtp": "0.03",
+          "loudness_range_lu": "8.50",
+          "measurement_only": true
+        },
+        {
+          "tool_call": 78,
+          "action": "render_audio",
+          "integrated_lufs": "-19.97",
+          "true_peak_dbtp": "-1.07",
+          "loudness_range_lu": "8.20",
+          "measurement_only": true
+        },
+        {
+          "tool_call": 79,
+          "action": "render_video",
+          "integrated_lufs": "-19.98",
+          "true_peak_dbtp": "-1.09",
+          "loudness_range_lu": "8.20",
+          "measurement_only": true
+        }
+      ],
+      "native_clip_counts": {
+        "video_clips": 39,
+        "active_audio_clips": 34,
+        "editable_title_clips": 188
+      },
+      "added_mapping_difference_frames": 0,
+      "trace_sha256": "a901e71b54c89efa8eefad68f4c51f0bdfcd332c3ab1cc695f7dcd49c0d2562a",
+      "api_transport_errors": [
+        {
+          "api_request": 5,
+          "attempt": 1,
+          "http_status": 429,
+          "category": "gateway_concurrency_limit",
+          "message": "API HTTP 429: {\"error\":{\"code\":\"gateway_concurrency_limit\",\"message\":\"Concurrency limit exceeded for user, please retry later\",\"type\":\"rate_limit_error\"}}"
+        }
+      ]
+    }
+  ],
+  "phases": {
+    "gpt-6-luna": [
+      {
+        "start_tool": 1,
+        "end_tool": 8,
+        "title": "先抽样检索并查看教程",
+        "observation": "四段ASR中的前三段不连续；随后查看4帧官方教程。尚未建立四人身份对照。",
+        "evidence_tools": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "start_tool": 9,
+        "end_tool": 13,
+        "title": "先形成粗剪，再少量复核",
+        "observation": "工具#10已经拼接初剪；#11只查看Corner的7帧，#12再检索1500–1800秒。没有调用近景观察或独立耳麦ASR。",
+        "evidence_tools": [
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "start_tool": 14,
+        "end_tool": 24,
+        "title": "字幕与响度修正",
+        "observation": "大批量标题返回超限后分批重试；Lua语法错误修复。连续导出测量显示响度显著改善，但最后仍未同时满足响度与峰值。",
+        "evidence_tools": [
+          14,
+          15,
+          17,
+          18,
+          19,
+          21,
+          23,
+          24
+        ]
+      },
+      {
+        "start_tool": 25,
+        "end_tool": 38,
+        "title": "附件与最后一轮字幕",
+        "observation": "完成映射、README与DRP，复测后补白板字幕。最终主动finish；没有frames调用观察实际成片。",
+        "evidence_tools": [
+          30,
+          31,
+          33,
+          34,
+          35,
+          38
+        ]
+      }
+    ],
+    "gpt-6.1-sol": [
+      {
+        "start_tool": 1,
+        "end_tool": 12,
+        "title": "完整扫过混合轨时间范围",
+        "observation": "9次连续ASR覆盖0–2624.16秒，包含后段与收尾。覆盖表示返回过该区间的机器转写，并不证明每个字被理解。",
+        "evidence_tools": [
+          3,
+          7,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "start_tool": 13,
+        "end_tool": 33,
+        "title": "多机位与耳麦交叉取证",
+        "observation": "先查看五机位共60帧，再对原型、白板与领导争议相关独立耳麦做局部ASR；另查看教程。",
+        "evidence_tools": [
+          13,
+          14,
+          15,
+          16,
+          17,
+          19,
+          24,
+          25,
+          27,
+          28,
+          32,
+          33
+        ]
+      },
+      {
+        "start_tool": 34,
+        "end_tool": 76,
+        "title": "原生剪辑与分段电平调整",
+        "observation": "导入素材，构建多段原生时间线；两次PCM测试后调整。过程中有API方法和标题参数错误，均保留在原轨迹。",
+        "evidence_tools": [
+          34,
+          39,
+          41,
+          53,
+          59,
+          65,
+          68,
+          70
+        ]
+      },
+      {
+        "start_tool": 77,
+        "end_tool": 88,
+        "title": "渲染恢复与换座纠正",
+        "observation": "第一次视频导出遇显存崩溃；恢复同一工程和同一请求。#78/#79观察成片，#80/#81核查白板后新位置，随后修改并重导。",
+        "evidence_tools": [
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          85,
+          86,
+          88
+        ]
+      },
+      {
+        "start_tool": 89,
+        "end_tool": 108,
+        "title": "片尾再取证与交付",
+        "observation": "继续验证晚出现的说话者和结尾，保持不确定性说明；再次导出、抽帧和保存。后验检查没有纠正57.48秒的局部错署名。",
+        "evidence_tools": [
+          93,
+          95,
+          96,
+          103,
+          104,
+          107,
+          108
+        ]
+      }
+    ],
+    "gpt-6-astra": [
+      {
+        "start_tool": 1,
+        "end_tool": 13,
+        "title": "教程与完整会议检索，包括第一次收尾之后",
+        "observation": "先转写官方教程，再用九个会议混合轨观察窗口检索整场；最后一个窗口明确继续到第一次结束之后。它据此区分计划、成本删改、评价、流程争议和晚段触觉反思。区间覆盖表示实际取得转写，不证明每个限定都被保留。",
+        "evidence_tools": [
+          3,
+          4,
+          6,
+          8,
+          10,
+          13
+        ]
+      },
+      {
+        "start_tool": 14,
+        "end_tool": 33,
+        "title": "以五机位、独立耳麦与动态位置建立身份对应",
+        "observation": "实际观察全景和四路近景，并用独白电平、局部耳麦转写交叉定位四个人；补查白板、厚度手势、原型与换座。最终全局人物表正确，后续局部字幕仍有两次错误归属。教程帧用于理解分层与静音，未向模型提供官方人物答案。",
+        "evidence_tools": [
+          14,
+          15,
+          17,
+          18,
+          19,
+          20,
+          21,
+          23,
+          24,
+          27,
+          32
+        ]
+      },
+      {
+        "start_tool": 34,
+        "end_tool": 40,
+        "title": "原生剪辑与同期镜头选择",
+        "observation": "在本地Resolve导入真实素材，以29组叙事片段构造原生时间线，进一步按交接切成39个源画面片段。音画采用相同源帧范围，设置留边和两帧淡化；同期时钟正确仍不能保证选中正在说话的人。",
+        "evidence_tools": [
+          34,
+          37,
+          39,
+          40
+        ]
+      },
+      {
+        "start_tool": 41,
+        "end_tool": 54,
+        "title": "中文字幕、状态卡与有副作用的工具错误",
+        "observation": "首次大字幕请求返回尺寸超限，候选先读取原生状态，确认已经发生的修改；后续seek失败时清理临时占位、核对进度并分批补齐。最终188个可编辑Text+片段包含连续拆分段，不能直接理解成188条独立字幕。错误返回没有被当作零修改。",
+        "evidence_tools": [
+          41,
+          42,
+          44,
+          47,
+          48,
+          50,
+          53,
+          54
+        ]
+      },
+      {
+        "start_tool": 55,
+        "end_tool": 66,
+        "title": "用真实预混定位电平与瞬态，保护交接重叠",
+        "observation": "多次导出PCM并测量原混音与片段电平；通过独立耳麦观察定位瞬态，局部替换为同期单麦，并以两条真实音轨保留领导争议中的交接。该过程可证明采取了混音措施，最终可懂度仍需连续听评。",
+        "evidence_tools": [
+          55,
+          56,
+          60,
+          62,
+          63,
+          64,
+          65,
+          66
+        ]
+      },
+      {
+        "start_tool": 67,
+        "end_tool": 70,
+        "title": "慢导出、桥接中断与同一次尝试的恢复",
+        "observation": "首次视频导出在慢渲染后的原生清理环节返回assert错误。其后重试导出期间桥接断开；恢复保留原API70/工具69请求、工程、对话及剩余预算，排除停机等待。恢复导出成功后由候选自行抽查成片12帧，没有提供剪辑建议或人工改片。",
+        "evidence_tools": [
+          67,
+          68,
+          69,
+          70
+        ]
+      },
+      {
+        "start_tool": 71,
+        "end_tool": 85,
+        "title": "自主修整、最终交付与事后重放验收",
+        "observation": "候选微调片段增益，写出人物表、主张和来源映射；再次测峰并衰减局部，完成最终WAV、MP4、DRP，补看源视频尾部后提交。评委随后独立导入DRP重链接并重渲染，视频、AAC与PCM三个解码哈希均一致；该验收没有修改原交付。",
+        "evidence_tools": [
+          71,
+          72,
+          73,
+          74,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          85
+        ]
+      }
+    ]
+  },
+  "errors": [
+    {
+      "id": "luna-search",
+      "model": "gpt-6-luna",
+      "title": "没有检索到真正的会议后段",
+      "kind": "内容遗漏",
+      "rubrics": [
+        "C20",
+        "C21",
+        "C22",
+        "C23",
+        "C24"
+      ],
+      "output_ranges": [],
+      "source_ranges": [
+        [
+          1800,
+          2624.16
+        ]
+      ],
+      "tools": [
+        4,
+        5,
+        6,
+        12,
+        38
+      ],
+      "observed": "混合轨ASR只覆盖0–300、600–900、1200–1800秒。领导/控制的实质争议、后段限时例外与收尾后方法反思没有进入成片。成片涉及设备段，但不等于已覆盖后续争议。",
+      "chain": "检索记录没有1800秒以后的ASR或画面；最终成片与评分逐项对照也未包含这些必要事实。模型仍有约73.88分钟和122次工具额度时主动结束。",
+      "limit": "这是可见检索范围、最终遗漏与终止时预算的对应，不能据此断言模型的内部动机，也不按搜索少本身扣分。"
+    },
+    {
+      "id": "luna-map",
+      "model": "gpt-6-luna",
+      "title": "四个代号没有形成一对一人物表",
+      "kind": "全局身份",
+      "rubrics": [
+        "O01"
+      ],
+      "output_ranges": [],
+      "source_ranges": [
+        [
+          1280,
+          1324
+        ],
+        [
+          1463,
+          1518
+        ]
+      ],
+      "tools": [
+        11,
+        30
+      ],
+      "observed": "speaker_map中的S2与S3实际上都对应C。唯一会议视觉调用只提供7帧Corner；没有观察其在附件中列出的Closeup近景，也没有独立耳麦局部ASR。",
+      "chain": "附件写出四个标签并不等于四人均建立了声音—外观—机位对应。全局映射按O01记0/4；局部画面归属另按独立事件核查。",
+      "limit": "不要求实名或职务。对不确定性的诚实说明值得保留，但不能替代交付所需的稳定身份对应。"
+    },
+    {
+      "id": "luna-listener",
+      "model": "gpt-6-luna",
+      "title": "持续近景使听者看起来像发言人",
+      "kind": "局部归属歧义",
+      "rubrics": [
+        "O02"
+      ],
+      "output_ranges": [
+        [
+          89,
+          134
+        ],
+        [
+          269,
+          305
+        ],
+        [
+          305,
+          340
+        ]
+      ],
+      "source_ranges": [
+        [
+          600,
+          645
+        ],
+        [
+          1460,
+          1496
+        ],
+        [
+          1622,
+          1657
+        ]
+      ],
+      "tools": [
+        10,
+        11,
+        13,
+        30
+      ],
+      "image": "media/luna/0287.00.jpg",
+      "observed": "删减/按钮段主要A/B说话却持续展示C；room段C说话却持续展示B；设备段主要A说话却长时间展示B，没有画外音或插画身份提示。",
+      "chain": "三个独立段落各扣2分，O02为4/10。按持续近景的误导性处理，没有把这些都升级为明确错署名。",
+      "limit": "短暂听者反应、多人全景或清楚交代的B-roll不属于这类错误；换座事件仅记O03。"
+    },
+    {
+      "id": "luna-seat",
+      "model": "gpt-6-luna",
+      "title": "跟到白板，却丢失评价后的新座位",
+      "kind": "动态身份",
+      "rubrics": [
+        "O03"
+      ],
+      "output_ranges": [
+        [
+          179,
+          224
+        ],
+        [
+          224,
+          269
+        ]
+      ],
+      "source_ranges": [
+        [
+          1202,
+          1247
+        ],
+        [
+          1280,
+          1325
+        ]
+      ],
+      "tools": [
+        11,
+        30
+      ],
+      "image": "media/luna/0246.50.jpg",
+      "observed": "白板段Corner确实覆盖离座评价者C；后续形态/色系构想仍由C提出，但画面持续Closeup2中的D。",
+      "chain": "两个动态锚点分别给2和0分，O03为2/4。不是因为一次离座没有拍到就否定整个工程的身份能力。",
+      "limit": "源片段同期且时间映射正确，依然可能选错人；此处不再从O02或O08重复扣。"
+    },
+    {
+      "id": "luna-scale",
+      "model": "gpt-6-luna",
+      "title": "有真实白板，解释仍把量表和汇总读错",
+      "kind": "跨模态语义",
+      "rubrics": [
+        "C12",
+        "C13",
+        "C14",
+        "C15"
+      ],
+      "output_ranges": [
+        [
+          179,
+          224
+        ]
+      ],
+      "source_ranges": [
+        [
+          1060,
+          1176
+        ],
+        [
+          1202,
+          1247
+        ]
+      ],
+      "tools": [
+        6,
+        11,
+        34
+      ],
+      "image": "media/luna/0201.50.jpg",
+      "observed": "成片写“0最高、9最低”和风格约2、创新约7、软弹约8；官方单项量表是1好、7差，对应单项结果约2.5、3、5。所选后段原声在做累计汇总。",
+      "chain": "从1200秒起的ASR与白板汇总镜头不足以恢复前面量表纠错和各单项评价。四个内容项均为0，不能因画面中出现白板而补回语义分。",
+      "limit": "不要求读出低清板书。纠错过程可用清晰原声核实，编辑图卡须明确区别于真实板书。"
+    },
+    {
+      "id": "luna-prototype",
+      "model": "gpt-6-luna",
+      "title": "原型材料解释错误，也截掉关键厚度手势",
+      "kind": "实物与因果",
+      "rubrics": [
+        "C10",
+        "O04"
+      ],
+      "output_ranges": [
+        [
+          134,
+          179
+        ]
+      ],
+      "source_ranges": [
+        [
+          755,
+          814.8
+        ]
+      ],
+      "tools": [
+        5,
+        10,
+        16
+      ],
+      "image": "media/luna/0156.50.jpg",
+      "observed": "中文说明把扁平原型解释为纸模效果；原声实际谈Play-Doh材料不足。该镜头在源800秒结束，而相关厚度示意在800.8秒之后。",
+      "chain": "错误的材料/因果按C10记0；缺少同期手势是O04中另一个独立交付要求。真实桌面原型证据仍得2分。",
+      "limit": "语义错误和视觉锚点缺失分别对应不同要求，不再额外添加总分罚款。"
+    },
+    {
+      "id": "luna-audio",
+      "model": "gpt-6-luna",
+      "title": "多次重导改善电平，最终仍未达到两项声音阈值",
+      "kind": "音频信号",
+      "rubrics": [
+        "O07",
+        "O06"
+      ],
+      "output_ranges": [
+        [
+          0,
+          355
+        ]
+      ],
+      "source_ranges": [],
+      "tools": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        33,
+        35
+      ],
+      "observed": "首导出−42.89 LUFS；提高增益后到−21.00，最终MP4/WAV约−21.99 LUFS、+0.03 dBTP。要求是−18±2 LUFS且真峰值≤−1 dBTP。另有数处从短语中间切入。",
+      "chain": "动作记录证实模型确实测量并修正过电平，但操作成功不等于交付达标：O07为0/3；O06无空洞/重复得1分，语句衔接子项未得分。",
+      "limit": "超峰值阈值并不直接证明听到了削波；词级切点仅作导航，爆音、断字和自然度仍需连续试听。"
+    },
+    {
+      "id": "sol-lcd",
+      "model": "gpt-6.1-sol",
+      "title": "核心删减建议被署给另一个人",
+      "kind": "明确错署名",
+      "rubrics": [
+        "O02"
+      ],
+      "output_ranges": [
+        [
+          57.48,
+          68.88
+        ]
+      ],
+      "source_ranges": [
+        [
+          582.76,
+          594.16
+        ]
+      ],
+      "tools": [
+        14,
+        16,
+        68,
+        77,
+        78,
+        79
+      ],
+      "image": "media/sol/0059.00.jpg",
+      "observed": "A（Headset0、Closeup3）提出删LCD和高级芯片，由电视反馈替代；成片却采用C近景并署S1。Sol自己的speaker_map中S1=C，正确标签应是S3=A。",
+      "chain": "全局四人映射总体成立，局部建议仍被明确贴错人。核心事件一次扣8分，O02为2/10；标题、字幕与claims的同源错误不累乘。C05所述配置事实仍正确。",
+      "limit": "不是把人物错误算作音画延迟。后验成片抽帧包含51.5与74秒等点，并未抽到57.48–68.88的错误核心区间；不能把抽帧多当作全片逐段核验。"
+    },
+    {
+      "id": "sol-residual",
+      "model": "gpt-6.1-sol",
+      "title": "主线完整，但仍压掉四处必要限定",
+      "kind": "内容细节",
+      "rubrics": [
+        "C06",
+        "C15",
+        "C19",
+        "C22"
+      ],
+      "output_ranges": [
+        [
+          54,
+          57.48
+        ],
+        [
+          181.68,
+          191.68
+        ],
+        [
+          229.52,
+          248.2
+        ],
+        [
+          294.28,
+          318.08
+        ]
+      ],
+      "source_ranges": [],
+      "tools": [
+        3,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        68
+      ],
+      "observed": "保留单曲面备选但遗漏约1欧元节省额；保留软弹得分但缺全橡胶成本限定；设备段遗漏眼镜和时间限制细节；会外协作段缺沟通工具不支持协作。",
+      "chain": "四项各为半分等级，内容合计损失4.17/50。完整扫过音频后仍会在压缩表达中遗失限定，因此全范围ASR不等于内容满分。",
+      "limit": "不是将一般措辞差异计为失败；扣分只沿用原题指定的四个必要事实。"
+    },
+    {
+      "id": "subtitle-policy",
+      "model": "both",
+      "title": "字幕两项归零是明确裁决，与观察证据分开保留",
+      "kind": "评分裁决",
+      "rubrics": [
+        "O09",
+        "O10"
+      ],
+      "output_ranges": [],
+      "source_ranges": [],
+      "tools": [],
+      "observed": "Luna多个字幕状态白字落在亮墙或复杂画面上。Sol原审观察为字幕、侧栏与视频分区，原O09/O10均为2分；现按用户要求，两模型均记0/2、0/2。",
+      "chain": "Luna由41.17变为38.67；Sol由87.33变为83.33。仅这两项改变，未改39项权重、其他37项判断或模型成片。",
+      "limit": "不把统一归零解释成已证明两份字幕同样不可读，也不把该裁决自动扩展到未来模型。"
+    },
+    {
+      "id": "astra-material-speaker",
+      "model": "gpt-6-astra",
+      "title": "把材料不足的纠正署给了原型说明者",
+      "kind": "核心错署名",
+      "rubrics": [
+        "O02"
+      ],
+      "output_ranges": [
+        [
+          124.88,
+          128.4
+        ]
+      ],
+      "source_ranges": [
+        [
+          765.4,
+          774.51
+        ]
+      ],
+      "tools": [
+        17,
+        24,
+        37,
+        40,
+        41,
+        70,
+        72
+      ],
+      "observed": "成片127秒显示粉发D近景，字幕为“发言人2｜只是橡皮泥不够，所以模型没做得那么厚。”但官方词标772.42–774.51秒这句出自A；前一段D只是在解释想要较厚、便于手握的设计。",
+      "chain": "A=S3/眼镜格衫/Headset0，D=S2/粉发/Headset3；候选自己的全局人物表也如此。原生119.6–128.4秒映射源765.4–774.2秒，末尾跨入A的纠正却沿用D署名。核心纠正错署一次按8分扣；与下一事件合计使O02降至0/10。",
+      "limit": "最终ASR未识出这句弱声，不能因此自动认定听觉丢句；此裁决针对明确写出的错误归属。同处错误近景不重复扣歧义分，也不计成音画不同步。",
+      "image": "media/astra/0127.00.jpg",
+      "evidence_url": "records/gpt-6-astra/judge-evidence-excerpts.json"
+    },
+    {
+      "id": "astra-layout-speaker",
+      "model": "gpt-6-astra",
+      "title": "A的熟悉布局理由被署给主持者B",
+      "kind": "核心错署名",
+      "rubrics": [
+        "O02"
+      ],
+      "output_ranges": [
+        [
+          152,
+          157.8
+        ]
+      ],
+      "source_ranges": [
+        [
+          883.33,
+          893.52
+        ]
+      ],
+      "tools": [
+        17,
+        18,
+        37,
+        40,
+        41,
+        70,
+        72
+      ],
+      "observed": "成片153.8秒为B的近景和“发言人4｜大家已习惯电话式布局。”实际是A连续发言，解释改键形而非改位置的理由；官方词标以及最终ASR都保留了telephone相关原话。",
+      "chain": "151.4秒由Closeup3切到同期Closeup4，但源887.2–893.6秒仍是A接续讲话；B在887.8–893.6秒没有这句官方标注。字幕把独立设计理由明确归给S4/B，构成第二次核心错署。两次扣分按O02上限封顶，不另加总分罚款。",
+      "limit": "正确源时钟与正确署名是两个要求。C11的部分得分针对更早C的新网格提案遗漏，未把本次错署名再次扣到内容项。",
+      "image": "media/astra/0153.80.jpg",
+      "evidence_url": "records/gpt-6-astra/judge-evidence-excerpts.json"
+    },
+    {
+      "id": "astra-curve-saving",
+      "model": "gpt-6-astra",
+      "title": "保留曲面取舍，却省掉仅约1欧元的比较",
+      "kind": "内容限定遗漏",
+      "rubrics": [
+        "C06"
+      ],
+      "output_ranges": [
+        [
+          72,
+          82
+        ]
+      ],
+      "source_ranges": [
+        [
+          573.89,
+          589.43
+        ]
+      ],
+      "tools": [
+        6,
+        25,
+        37,
+        41,
+        73
+      ],
+      "observed": "成片说明单曲面是省钱备选，保留雪人双曲面作为结果，但未呈现仅省约1欧元的明确比较。",
+      "chain": "C06需同时区分备选、结果与节省额；候选取得过相关局部转写，最后剪入的原声及顶栏仍缺数值，因此按0.5等级计分。",
+      "limit": "不把未采纳备选误判为最终方案；扣分依据是题目指定事实遗漏。",
+      "image": "media/astra/0073.50.jpg",
+      "evidence_url": "records/gpt-6-astra/judge-evidence-excerpts.json"
+    },
+    {
+      "id": "astra-button-proposal",
+      "model": "gpt-6-astra",
+      "title": "呈现熟悉布局的结果，缺少最初的新网格提案",
+      "kind": "方案对比不全",
+      "rubrics": [
+        "C11"
+      ],
+      "output_ranges": [
+        [
+          147.4,
+          157.8
+        ]
+      ],
+      "source_ranges": [
+        [
+          845.12,
+          893.52
+        ]
+      ],
+      "tools": [
+        6,
+        37,
+        41,
+        73
+      ],
+      "observed": "保留改键形、保持熟悉位置的结果和理由，却没有让观众看到C此前提出不同button grid的具体提案。",
+      "chain": "决策演变要求保留替代提案及其回应，当前只展示其中一端，C11为0.5等级。相邻人物错误单列O02。",
+      "limit": "不要求每句闲聊入片；需要补的是方案比较的必要一端。",
+      "image": "media/astra/0153.80.jpg",
+      "evidence_url": "records/gpt-6-astra/judge-evidence-excerpts.json"
+    },
+    {
+      "id": "astra-rubber-cost",
+      "model": "gpt-6-astra",
+      "title": "保留触感评分，缺少全橡胶替代的成本限制",
+      "kind": "争议限定遗漏",
+      "rubrics": [
+        "C15"
+      ],
+      "output_ranges": [
+        [
+          196.4,
+          212.6
+        ]
+      ],
+      "source_ranges": [
+        [
+          1163.2,
+          1191.368
+        ]
+      ],
+      "tools": [
+        8,
+        26,
+        37,
+        41,
+        73
+      ],
+      "observed": "成片有多用塑料、价格妥协和软弹得分5，但没有1182–1191秒关于全橡胶外壳及成本难承受的进一步讨论。",
+      "chain": "字幕提及一般橡胶取舍，不能替代全橡胶方案的成本限定。按与Sol相同的必要事实口径，C15只计0.5等级。",
+      "limit": "评分没有否定已正确保留的得分，也不要求从低清白板读出细节。",
+      "image": "media/astra/0205.00.jpg",
+      "evidence_url": "records/gpt-6-astra/judge-evidence-excerpts.json"
+    },
+    {
+      "id": "astra-tactile-dimension",
+      "model": "gpt-6-astra",
+      "title": "找到收尾后的反思，仍漏掉更晚的三维尺寸理解",
+      "kind": "晚段限定遗漏",
+      "rubrics": [
+        "C24"
+      ],
+      "output_ranges": [
+        [
+          335.76,
+          351.48
+        ]
+      ],
+      "source_ranges": [
+        [
+          2290.32,
+          2357.15
+        ]
+      ],
+      "tools": [
+        13,
+        28,
+        37,
+        41,
+        73,
+        81
+      ],
+      "observed": "片尾正确使用正式收尾之后的Play-Doh、创意和触觉反思，原声选段止于2309.88秒；2342秒后实体模型帮助理解三维尺寸的论述没有入片。",
+      "chain": "C24包含触觉/创意与三维理解两部分；后一部分不是字幕同义改写，而是未交付的独立事实，所以计0.5等级。",
+      "limit": "模型并非完全没看结尾：第13次工具覆盖晚段，第81次还检查更长视频尾部。覆盖与完整选入应分开判断。",
+      "image": "media/astra/0345.00.jpg",
+      "evidence_url": "records/gpt-6-astra/judge-evidence-excerpts.json"
+    },
+    {
+      "id": "astra-phrase-boundaries",
+      "model": "gpt-6-astra",
+      "title": "少数压缩切点停在短语内部",
+      "kind": "剪接自然度待复核",
+      "rubrics": [
+        "O06"
+      ],
+      "output_ranges": [
+        [
+          17.4,
+          22
+        ],
+        [
+          152,
+          157.8
+        ]
+      ],
+      "source_ranges": [
+        [
+          47.4,
+          52
+        ],
+        [
+          887.8,
+          893.6
+        ]
+      ],
+      "tools": [
+        37,
+        39,
+        40,
+        70
+      ],
+      "observed": "源52秒的through the和893.6秒的telephone kind of等短语被切在未完处。字幕补足主题，但不等于原声句子自然结束。",
+      "chain": "原生时间线无非故意空洞或重复，这一子项得1分；语句衔接暂记0.5/1。O06合计1.5/2，需连续人耳复核。",
+      "limit": "词级边界和PCM导航用于定位，不是听到了爆音、断字或不可懂的证据。真实双轨抢话也不被误计成重复接缝。",
+      "image": null,
+      "evidence_url": "records/gpt-6-astra/judge-evidence-excerpts.json"
+    }
+  ],
+  "pending_model": {
+    "model": "gpt-6-astra",
+    "status": "completed",
+    "score": 85.75,
+    "exact_model_id_verified": true,
+    "image_and_tool_preflight_passed": true,
+    "evaluation_started": true,
+    "message": "实际运行、工程重放和39项暂定评分已完成。"
+  },
+  "other_requested_models_not_run": [
+    {
+      "model": "Claude Opus 5",
+      "reason": "Authentication returned HTTP401 Invalid token. User switched the requested test to Astra.",
+      "score": null
+    },
+    {
+      "model": "GLM 5.3",
+      "reason": "No GLM model ID appears in the authorized endpoint model list; availability unconfirmed.",
+      "score": null
+    },
+    {
+      "model": "Kimi K3 Pro",
+      "reason": "No Kimi/K3 model ID appears in the authorized endpoint model list; availability unconfirmed.",
+      "score": null
+    }
+  ]
+}

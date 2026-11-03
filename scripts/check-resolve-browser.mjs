@@ -39,7 +39,7 @@ async function captureEvidenceSection(selector,file){
  assert(colors>100,'evidence screenshot is blank or lacks image content');
 }
 try{
- await page.goto(base,{waitUntil:'domcontentloaded'});await page.waitForSelector('.criterion');assert.equal(await page.locator('.criterion').count(),39);checks.push('39 rubric rows render from score JSON');
+ await page.goto(base,{waitUntil:'domcontentloaded'});await page.waitForSelector('.criterion');assert.equal(await page.locator('.criterion').count(),24);checks.push('24 v3 rubric rows render from score JSON');
  assert.equal(await page.locator('h1').count(),1);assert.equal(await page.locator('.result').count(),report.models.length);
  await page.waitForFunction(()=>[...document.querySelectorAll('.result video')].every(v=>v.readyState>=1));
  const media=await page.locator('.result video').evaluateAll(vs=>vs.map(v=>({id:v.id,duration:v.duration,width:v.videoWidth,height:v.videoHeight,error:v.error?.message||null})));
@@ -47,12 +47,29 @@ try{
  assert(media.every(x=>x.width===1280&&x.height===720&&!x.error));checks.push('all actual browser videos load matching duration and dimensions');
  await page.screenshot({path:path.join(out,'desktop-top.png')});
  await page.locator('#results').screenshot({path:path.join(out,'desktop-results.png')});
- await page.selectOption('#rubric-filter','O');assert.equal(await page.locator('.criterion').count(),11);
- for(const id of ['O09','O10']){const texts=await page.locator(`.criterion[data-id="${id}"] .criterion-points span`).allTextContents();assert.deepEqual(texts,report.models.map(m=>`${m.items.find(i=>i.id===id).points} / 2`));assert.deepEqual(texts.slice(0,2),['0 / 2','0 / 2']);}
- await page.locator('.criterion[data-id="O02"] summary').click();await page.waitForSelector('.criterion[data-id="O02"] .criterion-body');checks.push('Omni filter and O09/O10 zero adjudication display');
+ await page.selectOption('#rubric-filter','O');assert.equal(await page.locator('.criterion').count(),8);
+ const texts=await page.locator('.criterion[data-id="O08"] .criterion-points span').allTextContents();assert.deepEqual(texts,['0.50 / 5','1 / 5','5 / 5']);
+ await page.locator('.criterion[data-id="O08"] > summary').click();await page.waitForSelector('.criterion[data-id="O08"] .criterion-body');
+ assert.equal(await page.locator('.criterion[data-id="O08"] .adjudication').count(),2);
+ assert((await page.locator('.criterion[data-id="O08"] .criterion-definition').textContent()).includes('视觉层级'));
+ await page.locator('.criterion[data-id="O08"]').screenshot({path:path.join(out,'desktop-v3-subtitle-components.png')});
+ await page.locator('.criterion[data-id="O01"] > summary').click();await page.waitForSelector('.criterion[data-id="O01"] .criterion-body');
+ assert((await page.locator('.criterion[data-id="O01"] .criterion-definition').textContent()).includes('v2.1'));
+ await page.locator('.criterion[data-id="O01"]').screenshot({path:path.join(out,'desktop-v3-attribution.png')});
+ checks.push('8 Omni rows, expanded grading definitions and partial O08 subtitle adjudication display');
+ await page.selectOption('#rubric-filter','all');await page.locator('#rubric').screenshot({path:path.join(out,'desktop-v3-rubric.png')});
+ await page.locator('.criterion[data-id="C04"] > summary').click();await page.waitForSelector('.criterion[data-id="C04"] .criterion-definition');
+ assert((await page.locator('.criterion[data-id="C04"] .criterion-definition').textContent()).includes('约 1 欧元'));
+ assert.equal(await page.locator('.criterion[data-id="C04"] .source-judgments').count(),3);checks.push('content module necessary links and all three source-judgment audits render');
  await page.locator('#analysis .seek[data-model="sol"]').click();await page.waitForFunction(()=>Math.abs(document.querySelector('#video-sol').currentTime-57.48)<.1);checks.push('evidence button seeks correct model to57.48seconds');
  await page.selectOption('#camera','Closeup2');await page.waitForFunction(()=>document.querySelector('#source-video').readyState>=1&&document.querySelector('#source-video').currentSrc.includes('Closeup2'));
  assert(Math.abs(await page.locator('#source-video').evaluate(v=>v.duration)-12)<.1);checks.push('five-camera input preview switches with real media');
+ await page.goto(base+'index.v2.1.html#rubric',{waitUntil:'domcontentloaded'});await page.waitForSelector('.criterion');assert.equal(await page.locator('.criterion').count(),39);
+ assert((await page.locator('#history-banner').textContent()).includes('历史版本'));
+ assert.deepEqual(await page.locator('.result .score').allTextContents(),['38.67 / 100','83.33 / 100','85.75 / 100']);
+ await page.locator('#rubric').screenshot({path:path.join(out,'desktop-v2-history-rubric.png')});
+ await page.goto(base+'analysis.v2.1.html',{waitUntil:'domcontentloaded'});assert((await page.locator('#sol-lcd').textContent()).includes('O02为2/10'));
+ checks.push('historical 39-row rubric, three original totals and old event attribution remain available');
  await page.goto(base+'traces.html?model=gpt-6.1-sol',{waitUntil:'domcontentloaded'});await page.waitForSelector('.trace-event');assert.equal(await page.locator('.trace-event').count(),108);
  await page.selectOption('#trace-action','frames');assert.equal(await page.locator('.trace-event').count(),16);await page.locator('.trace-event summary').first().click();await page.waitForFunction(()=>[...document.querySelectorAll('.trace-event[open] img')].some(i=>i.complete&&i.naturalWidth>0));
  await page.screenshot({path:path.join(out,'desktop-traces.png')});checks.push('Sol108events,16framecalls and actual observed images');
@@ -81,6 +98,6 @@ try{
  await page.goto(base+'traces.html?model=gpt-6.1-sol#event-80',{waitUntil:'domcontentloaded'});await page.waitForSelector('#event-80[open]');checks.push('analysis links open the exact original trace event');
  await page.setViewportSize({width:390,height:844});await page.goto(base+'analysis.html',{waitUntil:'domcontentloaded'});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await page.screenshot({path:path.join(out,'mobile-analysis.png')});checks.push('detailed analysis is readable on390px mobile layout');
  assert.deepEqual(errors,[]);assert.deepEqual(badResponses,[]);checks.push('no browser runtime exceptions or local HTTP errors');
- const result={pass:true,browser:'system Chrome / Playwright',viewports:[[1440,1050],[390,844]],media,checks,console_errors:errors,bad_http_responses:badResponses,screenshots:['desktop-top.png','desktop-results.png','desktop-traces.png','mobile-top.png','mobile-inputs.png','desktop-analysis.png','desktop-speaker-error.png','mobile-analysis.png']};
+ const result={pass:true,browser:'system Chrome / Playwright',viewports:[[1440,1050],[390,844]],media,checks,console_errors:errors,bad_http_responses:badResponses,screenshots:['desktop-top.png','desktop-results.png','desktop-v3-rubric.png','desktop-v3-attribution.png','desktop-v3-subtitle-components.png','desktop-v2-history-rubric.png','desktop-traces.png','mobile-top.png','mobile-inputs.png','desktop-analysis.png','desktop-speaker-error.png','mobile-analysis.png']};
  await fsp.writeFile(path.join(docs,'resolve/files/browser-validation.json'),JSON.stringify(result,null,2)+'\n');await fsp.writeFile(path.join(out,'browser-validation.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));
 }finally{await browser.close();server.close();}
