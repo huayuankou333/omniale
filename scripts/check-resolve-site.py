@@ -47,6 +47,17 @@ for model in r['models']:
     assert all(0<=i['points']<=i['weight'] for i in model['items'])
     if model['model']in baseline:
         assert [i['points'] for i in model['items'] if i['id'] in ['O09','O10']]==[0,0]
+    else:
+        assert math.isclose(model['subtitle_neutral_score'],round(model['score']-sum(i['points']for i in model['items']if i['id']in['O09','O10']),2))
+        assert original['candidate_sha256_before']==original['candidate_sha256_after']
+        if model.get('infrastructure_recovery'):
+            recovery=read(f'records/{model["model"]}/infrastructure-recovery.json')
+            assert recovery['state']['additional_attempt'] is False
+            assert recovery['plan']['editorial_intervention'] is False
+            assert recovery['plan']['frozen_code_and_inputs_verified'] is True
+            assert recovery['state']['same_pending_tool_call']==recovery['plan']['pending_tool_call']
+        evidence=read(f'records/{model["model"]}/judge-evidence-excerpts.json')
+        assert evidence['excerpts'] and evidence['annotation_reference_sha256']
     trace=read(model['trace_url'])
     assert len(trace['events'])==model['tool_calls']==model['trace_events']
     for event in trace['events']:
@@ -60,6 +71,10 @@ for model in r['models']:
     web=next(x for x in manifest['final_outputs'] if x['model']==model['model'])
     assert web['original_sha256']==model['original_final_sha256']
     assert sha(ROOT/web['browser_file'])==web['browser_sha256']
+current=read('files/scores-current.json')
+assert set(current['models'])=={m['model']for m in r['models']}
+for model in r['models']:
+    assert current['models'][model['model']]['items']==model['items']
 availability=read('files/additional-model-preflight.json')
 if availability['active']['status']=='completed':
     actual=next(m for m in r['models'] if m['model']==availability['active']['model'])

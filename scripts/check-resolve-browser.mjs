@@ -73,6 +73,10 @@ try{
  assert.equal(await page.locator('.error-detail').count(),analysis.errors.length);assert.equal(await page.locator('.phase').count(),phaseCount);
  await page.screenshot({path:path.join(out,'desktop-analysis.png')});
  await captureEvidenceSection('#sol-lcd','desktop-speaker-error.png');checks.push('speaker evidence images decode and captured card contains actual image pixels');
+ for(const m of report.models.slice(2)){
+  const evidence=analysis.errors.find(e=>e.model===m.model&&e.image);
+  if(evidence){await captureEvidenceSection('#'+evidence.id,`desktop-${m.id}-evidence.png`);checks.push(m.model+' new evidence card captures decoded real output image');}
+ }
  await page.locator('#sol-lcd a').filter({hasText:'打开成片定位'}).click();await page.waitForFunction(()=>Math.abs(document.querySelector('#video-sol').currentTime-57.48)<.1);checks.push(analysis.errors.length+' detailed evidence cards, '+phaseCount+' execution phases and cross-page video seek');
  await page.goto(base+'traces.html?model=gpt-6.1-sol#event-80',{waitUntil:'domcontentloaded'});await page.waitForSelector('#event-80[open]');checks.push('analysis links open the exact original trace event');
  await page.setViewportSize({width:390,height:844});await page.goto(base+'analysis.html',{waitUntil:'domcontentloaded'});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await page.screenshot({path:path.join(out,'mobile-analysis.png')});checks.push('detailed analysis is readable on390px mobile layout');
