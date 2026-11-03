@@ -9,9 +9,14 @@ def read(p):return json.loads((ROOT/p).read_text(encoding='utf-8'))
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 r=read('data/report.json');raw=read('files/scores.v2.1.json');manifest=read('files/media-manifest.json')
 analysis=read('data/analysis.json')
-assert len(analysis['errors'])==10
-assert analysis['pending_model']['score'] is None
-assert analysis['pending_model']['status']in ('not_started_authentication_failed','preflight_passed_waiting_bridge','running','evidence_review_pending')
+assert len(analysis['errors'])>=10
+assert analysis['pending_model']['status']in ('not_started_authentication_failed','preflight_passed_waiting_bridge','running','evidence_review_pending','completed')
+if analysis['pending_model']['status']=='completed':
+    pending=analysis['pending_model']
+    actual=next(m for m in r['models'] if m['model']==pending.get('model',pending.get('requested_label')))
+    assert analysis['pending_model']['score']==actual['score']
+else:
+    assert analysis['pending_model']['score'] is None
 assert all(m['score']is None for m in analysis.get('other_requested_models_not_run',[]))
 for m,seconds,source_frames,output_frames in zip(analysis['models'],[1200,2624.16],[7,112],[0,33]):
     assert math.isclose(m['mix_asr_seconds'],seconds)
@@ -19,6 +24,11 @@ for m,seconds,source_frames,output_frames in zip(analysis['models'],[1200,2624.1
     assert m['frame_counts'].get('output',0)==output_frames
     original=next(x for x in r['models'] if x['model']==m['model'])
     assert sha(ROOT/original['trace_url'])==m['trace_sha256']
+for m in analysis['models']:
+    original=next(x for x in r['models'] if x['model']==m['model'])
+    assert sha(ROOT/original['trace_url'])==m['trace_sha256']
+    assert math.isclose(sum(b-a for a,b in m['mix_asr_union']),m['mix_asr_seconds'])
+    assert len(m['frame_observations'])==sum(m['frame_counts'].values())
 assert r['score_version']=='v2.1-user-adjudication'
 assert r['maxima']=={'C':50,'O':40,'E':10}
 assert len(r['models'])>=2
@@ -34,6 +44,7 @@ for model in r['models']:
     for cat,maxv in r['maxima'].items():
         assert math.isclose(sum(i['weight'] for i in model['items'] if i['category']==cat),maxv)
         assert math.isclose(sum(i['points'] for i in model['items'] if i['category']==cat),model['categories'][cat])
+    assert all(0<=i['points']<=i['weight'] for i in model['items'])
     if model['model']in baseline:
         assert [i['points'] for i in model['items'] if i['id'] in ['O09','O10']]==[0,0]
     trace=read(model['trace_url'])
@@ -49,6 +60,13 @@ for model in r['models']:
     web=next(x for x in manifest['final_outputs'] if x['model']==model['model'])
     assert web['original_sha256']==model['original_final_sha256']
     assert sha(ROOT/web['browser_file'])==web['browser_sha256']
+availability=read('files/additional-model-preflight.json')
+if availability['active']['status']=='completed':
+    actual=next(m for m in r['models'] if m['model']==availability['active']['model'])
+    assert availability['active']['score']==actual['score']
+else:
+    assert availability['active']['score'] is None
+assert all(m['score'] is None for m in availability['not_run'])
 
 class References(HTMLParser):
     def __init__(self):super().__init__();self.urls=[]

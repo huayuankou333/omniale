@@ -7,6 +7,9 @@ import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
 const work=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const docs=path.join(work,'docs'),out=path.join(work,'resolve-site-qa');await fsp.mkdir(out,{recursive:true});
+const report=JSON.parse(await fsp.readFile(path.join(docs,'resolve/data/report.json'),'utf8'));
+const analysis=JSON.parse(await fsp.readFile(path.join(docs,'resolve/data/analysis.json'),'utf8'));
+const phaseCount=Object.values(analysis.phases).reduce((n,rows)=>n+rows.length,0);
 const types={'.html':'text/html; charset=utf-8','.css':'text/css','.js':'text/javascript','.json':'application/json','.mp4':'video/mp4','.jpg':'image/jpeg','.png':'image/png','.md':'text/plain; charset=utf-8','.txt':'text/plain; charset=utf-8','.zip':'application/zip','.drp':'application/octet-stream'};
 const server=http.createServer((req,res)=>{try{let p=decodeURIComponent(new URL(req.url,'http://localhost').pathname);let target=path.resolve(docs,'.'+p);if(!target.startsWith(docs)){res.writeHead(403).end();return;}if(fs.existsSync(target)&&fs.statSync(target).isDirectory())target=path.join(target,'index.html');if(!fs.existsSync(target)){res.writeHead(404).end();return;}const stat=fs.statSync(target);res.setHeader('Content-Type',types[path.extname(target)]||'application/octet-stream');res.setHeader('Accept-Ranges','bytes');const range=req.headers.range?.match(/bytes=(\d+)-(\d*)/);if(range){const start=+range[1],end=range[2]?Math.min(+range[2],stat.size-1):stat.size-1;res.writeHead(206,{'Content-Range':`bytes ${start}-${end}/${stat.size}`,'Content-Length':end-start+1});fs.createReadStream(target,{start,end}).pipe(res);}else{res.writeHead(200,{'Content-Length':stat.size});fs.createReadStream(target).pipe(res);}}catch(e){res.writeHead(500).end(e.message);}});
 await new Promise(r=>server.listen(0,'127.0.0.1',r));const base=`http://127.0.0.1:${server.address().port}/resolve/`;
@@ -37,14 +40,15 @@ async function captureEvidenceSection(selector,file){
 }
 try{
  await page.goto(base,{waitUntil:'domcontentloaded'});await page.waitForSelector('.criterion');assert.equal(await page.locator('.criterion').count(),39);checks.push('39 rubric rows render from score JSON');
- assert.equal(await page.locator('h1').count(),1);assert.equal(await page.locator('.result').count(),2);
+ assert.equal(await page.locator('h1').count(),1);assert.equal(await page.locator('.result').count(),report.models.length);
  await page.waitForFunction(()=>[...document.querySelectorAll('.result video')].every(v=>v.readyState>=1));
  const media=await page.locator('.result video').evaluateAll(vs=>vs.map(v=>({id:v.id,duration:v.duration,width:v.videoWidth,height:v.videoHeight,error:v.error?.message||null})));
- assert(Math.abs(media[0].duration-355)<.1);assert(Math.abs(media[1].duration-357.28)<.1);assert(media.every(x=>x.width===1280&&x.height===720&&!x.error));checks.push('both actual browser videos load correct duration and dimensions');
+ for(const m of report.models){const loaded=media.find(v=>v.id===`video-${m.id}`);assert(loaded&&Math.abs(loaded.duration-m.duration)<.1);}
+ assert(media.every(x=>x.width===1280&&x.height===720&&!x.error));checks.push('all actual browser videos load matching duration and dimensions');
  await page.screenshot({path:path.join(out,'desktop-top.png')});
  await page.locator('#results').screenshot({path:path.join(out,'desktop-results.png')});
  await page.selectOption('#rubric-filter','O');assert.equal(await page.locator('.criterion').count(),11);
- for(const id of ['O09','O10']){const texts=await page.locator(`.criterion[data-id="${id}"] .criterion-points span`).allTextContents();assert.deepEqual(texts,['0 / 2','0 / 2']);}
+ for(const id of ['O09','O10']){const texts=await page.locator(`.criterion[data-id="${id}"] .criterion-points span`).allTextContents();assert.deepEqual(texts,report.models.map(m=>`${m.items.find(i=>i.id===id).points} / 2`));assert.deepEqual(texts.slice(0,2),['0 / 2','0 / 2']);}
  await page.locator('.criterion[data-id="O02"] summary').click();await page.waitForSelector('.criterion[data-id="O02"] .criterion-body');checks.push('Omni filter and O09/O10 zero adjudication display');
  await page.locator('#analysis .seek[data-model="sol"]').click();await page.waitForFunction(()=>Math.abs(document.querySelector('#video-sol').currentTime-57.48)<.1);checks.push('evidence button seeks correct model to57.48seconds');
  await page.selectOption('#camera','Closeup2');await page.waitForFunction(()=>document.querySelector('#source-video').readyState>=1&&document.querySelector('#source-video').currentSrc.includes('Closeup2'));
@@ -53,15 +57,23 @@ try{
  await page.selectOption('#trace-action','frames');assert.equal(await page.locator('.trace-event').count(),16);await page.locator('.trace-event summary').first().click();await page.waitForFunction(()=>[...document.querySelectorAll('.trace-event[open] img')].some(i=>i.complete&&i.naturalWidth>0));
  await page.screenshot({path:path.join(out,'desktop-traces.png')});checks.push('Sol108events,16framecalls and actual observed images');
  await page.selectOption('#trace-model','gpt-6-luna');await page.waitForFunction(()=>document.querySelectorAll('.trace-event').length===38);await page.locator('#trace-query').fill('字幕');assert((await page.locator('.trace-event').count())>0);await page.locator('#trace-query').fill('__no_such_event__');assert.equal(await page.locator('.trace-event').count(),0);await page.locator('#trace-query').fill('');await page.locator('#errors-only').check();assert((await page.locator('.trace-event').count())>=1);checks.push('Luna38events and search/error filters');
+ for(const m of report.models.slice(2)){
+  await page.goto(base+'traces.html?model='+encodeURIComponent(m.model),{waitUntil:'domcontentloaded'});
+  await page.waitForFunction(n=>document.querySelectorAll('.trace-event').length===n,m.trace_events);
+  assert.equal(await page.locator('#trace-model').inputValue(),m.model);
+  await page.goto(base+`?model=${m.id}&time=10#results`,{waitUntil:'domcontentloaded'});
+  await page.waitForFunction(id=>Math.abs(document.querySelector('#video-'+id).currentTime-10)<.1,m.id);
+  checks.push(m.model+' actual trace and model-specific video deep link');
+ }
  await page.setViewportSize({width:390,height:844});await page.goto(base,{waitUntil:'domcontentloaded'});await page.waitForSelector('.criterion');
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await page.screenshot({path:path.join(out,'mobile-top.png')});
  await page.locator('#inputs').screenshot({path:path.join(out,'mobile-inputs.png')});checks.push('390px mobile layout has no page overflow');
  await page.goto(base+'traces.html?model=gpt-6.1-sol',{waitUntil:'domcontentloaded'});await page.waitForSelector('.trace-event');assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));checks.push('mobile trace controls and events have no page overflow');
  await page.setViewportSize({width:1440,height:1050});await page.goto(base+'analysis.html',{waitUntil:'domcontentloaded'});
- assert.equal(await page.locator('.error-detail').count(),10);assert.equal(await page.locator('.phase').count(),9);
+ assert.equal(await page.locator('.error-detail').count(),analysis.errors.length);assert.equal(await page.locator('.phase').count(),phaseCount);
  await page.screenshot({path:path.join(out,'desktop-analysis.png')});
  await captureEvidenceSection('#sol-lcd','desktop-speaker-error.png');checks.push('speaker evidence images decode and captured card contains actual image pixels');
- await page.locator('#sol-lcd a').filter({hasText:'打开成片定位'}).click();await page.waitForFunction(()=>Math.abs(document.querySelector('#video-sol').currentTime-57.48)<.1);checks.push('ten detailed errors, nine execution phases and cross-page video seek');
+ await page.locator('#sol-lcd a').filter({hasText:'打开成片定位'}).click();await page.waitForFunction(()=>Math.abs(document.querySelector('#video-sol').currentTime-57.48)<.1);checks.push(analysis.errors.length+' detailed evidence cards, '+phaseCount+' execution phases and cross-page video seek');
  await page.goto(base+'traces.html?model=gpt-6.1-sol#event-80',{waitUntil:'domcontentloaded'});await page.waitForSelector('#event-80[open]');checks.push('analysis links open the exact original trace event');
  await page.setViewportSize({width:390,height:844});await page.goto(base+'analysis.html',{waitUntil:'domcontentloaded'});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await page.screenshot({path:path.join(out,'mobile-analysis.png')});checks.push('detailed analysis is readable on390px mobile layout');
  assert.deepEqual(errors,[]);assert.deepEqual(badResponses,[]);checks.push('no browser runtime exceptions or local HTTP errors');
