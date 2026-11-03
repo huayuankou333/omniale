@@ -107,8 +107,8 @@ if(process.argv.includes('--browser')){
   await page.locator('#analysis').screenshot({path:path.join(output,'case-analysis-desktop.png')});
   await page.locator('#source-coverage summary').click();await page.locator('#source-coverage').screenshot({path:path.join(output,'case-source-coverage.png')});
   await page.locator('#source-coverage summary').click();
-  await page.locator('#phases-gpt-6.1-sol summary').click();await page.locator('#phases-gpt-6.1-sol').screenshot({path:path.join(output,'case-sol-phases.png')});
-  await page.locator('#phases-gpt-6.1-sol summary').click();
+  await page.locator('[id="phases-gpt-6.1-sol"] summary').click();await page.locator('[id="phases-gpt-6.1-sol"]').screenshot({path:path.join(output,'case-sol-phases.png')});
+  await page.locator('[id="phases-gpt-6.1-sol"] summary').click();
   await page.locator('video').evaluate(v=>{v.load();v.play().catch(()=>{});});
   await page.waitForFunction(()=>document.querySelector('video').readyState>=1,{},{timeout:15000});
   report.media=await page.locator('video').evaluate(v=>({duration:v.duration,readyState:v.readyState,codec:v.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"')}));
