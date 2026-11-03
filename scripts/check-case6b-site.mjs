@@ -73,7 +73,13 @@ for(const model of data.models){
 for(const match of homepage.matchAll(/href="#trajectory-([^"]+)-tool-(\d+)"/g)){
  const model=data.models.find(m=>m.id===match[1]);assert(model,`Unknown trace model: ${match[1]}`);assert(Number(match[2])>=1&&Number(match[2])<=model.tool_calls);
 }
-const pending=await json('data/evaluation-status.json');assert.equal(pending.formal_evaluation_started,false);assert.equal(pending.score,null);assert.equal(pending.http_status,401);assert.equal(pending.artifact,null);
+const pending=await json('data/evaluation-status.json');
+const statusEntries=pending.requested_evaluations||[pending];
+for(const entry of statusEntries){
+ if(entry.status==='completed'){assert(entry.formal_evaluation_started);assert(data.models.some(m=>m.id===entry.requested_model));}
+ else{assert.equal(entry.score,null);assert.equal(entry.artifact,null);}
+ if(entry.status==='not_started_api_unsupported'){assert.equal(entry.formal_evaluation_started,false);assert.equal(entry.http_status,404);}
+}
 const report={static_checks_passed:true,case_version:data.case_version,files,links,total_bytes:totalBytes,
   models:data.models.map(m=>({model:m.id,tools:m.tool_calls,pages:m.pages,original_artifacts_hash_match:true})),
   historical_images:{preserved,missing,overwritten_images_substituted:false},analysis:{findings:analysisFindings,phases:analysisPhases,recoverable_error_chains:errorChains},browser_checks:'not_requested'};
