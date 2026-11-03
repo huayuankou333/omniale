@@ -1,0 +1,37 @@
+name: Case 6B website checks
+on:
+  push:
+    paths:
+      - docs/weaving/**
+      - scripts/check-case6b-site.mjs
+      - .github/workflows/case6b-web-check.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            docs/weaving
+            scripts
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install browser for validation
+        run: |
+          npm install --prefix "$RUNNER_TEMP/case6b-browser" playwright@1.56.1
+          "$RUNNER_TEMP/case6b-browser/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Validate artifacts and browser interactions
+        env:
+          CASE6B_PLAYWRIGHT_MODULE: ${{ runner.temp }}/case6b-browser/node_modules/playwright
+          CASE6B_QA_OUTPUT: ${{ runner.temp }}/case6b-site-qa
+        run: node scripts/check-case6b-site.mjs --browser
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: case6b-site-qa
+          path: ${{ runner.temp }}/case6b-site-qa

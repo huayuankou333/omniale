@@ -8,6 +8,9 @@
 
 仓库 `main` 分支的 `/docs` 目录自动发布。无需前端编译或额外服务器。
 
+- `docs/weaving/`：Case 6B v2.1.0，编绳视频转中文图文PDF与四组中途续作；完整公开题目、原始输入、Luna/Sol原始PDF、逐次工具轨迹和图像留存说明。[在线展示](https://huayuankou333.github.io/omniale/weaving/)。作者暂评41.5/59，正式专家分未评。
+- `datasets/weaving-case6b/`：原始候选数据清单和SHA256；原视频及完整候选ZIP、两模型公开运行包在Release `case6b-data-v2.1.0-20261103`。
+
 - `docs/omni2web-starss23/`：STARSS23真实空间音视频→交互探索网页；题面、可播放输入、两模型成品、完整轨迹与评分。单次交付Luna69.30，Sol83.24。
 - `docs/omni2web-urmp/`：URMP v2主动取证与语义排练卡；画面重排、匿名独立音轨与三条自然语言请求。单次交付Luna40，Sol97；内容/执行分别报告，详见失分边界。
 - `datasets/omni2web/`：以上两个case的原始数据与封存结果下载目录、逐文件来源清单和SHA256。完整源片段与任务输入在本仓库GitHub Release `omni2web-data-2026-10-30`，并非整个上游数据集。网页副本只适配媒体路径，原始交付保持不变。

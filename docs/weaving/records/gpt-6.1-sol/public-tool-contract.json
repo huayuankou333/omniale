@@ -1,0 +1,27 @@
+{
+  "manual": "工具 act 使用 action 和 params_json（JSON字符串），可用操作：\nlist_files {path}; read_text {path,offset?,limit?}; write_text {path,text}。\nextract_frames {times:[秒数...],contact_sheet:false}：你自选源片时间，每次1～12帧；保存720p PNG到workspace/frames并让你看到图像。contact_sheet=true时返回带时间的缩略总览，原帧仍保存。具体动作可再请求原帧。\npython {code}：运行你编写的Python，工作目录为workspace，允许读取candidate/workspace/submission，写入workspace/submission。可使用 pathlib、json、math、re、PIL、reportlab、pypdf、io、base64、textwrap、collections、itertools、statistics、hashlib、datetime、random、string、html、copy、typing、dataclasses。无shell、网络、动态执行或任意模块。每次进程120秒，变量不保留，文件保留。Python错误可以修复重试。\n可用中文字体 C:/Windows/Fonts/msyh.ttc、msyhbd.ttc（PIL可用）；ReportLab可用UnicodeCIDFont('STSong-Light')；根据实际可用字体自主选择并验证渲染。Pillow可绘制图像标注，ReportLab可生成PDF。\nview_images {paths:[绝对路径...]}：查看你制作的图或截图，每次最多8张。\nrender_pdf {path, pages:[1,2,...]}：Poppler渲染PDF并返回实际页面图像，每次最多8页；不指定pages时默认前6页。\ncheck_submission {}：只检查可解码PDF、页数、索引结构与时间/页码有效性，不判断内容正确。\nfinish {message}：完成后结束测试。最终文件必须实际保存到指定submission。\n源片自带自动英文字幕。此评测通过可选择帧+字幕提供视听信息，不提供原生音视频播放或人工语义帮助。不得把字幕当作无误真值。没有预选关键帧或答案；工具也不会自动为你判断绳路。\n",
+  "allowed_imports": [
+    "PIL",
+    "base64",
+    "collections",
+    "copy",
+    "dataclasses",
+    "datetime",
+    "hashlib",
+    "html",
+    "io",
+    "itertools",
+    "json",
+    "math",
+    "pathlib",
+    "pypdf",
+    "random",
+    "re",
+    "reportlab",
+    "statistics",
+    "string",
+    "textwrap",
+    "typing"
+  ],
+  "filesystem_guard": "Scoped tool paths plus child Python audit/AST; candidate/workspace/submission and runtime/fonts only; no grader files; not an adversarial OS security sandbox"
+}
