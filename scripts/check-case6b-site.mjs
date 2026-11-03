@@ -146,6 +146,7 @@ if(process.argv.includes('--browser')){
   await page.setViewportSize({width:390,height:844});await page.goto(base,{waitUntil:'networkidle'});
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'Mobile horizontal overflow');
   await page.screenshot({path:path.join(output,'case-mobile-top.png')});
+  await page.locator('#analysis .finding[open] img').evaluateAll(async images=>{await Promise.all(images.map(image=>{image.loading='eager';return image.decode();}));});
   await page.locator('#luna-rc01').screenshot({path:path.join(output,'case-analysis-mobile.png')});
   await page.locator('#sol-rc03').screenshot({path:path.join(output,'case-sol-error-mobile.png')});
   await page.goto(base+'#trajectory-gpt-6.1-sol-tool-42');await page.waitForFunction(()=>document.querySelector('[data-tool="42"]')?.open===true);
