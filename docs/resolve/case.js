@@ -21,3 +21,10 @@ async function load(){
  $('#rubric-filter').addEventListener('change',render);render();
 }
 load().catch(err=>{$('#rubric-table').replaceChildren(el('p','评分文件加载失败，请刷新或下载JSON。'+err.message,'load-error'));});
+
+// Preserve evidence links from the detailed analysis, including a fresh page load.
+const evidenceParams=new URLSearchParams(location.search);
+if(['luna','sol'].includes(evidenceParams.get('model'))&&evidenceParams.has('time')){
+ const target=$('#video-'+evidenceParams.get('model')),time=Number(evidenceParams.get('time'));
+ if(Number.isFinite(time)&&time>=0){const apply=()=>{target.currentTime=Math.min(time,Math.max(0,target.duration-.05));};if(target.readyState>=1)apply();else target.addEventListener('loadedmetadata',apply,{once:true});}
+}

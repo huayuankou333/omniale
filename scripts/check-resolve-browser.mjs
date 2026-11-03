@@ -36,7 +36,14 @@ try{
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await page.screenshot({path:path.join(out,'mobile-top.png')});
  await page.locator('#inputs').screenshot({path:path.join(out,'mobile-inputs.png')});checks.push('390px mobile layout has no page overflow');
  await page.goto(base+'traces.html?model=gpt-6.1-sol',{waitUntil:'domcontentloaded'});await page.waitForSelector('.trace-event');assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));checks.push('mobile trace controls and events have no page overflow');
+ await page.setViewportSize({width:1440,height:1050});await page.goto(base+'analysis.html',{waitUntil:'domcontentloaded'});
+ assert.equal(await page.locator('.error-detail').count(),10);assert.equal(await page.locator('.phase').count(),9);
+ await page.screenshot({path:path.join(out,'desktop-analysis.png')});
+ await page.locator('#sol-lcd').screenshot({path:path.join(out,'desktop-speaker-error.png')});
+ await page.locator('#sol-lcd a').filter({hasText:'打开成片定位'}).click();await page.waitForFunction(()=>Math.abs(document.querySelector('#video-sol').currentTime-57.48)<.1);checks.push('ten detailed errors, nine execution phases and cross-page video seek');
+ await page.goto(base+'traces.html?model=gpt-6.1-sol#event-80',{waitUntil:'domcontentloaded'});await page.waitForSelector('#event-80[open]');checks.push('analysis links open the exact original trace event');
+ await page.setViewportSize({width:390,height:844});await page.goto(base+'analysis.html',{waitUntil:'domcontentloaded'});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await page.screenshot({path:path.join(out,'mobile-analysis.png')});checks.push('detailed analysis is readable on390px mobile layout');
  assert.deepEqual(errors,[]);assert.deepEqual(badResponses,[]);checks.push('no browser runtime exceptions or local HTTP errors');
- const result={pass:true,browser:'system Chrome / Playwright',viewports:[[1440,1050],[390,844]],media,checks,console_errors:errors,bad_http_responses:badResponses,screenshots:['desktop-top.png','desktop-results.png','desktop-traces.png','mobile-top.png','mobile-inputs.png']};
+ const result={pass:true,browser:'system Chrome / Playwright',viewports:[[1440,1050],[390,844]],media,checks,console_errors:errors,bad_http_responses:badResponses,screenshots:['desktop-top.png','desktop-results.png','desktop-traces.png','mobile-top.png','mobile-inputs.png','desktop-analysis.png','desktop-speaker-error.png','mobile-analysis.png']};
  await fsp.writeFile(path.join(docs,'resolve/files/browser-validation.json'),JSON.stringify(result,null,2)+'\n');await fsp.writeFile(path.join(out,'browser-validation.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));
 }finally{await browser.close();server.close();}

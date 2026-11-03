@@ -8,6 +8,16 @@ ROOT=Path(__file__).resolve().parents[1]/'docs/resolve'
 def read(p):return json.loads((ROOT/p).read_text(encoding='utf-8'))
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 r=read('data/report.json');raw=read('files/scores.v2.1.json');manifest=read('files/media-manifest.json')
+analysis=read('data/analysis.json')
+assert len(analysis['errors'])==10
+assert analysis['pending_model']['score'] is None
+assert analysis['pending_model']['status']=='not_started_authentication_failed'
+for m,seconds,source_frames,output_frames in zip(analysis['models'],[1200,2624.16],[7,112],[0,33]):
+    assert math.isclose(m['mix_asr_seconds'],seconds)
+    assert m['frame_counts'].get('meeting',0)==source_frames
+    assert m['frame_counts'].get('output',0)==output_frames
+    original=next(x for x in r['models'] if x['model']==m['model'])
+    assert sha(ROOT/original['trace_url'])==m['trace_sha256']
 assert r['score_version']=='v2.1-user-adjudication'
 assert r['maxima']=={'C':50,'O':40,'E':10}
 assert len(r['models'])==2
@@ -59,6 +69,6 @@ for p in files:
                 links+=1
 summary={'pass':True,'models':2,'rubric_items_each':39,'scores':[m['score']for m in r['models']],
          'tool_trace_counts':[m['trace_events']for m in r['models']],'files':len(files),'text_files':text_count,'local_html_links':links,
-         'checks':['score and category recomputation','O09/O10 user adjudication','all tool events preserved','real observation frame hashes','unchanged original DRP hashes','original/browser media SHA256 links','all HTML local paths','no credential patterns or user directory paths','individual files below100MiB']}
+         'checks':['score and category recomputation','O09/O10 user adjudication','all tool events preserved','real observation frame hashes','unchanged original DRP hashes','original/browser media SHA256 links','detailed analysis references actual traces','ASR union and source/output frame counts','unstarted Opus has no score','all HTML local paths','no credential patterns or user directory paths','individual files below100MiB']}
 (ROOT/'files/site-validation.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 print(json.dumps(summary,ensure_ascii=False,indent=2))

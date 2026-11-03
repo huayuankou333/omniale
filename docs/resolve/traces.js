@@ -2,7 +2,7 @@
 const $=s=>document.querySelector(s);
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 let report,events=[],generation=0;
-const bad=e=>Boolean(e.result?.error||e.result?.ok===false||e.result?.success===false||e.result?.status==='error');
+const bad=e=>Boolean(e.result?.error||e.result?.tool_error||e.result?.ok===false||e.result?.success===false||e.result?.status==='error');
 function render(){
  const action=$('#trace-action').value,q=$('#trace-query').value.toLowerCase().trim(),onlyErrors=$('#errors-only').checked;
  const selected=events.filter(e=>(action==='all'||e.action===action)&&(!onlyErrors||bad(e))&&(!q||JSON.stringify(e).toLowerCase().includes(q)));
