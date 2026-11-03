@@ -1,0 +1,51 @@
+name: Resolve case checks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/resolve/**'
+      - 'docs/shared/piano-theme.css'
+      - 'scripts/check-resolve-*'
+      - '.github/workflows/resolve-case-checks.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            docs/resolve
+            docs/shared
+            scripts
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify scores, records, hashes and references
+        run: python scripts/check-resolve-site.py
+      - name: Install browser testing client
+        run: npm install --prefix "$RUNNER_TEMP/resolve-qa" playwright@1.56.1
+      - name: Test desktop, mobile, videos and trajectory controls
+        shell: bash
+        run: |
+          export RESOLVE_PLAYWRIGHT_MODULE="$RUNNER_TEMP/resolve-qa/node_modules/playwright/index.mjs"
+          export CHROME_PATH="$(command -v google-chrome)"
+          node scripts/check-resolve-browser.mjs
+      - name: Save browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: resolve-browser-evidence
+          path: |
+            resolve-site-qa/
+            docs/resolve/files/browser-validation.json
+            docs/resolve/files/site-validation.json

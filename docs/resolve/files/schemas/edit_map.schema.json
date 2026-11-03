@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Source-to-output edit map",
+  "required": [
+    "version",
+    "timeline",
+    "clips"
+  ],
+  "properties": {
+    "version": {
+      "const": "1.0"
+    },
+    "timeline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fps",
+        "duration"
+      ],
+      "properties": {
+        "fps": {
+          "const": 25
+        },
+        "duration": {
+          "type": "number",
+          "minimum": 300,
+          "maximum": 360
+        }
+      }
+    },
+    "clips": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "clip_id",
+          "kind",
+          "track",
+          "output_range",
+          "source",
+          "source_range",
+          "relationship",
+          "speaker_ids"
+        ],
+        "properties": {
+          "clip_id": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "video",
+              "audio",
+              "title"
+            ]
+          },
+          "track": {
+            "type": "string"
+          },
+          "output_range": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": 0
+            },
+            "minItems": 2,
+            "maxItems": 2,
+            "description": "[start,end] seconds; end must exceed start; output bounds and ordering are semantic checks"
+          },
+          "source": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_range": {
+            "anyOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "minItems": 2,
+                "maxItems": 2,
+                "description": "[start,end] seconds; end must exceed start; output bounds and ordering are semantic checks"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "relationship": {
+            "enum": [
+              "sync",
+              "broll",
+              "archival",
+              "editorial_title"
+            ]
+          },
+          "speaker_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "text": {
+            "type": "string"
+          },
+          "claim_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

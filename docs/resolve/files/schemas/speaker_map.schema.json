@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Stable speaker mapping",
+  "required": [
+    "speakers"
+  ],
+  "properties": {
+    "speakers": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "speaker_id",
+          "display_label",
+          "audio_sources",
+          "camera_observations",
+          "identity_evidence"
+        ],
+        "properties": {
+          "speaker_id": {
+            "type": "string"
+          },
+          "display_label": {
+            "type": "string"
+          },
+          "role": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "audio_sources": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "pattern": "^media/audio/"
+            }
+          },
+          "camera_observations": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "source",
+                "source_range",
+                "description"
+              ],
+              "properties": {
+                "source": {
+                  "type": "string",
+                  "pattern": "^media/"
+                },
+                "source_range": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "description": "[start,end] seconds; end must exceed start; output bounds and ordering are semantic checks"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "identity_evidence": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source",
+                "source_range"
+              ],
+              "properties": {
+                "source": {
+                  "type": "string",
+                  "pattern": "^media/"
+                },
+                "source_range": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "description": "[start,end] seconds; end must exceed start; output bounds and ordering are semantic checks"
+                },
+                "speaker_id": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

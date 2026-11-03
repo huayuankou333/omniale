@@ -1,0 +1,23 @@
+'use strict';
+const $=s=>document.querySelector(s);
+const fmt=x=>Number(x).toFixed(2).replace(/\.00$/,'');
+const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
+function seek(model,time){const v=$('#video-'+model);if(!v)return;v.currentTime=Number(time);v.scrollIntoView({behavior:'smooth',block:'center'});v.focus({preventScroll:true});}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-model][data-time]');if(b)seek(b.dataset.model,b.dataset.time);});
+$('#camera').addEventListener('change',e=>{const v=$('#source-video');v.pause();v.src='media/input-'+e.target.value+'.mp4';v.poster='media/input-'+e.target.value+'.jpg';v.load();});
+async function load(){
+ const response=await fetch('data/report.json');if(!response.ok)throw new Error('report '+response.status);const report=await response.json();
+ function render(){const target=$('#rubric-table');target.replaceChildren();const filter=$('#rubric-filter').value;
+  const key=el('div',undefined,'score-key');key.append(el('span','Luna / 满分'),el('span','Sol / 满分'));target.append(key);
+  report.models[0].items.forEach((l,i)=>{if(filter!=='all'&&l.category!==filter)return;const r=report.models[1].items[i];
+   const d=el('details',undefined,'criterion');d.dataset.id=l.id;const s=el('summary');
+   s.append(el('span',l.id,'criterion-id'),el('span',l.title,'criterion-name'));
+   const nums=el('span',undefined,'criterion-points');nums.append(el('span',fmt(l.points)+' / '+fmt(l.weight)),el('span',fmt(r.points)+' / '+fmt(r.weight)));s.append(nums);
+   d.append(s);let built=false;d.addEventListener('toggle',()=>{if(!d.open||built)return;built=true;const body=el('div',undefined,'criterion-body');
+    [l,r].forEach((row,j)=>{const c=el('div');c.append(el('h4',report.models[j].model),el('p',row.reason));
+     if(['O09','O10'].includes(row.id)){c.append(el('p','用户明确裁决：本项记零；权重保留。此前观察在原始评分JSON中留存。','adjudication'));}
+     (row.output_ranges_seconds||[]).slice(0,6).forEach(([a,b])=>{const btn=el('button',`${a}–${b}秒`,'seek');btn.type='button';btn.dataset.model=report.models[j].id;btn.dataset.time=a;c.append(btn);});body.append(c);});d.append(body);});target.append(d);
+  });}
+ $('#rubric-filter').addEventListener('change',render);render();
+}
+load().catch(err=>{$('#rubric-table').replaceChildren(el('p','评分文件加载失败，请刷新或下载JSON。'+err.message,'load-error'));});

@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Claims in the finished film",
+  "required": [
+    "claims"
+  ],
+  "properties": {
+    "claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "claim_id",
+          "text_zh",
+          "status",
+          "output_range",
+          "evidence"
+        ],
+        "properties": {
+          "claim_id": {
+            "type": "string"
+          },
+          "text_zh": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "prior_plan",
+              "proposal",
+              "adopted",
+              "rejected",
+              "open",
+              "correction",
+              "personal_view",
+              "editorial_interpretation"
+            ]
+          },
+          "output_range": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": 0
+            },
+            "minItems": 2,
+            "maxItems": 2,
+            "description": "[start,end] seconds; end must exceed start; output bounds and ordering are semantic checks"
+          },
+          "evidence": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source",
+                "source_range"
+              ],
+              "properties": {
+                "source": {
+                  "type": "string",
+                  "pattern": "^media/"
+                },
+                "source_range": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "description": "[start,end] seconds; end must exceed start; output bounds and ordering are semantic checks"
+                },
+                "speaker_id": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
