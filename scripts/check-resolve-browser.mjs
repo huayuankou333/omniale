@@ -14,6 +14,27 @@ const browser=await chromium.launch({headless:true,executablePath:process.env.CH
 const errors=[],badResponses=[];
 const context=await browser.newContext({viewport:{width:1440,height:1050}});const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.url().startsWith(base)&&r.status()>=400)badResponses.push([r.url(),r.status()]);});
 const checks=[];
+async function captureEvidenceSection(selector,file){
+ // Keep capture geometry stable while lazy images decode and smooth scrolling settles.
+ await page.addStyleTag({content:'html{scroll-behavior:auto!important}'});
+ const section=page.locator(selector);
+ await section.locator('img').evaluateAll(async imgs=>{
+  await Promise.all(imgs.map(async img=>{img.loading='eager';await img.decode();}));
+ });
+ await page.evaluate(()=>document.fonts.ready);
+ await section.scrollIntoViewIfNeeded();
+ await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+ assert(await section.locator('img').evaluateAll(imgs=>imgs.every(img=>img.complete&&img.naturalWidth>0)));
+ const bytes=await section.screenshot({path:path.join(out,file)});
+ const colors=await page.evaluate(async encoded=>{
+  const img=new Image();img.src='data:image/png;base64,'+encoded;await img.decode();
+  const canvas=document.createElement('canvas');canvas.width=img.naturalWidth;canvas.height=img.naturalHeight;
+  const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0);const rgba=ctx.getImageData(0,0,canvas.width,canvas.height).data;
+  const distinct=new Set();for(let i=0;i<rgba.length;i+=388)distinct.add(`${rgba[i]},${rgba[i+1]},${rgba[i+2]}`);
+  return distinct.size;
+ },bytes.toString('base64'));
+ assert(colors>100,'evidence screenshot is blank or lacks image content');
+}
 try{
  await page.goto(base,{waitUntil:'domcontentloaded'});await page.waitForSelector('.criterion');assert.equal(await page.locator('.criterion').count(),39);checks.push('39 rubric rows render from score JSON');
  assert.equal(await page.locator('h1').count(),1);assert.equal(await page.locator('.result').count(),2);
@@ -39,7 +60,7 @@ try{
  await page.setViewportSize({width:1440,height:1050});await page.goto(base+'analysis.html',{waitUntil:'domcontentloaded'});
  assert.equal(await page.locator('.error-detail').count(),10);assert.equal(await page.locator('.phase').count(),9);
  await page.screenshot({path:path.join(out,'desktop-analysis.png')});
- await page.locator('#sol-lcd').screenshot({path:path.join(out,'desktop-speaker-error.png')});
+ await captureEvidenceSection('#sol-lcd','desktop-speaker-error.png');checks.push('speaker evidence images decode and captured card contains actual image pixels');
  await page.locator('#sol-lcd a').filter({hasText:'打开成片定位'}).click();await page.waitForFunction(()=>Math.abs(document.querySelector('#video-sol').currentTime-57.48)<.1);checks.push('ten detailed errors, nine execution phases and cross-page video seek');
  await page.goto(base+'traces.html?model=gpt-6.1-sol#event-80',{waitUntil:'domcontentloaded'});await page.waitForSelector('#event-80[open]');checks.push('analysis links open the exact original trace event');
  await page.setViewportSize({width:390,height:844});await page.goto(base+'analysis.html',{waitUntil:'domcontentloaded'});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await page.screenshot({path:path.join(out,'mobile-analysis.png')});checks.push('detailed analysis is readable on390px mobile layout');
