@@ -25,7 +25,7 @@ async function loadModel(){const seq=++generation,model=$('#trace-model').value,
  const select=$('#trace-action');select.replaceChildren();let o=el('option','全部工具');o.value='all';select.append(o);for(const name of [...new Set(events.map(e=>e.action))].sort()){o=el('option',name+' · '+events.filter(e=>e.action===name).length);o.value=name;select.append(o);}
  const links=$('#trace-downloads');links.replaceChildren();const a=el('a','下载完整公开工具轨迹 JSON');a.href=m.trace_url;a.download='';links.append(a);const b=el('a','回看该模型成片');b.href='./#'+m.id;links.append(b);render();
 }
-async function boot(){const r=await fetch('data/report.json');if(!r.ok)throw new Error('report '+r.status);report=await r.json();const wanted=new URLSearchParams(location.search).get('model');if(report.models.some(m=>m.model===wanted))$('#trace-model').value=wanted;
+async function boot(){const r=await fetch('data/report.json');if(!r.ok)throw new Error('report '+r.status);report=await r.json();const select=$('#trace-model');select.replaceChildren();for(const model of report.models){const option=el('option',model.model);option.value=model.model;select.append(option);}const wanted=new URLSearchParams(location.search).get('model');if(report.models.some(m=>m.model===wanted))select.value=wanted;
  $('#trace-model').addEventListener('change',()=>{history.replaceState(null,'','?model='+encodeURIComponent($('#trace-model').value));loadModel().catch(fail);});$('#trace-action').addEventListener('change',render);$('#errors-only').addEventListener('change',render);$('#trace-query').addEventListener('input',render);await loadModel();}
 function fail(err){$('#trace-summary').textContent='轨迹加载失败：'+err.message;$('#trace-summary').classList.add('warn');}
 boot().catch(fail);

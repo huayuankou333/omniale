@@ -8,14 +8,14 @@ $('#camera').addEventListener('change',e=>{const v=$('#source-video');v.pause();
 async function load(){
  const response=await fetch('data/report.json');if(!response.ok)throw new Error('report '+response.status);const report=await response.json();
  function render(){const target=$('#rubric-table');target.replaceChildren();const filter=$('#rubric-filter').value;
-  const key=el('div',undefined,'score-key');key.append(el('span','Luna / 满分'),el('span','Sol / 满分'));target.append(key);
-  report.models[0].items.forEach((l,i)=>{if(filter!=='all'&&l.category!==filter)return;const r=report.models[1].items[i];
+  const key=el('div',undefined,'score-key');report.models.forEach(m=>key.append(el('span',({'luna':'Luna','sol':'Sol'}[m.id]||m.model)+' / 满分')));target.append(key);
+  report.models[0].items.forEach(l=>{if(filter!=='all'&&l.category!==filter)return;const rows=report.models.map(m=>m.items.find(r=>r.id===l.id));
    const d=el('details',undefined,'criterion');d.dataset.id=l.id;const s=el('summary');
    s.append(el('span',l.id,'criterion-id'),el('span',l.title,'criterion-name'));
-   const nums=el('span',undefined,'criterion-points');nums.append(el('span',fmt(l.points)+' / '+fmt(l.weight)),el('span',fmt(r.points)+' / '+fmt(r.weight)));s.append(nums);
+   const nums=el('span',undefined,'criterion-points');rows.forEach((row,j)=>{const number=el('span',row?fmt(row.points)+' / '+fmt(row.weight):'待复核');number.title=report.models[j].model;nums.append(number);});s.append(nums);
    d.append(s);let built=false;d.addEventListener('toggle',()=>{if(!d.open||built)return;built=true;const body=el('div',undefined,'criterion-body');
-    [l,r].forEach((row,j)=>{const c=el('div');c.append(el('h4',report.models[j].model),el('p',row.reason));
-     if(['O09','O10'].includes(row.id)){c.append(el('p','用户明确裁决：本项记零；权重保留。此前观察在原始评分JSON中留存。','adjudication'));}
+    rows.forEach((row,j)=>{const c=el('div');c.append(el('h4',report.models[j].model),el('p',row?.reason||'尚待证据复核。'));if(!row){body.append(c);return;}
+     if(row.adjudication){c.append(el('p','用户明确裁决：本项记零；权重保留。此前观察在原始评分JSON中留存。','adjudication'));}
      (row.output_ranges_seconds||[]).slice(0,6).forEach(([a,b])=>{const btn=el('button',`${a}–${b}秒`,'seek');btn.type='button';btn.dataset.model=report.models[j].id;btn.dataset.time=a;c.append(btn);});body.append(c);});d.append(body);});target.append(d);
   });}
  $('#rubric-filter').addEventListener('change',render);render();
@@ -24,7 +24,7 @@ load().catch(err=>{$('#rubric-table').replaceChildren(el('p','评分文件加载
 
 // Preserve evidence links from the detailed analysis, including a fresh page load.
 const evidenceParams=new URLSearchParams(location.search);
-if(['luna','sol'].includes(evidenceParams.get('model'))&&evidenceParams.has('time')){
- const target=$('#video-'+evidenceParams.get('model')),time=Number(evidenceParams.get('time'));
+if(document.getElementById('video-'+evidenceParams.get('model'))&&evidenceParams.has('time')){
+ const target=document.getElementById('video-'+evidenceParams.get('model')),time=Number(evidenceParams.get('time'));
  if(Number.isFinite(time)&&time>=0){const apply=()=>{target.currentTime=Math.min(time,Math.max(0,target.duration-.05));};if(target.readyState>=1)apply();else target.addEventListener('loadedmetadata',apply,{once:true});}
 }

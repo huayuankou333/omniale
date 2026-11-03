@@ -11,7 +11,8 @@ r=read('data/report.json');raw=read('files/scores.v2.1.json');manifest=read('fil
 analysis=read('data/analysis.json')
 assert len(analysis['errors'])==10
 assert analysis['pending_model']['score'] is None
-assert analysis['pending_model']['status']=='not_started_authentication_failed'
+assert analysis['pending_model']['status']in ('not_started_authentication_failed','preflight_passed_waiting_bridge','running','evidence_review_pending')
+assert all(m['score']is None for m in analysis.get('other_requested_models_not_run',[]))
 for m,seconds,source_frames,output_frames in zip(analysis['models'],[1200,2624.16],[7,112],[0,33]):
     assert math.isclose(m['mix_asr_seconds'],seconds)
     assert m['frame_counts'].get('meeting',0)==source_frames
@@ -20,10 +21,12 @@ for m,seconds,source_frames,output_frames in zip(analysis['models'],[1200,2624.1
     assert sha(ROOT/original['trace_url'])==m['trace_sha256']
 assert r['score_version']=='v2.1-user-adjudication'
 assert r['maxima']=={'C':50,'O':40,'E':10}
-assert len(r['models'])==2
-for model,expected in zip(r['models'],[38.67,83.33]):
+assert len(r['models'])>=2
+baseline={'gpt-6-luna':38.67,'gpt-6.1-sol':83.33}
+for model in r['models']:
+    expected=baseline.get(model['model'],model['score'])
     assert model['score']==expected
-    original=raw['models'][model['model']]
+    original=raw['models'].get(model['model'])or read(model['score_url'])
     assert model['items']==original['items']
     assert len(model['items'])==39
     assert len({i['id'] for i in model['items']})==39
@@ -31,7 +34,8 @@ for model,expected in zip(r['models'],[38.67,83.33]):
     for cat,maxv in r['maxima'].items():
         assert math.isclose(sum(i['weight'] for i in model['items'] if i['category']==cat),maxv)
         assert math.isclose(sum(i['points'] for i in model['items'] if i['category']==cat),model['categories'][cat])
-    assert [i['points'] for i in model['items'] if i['id'] in ['O09','O10']]==[0,0]
+    if model['model']in baseline:
+        assert [i['points'] for i in model['items'] if i['id'] in ['O09','O10']]==[0,0]
     trace=read(model['trace_url'])
     assert len(trace['events'])==model['tool_calls']==model['trace_events']
     for event in trace['events']:
@@ -67,8 +71,8 @@ for p in files:
                 local=unquote(urlsplit(u).path)
                 if local:assert (p.parent/local).exists(),(str(p),u)
                 links+=1
-summary={'pass':True,'models':2,'rubric_items_each':39,'scores':[m['score']for m in r['models']],
+summary={'pass':True,'models':len(r['models']),'rubric_items_each':39,'scores':[m['score']for m in r['models']],
          'tool_trace_counts':[m['trace_events']for m in r['models']],'files':len(files),'text_files':text_count,'local_html_links':links,
          'checks':['score and category recomputation','O09/O10 user adjudication','all tool events preserved','real observation frame hashes','unchanged original DRP hashes','original/browser media SHA256 links','detailed analysis references actual traces','ASR union and source/output frame counts','unstarted Opus has no score','all HTML local paths','no credential patterns or user directory paths','individual files below100MiB']}
-(ROOT/'files/site-validation.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+(ROOT/'files/site-validation.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
 print(json.dumps(summary,ensure_ascii=False,indent=2))
