@@ -18,25 +18,36 @@ assert.equal(data.case_version,'2.1.0');assert(data.models.length>=2);
 let scoring=null,rubric=null;
 if(data.active_scoring){
  scoring=await json(data.active_scoring.comparison);rubric=await json(data.active_scoring.rubric);
- assert.equal(rubric.rubric_version,'3.0.0');assert.equal(rubric.items.length,20);
+ assert.equal(rubric.rubric_version,data.active_scoring.version);assert.equal(rubric.items.length,20);
+ const binary=rubric.rubric_version==='3.1.0';
+ assert.deepEqual(rubric.scoring.allowed_points,binary?[0,5]:[0,2.5,5]);
+ const previous=binary?await json(data.active_scoring.previous_comparison):null;
  assert.equal(new Set(rubric.items.map(i=>i.id)).size,20);assert.equal(rubric.items.reduce((s,i)=>s+i.weight,0),100);
  assert.equal(sha(await fs.readFile(path.join(site,data.active_scoring.rubric))),scoring.rubric_sha256);
  assert.deepEqual(scoring.reviews.map(r=>r.model),data.models.map(m=>m.id));
  for(const r of scoring.reviews){
   assert.equal(r.criteria.length,20);assert.deepEqual(r.criteria.map(i=>i.id),rubric.items.map(i=>i.id));
   assert.equal(r.final_score,null);assert.equal(r.reviewer.blind,false);
-  assert.deepEqual(await json(`scoring/v3/reviews/${r.model}.json`),r);
+  const scoreFolder=data.active_scoring.comparison.split('/').slice(0,-1).join('/');
+  assert.deepEqual(await json(`${scoreFolder}/reviews/${r.model}.json`),r);
   for(const [n,i] of r.criteria.entries()){
-   assert([0,2.5,5].includes(i.score));assert.equal(i.anchor,rubric.items[n].anchors[String(i.score)]);
+   assert(rubric.scoring.allowed_points.includes(i.score));assert.equal(i.anchor,rubric.items[n].anchors[String(i.score)]);
+   if(binary){
+    const old=previous.reviews.find(p=>p.model===r.model).criteria[n];
+    assert.equal(i.score,old.score===5?5:0);assert.equal(i.previous_judgment.score,old.score);
+    for(const key of ['observed_evidence','gap','pdf_pages','figure_ids','input_assets','source_interval_seconds','uncertainty'])assert.deepEqual(i[key],old[key]);
+   }
    assert(i.observed_evidence&&i.rationale);if(i.score<5)assert(i.gap);
    assert(i.pdf_pages.every(p=>p>=1&&p<=data.models.find(m=>m.id===r.model).pages));
   }
   assert.equal(r.criteria.reduce((s,i)=>s+i.score,0),r.raw_score);
+  if(binary){assert.equal(r.full_credit_items,r.criteria.filter(i=>i.score===5).length);assert.equal(r.raw_score,r.full_credit_items*5);}
   assert.equal(Math.min(r.raw_score,...r.caps.filter(c=>c.status==='applied').map(c=>c.maximum)),r.provisional_score);
   const original=data.models.find(m=>m.id===r.model);
   assert.equal(original.raw_score,r.previous_evaluation.raw_score);assert.equal(original.provisional_score,r.previous_evaluation.provisional_score);
  }
- const check=await json('scoring/v3/validation.json');assert.equal(check.passed,true);assert.equal(check.revision_baseline_files_unchanged,387);
+ const scoreFolder=data.active_scoring.comparison.split('/').slice(0,-1).join('/');
+ const check=await json(data.active_scoring.validation||`${scoreFolder}/validation.json`);assert.equal(check.passed,true);assert.equal(check.revision_baseline_files_unchanged,387);
  assert.equal(check.candidate_inputs_unchanged,true);assert.equal(check.score_ceiling_target_used,false);
 }
 const analysis=await json('data/detailed-analysis.json');
@@ -152,6 +163,14 @@ if(process.argv.includes('--browser')){
   await page.locator('#inputs').screenshot({path:path.join(output,'case-inputs.png')});
   await page.locator('#results').screenshot({path:path.join(output,'case-results.png')});
   if(scoring){
+   const expectedScores=scoring.reviews.map(r=>r.provisional_score);
+   const displayedScores=await page.locator('.result-card .score').evaluateAll(nodes=>nodes.map(n=>Number(n.firstChild.textContent)));
+   assert.deepEqual(displayedScores,expectedScores);
+   if(rubric.scoring.allowed_points.length===2){
+    assert.equal(await page.locator('.rubric-model:not([data-score="0"]):not([data-score="5"])').count(),0);
+    assert.equal(await page.locator('.rubric-model[data-score="5"]').count(),scoring.reviews.reduce((s,r)=>s+r.full_credit_items,0));
+    assert.equal(await page.locator('.rubric-anchors dt').filter({hasText:'2.5分'}).count(),0);
+   }
    await page.goto(base+'#rubric-V01');await page.waitForFunction(()=>document.getElementById('rubric-V01')?.open===true);
    assert.equal(await page.locator('#rubric-V01 .rubric-model').count(),3);
    await page.locator('#rubric-V01').screenshot({path:path.join(output,'case-rubric-visual-evidence.png')});
@@ -244,7 +263,7 @@ if(process.argv.includes('--browser')){
    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'Additional mobile analysis overflow');
    await page.locator('[id="analysis-'+model.id+'"]').screenshot({path:path.join(output,model.id+'-mobile-analysis.png')});
   }
-  assert.deepEqual(errors,[]);report.browser_checks='passed';report.browser_validated=['desktop and mobile layout','detailed analysis and source-time chart','phase tables','cross-model tool deep links reset filters and search','analysis links open the original tool result','malformed JSON tool event displays safely','video duration and range playback','all tool traces plus retries','error and image filters','search','historical image rendering','all PDF readers','page navigation, deep links and zoom','no page errors or missing local assets'];
+  assert.deepEqual(errors,[]);report.browser_checks='passed';report.browser_validated=['desktop and mobile layout','current score cards match scoring data','binary rubric contains only 0/5 scores and anchors','rubric expand/deep links and original PDF evidence links','detailed analysis and source-time chart','phase tables','cross-model tool deep links reset filters and search','analysis links open the original tool result','malformed JSON tool event displays safely','video duration and range playback','all tool traces plus retries','error and image filters','search','historical image rendering','all PDF readers','page navigation, deep links and zoom','no page errors or missing local assets'];
  }catch(error){report.browser_checks='failed';report.failure=error.stack;report.media=await page.locator('video').evaluate(v=>v?({readyState:v.readyState,networkState:v.networkState,error:v.error?{code:v.error.code,message:v.error.message}:null,currentSrc:v.currentSrc,codec:v.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"')}):null).catch(()=>null);await fs.writeFile(path.join(output,'validation.json'),JSON.stringify(report,null,2)+'\n');throw error;}
  finally{await browser.close();await new Promise(resolve=>server.close(resolve));}
 }

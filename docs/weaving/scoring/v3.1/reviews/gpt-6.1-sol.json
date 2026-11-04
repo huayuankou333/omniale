@@ -1,0 +1,975 @@
+{
+  "rubric_version": "3.1.0",
+  "rubric_sha256": "615e78223405a6541095ddb67b42d8ae77d3268354b88deb262960b024e34a88",
+  "case_version": "2.1.0",
+  "model": "gpt-6.1-sol",
+  "run_id": "gpt-6.1-sol-v21-20261103-r1",
+  "reviewed_at": "2026-11-04T01:35:33.186115+08:00",
+  "reviewer": {
+    "type": "host_model_author_review",
+    "independent_of_solver": true,
+    "independent_of_case_author": false,
+    "blind": false
+  },
+  "design_disclosure": "评后计分规则修订：按用户明确要求，20项一律只保留原5分，原0分和2.5分均计0分。完整达标标准、原有观察证据与判断不改，不按模型名选择性处理，也未重新运行受测模型。原v3.0三档结果完整保留。",
+  "method": "沿用v3.0逐页复核的证据与内容判断，仅对每条应用统一映射5→5、2.5→0、0→0；没有新增内容复核或模型运行。",
+  "artifact_sha256": {
+    "evidence_map.json": "7c8a76af7c045013b0b12c094fd73c8c485f50f2c1c68cc52e0e9419d41855df",
+    "tutorial.pdf": "070065f5b250406cb02ea7ed1c5ff90acb0401a58153ca3c2c40d40d5a469afb"
+  },
+  "criteria": [
+    {
+      "id": "T01",
+      "dimension": "教程内容",
+      "title": "材料、底座与起始状态",
+      "maximum": 5,
+      "score": 5,
+      "status": "meets",
+      "anchor": "两芯与工作绳分开；底座和起始结可检查，明确预装/补充范围，不虚构通用用量。",
+      "pdf_pages": [
+        1,
+        2,
+        3
+      ],
+      "figure_ids": [
+        "f01",
+        "f02",
+        "f03",
+        "f04",
+        "f05"
+      ],
+      "input_assets": [],
+      "source_interval_seconds": [
+        125,
+        264
+      ],
+      "observed_evidence": "区分两芯与工作绳，说明预装底座边界；松首结、加绳后检查状态都有定位。",
+      "gap": "",
+      "rationale": "准备和起始状态满足锚点；加绳具体层次另在T02评分。 原v3.0得5分；按统一二元规则，本项计5分。",
+      "uncertainty": null,
+      "previous_judgment": {
+        "score": 5,
+        "status": "meets",
+        "anchor": "两芯与工作绳分开；底座和起始结可检查，明确预装/补充范围，不虚构通用用量。",
+        "rationale": "准备和起始状态满足锚点；加绳具体层次另在T02评分。",
+        "rubric_version": "3.0.0"
+      }
+    },
+    {
+      "id": "T02",
+      "dimension": "教程内容",
+      "title": "新增工作绳的可执行说明",
+      "maximum": 5,
+      "score": 0,
+      "status": "does_not_meet_full_credit",
+      "anchor": "未完整满足5分条件，即使已有部分正确内容或教学帮助也不计分。具体缺口仍按原证据记录。",
+      "pdf_pages": [
+        3
+      ],
+      "figure_ids": [
+        "f04",
+        "f05"
+      ],
+      "input_assets": [],
+      "source_interval_seconds": [
+        227,
+        264
+      ],
+      "observed_evidence": "说明第二根横穿松结中央并调整，固定后左右各两尾。",
+      "gap": "新增绳相对两芯与松弯的决定性前后层次仍未充分展开。",
+      "rationale": "动作和四端结果存在，但新手仍需求证关键层次；不据此断言相反穿法。 原v3.0得2.5分；按统一二元规则，本项计0分。",
+      "uncertainty": "未判定相反拓扑；该项评可观察的说明充分性。",
+      "previous_judgment": {
+        "score": 2.5,
+        "status": "partial",
+        "anchor": "明确新增绳及固定后状态，但关键前后层次仍要读者猜测或向教师求证。",
+        "rationale": "动作和四端结果存在，但新手仍需求证关键层次；不据此断言相反穿法。",
+        "rubric_version": "3.0.0"
+      }
+    },
+    {
+      "id": "T03",
+      "dimension": "教程内容",
+      "title": "左右半步的完整操作说明",
+      "maximum": 5,
+      "score": 0,
+      "status": "does_not_meet_full_credit",
+      "anchor": "未完整满足5分条件，即使已有部分正确内容或教学帮助也不计分。具体缺口仍按原证据记录。",
+      "pdf_pages": [
+        4,
+        5
+      ],
+      "figure_ids": [
+        "f06",
+        "f07",
+        "f08",
+        "f09"
+      ],
+      "input_assets": [],
+      "source_interval_seconds": [
+        268,
+        421
+      ],
+      "observed_evidence": "左右半步明确活动端、所绕对侧下尾及回原侧。",
+      "gap": "使用K左下方/K右下方等描述，没有把相对每条芯的前后关系完整说清。",
+      "rationale": "基本操作存在，一处决定性空间关系仍不明确。 原v3.0得2.5分；按统一二元规则，本项计0分。",
+      "uncertainty": null,
+      "previous_judgment": {
+        "score": 2.5,
+        "status": "partial",
+        "anchor": "左右操作基本存在，但至少一处决定性的芯前后、绕对象或回程关系不明确。",
+        "rationale": "基本操作存在，一处决定性空间关系仍不明确。",
+        "rubric_version": "3.0.0"
+      }
+    },
+    {
+      "id": "T04",
+      "dimension": "教程内容",
+      "title": "稳定身份与跨步选绳",
+      "maximum": 5,
+      "score": 5,
+      "status": "meets",
+      "anchor": "四工作端与两芯、稳定ID与动态角色分开；至少完成一轮角色更新并能解释下一活动端；诚实边界加等效示意可满足。",
+      "pdf_pages": [
+        3,
+        6
+      ],
+      "figure_ids": [
+        "f04",
+        "f05",
+        "s01",
+        "f10"
+      ],
+      "input_assets": [],
+      "source_interval_seconds": [
+        245,
+        545
+      ],
+      "observed_evidence": "四工作尾A–D和两芯分开；S0–S4表列上下换位及下一活动端，提示追根。",
+      "gap": "",
+      "rationale": "正文身份与一轮更新完整；RC03局部图文矛盾只在C03/V04及封顶处理。 原v3.0得5分；按统一二元规则，本项计5分。",
+      "uncertainty": null,
+      "previous_judgment": {
+        "score": 5,
+        "status": "meets",
+        "anchor": "四工作端与两芯、稳定ID与动态角色分开；至少完成一轮角色更新并能解释下一活动端；诚实边界加等效示意可满足。",
+        "rationale": "正文身份与一轮更新完整；RC03局部图文矛盾只在C03/V04及封顶处理。",
+        "rubric_version": "3.0.0"
+      }
+    },
+    {
+      "id": "T05",
+      "dimension": "教程内容",
+      "title": "整形、重复与停止条件",
+      "maximum": 5,
+      "score": 5,
+      "status": "meets",
+      "anchor": "本半步推齐、张力/形态检查、何时换侧重复及何时停止均可执行。",
+      "pdf_pages": [
+        6,
+        8,
+        9
+      ],
+      "figure_ids": [
+        "s01",
+        "f10",
+        "f13",
+        "f14",
+        "f15",
+        "f16"
+      ],
+      "input_assets": [],
+      "source_interval_seconds": [
+        342,
+        683
+      ],
+      "observed_evidence": "有松环上推、张力与侧环检查，表列换侧顺序，达到扣具/试戴尺寸后停止并检查。",
+      "gap": "",
+      "rationale": "整形、重复和停止均可执行。 原v3.0得5分；按统一二元规则，本项计5分。",
+      "uncertainty": null,
+      "previous_judgment": {
+        "score": 5,
+        "status": "meets",
+        "anchor": "本半步推齐、张力/形态检查、何时换侧重复及何时停止均可执行。",
+        "rationale": "整形、重复和停止均可执行。",
+        "rubric_version": "3.0.0"
+      }
+    },
+    {
+      "id": "T06",
+      "dimension": "教程内容",
+      "title": "完整收尾与安全验收",
+      "maximum": 5,
+      "score": 5,
+      "status": "meets",
+      "anchor": "逐尾固定/交接、保护芯扣、热处理适用者及冷却后的结构验收完整；不要求补写被遮挡的唯一藏线微路。",
+      "pdf_pages": [
+        8,
+        9,
+        13
+      ],
+      "figure_ids": [
+        "f13",
+        "f14",
+        "f15",
+        "f16",
+        "r04prev",
+        "r04"
+      ],
+      "input_assets": [
+        "input/learner_cards/RC04_1.png",
+        "input/learner_cards/RC04_2.png"
+      ],
+      "source_interval_seconds": [
+        628,
+        695
+      ],
+      "observed_evidence": "四尾导背、逐尾由熟练者固定剪封、保护芯扣；离腕、耐热工具、冷却与拉检明确。",
+      "gap": "",
+      "rationale": "允许合理交接；不要求补造被手遮挡的唯一藏线微路。 原v3.0得5分；按统一二元规则，本项计5分。",
+      "uncertainty": null,
+      "previous_judgment": {
+        "score": 5,
+        "status": "meets",
+        "anchor": "逐尾固定/交接、保护芯扣、热处理适用者及冷却后的结构验收完整；不要求补写被遮挡的唯一藏线微路。",
+        "rationale": "允许合理交接；不要求补造被手遮挡的唯一藏线微路。",
+        "rubric_version": "3.0.0"
+      }
+    },
+    {
+      "id": "C01",
+      "dimension": "照片续作",
+      "title": "RC01当前状态到下一检查状态",
+      "maximum": 5,
+      "score": 5,
+      "status": "meets",
+      "anchor": "方位与阶段判断正确；当前对象能结合本卡文字/明确引用唯一找到；第一动作、下一检查状态和禁忌完整。",
+      "pdf_pages": [
+        3,
+        4,
+        10
+      ],
+      "figure_ids": [
+        "f04",
+        "f05",
+        "f06",
+        "f07",
+        "r01"
+      ],
+      "input_assets": [
+        "input/learner_cards/RC01_1.png"
+      ],
+      "source_interval_seconds": [
+        245,
+        274
+      ],
+      "observed_evidence": "RC01识别已加绳待第一半步；当前图标A和左端，明确回第3页追根/上下，后续按第4页及S1检查。",
+      "gap": "",
+      "rationale": "结合明确跨页引用可确定对象，不能只因本卡未逐一标C/D而扣分。 原v3.0得5分；按统一二元规则，本项计5分。",
+      "uncertainty": null,
+      "previous_judgment": {
+        "score": 5,
+        "status": "meets",
+        "anchor": "方位与阶段判断正确；当前对象能结合本卡文字/明确引用唯一找到；第一动作、下一检查状态和禁忌完整。",
+        "rationale": "结合明确跨页引用可确定对象，不能只因本卡未逐一标C/D而扣分。",
+        "rubric_version": "3.0.0"
+      }
+    },
+    {
+      "id": "C02",
+      "dimension": "照片续作",
+      "title": "RC02当前状态到下一检查状态",
+      "maximum": 5,
+      "score": 5,
+      "status": "meets",
+      "anchor": "方位与阶段判断正确；当前对象能结合本卡文字/明确引用唯一找到；第一动作、下一检查状态和禁忌完整。",
+      "pdf_pages": [
+        11
+      ],
+      "figure_ids": [
+        "r02prev",
+        "r02"
+      ],
+      "input_assets": [
+        "input/learner_cards/RC02_1.png",
+        "input/learner_cards/RC02_2.png"
+      ],
+      "source_interval_seconds": [
+        302,
+        350
+      ],
+      "observed_evidence": "还原镜像，确认A已回右；图中定位D/松环，扶D先推环再拉A，检查到S1并避免重复穿针。",
+      "gap": "",
+      "rationale": "方位、当前对象、动作和下一状态齐备。 原v3.0得5分；按统一二元规则，本项计5分。",
+      "uncertainty": null,
+      "previous_judgment": {
+        "score": 5,
+        "status": "meets",
+        "anchor": "方位与阶段判断正确；当前对象能结合本卡文字/明确引用唯一找到；第一动作、下一检查状态和禁忌完整。",
+        "rationale": "方位、当前对象、动作和下一状态齐备。",
+        "rubric_version": "3.0.0"
+      }
+    },
+    {
+      "id": "C03",
+      "dimension": "照片续作",
+      "title": "RC03当前状态到下一检查状态",
+      "maximum": 5,
+      "score": 0,
+      "status": "does_not_meet_full_credit",
+      "anchor": "未完整满足5分条件，即使已有部分正确内容或教学帮助也不计分。具体缺口仍按原证据记录。",
+      "pdf_pages": [
+        5,
+        12
+      ],
+      "figure_ids": [
+        "f08",
+        "f09",
+        "r03prev",
+        "r03"
+      ],
+      "input_assets": [
+        "input/learner_cards/RC03_1.png",
+        "input/learner_cards/RC03_2.png"
+      ],
+      "source_interval_seconds": [
+        354,
+        421
+      ],
+      "observed_evidence": "正文要求扶右下A；第12页R03保持引线实际落在右上B；第5页F09可区分B/A。",
+      "gap": "读者按关键保持引线会选错对象，与同页文字矛盾。",
+      "rationale": "第一动作的实体指导发生确认矛盾，不能只按正确正文给部分分。 原v3.0得0分；按统一二元规则，本项计0分。",
+      "uncertainty": null,
+      "previous_judgment": {
+        "score": 0,
+        "status": "does_not_meet",
+        "anchor": "当前阶段或第一动作错误，或只有泛化建议无法从该卡继续。",
+        "rationale": "第一动作的实体指导发生确认矛盾，不能只按正确正文给部分分。",
+        "rubric_version": "3.0.0"
+      }
+    },
+    {
+      "id": "C04",
+      "dimension": "照片续作",
+      "title": "RC04当前状态到下一检查状态",
+      "maximum": 5,
+      "score": 5,
+      "status": "meets",
+      "anchor": "依据本组照片限定当前判断；先做什么、如何补看/交接到可验收状态、此刻避免什么均明确。",
+      "pdf_pages": [
+        8,
+        13
+      ],
+      "figure_ids": [
+        "f13",
+        "f14",
+        "f15",
+        "f16",
+        "r04prev",
+        "r04"
+      ],
+      "input_assets": [
+        "input/learner_cards/RC04_1.png",
+        "input/learner_cards/RC04_2.png"
+      ],
+      "source_interval_seconds": [
+        628,
+        683
+      ],
+      "observed_evidence": "结合两张照片判定收尾待固定；先翻背、摊开数四尾，保护芯扣，再交熟练者并冷却验收。",
+      "gap": "",
+      "rationale": "承认隐藏路径边界，未把模糊当前图当成固定完成的证明。 原v3.0得5分；按统一二元规则，本项计5分。",
+      "uncertainty": null,
+      "previous_judgment": {
+        "score": 5,
+        "status": "meets",
+        "anchor": "依据本组照片限定当前判断；先做什么、如何补看/交接到可验收状态、此刻避免什么均明确。",
+        "rationale": "承认隐藏路径边界，未把模糊当前图当成固定完成的证明。",
+        "rubric_version": "3.0.0"
+      }
+    },
+    {
+      "id": "V01",
+      "dimension": "图文教学",
+      "title": "加绳关键层次在图中可辨",
+      "maximum": 5,
+      "score": 0,
+      "status": "does_not_meet_full_credit",
+      "anchor": "未完整满足5分条件，即使已有部分正确内容或教学帮助也不计分。具体缺口仍按原证据记录。",
+      "pdf_pages": [
+        3
+      ],
+      "figure_ids": [
+        "f04",
+        "f05"
+      ],
+      "input_assets": [],
+      "source_interval_seconds": [
+        227,
+        264
+      ],
+      "observed_evidence": "F04能看到新增绳横向通过松弯及局部交叉；F05显示四尾结果。",
+      "gap": "剩余决定性层次没有以清晰照片、引线或等效图消解。",
+      "rationale": "保留可辨局部交叉的部分分；与T02的实际操作缺口分别记录。 原v3.0得2.5分；按统一二元规则，本项计0分。",
+      "uncertainty": "未判定相反拓扑；该项评可观察的说明充分性。",
+      "previous_judgment": {
+        "score": 2.5,
+        "status": "partial",
+        "anchor": "图中至少一个关键交叉关系能判读，但其余决定性层次仍被遮挡或未解开。",
+        "rationale": "保留可辨局部交叉的部分分；与T02的实际操作缺口分别记录。",
+        "rubric_version": "3.0.0"
+      }
+    },
+    {
+      "id": "V02",
+      "dimension": "图文教学",
+      "title": "右半步交叉路径在图中可辨",
+      "maximum": 5,
+      "score": 0,
+      "status": "does_not_meet_full_credit",
+      "anchor": "未完整满足5分条件，即使已有部分正确内容或教学帮助也不计分。具体缺口仍按原证据记录。",
+      "pdf_pages": [
+        4
+      ],
+      "figure_ids": [
+        "f06",
+        "f07"
+      ],
+      "input_assets": [],
+      "source_interval_seconds": [
+        268,
+        350
+      ],
+      "observed_evidence": "F06/F07定位工作端与被绕尾，能看到部分环和回程。",
+      "gap": "关键芯通道及被遮挡的交叉仍须依赖文字或猜线。",
+      "rationale": "对象标记提供帮助，不等于视觉追踪完整路径。 原v3.0得2.5分；按统一二元规则，本项计0分。",
+      "uncertainty": null,
+      "previous_judgment": {
+        "score": 2.5,
+        "status": "partial",
+        "anchor": "图可定位部分对象或动作，但至少一段关键前后/绕行/回程仍依赖纯文字或自行猜线。",
+        "rationale": "对象标记提供帮助，不等于视觉追踪完整路径。",
+        "rubric_version": "3.0.0"
+      }
+    },
+    {
+      "id": "V03",
+      "dimension": "图文教学",
+      "title": "左半步交叉路径在图中可辨",
+      "maximum": 5,
+      "score": 0,
+      "status": "does_not_meet_full_credit",
+      "anchor": "未完整满足5分条件，即使已有部分正确内容或教学帮助也不计分。具体缺口仍按原证据记录。",
+      "pdf_pages": [
+        5
+      ],
+      "figure_ids": [
+        "f08",
+        "f09"
+      ],
+      "input_assets": [],
+      "source_interval_seconds": [
+        354,
+        421
+      ],
+      "observed_evidence": "F08/F09标C、A及前后状态，部分左侧环可见。",
+      "gap": "手遮与密集交叉处没有被图内路径或清晰层次补足。",
+      "rationale": "左半步有部分视觉证据，完整关系仍不足。 原v3.0得2.5分；按统一二元规则，本项计0分。",
+      "uncertainty": null,
+      "previous_judgment": {
+        "score": 2.5,
+        "status": "partial",
+        "anchor": "图可定位部分对象或动作，但至少一段关键前后/绕行/回程仍依赖纯文字或自行猜线。",
+        "rationale": "左半步有部分视觉证据，完整关系仍不足。",
+        "rubric_version": "3.0.0"
+      }
+    },
+    {
+      "id": "V04",
+      "dimension": "图文教学",
+      "title": "关键引线与对象唯一对应",
+      "maximum": 5,
+      "score": 0,
+      "status": "does_not_meet_full_credit",
+      "anchor": "未完整满足5分条件，即使已有部分正确内容或教学帮助也不计分。具体缺口仍按原证据记录。",
+      "pdf_pages": [
+        5,
+        12
+      ],
+      "figure_ids": [
+        "f08",
+        "f09",
+        "r03prev",
+        "r03"
+      ],
+      "input_assets": [
+        "input/learner_cards/RC03_1.png",
+        "input/learner_cards/RC03_2.png"
+      ],
+      "source_interval_seconds": [
+        371,
+        378
+      ],
+      "observed_evidence": "R03的A保持引线落在上方浅尾，而正文/F09要求下方A。",
+      "gap": "该关键实体引线发生确认错指。",
+      "rationale": "本项评价视觉实体可靠性；C03评价当前续作首动作，另沿用C04严重错误封顶。 原v3.0得0分；按统一二元规则，本项计0分。",
+      "uncertainty": null,
+      "previous_judgment": {
+        "score": 0,
+        "status": "does_not_meet",
+        "anchor": "普遍没有实体标注，或确认关键图文实体矛盾。含混本身不算确认错指。",
+        "rationale": "本项评价视觉实体可靠性；C03评价当前续作首动作，另沿用C04严重错误封顶。",
+        "rubric_version": "3.0.0"
+      }
+    },
+    {
+      "id": "R01",
+      "dimension": "可逆纠错",
+      "title": "两项可逆恢复的操作闭环",
+      "maximum": 5,
+      "score": 0,
+      "status": "does_not_meet_full_credit",
+      "anchor": "未完整满足5分条件，即使已有部分正确内容或教学帮助也不计分。具体缺口仍按原证据记录。",
+      "pdf_pages": [
+        7
+      ],
+      "figure_ids": [
+        "f11",
+        "f12",
+        "s02"
+      ],
+      "input_assets": [],
+      "source_interval_seconds": [
+        439,
+        585
+      ],
+      "observed_evidence": "问题一明确喂回、推过下绳、重拉检查；问题二写退回回程再退对侧绕圈并比照状态表。",
+      "gap": "第二项未明确退完第一次中缝到上一检查点的完整顺序，仍以沿原路/恢复检查点概括。",
+      "rationale": "第一项闭环充分，第二项退回步骤不完整。 原v3.0得2.5分；按统一二元规则，本项计0分。",
+      "uncertainty": null,
+      "previous_judgment": {
+        "score": 2.5,
+        "status": "partial",
+        "anchor": "只有一项闭环，或两项都有帮助但退回顺序/复原状态仍泛化。",
+        "rationale": "第一项闭环充分，第二项退回步骤不完整。",
+        "rubric_version": "3.0.0"
+      }
+    },
+    {
+      "id": "R02",
+      "dimension": "可逆纠错",
+      "title": "恢复图确实帮助选对象或退路",
+      "maximum": 5,
+      "score": 5,
+      "status": "meets",
+      "anchor": "至少一图的真实/示意对象或路径与具体恢复动作一一对应，可确定退哪根/往哪里/恢复何种关系。",
+      "pdf_pages": [
+        7
+      ],
+      "figure_ids": [
+        "f11",
+        "f12",
+        "s02"
+      ],
+      "input_assets": [],
+      "source_interval_seconds": [
+        508,
+        545
+      ],
+      "observed_evidence": "F11分别指保持的对侧下绳、易钩处和待上推新圈，F12标恢复后边圈及下落跨绳。",
+      "gap": "",
+      "rationale": "至少一个真实对象图能对应问题一的扶哪根、推哪个圈和恢复目标；不强制额外画逆向连续图。 原v3.0得5分；按统一二元规则，本项计5分。",
+      "uncertainty": null,
+      "previous_judgment": {
+        "score": 5,
+        "status": "meets",
+        "anchor": "至少一图的真实/示意对象或路径与具体恢复动作一一对应，可确定退哪根/往哪里/恢复何种关系。",
+        "rationale": "至少一个真实对象图能对应问题一的扶哪根、推哪个圈和恢复目标；不强制额外画逆向连续图。",
+        "rubric_version": "3.0.0"
+      }
+    },
+    {
+      "id": "E01",
+      "dimension": "证据与交付",
+      "title": "来源索引完整且与成品相符",
+      "maximum": 5,
+      "score": 0,
+      "status": "does_not_meet_full_credit",
+      "anchor": "未完整满足5分条件，即使已有部分正确内容或教学帮助也不计分。具体缺口仍按原证据记录。",
+      "pdf_pages": [
+        3,
+        6
+      ],
+      "figure_ids": [
+        "f04",
+        "f05",
+        "s01",
+        "f10"
+      ],
+      "input_assets": [],
+      "source_interval_seconds": [
+        245,
+        545
+      ],
+      "observed_evidence": "机械检查通过，图页/时点/卡片可回查，推演状态有标识。",
+      "gap": "stable_worker_ids把K左/K右与A–D并列，实体类别与正文分芯不一致。",
+      "rationale": "来源索引是部分满足；不把RC03箭头错误再当成独立索引错配重复扣分。 原v3.0得2.5分；按统一二元规则，本项计0分。",
+      "uncertainty": null,
+      "previous_judgment": {
+        "score": 2.5,
+        "status": "partial",
+        "anchor": "可解析、主要来源可回查，但存在空必填引用、部分实体/来源错配或遗漏。",
+        "rationale": "来源索引是部分满足；不把RC03箭头错误再当成独立索引错配重复扣分。",
+        "rubric_version": "3.0.0"
+      }
+    },
+    {
+      "id": "E02",
+      "dimension": "证据与交付",
+      "title": "事实边界、补充与署名",
+      "maximum": 5,
+      "score": 5,
+      "status": "meets",
+      "anchor": "来源与改编署名完整；新增方法、预装范围、遮挡与不确定性准确限定，不虚构用量/轮数。",
+      "pdf_pages": [
+        1,
+        6,
+        7,
+        8,
+        9,
+        13
+      ],
+      "figure_ids": [
+        "f01",
+        "s01",
+        "f10",
+        "f11",
+        "f12",
+        "s02",
+        "f13",
+        "f14",
+        "f15",
+        "f16",
+        "r04prev",
+        "r04"
+      ],
+      "input_assets": [
+        "input/learner_cards/RC04_1.png",
+        "input/learner_cards/RC04_2.png"
+      ],
+      "source_interval_seconds": [
+        0,
+        797.884
+      ],
+      "observed_evidence": "署名、来源、改编、补充恢复、S3/S4推演与隐藏微动作边界明确，无通用用量/轮数捏造。",
+      "gap": "",
+      "rationale": "满足事实边界与署名要求。 原v3.0得5分；按统一二元规则，本项计5分。",
+      "uncertainty": null,
+      "previous_judgment": {
+        "score": 5,
+        "status": "meets",
+        "anchor": "来源与改编署名完整；新增方法、预装范围、遮挡与不确定性准确限定，不虚构用量/轮数。",
+        "rationale": "满足事实边界与署名要求。",
+        "rubric_version": "3.0.0"
+      }
+    },
+    {
+      "id": "L01",
+      "dimension": "阅读与排版",
+      "title": "正文、图例及打印可读性",
+      "maximum": 5,
+      "score": 5,
+      "status": "meets",
+      "anchor": "实际页图中正文、表格、图内文字清楚；无影响使用的裁切/重叠/畸变，关键细节可放大阅读。",
+      "pdf_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "figure_ids": [
+        "f01",
+        "f02",
+        "f03",
+        "f04",
+        "f05",
+        "f06",
+        "f07",
+        "f08",
+        "f09",
+        "s01",
+        "f10",
+        "f11",
+        "f12",
+        "s02",
+        "f13",
+        "f14",
+        "f15",
+        "f16",
+        "r01",
+        "r02prev",
+        "r02",
+        "r03prev",
+        "r03",
+        "r04prev",
+        "r04"
+      ],
+      "input_assets": [
+        "input/learner_cards/RC01_1.png",
+        "input/learner_cards/RC02_1.png",
+        "input/learner_cards/RC02_2.png",
+        "input/learner_cards/RC03_1.png",
+        "input/learner_cards/RC03_2.png",
+        "input/learner_cards/RC04_1.png",
+        "input/learner_cards/RC04_2.png"
+      ],
+      "source_interval_seconds": [
+        0,
+        797.884
+      ],
+      "observed_evidence": "13页实际渲染正文、表格与图内标签可读，无影响使用的裁切、重叠或畸变。",
+      "gap": "",
+      "rationale": "不能把对象内容错误重复算作排版可读性错误。 原v3.0得5分；按统一二元规则，本项计5分。",
+      "uncertainty": null,
+      "previous_judgment": {
+        "score": 5,
+        "status": "meets",
+        "anchor": "实际页图中正文、表格、图内文字清楚；无影响使用的裁切/重叠/畸变，关键细节可放大阅读。",
+        "rationale": "不能把对象内容错误重复算作排版可读性错误。",
+        "rubric_version": "3.0.0"
+      }
+    },
+    {
+      "id": "L02",
+      "dimension": "阅读与排版",
+      "title": "步骤组织、图文就近与查阅",
+      "maximum": 5,
+      "score": 5,
+      "status": "meets",
+      "anchor": "全流程顺序清楚；重复有明确复用方式；四卡易查，图文相邻或引用明确，不因结构跳跃漏掉必需动作。",
+      "pdf_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "figure_ids": [
+        "f01",
+        "f02",
+        "f03",
+        "f04",
+        "f05",
+        "f06",
+        "f07",
+        "f08",
+        "f09",
+        "s01",
+        "f10",
+        "f11",
+        "f12",
+        "s02",
+        "f13",
+        "f14",
+        "f15",
+        "f16",
+        "r01",
+        "r02prev",
+        "r02",
+        "r03prev",
+        "r03",
+        "r04prev",
+        "r04"
+      ],
+      "input_assets": [
+        "input/learner_cards/RC01_1.png",
+        "input/learner_cards/RC02_1.png",
+        "input/learner_cards/RC02_2.png",
+        "input/learner_cards/RC03_1.png",
+        "input/learner_cards/RC03_2.png",
+        "input/learner_cards/RC04_1.png",
+        "input/learner_cards/RC04_2.png"
+      ],
+      "source_interval_seconds": [
+        0,
+        797.884
+      ],
+      "observed_evidence": "全流程顺序明确，状态表支持重复，四卡独立可查并给正文引用。",
+      "gap": "",
+      "rationale": "组织与图文就近满足锚点。 原v3.0得5分；按统一二元规则，本项计5分。",
+      "uncertainty": null,
+      "previous_judgment": {
+        "score": 5,
+        "status": "meets",
+        "anchor": "全流程顺序清楚；重复有明确复用方式；四卡易查，图文相邻或引用明确，不因结构跳跃漏掉必需动作。",
+        "rationale": "组织与图文就近满足锚点。",
+        "rubric_version": "3.0.0"
+      }
+    }
+  ],
+  "dimension_scores": [
+    {
+      "dimension": "教程内容",
+      "maximum": 30,
+      "score": 20
+    },
+    {
+      "dimension": "照片续作",
+      "maximum": 20,
+      "score": 15
+    },
+    {
+      "dimension": "图文教学",
+      "maximum": 20,
+      "score": 0
+    },
+    {
+      "dimension": "可逆纠错",
+      "maximum": 10,
+      "score": 5
+    },
+    {
+      "dimension": "证据与交付",
+      "maximum": 10,
+      "score": 5
+    },
+    {
+      "dimension": "阅读与排版",
+      "maximum": 10,
+      "score": 10
+    }
+  ],
+  "raw_score": 55,
+  "caps": [
+    {
+      "id": "C01",
+      "status": "not_confirmed_not_applied",
+      "maximum": 49,
+      "reason": "主要穿法正文、被绕对象及回原侧与来源相容；RC03正文未要求新穿针，图中扶持标签错误不能自动证明已经指示相反绳路。"
+    },
+    {
+      "id": "C02",
+      "status": "not_present",
+      "maximum": 69,
+      "reason": "第8/9/13页具备逐尾转背、剪封、保护芯扣及冷却验收，满足完整收尾与合理交接。"
+    },
+    {
+      "id": "C03",
+      "status": "not_present",
+      "maximum": 39,
+      "reason": "指定熟练者、耐热工具、不用手触熔头及充分冷却，未确认危险热操作指导。"
+    },
+    {
+      "id": "C04",
+      "status": "applied",
+      "maximum": 59,
+      "reason": "第12页R03“A：扶住右下绳”箭头实际指向右上浅尾，而同页正文与第5页F09均要求/说明右下A、右上B；被C环抱的是下方浅尾。属关键续作图对实体关系与正文相矛盾。",
+      "pdf_pages": [
+        5,
+        12
+      ],
+      "figures": [
+        "F09",
+        "R03"
+      ],
+      "source_times": [
+        371,
+        378
+      ],
+      "detail_images": [
+        "review_details/p5.png",
+        "review_details/p12.png"
+      ],
+      "confirmation_scope": "局部上/下两绳及图内标记的直接矛盾；无需依赖尚待专家验证的S04加绳层次或远距离跨轮ID映射。"
+    }
+  ],
+  "provisional_score": 55,
+  "final_score": null,
+  "unknown_items": [],
+  "score_interval": [
+    55,
+    55
+  ],
+  "previous_evaluation": {
+    "raw_score": 86.0,
+    "provisional_score": 59,
+    "final_score": null,
+    "source": "original semantic_review.json retained byte-for-byte"
+  },
+  "calibration": {
+    "independent_expert": "not_run",
+    "novice_trial": "not_run",
+    "physical_recovery": "not_run"
+  },
+  "scope_limit": "二元总分表示完整达标项数量乘5（再应用严重错误封顶），会丢失部分完成的分差；该结果是同一批作者暂评的确定性重算，不能当作新的模型运行或独立验证。 正式专家分仍未评。",
+  "visual_review": {
+    "pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "render_sha256": {
+      "page-01.png": "d6f7c81b2ec5fee7bb08623ba4c09e53a8b4ab6e6ce766a578ea62b4e5ce8725",
+      "page-02.png": "292c8243bec8357031c1f1e423ab95ca201e2ebc69e7464bc05b271d74311116",
+      "page-03.png": "d5f8c52f77cba5b5a0521a86cda5d68c58623c46d81299b2d70f81f541d21203",
+      "page-04.png": "524687f728a0b2032841a61566116eb4c4121bdaebdea10e9da1fdbeaa32fc17",
+      "page-05.png": "f99a02a699cb2d6e1cc8b40cf2d5ee64b0b2164d25a657d6b5725d6f61680cb3",
+      "page-06.png": "c0978b3901d2bbcb5b0b696a77d99087f735b5a8f69e51fa097e930b46c15466",
+      "page-07.png": "19d523222f95c8d0ef15cd502d0eadb07370a856c133585eeef6c2fd7f526a4d",
+      "page-08.png": "e882fa9def71cf71d805e77e0b09633ab4b4e7814af8f8bbb1be3e40c2e8562e",
+      "page-09.png": "cad39836e477164fc022b341f758775649ad6302e04dc5286f7d849ab0070649",
+      "page-10.png": "0216701e48ee5fbd1f72e1e06de49d08a452ef4d0ab585eea622744b001c8a3f",
+      "page-11.png": "f3a912b3195e90045b9a3455f0805abc7d650f28b68ebd32d57db0d5a02fcaab",
+      "page-12.png": "5fd91dab479f7fee58ac3ec1f44055d79b92779cc6d3ea1051d1f6d69ee92f10",
+      "page-13.png": "742a26370f122e330917baea18113104e5e8fc2bb9976d639eeba34bcbac544d"
+    },
+    "actual_rendered_pages_reviewed": true
+  },
+  "scored_at": "2026-11-04T11:24:28.555676+08:00",
+  "evaluation_mode": "deterministic_binary_recalculation_of_v3.0",
+  "previous_scoring": {
+    "rubric_version": "3.0.0",
+    "raw_score": 72.5,
+    "provisional_score": 59,
+    "review_sha256": "81270b95a840fa8817143698ceda17f31d8fa4b5c3a0c9ebdfaf3cc300b07b36",
+    "path": "../v3/reviews/gpt-6.1-sol.json"
+  },
+  "full_credit_items": 11,
+  "zero_credit_items": 9,
+  "converted_partial_items": [
+    "T02",
+    "T03",
+    "V01",
+    "V02",
+    "V03",
+    "R01",
+    "E01"
+  ]
+}

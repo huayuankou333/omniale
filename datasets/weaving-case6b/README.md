@@ -36,4 +36,8 @@ GLM 5.3与Kimi K3 Pro在原API试调用均返回404 model_not_found，无配置�
 
 ## 评分修订 v3.0.0
 
-2026-11-04增加20条独立rubric，每项0/2.5/5。该量表是已知旧提交后的修订，尚无独立专家/盲评校准。当前暂评：Luna 42.5；Sol原始72.5、封顶59；Astra82.5。正式专家分仍为null。原始运行包保留旧评测元数据，当前量表与逐项证据单独保存于[网页评分区](https://huayuankou333.github.io/omniale/weaving/#rubric-v3)及[scoring/v3](https://github.com/huayuankou333/omniale/tree/main/docs/weaving/scoring/v3)。候选题目与输入包没有变更。
+2026-11-04增加20条独立rubric，每项0/2.5/5。该量表是已知旧提交后的修订，尚无独立专家/盲评校准。v3.0历史暂评：Luna 42.5；Sol原始72.5、封顶59；Astra82.5。正式专家分仍为null。原始运行包保留旧评测元数据，当前量表与逐项证据单独保存于[网页评分区](https://huayuankou333.github.io/omniale/weaving/#rubric-v3)及[scoring/v3](https://github.com/huayuankou333/omniale/tree/main/docs/weaving/scoring/v3)。候选题目与输入包没有变更。
+
+## 二元计分 v3.1.0（当前版本）
+
+2026-11-04按用户要求将20项统一改为只计完整达标：原5分保留，原0/2.5分均计0。依据同一批逐项观察确定性重算，没有新增受测运行。当前作者暂评：Luna **15**（3/20项）；Sol **55**（11/20项，原始55低于59上限）；Astra **65**（13/20项）。维度权重、满分标准、证据与严重错误封顶不改。原v3.0文件保留，当前[评分与逐项证据](https://huayuankou333.github.io/omniale/weaving/#rubric-v3)位于scoring/v3.1/；题目和受测输入仍为2.1.0，正式专家分仍为null。
