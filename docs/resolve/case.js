@@ -30,8 +30,8 @@ async function load(){
     }
     const body=el('div',undefined,'criterion-body');
     rows.forEach((row,j)=>{const c=el('div');c.append(el('h4',report.models[j].model),el('p',row?.reason||'尚待证据复核。'));if(!row){body.append(c);return;}
-     if(row.adjudication){c.append(el('p',row.components?'用户明确裁决：仅前两个字幕子分记零，视觉层级仍按证据评分。':'用户明确裁决：本项记零；权重保留。此前观察在原始评分JSON中留存。','adjudication'));}
-     if(row.source_judgments){const audit=el('details',undefined,'source-judgments');audit.append(el('summary','查看 v2.1 原始判断（旧版ID）'));row.source_judgments.forEach(old=>audit.append(el('p',old.id+' '+old.title+'：'+fmt(old.points)+' / '+fmt(old.weight)+'。'+old.reason)));c.append(audit);}
+     if(row.adjudication&&!row.components){c.append(el('p','用户明确裁决：本项记零；权重保留。此前观察在原始评分JSON中留存。','adjudication'));}
+     if(row.source_judgments&&row.id!=='O08'){const audit=el('details',undefined,'source-judgments');audit.append(el('summary','查看 v2.1 原始判断（旧版ID）'));row.source_judgments.forEach(old=>audit.append(el('p',old.id+' '+old.title+'：'+fmt(old.points)+' / '+fmt(old.weight)+'。'+old.reason)));c.append(audit);}
      (row.output_ranges_seconds||[]).slice(0,6).forEach(([a,b])=>{const btn=el('button',`${a}–${b}秒`,'seek');btn.type='button';btn.dataset.model=report.models[j].id;btn.dataset.time=a;c.append(btn);});body.append(c);});d.append(body);});target.append(d);
   });}
  $('#rubric-filter').addEventListener('change',render);render();

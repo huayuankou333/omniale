@@ -1,6 +1,6 @@
 {
-  "updated_date": "2026-11-03",
-  "scope": "Unchanged submissions; v3 retrospective module evidence review, provisional single assistant",
+  "updated_date": "2026-11-04",
+  "scope": "Unchanged submissions; retrospective source-aligned review with human visual judgment for subtitle components",
   "metrics_definition": "ASR coverage is the union of actual returned mixed-track time windows, not semantic comprehension or native audio listening. Frames count observations, including repeated timestamps; tutorial frames remain undistributed.",
   "models": [
     {
@@ -2969,23 +2969,24 @@
     },
     {
       "id": "subtitle-policy",
-      "model": "both",
-      "title": "字幕两项归零是明确裁决，与观察证据分开保留",
-      "kind": "评分裁决",
+      "model": "all",
+      "title": "字幕清晰度与配文、画面的空间关系不达标",
+      "kind": "字幕与空间协调",
       "rubrics": [
         "O08"
       ],
       "output_ranges": [],
       "source_ranges": [],
       "tools": [],
-      "observed": "旧版裁决事实保留：Luna部分字幕落在亮墙/复杂背景；Sol原审两字幕项均为2/2，用户随后要求两模型均归零。v3仅迁移这两个子分，不伪造相同可读性缺陷。",
-      "chain": "原用户裁决映射到新O08前两个各2分字幕子分，Luna/Sol均为0+0；视觉层级仍分别0.5/1、1/1，O08为0.5/5、1/5。Astra按自身证据为5/5。若Sol两个字幕子分恢复满分，其总分为83.50；不能把79.50解释成统一字幕满分假设下仍低于80。",
-      "limit": "不把统一归零解释成已证明两份字幕同样不可读，也不把该裁决自动扩展到未来模型。",
+      "observed": "三份交付均存在字幕不够清晰、字幕或配文与画面重叠的问题，影响持续阅读与整体观感。",
+      "chain": "O08的排字/阅读时间与对比/遮挡/空间关系两个子分，各为0/2；视觉层级仍单独评分：Luna0.5/1、Sol1/1、Astra1/1。因此O08分别为0.5/5、1/5、1/5。",
+      "limit": "按最终观感评价；不以字幕可编辑、画面与声音同步或样式统一替代可读性。两个字幕子分与视觉层级分别计分，同一问题不在其他项目重复扣分。",
       "source_version": "v2.1",
       "source_rubrics": [
         "O09",
         "O10"
-      ]
+      ],
+      "review_reference": "files/subtitle-review-20261104.json"
     },
     {
       "id": "astra-material-speaker",
@@ -3261,7 +3262,7 @@
   "pending_model": {
     "model": "gpt-6-astra",
     "status": "completed",
-    "score": 78.0,
+    "score": 74.0,
     "exact_model_id_verified": true,
     "image_and_tool_preflight_passed": true,
     "evaluation_started": true,

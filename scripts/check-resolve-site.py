@@ -40,7 +40,7 @@ old_def={i['id']:i for i in old_rubric['items']}
 for item in rubric['items']:
     for link in item.get('necessary_links',[]):assert link['assertions']==old_def[link['source_id']]['assertions']
 assert sorted(s for i in rubric['items']if i['id']in ['O01','O02','O03']for s in i['source_topic_ids'])==[f'C{n:02}'for n in range(1,25)]
-baseline={'gpt-6-luna':43.5,'gpt-6.1-sol':79.5,'gpt-6-astra':78.0}
+baseline={'gpt-6-luna':43.5,'gpt-6.1-sol':79.5,'gpt-6-astra':74.0}
 old_totals={'gpt-6-luna':38.67,'gpt-6.1-sol':83.33,'gpt-6-astra':85.75}
 for model in r['models']:
     expected=baseline[model['model']]
@@ -74,10 +74,10 @@ for model in r['models']:
     assert original['explicit_core_attribution_error_count']==sum(e['kind']=='core_misattribution'for e in events)
     o8=next(i for i in model['items']if i['id']=='O08');subtitle=o8['components'][:2]
     assert [c['source_id']for c in subtitle]==['O09','O10']
-    if model['model']in ['gpt-6-luna','gpt-6.1-sol']:
-        assert [c['points']for c in subtitle]==[0,0] and all(c.get('adjudication')for c in subtitle)
-        assert o8['points']==(.5 if model['model']=='gpt-6-luna'else 1)
-    else:assert [c['points']for c in subtitle]==[2,2] and o8['points']==5
+    assert [c['points']for c in subtitle]==[0,0]
+    assert all(c['review_reference']=='files/subtitle-review-20261104.json'for c in subtitle)
+    assert o8['points']==(.5 if model['model']=='gpt-6-luna'else 1)
+    assert o8['components'][2]['points']==o8['points']
     assert original['total_if_two_subtitle_components_zero']==round(model['score']-sum(c['points']for c in subtitle),2)
     assert original['total_if_two_subtitle_components_full']==round(model['score']+4-sum(c['points']for c in subtitle),2)
     assert next(i for i in model['items']if i['id']=='O06')['continuous_listening_pending']is True
@@ -109,6 +109,12 @@ current=read('files/scores-current.json')
 assert current['source_scores_sha256']==sha(ROOT/'files/scores.v2.1.all-models.json')
 assert current['models']['gpt-6.1-sol']['total_if_two_subtitle_components_full']==83.5
 assert current['models']['gpt-6-astra']['total_if_two_subtitle_components_zero']==74
+assert current['models']['gpt-6-astra']['category_totals']=={'C':42.5,'O':21.5,'E':10}
+review=read('files/subtitle-review-20261104.json')
+assert review['authority']=='human user who viewed the three delivered videos'
+assert review['component_points']==[0,0] and review['astra_previous_total']==78
+assert review['astra_new_total']==74 and review['exact_problem_timestamps_not_supplied']is True
+assert review['candidate_deliverables_modified']is False
 assert set(current['models'])=={m['model']for m in r['models']}
 for model in r['models']:
     assert current['models'][model['model']]['items']==model['items']
@@ -150,6 +156,6 @@ for p in files:
                 links+=1
 summary={'pass':True,'models':len(r['models']),'rubric_items_each':24,'historical_rubric_items_each':39,'scores':[m['score']for m in r['models']],
          'tool_trace_counts':[m['trace_events']for m in r['models']],'files':len(files),'text_files':text_count,'local_html_links':links,
-         'checks':['24-item score and category recomputation','39-item history and original score files retained','all original content assertions retained','one attribution event has one owner','partial O08 subtitle adjudication','all tool events preserved','real observation frame hashes','unchanged original DRP hashes','original/browser media SHA256 links','detailed analysis references actual traces','ASR union and source/output frame counts','unstarted models have no score','all HTML local paths','no credential patterns or user directory paths','individual files below100MiB']}
+         'checks':['24-item score and category recomputation','39-item history and original score files retained','all original content assertions retained','one attribution event has one owner','three-model O08 subtitle review with separate hierarchy points','human visual review provenance retained','all tool events preserved','real observation frame hashes','unchanged original DRP hashes','original/browser media SHA256 links','detailed analysis references actual traces','ASR union and source/output frame counts','unstarted models have no score','all HTML local paths','no credential patterns or user directory paths','individual files below100MiB']}
 (ROOT/'files/site-validation.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
 print(json.dumps(summary,ensure_ascii=False,indent=2))
