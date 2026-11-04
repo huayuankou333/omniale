@@ -54,7 +54,8 @@ const analysis=await json('data/detailed-analysis.json');
 assert.equal(analysis.case_version,data.case_version);assert.equal(analysis.final_score,null);
 assert.deepEqual(analysis.models.map(m=>m.id),data.models.map(m=>m.id));
 const homepage=await read('index.html');let analysisFindings=0,analysisPhases=0,errorChains=0;
-if(scoring){assert.equal([...homepage.matchAll(/class="rubric-detail"/g)].length,20);assert.equal([...homepage.matchAll(/class="rubric-model"/g)].length,60);assert(homepage.includes('评后修订'));}
+if(scoring){assert.equal([...homepage.matchAll(/class="rubric-detail"/g)].length,20);assert.equal([...homepage.matchAll(/class="rubric-model"/g)].length,60);assert(homepage.includes(`data-scoring-version="${scoring.rubric_version}"`));}
+assert(!/glm-5\.3|kimi-k3-pro|additional-test-status|model_not_found|隔离与计算审计|作者暂评|二元计分方法披露|本轮实际感知方式/.test(homepage),'Internal status or development notes remain on the public page.');
 const audit=await json('data/publication-audit.json');assert.equal(audit.private_evaluator_material_published,false);assert.equal(audit.raw_api_responses_published,false);assert.equal(audit.original_submissions_unchanged,true);
 const forbidden=/\b(?:github_pat_[A-Za-z0-9_]{20,}|ghp_[A-Za-z0-9]{20,}|sk-[A-Za-z0-9_-]{20,})/;
 let files=0,links=0;let totalBytes=0;
@@ -119,7 +120,7 @@ for(const model of data.models){
  assert.equal(detail.recoverable_errors.length,model.recoverable_tool_errors);
  for(const chain of detail.recoverable_errors){errorChains++;assert.equal(tools.find(t=>t.tool_call===chain.tool).status,'error');if(chain.recovery_tool!==null)assert.equal(tools.find(t=>t.tool_call===chain.recovery_tool).status,'ok');else assert(chain.outcome);}
  if(model.historical_image_method==='exact_outgoing_image_snapshots')assert.equal(trace.counts.missing_images,0);
- if(model.transport_recovery){for(const file of model.transport_recovery_records||['transport-recovery.json']){const recovery=await json(record+file);assert(recovery.same_context&&recovery.original_started_at_and_budgets_retained&&!recovery.new_model_hints);}assert(homepage.includes('id="transport-'+model.id+'"'));}
+ if(model.transport_recovery){for(const file of model.transport_recovery_records||['transport-recovery.json']){const recovery=await json(record+file);assert(recovery.same_context&&recovery.original_started_at_and_budgets_retained&&!recovery.new_model_hints);}}
 }
 for(const match of homepage.matchAll(/href="#trajectory-([^"]+)-tool-(\d+)"/g)){
  const model=data.models.find(m=>m.id===match[1]);assert(model,`Unknown trace model: ${match[1]}`);assert(Number(match[2])>=1&&Number(match[2])<=model.tool_calls);
@@ -158,7 +159,8 @@ if(process.argv.includes('--browser')){
  try{
   await page.goto(base,{waitUntil:'networkidle'});await page.locator('.trace-event').first().waitFor();
   assert((await page.locator('#task').textContent()).includes('加入至少两项常见问题的可逆排查与恢复方法'));
-  assert.equal(await page.locator('.trace-event').count(),data.models[0].tool_calls+data.models[0].api_retries);
+  assert.equal(await page.locator('.trace-event').count(),data.models[0].tool_calls);
+  assert(!/API重试|API 重试|glm-5\.3|kimi-k3-pro|正式专家分|隔离与计算审计/.test(await page.locator('main').innerText()));
   await page.screenshot({path:path.join(output,'case-desktop-top.png')});
   await page.locator('#inputs').screenshot({path:path.join(output,'case-inputs.png')});
   await page.locator('#results').screenshot({path:path.join(output,'case-results.png')});
@@ -196,8 +198,8 @@ if(process.argv.includes('--browser')){
   await page.locator('video').evaluate(v=>v.pause());
   const duration=await page.locator('video').evaluate(v=>v.duration);assert(Math.abs(duration-797.884)<1,`Video duration ${duration}`);
   const sol=data.models.find(m=>m.id==='gpt-6.1-sol');
-  await page.selectOption('#trace-model',sol.id);await page.waitForFunction(n=>document.querySelectorAll('.trace-event').length===n,sol.tool_calls+sol.api_retries);
-  await page.selectOption('#trace-filter','errors');await page.waitForFunction(n=>document.querySelectorAll('.trace-event').length===n,sol.recoverable_tool_errors+sol.api_retries);
+  await page.selectOption('#trace-model',sol.id);await page.waitForFunction(n=>document.querySelectorAll('.trace-event').length===n,sol.tool_calls);
+  await page.selectOption('#trace-filter','errors');await page.waitForFunction(n=>document.querySelectorAll('.trace-event').length===n,sol.recoverable_tool_errors);
   await page.selectOption('#trace-filter','images');await page.locator('.trace-event summary').first().click();await page.locator('.trace-images img').first().waitFor();
   await page.locator('.trace-images img').first().evaluate(img=>img.decode());
   await page.locator('#trajectory').screenshot({path:path.join(output,'case-trajectory.png')});
@@ -220,7 +222,7 @@ if(process.argv.includes('--browser')){
    await page.waitForFunction(id=>document.getElementById('trace-'+id+'-tool-1')?.open===true,model.id);
    assert.equal(await page.locator('#trace-model').inputValue(),model.id);
    await page.selectOption('#trace-filter','errors');
-   await page.waitForFunction(n=>document.querySelectorAll('.trace-event').length===n,model.recoverable_tool_errors+model.api_retries);
+   await page.waitForFunction(n=>document.querySelectorAll('.trace-event').length===n,model.recoverable_tool_errors);
    await page.goto(base+'#analysis-'+model.id);
    const article=page.locator('[id="analysis-'+model.id+'"]');
    await article.locator('.finding').first().evaluate(element=>element.open=true);
@@ -263,7 +265,7 @@ if(process.argv.includes('--browser')){
    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'Additional mobile analysis overflow');
    await page.locator('[id="analysis-'+model.id+'"]').screenshot({path:path.join(output,model.id+'-mobile-analysis.png')});
   }
-  assert.deepEqual(errors,[]);report.browser_checks='passed';report.browser_validated=['desktop and mobile layout','current score cards match scoring data','binary rubric contains only 0/5 scores and anchors','rubric expand/deep links and original PDF evidence links','detailed analysis and source-time chart','phase tables','cross-model tool deep links reset filters and search','analysis links open the original tool result','malformed JSON tool event displays safely','video duration and range playback','all tool traces plus retries','error and image filters','search','historical image rendering','all PDF readers','page navigation, deep links and zoom','no page errors or missing local assets'];
+  assert.deepEqual(errors,[]);report.browser_checks='passed';report.browser_validated=['desktop and mobile layout','current score cards match scoring data','binary rubric contains only 0/5 scores and anchors','rubric expand/deep links and original PDF evidence links','detailed analysis and source-time chart','phase tables','cross-model tool deep links reset filters and search','analysis links open the original tool result','malformed JSON tool event displays safely','video duration and range playback','all model tool traces without infrastructure retries','error and image filters','search','historical image rendering','all PDF readers','page navigation, deep links and zoom','no page errors or missing local assets'];
  }catch(error){report.browser_checks='failed';report.failure=error.stack;report.media=await page.locator('video').evaluate(v=>v?({readyState:v.readyState,networkState:v.networkState,error:v.error?{code:v.error.code,message:v.error.message}:null,currentSrc:v.currentSrc,codec:v.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"')}):null).catch(()=>null);await fs.writeFile(path.join(output,'validation.json'),JSON.stringify(report,null,2)+'\n');throw error;}
  finally{await browser.close();await new Promise(resolve=>server.close(resolve));}
 }

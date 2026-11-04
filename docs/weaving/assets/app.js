@@ -13,29 +13,24 @@ async function renderTrace(){
   try{
     const trace=await getTrace(model);if($('#trace-model').value!==model||version!==traceRenderVersion)return;
     const events=trace.events.filter(e=>{
-      if(filter==='errors'&&e.status!=='error'&&e.kind!=='api_retry')return false;
+      if(e.kind!=='tool')return false;
+      if(filter==='errors'&&e.status!=='error')return false;
       if(filter==='images'&&!e.images?.length)return false;
       if(!['all','errors','images'].includes(filter)&&e.action!==filter)return false;
       return !query||JSON.stringify(e).toLowerCase().includes(query);
     });
-    root.replaceChildren();$('#trace-summary').textContent=`${model} · ${trace.counts.tool_calls} 次工具 · ${trace.counts.api_retries} 次API重试 · 图像观察 ${trace.counts.delivered_images} 幅（留存 ${trace.counts.preserved_images}，中间图缺失 ${trace.counts.missing_images}） · 当前显示 ${events.length} 条事件`;
+    root.replaceChildren();$('#trace-summary').textContent=`${model} · ${trace.counts.tool_calls} 次工具调用 · 当前显示 ${events.length} 条记录`;
     for(const event of events){
       const d=make('details',undefined,'trace-event');const summary=make('summary');
-      if(event.kind==='api_retry'){
-        const cause=/429|concurrency_limit/.test(event.error)?'网关限流':/closed connection|RemoteDisconnected/.test(event.error)?'连接断开':'接口请求失败';
-        const recovery=event.transport_recovery?'原上下文重试，保留原始限时':'自动重试';
-        summary.append(make('span',`请求 ${event.request}`,'event-number'),make('span','API 重试','event-action event-error'),make('span',`${cause}；${recovery}`,'event-reason'));
-        d.append(summary,make('pre',event.error));root.append(d);continue;
-      }
       summary.append(make('span',`#${String(event.tool_call).padStart(2,'0')} · ${clock(event.elapsed_seconds)}`,'event-number'),make('span',event.action,'event-action'+(event.status==='error'?' event-error':'')),make('span',event.reason,'event-reason'),make('span',event.status==='error'?'工具错误':`${event.images.length?event.images.length+' 幅图像':'完成'}`,event.status==='error'?'event-error':'subtle'));
       d.append(summary);d.dataset.tool=event.tool_call;d.id=`trace-${model}-tool-${event.tool_call}`;
       d.addEventListener('toggle',()=>{
         if(!d.open||d.dataset.loaded)return;d.dataset.loaded='true';
-        d.append(make('p',`北京时间 ${new Date(event.at).toLocaleString('zh-CN',{timeZone:'Asia/Shanghai',hour12:false})} · 逻辑请求 ${event.request}`,'subtle'));
+        d.append(make('p',`运行时间 ${clock(event.elapsed_seconds)} · 第 ${event.tool_call} 次工具调用`,'subtle'));
         if(event.images.length){
           const grid=make('div',undefined,'trace-images');
           event.images.forEach((item,index)=>{
-            if(!item.available){const notice=make('div',undefined,'callout warn');notice.append(make('strong',`观察 ${index+1}：历史图片缺失`),make('p',`${item.original_file_name} 被后续版本覆盖，日志未保存图像二进制；保留该调用记录，不显示后来图像。`));grid.append(notice);return;}
+            if(!item.available){grid.append(make('p',`观察 ${index+1}：此次图像未留存。`,'subtle'));return;}
             const figure=make('figure');const a=make('a');a.href=`records/${model}/${item.path}`;a.target='_blank';a.rel='noopener';
             const img=make('img');img.src=`records/${model}/${item.thumbnail}`;img.alt=`工具${event.tool_call}当时实际观察图${index+1}`;img.loading='lazy';a.append(img);
             figure.append(a,make('figcaption',`观察 ${index+1} · ${item.width}×${item.height} · 点击原快照`));grid.append(figure);
