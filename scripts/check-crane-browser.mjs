@@ -1,15 +1,46 @@
 const { chromium } = await import(process.env.CRANE_PLAYWRIGHT_MODULE || 'playwright');
 import fs from 'node:fs/promises';
+import fsSync from 'node:fs';
+import http from 'node:http';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 const output = new URL('../crane-site-qa/', import.meta.url);
 await fs.mkdir(output, {recursive:true});
+const docs = fileURLToPath(new URL('../docs/',import.meta.url));
+const types={'.html':'text/html; charset=utf-8','.js':'text/javascript','.css':'text/css','.json':'application/json','.mp4':'video/mp4','.png':'image/png','.jpg':'image/jpeg'};
+let server;
+let base=process.env.CRANE_QA_URL;
+if(!base){
+  server=http.createServer((req,res)=>{
+    try{
+      const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);
+      let target=path.resolve(docs,'.'+pathname);
+      if(!target.startsWith(path.resolve(docs)+path.sep)){res.writeHead(403).end();return;}
+      if(fsSync.existsSync(target)&&fsSync.statSync(target).isDirectory())target=path.join(target,'index.html');
+      if(!fsSync.existsSync(target)){res.writeHead(404).end();return;}
+      const stat=fsSync.statSync(target),range=req.headers.range?.match(/^bytes=(\d+)-(\d*)$/);
+      res.setHeader('Content-Type',types[path.extname(target)]||'application/octet-stream');
+      res.setHeader('Accept-Ranges','bytes');
+      if(range){
+        const start=Number(range[1]),end=range[2]?Math.min(Number(range[2]),stat.size-1):stat.size-1;
+        if(start> end){res.writeHead(416,{'Content-Range':`bytes */${stat.size}`}).end();return;}
+        res.writeHead(206,{'Content-Range':`bytes ${start}-${end}/${stat.size}`,'Content-Length':end-start+1});
+        fsSync.createReadStream(target,{start,end}).pipe(res);
+      }else{
+        res.writeHead(200,{'Content-Length':stat.size});fsSync.createReadStream(target).pipe(res);
+      }
+    }catch(error){res.writeHead(500).end(String(error));}
+  });
+  await new Promise(r=>server.listen(0,'127.0.0.1',r));
+  base=`http://127.0.0.1:${server.address().port}/ale-crane-keying/`;
+}
 const browser = await chromium.launch({executablePath:process.env.CHROME_PATH || undefined,headless:true});
 const page = await browser.newPage({viewport:{width:1440,height:1080}});
-const base = process.env.CRANE_QA_URL || 'http://127.0.0.1:8783/ale-crane-keying/';
 const errors = [], failures = [], checks = [];
 page.on('pageerror',e=>errors.push(e.message));
 page.on('response',r=>{if(r.status()>=400)failures.push([r.status(),r.url()]);});
 const assert = (ok, description) => {if(!ok)throw Error(description);checks.push(description);};
+try{
 await page.goto(base,{waitUntil:'networkidle'});
 await page.locator('#frame-scores tr').last().waitFor();
 assert(await page.locator('#frame-scores tr').count() === 5,'Five breakpoint rows loaded');
@@ -78,5 +109,13 @@ for(const viewport of [{width:390,height:844},{width:768,height:1024}]){
 assert(errors.length===0,'No JavaScript runtime errors');
 assert(failures.length===0,'No HTTP failures in browsing flow');
 await fs.writeFile(new URL('browser-report.json',output),JSON.stringify({at:new Date().toISOString(),base,checks,errors,failures,metadata,playback:times},null,2));
-await browser.close();
 console.log(JSON.stringify({passed:true,checks:checks.length,errors,failures,output:path.resolve(new URL(output).pathname.replace(/^\/([A-Z]:)/,'$1'))}));
+}catch(error){
+  const media=await page.locator('video').evaluateAll(vs=>vs.map(v=>({src:v.currentSrc,time:v.currentTime,seeking:v.seeking,ready:v.readyState,paused:v.paused,error:v.error?.message,buffered:Array.from({length:v.buffered.length},(_,i)=>[v.buffered.start(i),v.buffered.end(i)])}))).catch(()=>[]);
+  await fs.writeFile(new URL('failure-report.json',output),JSON.stringify({error:String(error),checks,errors,failures,media},null,2));
+  await page.screenshot({path:fileURLToPath(new URL('failure.png',output))}).catch(()=>{});
+  console.log(JSON.stringify({media}));
+  throw error;
+}finally{
+  await browser.close();server?.close();
+}

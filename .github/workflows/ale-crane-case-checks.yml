@@ -36,7 +36,6 @@ jobs:
       - name: Check videos, synchronization, scores, traces and responsive layout
         shell: bash
         run: |
-          python3 -m http.server 8783 --bind 127.0.0.1 --directory docs > "$RUNNER_TEMP/crane-server.log" 2>&1 &
           export CRANE_PLAYWRIGHT_MODULE="$RUNNER_TEMP/crane-qa/node_modules/playwright/index.mjs"
           export CHROME_PATH="$(command -v google-chrome)"
           node scripts/check-crane-browser.mjs
