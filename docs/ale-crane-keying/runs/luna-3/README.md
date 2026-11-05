@@ -1,0 +1,5 @@
+# Crane keying project
+
+The deliverables were rendered from the new Resolve project `Omniale_CRANE_LUNA_20261105_151034`, using the original `media/input.mp4` as the timeline source (241 frames, 24 fps, 1280×544). `project.drp` contains an editable Fusion comp on the source clip. Its graph includes MediaIn, DeltaKeyer/ChromaKeyer/LumaKeyer test branches, a green Background (#00FF00), Merge and MediaOut; the active Merge foreground is the LumaKeyer branch. The graph and source reference are available for further tuning in Resolve.
+
+The final full-length H.264 export is `output.mp4` (241 frames, 10.0417 s). I inspected exported frames at 0, 2.5, 5, 7.5 and 10 seconds. **Known defect:** the key is not clean: substantial original sky remains and green contamination appears inside dark feather/neck/leg details and along edges. The broad luma threshold does not reliably separate this stylized white bird from the variable blue/gray sky. This is a native editable first-pass extraction, not a production-quality matte; frame-by-frame roto or a refined sampled-color matte is needed to meet the requested clean isolation. No reference image was used as replacement footage.

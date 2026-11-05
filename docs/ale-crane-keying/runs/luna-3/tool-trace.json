@@ -1,0 +1,2805 @@
+{
+  "model": "gpt-6-luna",
+  "trial": 3,
+  "original_trace_sha256": "fafaa32f909c52ac7db804a6943ad04363deb22f5fe709899dab3dee6a883d65",
+  "publication": "Visible tool arguments, operation reasons, results and authentic observations; paths and secrets redacted. No hidden reasoning.",
+  "events": [
+    {
+      "api_request": 1,
+      "tool_call": 1,
+      "arguments": {
+        "action": "list_files",
+        "params": {
+          "path": "input"
+        },
+        "reason": "先检查输入媒体与文档位置。"
+      },
+      "result": {
+        "files": [
+          {
+            "path": "runs/luna-3\\input\\media\\input.mp4",
+            "bytes": 2270910
+          },
+          {
+            "path": "runs/luna-3\\input\\media\\input.png",
+            "bytes": 55249
+          },
+          {
+            "path": "runs/luna-3\\input\\reference\\ALLOWED_API.json",
+            "bytes": 4633
+          },
+          {
+            "path": "runs/luna-3\\input\\reference\\DaVinciResolveScript.pyi",
+            "bytes": 159311
+          },
+          {
+            "path": "runs/luna-3\\input\\reference\\README.md",
+            "bytes": 37487
+          },
+          {
+            "path": "runs/luna-3\\input\\TASK_任务说明.md",
+            "bytes": 2049
+          },
+          {
+            "path": "runs/luna-3\\input\\TOOLS.md",
+            "bytes": 5284
+          }
+        ]
+      },
+      "at_local": "2026-11-05T15:10:42.347912+08:00",
+      "action": "list_files",
+      "observations": [],
+      "failed": false
+    },
+    {
+      "api_request": 2,
+      "tool_call": 2,
+      "arguments": {
+        "action": "probe",
+        "params": {
+          "path": "input/media/input.mp4"
+        },
+        "reason": "确认源视频规格。"
+      },
+      "result": {
+        "path": "runs/luna-3\\input\\media\\input.mp4",
+        "width": 1280,
+        "height": 544,
+        "fps": 24.0,
+        "frames": 241,
+        "duration_s": 10.041666666666666,
+        "bytes": 2270910
+      },
+      "at_local": "2026-11-05T15:10:44.938156+08:00",
+      "action": "probe",
+      "observations": [],
+      "failed": false
+    },
+    {
+      "api_request": 3,
+      "tool_call": 3,
+      "arguments": {
+        "action": "image",
+        "params": {
+          "path": "input/media/input.png"
+        },
+        "reason": "观察目标参考图以及白鹤的形态/预期绿幕。"
+      },
+      "result": {
+        "kind": "decoded_authentic_media",
+        "images": [
+          {
+            "path": "runs/luna-3\\logs\\observations\\4fd14512582642b3925427da717c7ed8.jpg",
+            "source": "runs/luna-3\\input\\media\\input.png",
+            "requested_source_time_s": 0,
+            "crop": null,
+            "sha256": "a7ac5320bff21e657306e444e2cd55e182816d79ae6f469ba04eb68aede514c8"
+          }
+        ]
+      },
+      "at_local": "2026-11-05T15:10:47.565667+08:00",
+      "action": "image",
+      "observations": [
+        {
+          "src": "runs/luna-3/observations/4fd14512582642b3925427da717c7ed8.jpg",
+          "source": "runs/luna-3\\input\\media\\input.png",
+          "time": 0,
+          "crop": null,
+          "sha256": "a7ac5320bff21e657306e444e2cd55e182816d79ae6f469ba04eb68aede514c8"
+        }
+      ],
+      "failed": false
+    },
+    {
+      "api_request": 4,
+      "tool_call": 4,
+      "arguments": {
+        "action": "frames",
+        "params": {
+          "path": "input/media/input.mp4",
+          "times": [
+            0,
+            1,
+            2.5,
+            4,
+            5,
+            6.5,
+            8,
+            9.5,
+            10
+          ],
+          "width": 1280
+        },
+        "reason": "独立检查鸟在天空中的运动范围和背景/边界复杂度。"
+      },
+      "result": {
+        "kind": "decoded_authentic_media",
+        "images": [
+          {
+            "path": "runs/luna-3\\logs\\observations\\2881ebe5ba884193b4d8d66cf5fb19bf.jpg",
+            "source": "runs/luna-3\\input\\media\\input.mp4",
+            "requested_source_time_s": 0,
+            "crop": null,
+            "sha256": "845b53eb3f657e776ef3ab6eb9e789cd9c7916072018d2a5caac38a26f302dce"
+          },
+          {
+            "path": "runs/luna-3\\logs\\observations\\d6204a37f9cf4b208103beef89b7f306.jpg",
+            "source": "runs/luna-3\\input\\media\\input.mp4",
+            "requested_source_time_s": 1,
+            "crop": null,
+            "sha256": "bce9f49e4549ca5bdc118013e77f62019dda5141409ffa7af444369e6f9e532c"
+          },
+          {
+            "path": "runs/luna-3\\logs\\observations\\c4c1c09a3be749d6b7ae6bfa0827c8eb.jpg",
+            "source": "runs/luna-3\\input\\media\\input.mp4",
+            "requested_source_time_s": 2.5,
+            "crop": null,
+            "sha256": "34ddd12af8886bfe7bb0609677f7a77cba7f2cb36db0b292d2eff72c8662d959"
+          },
+          {
+            "path": "runs/luna-3\\logs\\observations\\e5849e07624f4af59127dda695755715.jpg",
+            "source": "runs/luna-3\\input\\media\\input.mp4",
+            "requested_source_time_s": 4,
+            "crop": null,
+            "sha256": "0604fc6f7e87fdd0dc8dc2c4db6040c59bd986abaf8393033a8858c5c431b9e5"
+          },
+          {
+            "path": "runs/luna-3\\logs\\observations\\fae1a62d152e4b42a36e292b19f01abd.jpg",
+            "source": "runs/luna-3\\input\\media\\input.mp4",
+            "requested_source_time_s": 5,
+            "crop": null,
+            "sha256": "5f0ffca4ea3a8a1384d0a17f7a2bb236ff89a30dc17aeccd40a24e5e3dc38665"
+          },
+          {
+            "path": "runs/luna-3\\logs\\observations\\46b349b765a14568a6b567fb0927df15.jpg",
+            "source": "runs/luna-3\\input\\media\\input.mp4",
+            "requested_source_time_s": 6.5,
+            "crop": null,
+            "sha256": "c794b5499768d220be3b15b4ffa5356b5d31cbcabe335acb41eaa96462e95011"
+          },
+          {
+            "path": "runs/luna-3\\logs\\observations\\8efcd0d7ea8c4f01ada3e4396b830e96.jpg",
+            "source": "runs/luna-3\\input\\media\\input.mp4",
+            "requested_source_time_s": 8,
+            "crop": null,
+            "sha256": "def08f1e1bcd1c7cf3af4daa17a62ea750b05f69f4fb865f7805fc3844e05917"
+          },
+          {
+            "path": "runs/luna-3\\logs\\observations\\47ceb328d7c443db8a4610fa284677bc.jpg",
+            "source": "runs/luna-3\\input\\media\\input.mp4",
+            "requested_source_time_s": 9.5,
+            "crop": null,
+            "sha256": "7859cdf5487a44f3bb7ade133f41fe80945eb1707d587070137a11dcf8a43b98"
+          },
+          {
+            "path": "runs/luna-3\\logs\\observations\\27c0e1a8323d4cc9bffea25f47054da2.jpg",
+            "source": "runs/luna-3\\input\\media\\input.mp4",
+            "requested_source_time_s": 10,
+            "crop": null,
+            "sha256": "6f4b973d1977f1f1320e74f5f53190b4c445ff312b7018ead9fa9461bc61c94f"
+          }
+        ]
+      },
+      "at_local": "2026-11-05T15:10:52.990272+08:00",
+      "action": "frames",
+      "observations": [
+        {
+          "src": "runs/luna-3/observations/2881ebe5ba884193b4d8d66cf5fb19bf.jpg",
+          "source": "runs/luna-3\\input\\media\\input.mp4",
+          "time": 0,
+          "crop": null,
+          "sha256": "845b53eb3f657e776ef3ab6eb9e789cd9c7916072018d2a5caac38a26f302dce"
+        },
+        {
+          "src": "runs/luna-3/observations/d6204a37f9cf4b208103beef89b7f306.jpg",
+          "source": "runs/luna-3\\input\\media\\input.mp4",
+          "time": 1,
+          "crop": null,
+          "sha256": "bce9f49e4549ca5bdc118013e77f62019dda5141409ffa7af444369e6f9e532c"
+        },
+        {
+          "src": "runs/luna-3/observations/c4c1c09a3be749d6b7ae6bfa0827c8eb.jpg",
+          "source": "runs/luna-3\\input\\media\\input.mp4",
+          "time": 2.5,
+          "crop": null,
+          "sha256": "34ddd12af8886bfe7bb0609677f7a77cba7f2cb36db0b292d2eff72c8662d959"
+        },
+        {
+          "src": "runs/luna-3/observations/e5849e07624f4af59127dda695755715.jpg",
+          "source": "runs/luna-3\\input\\media\\input.mp4",
+          "time": 4,
+          "crop": null,
+          "sha256": "0604fc6f7e87fdd0dc8dc2c4db6040c59bd986abaf8393033a8858c5c431b9e5"
+        },
+        {
+          "src": "runs/luna-3/observations/fae1a62d152e4b42a36e292b19f01abd.jpg",
+          "source": "runs/luna-3\\input\\media\\input.mp4",
+          "time": 5,
+          "crop": null,
+          "sha256": "5f0ffca4ea3a8a1384d0a17f7a2bb236ff89a30dc17aeccd40a24e5e3dc38665"
+        },
+        {
+          "src": "runs/luna-3/observations/46b349b765a14568a6b567fb0927df15.jpg",
+          "source": "runs/luna-3\\input\\media\\input.mp4",
+          "time": 6.5,
+          "crop": null,
+          "sha256": "c794b5499768d220be3b15b4ffa5356b5d31cbcabe335acb41eaa96462e95011"
+        },
+        {
+          "src": "runs/luna-3/observations/8efcd0d7ea8c4f01ada3e4396b830e96.jpg",
+          "source": "runs/luna-3\\input\\media\\input.mp4",
+          "time": 8,
+          "crop": null,
+          "sha256": "def08f1e1bcd1c7cf3af4daa17a62ea750b05f69f4fb865f7805fc3844e05917"
+        },
+        {
+          "src": "runs/luna-3/observations/47ceb328d7c443db8a4610fa284677bc.jpg",
+          "source": "runs/luna-3\\input\\media\\input.mp4",
+          "time": 9.5,
+          "crop": null,
+          "sha256": "7859cdf5487a44f3bb7ade133f41fe80945eb1707d587070137a11dcf8a43b98"
+        },
+        {
+          "src": "runs/luna-3/observations/27c0e1a8323d4cc9bffea25f47054da2.jpg",
+          "source": "runs/luna-3\\input\\media\\input.mp4",
+          "time": 10,
+          "crop": null,
+          "sha256": "6f4b973d1977f1f1320e74f5f53190b4c445ff312b7018ead9fa9461bc61c94f"
+        }
+      ],
+      "failed": false
+    },
+    {
+      "api_request": 5,
+      "tool_call": 5,
+      "arguments": {
+        "action": "resolve_lua",
+        "params": {
+          "code": "local mp=project:GetMediaPool(); local item=assert(mp:ImportMedia({INPUT_ROOT..'/media/input.mp4'})[1]); local t=assert(mp:CreateEmptyTimeline('Crane_Keyed')); assert(t:SetStartTimecode('00:00:00:00')); local c=assert(mp:AppendToTimeline({item})[1]); timeline=project:GetCurrentTimeline(); return {start=c:GetStart(),finish=c:GetEnd(),duration=c:GetDuration(),name=project:GetName()}"
+        },
+        "reason": "创建新时间线并导入原始视频作为可编辑源素材。"
+      },
+      "result": {
+        "at": 1793862662,
+        "id": "168eb74309f7402190b43e7a1021cd85",
+        "ok": true,
+        "op": "run",
+        "prints": {},
+        "result": {
+          "duration": 241,
+          "finish": 241,
+          "name": "Omniale_CRANE_LUNA_20261105_151034",
+          "start": 0
+        },
+        "session": "[omitted]",
+        "v": 2
+      },
+      "at_local": "2026-11-05T15:11:02.839931+08:00",
+      "action": "resolve_lua",
+      "observations": [],
+      "failed": false
+    },
+    {
+      "api_request": 6,
+      "tool_call": 6,
+      "arguments": {
+        "action": "resolve_lua",
+        "params": {
+          "code": "local c=timeline:GetItemListInTrack('video',1)[1]; local comp=c:GetFusionCompByIndex(1) or c:AddFusionComp(); local out={}; for _,n in pairs(comp:GetToolList(false)) do local a=n:GetAttrs(); out[#out+1]={name=a.TOOLS_Name,id=a.TOOLS_RegID} end; return out"
+        },
+        "reason": "查看片段自带Fusion节点，定位MediaIn/Out连接点。"
+      },
+      "result": {
+        "at": 1793862668,
+        "id": "50e39cae5216441882ada57b896dc70e",
+        "ok": true,
+        "op": "run",
+        "prints": {},
+        "result": [
+          {
+            "id": "MediaIn",
+            "name": "MediaIn1"
+          },
+          {
+            "id": "MediaOut",
+            "name": "MediaOut1"
+          }
+        ],
+        "session": "[omitted]",
+        "v": 2
+      },
+      "at_local": "2026-11-05T15:11:08.282762+08:00",
+      "action": "resolve_lua",
+      "observations": [],
+      "failed": false
+    },
+    {
+      "api_request": 7,
+      "tool_call": 7,
+      "arguments": {
+        "action": "read_file",
+        "params": {
+          "path": "input/reference/ALLOWED_API.json",
+          "offset": 0,
+          "length": 6000
+        },
+        "reason": "确认本机允许的Fusion抠像及背景节点类型。"
+      },
+      "result": {
+        "path": "runs/luna-3\\input\\reference\\ALLOWED_API.json",
+        "total_characters": 4419,
+        "offset": 0,
+        "text": "{\n  \"methods\": [\n    \"AddEffect\",\n    \"AddFlag\",\n    \"AddFusionComp\",\n    \"AddMarker\",\n    \"AddModifier\",\n    \"AddRenderJob\",\n    \"AddSubFolder\",\n    \"AddTool\",\n    \"AddTrack\",\n    \"AnalyzeAudioLevels\",\n    \"AppendToTimeline\",\n    \"ApplyFairlightPresetToCurrentTimeline\",\n    \"ClearFlags\",\n    \"ConnectInput\",\n    \"ConnectTo\",\n    \"CreateEmptyTimeline\",\n    \"CreateTimelineFromClips\",\n    \"Delete\",\n    \"DeleteClips\",\n    \"DeleteEffects\",\n    \"DeleteFusionCompByName\",\n    \"DeleteMarkerAtFrame\",\n    \"DeleteMarkersByColor\",\n    \"DeleteRenderJob\",\n    \"EndUndo\",\n    \"Export\",\n    \"ExportFusionComp\",\n    \"ExportProject\",\n    \"FindMainInput\",\n    \"FindMainOutput\",\n    \"FindTool\",\n    \"Fusion\",\n    \"GetAttrs\",\n    \"GetAudioMapping\",\n    \"GetAudioRenderCodecs\",\n    \"GetAudioRenderFormats\",\n    \"GetClipColor\",\n    \"GetClipEnabled\",\n    \"GetClipList\",\n    \"GetClipProperty\",\n    \"GetConnectedInputs\",\n    \"GetConnectedOutput\",\n    \"GetCurrentFolder\",\n    \"GetCurrentPage\",\n    \"GetCurrentProject\",\n    \"GetCurrentRenderFormatAndCodec\",\n    \"GetCurrentRenderMode\",\n    \"GetCurrentTimecode\",\n    \"GetCurrentTimeline\",\n    \"GetCurrentVideoItem\",\n    \"GetDuration\",\n    \"GetEffects\",\n    \"GetEnd\",\n    \"GetEndFrame\",\n    \"GetFades\",\n    \"GetFairlightPresets\",\n    \"GetFlags\",\n    \"GetFrameRate\",\n    \"GetFusionCompByIndex\",\n    \"GetFusionCompByName\",\n    \"GetFusionCompCount\",\n    \"GetFusionCompNameList\",\n    \"GetIndex\",\n    \"GetInfo\",\n    \"GetInput\",\n    \"GetInputList\",\n    \"GetIsEnabled\",\n    \"GetIsTrackEnabled\",\n    \"GetIsTrackLocked\",\n    \"GetItemListInTrack\",\n    \"GetItemsInTrack\",\n    \"GetKeyFrames\",\n    \"GetLeftOffset\",\n    \"GetMarkers\",\n    \"GetMediaPool\",\n    \"GetMediaPoolItem\",\n    \"GetMetadata\",\n    \"GetName\",\n    \"GetNormalizeAudioModes\",\n    \"GetOutputList\",\n    \"GetPosition\",\n    \"GetProductName\",\n    \"GetProjectManager\",\n    \"GetProperties\",\n    \"GetProperty\",\n    \"GetRegAttrs\",\n    \"GetRegList\",\n    \"GetRenderCodecs\",\n    \"GetRenderFormats\",\n    \"GetRenderJobList\",\n    \"GetRenderJobStatus\",\n    \"GetRenderPresetList\",\n    \"GetRenderSettings\",\n    \"GetRightOffset\",\n    \"GetRootFolder\",\n    \"GetSelectedClips\",\n    \"GetSetting\",\n    \"GetSettings\",\n    \"GetSourceAudioChannelMapping\",\n    \"GetSourceEndFrame\",\n    \"GetSourceEndTime\",\n    \"GetSourceStartFrame\",\n    \"GetSourceStartTime\",\n    \"GetStart\",\n    \"GetStartFrame\",\n    \"GetStartTimecode\",\n    \"GetSubFolderList\",\n    \"GetTimelineByIndex\",\n    \"GetTimelineCount\",\n    \"GetToolList\",\n    \"GetTrackCount\",\n    \"GetTrackName\",\n    \"GetTrackSubType\",\n    \"GetUniqueId\",\n    \"GetVersion\",\n    \"GetVersionString\",\n    \"ImportMedia\",\n    \"IsRenderingInProgress\",\n    \"LoadRenderPreset\",\n    \"Lock\",\n    \"MoveItems\",\n    \"NormalizeAudioLevel\",\n    \"OpenPage\",\n    \"RenameFusionCompByName\",\n    \"SaveProject\",\n    \"SetAttrs\",\n    \"SetAudioMapping\",\n    \"SetClipColor\",\n    \"SetClipEnabled\",\n    \"SetClipsLinked\",\n    \"SetCurrentFolder\",\n    \"SetCurrentRenderFormatAndCodec\",\n    \"SetCurrentRenderMode\",\n    \"SetCurrentTimecode\",\n    \"SetCurrentTimeline\",\n    \"SetFades\",\n    \"SetIndex\",\n    \"SetInput\",\n    \"SetIsEnabled\",\n    \"SetKeyFrames\",\n    \"SetLeftOffset\",\n    \"SetMetadata\",\n    \"SetName\",\n    \"SetPosition\",\n    \"SetProperties\",\n    \"SetProperty\",\n    \"SetRenderSettings\",\n    \"SetRightOffset\",\n    \"SetSelectedClips\",\n    \"SetSetting\",\n    \"SetSettings\",\n    \"SetSourceAudioChannelMapping\",\n    \"SetStartTimecode\",\n    \"SetTrackEnable\",\n    \"SetTrackLock\",\n    \"SetTrackName\",\n    \"StartRendering\",\n    \"StartUndo\",\n    \"StopRendering\",\n    \"Unlock\"\n  ],\n  \"fusion_nodes\": [\n    \"BSplineMask\",\n    \"Background\",\n    \"BezierSpline\",\n    \"BitmapMask\",\n    \"Blur\",\n    \"BrightnessContrast\",\n    \"ChannelBoolean\",\n    \"ChannelMixer\",\n    \"ChromaKeyer\",\n    \"ColorCorrector\",\n    \"ColorCurves\",\n    \"ColorGain\",\n    \"ColorLimiter\",\n    \"ColorMatrix\",\n    \"ColorSpace\",\n    \"ColorSuppressor\",\n    \"Crop\",\n    \"Custom\",\n    \"Defocus\",\n    \"DeltaKeyer\",\n    \"Despill\",\n    \"Dissolve\",\n    \"Duplicate\",\n    \"EllipseMask\",\n    \"ErodeDilate\",\n    \"Filter\",\n    \"Gamut\",\n    \"HueCurves\",\n    \"LumaCurve\",\n    \"LumaKeyer\",\n    \"MatteControl\",\n    \"MatteConvert\",\n    \"Merge\",\n    \"OpticalFlow\",\n    \"PlanarTracker\",\n    \"PolyPath\",\n    \"PolylineMask\",\n    \"RectangleMask\",\n    \"Resize\",\n    \"Sharpen\",\n    \"TimeSpeed\",\n    \"TimeStretcher\",\n    \"Tracker\",\n    \"Transform\",\n    \"UltraKeyer\",\n    \"UnsharpMask\",\n    \"VectorMotionBlur\",\n    \"XYPath\"\n  ]\n}\n"
+      },
+      "at_local": "2026-11-05T15:11:14.052181+08:00",
+      "action": "read_file",
+      "observations": [],
+      "failed": false
+    },
+    {
+      "api_request": 8,
+      "tool_call": 8,
+      "arguments": {
+        "action": "resolve_lua",
+        "params": {
+          "code": "local c=timeline:GetItemListInTrack('video',1)[1]; local comp=c:GetFusionCompByIndex(1); local k=comp:AddTool('ChromaKeyer',2,1); local o={}; for _,i in pairs(k:GetInputList()) do local a=i:GetAttrs(); if a.INPS_ID then o[#o+1]={id=a.INPS_ID,name=a.INPS_Name,type=a.INPS_DataType} end end; return o"
+        },
+        "reason": "添加原生ChromaKeyer并查看其参数接口。"
+      },
+      "result": {
+        "at": 1793862680,
+        "id": "d3952df2c5f244d5b998ea5fc97d92b0",
+        "ok": true,
+        "op": "run",
+        "prints": {},
+        "result": [
+          {
+            "id": "SettingsNest",
+            "name": "Settings",
+            "type": "Number"
+          },
+          {
+            "id": "Blend",
+            "name": "Blend",
+            "type": "Number"
+          },
+          {
+            "id": "ProcessWhenBlendIs00",
+            "name": "Process when Blend is 0.0",
+            "type": "Number"
+          },
+          {
+            "id": "ProcessRed",
+            "name": "Process Red",
+            "type": "Number"
+          },
+          {
+            "id": "ProcessGreen",
+            "name": "Process Green",
+            "type": "Number"
+          },
+          {
+            "id": "ProcessBlue",
+            "name": "Process Blue",
+            "type": "Number"
+          },
+          {
+            "id": "ProcessAlpha",
+            "name": "Process Alpha",
+            "type": "Number"
+          },
+          {
+            "id": "Blank1",
+            "name": "",
+            "type": "Number"
+          },
+          {
+            "id": "ApplyMaskInverted",
+            "name": "Apply Mask Inverted",
+            "type": "Number"
+          },
+          {
+            "id": "MultiplyByMask",
+            "name": "Multiply by Mask",
+            "type": "Number"
+          },
+          {
+            "id": "FitMask",
+            "name": "Fit Mask",
+            "type": "FuID"
+          },
+          {
+            "id": "Blank2",
+            "name": "",
+            "type": "Number"
+          },
+          {
+            "id": "MaskChannel",
+            "name": "Channel",
+            "type": "Number"
+          },
+          {
+            "id": "MaskLow",
+            "name": "Low",
+            "type": "Number"
+          },
+          {
+            "id": "MaskHigh",
+            "name": "High",
+            "type": "Number"
+          },
+          {
+            "id": "MaskClipBlack",
+            "name": "Clip Black",
+            "type": "Number"
+          },
+          {
+            "id": "MaskClipWhite",
+            "name": "Clip White",
+            "type": "Number"
+          },
+          {
+            "id": "Blank4",
+            "name": "",
+            "type": "Number"
+          },
+          {
+            "id": "UseObject",
+            "name": "Use Object",
+            "type": "Number"
+          },
+          {
+            "id": "UseMaterial",
+            "name": "Use Material",
+            "type": "Number"
+          },
+          {
+            "id": "CorrectEdges",
+            "name": "Correct Edges",
+            "type": "Number"
+          },
+          {
+            "id": "ObjectID",
+            "name": "Object ID",
+            "type": "Number"
+          },
+          {
+            "id": "MaterialID",
+            "name": "Material ID",
+            "type": "Number"
+          },
+          {
+            "id": "Blank6",
+            "name": "",
+            "type": "Number"
+          },
+          {
+            "id": "UseGPU",
+            "name": "Use GPU",
+            "type": "Number"
+          },
+          {
+            "id": "HideInputs",
+            "name": "Hide Incoming Connections",
+            "type": "Number"
+          },
+          {
+            "id": "LayersNest",
+            "name": "Layers",
+            "type": "Number"
+          },
+          {
+            "id": "ProcessLayers",
+            "name": "Process Layers",
+            "type": "FuID"
+          },
+          {
+            "id": "ProcessLayersCustom",
+            "name": "",
+            "type": "ScriptVal"
+          },
+          {
+            "id": "LayerSpacer",
+            "name": "",
+            "type": "Number"
+          },
+          {
+            "id": "Input_LayerSelect",
+            "name": "Input Layer",
+            "type": "FuID"
+          },
+          {
+            "id": "Solid.Matte_LayerSelect",
+            "name": "Solid Matte Layer",
+            "type": "FuID"
+          },
+          {
+            "id": "Garbage.Matte_LayerSelect",
+            "name": "Garbage Matte Layer",
+            "type": "FuID"
+          },
+          {
+            "id": "EffectMask_LayerSelect",
+            "name": "Effect Mask Layer",
+            "type": "FuID"
+          },
+          {
+            "id": "KeyType",
+            "name": "Key Type",
+            "type": "Number"
+          },
+          {
+            "id": "ColorRange",
+            "name": "Color Range",
+            "type": "Number"
+          },
+          {
+            "id": "RedLow",
+            "name": "Red Low",
+            "type": "Number"
+          },
+          {
+            "id": "RedHigh",
+            "name": "Red High",
+            "type": "Number"
+          },
+          {
+            "id": "GreenLow",
+            "name": "Green Low",
+            "type": "Number"
+          },
+          {
+            "id": "GreenHigh",
+            "name": "Green High",
+            "type": "Number"
+          },
+          {
+            "id": "BlueLow",
+            "name": "Blue Low",
+            "type": "Number"
+          },
+          {
+            "id": "BlueHigh",
+            "name": "Blue High",
+            "type": "Number"
+          },
+          {
+            "id": "LuminanceLow",
+            "name": "Luminance Low",
+            "type": "Number"
+          },
+          {
+            "id": "LuminanceHigh",
+            "name": "Luminance High",
+            "type": "Number"
+          },
+          {
+            "id": "LockColorPicking",
+            "name": "Lock Color Picking",
+            "type": "Number"
+          },
+          {
+            "id": "SoftRange",
+            "name": "Soft Range",
+            "type": "Number"
+          },
+          {
+            "id": "ResetColorRanges",
+            "name": "Reset Color Ranges",
+            "type": "Number"
+          },
+          {
+            "id": "SpillColor",
+            "name": "Spill Color",
+            "type": "Number"
+          },
+          {
+            "id": "SpillSuppression",
+            "name": "Spill Suppression",
+            "type": "Number"
+          },
+          {
+            "id": "SpillMethod",
+            "name": "Spill Method",
+            "type": "Number"
+          },
+          {
+            "id": "FringeGamma",
+            "name": "Fringe Gamma",
+            "type": "Number"
+          },
+          {
+            "id": "FringeSize",
+            "name": "Fringe Size",
+            "type": "Number"
+          },
+          {
+            "id": "FringeShape",
+            "name": "Fringe Shape",
+            "type": "Number"
+          },
+          {
+            "id": "RedCyan",
+            "name": "Red/Cyan",
+            "type": "Number"
+          },
+          {
+            "id": "GreenMagenta",
+            "name": "Green/Magenta",
+            "type": "Number"
+          },
+          {
+            "id": "BlueYellow",
+            "name": "Blue/Yellow",
+            "type": "Number"
+          },
+          {
+            "id": "Matte",
+            "name": "Matte",
+            "type": "Number"
+          },
+          {
+            "id": "Filter",
+            "name": "Filter",
+            "type": "FuID"
+          },
+          {
+            "id": "MatteBlur",
+            "name": "Blur",
+            "type": "Number"
+          },
+          {
+            "id": "Passes",
+            "name": "Num Passes",
+            "type": "Number"
+          },
+          {
+            "id": "ClippingMode",
+            "name": "Clipping Mode",
+            "type": "FuID"
+          },
+          {
+            "id": "MatteContractExpand",
+            "name": "Contract / Expand",
+            "type": "Number"
+          },
+          {
+            "id": "MatteGamma",
+            "name": "Gamma",
+            "type": "Number"
+          },
+          {
+            "id": "LowMatteThreshold",
+            "name": "Low",
+            "type": "Number"
+          },
+          {
+            "id": "High",
+            "name": "High",
+            "type": "Number"
+          },
+          {
+            "id": "RestoreFringe",
+            "name": "Restore Fringe",
+            "type": "Number"
+          },
+          {
+            "id": "InvertMatte",
+            "name": "Invert Matte",
+            "type": "Number"
+          },
+          {
+            "id": "EffectMask",
+            "name": "Effect Mask",
+            "type": "Mask"
+          },
+          {
+            "id": "Solid.Matte",
+            "name": "Solid Matte",
+            "type": "Mask"
+          },
+          {
+            "id": "Solid.MaskNest",
+            "name": "Solid Matte",
+            "type": "Number"
+          },
+          {
+            "id": "Solid.MaskInverted",
+            "name": "Invert",
+            "type": "Number"
+          },
+          {
+            "id": "Solid.MaskFit",
+            "name": "Fit",
+            "type": "FuID"
+          },
+          {
+            "id": "Solid.MaskBlank",
+            "name": "",
+            "type": "Number"
+          },
+          {
+            "id": "Solid.MaskChannel",
+            "name": "Channel",
+            "type": "Number"
+          },
+          {
+            "id": "Solid.MaskLow",
+            "name": "Low",
+            "type": "Number"
+          },
+          {
+            "id": "Solid.MaskHigh",
+            "name": "High",
+            "type": "Number"
+          },
+          {
+            "id": "Solid.MaskClipBlack",
+            "name": "Clip Black",
+            "type": "Number"
+          },
+          {
+            "id": "Solid.MaskClipWhite",
+            "name": "Clip White",
+            "type": "Number"
+          },
+          {
+            "id": "Garbage.Matte",
+            "name": "Garbage Matte",
+            "type": "Mask"
+          },
+          {
+            "id": "Garbage.MaskNest",
+            "name": "Garbage Matte",
+            "type": "Number"
+          },
+          {
+            "id": "Garbage.MaskInverted",
+            "name": "Invert",
+            "type": "Number"
+          },
+          {
+            "id": "Garbage.MaskFit",
+            "name": "Fit",
+            "type": "FuID"
+          },
+          {
+            "id": "Garbage.MaskBlank",
+            "name": "",
+            "type": "Number"
+          },
+          {
+            "id": "Garbage.MaskChannel",
+            "name": "Channel",
+            "type": "Number"
+          },
+          {
+            "id": "Garbage.MaskLow",
+            "name": "Low",
+            "type": "Number"
+          },
+          {
+            "id": "Garbage.MaskHigh",
+            "name": "High",
+            "type": "Number"
+          },
+          {
+            "id": "Garbage.MaskClipBlack",
+            "name": "Clip Black",
+            "type": "Number"
+          },
+          {
+            "id": "Garbage.MaskClipWhite",
+            "name": "Clip White",
+            "type": "Number"
+          },
+          {
+            "id": "PostMultiplyImage",
+            "name": "Post Multiply Image",
+            "type": "Number"
+          },
+          {
+            "id": "Input",
+            "name": "Input",
+            "type": "Image"
+          },
+          {
+            "id": "CommentsNest",
+            "name": "Comments",
+            "type": "Number"
+          },
+          {
+            "id": "Comments",
+            "name": "Comments",
+            "type": "Text"
+          },
+          {
+            "id": "FrameRenderScriptNest",
+            "name": "Frame Render Script",
+            "type": "Number"
+          },
+          {
+            "id": "FrameRenderScript",
+            "name": "Frame Render Script",
+            "type": "Text"
+          },
+          {
+            "id": "StartRenderScripts",
+            "name": "Start Render Scripts",
+            "type": "Number"
+          },
+          {
+            "id": "StartRenderScript",
+            "name": "Start Render Script",
+            "type": "Text"
+          },
+          {
+            "id": "EndRenderScripts",
+            "name": "End Render Scripts",
+            "type": "Number"
+          },
+          {
+            "id": "EndRenderScript",
+            "name": "End Render Script",
+            "type": "Text"
+          }
+        ],
+        "session": "[omitted]",
+        "v": 2
+      },
+      "at_local": "2026-11-05T15:11:20.239008+08:00",
+      "action": "resolve_lua",
+      "observations": [],
+      "failed": false
+    },
+    {
+      "api_request": 9,
+      "tool_call": 9,
+      "arguments": {
+        "action": "resolve_lua",
+        "params": {
+          "code": "local c=timeline:GetItemListInTrack('video',1)[1]; local k=c:GetFusionCompByIndex(1):FindTool('ChromaKeyer1'); local ids={'KeyType','ColorRange','RedLow','RedHigh','GreenLow','GreenHigh','BlueLow','BlueHigh','SoftRange','SpillSuppression','Matte','MatteBlur','MatteContractExpand','MatteGamma','Input'}; local r={}; for _,id in ipairs(ids) do r[#r+1]={id=id,val=k:GetInput(id)} end; local q={}; for _,o in pairs(k:GetOutputList()) do local a=o:GetAttrs(); q[#q+1]={id=a.OUTS_ID,name=a.OUTS_Name} end; return {vals=r,outs=q}"
+        },
+        "reason": "获取关键颜色阈值默认值与输出，决定稳妥连接方式。"
+      },
+      "result": {
+        "at": 1793862689,
+        "id": "eab0a662c9c44825aa87ce0bfcf8ea3b",
+        "ok": true,
+        "op": "run",
+        "prints": {},
+        "result": {
+          "outs": [
+            {
+              "id": "Output",
+              "name": "Output"
+            }
+          ],
+          "vals": [
+            {
+              "id": "KeyType",
+              "val": 0
+            },
+            {
+              "id": "ColorRange",
+              "val": 0
+            },
+            {
+              "id": "RedLow",
+              "val": 0
+            },
+            {
+              "id": "RedHigh",
+              "val": 1
+            },
+            {
+              "id": "GreenLow",
+              "val": 0
+            },
+            {
+              "id": "GreenHigh",
+              "val": 1
+            },
+            {
+              "id": "BlueLow",
+              "val": 0
+            },
+            {
+              "id": "BlueHigh",
+              "val": 1
+            },
+            {
+              "id": "SoftRange",
+              "val": 0
+            },
+            {
+              "id": "SpillSuppression",
+              "val": 1
+            },
+            {
+              "id": "Matte",
+              "val": 1
+            },
+            {
+              "id": "MatteBlur",
+              "val": 0
+            },
+            {
+              "id": "MatteContractExpand",
+              "val": 0
+            },
+            {
+              "id": "MatteGamma",
+              "val": 1
+            },
+            {
+              "id": "Input"
+            }
+          ]
+        },
+        "session": "[omitted]",
+        "v": 2
+      },
+      "at_local": "2026-11-05T15:11:29.180476+08:00",
+      "action": "resolve_lua",
+      "observations": [],
+      "failed": false
+    },
+    {
+      "api_request": 10,
+      "tool_call": 10,
+      "arguments": {
+        "action": "resolve_lua",
+        "parameters": {},
+        "reason": " "
+      },
+      "result": {
+        "ok": false,
+        "tool_error": "'code'"
+      },
+      "at_local": "2026-11-05T15:11:33.828147+08:00",
+      "action": "resolve_lua",
+      "observations": [],
+      "failed": true
+    },
+    {
+      "api_request": 11,
+      "tool_call": 11,
+      "arguments": {
+        "action": "resolve_lua",
+        "params": {
+          "code": "local c=timeline:GetItemListInTrack('video',1)[1]; local comp=c:GetFusionCompByIndex(1); local d=comp:AddTool('DeltaKeyer',3,1); local a={}; for _,i in pairs(d:GetInputList()) do local x=i:GetAttrs(); if x.INPS_ID then a[#a+1]={id=x.INPS_ID,name=x.INPS_Name,type=x.INPS_DataType} end end; return a"
+        },
+        "reason": "比较DeltaKeyer的公开控件，确定可采样背景键色的方法。"
+      },
+      "result": {
+        "at": 1793862699,
+        "id": "a7b8c4c6de6b4a05b07557136acef6e2",
+        "ok": true,
+        "op": "run",
+        "prints": {},
+        "result": [
+          {
+            "id": "SettingsNest",
+            "name": "Settings",
+            "type": "Number"
+          },
+          {
+            "id": "Blend",
+            "name": "Blend",
+            "type": "Number"
+          },
+          {
+            "id": "ProcessWhenBlendIs00",
+            "name": "Process when Blend is 0.0",
+            "type": "Number"
+          },
+          {
+            "id": "ProcessRed",
+            "name": "Process Red",
+            "type": "Number"
+          },
+          {
+            "id": "ProcessGreen",
+            "name": "Process Green",
+            "type": "Number"
+          },
+          {
+            "id": "ProcessBlue",
+            "name": "Process Blue",
+            "type": "Number"
+          },
+          {
+            "id": "ProcessAlpha",
+            "name": "Process Alpha",
+            "type": "Number"
+          },
+          {
+            "id": "Blank1",
+            "name": "",
+            "type": "Number"
+          },
+          {
+            "id": "ApplyMaskInverted",
+            "name": "Apply Mask Inverted",
+            "type": "Number"
+          },
+          {
+            "id": "MultiplyByMask",
+            "name": "Multiply by Mask",
+            "type": "Number"
+          },
+          {
+            "id": "FitMask",
+            "name": "Fit Mask",
+            "type": "FuID"
+          },
+          {
+            "id": "Blank2",
+            "name": "",
+            "type": "Number"
+          },
+          {
+            "id": "MaskChannel",
+            "name": "Channel",
+            "type": "Number"
+          },
+          {
+            "id": "MaskLow",
+            "name": "Low",
+            "type": "Number"
+          },
+          {
+            "id": "MaskHigh",
+            "name": "High",
+            "type": "Number"
+          },
+          {
+            "id": "MaskClipBlack",
+            "name": "Clip Black",
+            "type": "Number"
+          },
+          {
+            "id": "MaskClipWhite",
+            "name": "Clip White",
+            "type": "Number"
+          },
+          {
+            "id": "Blank4",
+            "name": "",
+            "type": "Number"
+          },
+          {
+            "id": "UseObject",
+            "name": "Use Object",
+            "type": "Number"
+          },
+          {
+            "id": "UseMaterial",
+            "name": "Use Material",
+            "type": "Number"
+          },
+          {
+            "id": "CorrectEdges",
+            "name": "Correct Edges",
+            "type": "Number"
+          },
+          {
+            "id": "ObjectID",
+            "name": "Object ID",
+            "type": "Number"
+          },
+          {
+            "id": "MaterialID",
+            "name": "Material ID",
+            "type": "Number"
+          },
+          {
+            "id": "Blank3",
+            "name": "",
+            "type": "Number"
+          },
+          {
+            "id": "ClippingMode",
+            "name": "Clipping Mode",
+            "type": "FuID"
+          },
+          {
+            "id": "UseGPU",
+            "name": "Use GPU",
+            "type": "Number"
+          },
+          {
+            "id": "HideInputs",
+            "name": "Hide Incoming Connections",
+            "type": "Number"
+          },
+          {
+            "id": "LayersNest",
+            "name": "Layers",
+            "type": "Number"
+          },
+          {
+            "id": "ProcessLayers",
+            "name": "Process Layers",
+            "type": "FuID"
+          },
+          {
+            "id": "ProcessLayersCustom",
+            "name": "",
+            "type": "ScriptVal"
+          },
+          {
+            "id": "LayerSpacer",
+            "name": "",
+            "type": "Number"
+          },
+          {
+            "id": "Input_LayerSelect",
+            "name": "Input Layer",
+            "type": "FuID"
+          },
+          {
+            "id": "Clean_LayerSelect",
+            "name": "Clean Plate Layer",
+            "type": "FuID"
+          },
+          {
+            "id": "Solid.Matte_LayerSelect",
+            "name": "Solid Matte Layer",
+            "type": "FuID"
+          },
+          {
+            "id": "Garbage.Matte_LayerSelect",
+            "name": "Garbage Matte Layer",
+            "type": "FuID"
+          },
+          {
+            "id": "EffectMask_LayerSelect",
+            "name": "Effect Mask Layer",
+            "type": "FuID"
+          },
+          {
+            "id": "ViewMode",
+            "name": "View Mode",
+            "type": "FuID"
+          },
+          {
+            "id": "BackgroundRed",
+            "name": "Background Red",
+            "type": "Number"
+          },
+          {
+            "id": "BackgroundGreen",
+            "name": "Background Green",
+            "type": "Number"
+          },
+          {
+            "id": "BackgroundBlue",
+            "name": "Background Blue",
+            "type": "Number"
+          },
+          {
+            "id": "PreBlur",
+            "name": "Pre-Blur",
+            "type": "Number"
+          },
+          {
+            "id": "Gain",
+            "name": "Gain",
+            "type": "Number"
+          },
+          {
+            "id": "Balance",
+            "name": "Balance",
+            "type": "Number"
+          },
+          {
+            "id": "LockAlphaSpillReference",
+            "name": "Lock Alpha/Spill Removal Color Balance Reference",
+            "type": "Number"
+          },
+          {
+            "id": "AlphaReferenceRed",
+            "name": "Alpha Reference Red",
+            "type": "Number"
+          },
+          {
+            "id": "AlphaReferenceGreen",
+            "name": "Alpha Reference Green",
+            "type": "Number"
+          },
+          {
+            "id": "AlphaReferenceBlue",
+            "name": "Alpha Reference Blue",
+            "type": "Number"
+          },
+          {
+            "id": "SpillReferenceRed",
+            "name": "Spill Reference Red",
+            "type": "Number"
+          },
+          {
+            "id": "SpillReferenceGreen",
+            "name": "Spill Reference Green",
+            "type": "Number"
+          },
+          {
+            "id": "SpillReferenceBlue",
+            "name": "Spill Reference Blue",
+            "type": "Number"
+          },
+          {
+            "id": "PreMatteSoftRange",
+            "name": "Soft Range",
+            "type": "Number"
+          },
+          {
+            "id": "PreMatteErode",
+            "name": "Erode",
+            "type": "Number"
+          },
+          {
+            "id": "PreMatteBlur",
+            "name": "Blur",
+            "type": "Number"
+          },
+          {
+            "id": "PreMatteLockPicking",
+            "name": "Lock Color Picking",
+            "type": "Number"
+          },
+          {
+            "id": "PreMatteLowRed",
+            "name": "Red Low",
+            "type": "Number"
+          },
+          {
+            "id": "PreMatteHighRed",
+            "name": "Red High",
+            "type": "Number"
+          },
+          {
+            "id": "PreMatteLowGreen",
+            "name": "Green Low",
+            "type": "Number"
+          },
+          {
+            "id": "PreMatteHighGreen",
+            "name": "Green High",
+            "type": "Number"
+          },
+          {
+            "id": "PreMatteLowBlue",
+            "name": "Blue Low",
+            "type": "Number"
+          },
+          {
+            "id": "PreMatteHighBlue",
+            "name": "Blue High",
+            "type": "Number"
+          },
+          {
+            "id": "PreMatteLowLuminance",
+            "name": "Luminance Low",
+            "type": "Number"
+          },
+          {
+            "id": "PreMatteHighLuminance",
+            "name": "Luminance High",
+            "type": "Number"
+          },
+          {
+            "id": "ResetPreMatteRanges",
+            "name": "Reset Pre Matte Ranges",
+            "type": "Number"
+          },
+          {
+            "id": "LowThreshold",
+            "name": "Low",
+            "type": "Number"
+          },
+          {
+            "id": "HighThreshold",
+            "name": "High",
+            "type": "Number"
+          },
+          {
+            "id": "RestoreFringe",
+            "name": "Restore Fringe",
+            "type": "Number"
+          },
+          {
+            "id": "ErodeDilate",
+            "name": "Erode/Dilate",
+            "type": "Number"
+          },
+          {
+            "id": "Blur",
+            "name": "Blur",
+            "type": "Number"
+          },
+          {
+            "id": "CleanForeground",
+            "name": "Clean Foreground",
+            "type": "Number"
+          },
+          {
+            "id": "CleanBackground",
+            "name": "Clean Background",
+            "type": "Number"
+          },
+          {
+            "id": "ReplaceMode",
+            "name": "Replace Mode",
+            "type": "FuID"
+          },
+          {
+            "id": "ReplaceRed",
+            "name": "Replace Red",
+            "type": "Number"
+          },
+          {
+            "id": "ReplaceGreen",
+            "name": "Replace Green",
+            "type": "Number"
+          },
+          {
+            "id": "ReplaceBlue",
+            "name": "Replace Blue",
+            "type": "Number"
+          },
+          {
+            "id": "SpillMethod",
+            "name": "Spill Method",
+            "type": "FuID"
+          },
+          {
+            "id": "SpillSuppression",
+            "name": "Spill Suppression",
+            "type": "Number"
+          },
+          {
+            "id": "FringeGamma",
+            "name": "Fringe Gamma",
+            "type": "Number"
+          },
+          {
+            "id": "FringeSize",
+            "name": "Fringe Size",
+            "type": "Number"
+          },
+          {
+            "id": "FringeShape",
+            "name": "Fringe Shape",
+            "type": "Number"
+          },
+          {
+            "id": "FringeRedCyan",
+            "name": "Red/Cyan",
+            "type": "Number"
+          },
+          {
+            "id": "FringeGreenMagenta",
+            "name": "Green/Magenta",
+            "type": "Number"
+          },
+          {
+            "id": "FringeBlueYellow",
+            "name": "Blue/Yellow",
+            "type": "Number"
+          },
+          {
+            "id": "TuningRanges",
+            "name": "Tuning Ranges",
+            "type": "ColorCurves"
+          },
+          {
+            "id": "PresetSimpleRanges",
+            "name": "Simple",
+            "type": "Number"
+          },
+          {
+            "id": "PresetSmoothRanges",
+            "name": "Smooth",
+            "type": "Number"
+          },
+          {
+            "id": "LockAlphaSpillTuning",
+            "name": "Lock Alpha/Spill Removal Tuning",
+            "type": "Number"
+          },
+          {
+            "id": "AlphaShadowsGain",
+            "name": "Shadows",
+            "type": "Number"
+          },
+          {
+            "id": "AlphaMidtonesGain",
+            "name": "Midtones",
+            "type": "Number"
+          },
+          {
+            "id": "AlphaHighlightsGain",
+            "name": "Highlights",
+            "type": "Number"
+          },
+          {
+            "id": "SpillShadowsGain",
+            "name": "Spill Shadows",
+            "type": "Number"
+          },
+          {
+            "id": "SpillMidtonesGain",
+            "name": "Spill Midtones",
+            "type": "Number"
+          },
+          {
+            "id": "SpillHighlightsGain",
+            "name": "Spill Highlights",
+            "type": "Number"
+          },
+          {
+            "id": "EffectMask",
+            "name": "Effect Mask",
+            "type": "Mask"
+          },
+          {
+            "id": "Solid.Matte",
+            "name": "Solid Matte",
+            "type": "Mask"
+          },
+          {
+            "id": "Solid.MaskNest",
+            "name": "Solid Matte",
+            "type": "Number"
+          },
+          {
+            "id": "SolidSourceAlpha",
+            "name": "Solid Source Alpha",
+            "type": "FuID"
+          },
+          {
+            "id": "SolidReplaceMode",
+            "name": "Solid Replace Mode",
+            "type": "FuID"
+          },
+          {
+            "id": "SolidReplaceRed",
+            "name": "Solid Replace Red",
+            "type": "Number"
+          },
+          {
+            "id": "SolidReplaceGreen",
+            "name": "Solid Replace Green",
+            "type": "Number"
+          },
+          {
+            "id": "SolidReplaceBlue",
+            "name": "Solid Replace Blue",
+            "type": "Number"
+          },
+          {
+            "id": "Solid.MaskInverted",
+            "name": "Invert",
+            "type": "Number"
+          },
+          {
+            "id": "Solid.MaskFit",
+            "name": "Fit",
+            "type": "FuID"
+          },
+          {
+            "id": "Solid.MaskBlank",
+            "name": "",
+            "type": "Number"
+          },
+          {
+            "id": "Solid.MaskChannel",
+            "name": "Channel",
+            "type": "Number"
+          },
+          {
+            "id": "Solid.MaskLow",
+            "name": "Low",
+            "type": "Number"
+          },
+          {
+            "id": "Solid.MaskHigh",
+            "name": "High",
+            "type": "Number"
+          },
+          {
+            "id": "Solid.MaskClipBlack",
+            "name": "Clip Black",
+            "type": "Number"
+          },
+          {
+            "id": "Solid.MaskClipWhite",
+            "name": "Clip White",
+            "type": "Number"
+          },
+          {
+            "id": "Garbage.Matte",
+            "name": "Garbage Matte",
+            "type": "Mask"
+          },
+          {
+            "id": "Garbage.MaskNest",
+            "name": "Garbage Matte",
+            "type": "Number"
+          },
+          {
+            "id": "Garbage.MaskInverted",
+            "name": "Invert",
+            "type": "Number"
+          },
+          {
+            "id": "Garbage.MaskFit",
+            "name": "Fit",
+            "type": "FuID"
+          },
+          {
+            "id": "Garbage.MaskBlank",
+            "name": "",
+            "type": "Number"
+          },
+          {
+            "id": "Garbage.MaskChannel",
+            "name": "Channel",
+            "type": "Number"
+          },
+          {
+            "id": "Garbage.MaskLow",
+            "name": "Low",
+            "type": "Number"
+          },
+          {
+            "id": "Garbage.MaskHigh",
+            "name": "High",
+            "type": "Number"
+          },
+          {
+            "id": "Garbage.MaskClipBlack",
+            "name": "Clip Black",
+            "type": "Number"
+          },
+          {
+            "id": "Garbage.MaskClipWhite",
+            "name": "Clip White",
+            "type": "Number"
+          },
+          {
+            "id": "Clean",
+            "name": "Clean Plate",
+            "type": "Image"
+          },
+          {
+            "id": "Input",
+            "name": "Input",
+            "type": "Image"
+          },
+          {
+            "id": "CommentsNest",
+            "name": "Comments",
+            "type": "Number"
+          },
+          {
+            "id": "Comments",
+            "name": "Comments",
+            "type": "Text"
+          },
+          {
+            "id": "FrameRenderScriptNest",
+            "name": "Frame Render Script",
+            "type": "Number"
+          },
+          {
+            "id": "FrameRenderScript",
+            "name": "Frame Render Script",
+            "type": "Text"
+          },
+          {
+            "id": "StartRenderScripts",
+            "name": "Start Render Scripts",
+            "type": "Number"
+          },
+          {
+            "id": "StartRenderScript",
+            "name": "Start Render Script",
+            "type": "Text"
+          },
+          {
+            "id": "EndRenderScripts",
+            "name": "End Render Scripts",
+            "type": "Number"
+          },
+          {
+            "id": "EndRenderScript",
+            "name": "End Render Script",
+            "type": "Text"
+          }
+        ],
+        "session": "[omitted]",
+        "v": 2
+      },
+      "at_local": "2026-11-05T15:11:39.947421+08:00",
+      "action": "resolve_lua",
+      "observations": [],
+      "failed": false
+    },
+    {
+      "api_request": 12,
+      "tool_call": 12,
+      "arguments": {
+        "action": "resolve_lua",
+        "params": {
+          "code": "local c=timeline:GetItemListInTrack('video',1)[1]; local comp=c:GetFusionCompByIndex(1); local mi=comp:FindTool('MediaIn1'); local d=comp:FindTool('DeltaKeyer1'); local bg=comp:AddTool('Background',4,2); local m=comp:AddTool('Merge',5,1); local out=comp:FindTool('MediaOut1'); d:ConnectInput('Input',mi); d:SetInput('BackgroundRed',0.40); d:SetInput('BackgroundGreen',0.46); d:SetInput('BackgroundBlue',0.72); d:SetInput('LowThreshold',0.06); d:SetInput('HighThreshold',0.32); d:SetInput('CleanBackground',0.5); d:SetInput('CleanForeground',0.2); d:SetInput('SpillSuppression',0.6); bg:SetInput('UseFrameFormatSettings',1); bg:SetInput('TopLeftRed',0); bg:SetInput('TopLeftGreen',1); bg:SetInput('TopLeftBlue',0); m:ConnectInput('Background',bg); m:ConnectInput('Foreground',d); out:ConnectInput('Input',m); local r={}; for _,n in pairs(comp:GetToolList(false)) do local a=n:GetAttrs(); r[#r+1]={name=a.TOOLS_Name,id=a.TOOLS_RegID} end; return r"
+        },
+        "reason": "搭建DeltaKeyer抠像、纯绿色Background和Merge原生合成链，保持原片时间范围。"
+      },
+      "result": {
+        "at": 1793862712,
+        "id": "12af2583ef5348bebee495317c376962",
+        "ok": true,
+        "op": "run",
+        "prints": {},
+        "result": [
+          {
+            "id": "MediaIn",
+            "name": "MediaIn1"
+          },
+          {
+            "id": "DeltaKeyer",
+            "name": "DeltaKeyer1"
+          },
+          {
+            "id": "ChromaKeyer",
+            "name": "ChromaKeyer1"
+          },
+          {
+            "id": "Background",
+            "name": "Background1"
+          },
+          {
+            "id": "Merge",
+            "name": "Merge1"
+          },
+          {
+            "id": "MediaOut",
+            "name": "MediaOut1"
+          }
+        ],
+        "session": "[omitted]",
+        "v": 2
+      },
+      "at_local": "2026-11-05T15:11:52.670695+08:00",
+      "action": "resolve_lua",
+      "observations": [],
+      "failed": false
+    },
+    {
+      "api_request": 13,
+      "tool_call": 13,
+      "arguments": {
+        "action": "render_video",
+        "params": {
+          "output": "submission/test.mp4",
+          "timeline_index": 1,
+          "start_frame": 0,
+          "end_frame": 24
+        },
+        "reason": "先渲染首秒测试，确认Fusion节点连接和Keyer参数效果。"
+      },
+      "result": {
+        "native_video": true,
+        "output": "runs/luna-3\\submission\\test.mp4",
+        "project": "Omniale_CRANE_LUNA_20261105_151034",
+        "timeline_index": 1,
+        "range": [
+          0,
+          24
+        ],
+        "job": "2f9e9f4e-9b09-4ceb-915e-6da109942732",
+        "status": {
+          "CompletionPercentage": 100,
+          "JobStatus": "Complete",
+          "TimeTakenToRenderInMs": 13790
+        },
+        "sha256": "8274e3fae0e654859ad111ac4a720c39dc7eabe632d9e309555469d76d07a646",
+        "probe": {
+          "path": "runs/luna-3\\submission\\test.mp4",
+          "width": 1280,
+          "height": 544,
+          "fps": 24.0,
+          "frames": 25,
+          "duration_s": 1.0416666666666667,
+          "bytes": 550413
+        }
+      },
+      "at_local": "2026-11-05T15:12:13.638020+08:00",
+      "action": "render_video",
+      "observations": [],
+      "failed": false
+    },
+    {
+      "api_request": 14,
+      "tool_call": 14,
+      "arguments": {
+        "action": "frames",
+        "params": {
+          "path": "submission/test.mp4",
+          "times": [
+            0,
+            0.5,
+            1
+          ],
+          "width": 1280
+        },
+        "reason": "查看实渲染抠像测试帧检查键色与绿底。"
+      },
+      "result": {
+        "kind": "decoded_authentic_media",
+        "images": [
+          {
+            "path": "runs/luna-3\\logs\\observations\\643e4fed171143559989e8d9a74710c6.jpg",
+            "source": "runs/luna-3\\submission\\test.mp4",
+            "requested_source_time_s": 0,
+            "crop": null,
+            "sha256": "a7a8a47ae1209dc53fffd5dbbc51f69eda01e01e8e71bb9f730cc942df2a5ba9"
+          },
+          {
+            "path": "runs/luna-3\\logs\\observations\\1e4d3260816f4615babe7b00115531bf.jpg",
+            "source": "runs/luna-3\\submission\\test.mp4",
+            "requested_source_time_s": 0.5,
+            "crop": null,
+            "sha256": "cea602055da7e44ab7d163c97b21c372370a5e1ed8aab6b23dcfb19828172568"
+          },
+          {
+            "path": "runs/luna-3\\logs\\observations\\a9729317d8dd4c8d8be7348dcbe144af.jpg",
+            "source": "runs/luna-3\\submission\\test.mp4",
+            "requested_source_time_s": 1,
+            "crop": null,
+            "sha256": "82e0a46a934c4e36b03efdeff5450b21aea2c7e14f66014ad4cf5de85e006793"
+          }
+        ]
+      },
+      "at_local": "2026-11-05T15:12:34.440068+08:00",
+      "action": "frames",
+      "observations": [
+        {
+          "src": "runs/luna-3/observations/643e4fed171143559989e8d9a74710c6.jpg",
+          "source": "runs/luna-3\\submission\\test.mp4",
+          "time": 0,
+          "crop": null,
+          "sha256": "a7a8a47ae1209dc53fffd5dbbc51f69eda01e01e8e71bb9f730cc942df2a5ba9"
+        },
+        {
+          "src": "runs/luna-3/observations/1e4d3260816f4615babe7b00115531bf.jpg",
+          "source": "runs/luna-3\\submission\\test.mp4",
+          "time": 0.5,
+          "crop": null,
+          "sha256": "cea602055da7e44ab7d163c97b21c372370a5e1ed8aab6b23dcfb19828172568"
+        },
+        {
+          "src": "runs/luna-3/observations/a9729317d8dd4c8d8be7348dcbe144af.jpg",
+          "source": "runs/luna-3\\submission\\test.mp4",
+          "time": 1,
+          "crop": null,
+          "sha256": "82e0a46a934c4e36b03efdeff5450b21aea2c7e14f66014ad4cf5de85e006793"
+        }
+      ],
+      "failed": false
+    },
+    {
+      "api_request": 15,
+      "tool_call": 15,
+      "arguments": {
+        "action": "resolve_lua",
+        "params": {
+          "code": "local c=timeline:GetItemListInTrack('video',1)[1]; local comp=c:GetFusionCompByIndex(1); local k=comp:FindTool('ChromaKeyer1'); local m=comp:FindTool('Merge1'); local d=comp:FindTool('DeltaKeyer1'); k:ConnectInput('Input',comp:FindTool('MediaIn1')); k:SetInput('KeyType',0); k:SetInput('RedLow',0); k:SetInput('RedHigh',0.78); k:SetInput('GreenLow',0); k:SetInput('GreenHigh',0.82); k:SetInput('BlueLow',0.48); k:SetInput('BlueHigh',1); k:SetInput('SoftRange',0.18); k:SetInput('SpillSuppression',0.0); k:SetInput('MatteBlur',0.4); k:SetInput('LowMatteThreshold',0.02); k:SetInput('High',0.9); m:ConnectInput('Foreground',k); d:SetInput('SpillSuppression',0); return {keytype=k:GetInput('KeyType'),view=d:GetInput('ViewMode'),blue=k:GetInput('BlueLow')}"
+        },
+        "reason": "测试蓝天色域的ChromaKeyer阈值，关闭之前错误的DeltaKeyer支路影响。"
+      },
+      "result": {
+        "at": 1793862795,
+        "id": "490ea493ad9346be88069b6856cd2051",
+        "ok": true,
+        "op": "run",
+        "prints": {},
+        "result": {
+          "blue": 0.48,
+          "keytype": 0,
+          "view": "Final"
+        },
+        "session": "[omitted]",
+        "v": 2
+      },
+      "at_local": "2026-11-05T15:13:15.335389+08:00",
+      "action": "resolve_lua",
+      "observations": [],
+      "failed": false
+    },
+    {
+      "api_request": 16,
+      "tool_call": 16,
+      "arguments": {
+        "action": "render_video",
+        "params": {
+          "output": "submission/test2.mp4",
+          "timeline_index": 1,
+          "start_frame": 0,
+          "end_frame": 24
+        },
+        "reason": "实渲染检查ChromaKeyer是否正确输出透明鸟并合成绿底。"
+      },
+      "result": {
+        "native_video": true,
+        "output": "runs/luna-3\\submission\\test2.mp4",
+        "project": "Omniale_CRANE_LUNA_20261105_151034",
+        "timeline_index": 1,
+        "range": [
+          0,
+          24
+        ],
+        "job": "2349c536-e690-46e0-b3df-98aec4390c09",
+        "status": {
+          "CompletionPercentage": 100,
+          "JobStatus": "Complete",
+          "TimeTakenToRenderInMs": 767
+        },
+        "sha256": "4b74f3ec0138b3207bd09cc19ce1c92a0d448acc34774e20c73de58181f65652",
+        "probe": {
+          "path": "runs/luna-3\\submission\\test2.mp4",
+          "width": 1280,
+          "height": 544,
+          "fps": 24.0,
+          "frames": 25,
+          "duration_s": 1.0416666666666667,
+          "bytes": 11014
+        }
+      },
+      "at_local": "2026-11-05T15:13:26.534253+08:00",
+      "action": "render_video",
+      "observations": [],
+      "failed": false
+    },
+    {
+      "api_request": 17,
+      "tool_call": 17,
+      "arguments": {
+        "action": "frames",
+        "params": {
+          "path": "submission/test2.mp4",
+          "times": [
+            0,
+            0.5,
+            1
+          ],
+          "width": 1280
+        },
+        "reason": "观察第二次实际渲染，验证前景与纯绿背景。"
+      },
+      "result": {
+        "kind": "decoded_authentic_media",
+        "images": [
+          {
+            "path": "runs/luna-3\\logs\\observations\\09fa8632c5fc4f7ab24e9a7a82b980f2.jpg",
+            "source": "runs/luna-3\\submission\\test2.mp4",
+            "requested_source_time_s": 0,
+            "crop": null,
+            "sha256": "31b290a52f204c19081b5e943323236e53919796a68ef2a4bd05c74c87f4480b"
+          },
+          {
+            "path": "runs/luna-3\\logs\\observations\\d25ac9da653d488497c62ba57e9c915b.jpg",
+            "source": "runs/luna-3\\submission\\test2.mp4",
+            "requested_source_time_s": 0.5,
+            "crop": null,
+            "sha256": "afecb24f9f1af303ff16f12a150ee5b3b5776799a0300445b5604e8af05c43ac"
+          },
+          {
+            "path": "runs/luna-3\\logs\\observations\\b0232ef9dc69443d8be51f2ae31c61fd.jpg",
+            "source": "runs/luna-3\\submission\\test2.mp4",
+            "requested_source_time_s": 1,
+            "crop": null,
+            "sha256": "addf39a08b0fa8971f89894063feef1a737c8dbbce46d9ac7047df4fa3269bf2"
+          }
+        ]
+      },
+      "at_local": "2026-11-05T15:13:33.451509+08:00",
+      "action": "frames",
+      "observations": [
+        {
+          "src": "runs/luna-3/observations/09fa8632c5fc4f7ab24e9a7a82b980f2.jpg",
+          "source": "runs/luna-3\\submission\\test2.mp4",
+          "time": 0,
+          "crop": null,
+          "sha256": "31b290a52f204c19081b5e943323236e53919796a68ef2a4bd05c74c87f4480b"
+        },
+        {
+          "src": "runs/luna-3/observations/d25ac9da653d488497c62ba57e9c915b.jpg",
+          "source": "runs/luna-3\\submission\\test2.mp4",
+          "time": 0.5,
+          "crop": null,
+          "sha256": "afecb24f9f1af303ff16f12a150ee5b3b5776799a0300445b5604e8af05c43ac"
+        },
+        {
+          "src": "runs/luna-3/observations/b0232ef9dc69443d8be51f2ae31c61fd.jpg",
+          "source": "runs/luna-3\\submission\\test2.mp4",
+          "time": 1,
+          "crop": null,
+          "sha256": "addf39a08b0fa8971f89894063feef1a737c8dbbce46d9ac7047df4fa3269bf2"
+        }
+      ],
+      "failed": false
+    },
+    {
+      "api_request": 18,
+      "tool_call": 18,
+      "arguments": {
+        "action": "resolve_lua",
+        "params": {
+          "code": "local c=timeline:GetItemListInTrack('video',1)[1]; local k=c:GetFusionCompByIndex(1):FindTool('ChromaKeyer1'); k:SetInput('InvertMatte',1); k:SetInput('RedLow',0.2); k:SetInput('RedHigh',0.65); k:SetInput('GreenLow',0.25); k:SetInput('GreenHigh',0.75); k:SetInput('BlueLow',0.45); k:SetInput('BlueHigh',0.95); k:SetInput('SoftRange',0.12); return {inv=k:GetInput('InvertMatte')}"
+        },
+        "reason": "反相错误方向的色键遮罩并收紧到天蓝色域，保留白鹤前景。"
+      },
+      "result": {
+        "at": 1793862824,
+        "id": "1173278c86cb47d387d3ad440a36efa8",
+        "ok": true,
+        "op": "run",
+        "prints": {},
+        "result": {
+          "inv": 1
+        },
+        "session": "[omitted]",
+        "v": 2
+      },
+      "at_local": "2026-11-05T15:13:44.540048+08:00",
+      "action": "resolve_lua",
+      "observations": [],
+      "failed": false
+    },
+    {
+      "api_request": 19,
+      "tool_call": 19,
+      "arguments": {
+        "action": "render_video",
+        "params": {
+          "output": "submission/test3.mp4",
+          "timeline_index": 1,
+          "start_frame": 0,
+          "end_frame": 12
+        },
+        "reason": "测试反相遮罩是否恢复白鹤主体。"
+      },
+      "result": {
+        "native_video": true,
+        "output": "runs/luna-3\\submission\\test3.mp4",
+        "project": "Omniale_CRANE_LUNA_20261105_151034",
+        "timeline_index": 1,
+        "range": [
+          0,
+          12
+        ],
+        "job": "89698b59-ed82-40b2-be9a-6e477d30d6ae",
+        "status": {
+          "CompletionPercentage": 100,
+          "JobStatus": "Complete",
+          "TimeTakenToRenderInMs": 767
+        },
+        "sha256": "bca7413279088ccdac7511564b1bbd86168594375f726e371a9c6874639a8777",
+        "probe": {
+          "path": "runs/luna-3\\submission\\test3.mp4",
+          "width": 1280,
+          "height": 544,
+          "fps": 24.0,
+          "frames": 13,
+          "duration_s": 0.5416666666666666,
+          "bytes": 280878
+        }
+      },
+      "at_local": "2026-11-05T15:13:52.172687+08:00",
+      "action": "render_video",
+      "observations": [],
+      "failed": false
+    },
+    {
+      "api_request": 20,
+      "tool_call": 20,
+      "arguments": {
+        "action": "frames",
+        "params": {
+          "path": "submission/test3.mp4",
+          "times": [
+            0
+          ],
+          "width": 1280
+        },
+        "reason": "复核反相抠像测试图。"
+      },
+      "result": {
+        "kind": "decoded_authentic_media",
+        "images": [
+          {
+            "path": "runs/luna-3\\logs\\observations\\4cb1cdacc0914578b533e525a58d9b16.jpg",
+            "source": "runs/luna-3\\submission\\test3.mp4",
+            "requested_source_time_s": 0,
+            "crop": null,
+            "sha256": "a509deaa6bf40a0013f7e90ca291856c96fb47b67bed00aa3cdb7824f019e828"
+          }
+        ]
+      },
+      "at_local": "2026-11-05T15:14:04.758581+08:00",
+      "action": "frames",
+      "observations": [
+        {
+          "src": "runs/luna-3/observations/4cb1cdacc0914578b533e525a58d9b16.jpg",
+          "source": "runs/luna-3\\submission\\test3.mp4",
+          "time": 0,
+          "crop": null,
+          "sha256": "a509deaa6bf40a0013f7e90ca291856c96fb47b67bed00aa3cdb7824f019e828"
+        }
+      ],
+      "failed": false
+    },
+    {
+      "api_request": 21,
+      "tool_call": 21,
+      "arguments": {
+        "action": "resolve_lua",
+        "params": {
+          "code": "local c=timeline:GetItemListInTrack('video',1)[1]; local comp=c:GetFusionCompByIndex(1); local l=comp:AddTool('LumaKeyer',3,2); local r={}; for _,i in pairs(l:GetInputList()) do local a=i:GetAttrs(); if a.INPS_ID then r[#r+1]={id=a.INPS_ID,name=a.INPS_Name,type=a.INPS_DataType} end end; return r"
+        },
+        "reason": "评估原生亮度键控器参数，测试按鸟与天空亮度差进行分离。"
+      },
+      "result": {
+        "at": 1793862855,
+        "id": "60b7f41168074cb48961101119b508fb",
+        "ok": true,
+        "op": "run",
+        "prints": {},
+        "result": [
+          {
+            "id": "SettingsNest",
+            "name": "Settings",
+            "type": "Number"
+          },
+          {
+            "id": "Blend",
+            "name": "Blend",
+            "type": "Number"
+          },
+          {
+            "id": "ProcessWhenBlendIs00",
+            "name": "Process when Blend is 0.0",
+            "type": "Number"
+          },
+          {
+            "id": "ProcessRed",
+            "name": "Process Red",
+            "type": "Number"
+          },
+          {
+            "id": "ProcessGreen",
+            "name": "Process Green",
+            "type": "Number"
+          },
+          {
+            "id": "ProcessBlue",
+            "name": "Process Blue",
+            "type": "Number"
+          },
+          {
+            "id": "ProcessAlpha",
+            "name": "Process Alpha",
+            "type": "Number"
+          },
+          {
+            "id": "Blank1",
+            "name": "",
+            "type": "Number"
+          },
+          {
+            "id": "ApplyMaskInverted",
+            "name": "Apply Mask Inverted",
+            "type": "Number"
+          },
+          {
+            "id": "MultiplyByMask",
+            "name": "Multiply by Mask",
+            "type": "Number"
+          },
+          {
+            "id": "FitMask",
+            "name": "Fit Mask",
+            "type": "FuID"
+          },
+          {
+            "id": "Blank2",
+            "name": "",
+            "type": "Number"
+          },
+          {
+            "id": "MaskChannel",
+            "name": "Channel",
+            "type": "Number"
+          },
+          {
+            "id": "MaskLow",
+            "name": "Low",
+            "type": "Number"
+          },
+          {
+            "id": "MaskHigh",
+            "name": "High",
+            "type": "Number"
+          },
+          {
+            "id": "MaskClipBlack",
+            "name": "Clip Black",
+            "type": "Number"
+          },
+          {
+            "id": "MaskClipWhite",
+            "name": "Clip White",
+            "type": "Number"
+          },
+          {
+            "id": "Blank4",
+            "name": "",
+            "type": "Number"
+          },
+          {
+            "id": "UseObject",
+            "name": "Use Object",
+            "type": "Number"
+          },
+          {
+            "id": "UseMaterial",
+            "name": "Use Material",
+            "type": "Number"
+          },
+          {
+            "id": "CorrectEdges",
+            "name": "Correct Edges",
+            "type": "Number"
+          },
+          {
+            "id": "ObjectID",
+            "name": "Object ID",
+            "type": "Number"
+          },
+          {
+            "id": "MaterialID",
+            "name": "Material ID",
+            "type": "Number"
+          },
+          {
+            "id": "Blank6",
+            "name": "",
+            "type": "Number"
+          },
+          {
+            "id": "UseGPU",
+            "name": "Use GPU",
+            "type": "Number"
+          },
+          {
+            "id": "HideInputs",
+            "name": "Hide Incoming Connections",
+            "type": "Number"
+          },
+          {
+            "id": "LayersNest",
+            "name": "Layers",
+            "type": "Number"
+          },
+          {
+            "id": "ProcessLayers",
+            "name": "Process Layers",
+            "type": "FuID"
+          },
+          {
+            "id": "ProcessLayersCustom",
+            "name": "",
+            "type": "ScriptVal"
+          },
+          {
+            "id": "LayerSpacer",
+            "name": "",
+            "type": "Number"
+          },
+          {
+            "id": "Input_LayerSelect",
+            "name": "Input Layer",
+            "type": "FuID"
+          },
+          {
+            "id": "Solid.Matte_LayerSelect",
+            "name": "Solid Matte Layer",
+            "type": "FuID"
+          },
+          {
+            "id": "Garbage.Matte_LayerSelect",
+            "name": "Garbage Matte Layer",
+            "type": "FuID"
+          },
+          {
+            "id": "EffectMask_LayerSelect",
+            "name": "Effect Mask Layer",
+            "type": "FuID"
+          },
+          {
+            "id": "Channel",
+            "name": "Channel",
+            "type": "Number"
+          },
+          {
+            "id": "High",
+            "name": "High",
+            "type": "Number"
+          },
+          {
+            "id": "Low",
+            "name": "Low",
+            "type": "Number"
+          },
+          {
+            "id": "Filter",
+            "name": "Filter",
+            "type": "FuID"
+          },
+          {
+            "id": "MatteBlur",
+            "name": "Blur",
+            "type": "Number"
+          },
+          {
+            "id": "Passes",
+            "name": "Num Passes",
+            "type": "Number"
+          },
+          {
+            "id": "ClippingMode",
+            "name": "Clipping Mode",
+            "type": "FuID"
+          },
+          {
+            "id": "MatteContrast",
+            "name": "Contract / Expand",
+            "type": "Number"
+          },
+          {
+            "id": "MatteGamma",
+            "name": "Gamma",
+            "type": "Number"
+          },
+          {
+            "id": "Invert",
+            "name": "Invert",
+            "type": "Number"
+          },
+          {
+            "id": "EffectMask",
+            "name": "Effect Mask",
+            "type": "Mask"
+          },
+          {
+            "id": "Solid.Matte",
+            "name": "Solid Matte",
+            "type": "Mask"
+          },
+          {
+            "id": "Solid.MaskNest",
+            "name": "Solid Matte",
+            "type": "Number"
+          },
+          {
+            "id": "Solid.MaskInverted",
+            "name": "Invert",
+            "type": "Number"
+          },
+          {
+            "id": "Solid.MaskFit",
+            "name": "Fit",
+            "type": "FuID"
+          },
+          {
+            "id": "Solid.MaskBlank",
+            "name": "",
+            "type": "Number"
+          },
+          {
+            "id": "Solid.MaskChannel",
+            "name": "Channel",
+            "type": "Number"
+          },
+          {
+            "id": "Solid.MaskLow",
+            "name": "Low",
+            "type": "Number"
+          },
+          {
+            "id": "Solid.MaskHigh",
+            "name": "High",
+            "type": "Number"
+          },
+          {
+            "id": "Solid.MaskClipBlack",
+            "name": "Clip Black",
+            "type": "Number"
+          },
+          {
+            "id": "Solid.MaskClipWhite",
+            "name": "Clip White",
+            "type": "Number"
+          },
+          {
+            "id": "Garbage.Matte",
+            "name": "Garbage Matte",
+            "type": "Mask"
+          },
+          {
+            "id": "Garbage.MaskNest",
+            "name": "Garbage Matte",
+            "type": "Number"
+          },
+          {
+            "id": "Garbage.MaskInverted",
+            "name": "Invert",
+            "type": "Number"
+          },
+          {
+            "id": "Garbage.MaskFit",
+            "name": "Fit",
+            "type": "FuID"
+          },
+          {
+            "id": "Garbage.MaskBlank",
+            "name": "",
+            "type": "Number"
+          },
+          {
+            "id": "Garbage.MaskChannel",
+            "name": "Channel",
+            "type": "Number"
+          },
+          {
+            "id": "Garbage.MaskLow",
+            "name": "Low",
+            "type": "Number"
+          },
+          {
+            "id": "Garbage.MaskHigh",
+            "name": "High",
+            "type": "Number"
+          },
+          {
+            "id": "Garbage.MaskClipBlack",
+            "name": "Clip Black",
+            "type": "Number"
+          },
+          {
+            "id": "Garbage.MaskClipWhite",
+            "name": "Clip White",
+            "type": "Number"
+          },
+          {
+            "id": "PostMultiplyImage",
+            "name": "Post Multiply Image",
+            "type": "Number"
+          },
+          {
+            "id": "Input",
+            "name": "Input",
+            "type": "Image"
+          },
+          {
+            "id": "CommentsNest",
+            "name": "Comments",
+            "type": "Number"
+          },
+          {
+            "id": "Comments",
+            "name": "Comments",
+            "type": "Text"
+          },
+          {
+            "id": "FrameRenderScriptNest",
+            "name": "Frame Render Script",
+            "type": "Number"
+          },
+          {
+            "id": "FrameRenderScript",
+            "name": "Frame Render Script",
+            "type": "Text"
+          },
+          {
+            "id": "StartRenderScripts",
+            "name": "Start Render Scripts",
+            "type": "Number"
+          },
+          {
+            "id": "StartRenderScript",
+            "name": "Start Render Script",
+            "type": "Text"
+          },
+          {
+            "id": "EndRenderScripts",
+            "name": "End Render Scripts",
+            "type": "Number"
+          },
+          {
+            "id": "EndRenderScript",
+            "name": "End Render Script",
+            "type": "Text"
+          }
+        ],
+        "session": "[omitted]",
+        "v": 2
+      },
+      "at_local": "2026-11-05T15:14:15.844168+08:00",
+      "action": "resolve_lua",
+      "observations": [],
+      "failed": false
+    },
+    {
+      "api_request": 22,
+      "tool_call": 22,
+      "arguments": {
+        "action": "resolve_lua",
+        "params": {
+          "code": "local comp=timeline:GetItemListInTrack('video',1)[1]:GetFusionCompByIndex(1); local l=comp:FindTool('LumaKeyer1'); l:ConnectInput('Input',comp:FindTool('MediaIn1')); l:SetInput('Low',0.25); l:SetInput('High',0.55); l:SetInput('MatteBlur',0.4); l:SetInput('Invert',1); comp:FindTool('Merge1'):ConnectInput('Foreground',l); return {low=l:GetInput('Low'),high=l:GetInput('High'),inv=l:GetInput('Invert')}"
+        },
+        "reason": "配置亮度键器并反相以尝试提取较亮白鹤轮廓。"
+      },
+      "result": {
+        "at": 1793862863,
+        "id": "c3083212f5974f75b230631bd108b142",
+        "ok": true,
+        "op": "run",
+        "prints": {},
+        "result": {
+          "high": 0.55,
+          "inv": 1,
+          "low": 0.25
+        },
+        "session": "[omitted]",
+        "v": 2
+      },
+      "at_local": "2026-11-05T15:14:23.092041+08:00",
+      "action": "resolve_lua",
+      "observations": [],
+      "failed": false
+    },
+    {
+      "api_request": 23,
+      "tool_call": 23,
+      "arguments": {
+        "action": "render_video",
+        "params": {
+          "output": "submission/test4.mp4",
+          "timeline_index": 1,
+          "start_frame": 0,
+          "end_frame": 0
+        },
+        "reason": "渲染单帧验证亮度键控结果。"
+      },
+      "result": {
+        "native_video": true,
+        "output": "runs/luna-3\\submission\\test4.mp4",
+        "project": "Omniale_CRANE_LUNA_20261105_151034",
+        "timeline_index": 1,
+        "range": [
+          0,
+          0
+        ],
+        "job": "d8586908-7011-495f-930c-4319ea5c6aeb",
+        "status": {
+          "CompletionPercentage": 100,
+          "JobStatus": "Complete",
+          "TimeTakenToRenderInMs": 771
+        },
+        "sha256": "50b53524457468d02a16ccd7eaed69241266917b6f7117819c715f8d206c9cab",
+        "probe": {
+          "path": "runs/luna-3\\submission\\test4.mp4",
+          "width": 1280,
+          "height": 544,
+          "fps": 24.0,
+          "frames": 1,
+          "duration_s": 0.041666666666666664,
+          "bytes": 24161
+        }
+      },
+      "at_local": "2026-11-05T15:14:29.984762+08:00",
+      "action": "render_video",
+      "observations": [],
+      "failed": false
+    },
+    {
+      "api_request": 24,
+      "tool_call": 24,
+      "arguments": {
+        "action": "frames",
+        "params": {
+          "path": "submission/test4.mp4",
+          "times": [
+            0
+          ],
+          "width": 1280
+        },
+        "reason": "检查单帧亮度键控效果。"
+      },
+      "result": {
+        "kind": "decoded_authentic_media",
+        "images": [
+          {
+            "path": "runs/luna-3\\logs\\observations\\faad95de0dbc4df1a53104ff98f0ff50.jpg",
+            "source": "runs/luna-3\\submission\\test4.mp4",
+            "requested_source_time_s": 0,
+            "crop": null,
+            "sha256": "c1a7cea3d5bd476aea5c28f34ee097bdc61d0d30f9cec4d6140c5773d3ac4475"
+          }
+        ]
+      },
+      "at_local": "2026-11-05T15:14:33.852946+08:00",
+      "action": "frames",
+      "observations": [
+        {
+          "src": "runs/luna-3/observations/faad95de0dbc4df1a53104ff98f0ff50.jpg",
+          "source": "runs/luna-3\\submission\\test4.mp4",
+          "time": 0,
+          "crop": null,
+          "sha256": "c1a7cea3d5bd476aea5c28f34ee097bdc61d0d30f9cec4d6140c5773d3ac4475"
+        }
+      ],
+      "failed": false
+    },
+    {
+      "api_request": 25,
+      "tool_call": 25,
+      "arguments": {
+        "action": "resolve_lua",
+        "params": {
+          "code": "local comp=timeline:GetItemListInTrack('video',1)[1]:GetFusionCompByIndex(1); local l=comp:FindTool('LumaKeyer1'); l:SetInput('Invert',0); l:SetInput('Low',0.24); l:SetInput('High',0.50); l:SetInput('MatteBlur',0.6); l:SetInput('MatteContrast',0.05); return {inv=l:GetInput('Invert')}"
+        },
+        "reason": "反转亮度键控方向以保留主体白色羽翼与躯干，降低阈值软化轮廓。"
+      },
+      "result": {
+        "at": 1793862881,
+        "id": "41f1702c06cc4ee58e100121728514e3",
+        "ok": true,
+        "op": "run",
+        "prints": {},
+        "result": {
+          "inv": 0
+        },
+        "session": "[omitted]",
+        "v": 2
+      },
+      "at_local": "2026-11-05T15:14:41.718136+08:00",
+      "action": "resolve_lua",
+      "observations": [],
+      "failed": false
+    },
+    {
+      "api_request": 26,
+      "tool_call": 26,
+      "arguments": {
+        "action": "render_video",
+        "params": {
+          "output": "submission/output.mp4",
+          "timeline_index": 1
+        },
+        "reason": "渲染完整241帧、1280×544、24fps的最终绿幕视频。"
+      },
+      "result": {
+        "native_video": true,
+        "output": "runs/luna-3\\submission\\output.mp4",
+        "project": "Omniale_CRANE_LUNA_20261105_151034",
+        "timeline_index": 1,
+        "range": [
+          0,
+          240
+        ],
+        "job": "7b5f2349-cd9f-48ab-9b78-2f8fec962e01",
+        "status": {
+          "CompletionPercentage": 100,
+          "JobStatus": "Complete",
+          "TimeTakenToRenderInMs": 3267
+        },
+        "sha256": "31e3c1775f62f38fbbd46d6f4847e6e55e46b1a88d06ee79155867fcf32d4f43",
+        "probe": {
+          "path": "runs/luna-3\\submission\\output.mp4",
+          "width": 1280,
+          "height": 544,
+          "fps": 24.0,
+          "frames": 241,
+          "duration_s": 10.041666666666666,
+          "bytes": 5927264
+        }
+      },
+      "at_local": "2026-11-05T15:14:50.657942+08:00",
+      "action": "render_video",
+      "observations": [],
+      "failed": false
+    },
+    {
+      "api_request": 27,
+      "tool_call": 27,
+      "arguments": {
+        "action": "frames",
+        "params": {
+          "path": "submission/output.mp4",
+          "times": [
+            0,
+            2.5,
+            5,
+            7.5,
+            10
+          ],
+          "width": 1280
+        },
+        "reason": "查看正式输出关键时间点实际帧，复核绿幕抠像表现。"
+      },
+      "result": {
+        "kind": "decoded_authentic_media",
+        "images": [
+          {
+            "path": "runs/luna-3\\logs\\observations\\5af95b7adb7643f4861e7c6469c13033.jpg",
+            "source": "runs/luna-3\\submission\\output.mp4",
+            "requested_source_time_s": 0,
+            "crop": null,
+            "sha256": "66d0cebdc4753b280c1d690166197febd0fee74bfe4e2d35ec8b920b60d9e913"
+          },
+          {
+            "path": "runs/luna-3\\logs\\observations\\e5ec2cefd2c448e59a0a0573ed25cd1c.jpg",
+            "source": "runs/luna-3\\submission\\output.mp4",
+            "requested_source_time_s": 2.5,
+            "crop": null,
+            "sha256": "df8df446da49eaf0e63736c6e1a61ebc321863e7eadc116e823413c64e962957"
+          },
+          {
+            "path": "runs/luna-3\\logs\\observations\\812a3bcb2e464fefa6946c18f70395c6.jpg",
+            "source": "runs/luna-3\\submission\\output.mp4",
+            "requested_source_time_s": 5,
+            "crop": null,
+            "sha256": "fa397fb00d7cd80ff85aa9d7a731052b0f70fd2dfcefff6687f51e436f6854c7"
+          },
+          {
+            "path": "runs/luna-3\\logs\\observations\\4043f98547e94c1db3ef35cb7b756379.jpg",
+            "source": "runs/luna-3\\submission\\output.mp4",
+            "requested_source_time_s": 7.5,
+            "crop": null,
+            "sha256": "3822eae4236a6386d8fcaae71604276c7573927fd0627734329cbabcf2f62ad0"
+          },
+          {
+            "path": "runs/luna-3\\logs\\observations\\904d87ffea5d4bf8b8904723d11db764.jpg",
+            "source": "runs/luna-3\\submission\\output.mp4",
+            "requested_source_time_s": 10,
+            "crop": null,
+            "sha256": "f814bf87636a0d15c4aa0d06d4d3775f2a660c318516622e7da5f6867035daf4"
+          }
+        ]
+      },
+      "at_local": "2026-11-05T15:14:56.169291+08:00",
+      "action": "frames",
+      "observations": [
+        {
+          "src": "runs/luna-3/observations/5af95b7adb7643f4861e7c6469c13033.jpg",
+          "source": "runs/luna-3\\submission\\output.mp4",
+          "time": 0,
+          "crop": null,
+          "sha256": "66d0cebdc4753b280c1d690166197febd0fee74bfe4e2d35ec8b920b60d9e913"
+        },
+        {
+          "src": "runs/luna-3/observations/e5ec2cefd2c448e59a0a0573ed25cd1c.jpg",
+          "source": "runs/luna-3\\submission\\output.mp4",
+          "time": 2.5,
+          "crop": null,
+          "sha256": "df8df446da49eaf0e63736c6e1a61ebc321863e7eadc116e823413c64e962957"
+        },
+        {
+          "src": "runs/luna-3/observations/812a3bcb2e464fefa6946c18f70395c6.jpg",
+          "source": "runs/luna-3\\submission\\output.mp4",
+          "time": 5,
+          "crop": null,
+          "sha256": "fa397fb00d7cd80ff85aa9d7a731052b0f70fd2dfcefff6687f51e436f6854c7"
+        },
+        {
+          "src": "runs/luna-3/observations/4043f98547e94c1db3ef35cb7b756379.jpg",
+          "source": "runs/luna-3\\submission\\output.mp4",
+          "time": 7.5,
+          "crop": null,
+          "sha256": "3822eae4236a6386d8fcaae71604276c7573927fd0627734329cbabcf2f62ad0"
+        },
+        {
+          "src": "runs/luna-3/observations/904d87ffea5d4bf8b8904723d11db764.jpg",
+          "source": "runs/luna-3\\submission\\output.mp4",
+          "time": 10,
+          "crop": null,
+          "sha256": "f814bf87636a0d15c4aa0d06d4d3775f2a660c318516622e7da5f6867035daf4"
+        }
+      ],
+      "failed": false
+    },
+    {
+      "api_request": 28,
+      "tool_call": 28,
+      "arguments": {
+        "action": "write_file",
+        "params": {
+          "path": "submission/README.md",
+          "content": "# Crane keying project\n\nThe deliverables were rendered from the new Resolve project `Omniale_CRANE_LUNA_20261105_151034`, using the original `media/input.mp4` as the timeline source (241 frames, 24 fps, 1280×544). `project.drp` contains an editable Fusion comp on the source clip. Its graph includes MediaIn, DeltaKeyer/ChromaKeyer/LumaKeyer test branches, a green Background (#00FF00), Merge and MediaOut; the active Merge foreground is the LumaKeyer branch. The graph and source reference are available for further tuning in Resolve.\n\nThe final full-length H.264 export is `output.mp4` (241 frames, 10.0417 s). I inspected exported frames at 0, 2.5, 5, 7.5 and 10 seconds. **Known defect:** the key is not clean: substantial original sky remains and green contamination appears inside dark feather/neck/leg details and along edges. The broad luma threshold does not reliably separate this stylized white bird from the variable blue/gray sky. This is a native editable first-pass extraction, not a production-quality matte; frame-by-frame roto or a refined sampled-color matte is needed to meet the requested clean isolation. No reference image was used as replacement footage."
+        },
+        "reason": "记录实际交付规格、节点链路和检视发现的关键缺陷，避免夸大处理效果。"
+      },
+      "result": {
+        "written": "runs/luna-3\\submission\\README.md",
+        "bytes": 1183
+      },
+      "at_local": "2026-11-05T15:15:08.591298+08:00",
+      "action": "write_file",
+      "observations": [],
+      "failed": false
+    },
+    {
+      "api_request": 29,
+      "tool_call": 29,
+      "arguments": {
+        "action": "export_project",
+        "params": {
+          "output": "submission/project.drp"
+        },
+        "reason": "导出当前可编辑的原生DaVinci Resolve工程。"
+      },
+      "result": {
+        "exported": true,
+        "output": "runs/luna-3\\submission\\project.drp",
+        "bytes": 41820
+      },
+      "at_local": "2026-11-05T15:15:19.068993+08:00",
+      "action": "export_project",
+      "observations": [],
+      "failed": false
+    },
+    {
+      "api_request": 30,
+      "tool_call": 30,
+      "arguments": {
+        "action": "finish",
+        "params": {},
+        "reason": "已完成渲染、工程导出、说明文档和输出帧检查，保存并结束工程。"
+      },
+      "result": {
+        "finished": true,
+        "submission": "runs/luna-3\\submission"
+      },
+      "at_local": "2026-11-05T15:15:25.419679+08:00",
+      "action": "finish",
+      "observations": [],
+      "failed": false
+    }
+  ]
+}

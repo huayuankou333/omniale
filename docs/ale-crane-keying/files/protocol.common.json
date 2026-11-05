@@ -1,0 +1,105 @@
+{
+  "kind": "three_independent_full_runs_per_model",
+  "frozen_at": "2026-11-05T13:06:05.415481+08:00",
+  "case": "case",
+  "models": [
+    "gpt-6.1-sol",
+    "gpt-6-luna"
+  ],
+  "repetitions_per_model": 3,
+  "time_budget_minutes": 90,
+  "max_tool_calls": 160,
+  "max_api_requests": 200,
+  "max_completion_tokens_per_request": 8000,
+  "reasoning": "high",
+  "frozen_code_sha256": {
+    "workspace\\work\\run_crane_eval.py": "64d83781820699fbad4b14c31688da4c48be9fa49e5d621bd9925dfa5cf4ad12",
+    "workspace\\work\\crane_tools.py": "0295b8725eb43a164bb950f8201090ccaad186d5e50b8a31d141eb2cd1c6f3e8",
+    "workspace\\work\\crane_candidate_lua.py": "97e92c8217f39a0d11cd835abaf86501b3c5df28db431db530dbf83ddd45ec7a",
+    "workspace\\work\\crane_settings.py": "4c9a8c3e5e162a4033fdcddc4fbfe177929802115c8f9f23e2a939b530b75b95",
+    "workspace\\work\\crane_tools_manual.md": "eb935ca323f311feaff15c3bf42707c072dd9248d56f964256903916dd1a1c8c",
+    "workspace\\work\\decision_eval_common.py": "43962a60066f3cab7fdc99e0401c862f8623158abed80612eb1b57b3081c8986",
+    "workspace\\work\\resolve_candidate_lua.py": "e709e601d456d4bf48444576d51100317d56759d9de9add09fb3af8cf23bf31a",
+    "workspace\\work\\resolve_scoped_api.py": "74de286b8f9e3446c3abb8f15c789e4ec9190d5fab827b5aa9d1a0670ffb217c",
+    "workspace\\work\\resolve_lua_file_client.py": "b45124232134821b9f7882d6dfad2b7a83bbfb7fb0308fe5a8d9d3f2228eecdc",
+    "workspace\\work\\resolve_runscript_client.py": "4d7982b8fe6b02f1eeb257e9ab3357c8884750fbf64231876a53021e8f778c99",
+    "workspace\\work\\prepare_runscript_bridge.py": "98b0e71b27f70c572869ad3e29ae013aad62f6e0451666242e779c0d24be9cf8"
+  },
+  "bridge_manifest": "case\\evaluations\\native-repeat-20261105-130605\\infrastructure\\runscript-channel\\prepared-manifest.json",
+  "base_url": "https://api-temporary.nju-link.com/v1",
+  "order": [
+    {
+      "ordinal": 1,
+      "model": "gpt-6.1-sol",
+      "trial": 1,
+      "run": "runs/sol-1"
+    },
+    {
+      "ordinal": 2,
+      "model": "gpt-6-luna",
+      "trial": 1,
+      "run": "runs/luna-1"
+    },
+    {
+      "ordinal": 3,
+      "model": "gpt-6.1-sol",
+      "trial": 2,
+      "run": "runs/sol-2"
+    },
+    {
+      "ordinal": 4,
+      "model": "gpt-6-luna",
+      "trial": 2,
+      "run": "runs/luna-2"
+    },
+    {
+      "ordinal": 5,
+      "model": "gpt-6.1-sol",
+      "trial": 3,
+      "run": "runs/sol-3"
+    },
+    {
+      "ordinal": 6,
+      "model": "gpt-6-luna",
+      "trial": 3,
+      "run": "runs/luna-3"
+    }
+  ],
+  "initial_state": "fresh isolated empty Resolve project and conversation for each run",
+  "input_policy": "identical public input bytes; no pilot solutions, prior run feedback, gold, or other run state",
+  "stopping_policy": "retain all six runs; no best-of selection; record infrastructure interruptions separately; no invisible reruns",
+  "pilot_excluded": "20261104-220149",
+  "native_evaluator": {
+    "repository": "rdi-berkeley/agents-last-exam",
+    "revision": "2e91edd3cd26baa35a38127c90c8e5241dfbe62f",
+    "files_sha256": {
+      "tasks\\utils\\evaluation.py": "a9c8b185c41ab1aaba39092b52c3b73c91cacf70b5d096be94715e439c1e4e6f",
+      "tasks\\utils\\__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tasks\\visual_media\\chroma_key_from_reference\\main.py": "541936d6286f4f29a908e737f5b362b15b758a8d0c104e3937c27357a912c715",
+      "tasks\\visual_media\\chroma_key_from_reference\\_shared_eval.py": "bad9107f6254bee1cad3ffdb4bd68ab8b4861089ebd2e2af0a61491a6b40788a",
+      "tasks\\visual_media\\chroma_key_from_reference\\scripts\\ensure_eval_runtime.py": "aaab2a0887c18e086ff3a7e28dc147bfb006e8705f95a9a5ace20d0a88a3a39e",
+      "tasks\\visual_media\\chroma_key_from_reference\\scripts\\local_soft_eval.py": "faf86d0b8698b5768255d05036beafb5c2cf367ee1ccf5332a169f5e8b94fbc3",
+      "tasks\\visual_media\\chroma_key_from_reference\\scripts\\remote_hard_eval.py": "2f96d53f2304307d7f00c3a2c3008584caa71c4204ad2950c91a019cb1535a45"
+    },
+    "reference_repo": "agents-last-exam/agents-last-exam-reference",
+    "reference_revision": "e6a990308d79da249d596871c2cc9a40396e4e22",
+    "scoring": "official breakpoints; roi_input_cv>=0.3 and soft>=0.5 gate; then 0.3*full_edge_iou+0.7*roi_edge_iou; average frames",
+    "score_scale": [
+      0,
+      1
+    ],
+    "status": "pending_reference_access",
+    "no_surrogate_rubric": true,
+    "stage_hidden_reference_only_after_all_solvers_stop": true
+  },
+  "statistics": [
+    "all three scores",
+    "mean",
+    "sample standard deviation",
+    "minimum",
+    "maximum",
+    "delivery completion rate"
+  ],
+  "statistical_limit": "n=3 is a preliminary stability estimate, not a guarantee",
+  "api_model_identity": "requested ID and service-reported ID; independent weight identity not verified"
+}

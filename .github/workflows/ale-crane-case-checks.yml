@@ -1,0 +1,44 @@
+name: ALE crane case browser checks
+
+on:
+  push:
+    branches: [main, case/ale-crane-keying]
+    paths:
+      - 'docs/ale-crane-keying/**'
+      - 'scripts/check-crane-browser.mjs'
+      - '.github/workflows/ale-crane-case-checks.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            docs/ale-crane-keying
+            scripts/check-crane-browser.mjs
+          sparse-checkout-cone-mode: false
+          lfs: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser client
+        run: npm install --prefix "$RUNNER_TEMP/crane-qa" playwright
+      - name: Check videos, synchronization, scores, traces and responsive layout
+        shell: bash
+        run: |
+          python3 -m http.server 8783 --bind 127.0.0.1 --directory docs > "$RUNNER_TEMP/crane-server.log" 2>&1 &
+          export CRANE_PLAYWRIGHT_MODULE="$RUNNER_TEMP/crane-qa/node_modules/playwright/index.mjs"
+          export CHROME_PATH="$(command -v google-chrome)"
+          node scripts/check-crane-browser.mjs
+      - name: Save browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ale-crane-browser-evidence
+          path: crane-site-qa/

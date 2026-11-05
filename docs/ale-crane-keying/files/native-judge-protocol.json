@@ -1,0 +1,65 @@
+{
+  "registered_at": "2026-11-05T13:12:08.718290+08:00",
+  "soft_judge_model": "gpt-6-astra",
+  "source": "pinned tasks/utils/evaluation.py DEFAULT_LLM_JUDGE_MODEL; ChromaTaskConfig.EVAL_MODEL=None",
+  "base_url": "https://api-temporary.nju-link.com/v1",
+  "temperature": 0,
+  "max_tokens": 256,
+  "soft_score": "mean of three native YES/NO checklist answers",
+  "hard_requirements": [
+    "numpy==2.5.0",
+    "opencv-python-headless==4.13.0.92"
+  ],
+  "runtime_status": "official_pinned_runtime_verified",
+  "solver_inputs_or_tools_changed": false,
+  "frozen_adapter_sha256": "df33fcac6c9559e4036ee3b6f295e294d9297428de99d87b71efe151fb2e6d12",
+  "hard_python": "workspace\\work\\crane-native-runtime\\Scripts\\python.exe",
+  "runtime_manifest": "case\\infrastructure\\native-runtime.json",
+  "pre_scoring_adapter_history": [
+    {
+      "at": "2026-11-05T13:14:50.236976+08:00",
+      "reason": "local session adapter completed and verified pinned hard runtime",
+      "sha256": "37a6faace6acfbf78dd560b791dc277acfbc95bd6b25085456a76d14d676541c"
+    },
+    {
+      "at": "2026-11-05T13:28:05.111854+08:00",
+      "reason": "Match original main.py missing-output early return, including reference-unavailable case",
+      "sha256": "f385c1d21f0d915c07011d9a72037ede1fe948ce96d2310f31687b492c8b0f4d"
+    },
+    {
+      "at": "2026-11-05T13:37:17.560748+08:00",
+      "reason": "Atomic reference staging and cross-host credential stripping; native metric code unchanged",
+      "sha256": "fcabb6b49e9e9a587d294b1824610071dccac3c7ade6591015250399a13b035b"
+    }
+  ],
+  "frozen_reference_client_sha256": "58ce2ac98c8de669df188b536155225f881fdb647a5b4ba6a618afcce66b0327",
+  "post_generation_adapter_repairs": [
+    {
+      "at": "2026-11-05T15:19:12.712227+08:00",
+      "reason": "Path-only repair: provide ASCII --frames-dir to unmodified official OpenCV evaluator; mirror exact frame bytes into case results",
+      "old_adapter_sha256": "fcabb6b49e9e9a587d294b1824610071dccac3c7ade6591015250399a13b035b",
+      "new_adapter_sha256": "df33fcac6c9559e4036ee3b6f295e294d9297428de99d87b71efe151fb2e6d12",
+      "all_solvers_stopped": true,
+      "valid_scores_before_repair": 0,
+      "official_source_changed": false,
+      "solver_code_or_deliveries_changed": false,
+      "scoring_rules_changed": false
+    }
+  ],
+  "default_soft_judge_model": "gpt-5.4",
+  "configuration_overrides": [
+    {
+      "at": "2026-11-05T15:25:29.750897+08:00",
+      "configuration_key": "JUDGE_MODEL",
+      "previous": "gpt-5.4",
+      "configured": "gpt-6-astra",
+      "authorized_by": "Human reply: 改用 Astra 完成评分（推荐）",
+      "reason": "Gateway rejects gpt-5.4 and rate-limits its routes; Astra capability probe succeeded",
+      "official_source_changed": false,
+      "prompts_or_rules_changed": false,
+      "valid_default_judgments_obtained": 0,
+      "original_failed_attempts_retained": true,
+      "comparison_limit": "ALE native scoring rules with configured Astra judge; not the default GPT-5.4 judging setup"
+    }
+  ]
+}

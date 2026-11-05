@@ -1,0 +1,492 @@
+{
+  "at": "2026-11-05T15:32:40.785521+08:00",
+  "batch": "case\\evaluations\\native-repeat-20261105-130605",
+  "models": [
+    {
+      "model": "gpt-6.1-sol",
+      "required_runs": 3,
+      "finished_runs": 3,
+      "native_scores": [
+        0.5254622793351755,
+        0.522342592710204,
+        0.4820579706574491
+      ],
+      "scored_runs": 3,
+      "mean": 0.5099542809009429,
+      "sample_standard_deviation": 0.024209217357453926,
+      "minimum": 0.4820579706574491,
+      "maximum": 0.5254622793351755,
+      "delivery_completion_rate": 1.0,
+      "independent_replay_rate": 1.0
+    },
+    {
+      "model": "gpt-6-luna",
+      "required_runs": 3,
+      "finished_runs": 3,
+      "native_scores": [
+        0.09182800314477889,
+        0.25695113253972196,
+        0.20831014870451176
+      ],
+      "scored_runs": 3,
+      "mean": 0.18569642812967085,
+      "sample_standard_deviation": 0.08485250281501727,
+      "minimum": 0.09182800314477889,
+      "maximum": 0.25695113253972196,
+      "delivery_completion_rate": 1.0,
+      "independent_replay_rate": 1.0
+    }
+  ],
+  "runs": [
+    {
+      "ordinal": 1,
+      "model": "gpt-6.1-sol",
+      "trial": 1,
+      "run": "runs/sol-1",
+      "finished": true,
+      "termination": "model_finish_tool",
+      "elapsed_seconds": 1784.56,
+      "tool_calls": 60,
+      "api_requests": 62,
+      "usage": {
+        "input_tokens": 4973078,
+        "output_tokens": 23001,
+        "total_tokens": 4996079
+      },
+      "native_score": 0.5254622793351755,
+      "native_status": "scored",
+      "soft_judge_model": "gpt-6-astra",
+      "native_sample_count": 5,
+      "native_soft_mean": 1.0,
+      "native_foreground_preserved_no_count": 0,
+      "native_foreground_preserved_yes_count": 5,
+      "native_roi_gate_failures": 0,
+      "native_soft_gate_failures": 0,
+      "files": {
+        "output.mp4": {
+          "bytes": 2562197,
+          "sha256": "5dadc0987ce7ca77205f0d3cacdfcd59671035e369426c045e2e47c3e7d554c0"
+        },
+        "project.drp": {
+          "bytes": 44362,
+          "sha256": "09f202fb5b982148bb0ee51a5592d5619127ba4235236e3dfe60ce6dfe85bec3"
+        },
+        "README.md": {
+          "bytes": 3290,
+          "sha256": "10448eadd7990bb8b97f20842b26c3a1c8a900431444943418a80e9cbb932621"
+        }
+      },
+      "video_metadata": {
+        "decodable": true,
+        "width": 1280,
+        "height": 544,
+        "fps": 24.0,
+        "frames": 241
+      },
+      "full_duration_and_format": true,
+      "delivery_complete": true,
+      "replay_passed": true,
+      "visual_replay_matches": true,
+      "api_errors": [
+        {
+          "file": "logs\\api\\002-error.json",
+          "error": "API HTTP 429: {\"error\":{\"code\":\"gateway_concurrency_limit\",\"message\":\"Concurrency limit exceeded for user, please retry later\",\"type\":\"rate_limit_error\"}}",
+          "attempt": 1
+        },
+        {
+          "file": "logs\\api\\008-error.json",
+          "error": "API HTTP 429: {\"error\":{\"code\":\"gateway_concurrency_limit\",\"message\":\"Concurrency limit exceeded for user, please retry later\",\"type\":\"rate_limit_error\"}}",
+          "attempt": 1
+        }
+      ],
+      "resume_events": []
+    },
+    {
+      "ordinal": 2,
+      "model": "gpt-6-luna",
+      "trial": 1,
+      "run": "runs/luna-1",
+      "finished": true,
+      "termination": "model_finish_tool",
+      "elapsed_seconds": 269.17,
+      "tool_calls": 32,
+      "api_requests": 33,
+      "usage": {
+        "input_tokens": 737516,
+        "output_tokens": 6201,
+        "total_tokens": 743717
+      },
+      "native_score": 0.09182800314477889,
+      "native_status": "scored",
+      "soft_judge_model": "gpt-6-astra",
+      "native_sample_count": 5,
+      "native_soft_mean": 0.6666666666666666,
+      "native_foreground_preserved_no_count": 5,
+      "native_foreground_preserved_yes_count": 0,
+      "native_roi_gate_failures": 0,
+      "native_soft_gate_failures": 0,
+      "files": {
+        "output.mp4": {
+          "bytes": 2795808,
+          "sha256": "cfd35aadcc5fbd4983d9aec0ff96d5aa3ab707360dd1c069aed977522d280c12"
+        },
+        "project.drp": {
+          "bytes": 41883,
+          "sha256": "386d27b8f389f05d5c11a67536bcdc68f23eb4443b687a4b83694701ae24b98e"
+        },
+        "README.md": {
+          "bytes": 1270,
+          "sha256": "65b04489f49b1013d804927296b9d54b6db0602ebda89116ef0aaae76cd8d2c2"
+        }
+      },
+      "video_metadata": {
+        "decodable": true,
+        "width": 1280,
+        "height": 544,
+        "fps": 24.0,
+        "frames": 241
+      },
+      "full_duration_and_format": true,
+      "delivery_complete": true,
+      "replay_passed": true,
+      "visual_replay_matches": true,
+      "api_errors": [
+        {
+          "file": "logs\\api\\010-error.json",
+          "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)>",
+          "attempt": 1
+        }
+      ],
+      "resume_events": [
+        {
+          "at": "2026-11-05T13:41:00.106329+08:00",
+          "previous_termination": "infrastructure_abort",
+          "manifest": "case\\evaluations\\native-repeat-20261105-130605\\infrastructure\\runscript-channel\\prepared-manifest.json"
+        }
+      ]
+    },
+    {
+      "ordinal": 3,
+      "model": "gpt-6.1-sol",
+      "trial": 2,
+      "run": "runs/sol-2",
+      "finished": true,
+      "termination": "model_finish_tool",
+      "elapsed_seconds": 1852.38,
+      "tool_calls": 79,
+      "api_requests": 80,
+      "usage": {
+        "input_tokens": 9461315,
+        "output_tokens": 29704,
+        "total_tokens": 9491019
+      },
+      "native_score": 0.522342592710204,
+      "native_status": "scored",
+      "soft_judge_model": "gpt-6-astra",
+      "native_sample_count": 5,
+      "native_soft_mean": 1.0,
+      "native_foreground_preserved_no_count": 0,
+      "native_foreground_preserved_yes_count": 5,
+      "native_roi_gate_failures": 0,
+      "native_soft_gate_failures": 0,
+      "files": {
+        "output.mp4": {
+          "bytes": 2565763,
+          "sha256": "a7d95e74a615a0f470b7368ee24376d680f415ae811814da77754689a65a9e7a"
+        },
+        "project.drp": {
+          "bytes": 44961,
+          "sha256": "0d0b7416f5fc5a7c94e8499d972864264b672966d5ecb4802e57fa1a5b1227ea"
+        },
+        "README.md": {
+          "bytes": 4179,
+          "sha256": "995b409f406b5499c042a48c8706246ceaec75dd7777b2454a972ed13d9ab0ac"
+        }
+      },
+      "video_metadata": {
+        "decodable": true,
+        "width": 1280,
+        "height": 544,
+        "fps": 24.0,
+        "frames": 241
+      },
+      "full_duration_and_format": true,
+      "delivery_complete": true,
+      "replay_passed": true,
+      "visual_replay_matches": true,
+      "api_errors": [
+        {
+          "file": "logs\\api\\069-error.json",
+          "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)>",
+          "attempt": 1
+        }
+      ],
+      "resume_events": [
+        {
+          "at": "2026-11-05T14:09:19.438294+08:00",
+          "previous_termination": "infrastructure_abort",
+          "manifest": "case\\evaluations\\native-repeat-20261105-130605\\infrastructure\\runscript-channel\\prepared-manifest.json"
+        }
+      ]
+    },
+    {
+      "ordinal": 4,
+      "model": "gpt-6-luna",
+      "trial": 2,
+      "run": "runs/luna-2",
+      "finished": true,
+      "termination": "model_finish_tool",
+      "elapsed_seconds": 305.22,
+      "tool_calls": 28,
+      "api_requests": 32,
+      "usage": {
+        "input_tokens": 608972,
+        "output_tokens": 4424,
+        "total_tokens": 613396
+      },
+      "native_score": 0.25695113253972196,
+      "native_status": "scored",
+      "soft_judge_model": "gpt-6-astra",
+      "native_sample_count": 5,
+      "native_soft_mean": 1.0,
+      "native_foreground_preserved_no_count": 0,
+      "native_foreground_preserved_yes_count": 5,
+      "native_roi_gate_failures": 0,
+      "native_soft_gate_failures": 0,
+      "files": {
+        "output.mp4": {
+          "bytes": 4762849,
+          "sha256": "48238e97a23bcf0703f11c4e574a3c2e94f5ca512fa1048ba8efb8d8226b9493"
+        },
+        "project.drp": {
+          "bytes": 41594,
+          "sha256": "398cea9cf0acf28bde62d7a336ac8cf6f1f94067544221fb502751756ac39714"
+        },
+        "README.md": {
+          "bytes": 1299,
+          "sha256": "40b5bee9804c1de6790bce7fc769aa2c61d02a11efa450747bccea0849368ce3"
+        }
+      },
+      "video_metadata": {
+        "decodable": true,
+        "width": 1280,
+        "height": 544,
+        "fps": 24.0,
+        "frames": 241
+      },
+      "full_duration_and_format": true,
+      "delivery_complete": true,
+      "replay_passed": true,
+      "visual_replay_matches": true,
+      "api_errors": [
+        {
+          "file": "logs\\api\\020-error.json",
+          "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)>",
+          "attempt": 1
+        },
+        {
+          "file": "logs\\api\\021-error.json",
+          "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)>",
+          "attempt": 1
+        },
+        {
+          "file": "logs\\api\\022-error.json",
+          "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)>",
+          "attempt": 1
+        },
+        {
+          "file": "logs\\api\\023-error.json",
+          "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)>",
+          "attempt": 1
+        }
+      ],
+      "resume_events": [
+        {
+          "at": "2026-11-05T14:18:59.220929+08:00",
+          "previous_termination": "infrastructure_abort",
+          "manifest": "case\\evaluations\\native-repeat-20261105-130605\\infrastructure\\runscript-channel\\prepared-manifest.json"
+        },
+        {
+          "at": "2026-11-05T14:19:11.388678+08:00",
+          "previous_termination": "infrastructure_abort",
+          "manifest": "case\\evaluations\\native-repeat-20261105-130605\\infrastructure\\runscript-channel\\prepared-manifest.json"
+        },
+        {
+          "at": "2026-11-05T14:19:26.667194+08:00",
+          "previous_termination": "infrastructure_abort",
+          "manifest": "case\\evaluations\\native-repeat-20261105-130605\\infrastructure\\runscript-channel\\prepared-manifest.json"
+        },
+        {
+          "at": "2026-11-05T14:19:44.856495+08:00",
+          "previous_termination": "infrastructure_abort",
+          "manifest": "case\\evaluations\\native-repeat-20261105-130605\\infrastructure\\runscript-channel\\prepared-manifest.json"
+        }
+      ]
+    },
+    {
+      "ordinal": 5,
+      "model": "gpt-6.1-sol",
+      "trial": 3,
+      "run": "runs/sol-3",
+      "finished": true,
+      "termination": "model_finish_tool",
+      "elapsed_seconds": 2892.88,
+      "tool_calls": 86,
+      "api_requests": 90,
+      "usage": {
+        "input_tokens": 10095171,
+        "output_tokens": 31865,
+        "total_tokens": 10127036
+      },
+      "native_score": 0.4820579706574491,
+      "native_status": "scored",
+      "soft_judge_model": "gpt-6-astra",
+      "native_sample_count": 5,
+      "native_soft_mean": 1.0,
+      "native_foreground_preserved_no_count": 0,
+      "native_foreground_preserved_yes_count": 5,
+      "native_roi_gate_failures": 0,
+      "native_soft_gate_failures": 0,
+      "files": {
+        "output.mp4": {
+          "bytes": 2379661,
+          "sha256": "3cf97247e5a8a97a7c762b52216e4d278199abc4ba61bcedc3eb76ef6d4ba682"
+        },
+        "project.drp": {
+          "bytes": 47226,
+          "sha256": "7821de5c3074643d5d524a03473ed7cf0c8688aa3b1b50317f882db9e3e8ebf7"
+        },
+        "README.md": {
+          "bytes": 3530,
+          "sha256": "54b4c91f74a8be1c86d579839d1bc0bd8a96bf6e40ac727f0af9e82732e1c240"
+        }
+      },
+      "video_metadata": {
+        "decodable": true,
+        "width": 1280,
+        "height": 544,
+        "fps": 24.0,
+        "frames": 241
+      },
+      "full_duration_and_format": true,
+      "delivery_complete": true,
+      "replay_passed": true,
+      "visual_replay_matches": true,
+      "api_errors": [
+        {
+          "file": "logs\\api\\039-error.json",
+          "error": "API HTTP 429: {\"error\":{\"code\":\"gateway_concurrency_limit\",\"message\":\"Concurrency limit exceeded for user, please retry later\",\"type\":\"rate_limit_error\"}}",
+          "attempt": 1
+        },
+        {
+          "file": "logs\\api\\045-error.json",
+          "error": "Remote end closed connection without response",
+          "attempt": 1
+        },
+        {
+          "file": "logs\\api\\049-error.json",
+          "error": "Remote end closed connection without response",
+          "attempt": 1
+        },
+        {
+          "file": "logs\\api\\064-error.json",
+          "error": "API HTTP 429: {\"error\":{\"code\":\"gateway_concurrency_limit\",\"message\":\"Concurrency limit exceeded for account, please retry later\",\"type\":\"rate_limit_error\"}}",
+          "attempt": 1
+        }
+      ],
+      "resume_events": []
+    },
+    {
+      "ordinal": 6,
+      "model": "gpt-6-luna",
+      "trial": 3,
+      "run": "runs/luna-3",
+      "finished": true,
+      "termination": "model_finish_tool",
+      "elapsed_seconds": 288.06,
+      "tool_calls": 30,
+      "api_requests": 30,
+      "usage": {
+        "input_tokens": 757861,
+        "output_tokens": 4761,
+        "total_tokens": 762622
+      },
+      "native_score": 0.20831014870451176,
+      "native_status": "scored",
+      "soft_judge_model": "gpt-6-astra",
+      "native_sample_count": 5,
+      "native_soft_mean": 1.0,
+      "native_foreground_preserved_no_count": 0,
+      "native_foreground_preserved_yes_count": 5,
+      "native_roi_gate_failures": 0,
+      "native_soft_gate_failures": 0,
+      "files": {
+        "output.mp4": {
+          "bytes": 5927264,
+          "sha256": "31e3c1775f62f38fbbd46d6f4847e6e55e46b1a88d06ee79155867fcf32d4f43"
+        },
+        "project.drp": {
+          "bytes": 41820,
+          "sha256": "1a5acf8d1414dc69d27b40d8fabc91017c4f84fc89aea4deed3751cbbedc9c7e"
+        },
+        "README.md": {
+          "bytes": 1183,
+          "sha256": "3d3aa80aff32f7e6554061d6f5590726c31d27f55f38d17a11841a4509d39f6d"
+        }
+      },
+      "video_metadata": {
+        "decodable": true,
+        "width": 1280,
+        "height": 544,
+        "fps": 24.0,
+        "frames": 241
+      },
+      "full_duration_and_format": true,
+      "delivery_complete": true,
+      "replay_passed": true,
+      "visual_replay_matches": true,
+      "api_errors": [],
+      "resume_events": []
+    }
+  ],
+  "pilot_included": false,
+  "native_score_scale": [
+    0,
+    1
+  ],
+  "local_rubric_used": false,
+  "best_of_selection": false,
+  "soft_judge_model": "gpt-6-astra",
+  "default_soft_judge_model": "gpt-5.4",
+  "judge_configuration_differs_from_default": true,
+  "judge_configuration_overrides": [
+    {
+      "at": "2026-11-05T15:25:29.750897+08:00",
+      "configuration_key": "JUDGE_MODEL",
+      "previous": "gpt-5.4",
+      "configured": "gpt-6-astra",
+      "authorized_by": "Human reply: 改用 Astra 完成评分（推荐）",
+      "reason": "Gateway rejects gpt-5.4 and rate-limits its routes; Astra capability probe succeeded",
+      "official_source_changed": false,
+      "prompts_or_rules_changed": false,
+      "valid_default_judgments_obtained": 0,
+      "original_failed_attempts_retained": true,
+      "comparison_limit": "ALE native scoring rules with configured Astra judge; not the default GPT-5.4 judging setup"
+    }
+  ],
+  "evaluator_path_repairs": [
+    {
+      "at": "2026-11-05T15:19:12.712227+08:00",
+      "reason": "Path-only repair: provide ASCII --frames-dir to unmodified official OpenCV evaluator; mirror exact frame bytes into case results",
+      "old_adapter_sha256": "fcabb6b49e9e9a587d294b1824610071dccac3c7ade6591015250399a13b035b",
+      "new_adapter_sha256": "df33fcac6c9559e4036ee3b6f295e294d9297428de99d87b71efe151fb2e6d12",
+      "all_solvers_stopped": true,
+      "valid_scores_before_repair": 0,
+      "official_source_changed": false,
+      "solver_code_or_deliveries_changed": false,
+      "scoring_rules_changed": false
+    }
+  ],
+  "conclusion_limit": "Three runs estimate variability; they do not guarantee stability. All six native scores are complete with the authorized reference and configured Astra soft judge.",
+  "publication_note": "This public view corrects stale pending-reference boilerplate in conclusion_limit; scores, deliveries and statistics are unchanged."
+}

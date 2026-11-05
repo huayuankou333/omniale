@@ -1,0 +1,93 @@
+--- a/ale-reproduction/index.html
++++ b/ale-reproduction/index.html
+@@ -5,14 +5,14 @@
+ ---
+ <!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1"><title>ALE Omni Case 复现</title>
+-<meta name="description" content="三个ALE复现案例：管弦乐录音转谱、健美操难度动作识别、音乐工程迁移。查看任务定义、运行结果、轨迹与失败分析。">
++<meta name="description" content="四个ALE复现案例：管弦乐录音转谱、健美操难度动作识别、音乐工程迁移、白鹤参考引导抠像。查看任务定义、运行结果、轨迹与失败分析。">
+ <link rel="canonical" href="https://wang-jiahao.github.io/ale-reproduction/">
+ <link rel="stylesheet" href="assets/site.css"></head><body>
+ <a class="skip" href="#cases">跳到案例</a><main>
+ <nav class="topline" aria-label="站点导航"><a href="/omniale/">← OmniALE 案例集</a><a href="https://github.com/rdi-berkeley/agents-last-exam">Agents Last Exam ↗</a></nav>
+ <header><div class="eyebrow">OMNIALE · ALE REPRODUCTION</div><h1>ALE Omni Case 复现</h1>
+ <p class="lead">每个案例收录任务定义、运行结果、轨迹与失败分析。</p></header>
+-<section id="cases" aria-labelledby="case-heading"><div class="collection-heading"><h2 id="case-heading">复现案例</h2><span class="count">3 个案例</span></div>
++<section id="cases" aria-labelledby="case-heading"><div class="collection-heading"><h2 id="case-heading">复现案例</h2><span class="count">4 个案例</span></div>
+ <a class="case" id="music" href="https://wang-jiahao.github.io/omniale/ale-music-transcription/" aria-labelledby="title-music">
+ <div class="cover"><img src="assets/music.jpg" width="840" height="540" alt="本轮独立转谱交付在MuseScore中的实际画面"><span class="cover-label" aria-hidden="true">实际交付 · MuseScore</span></div>
+ <div class="body"><div class="badge">音乐制作与演出服务<span class="scenario">多声部音乐转谱</span></div>
+@@ -27,4 +27,9 @@
+ <div class="cover"><img src="assets/migration.svg" width="840" height="540" alt="多轨音乐工程迁移的示意图"><span class="cover-label" aria-hidden="true">工程迁移示意</span></div>
+ <div class="body"><div class="badge">音频后期与声音工程<span class="scenario">音频工程恢复与迁移</span></div>
+ <h3 id="title-migration">把交响乐工程迁到 Linux，恢复原有声音</h3><p class="desc">原工程的商业音源和效果器不可用，Agent需在Ardour中选择开源替代，保留音符、奏法、强弱和路由，交付可编辑工程、完整混音与独立分轨。</p>
+-<div class="card-footer"><p class="score">gpt-6.1-sol<strong>48.51 / 100</strong></p><span class="destination">walnutpz 复现 · 查看案例 ↗</span></div></div></a></section></main></body></html>
+\ No newline at end of file
++<div class="card-footer"><p class="score">gpt-6.1-sol<strong>48.51 / 100</strong></p><span class="destination">walnutpz 复现 · 查看案例 ↗</span></div></div></a>
++<a class="case" id="crane" href="https://huayuankou333.github.io/omniale/ale-crane-keying/" aria-labelledby="title-crane">
++<div class="cover"><img src="https://huayuankou333.github.io/omniale/ale-crane-keying/assets/cover.jpg" width="840" height="536" alt="真实白鹤输入帧及Sol、Luna第1轮绿幕抠像成片"><span class="cover-label" aria-hidden="true">真实输入与交付 · Resolve / Fusion</span></div>
++<div class="body"><div class="badge">视觉媒体与视频后期<span class="scenario">参考引导抠像</span></div>
++<h3 id="title-crane">从天空中的白鹤，分离出完整绿幕主体</h3><p class="desc">从约10秒天空视频中分离运动白鹤，保留羽翼、颈腿和完整运动，交付原生Resolve工程及成片。Sol、Luna各三次独立测试，提供同步对照、逐帧评分与可搜索工具轨迹。使用ALE原生评分规则、Astra软裁判和Resolve API桥接。</p>
++<div class="card-footer"><p class="score">Sol / Luna · 各三次均值<strong>0.5100 / 0.1857（满分1）</strong></p><span class="destination">huayuankou333 复现 · 查看案例 ↗</span></div></div></a></section></main></body></html>
+--- a/ale-reproduction/cases.json
++++ b/ale-reproduction/cases.json
+@@ -1,7 +1,7 @@
+ {
+   "title": "ALE Omni Case 复现",
+   "url": "https://wang-jiahao.github.io/ale-reproduction/",
+-  "updated_at": "2026-11-04T20:44:01.728648+08:00",
++  "updated_at": "2026-11-05T17:16:25.981383+08:00",
+   "cases": [
+     {
+       "id": "music",
+@@ -82,6 +82,50 @@
+       "owner": "walnutpz",
+       "external": true,
+       "source_sha256": "6fd52ca89bbac0552b7890a55291d63c8f14ceb72c3192529bd825fbac1aacd0"
++    },
++    {
++      "id": "crane",
++      "title": "从天空中的白鹤，分离出完整绿幕主体",
++      "domain": "视觉媒体与视频后期",
++      "scenario": "参考引导抠像",
++      "description": "从约10秒天空视频中分离运动白鹤，保留羽翼、颈腿和完整运动，交付原生Resolve工程及成片。Sol、Luna各三次独立测试；提供同步对照、逐帧评分与可搜索工具轨迹。",
++      "url": "https://huayuankou333.github.io/omniale/ale-crane-keying/",
++      "models": [
++        {
++          "model": "gpt-6.1-sol",
++          "scores": [
++            0.5254622793351755,
++            0.522342592710204,
++            0.4820579706574491
++          ],
++          "mean": 0.5099542809009429,
++          "sample_standard_deviation": 0.024209217357453926
++        },
++        {
++          "model": "gpt-6-luna",
++          "scores": [
++            0.09182800314477889,
++            0.25695113253972196,
++            0.20831014870451176
++          ],
++          "mean": 0.18569642812967085,
++          "sample_standard_deviation": 0.08485250281501727
++        }
++      ],
++      "score_text": "Sol 0.5100 / 1 · Luna 0.1857 / 1",
++      "score_scale": [
++        0,
++        1
++      ],
++      "run_count": 6,
++      "runs_per_model": 3,
++      "aggregation": "per_model_arithmetic_mean",
++      "protocol_note": "ALE native scoring rules; configured gpt-6-astra soft judge; Resolve Free Lua API bridge, differs from default judge / GUI setup.",
++      "cover": "https://huayuankou333.github.io/omniale/ale-crane-keying/assets/cover.jpg",
++      "cover_alt": "真实白鹤输入帧及两模型第1轮的实际绿幕抠像成片",
++      "cover_label": "真实输入与交付 · Resolve / Fusion",
++      "owner": "huayuankou333",
++      "external": true
+     }
+   ]
+ }
