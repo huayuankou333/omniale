@@ -16,9 +16,13 @@ assert(await page.locator('#frame-scores tr').count() === 5,'Five breakpoint row
 assert(await page.locator('.score-card').count() === 2,'Both model aggregate cards present');
 await page.screenshot({path:new URL('desktop-top.png',output).pathname.replace(/^\/([A-Z]:)/,'$1'),fullPage:false});
 await page.locator('#compare').scrollIntoViewIfNeeded();
+await page.waitForFunction(()=>[...document.querySelectorAll('#compare video')].every(v=>v.readyState>=1));
 await page.screenshot({path:new URL('desktop-compare.png',output).pathname.replace(/^\/([A-Z]:)/,'$1')});
 const metadata = await page.locator('#compare video').evaluateAll(vs=>vs.map(v=>({duration:v.duration,width:v.videoWidth,height:v.videoHeight})));
-assert(metadata.every(v=>Math.abs(v.duration-10.041667)<.02&&v.width===1280&&v.height===544),'Original and default output video metadata match full input');
+console.log(JSON.stringify({browser_media_metadata:metadata}));
+// HTMLVideoElement reports display dimensions after sample-aspect-ratio correction.
+// The input and some uncorrected deliveries have SAR 119:120; encoded raster is 1280x544.
+assert(metadata.every(v=>Math.abs(v.duration-10.041667)<.02&&[1269,1280].includes(v.width)&&v.height===544),'Browser playback preserves full duration and valid aspect-aware dimensions');
 for(const id of ['sol-1','luna-1','sol-2','luna-2','sol-3','luna-3']){
   await page.selectOption('#score-run',id);
   assert(await page.locator('#score-frames img').count()===5,`Five authentic output frames for ${id}`);
