@@ -101,10 +101,12 @@ for(const viewport of [{width:390,height:844},{width:768,height:1024}]){
   const sizes=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,client:document.documentElement.clientWidth}));
   assert(sizes.scroll<=sizes.client,`No page overflow at ${viewport.width}px`);
   await page.screenshot({path:new URL(`mobile-${viewport.width}.png`,output).pathname.replace(/^\/([A-Z]:)/,'$1')});
-  await page.goto(base+'traces.html?run=luna-1#event-1',{waitUntil:'networkidle'});
-  await page.locator('#event-1 img').first().waitFor();
+  await page.goto(base+'traces.html?run=luna-1#event-4',{waitUntil:'networkidle'});
+  await page.locator('#event-4 img').first().scrollIntoViewIfNeeded();
+  await page.waitForFunction(()=>document.querySelector('#event-4 img')?.naturalWidth>0);
   const traceSizes=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,client:document.documentElement.clientWidth}));
   assert(traceSizes.scroll<=traceSizes.client,`Expanded trace has no page overflow at ${viewport.width}px`);
+  await page.screenshot({path:fileURLToPath(new URL(`mobile-trace-${viewport.width}.png`,output))});
 }
 assert(errors.length===0,'No JavaScript runtime errors');
 assert(failures.length===0,'No HTTP failures in browsing flow');
