@@ -1,0 +1,280 @@
+{
+  "requested_model": "gpt-6-luna",
+  "reported_model": "gpt-6-luna",
+  "task": "T3__opamp_2stg__hard_1_gain_ugf",
+  "outcome": "F",
+  "official_pass": false,
+  "limits_passed": 5,
+  "limits_total": 8,
+  "metrics": {
+    "dc_gain_dB": 16.28,
+    "ugf_Hz": 68.64479657268684,
+    "pm_deg": 158.2,
+    "gm_dB": 18.1,
+    "power_uW": 40.48,
+    "input_current_uA": 0.0,
+    "rise_settle_ns": 4.16,
+    "rise_overshoot_pct": 5.61,
+    "rise_slew_V_per_us": null,
+    "fall_settle_ns": 4.34,
+    "fall_overshoot_pct": 5.4,
+    "fall_slew_V_per_us": null,
+    "n_triode": 3
+  },
+  "failed_limits": [
+    "dc_gain_dB",
+    "ugf_Hz",
+    "n_triode"
+  ],
+  "checks": [
+    {
+      "metric": "dc_gain_dB",
+      "value": 16.28,
+      "op": ">=",
+      "limit": 78.4,
+      "source": null,
+      "pass": false
+    },
+    {
+      "metric": "ugf_Hz",
+      "value": 68.64479657268684,
+      "op": ">=",
+      "limit": 89000000.0,
+      "source": null,
+      "pass": false
+    },
+    {
+      "metric": "pm_deg",
+      "value": 158.2,
+      "op": ">=",
+      "limit": 60.0,
+      "source": null,
+      "pass": true
+    },
+    {
+      "metric": "gm_dB",
+      "value": 18.1,
+      "op": ">=",
+      "limit": 10.0,
+      "source": null,
+      "pass": true
+    },
+    {
+      "metric": "power_uW",
+      "value": 40.48,
+      "op": "<=",
+      "limit": 296.4,
+      "source": null,
+      "pass": true
+    },
+    {
+      "metric": "rise_settle_ns",
+      "value": 4.16,
+      "op": "<=",
+      "limit": 12.24,
+      "source": null,
+      "pass": true
+    },
+    {
+      "metric": "fall_settle_ns",
+      "value": 4.34,
+      "op": "<=",
+      "limit": 26.73,
+      "source": null,
+      "pass": true
+    },
+    {
+      "metric": "n_triode",
+      "value": 3,
+      "op": "<=",
+      "limit": 0,
+      "source": null,
+      "pass": false
+    }
+  ],
+  "design_attempts": 3,
+  "syntax_retries_used": 0,
+  "response_turns": 3,
+  "input_tokens": 11106,
+  "output_tokens_including_reasoning": 3682,
+  "reasoning_tokens": 2318,
+  "inference_wall_seconds": 83.75000000001455,
+  "replay_identical": true,
+  "attempts": [
+    {
+      "response_turn": 1,
+      "design_attempt": 1,
+      "counted_as": "design attempt",
+      "outcome": "F",
+      "limits_passed": 3,
+      "limits_total": 8,
+      "metrics": {
+        "dc_gain_dB": 37.14,
+        "ugf_Hz": 8668963.810208723,
+        "pm_deg": 90.7,
+        "gm_dB": 45.8,
+        "power_uW": 221.74,
+        "input_current_uA": 0.0,
+        "rise_settle_ns": 48.63,
+        "rise_overshoot_pct": 0.0,
+        "rise_slew_V_per_us": 17.5,
+        "fall_settle_ns": 48.24,
+        "fall_overshoot_pct": 0.0,
+        "fall_slew_V_per_us": 5.1,
+        "n_triode": 4
+      },
+      "failed_limits": [
+        "dc_gain_dB",
+        "ugf_Hz",
+        "rise_settle_ns",
+        "fall_settle_ns",
+        "n_triode"
+      ],
+      "why": [
+        "dc_gain_dB",
+        "ugf_Hz",
+        "rise_settle_ns",
+        "fall_settle_ns",
+        "n_triode"
+      ],
+      "inference": {
+        "requested_model": "gpt-6-luna",
+        "reported_model": "gpt-6-luna",
+        "status": "completed",
+        "incomplete_details": null,
+        "usage": {
+          "input_tokens": 2416,
+          "input_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "output_tokens": 1359,
+          "output_tokens_details": {
+            "reasoning_tokens": 877
+          },
+          "total_tokens": 3775
+        },
+        "wall_seconds": 26.781000000002678,
+        "transport_retries": 0
+      },
+      "reply_sha256": "cec586f4a7adc9feb6adc69d2ce3eff90d3aed5f5719dec6262363750a2b075f",
+      "netlist_sha256": "2281d17f4599324280bc2aab79ab8d61744c041e60ad3aa32ea96edbe72170fb"
+    },
+    {
+      "response_turn": 2,
+      "design_attempt": 2,
+      "counted_as": "design attempt",
+      "outcome": "F",
+      "limits_passed": 2,
+      "limits_total": 8,
+      "metrics": {
+        "dc_gain_dB": 52.84,
+        "ugf_Hz": 26902722.69324845,
+        "pm_deg": 52.0,
+        "gm_dB": 11.0,
+        "power_uW": 141.21,
+        "input_current_uA": 0.0,
+        "rise_settle_ns": 42.91,
+        "rise_overshoot_pct": 36.76,
+        "rise_slew_V_per_us": 16.7,
+        "fall_settle_ns": 35.69,
+        "fall_overshoot_pct": 7.08,
+        "fall_slew_V_per_us": 20.3,
+        "n_triode": 1
+      },
+      "failed_limits": [
+        "dc_gain_dB",
+        "ugf_Hz",
+        "pm_deg",
+        "rise_settle_ns",
+        "fall_settle_ns",
+        "n_triode"
+      ],
+      "why": [
+        "dc_gain_dB",
+        "ugf_Hz",
+        "pm_deg",
+        "rise_settle_ns",
+        "fall_settle_ns",
+        "n_triode"
+      ],
+      "inference": {
+        "requested_model": "gpt-6-luna",
+        "reported_model": "gpt-6-luna",
+        "status": "completed",
+        "incomplete_details": null,
+        "usage": {
+          "input_tokens": 3729,
+          "input_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "output_tokens": 1189,
+          "output_tokens_details": {
+            "reasoning_tokens": 738
+          },
+          "total_tokens": 4918
+        },
+        "wall_seconds": 27.406000000002678,
+        "transport_retries": 0
+      },
+      "reply_sha256": "c7fceb8a28e9d9e83474a5623f66fd4c34e23280205e661097210102c746bc68",
+      "netlist_sha256": "48efbba2bf5ff67f71ac617117aed7e4a9525eb94c783108fd7b8afdee418228"
+    },
+    {
+      "response_turn": 3,
+      "design_attempt": 3,
+      "counted_as": "design attempt",
+      "outcome": "F",
+      "limits_passed": 5,
+      "limits_total": 8,
+      "metrics": {
+        "dc_gain_dB": 16.28,
+        "ugf_Hz": 68.64479657268684,
+        "pm_deg": 158.2,
+        "gm_dB": 18.1,
+        "power_uW": 40.48,
+        "input_current_uA": 0.0,
+        "rise_settle_ns": 4.16,
+        "rise_overshoot_pct": 5.61,
+        "rise_slew_V_per_us": null,
+        "fall_settle_ns": 4.34,
+        "fall_overshoot_pct": 5.4,
+        "fall_slew_V_per_us": null,
+        "n_triode": 3
+      },
+      "failed_limits": [
+        "dc_gain_dB",
+        "ugf_Hz",
+        "n_triode"
+      ],
+      "why": [
+        "dc_gain_dB",
+        "ugf_Hz",
+        "n_triode"
+      ],
+      "inference": {
+        "requested_model": "gpt-6-luna",
+        "reported_model": "gpt-6-luna",
+        "status": "completed",
+        "incomplete_details": null,
+        "usage": {
+          "input_tokens": 4961,
+          "input_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "output_tokens": 1134,
+          "output_tokens_details": {
+            "reasoning_tokens": 703
+          },
+          "total_tokens": 6095
+        },
+        "wall_seconds": 29.563000000009197,
+        "transport_retries": 0
+      },
+      "reply_sha256": "689952836dab2f8710b0343b294b75eb8541c0b95303de9cac67e281d2693717",
+      "netlist_sha256": "e6d9ce6d1ccaabe779f432296320abd0afe0749ae565af0f4da07b209c80abd6"
+    }
+  ]
+}

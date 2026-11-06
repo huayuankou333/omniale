@@ -1,0 +1,31 @@
+{
+  "task": "T3__opamp_2stg__hard_1_gain_ugf",
+  "upstream_commit": "5dc16f1c01858664f1912a84abfc06fd4c69f6de",
+  "created_at": "2026-11-06T01:33:25.433914+08:00",
+  "models": [
+    "gpt-6-luna",
+    "gpt-6.1-sol"
+  ],
+  "reasoning_effort": "medium",
+  "sampling": "provider default; no temperature or top_p set",
+  "max_design_attempts": 3,
+  "max_syntax_retries": 2,
+  "max_responses": 5,
+  "syntax_retry_policy": "Upstream invalid template excludes invalid replies from design attempts. Cap 2 is a local bounded-run choice, consistent with maximum observed public logs; upstream runner/cap is not published.",
+  "max_output_tokens_per_response_including_reasoning": 32768,
+  "output_cap_qualification": "Local API cap; original cap not disclosed in the paper/public logs.",
+  "mode": "first answer then feedback on failure; early stop on P; maximum 3 evaluable designs",
+  "feedback": "Original template; eight metric checks and full transistor operating point per paper; no causal hints or design suggestions.",
+  "feedback_qualification": "Some public recorded feedback contains only triode transistor Vds/Vdsat. This runner follows the paper/README full-operating-point description.",
+  "effort_qualification": "Explicit medium per paper. Public GPT logs record effort:null despite medium directory labels.",
+  "scoring": "Unchanged upstream P/F/D/I at TT,27C,1.2V; eight checks jointly required. Limits passed is diagnostic, not official partial reward.",
+  "runs_per_model": 1,
+  "fresh_context_per_model": true,
+  "serial_api_execution": true,
+  "tools": [],
+  "host_design_edits": false,
+  "reference_access_by_model": false,
+  "final_frozen_replay_feedback": false,
+  "model_identity": "Requested and provider-reported IDs only; underlying weights not independently verified",
+  "runtime": "Windows ngspice47 + locally frozen continuous SKY130 models, qualified on feasible and published-failing controls"
+}

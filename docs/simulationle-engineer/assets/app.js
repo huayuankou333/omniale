@@ -7,7 +7,7 @@ const fmt=(n,d=2)=>Number(n).toFixed(d);
 function segment(id,onChange){$$(id+' button').forEach(button=>button.addEventListener('click',()=>{const value=button.dataset.value;$$(id+' button').forEach(b=>{const active=b===button;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});onChange(value);}));}
 if(document.body.dataset.page==='index'){
  let domain='all';
- const update=()=>{const query=$('#case-search').value.toLowerCase().trim();const card=$('#task08-card');const visible=(domain==='all'||domain==='D1')&&(!query||card.dataset.search.includes(query));card.hidden=!visible;$('#empty-state').hidden=visible;};
+ const update=()=>{const query=$('#case-search').value.toLowerCase().trim();let visibleCount=0;$$('.featured-case[data-domain]').forEach(card=>{const visible=(domain==='all'||domain===card.dataset.domain)&&(!query||card.dataset.search.toLowerCase().includes(query));card.hidden=!visible;visibleCount+=Number(visible);});$('#empty-state').hidden=visibleCount>0;};
  $$('.filter').forEach(button=>button.addEventListener('click',()=>{domain=button.dataset.filter;$$('.filter').forEach(b=>{b.classList.toggle('active',b===button);b.setAttribute('aria-pressed',String(b===button));});update();}));
  $('#case-search').addEventListener('input',update);
  $('#reset-filter').addEventListener('click',()=>{$('#case-search').value='';$('.filter[data-filter="all"]').click();});
