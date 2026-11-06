@@ -1,0 +1,46 @@
+Warning: can't find the initialization file spinit.
+
+Checking parameters for BSIM 4.5 model xota.xbn:nshort_model.21
+Fatal: Dsub = -0.197221 is negative.
+Fatal error: detected during BSIM4v5.5.0 parameter checking for 
+    model xota.xbn:nshort_model.21 of device instance m.xota.xbn.msky130_fd_pr__nfet_01v8
+
+doAnalyses: no such parameter on this device or parameter is missing
+
+dc simulation(s) aborted
+Warning from checkvalid: vector voutp is not available or has zero length.
+Error: RHS "v(voutp)-v(voutn)" invalid
+Warning from checkvalid: vector differential_output is not available or has zero length.
+Error: RHS "deriv(differential_output)" invalid
+Warning from checkvalid: vector local_gain is not available or has zero length.
+Error: RHS "db(local_gain)" invalid
+Error: measure limited to tran, dc, sp, or ac analysis
+ meas dc open_loop_gain_peak_db max local_gain_db failed!
+
+Warning from checkvalid: vector open_loop_gain_peak_db is not available or has zero length.
+Error: RHS "open_loop_gain_peak_db-3" invalid
+Error: &gain_3db_db: no such variable.
+Error: RHS "" invalid
+Error: measure limited to tran, dc, sp, or ac analysis
+ meas dc output_range_min_v find differential_output when local_gain_db=vexprint1 rise=1 failed!
+
+Error: &gain_3db_db: no such variable.
+Error: RHS "" invalid
+Error: measure limited to tran, dc, sp, or ac analysis
+ meas dc output_range_max_v find differential_output when local_gain_db=vexprint2 fall=1 failed!
+
+Warning from checkvalid: vector output_range_max_v is not available or has zero length.
+Error: RHS "output_range_max_v-output_range_min_v" invalid
+Warning from checkvalid: vector open_loop_gain_peak_db is not available or has zero length.
+Error: incomplete or empty netlist
+       or no ".plot", ".print", or ".fourier" lines in batch mode;
+no simulations run!
+
+Note: No compatibility mode selected!
+
+
+Circuit: * public nominal 3 db-compression differential output-range diagnostic.
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
