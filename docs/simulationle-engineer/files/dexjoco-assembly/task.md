@@ -1,0 +1,44 @@
+# D1 · DexJoCo bimanual_assembly
+
+## 目标与来源
+
+控制两台 Franka Panda 机械臂及两只各 16 自由度的 Allegro 灵巧手：左手抓住托盘，右手抓住销，并将销插入托盘上的孔。场景、控制器、接触模型和判分均来自 DexJoCo 原仓库。
+
+原指令：
+
+> Grasp the tray with the left hand and the peg with the right hand, then insert the peg into the hole.
+
+论文：[DexJoCo，arXiv:2605.16257v1](https://arxiv.org/html/2605.16257v1)。源码：[brave-eai/dexjoco](https://github.com/brave-eai/dexjoco)，固定提交 `8d23b0fab23b17a58c4b55f3942e17013aaf8267`。上游 MIT LICENSE 随完整源码保留。
+
+这是操作策略评测题。Agent 可以开发可执行策略，再通过原版策略接口接受随机化测试。将 GPT 等 coding agent 接入策略开发过程时，开发工具、训练数据和计算预算属于额外实验条件，不能与论文的模仿学习模型训练条件混同。
+
+## 观测与提交
+
+正式策略只接收：
+
+| 字段 | 内容 |
+|---|---|
+| `base`、`wrist_left`、`wrist_right` | 三路 224×224 RGB 图像；原始渲染为 640×640 |
+| `state` | 46 维本体状态：右臂位姿 7、左臂位姿 7、右手 16、左手 16 |
+| `prompt` | 上述英文指令 |
+
+每次推理返回 `{'actions': array}`，本配置动作为 `(30, 44)`：每个时间步依次包含右臂 xyz3、右臂旋转向量3、右手16、左臂xyz3、左臂旋转向量3、左手16。四元数转换由官方 wrapper 完成。
+
+可以提供兼容 OpenPI 的 websocket 服务，或提供 Python 模块 `create_policy()`，其返回对象实现 `infer(obs)`，再由 `scripts/policy_server.py --policy-module <module>` 提供服务。示例 hold 策略仅用于验证接口，不是解题策略。
+
+正式策略不得从完整仿真 state 中读取物体位姿、桌高等特权信息，也不得读取 MuJoCo 内部状态。示范回放为了检查环境使用官方初态恢复器，属于独立诊断。
+
+## 判分
+
+原代码检测销的指定 geom 与孔底指定 geom 连续接触 30 个控制步，满足即成功；每回合最多 1500 步。判分没有另加“完成抓取”“姿态优美”等人工指标，因此不能把自然语言目标中的每个动作都说成已被独立验证。
+
+主指标为每个 seed 的成功回合数 / 50，再跨 3 个 seed 汇总成功率均值与标准差。两种随机化设置独立报告。具体协议、论文数字及可比性限制见 [PROTOCOL.md](PROTOCOL.md)。
+
+## 必须保留的任务条件
+
+- 原版双臂、双灵巧手、资产、控制器、MuJoCo 3.4.0、NumPy 1.26.4。
+- 原版物体位置、朝向和桌高随机化；`rand_full` 额外随机相机、照明和桌面纹理。
+- 原版物理步长 0.002 秒、控制步长 0.02 秒和异步动作执行。
+- 原版 1500 步终止上限及连续接触成功条件。
+
+不能以取消随机化、恢复测试场景到训练示范、注入物体真值、改变物理参数、直接移动物体或修改成功函数获得正式成绩。
