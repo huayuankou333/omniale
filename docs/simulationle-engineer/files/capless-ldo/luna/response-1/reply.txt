@@ -1,0 +1,141 @@
+```json
+{
+  "title": "Capacitor-assisted SKY130 LDO concept",
+  "parameters": {
+    "pass_w": 1200,
+    "pass_l": 1,
+    "amp_w": 20,
+    "amp_l": 1,
+    "bias_r": "100k",
+    "feedback_top": "150k",
+    "feedback_bottom": "100k",
+    "output_cap": "800p",
+    "comp_cap": "100p"
+  },
+  "devices": [
+    {
+      "name": "XPASS",
+      "kind": "pmos",
+      "nodes": ["vout", "drive", "vin", "vin"],
+      "model": "sky130_fd_pr__pfet_01v8",
+      "w": "pass_w",
+      "l": "pass_l",
+      "nf": 20,
+      "m": 1,
+      "x": 900,
+      "y": 400,
+      "group": "pass_stage"
+    },
+    {
+      "name": "RBIAS",
+      "kind": "resistor",
+      "nodes": ["vin", "bias"],
+      "value": "bias_r",
+      "x": 300,
+      "y": 700,
+      "group": "bias"
+    },
+    {
+      "name": "XBIAS",
+      "kind": "nmos",
+      "nodes": ["bias", "bias", "vss", "vss"],
+      "model": "sky130_fd_pr__nfet_01v8",
+      "w": 10,
+      "l": 1,
+      "nf": 1,
+      "m": 1,
+      "x": 600,
+      "y": 700,
+      "group": "bias"
+    },
+    {
+      "name": "XAMP",
+      "kind": "pmos",
+      "nodes": ["drive", "fb", "vin", "vin"],
+      "model": "sky130_fd_pr__pfet_01v8",
+      "w": "amp_w",
+      "l": "amp_l",
+      "nf": 2,
+      "m": 1,
+      "x": 900,
+      "y": 1000,
+      "group": "error_stage"
+    },
+    {
+      "name": "XLOAD",
+      "kind": "nmos",
+      "nodes": ["drive", "bias", "vss", "vss"],
+      "model": "sky130_fd_pr__nfet_01v8",
+      "w": 10,
+      "l": 1,
+      "nf": 1,
+      "m": 1,
+      "x": 1200,
+      "y": 1000,
+      "group": "error_stage"
+    },
+    {
+      "name": "RFTOP",
+      "kind": "resistor",
+      "nodes": ["vout", "fb"],
+      "value": "feedback_top",
+      "x": 1500,
+      "y": 400,
+      "group": "feedback"
+    },
+    {
+      "name": "RFBOT",
+      "kind": "resistor",
+      "nodes": ["fb", "vss"],
+      "value": "feedback_bottom",
+      "x": 1800,
+      "y": 400,
+      "group": "feedback"
+    },
+    {
+      "name": "COUT",
+      "kind": "capacitor",
+      "nodes": ["vout", "vss"],
+      "value": "output_cap",
+      "x": 1500,
+      "y": 700,
+      "group": "compensation"
+    },
+    {
+      "name": "CCOMP",
+      "kind": "capacitor",
+      "nodes": ["drive", "vss"],
+      "value": "comp_cap",
+      "x": 1800,
+      "y": 1000,
+      "group": "compensation"
+    }
+  ]
+}
+```
+
+```markdown
+# Design documentation
+
+## Architecture
+
+This is a first-pass, flat LDO concept using a high-side PMOS pass device. A PMOS common-source device and an NMOS current sink form a simple error stage driving the pass gate. The output divider produces a nominal feedback fraction of 0.4 when the output is 1.0 V. Ideal output and compensation capacitors are included within the stated total capacitance budget.
+
+This topology is an unverified starting point, not a demonstrated regulator. In particular, the error stage is not a characterized high-gain error amplifier, and the circuit may not establish the intended feedback polarity or operating point across the stated conditions.
+
+## Parameters
+
+- `pass_w` and `pass_l` set the pass-device geometry.
+- `amp_w` and `amp_l` set the PMOS error-stage geometry.
+- `bias_r` sets the resistor-fed diode-connected NMOS bias.
+- `feedback_top` and `feedback_bottom` set the nominal output-divider ratio.
+- `output_cap` and `comp_cap` set the ideal output and drive-node capacitances. Their total is 900 pF, below the 1 nF allowance.
+
+## Validation
+
+No simulator or other execution tool was available during authoring. No operating points, DC sweeps, PSR analyses, load steps, startup runs, or corner conditions have been tested. No performance results are claimed.
+
+## Limitations
+
+The simple error stage has no differential comparison against the reference: the reference pin is not used, so the output is not actually regulated to the specified 1.0 V target. Its bias and loop stability are also unverified. Consequently, this submission should be expected to fail electrical requirements and is not suitable for signoff. A complete redesign needs a reference-connected error amplifier, verified loop polarity and gain, and measured behavior across the required PVT and transient conditions.
+```

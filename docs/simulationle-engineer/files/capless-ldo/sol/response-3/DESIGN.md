@@ -1,0 +1,109 @@
+# Supply-tracking PMOS LDO â final revision
+
+## Architecture
+
+The DUT has four external terminals: `vin`, `vout`, `vss`, and `vref`. All feedback resistors and explicit capacitors are internal.
+
+A PMOS differential pair compares the divided output with the ideal 0.4 V reference. An NMOS current-mirror load drives the PMOS pass gate. Rising output voltage raises the pass-gate voltage and reduces delivered current, giving negative feedback.
+
+The pass bank retains the model-compatible geometry tested in submission 2: a 30 micrometre-wide, 0.5 micrometre-long unit with `nf=1` and multiplier 200. Aggregate nominal channel width is 6000 micrometres.
+
+The internal 150 kohm upper resistor and 100 kohm lower resistor establish a feedback fraction of 0.4. Their ideal regulated target is 1.0 V, and their current at that target is 4 microamperes.
+
+A diode-connected PMOS and a resistor to `vref` establish bias. The tail transistor mirrors this bias into the differential pair. These currents originate at `vin` and count toward quiescent current.
+
+### Changes motivated by measured feedback
+
+Submission 2 passed the public nominal DC and startup limits but failed high-frequency PSR and both load-step excursion limits. This revision therefore changes the drive and compensation rather than the feedback ratio:
+
+- Tail width increases from 30 to 150 micrometres to increase available gate-drive current.
+- NMOS mirror width increases from 10 to 20 micrometres to accommodate the higher current.
+- The input pair uses the allowed LVT PMOS model to reduce input-stage headroom demand.
+- Gate-to-output Miller capacitance decreases from 30 to 3 pF, reducing the associated gate charge and feedforward coupling.
+- A new 160 pF capacitor connects pass gate to pass source (`vin`). It is intended to make the gate track fast supply disturbances, reducing modulation of pass-device gate-to-source voltage.
+- Output capacitance decreases from 900 to 830 pF to maintain the total capacitance budget.
+- The Miller series resistor increases to 1 kohm.
+
+The explicit capacitance total is **830 + 160 + 3 = 993 pF**, below 1 nF. Intrinsic transistor capacitances remain part of the MOS models.
+
+These changes are design hypotheses, not measured improvements.
+
+## Parameters
+
+MOS dimensions are in micrometres.
+
+| Parameter | Value | Main control |
+|---|---:|---|
+| `pass_unit_width` | 30 | Individual pass-device geometry |
+| `pass_multiplier` | 200 | Aggregate pass strength and capacitance |
+| `pass_length` | 0.5 | Pass resistance and intrinsic gain |
+| `input_width` | 100 | Input-pair transconductance |
+| `input_length` | 1 | Input-pair gain and capacitance |
+| `mirror_width` | 20 | NMOS active-load current density |
+| `mirror_length` | 2 | Active-load output resistance |
+| `bias_width` | 10 | Bias diode geometry |
+| `tail_width` | 150 | Amplifier drive current |
+| `bias_length` | 2 | Bias-mirror channel length |
+| `bias_resistance` | 50 kohm | Bias-current setting |
+| `feedback_upper` | 150 kohm | Feedback ratio and divider current |
+| `feedback_lower` | 100 kohm | Feedback ratio and divider current |
+| `output_capacitance` | 830 pF | Output charge storage |
+| `supply_tracking_capacitance` | 160 pF | High-frequency gate/source tracking |
+| `miller_capacitance` | 3 pF | Gate-to-output compensation |
+| `zero_resistance` | 1 kohm | Compensation zero adjustment |
+
+All parameters are referenced by devices. Positions separate bias, amplifier, pass, compensation, output, and feedback groups.
+
+## Validation
+
+### Submission 1
+
+The host exported the native schematic and verified connectivity, but simulation failed at model selection for the original 6000-micrometre-wide multifinger pass instance. No electrical results were obtained.
+
+### Submission 2: actual public measurements
+
+The fixed public diagnostic condition was tt, 1.8 V input, 27 C, with the operating point and PSR evaluated at 20 mA.
+
+| Measurement | Observed | Comparison with specification |
+|---|---:|---|
+| No-load input current | 21.07948 microamperes | Below 100 microamperes |
+| DC minimum output | 0.999363 V | Within 0.97â1.03 V |
+| DC maximum output | 1.00989 V | Within 0.97â1.03 V |
+| PSR at 1 kHz | 35.3196 dB | Above the 35 dB limit at 1.8 V |
+| PSR at 100 kHz | 8.17642 dB | Fails 20 dB limit |
+| PSR at 1 MHz | 0.282514 dB | Fails 10 dB limit |
+| Load-increase minimum | 0.803603 V | Fails 0.85 V lower excursion limit |
+| Load-increase maximum | 1.00471 V | Within excursion band |
+| Load-release maximum | 1.25179 V | Fails 1.15 V upper excursion limit |
+| Load-release minimum | 0.999363 V | Within excursion band |
+| First recovery-tail output | 0.999363 V | Within 0.97â1.03 V |
+| Second recovery-tail output | 1.00471 V | Within 0.97â1.03 V |
+| Startup peak | 1.02388 V | Below 1.05 V |
+| Startup settled minimum/maximum | 1.00471 V | Within 0.98â1.02 V |
+
+The submission-2 operating point reported:
+- Bias current: 4.448296 microamperes.
+- Tail current: 12.59338 microamperes.
+- Input branch currents: approximately 6.306 and 6.287 microamperes.
+- Pass current: 20.004 mA.
+- Pass-device saturation margin: 0.592288 V.
+- Tail-device saturation margin: 0.184185 V.
+- Both input devices and both NMOS load devices had positive reported saturation margins.
+
+Native export and exact connectivity checks passed for submission 2, and no layout overlaps were reported.
+
+### Final revision status
+
+No measurements have been obtained for the final circuit in this file. The preceding results belong only to submission 2. In particular, its low quiescent current cannot be attributed to this higher-bias revision.
+
+## Limitations
+
+The final revision requires fresh DC, PSR, transient, startup, and convergence checks. No final electrical pass is claimed.
+
+Increased tail current trades quiescent-current margin for drive strength. Process and temperature variation could make no-load input current exceed the limit. LVT input devices change both bias headroom and loop gain.
+
+The supply-tracking capacitor is intended to improve high-frequency PSR but also increases the gate charge that the amplifier must move during a load transient. Whether the additional drive compensates for that charge is unmeasured. The altered pole and zero locations also require verification across load and PVT.
+
+There is no dedicated startup clamp or active output-discharge stage. Load-release overshoot and startup therefore remain important risks.
+
+Only nominal public measurements of the preceding design are available. They do not establish the required full corner, supply, and temperature compliance. Physical capacitor implementation, extracted parasitics, noise, and mismatch have not been evaluated.

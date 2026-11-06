@@ -1,0 +1,197 @@
+```json
+{
+  "title": "Reference-connected PMOS LDO with closed error-stage output",
+  "parameters": {
+    "pass_w": 100,
+    "pass_l": 1,
+    "pair_w": 12,
+    "pair_l": 1,
+    "mirror_w": 12,
+    "tail_w": 8,
+    "bias_r": "100k",
+    "feedback_top": "150k",
+    "feedback_bottom": "100k",
+    "output_cap": "800p",
+    "comp_cap": "100p",
+    "drive_pullup": "1meg"
+  },
+  "devices": [
+    {
+      "name": "XPASS",
+      "kind": "pmos",
+      "nodes": ["vout", "drive", "vin", "vin"],
+      "model": "sky130_fd_pr__pfet_01v8",
+      "w": "pass_w",
+      "l": "pass_l",
+      "nf": 20,
+      "m": 1,
+      "x": 1200,
+      "y": 400,
+      "group": "pass_stage"
+    },
+    {
+      "name": "RBIAS",
+      "kind": "resistor",
+      "nodes": ["vin", "bias"],
+      "value": "bias_r",
+      "x": 300,
+      "y": 700,
+      "group": "bias"
+    },
+    {
+      "name": "XBIAS",
+      "kind": "nmos",
+      "nodes": ["bias", "bias", "vss", "vss"],
+      "model": "sky130_fd_pr__nfet_01v8",
+      "w": 8,
+      "l": 1,
+      "nf": 1,
+      "m": 1,
+      "x": 600,
+      "y": 700,
+      "group": "bias"
+    },
+    {
+      "name": "XTAIL",
+      "kind": "nmos",
+      "nodes": ["tail", "bias", "vss", "vss"],
+      "model": "sky130_fd_pr__nfet_01v8",
+      "w": "tail_w",
+      "l": 1,
+      "nf": 1,
+      "m": 1,
+      "x": 900,
+      "y": 1000,
+      "group": "error_amplifier"
+    },
+    {
+      "name": "XINP",
+      "kind": "nmos",
+      "nodes": ["left", "fb", "tail", "vss"],
+      "model": "sky130_fd_pr__nfet_01v8",
+      "w": "pair_w",
+      "l": "pair_l",
+      "nf": 1,
+      "m": 1,
+      "x": 1200,
+      "y": 1000,
+      "group": "error_amplifier"
+    },
+    {
+      "name": "XINM",
+      "kind": "nmos",
+      "nodes": ["drive", "vref", "tail", "vss"],
+      "model": "sky130_fd_pr__nfet_01v8",
+      "w": "pair_w",
+      "l": "pair_l",
+      "nf": 1,
+      "m": 1,
+      "x": 1500,
+      "y": 1000,
+      "group": "error_amplifier"
+    },
+    {
+      "name": "XMP1",
+      "kind": "pmos",
+      "nodes": ["left", "left", "vin", "vin"],
+      "model": "sky130_fd_pr__pfet_01v8",
+      "w": "mirror_w",
+      "l": 1,
+      "nf": 1,
+      "m": 1,
+      "x": 1800,
+      "y": 1000,
+      "group": "error_amplifier"
+    },
+    {
+      "name": "XMP2",
+      "kind": "pmos",
+      "nodes": ["drive", "left", "vin", "vin"],
+      "model": "sky130_fd_pr__pfet_01v8",
+      "w": "mirror_w",
+      "l": 1,
+      "nf": 1,
+      "m": 1,
+      "x": 2100,
+      "y": 1000,
+      "group": "error_amplifier"
+    },
+    {
+      "name": "RFTOP",
+      "kind": "resistor",
+      "nodes": ["vout", "fb"],
+      "value": "feedback_top",
+      "x": 300,
+      "y": 1300,
+      "group": "feedback"
+    },
+    {
+      "name": "RFBOT",
+      "kind": "resistor",
+      "nodes": ["fb", "vss"],
+      "value": "feedback_bottom",
+      "x": 600,
+      "y": 1300,
+      "group": "feedback"
+    },
+    {
+      "name": "COUT",
+      "kind": "capacitor",
+      "nodes": ["vout", "vss"],
+      "value": "output_cap",
+      "x": 900,
+      "y": 1300,
+      "group": "compensation"
+    },
+    {
+      "name": "CCOMP",
+      "kind": "capacitor",
+      "nodes": ["drive", "vss"],
+      "value": "comp_cap",
+      "x": 1200,
+      "y": 1300,
+      "group": "compensation"
+    },
+    {
+      "name": "RDRIVE",
+      "kind": "resistor",
+      "nodes": ["vin", "drive"],
+      "value": "drive_pullup",
+      "x": 1500,
+      "y": 1300,
+      "group": "compensation"
+    }
+  ]
+}
+```
+
+```markdown
+# Design documentation
+
+## Architecture
+
+This revision addresses the prior operating-point failure: the error-stage output node `drive` is now connected to both the NMOS differential-pair output and the PMOS mirror output, and drives the PMOS pass-device gate. A weak resistor from `vin` to `drive` provides a defined default gate bias rather than leaving that node floating.
+
+The error stage is a simple NMOS differential pair with PMOS mirror load. Its inputs are assigned so that the divider feedback is compared against the 0.4 V reference with the intended negative-feedback sense: `fb` drives one pair input and `vref` the other. The pass device is a high-side PMOS. The resistor divider has a nominal feedback fraction of 0.4 at 1.0 V output. Ideal output and compensation capacitors total 900 pF, within the stated budget.
+
+## Parameters
+
+- `pass_w`, `pass_l`: pass-device geometry; `pass_w` is used with 20 fingers.
+- `pair_w`, `pair_l`: differential-pair geometry.
+- `mirror_w`: PMOS mirror-load width.
+- `tail_w`: differential-pair tail-device width.
+- `bias_r`: sets the resistor-fed diode-connected NMOS bias.
+- `feedback_top`, `feedback_bottom`: set the output feedback ratio.
+- `output_cap`, `comp_cap`: set ideal output and drive-node capacitance.
+- `drive_pullup`: sets the weak default bias from the input supply to the pass gate.
+
+## Validation
+
+Attempt 2 exported successfully but exhibited a singular `drive` node, failed to establish a valid regulated operating point, and produced large output excursions. The operating-point report showed the tail device near zero drain-source voltage and the mirror output device effectively off. This revision connects the mirror output and NMOS output to the shared `drive` node and reverses the differential input assignment to correct the apparent feedback direction.
+
+The revised circuit has not been simulated. No DC, PSR, load-step, startup, or PVT performance is claimed.
+
+## Limitations
+
+This is a minimal, uncharacterized transistor-level error amplifier and regulator. Its bias current, gain, output swing, loop stability, compensation, startup behavior, dropout margin, and full-PVT behavior remain unverified. The prior measured output range and PSR results were far outside the original requirements; the wiring changes are intended to address the observed floating-node failure but do not establish compliance. Formal electrical signoff is not claimed.
+```

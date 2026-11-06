@@ -1,0 +1,36 @@
+```spice
+* Self-biased beta-multiplier current reference.
+* Physical PDK devices only. Geometry values are in micrometres.
+*
+* Revision: lengthen the output transistor from 2 to 3 um while
+* retaining its nominal W/L, to increase output-resistance margin.
+* Full PVT and mismatch performance remains subject to verification.
+
+.subckt beta_multiplier_reference vss vdd vref iout
+
+* Equal-current PMOS mirror closes the self-bias loop.
+XP1 vref pb vdd vdd sky130_fd_pr__pfet_01v8 w=12 l=2 nf=2
+XP2 pb   pb vdd vdd sky130_fd_pr__pfet_01v8 w=12 l=2 nf=2
+
+* Four-to-one NMOS beta ratio with physical source degeneration.
+XN1 vref vref vss vss sky130_fd_pr__nfet_01v8 w=12 l=2 nf=2
+XN2 pb   vref ns  vss sky130_fd_pr__nfet_01v8 w=48 l=2 nf=8
+XRSET ns vss vss sky130_fd_pr__res_high_po w=1 l=18
+
+* Nominal four-times output mirror, with increased channel length.
+XNOUT iout vref vss vss sky130_fd_pr__nfet_01v8 w=72 l=3 nf=12
+
+* Resistively enabled, bias-disabled startup.
+* At zero bias, the physical poly pullup raises st; XNKICK then
+* pulls pb down to enable the PMOS mirror.
+* Established vref turns on XNSENSE, lowering st and disabling
+* XNKICK. The pullup provides a persistent restart path.
+XRSTART vdd st vss sky130_fd_pr__res_xhigh_po w=1 l=500
+XNSENSE st vref vss vss sky130_fd_pr__nfet_01v8 w=4 l=1 nf=1
+XNKICK pb st vss vss sky130_fd_pr__nfet_01v8 w=1 l=2 nf=1
+
+* Physical bias-node compensation capacitor.
+XCBIAS vref vss sky130_fd_pr__cap_mim_m3_1 w=15 l=15 mf=1
+
+.ends beta_multiplier_reference
+```

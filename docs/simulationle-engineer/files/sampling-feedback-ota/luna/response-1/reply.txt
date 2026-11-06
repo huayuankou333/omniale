@@ -1,0 +1,40 @@
+```spice
+* Fully differential sampling-feedback OTA
+* Interface: vss iref vdd vinn vinp vocm voutn voutp
+*
+* iref is the sole external bias input. The diode-connected devices generate
+* internal NMOS and PMOS bias voltages. The output common-mode servo senses
+* the mean output voltage and drives the common PMOS-load gate.
+*
+* This is a first-pass transistor-level design; its performance has not been
+* simulated or verified against the stated specifications.
+
+.subckt sampling_feedback_ota vss iref vdd vinn vinp vocm voutn voutp
+
+* Bias references
+XBN bn bn vss vss sky130_fd_pr__nfet_01v8 l=1 w=4 nf=2
+XBP bp bp vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=8 nf=2
+
+* Differential input pair and tail-current mirror
+XTAIL nt bn vss vss sky130_fd_pr__nfet_01v8 l=1 w=16 nf=4
+XINN voutn vinn nt vss sky130_fd_pr__nfet_01v8 l=0.5 w=32 nf=8
+XINP voutp vinp nt vss sky130_fd_pr__nfet_01v8 l=0.5 w=32 nf=8
+
+* Common-mode sensing pair; its output controls the shared PMOS-load gate.
+XCMTAIL nct bn vss vss sky130_fd_pr__nfet_01v8 l=1 w=8 nf=2
+XCMREF ncmref vocm nct vss sky130_fd_pr__nfet_01v8 l=1 w=8 nf=2
+XCMSENSE ncmout cm_sense nct vss sky130_fd_pr__nfet_01v8 l=1 w=8 nf=2
+XCMLOADR ncmref ncmref vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=16 nf=4
+XCMLOADO ncmout ncmref vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=16 nf=4
+RCM1 cm_sense ncmout 1k
+RCM2 cm_sense vss 1meg
+* Sense the output average with matched resistors.
+RAVG1 voutp cm_sense 1meg
+RAVG2 voutn cm_sense 1meg
+
+* PMOS active loads, controlled together by the common-mode servo.
+XLP voutp cm_sense vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=48 nf=12
+XLN voutn cm_sense vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=48 nf=12
+
+.ends sampling_feedback_ota
+```

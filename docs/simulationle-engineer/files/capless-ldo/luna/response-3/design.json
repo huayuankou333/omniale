@@ -1,0 +1,164 @@
+{
+  "title": "Reference-connected PMOS LDO with closed error-stage output",
+  "parameters": {
+    "pass_w": 100,
+    "pass_l": 1,
+    "pair_w": 12,
+    "pair_l": 1,
+    "mirror_w": 12,
+    "tail_w": 8,
+    "bias_r": "100k",
+    "feedback_top": "150k",
+    "feedback_bottom": "100k",
+    "output_cap": "800p",
+    "comp_cap": "100p",
+    "drive_pullup": "1meg"
+  },
+  "devices": [
+    {
+      "name": "XPASS",
+      "kind": "pmos",
+      "nodes": ["vout", "drive", "vin", "vin"],
+      "model": "sky130_fd_pr__pfet_01v8",
+      "w": "pass_w",
+      "l": "pass_l",
+      "nf": 20,
+      "m": 1,
+      "x": 1200,
+      "y": 400,
+      "group": "pass_stage"
+    },
+    {
+      "name": "RBIAS",
+      "kind": "resistor",
+      "nodes": ["vin", "bias"],
+      "value": "bias_r",
+      "x": 300,
+      "y": 700,
+      "group": "bias"
+    },
+    {
+      "name": "XBIAS",
+      "kind": "nmos",
+      "nodes": ["bias", "bias", "vss", "vss"],
+      "model": "sky130_fd_pr__nfet_01v8",
+      "w": 8,
+      "l": 1,
+      "nf": 1,
+      "m": 1,
+      "x": 600,
+      "y": 700,
+      "group": "bias"
+    },
+    {
+      "name": "XTAIL",
+      "kind": "nmos",
+      "nodes": ["tail", "bias", "vss", "vss"],
+      "model": "sky130_fd_pr__nfet_01v8",
+      "w": "tail_w",
+      "l": 1,
+      "nf": 1,
+      "m": 1,
+      "x": 900,
+      "y": 1000,
+      "group": "error_amplifier"
+    },
+    {
+      "name": "XINP",
+      "kind": "nmos",
+      "nodes": ["left", "fb", "tail", "vss"],
+      "model": "sky130_fd_pr__nfet_01v8",
+      "w": "pair_w",
+      "l": "pair_l",
+      "nf": 1,
+      "m": 1,
+      "x": 1200,
+      "y": 1000,
+      "group": "error_amplifier"
+    },
+    {
+      "name": "XINM",
+      "kind": "nmos",
+      "nodes": ["drive", "vref", "tail", "vss"],
+      "model": "sky130_fd_pr__nfet_01v8",
+      "w": "pair_w",
+      "l": "pair_l",
+      "nf": 1,
+      "m": 1,
+      "x": 1500,
+      "y": 1000,
+      "group": "error_amplifier"
+    },
+    {
+      "name": "XMP1",
+      "kind": "pmos",
+      "nodes": ["left", "left", "vin", "vin"],
+      "model": "sky130_fd_pr__pfet_01v8",
+      "w": "mirror_w",
+      "l": 1,
+      "nf": 1,
+      "m": 1,
+      "x": 1800,
+      "y": 1000,
+      "group": "error_amplifier"
+    },
+    {
+      "name": "XMP2",
+      "kind": "pmos",
+      "nodes": ["drive", "left", "vin", "vin"],
+      "model": "sky130_fd_pr__pfet_01v8",
+      "w": "mirror_w",
+      "l": 1,
+      "nf": 1,
+      "m": 1,
+      "x": 2100,
+      "y": 1000,
+      "group": "error_amplifier"
+    },
+    {
+      "name": "RFTOP",
+      "kind": "resistor",
+      "nodes": ["vout", "fb"],
+      "value": "feedback_top",
+      "x": 300,
+      "y": 1300,
+      "group": "feedback"
+    },
+    {
+      "name": "RFBOT",
+      "kind": "resistor",
+      "nodes": ["fb", "vss"],
+      "value": "feedback_bottom",
+      "x": 600,
+      "y": 1300,
+      "group": "feedback"
+    },
+    {
+      "name": "COUT",
+      "kind": "capacitor",
+      "nodes": ["vout", "vss"],
+      "value": "output_cap",
+      "x": 900,
+      "y": 1300,
+      "group": "compensation"
+    },
+    {
+      "name": "CCOMP",
+      "kind": "capacitor",
+      "nodes": ["drive", "vss"],
+      "value": "comp_cap",
+      "x": 1200,
+      "y": 1300,
+      "group": "compensation"
+    },
+    {
+      "name": "RDRIVE",
+      "kind": "resistor",
+      "nodes": ["vin", "drive"],
+      "value": "drive_pullup",
+      "x": 1500,
+      "y": 1300,
+      "group": "compensation"
+    }
+  ]
+}

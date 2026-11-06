@@ -1,0 +1,12 @@
+* Generated from agent-authored design.json; no topology supplied by compiler.
+.subckt capless_ldo vin vout vss vref
+XPASS vout drive vin vin sky130_fd_pr__pfet_01v8 w=1200 l=1 nf=20 m=1
+RBIAS vin bias 100k
+XBIAS bias bias vss vss sky130_fd_pr__nfet_01v8 w=10 l=1 nf=1 m=1
+XAMP drive fb vin vin sky130_fd_pr__pfet_01v8 w=20 l=1 nf=2 m=1
+XLOAD drive bias vss vss sky130_fd_pr__nfet_01v8 w=10 l=1 nf=1 m=1
+RFTOP vout fb 150k
+RFBOT fb vss 100k
+COUT vout vss 800p
+CCOMP drive vss 100p
+.ends capless_ldo

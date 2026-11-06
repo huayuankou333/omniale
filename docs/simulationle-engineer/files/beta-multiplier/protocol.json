@@ -1,0 +1,132 @@
+{
+  "protocol": "feedback3-medium-no-tools-v1",
+  "case": "beta",
+  "created_at": "2026-11-06T13:09:21.168683+08:00",
+  "models": [
+    "gpt-6-luna",
+    "gpt-6.1-sol"
+  ],
+  "base_url": "https://api-temporary.nju-link.com/v1",
+  "reasoning_effort": "medium",
+  "max_design_attempts": 3,
+  "max_syntax_retries": 2,
+  "max_responses": 5,
+  "max_output_tokens_per_response_including_reasoning": 32768,
+  "total_output_token_cap": null,
+  "runs_per_model": 1,
+  "fresh_context_per_model": true,
+  "serial_api_execution": true,
+  "sampling": "provider default; temperature and top_p unset",
+  "tools": [],
+  "host_design_edits": false,
+  "feedback": "fixed public diagnostics and per-transistor nominal operating points; no optimization hints",
+  "public_suite": {
+    "analyses": [
+      {
+        "analysis": "op",
+        "corner": "tt",
+        "vdd": 1.8,
+        "temp_c": 27
+      },
+      {
+        "analysis": "compliance",
+        "corner": "ss",
+        "vdd": 1.62,
+        "temp_c": 125
+      },
+      {
+        "analysis": "startup",
+        "corner": "ff",
+        "vdd": 1.98,
+        "temp_c": -40,
+        "ramp_us": 1
+      },
+      {
+        "analysis": "mc_public",
+        "seeds": [
+          31000,
+          31001,
+          31002,
+          31003,
+          31004,
+          31005,
+          31006,
+          31007
+        ]
+      }
+    ],
+    "native_processes_per_design": 12,
+    "additional_op": "TT per-transistor OP; public MC seeds overlap original final MC, unchanged from old case"
+  },
+  "feedback_revisions": 2,
+  "valid_nonconvergence_counts_as_design": true,
+  "syntax_retry_policy": "Two global formatting/netlist-policy retries, matching the local AnalogPortBench run",
+  "hidden_final_feedback_to_model": false,
+  "early_stop_policy": "Use all three evaluable designs unless syntax budget exhausted; public diagnostic success cannot establish hidden full-PVT pass",
+  "formal_evaluation": "unchanged old case scoring on final frozen submission; LDO electrical and assets reported separately",
+  "model_identity": "requested and provider-reported IDs only; weights not independently verified",
+  "comparison_qualification": "Budget and tool/feedback mode changed together versus old high/36-response runs; this is not a budget-only ablation",
+  "hashes": {
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\engine.py": "60fee24419ca1f9d7e10c15f5601514b2feae638eb3719f438639c3225ee7460",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\public\\SKY130_NETLIST_GUIDE.md": "071712f4973589c125e169f7053500bd204aee25b5c77ba1bbce636ef9487d73",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\public\\sky130_pdk_subcircuits.txt": "c309881df60673970d314cc49554638e045ab37a781d6b3ca2fdb18cee83e559",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\public\\testbench\\run_mc.py": "c819502984ee7300928121ddd9342f3c4cf130fc8898d82835cd428ef877cc3a",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\public\\testbench\\sky130_mc_mm.lib.spice": "b2a9177c2c81f80c4f91fa805c4152fa63c6cf4b2d95178c9776c1f9510555a6",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\public\\testbench\\tb_compliance_ss.spi": "78e13fb9ff25a26674160d7b96c3233c48f3e6b6cfa2017cc46a7cb1ab0ec320",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\public\\testbench\\tb_mc.spi": "831cf6433c1b4ad1aa210f91c7c392f2bd2de140d6e2fe9db7c4b881865b6a5c",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\public\\testbench\\tb_op_tt.spi": "2e1dc3c7d7434aa58ab0f4ad9e8eb958c30f949350f52d46808c44c17289c8ab",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\public\\testbench\\tb_startup_ff.spi": "10e054e42d40c1aacfd7fd9ab464c915ff391bf92650fd7f1d295c57ead6aaf0",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\public\\TOOL_CONTRACT.md": "8a3de20b8616482ad7f124affbc603e62a2b6420d80fe7369a370e1805f09fd0",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\run_models.py": "7afba11681ccd871c912d472b78848d23398996692098f21a083ead4662b34dc",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\runtime_manifest.json": "70f7550b01ebbeaec67e97c1fe9878b49626b51f93f5355a1bd25b8fa00fbfbc",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\TASK.md": "4c3801f9c329449f7348eb346f0cd42b5174ffb82899648e9e071d014a10086c",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\environment\\Dockerfile": "1455c1a7c6a6a7bc92c69ec9522854f107f269ca24d449d49987bf042f331be2",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\environment\\starter\\circuit.spi": "10d6204dc7b43543decbe9edd4d374d36670a7452ed626ee82b1d1a0075436b1",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\environment\\starter\\testbench\\run_mc.py": "c819502984ee7300928121ddd9342f3c4cf130fc8898d82835cd428ef877cc3a",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\environment\\starter\\testbench\\sky130_mc_mm.lib.spice": "b2a9177c2c81f80c4f91fa805c4152fa63c6cf4b2d95178c9776c1f9510555a6",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\environment\\starter\\testbench\\tb_compliance_ss.spi": "78e13fb9ff25a26674160d7b96c3233c48f3e6b6cfa2017cc46a7cb1ab0ec320",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\environment\\starter\\testbench\\tb_mc.spi": "831cf6433c1b4ad1aa210f91c7c392f2bd2de140d6e2fe9db7c4b881865b6a5c",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\environment\\starter\\testbench\\tb_op_tt.spi": "2e1dc3c7d7434aa58ab0f4ad9e8eb958c30f949350f52d46808c44c17289c8ab",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\environment\\starter\\testbench\\tb_startup_ff.spi": "10e054e42d40c1aacfd7fd9ab464c915ff391bf92650fd7f1d295c57ead6aaf0",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\instruction.md": "4c3801f9c329449f7348eb346f0cd42b5174ffb82899648e9e071d014a10086c",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\LICENSE": "7d4a87942d5adc7c8a43fb0db75cfa5155f3cdcee8190179a293643c4366a562",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\manifest.json": "cecab5a2c370c5e5fd2bc5e14532efd4ee1cf9985244f273eac7a236e2f8ec09",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\results\\reference.json": "521e0723bb1f1fe04b58b54fd3b467357e71974d147e790460fb990a3992dde5",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\solution\\circuit.spi": "119a570ca2de4ad30f5ec5d5852e880fac1f4039c3f7dd0558f0cb04597c810b",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\solution\\solve.sh": "6e94fc3f5d6e43cc067219d84f333fbf0b3340b07271af20e76cef2ef0be3a28",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\task.toml": "372539df7d8f590fb028acdc4332de704b81406e0647d5977af78c965befcf87",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\tests\\benches\\tb_compliance.spi": "fc1e25f03155922f76e9740acdd37ef83732b7b0d7d9ac729cb01fa351c16ee8",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\tests\\benches\\tb_mc.spi": "b5098cd9f1a07644ccedf4786e08a275f76c6df1a787cc728e09cf8270a15c62",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\tests\\benches\\tb_startup.spi": "7a90634d38ae7aa574387a08a532f8684effa5b530ce035ffb1702d390a5621b",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\tests\\Dockerfile": "585204d89c5dd9a45cdf4a36ffc0c5fffff523a9ecdf447973afddeb0c0049a1",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\tests\\models\\sky130_mc_mm.lib.spice": "d1cac494614ce0d8997251c5c2eb5a0eda0d6b46b9bef230aa8100fc92e2a3b0",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\tests\\test.sh": "3013c3e97f4cfeaf03a827df960650fb313d45fbc41b525290bf6ad7f5f99001",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\tests\\verify.py": "6bcf6b6421911ba7ca0ad9e3119fd10cf22f739cad9471b37151289b65806c15",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\tooling\\check_circuit.py": "3e680061da6292dfaf2d1055d8fe89a571cd252d8ee1d89123656ad2a9fedde5",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\tooling\\SKY130_NETLIST_GUIDE.md": "071712f4973589c125e169f7053500bd204aee25b5c77ba1bbce636ef9487d73",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\upstream\\tooling\\sky130_pdk_subcircuits.txt": "c309881df60673970d314cc49554638e045ab37a781d6b3ca2fdb18cee83e559",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\validation\\READY.json": "95d2282db2c74ba62d26d9dedb41faaf5346b2ad6467818041a1bee8f101a99b",
+    "D:\\LINK\\SimulationLE\\case\\D2\\feedback3\\run_feedback3.py": "c769edb31d3445172c62891467c11ea61306c22319458e7c251be94ff4f526b0",
+    "D:\\LINK\\SimulationLE\\case\\D2\\feedback3\\run_feedback3_beta.py": "405cf8489a07777d971f7a130537db987a16be8f3495b318923cecc56d30ee23"
+  },
+  "previous_record_hashes": {
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\runs\\20261105_152447\\protocol.json": "de575a8f261da7938447a09b3602ca9501de077e07c79cb83c4419619ac8ce53",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\runs\\20261105_152447\\results.json": "2835cb5889e7d677e48bffc45f50eb881fb75563a0d3ea3d2c1e574389ee398f",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\runs\\20261105_152447\\gpt-6-luna\\result.json": "adfb7dd25f58387fdcc43b65a38ea34362f6648a095cdbfc2fdad7ba601f2967",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\runs\\20261105_152447\\gpt-6-luna\\usage.json": "6bd83f0b5c2d1da95f84b07de8ffde65b4b6fece389fc4e71fcccaf408116260",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\runs\\20261105_152447\\gpt-6-luna\\frozen_manifest.json": "6caba89c234d68180e57802b2dbb18fdb2d4f360340c45df71a8672cb9d01616",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\runs\\20261105_152447\\gpt-6-luna\\checkpoint.json": "a678a27f46940e10479fd2b3b0b1bea205aae29b304d2da1cabe5344c14a92cb",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\runs\\20261105_152447\\gpt-6-luna\\frozen\\circuit.spi": "1971c075d2401651fa56558f60f94e06d46fb3f1ceee4a490e1d4deb25ed3e50",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\runs\\20261105_152447\\gpt-6.1-sol\\result.json": "452379cddbfc5876b213d30f03e0cc1db543752061652230c1c8b07d444feb49",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\runs\\20261105_152447\\gpt-6.1-sol\\usage.json": "ec89592195862956aa297613a6212de12ac8d5b843892061be98221c3e29400a",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\runs\\20261105_152447\\gpt-6.1-sol\\frozen_manifest.json": "c2c249f61815ffabddd7ced1264a55bfcdff80276b907ba0e30dce62308d70d5",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\runs\\20261105_152447\\gpt-6.1-sol\\checkpoint.json": "57666d197692420db13e6223ed0f050b26cff9184b2fb8c8c8c9cce862b34ab2",
+    "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\runs\\20261105_152447\\gpt-6.1-sol\\frozen\\circuit.spi": "6e9b2b090eb6562aa28f2f24750fbee47e9b1b43b0a391bc09e848de66c111f1"
+  },
+  "runtime": {
+    "python": "D:\\LINK\\SimulationLE\\runtime\\python\\Scripts\\python.exe",
+    "ngspice": "D:\\LINK\\SimulationLE\\runtime\\ngspice\\Spice64\\bin\\ngspice_con.exe",
+    "ngspice_sha256": "22d5cae2bd32b2e39157a8d27bf457122f68285b72a9ebefdf41551b628233ab",
+    "model_library_sha256": "c7e9fe87ffc2685bc56da02f92cd48b1403a5e9da85cc7978027fb0ca347d581"
+  }
+}

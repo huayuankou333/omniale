@@ -1,0 +1,115 @@
+{
+  "tests_passed": 12,
+  "tests_total": 12,
+  "raw_score": 1.0,
+  "score_caps": [],
+  "reward": 1.0,
+  "measurements": {
+    "pvt_current_min_a": 3.223379146932714e-05,
+    "pvt_current_max_a": 4.999474308786667e-05,
+    "pvt_vref_min_v": 0.6403125489400843,
+    "pvt_vref_max_v": 0.7151193264250408,
+    "pvt_power_max_w": 7.33810413884306e-05,
+    "pvt_compliance_current_min_a": 3.151537326451237e-05,
+    "pvt_compliance_current_max_a": 5.0756071316993e-05,
+    "pvt_compliance_flatness_max": 0.051626321715696435,
+    "startup_final_current_min_a": 3.3256032897283044e-05,
+    "startup_final_current_max_a": 4.896541823118604e-05,
+    "startup_final_vref_min_v": 0.6403125489367536,
+    "startup_final_vref_max_v": 0.7151193264233575,
+    "startup_settling_time_max_s": 7.36592261681076e-07,
+    "startup_current_overshoot_ratio_max": 1.3408504906177026,
+    "startup_peak_supply_current_max_a": 3.524203732274689e-05,
+    "startup_energy_max_j": 2.65349165983523e-10,
+    "mc_current_mean_a": 3.993301341467692e-05,
+    "mc_current_sigma_a": 1.1516191121647233e-06,
+    "mc_current_yield": 1.0
+  },
+  "ngspice_runs": 95,
+  "workers": 1,
+  "ngspice_threads_per_process": 1,
+  "wall_clock_s": 116.14100000000326,
+  "summed_run_time_s": 114.26799999998912,
+  "slowest_run_time_s": 1.3590000000040163,
+  "failed_runs": [],
+  "overall_pass": true,
+  "policy": {
+    "passed": true,
+    "exit_code": 0,
+    "log": "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\runs\\20261105_152447\\gpt-6.1-sol\\frozen\\circuit.spi: netlist check passed\n"
+  },
+  "checks": [
+    {
+      "name": "complete_signoff",
+      "status": "passed",
+      "message": "runs=95 PVT=27/27 compliance=27/27 startup=18/18 MC=50/50"
+    },
+    {
+      "name": "pvt_output_current",
+      "status": "passed",
+      "message": "current=32.234..49.995uA"
+    },
+    {
+      "name": "nominal_current_accuracy",
+      "status": "passed",
+      "message": "TT/1.8V/27C current=40.027uA"
+    },
+    {
+      "name": "pvt_vref",
+      "status": "passed",
+      "message": "VREF=0.6403..0.7151V"
+    },
+    {
+      "name": "pvt_power",
+      "status": "passed",
+      "message": "power_max=73.38uW"
+    },
+    {
+      "name": "pvt_output_compliance",
+      "status": "passed",
+      "message": "current=31.515..50.756uA flatness_max=5.163%"
+    },
+    {
+      "name": "pvt_multi_ramp_startup_final",
+      "status": "passed",
+      "message": "final_current=33.256..48.965uA VREF=0.6403..0.7151V"
+    },
+    {
+      "name": "pvt_multi_ramp_startup_settling",
+      "status": "passed",
+      "message": "settling_time_max=0.737us"
+    },
+    {
+      "name": "startup_overshoot",
+      "status": "passed",
+      "message": "peak_to_final_current_ratio_max=1.3409"
+    },
+    {
+      "name": "startup_inrush_and_energy",
+      "status": "passed",
+      "message": "peak_supply_current=0.035mA energy=0.265nJ"
+    },
+    {
+      "name": "mc_current_yield",
+      "status": "passed",
+      "message": "samples=50 yield=100.0% in 30..50uA"
+    },
+    {
+      "name": "mc_current_sigma",
+      "status": "passed",
+      "message": "samples=50 sigma=1.152uA"
+    }
+  ],
+  "circuit_sha256": "6e9b2b090eb6562aa28f2f24750fbee47e9b1b43b0a391bc09e848de66c111f1",
+  "evaluator": "unchanged upstream score_results/build_cases/metric functions; Windows path/process adapter",
+  "requested_model": "gpt-6.1-sol",
+  "reported_model": "gpt-6.1-sol",
+  "model_turns": 36,
+  "development_simulation_calls": 29,
+  "development_native_runs": 36,
+  "explicit_finish": true,
+  "finish_summary": "Implemented circuit.spi as a transistor-level self-biased beta multiplier: equal long-channel PMOS mirror legs, a 4:1 NMOS sizing ratio, a physical high-poly source resistor, a long-channel NMOS output sink, and a three-transistor startup detector/injector that switches off after bias is established. Approved-device/netlist checker passed. Measured nominal TT/1.8 V/27 C output is 40.027 uA, vref 0.678194 V, total electrical power 56.343 uW, and compliance variation 3.829%. Nine sampled compliance/PVT conditions passed their current, vref, power and flatness limits; observed output range was 32.234â49.995 uA, vref 0.640313â0.715119 V, maximum power 73.381 uW, and maximum compliance variation 5.163%. All 18 specified startup corner/supply-temperature/ramp combinations were simulated and passed the published limits: maximum settling approximately 0.737 us, maximum overshoot 1.341x, peak positive supply current 35.243 uA, and maximum energy 0.2654 nJ. Required public eight-sample process-plus-mismatch diagnostic completed: mean 39.972 uA, sample sigma 0.635 uA, 8/8 outputs between 30 and 50 uA. Limitations: full 27-point DC/compliance grid and independent 50-sample Monte Carlo signoff were not run locally; no claim is made for unmeasured results. Final circuit remains the same candidate used for all reported measurements.",
+  "input_tokens": 400723,
+  "output_tokens": 2957,
+  "agent_wall_seconds": 260.984000000004
+}

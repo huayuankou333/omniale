@@ -1,0 +1,179 @@
+Design attempt 2/3 has been evaluated with the predeclared public diagnostics. You have 1 complete design attempt(s) remaining. The following are measured public results and transistor operating points, not full signoff. Compare these measurements with the original specifications. No hidden PVT or final-score information is supplied. Return a complete revised design in the same output format.
+
+{
+  "analyses": {
+    "dc": {
+      "exit_code": 0,
+      "metrics": {
+        "m1_iq_ua": 12.31815,
+        "m1_vmax_v": 1.7987,
+        "m1_vmin_v": -6.47185
+      },
+      "errors": [
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: Dynamic gmin stepping failed",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: True gmin stepping failed",
+        "Warning: source stepping failed"
+      ],
+      "policy_ok": true
+    },
+    "psr": {
+      "exit_code": 0,
+      "metrics": {
+        "m0_psr1k_db": -11.0098,
+        "m0_psr100k_db": -11.0054,
+        "m0_psr1meg_db": -10.5839
+      },
+      "errors": [
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: Dynamic gmin stepping failed",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: True gmin stepping failed",
+        "Warning: source stepping failed"
+      ],
+      "policy_ok": true
+    },
+    "step": {
+      "exit_code": 0,
+      "metrics": {
+        "m1_droop_v": -6.48829,
+        "m1_w1max_v": 1.70026,
+        "m1_bump_v": 1.70026,
+        "m1_w2min_v": -6.48829,
+        "m1_t1max_v": -6.48829,
+        "m1_t1min_v": -6.48829,
+        "m1_t2max_v": 1.70026,
+        "m1_t2min_v": 1.70026
+      },
+      "errors": [
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: Dynamic gmin stepping failed",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: True gmin stepping failed",
+        "Warning: source stepping failed"
+      ],
+      "policy_ok": true
+    },
+    "startup": {
+      "exit_code": 0,
+      "metrics": {
+        "m0_peak_v": 1.62887,
+        "m0_smax_v": 1.62886,
+        "m0_smin_v": 1.62886
+      },
+      "errors": [
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: Dynamic gmin stepping failed",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: True gmin stepping failed",
+        "Warning: source stepping failed"
+      ],
+      "policy_ok": true
+    }
+  },
+  "operating_point": {
+    "conditions": "TT, nominal supply, 27 C",
+    "expected_transistors": 7,
+    "measured_transistors": 7,
+    "devices": [
+      {
+        "device": "m.xdut.xpass.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 2841.792,
+        "vgs_V": 1.787368,
+        "vds_V": 8.238444,
+        "vdsat_V": 0.743706,
+        "vth_V": 0.8893738,
+        "saturation_margin_V": 7.494738
+      },
+      {
+        "device": "m.xdut.xbias.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 11.26247,
+        "vgs_V": 0.6736264,
+        "vds_V": 0.6735372,
+        "vdsat_V": 0.107146,
+        "vth_V": 0.587321,
+        "saturation_margin_V": 0.5663912
+      },
+      {
+        "device": "m.xdut.xtail.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 0.04157218,
+        "vgs_V": 0.6737176,
+        "vds_V": 0.0002413905,
+        "vdsat_V": 0.1072169,
+        "vth_V": 0.5872968,
+        "saturation_margin_V": -0.10697550950000001
+      },
+      {
+        "device": "m.xdut.xinp.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 0.04173848,
+        "vgs_V": 0.3997582,
+        "vds_V": 0.9828139,
+        "vdsat_V": 0.04160678,
+        "vth_V": 0.5870794,
+        "saturation_margin_V": 0.9412071200000001
+      },
+      {
+        "device": "m.xdut.xinm.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 1.1768390000000001e-30,
+        "vgs_V": -2.59556,
+        "vds_V": 1.799755,
+        "vdsat_V": 0.04121925,
+        "vth_V": 0.5870746,
+        "saturation_margin_V": 1.75853575
+      },
+      {
+        "device": "m.xdut.xmp1.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 0.041743619999999995,
+        "vgs_V": 0.8169435,
+        "vds_V": 0.8169427,
+        "vdsat_V": 0.04397559,
+        "vth_V": 1.031344,
+        "saturation_margin_V": 0.7729671100000001
+      },
+      {
+        "device": "m.xdut.xmp2.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 6.211707e-06,
+        "vgs_V": 0.8169442,
+        "vds_V": 4.233575e-06,
+        "vdsat_V": 0.04397317,
+        "vth_V": 1.031431,
+        "saturation_margin_V": -0.043968936425
+      }
+    ],
+    "exit_code": 0
+  },
+  "asset_build": {
+    "native_export_ok": true,
+    "native_graph_matches": true,
+    "device_count": 12,
+    "parameter_count": 11,
+    "parameter_references": 14,
+    "layout_overlaps": [],
+    "layout_explicit": true
+  },
+  "native_processes": 5
+}

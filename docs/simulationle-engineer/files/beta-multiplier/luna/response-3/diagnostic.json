@@ -1,0 +1,312 @@
+{
+  "fixed_suite": {
+    "analyses": [
+      {
+        "analysis": "op",
+        "corner": "tt",
+        "vdd": 1.8,
+        "temp_c": 27
+      },
+      {
+        "analysis": "compliance",
+        "corner": "ss",
+        "vdd": 1.62,
+        "temp_c": 125
+      },
+      {
+        "analysis": "startup",
+        "corner": "ff",
+        "vdd": 1.98,
+        "temp_c": -40,
+        "ramp_us": 1
+      },
+      {
+        "analysis": "mc_public",
+        "seeds": [
+          31000,
+          31001,
+          31002,
+          31003,
+          31004,
+          31005,
+          31006,
+          31007
+        ]
+      }
+    ],
+    "native_processes_per_design": 12,
+    "additional_op": "TT per-transistor OP; public MC seeds overlap original final MC, unchanged from old case"
+  },
+  "analyses": {
+    "op": {
+      "analysis": "op",
+      "ngspice_runs": 1,
+      "rows": [
+        {
+          "group": "op",
+          "bench": "tb_compliance.spi",
+          "corner": "tt",
+          "vdd": 1.8,
+          "temp_c": 27,
+          "output_current_a": 3.48481649010135e-05,
+          "vref_v": 0.7116468332880703,
+          "power_w": 4.453648829375323e-05,
+          "node_voltages": {
+            "v(vss)": 0.0,
+            "v(vdd)": 1.8,
+            "v(iout)": 0.9,
+            "v(vref)": 0.7116468332880703,
+            "v(xref.nmir)": 1.744097833268726,
+            "v(xref.nsrc)": 0.09521498632335533,
+            "v(xref.xrset.rb)": 0.09434729943362842,
+            "v(m.xref.xstart.msky130_fd_pr__pfet_01v8#dbody)": 1.799999999965675,
+            "v(m.xref.xstart.msky130_fd_pr__pfet_01v8#body)": 1.799999999986268,
+            "v(m.xref.xstart.msky130_fd_pr__pfet_01v8#sbody)": 1.799999999993134,
+            "v(m.xref.xmnout.msky130_fd_pr__nfet_01v8#dbody)": 2.89129578221502e-11,
+            "v(m.xref.xmnout.msky130_fd_pr__nfet_01v8#body)": 1.233375412042749e-11,
+            "v(m.xref.xmnout.msky130_fd_pr__nfet_01v8#sbody)": 6.171965670468299e-12,
+            "v(m.xref.xmp2.msky130_fd_pr__pfet_01v8#dbody)": 1.799999999998006,
+            "v(m.xref.xmp2.msky130_fd_pr__pfet_01v8#body)": 1.799999999999202,
+            "v(m.xref.xmp2.msky130_fd_pr__pfet_01v8#sbody)": 1.7999999999996,
+            "v(m.xref.xmp1.msky130_fd_pr__pfet_01v8#dbody)": 1.799999999965678,
+            "v(m.xref.xmp1.msky130_fd_pr__pfet_01v8#body)": 1.79999999998627,
+            "v(m.xref.xmp1.msky130_fd_pr__pfet_01v8#sbody)": 1.799999999993133,
+            "v(m.xref.xmn2.msky130_fd_pr__nfet_01v8#dbody)": 5.662389019409387e-09,
+            "v(m.xref.xmn2.msky130_fd_pr__nfet_01v8#body)": 1.12370743002229e-08,
+            "v(m.xref.xmn2.msky130_fd_pr__nfet_01v8#sbody)": 5.621153614723456e-09,
+            "v(m.xref.xmn1.msky130_fd_pr__nfet_01v8#dbody)": 2.254865052610814e-11,
+            "v(m.xref.xmn1.msky130_fd_pr__nfet_01v8#body)": 9.022510514290214e-12,
+            "v(m.xref.xmn1.msky130_fd_pr__nfet_01v8#sbody)": 4.516157421072045e-12
+          },
+          "run_time_s": 1.1559999999881256
+        }
+      ],
+      "errors": []
+    },
+    "compliance": {
+      "analysis": "compliance",
+      "ngspice_runs": 1,
+      "rows": [
+        {
+          "group": "compliance",
+          "bench": "tb_compliance.spi",
+          "corner": "ss",
+          "vdd": 1.62,
+          "temp_c": 125,
+          "output_current_a": 3.156684399790999e-05,
+          "vref_v": 0.6823280459930772,
+          "power_w": 3.963539731173513e-05,
+          "compliance_current_mean_a": 3.168910702625663e-05,
+          "compliance_current_min_a": 3.036456006423605e-05,
+          "compliance_current_max_a": 3.274238805839325e-05,
+          "compliance_flatness": 0.07503613125440889,
+          "run_time_s": 1.25
+        }
+      ],
+      "errors": []
+    },
+    "startup": {
+      "analysis": "startup",
+      "ngspice_runs": 1,
+      "rows": [
+        {
+          "group": "startup",
+          "bench": "tb_startup.spi",
+          "corner": "ff",
+          "vdd": 1.98,
+          "temp_c": -40,
+          "ramp_s": 1e-06,
+          "startup_final_current_a": 5.9500479533207836e-05,
+          "startup_final_vref_v": 0.7644572241878879,
+          "startup_settling_time_s": 0.0,
+          "startup_current_overshoot_ratio": 1.0004333765212177,
+          "startup_peak_supply_current_a": 1.130890453380357e-05,
+          "startup_energy_j": 2.2332468375505003e-10,
+          "run_time_s": 1.1719999999913853
+        }
+      ],
+      "errors": []
+    },
+    "mc_public": {
+      "analysis": "mc_public",
+      "ngspice_runs": 8,
+      "rows": [
+        {
+          "group": "mc",
+          "bench": "tb_mc.spi",
+          "seed": 31000,
+          "corner": "mc",
+          "vdd": 1.8,
+          "temp_c": 27,
+          "output_current_a": 3.541117806910021e-05,
+          "vref_v": 0.7129543444544375,
+          "run_time_s": 1.25
+        },
+        {
+          "group": "mc",
+          "bench": "tb_mc.spi",
+          "seed": 31001,
+          "corner": "mc",
+          "vdd": 1.8,
+          "temp_c": 27,
+          "output_current_a": 3.569127296976227e-05,
+          "vref_v": 0.7132096665667099,
+          "run_time_s": 1.125
+        },
+        {
+          "group": "mc",
+          "bench": "tb_mc.spi",
+          "seed": 31002,
+          "corner": "mc",
+          "vdd": 1.8,
+          "temp_c": 27,
+          "output_current_a": 3.485024375951551e-05,
+          "vref_v": 0.7118411373869873,
+          "run_time_s": 1.1089999999967404
+        },
+        {
+          "group": "mc",
+          "bench": "tb_mc.spi",
+          "seed": 31003,
+          "corner": "mc",
+          "vdd": 1.8,
+          "temp_c": 27,
+          "output_current_a": 3.438467359828667e-05,
+          "vref_v": 0.7111707691556092,
+          "run_time_s": 1.1560000000172295
+        },
+        {
+          "group": "mc",
+          "bench": "tb_mc.spi",
+          "seed": 31004,
+          "corner": "mc",
+          "vdd": 1.8,
+          "temp_c": 27,
+          "output_current_a": 3.641514952387737e-05,
+          "vref_v": 0.7132557835344601,
+          "run_time_s": 1.125
+        },
+        {
+          "group": "mc",
+          "bench": "tb_mc.spi",
+          "seed": 31005,
+          "corner": "mc",
+          "vdd": 1.8,
+          "temp_c": 27,
+          "output_current_a": 3.43175232300208e-05,
+          "vref_v": 0.7098655355504329,
+          "run_time_s": 1.25
+        },
+        {
+          "group": "mc",
+          "bench": "tb_mc.spi",
+          "seed": 31006,
+          "corner": "mc",
+          "vdd": 1.8,
+          "temp_c": 27,
+          "output_current_a": 3.48107017471011e-05,
+          "vref_v": 0.7141823940172459,
+          "run_time_s": 1.2660000000032596
+        },
+        {
+          "group": "mc",
+          "bench": "tb_mc.spi",
+          "seed": 31007,
+          "corner": "mc",
+          "vdd": 1.8,
+          "temp_c": 27,
+          "output_current_a": 3.533277945289015e-05,
+          "vref_v": 0.7119672402086094,
+          "run_time_s": 1.1410000000032596
+        }
+      ],
+      "errors": [],
+      "public_mc": {
+        "samples": 8,
+        "mean_a": 3.515169029381926e-05,
+        "sigma_a": 7.049719733880726e-07,
+        "yield": 1.0,
+        "seeds": [
+          31000,
+          31001,
+          31002,
+          31003,
+          31004,
+          31005,
+          31006,
+          31007
+        ]
+      }
+    }
+  },
+  "operating_point": {
+    "conditions": "TT, nominal supply, 27 C",
+    "expected_transistors": 6,
+    "measured_transistors": 6,
+    "devices": [
+      {
+        "device": "m.xdut.xmn1.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 4.420579,
+        "vgs_V": 0.7114958,
+        "vds_V": 0.7113448,
+        "vdsat_V": 0.1298773,
+        "vth_V": 0.605482,
+        "saturation_margin_V": 0.5814675
+      },
+      {
+        "device": "m.xdut.xmn2.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 2.897381,
+        "vgs_V": 0.6164088,
+        "vds_V": 1.648837,
+        "vdsat_V": 0.06676818,
+        "vth_V": 0.6114833,
+        "saturation_margin_V": 1.5820688200000002
+      },
+      {
+        "device": "m.xdut.xmp1.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 4.420577,
+        "vgs_V": 1.088275,
+        "vds_V": 1.088196,
+        "vdsat_V": 0.1078256,
+        "vth_V": 1.031336,
+        "saturation_margin_V": 0.9803704
+      },
+      {
+        "device": "m.xdut.xmp2.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 2.897829,
+        "vgs_V": 1.088302,
+        "vds_V": 0.05579945,
+        "vdsat_V": 0.107782,
+        "vth_V": 1.031438,
+        "saturation_margin_V": -0.05198255
+      },
+      {
+        "device": "m.xdut.xmnout.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 34.84816,
+        "vgs_V": 0.7114901,
+        "vds_V": 0.8996865,
+        "vdsat_V": 0.1329069,
+        "vth_V": 0.5869711,
+        "saturation_margin_V": 0.7667796
+      },
+      {
+        "device": "m.xdut.xstart.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 2.943005e-12,
+        "vgs_V": 0.05590217,
+        "vds_V": 1.088353,
+        "vdsat_V": 0.03841606,
+        "vth_V": 0.8954837,
+        "saturation_margin_V": 1.0499369399999998
+      }
+    ],
+    "exit_code": 0,
+    "log_tail": null
+  },
+  "native_processes": 12
+}

@@ -1,0 +1,68 @@
+* Fully differential two-stage OTA with continuous-time common-mode feedback.
+* Model libraries are supplied by the testbench.
+* Geometry values are in micrometres; wide devices use multiple fingers.
+.subckt sampling_feedback_ota vss iref vdd vinn vinp vocm voutn voutp
+
+* External reference and complementary bias distribution.
+XNR iref iref vss vss sky130_fd_pr__nfet_01v8 l=1.5 w=12 nf=2
+XBR pb iref vss vss sky130_fd_pr__nfet_01v8 l=1.5 w=12 nf=2
+XPR pb pb vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=30 nf=2
+XBT bn pb vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=30 nf=2
+XNB bn bn vss vss sky130_fd_pr__nfet_01v8 l=1.5 w=24 nf=2
+CBN iref vss 1p
+CBP pb vdd 1p
+CBT bn vss 1p
+
+* Differential input stage with reduced-overdrive tail bias.
+XTAIL tail bn vss vss sky130_fd_pr__nfet_01v8 l=1.5 w=384 nf=8
+XIP xn vinp tail vss sky130_fd_pr__nfet_01v8 l=2 w=400 nf=8
+XIN xp vinn tail vss sky130_fd_pr__nfet_01v8 l=2 w=400 nf=8
+XLP xn pcm1 vdd vdd sky130_fd_pr__pfet_01v8 l=3 w=360 nf=8
+XLN xp pcm1 vdd vdd sky130_fd_pr__pfet_01v8 l=3 w=360 nf=8
+
+* First-stage common-mode sensing, with AC feed-forward.
+RXP xp xcm 2meg
+RXN xn xcm 2meg
+CXP xp xcm 60f
+CXN xn xcm 60f
+
+* First-stage common-mode error amplifier.
+* Increasing xcm raises pcm1 and reduces the PMOS load current.
+XCT1 ct1 bn vss vss sky130_fd_pr__nfet_01v8 l=1.5 w=48 nf=4
+XC11 cd1 xcm ct1 vss sky130_fd_pr__nfet_01v8_lvt l=0.5 w=100 nf=4
+XC12 pcm1 iref ct1 vss sky130_fd_pr__nfet_01v8_lvt l=0.5 w=100 nf=4
+XC13 cd1 cd1 vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=40 nf=4
+XC14 pcm1 cd1 vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=40 nf=4
+CCM1 pcm1 vdd 100f
+
+* Long-channel common-source output stages.
+XON voutn xp vss vss sky130_fd_pr__nfet_01v8 l=3 w=576 nf=12
+XOP voutp xn vss vss sky130_fd_pr__nfet_01v8 l=3 w=576 nf=12
+XPLN voutn pcm2 vdd vdd sky130_fd_pr__pfet_01v8 l=3 w=1440 nf=16
+XPLP voutp pcm2 vdd vdd sky130_fd_pr__pfet_01v8 l=3 w=1440 nf=16
+
+* Differential Miller compensation with series zero-nulling resistance.
+RCP xn zcp 180
+CCP zcp voutp 850f
+RCN xp zcn 180
+CCN zcn voutn 850f
+
+* Output common-mode detector.
+ROP voutp ocm 100k
+RON voutn ocm 100k
+COP voutp ocm 150f
+CON voutn ocm 150f
+
+* Output common-mode error amplifier.
+* Increasing output average raises pcm2 and reduces output pull-up current.
+XCT2 ct2 bn vss vss sky130_fd_pr__nfet_01v8 l=1.5 w=96 nf=4
+XC21 cd2 ocm ct2 vss sky130_fd_pr__nfet_01v8_lvt l=0.5 w=200 nf=8
+XC22 pcm2 vocm ct2 vss sky130_fd_pr__nfet_01v8_lvt l=0.5 w=200 nf=8
+XC23 cd2 cd2 vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=80 nf=4
+XC24 pcm2 cd2 vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=80 nf=4
+
+* Symmetric output common-mode loop compensation.
+CCMP pcm2 voutp 100f
+CCMN pcm2 voutn 100f
+
+.ends sampling_feedback_ota

@@ -1,0 +1,1383 @@
+{
+  "tests_passed": 7,
+  "tests_total": 12,
+  "raw_score": 0.5833333333333334,
+  "score_caps": [
+    [
+      "PVT reference regulation failure",
+      0.7
+    ],
+    [
+      "output compliance failure",
+      0.8
+    ],
+    [
+      "startup failure",
+      0.75
+    ]
+  ],
+  "reward": 0.5833333333333334,
+  "measurements": {
+    "pvt_current_min_a": 5.771542312849043e-06,
+    "pvt_current_max_a": 0.0001788748827040998,
+    "pvt_vref_min_v": 0.6323112223510156,
+    "pvt_vref_max_v": 0.8781574606422079,
+    "pvt_power_max_w": 0.00022192008957322483,
+    "pvt_compliance_current_min_a": 5.380458512241337e-06,
+    "pvt_compliance_current_max_a": 0.0001835384901158754,
+    "pvt_compliance_flatness_max": 0.15061735869555387,
+    "startup_final_current_min_a": 2.9328098855229803e-05,
+    "startup_final_current_max_a": 5.992618198143485e-05,
+    "startup_final_vref_min_v": 0.6764709165802332,
+    "startup_final_vref_max_v": 0.7693594307738323,
+    "startup_settling_time_max_s": 0.0,
+    "startup_current_overshoot_ratio_max": 1.0886058971125023,
+    "startup_peak_supply_current_max_a": 1.130918977053363e-05,
+    "startup_energy_max_j": 2.3767489382501207e-10,
+    "mc_current_mean_a": 3.5108179615080394e-05,
+    "mc_current_sigma_a": 8.491093060174384e-07,
+    "mc_current_yield": 1.0
+  },
+  "ngspice_runs": 95,
+  "workers": 1,
+  "ngspice_threads_per_process": 1,
+  "wall_clock_s": 115.14099999997416,
+  "summed_run_time_s": 113.43300000019372,
+  "slowest_run_time_s": 1.3280000000086147,
+  "failed_runs": [],
+  "overall_pass": false,
+  "policy": {
+    "passed": true,
+    "exit_code": 0,
+    "log": "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\runs_feedback3\\20261106_130921\\gpt-6-luna\\frozen\\circuit.spi: netlist check passed\n"
+  },
+  "checks": [
+    {
+      "name": "complete_signoff",
+      "status": "passed",
+      "message": "runs=95 PVT=27/27 compliance=27/27 startup=18/18 MC=50/50"
+    },
+    {
+      "name": "pvt_output_current",
+      "status": "failed",
+      "message": "current=5.772..178.875uA"
+    },
+    {
+      "name": "nominal_current_accuracy",
+      "status": "passed",
+      "message": "TT/1.8V/27C current=35.099uA"
+    },
+    {
+      "name": "pvt_vref",
+      "status": "failed",
+      "message": "VREF=0.6323..0.8782V"
+    },
+    {
+      "name": "pvt_power",
+      "status": "failed",
+      "message": "power_max=221.92uW"
+    },
+    {
+      "name": "pvt_output_compliance",
+      "status": "failed",
+      "message": "current=5.380..183.538uA flatness_max=15.062%"
+    },
+    {
+      "name": "pvt_multi_ramp_startup_final",
+      "status": "failed",
+      "message": "final_current=29.328..59.926uA VREF=0.6765..0.7694V"
+    },
+    {
+      "name": "pvt_multi_ramp_startup_settling",
+      "status": "passed",
+      "message": "settling_time_max=0.000us"
+    },
+    {
+      "name": "startup_overshoot",
+      "status": "passed",
+      "message": "peak_to_final_current_ratio_max=1.0886"
+    },
+    {
+      "name": "startup_inrush_and_energy",
+      "status": "passed",
+      "message": "peak_supply_current=0.011mA energy=0.238nJ"
+    },
+    {
+      "name": "mc_current_yield",
+      "status": "passed",
+      "message": "samples=50 yield=100.0% in 30..50uA"
+    },
+    {
+      "name": "mc_current_sigma",
+      "status": "passed",
+      "message": "samples=50 sigma=0.849uA"
+    }
+  ],
+  "circuit_sha256": "18d0fc85adbe96e8c8b8563c31e5861a9ae83e2ec05b08b4e7b97e5da72049d8",
+  "evaluator": "unchanged upstream score_results/build_cases/metric functions; Windows path/process adapter",
+  "protocol": "feedback3-medium-no-tools-v1",
+  "task_case": "beta",
+  "requested_model": "gpt-6-luna",
+  "reported_model": "gpt-6-luna",
+  "design_attempts": 3,
+  "syntax_retries_used": 1,
+  "response_turns": 4,
+  "reasoning_effort": "medium",
+  "max_output_tokens_per_response": 32768,
+  "input_tokens": 64428,
+  "output_tokens_including_reasoning": 2677,
+  "reasoning_tokens": 1178,
+  "model_inference_seconds": 65.18699999997625,
+  "agent_wall_seconds": 109.73399999999674,
+  "final_selection": "last model-authored submission; no best-of selection and no host edits",
+  "hidden_final_feedback_to_model": false,
+  "attempts": [
+    {
+      "response_turn": 1,
+      "valid_design": false,
+      "reply_sha256": "cd9321739ccaeed230d15767ee732ebefc64f8ce74146a1a0e68db768b39edd7",
+      "inference": {
+        "requested_model": "gpt-6-luna",
+        "reported_model": "gpt-6-luna",
+        "status": "completed",
+        "incomplete_details": null,
+        "usage": {
+          "input_tokens": 13181,
+          "input_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "output_tokens": 441,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 13622,
+          "attribution": {
+            "items": {
+              "msg_09567b96d30c893b016aed6101a3f487d1be4ca2db91cc7981": {
+                "input_tokens": 13114,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 13114,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_09567b96d30c893b016aed61023c1487d1a413ab27dccc916c": {
+                "input_tokens": 2,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 441,
+                "content": [
+                  {
+                    "input_tokens": 2,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 441
+                  }
+                ]
+              }
+            },
+            "request_fields": {
+              "instructions": {
+                "input_tokens": 65,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0
+              }
+            }
+          }
+        },
+        "wall_seconds": 9.84399999998277,
+        "transport_retries": 0
+      },
+      "counted_as": "syntax retry",
+      "design_attempt": null,
+      "errors": [
+        "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\runs_feedback3\\20261106_130921\\gpt-6-luna\\turn_001\\candidate\\circuit.spi:28: disallowed R: RBIAS nref vref 1\n"
+      ]
+    },
+    {
+      "response_turn": 2,
+      "valid_design": true,
+      "reply_sha256": "dc00727eb44ea8431f612329bd242bb88d83048e9768679ed6a5b061622ad0db",
+      "inference": {
+        "requested_model": "gpt-6-luna",
+        "reported_model": "gpt-6-luna",
+        "status": "completed",
+        "incomplete_details": null,
+        "usage": {
+          "input_tokens": 13740,
+          "input_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "output_tokens": 734,
+          "output_tokens_details": {
+            "reasoning_tokens": 387
+          },
+          "total_tokens": 14474,
+          "attribution": {
+            "items": {
+              "msg_0ed3f5c34eae415f016aed610b915087d28edb1199649af5bc": {
+                "input_tokens": 443,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 443,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_0ed3f5c34eae415f016aed610b915087d29c1c7990789a226c": {
+                "input_tokens": 13114,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 13114,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_0ed3f5c34eae415f016aed610b915087d2ae867831f9b32cb9": {
+                "input_tokens": 116,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 116,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_0ed3f5c34eae415f016aed6113257487d2832f193cbd1a50e6": {
+                "input_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 347,
+                "content": [
+                  {
+                    "input_tokens": 0,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 347
+                  }
+                ]
+              },
+              "rs_0ed3f5c34eae415f016aed611309a487d29035616d4ee50148": {
+                "input_tokens": 2,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 387
+              }
+            },
+            "request_fields": {
+              "instructions": {
+                "input_tokens": 65,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0
+              }
+            }
+          }
+        },
+        "wall_seconds": 15.827999999979511,
+        "transport_retries": 0
+      },
+      "counted_as": "design attempt",
+      "design_attempt": 1,
+      "circuit_sha256": "552a67d117536ae13def943269b26ca3340551851226e0cb3bcb733644657276",
+      "public_diagnostic": {
+        "analyses": {
+          "op": {
+            "analysis": "op",
+            "ngspice_runs": 1,
+            "rows": [
+              {
+                "group": "op",
+                "bench": "tb_compliance.spi",
+                "corner": "tt",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 2.22470943558456e-05,
+                "vref_v": 0.720848705040563,
+                "power_w": 2.8981372675594702e-05,
+                "node_voltages": {
+                  "v(vss)": 0.0,
+                  "v(vdd)": 1.8,
+                  "v(iout)": 0.9,
+                  "v(vref)": 0.720848705040563,
+                  "v(xref.nmir)": 8.669686617613183e-18,
+                  "v(xref.nsrc)": 8.269803965219004e-25,
+                  "v(xref.xrset.rb)": 8.194441874036599e-25,
+                  "v(xref.nout)": 1.800000012234578,
+                  "v(m.xref.xstart.msky130_fd_pr__pfet_01v8#dbody)": 1.799999999965984,
+                  "v(m.xref.xstart.msky130_fd_pr__pfet_01v8#body)": 1.799999999986382,
+                  "v(m.xref.xstart.msky130_fd_pr__pfet_01v8#sbody)": 1.799999999993164,
+                  "v(m.xref.xmnout.msky130_fd_pr__nfet_01v8#dbody)": 2.868786209508774e-11,
+                  "v(m.xref.xmnout.msky130_fd_pr__nfet_01v8#body)": 1.188457426182564e-11,
+                  "v(m.xref.xmnout.msky130_fd_pr__nfet_01v8#sbody)": 5.948032053630728e-12,
+                  "v(m.xref.xmp2.msky130_fd_pr__pfet_01v8#dbody)": 1.8,
+                  "v(m.xref.xmp2.msky130_fd_pr__pfet_01v8#body)": 1.8,
+                  "v(m.xref.xmp2.msky130_fd_pr__pfet_01v8#sbody)": 1.8,
+                  "v(m.xref.xmp1.msky130_fd_pr__pfet_01v8#dbody)": 1.799999999965965,
+                  "v(m.xref.xmp1.msky130_fd_pr__pfet_01v8#body)": 1.799999999986385,
+                  "v(m.xref.xmp1.msky130_fd_pr__pfet_01v8#sbody)": 1.79999999999319,
+                  "v(m.xref.xmn2.msky130_fd_pr__nfet_01v8#dbody)": 4.33564917404718e-28,
+                  "v(m.xref.xmn2.msky130_fd_pr__nfet_01v8#body)": 1.78598637541325e-28,
+                  "v(m.xref.xmn2.msky130_fd_pr__nfet_01v8#sbody)": 1.022309965442751e-28,
+                  "v(m.xref.xmn1.msky130_fd_pr__nfet_01v8#dbody)": 2.28359653960047e-11,
+                  "v(m.xref.xmn1.msky130_fd_pr__nfet_01v8#body)": 9.137997498117113e-12,
+                  "v(m.xref.xmn1.msky130_fd_pr__nfet_01v8#sbody)": 4.574517829476135e-12
+                }
+              }
+            ],
+            "errors": []
+          },
+          "compliance": {
+            "analysis": "compliance",
+            "ngspice_runs": 1,
+            "rows": [
+              {
+                "group": "compliance",
+                "bench": "tb_compliance.spi",
+                "corner": "ss",
+                "vdd": 1.62,
+                "temp_c": 125,
+                "output_current_a": 1.929742614208141e-05,
+                "vref_v": 0.6893667668291354,
+                "power_w": 2.4223914229692667e-05,
+                "compliance_current_mean_a": 1.9369722154011053e-05,
+                "compliance_current_min_a": 1.856721290702246e-05,
+                "compliance_current_max_a": 2.000220046380341e-05,
+                "compliance_flatness": 0.07408405476192104
+              }
+            ],
+            "errors": []
+          },
+          "startup": {
+            "analysis": "startup",
+            "ngspice_runs": 1,
+            "rows": [
+              {
+                "group": "startup",
+                "bench": "tb_startup.spi",
+                "corner": "ff",
+                "vdd": 1.98,
+                "temp_c": -40,
+                "ramp_s": 1e-06,
+                "startup_final_current_a": 3.787273421329231e-05,
+                "startup_final_vref_v": 0.773522391797137,
+                "startup_settling_time_s": 0.0,
+                "startup_current_overshoot_ratio": 1.0001614215351307,
+                "startup_peak_supply_current_a": 8.866619563605016e-06,
+                "startup_energy_j": 1.7390652980899e-10
+              }
+            ],
+            "errors": []
+          },
+          "mc_public": {
+            "analysis": "mc_public",
+            "ngspice_runs": 8,
+            "rows": [
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31000,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 2.254721573373419e-05,
+                "vref_v": 0.7220033636707053
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31001,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 2.274117859991931e-05,
+                "vref_v": 0.7222652432548947
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31002,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 2.219265856140407e-05,
+                "vref_v": 0.7208654679113301
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31003,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 2.191194239298255e-05,
+                "vref_v": 0.7204627759098229
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31004,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 2.344291341913052e-05,
+                "vref_v": 0.7226685769146971
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31005,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 2.198526427577008e-05,
+                "vref_v": 0.7191341879562625
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31006,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 2.200709062007145e-05,
+                "vref_v": 0.7235023824963298
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31007,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 2.259252178636595e-05,
+                "vref_v": 0.7210953745976331
+              }
+            ],
+            "errors": [],
+            "public_mc": {
+              "samples": 8,
+              "mean_a": 2.2427598173672264e-05,
+              "sigma_a": 5.160688319988325e-07,
+              "yield": 0.0,
+              "seeds": [
+                31000,
+                31001,
+                31002,
+                31003,
+                31004,
+                31005,
+                31006,
+                31007
+              ]
+            }
+          }
+        },
+        "operating_point": {
+          "conditions": "TT, nominal supply, 27 C",
+          "expected_transistors": 6,
+          "measured_transistors": 6,
+          "devices": [
+            {
+              "device": "m.xdut.xmn1.msky130_fd_pr__nfet_01v8",
+              "type": "n",
+              "id_uA": 4.977215,
+              "vgs_V": 0.7206787,
+              "vds_V": 0.7205086,
+              "vdsat_V": 0.1360442,
+              "vth_V": 0.6054866,
+              "saturation_margin_V": 0.5844644000000001
+            },
+            {
+              "device": "m.xdut.xmn2.msky130_fd_pr__nfet_01v8",
+              "type": "n",
+              "id_uA": 0.0,
+              "vgs_V": 0.7208487,
+              "vds_V": 0.0,
+              "vdsat_V": 0.1393081,
+              "vth_V": 0.5872977,
+              "saturation_margin_V": -0.1393081
+            },
+            {
+              "device": "m.xdut.xmp1.msky130_fd_pr__pfet_01v8",
+              "type": "p",
+              "id_uA": 3.8721099999999997,
+              "vgs_V": 1.079083,
+              "vds_V": 1.079014,
+              "vdsat_V": 0.1025941,
+              "vth_V": 1.031335,
+              "saturation_margin_V": 0.9764198999999999
+            },
+            {
+              "device": "m.xdut.xmp2.msky130_fd_pr__pfet_01v8",
+              "type": "p",
+              "id_uA": 7.988282999999999e-07,
+              "vgs_V": 1.079151,
+              "vds_V": -1.22346e-08,
+              "vdsat_V": 0.1025786,
+              "vth_V": 1.03143,
+              "saturation_margin_V": -0.1025785877654
+            },
+            {
+              "device": "m.xdut.xmnout.msky130_fd_pr__nfet_01v8",
+              "type": "n",
+              "id_uA": 22.24709,
+              "vgs_V": 0.7206717,
+              "vds_V": 0.899646,
+              "vdsat_V": 0.1391553,
+              "vth_V": 0.5873435,
+              "saturation_margin_V": 0.7604907
+            },
+            {
+              "device": "m.xdut.xstart.msky130_fd_pr__pfet_01v8",
+              "type": "p",
+              "id_uA": 1.1051030000000002,
+              "vgs_V": 1.799135,
+              "vds_V": 1.077421,
+              "vdsat_V": 0.7376177,
+              "vth_V": 0.8957053,
+              "saturation_margin_V": 0.3398032999999999
+            }
+          ],
+          "exit_code": 0
+        },
+        "native_processes": 12
+      }
+    },
+    {
+      "response_turn": 3,
+      "valid_design": true,
+      "reply_sha256": "f29f6a6715edfae50d26c827f5206baa1edbad201e8e8bc1c15833be994b69e9",
+      "inference": {
+        "requested_model": "gpt-6-luna",
+        "reported_model": "gpt-6-luna",
+        "status": "completed",
+        "incomplete_details": null,
+        "usage": {
+          "input_tokens": 17084,
+          "input_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "output_tokens": 744,
+          "output_tokens_details": {
+            "reasoning_tokens": 375
+          },
+          "total_tokens": 17828,
+          "attribution": {
+            "items": {
+              "msg_0c889c5f3d74131f016aed6130bf7887d286e03b650b086818": {
+                "input_tokens": 2997,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 2997,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_0c889c5f3d74131f016aed6130bf7887d296112c462ed6ad74": {
+                "input_tokens": 13114,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 13114,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_0c889c5f3d74131f016aed6130bf7887d2964a97add066de3b": {
+                "input_tokens": 116,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 116,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_0c889c5f3d74131f016aed6130bf7887d29efa7aa32ac9beba": {
+                "input_tokens": 347,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 347,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_0c889c5f3d74131f016aed6130bf7887d2b3fbe2242e153ecd": {
+                "input_tokens": 443,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 443,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_0c889c5f3d74131f016aed613900a487d29541c2f0fb72b009": {
+                "input_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 369,
+                "content": [
+                  {
+                    "input_tokens": 0,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 369
+                  }
+                ]
+              },
+              "rs_0c889c5f3d74131f016aed6138e52087d2acdf2fb408a99dce": {
+                "input_tokens": 2,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 375
+              }
+            },
+            "request_fields": {
+              "instructions": {
+                "input_tokens": 65,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0
+              }
+            }
+          }
+        },
+        "wall_seconds": 23.219000000011874,
+        "transport_retries": 0
+      },
+      "counted_as": "design attempt",
+      "design_attempt": 2,
+      "circuit_sha256": "3db9f3fdf57d562f8a668a3d2e4ac2041f0cf462bd0eb191fde3b870aa6d56d9",
+      "public_diagnostic": {
+        "analyses": {
+          "op": {
+            "analysis": "op",
+            "ngspice_runs": 1,
+            "rows": [
+              {
+                "group": "op",
+                "bench": "tb_compliance.spi",
+                "corner": "tt",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 3.48481649010135e-05,
+                "vref_v": 0.7116468332880703,
+                "power_w": 4.453648829375323e-05,
+                "node_voltages": {
+                  "v(vss)": 0.0,
+                  "v(vdd)": 1.8,
+                  "v(iout)": 0.9,
+                  "v(vref)": 0.7116468332880703,
+                  "v(xref.nmir)": 1.744097833268726,
+                  "v(xref.nsrc)": 0.09521498632335533,
+                  "v(xref.xrset.rb)": 0.09434729943362842,
+                  "v(m.xref.xstart.msky130_fd_pr__pfet_01v8#dbody)": 1.799999999965675,
+                  "v(m.xref.xstart.msky130_fd_pr__pfet_01v8#body)": 1.799999999986268,
+                  "v(m.xref.xstart.msky130_fd_pr__pfet_01v8#sbody)": 1.799999999993134,
+                  "v(m.xref.xmnout.msky130_fd_pr__nfet_01v8#dbody)": 2.89129578221502e-11,
+                  "v(m.xref.xmnout.msky130_fd_pr__nfet_01v8#body)": 1.233375412042749e-11,
+                  "v(m.xref.xmnout.msky130_fd_pr__nfet_01v8#sbody)": 6.171965670468299e-12,
+                  "v(m.xref.xmp2.msky130_fd_pr__pfet_01v8#dbody)": 1.799999999998006,
+                  "v(m.xref.xmp2.msky130_fd_pr__pfet_01v8#body)": 1.799999999999202,
+                  "v(m.xref.xmp2.msky130_fd_pr__pfet_01v8#sbody)": 1.7999999999996,
+                  "v(m.xref.xmp1.msky130_fd_pr__pfet_01v8#dbody)": 1.799999999965678,
+                  "v(m.xref.xmp1.msky130_fd_pr__pfet_01v8#body)": 1.79999999998627,
+                  "v(m.xref.xmp1.msky130_fd_pr__pfet_01v8#sbody)": 1.799999999993133,
+                  "v(m.xref.xmn2.msky130_fd_pr__nfet_01v8#dbody)": 5.662389019409387e-09,
+                  "v(m.xref.xmn2.msky130_fd_pr__nfet_01v8#body)": 1.12370743002229e-08,
+                  "v(m.xref.xmn2.msky130_fd_pr__nfet_01v8#sbody)": 5.621153614723456e-09,
+                  "v(m.xref.xmn1.msky130_fd_pr__nfet_01v8#dbody)": 2.254865052610814e-11,
+                  "v(m.xref.xmn1.msky130_fd_pr__nfet_01v8#body)": 9.022510514290214e-12,
+                  "v(m.xref.xmn1.msky130_fd_pr__nfet_01v8#sbody)": 4.516157421072045e-12
+                }
+              }
+            ],
+            "errors": []
+          },
+          "compliance": {
+            "analysis": "compliance",
+            "ngspice_runs": 1,
+            "rows": [
+              {
+                "group": "compliance",
+                "bench": "tb_compliance.spi",
+                "corner": "ss",
+                "vdd": 1.62,
+                "temp_c": 125,
+                "output_current_a": 3.156684399790999e-05,
+                "vref_v": 0.6823280459930772,
+                "power_w": 3.963539731173513e-05,
+                "compliance_current_mean_a": 3.168910702625663e-05,
+                "compliance_current_min_a": 3.036456006423605e-05,
+                "compliance_current_max_a": 3.274238805839325e-05,
+                "compliance_flatness": 0.07503613125440889
+              }
+            ],
+            "errors": []
+          },
+          "startup": {
+            "analysis": "startup",
+            "ngspice_runs": 1,
+            "rows": [
+              {
+                "group": "startup",
+                "bench": "tb_startup.spi",
+                "corner": "ff",
+                "vdd": 1.98,
+                "temp_c": -40,
+                "ramp_s": 1e-06,
+                "startup_final_current_a": 5.9500479533207836e-05,
+                "startup_final_vref_v": 0.7644572241878879,
+                "startup_settling_time_s": 0.0,
+                "startup_current_overshoot_ratio": 1.0004333765212177,
+                "startup_peak_supply_current_a": 1.130890453380357e-05,
+                "startup_energy_j": 2.2332468375505003e-10
+              }
+            ],
+            "errors": []
+          },
+          "mc_public": {
+            "analysis": "mc_public",
+            "ngspice_runs": 8,
+            "rows": [
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31000,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 3.541117806910021e-05,
+                "vref_v": 0.7129543444544375
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31001,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 3.569127296976227e-05,
+                "vref_v": 0.7132096665667099
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31002,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 3.485024375951551e-05,
+                "vref_v": 0.7118411373869873
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31003,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 3.438467359828667e-05,
+                "vref_v": 0.7111707691556092
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31004,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 3.641514952387737e-05,
+                "vref_v": 0.7132557835344601
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31005,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 3.43175232300208e-05,
+                "vref_v": 0.7098655355504329
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31006,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 3.48107017471011e-05,
+                "vref_v": 0.7141823940172459
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31007,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 3.533277945289015e-05,
+                "vref_v": 0.7119672402086094
+              }
+            ],
+            "errors": [],
+            "public_mc": {
+              "samples": 8,
+              "mean_a": 3.515169029381926e-05,
+              "sigma_a": 7.049719733880726e-07,
+              "yield": 1.0,
+              "seeds": [
+                31000,
+                31001,
+                31002,
+                31003,
+                31004,
+                31005,
+                31006,
+                31007
+              ]
+            }
+          }
+        },
+        "operating_point": {
+          "conditions": "TT, nominal supply, 27 C",
+          "expected_transistors": 6,
+          "measured_transistors": 6,
+          "devices": [
+            {
+              "device": "m.xdut.xmn1.msky130_fd_pr__nfet_01v8",
+              "type": "n",
+              "id_uA": 4.420579,
+              "vgs_V": 0.7114958,
+              "vds_V": 0.7113448,
+              "vdsat_V": 0.1298773,
+              "vth_V": 0.605482,
+              "saturation_margin_V": 0.5814675
+            },
+            {
+              "device": "m.xdut.xmn2.msky130_fd_pr__nfet_01v8",
+              "type": "n",
+              "id_uA": 2.897381,
+              "vgs_V": 0.6164088,
+              "vds_V": 1.648837,
+              "vdsat_V": 0.06676818,
+              "vth_V": 0.6114833,
+              "saturation_margin_V": 1.5820688200000002
+            },
+            {
+              "device": "m.xdut.xmp1.msky130_fd_pr__pfet_01v8",
+              "type": "p",
+              "id_uA": 4.420577,
+              "vgs_V": 1.088275,
+              "vds_V": 1.088196,
+              "vdsat_V": 0.1078256,
+              "vth_V": 1.031336,
+              "saturation_margin_V": 0.9803704
+            },
+            {
+              "device": "m.xdut.xmp2.msky130_fd_pr__pfet_01v8",
+              "type": "p",
+              "id_uA": 2.897829,
+              "vgs_V": 1.088302,
+              "vds_V": 0.05579945,
+              "vdsat_V": 0.107782,
+              "vth_V": 1.031438,
+              "saturation_margin_V": -0.05198255
+            },
+            {
+              "device": "m.xdut.xmnout.msky130_fd_pr__nfet_01v8",
+              "type": "n",
+              "id_uA": 34.84816,
+              "vgs_V": 0.7114901,
+              "vds_V": 0.8996865,
+              "vdsat_V": 0.1329069,
+              "vth_V": 0.5869711,
+              "saturation_margin_V": 0.7667796
+            },
+            {
+              "device": "m.xdut.xstart.msky130_fd_pr__pfet_01v8",
+              "type": "p",
+              "id_uA": 2.943005e-12,
+              "vgs_V": 0.05590217,
+              "vds_V": 1.088353,
+              "vdsat_V": 0.03841606,
+              "vth_V": 0.8954837,
+              "saturation_margin_V": 1.0499369399999998
+            }
+          ],
+          "exit_code": 0
+        },
+        "native_processes": 12
+      }
+    },
+    {
+      "response_turn": 4,
+      "valid_design": true,
+      "reply_sha256": "1908503222fc57df57590a93f8d8f7dea48ef4c083bc3398d29df6f91abac8f2",
+      "inference": {
+        "requested_model": "gpt-6-luna",
+        "reported_model": "gpt-6-luna",
+        "status": "completed",
+        "incomplete_details": null,
+        "usage": {
+          "input_tokens": 20423,
+          "input_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "output_tokens": 758,
+          "output_tokens_details": {
+            "reasoning_tokens": 416
+          },
+          "total_tokens": 21181,
+          "attribution": {
+            "items": {
+              "msg_05e85105eed40f53016aed615085cc87d1b274602f0556dda8": {
+                "input_tokens": 13114,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 13114,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_05e85105eed40f53016aed615085d087d18d89ad9f2f1944b5": {
+                "input_tokens": 369,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 369,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_05e85105eed40f53016aed615085d087d192ec98dcebd8d80b": {
+                "input_tokens": 2970,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 2970,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_05e85105eed40f53016aed615085d087d1aa1fd57b8474b45a": {
+                "input_tokens": 116,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 116,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_05e85105eed40f53016aed615085d087d1ac99a29463d5d4c8": {
+                "input_tokens": 347,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 347,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_05e85105eed40f53016aed615085d087d1acd9ed1c78dbce86": {
+                "input_tokens": 443,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 443,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_05e85105eed40f53016aed615085d087d1b3753561a3efe05c": {
+                "input_tokens": 2997,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 2997,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_05e85105eed40f53016aed6158858c87d19741d62e6096b116": {
+                "input_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 342,
+                "content": [
+                  {
+                    "input_tokens": 0,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 342
+                  }
+                ]
+              },
+              "rs_05e85105eed40f53016aed61586e7887d1b3224294926aaaa8": {
+                "input_tokens": 2,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 416
+              }
+            },
+            "request_fields": {
+              "instructions": {
+                "input_tokens": 65,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0
+              }
+            }
+          }
+        },
+        "wall_seconds": 16.296000000002095,
+        "transport_retries": 0
+      },
+      "counted_as": "design attempt",
+      "design_attempt": 3,
+      "circuit_sha256": "18d0fc85adbe96e8c8b8563c31e5861a9ae83e2ec05b08b4e7b97e5da72049d8",
+      "public_diagnostic": {
+        "analyses": {
+          "op": {
+            "analysis": "op",
+            "ngspice_runs": 1,
+            "rows": [
+              {
+                "group": "op",
+                "bench": "tb_compliance.spi",
+                "corner": "tt",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 3.509943039700647e-05,
+                "vref_v": 0.7116468332880703,
+                "power_w": 4.47626272401469e-05,
+                "node_voltages": {
+                  "v(vss)": 0.0,
+                  "v(vdd)": 1.8,
+                  "v(iout)": 0.9,
+                  "v(vref)": 0.7116468332880703,
+                  "v(xref.nmir)": 1.744097833268726,
+                  "v(xref.nsrc)": 0.09521498632335533,
+                  "v(xref.xrset.rb)": 0.09434729943362842,
+                  "v(m.xref.xstart.msky130_fd_pr__pfet_01v8#dbody)": 1.799999999965675,
+                  "v(m.xref.xstart.msky130_fd_pr__pfet_01v8#body)": 1.799999999986268,
+                  "v(m.xref.xstart.msky130_fd_pr__pfet_01v8#sbody)": 1.799999999993134,
+                  "v(m.xref.xmnout.msky130_fd_pr__nfet_01v8#dbody)": 2.891637935463084e-11,
+                  "v(m.xref.xmnout.msky130_fd_pr__nfet_01v8#body)": 1.234059692371826e-11,
+                  "v(m.xref.xmnout.msky130_fd_pr__nfet_01v8#sbody)": 6.175386902333548e-12,
+                  "v(m.xref.xmp2.msky130_fd_pr__pfet_01v8#dbody)": 1.799999999998006,
+                  "v(m.xref.xmp2.msky130_fd_pr__pfet_01v8#body)": 1.799999999999202,
+                  "v(m.xref.xmp2.msky130_fd_pr__pfet_01v8#sbody)": 1.7999999999996,
+                  "v(m.xref.xmp1.msky130_fd_pr__pfet_01v8#dbody)": 1.799999999965678,
+                  "v(m.xref.xmp1.msky130_fd_pr__pfet_01v8#body)": 1.79999999998627,
+                  "v(m.xref.xmp1.msky130_fd_pr__pfet_01v8#sbody)": 1.799999999993133,
+                  "v(m.xref.xmn2.msky130_fd_pr__nfet_01v8#dbody)": 5.662389019409387e-09,
+                  "v(m.xref.xmn2.msky130_fd_pr__nfet_01v8#body)": 1.12370743002229e-08,
+                  "v(m.xref.xmn2.msky130_fd_pr__nfet_01v8#sbody)": 5.621153614723456e-09,
+                  "v(m.xref.xmn1.msky130_fd_pr__nfet_01v8#dbody)": 2.254865052610814e-11,
+                  "v(m.xref.xmn1.msky130_fd_pr__nfet_01v8#body)": 9.022510514290214e-12,
+                  "v(m.xref.xmn1.msky130_fd_pr__nfet_01v8#sbody)": 4.516157421072045e-12
+                }
+              }
+            ],
+            "errors": []
+          },
+          "compliance": {
+            "analysis": "compliance",
+            "ngspice_runs": 1,
+            "rows": [
+              {
+                "group": "compliance",
+                "bench": "tb_compliance.spi",
+                "corner": "ss",
+                "vdd": 1.62,
+                "temp_c": 125,
+                "output_current_a": 3.179590834900825e-05,
+                "vref_v": 0.6823280459930772,
+                "power_w": 3.9841555227723566e-05,
+                "compliance_current_mean_a": 3.191905482979873e-05,
+                "compliance_current_min_a": 3.058490786707335e-05,
+                "compliance_current_max_a": 3.297996127699099e-05,
+                "compliance_flatness": 0.07503522340146743
+              }
+            ],
+            "errors": []
+          },
+          "startup": {
+            "analysis": "startup",
+            "ngspice_runs": 1,
+            "rows": [
+              {
+                "group": "startup",
+                "bench": "tb_startup.spi",
+                "corner": "ff",
+                "vdd": 1.98,
+                "temp_c": -40,
+                "ramp_s": 1e-06,
+                "startup_final_current_a": 5.992618198143485e-05,
+                "startup_final_vref_v": 0.764457224187917,
+                "startup_settling_time_s": 0.0,
+                "startup_current_overshoot_ratio": 1.000421619680048,
+                "startup_peak_supply_current_a": 1.130918977053363e-05,
+                "startup_energy_j": 2.2332439948699198e-10
+              }
+            ],
+            "errors": []
+          },
+          "mc_public": {
+            "analysis": "mc_public",
+            "ngspice_runs": 8,
+            "rows": [
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31000,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 3.56667297724822e-05,
+                "vref_v": 0.7129543444544375
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31001,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 3.594823628969013e-05,
+                "vref_v": 0.7132096665667099
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31002,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 3.510166959380667e-05,
+                "vref_v": 0.7118411373869873
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31003,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 3.463389341501477e-05,
+                "vref_v": 0.7111707691556092
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31004,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 3.667464621459615e-05,
+                "vref_v": 0.7132557835344601
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31005,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 3.456413591021446e-05,
+                "vref_v": 0.7098655355504329
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31006,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 3.506613927653501e-05,
+                "vref_v": 0.7141823940172459
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31007,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 3.558638176817674e-05,
+                "vref_v": 0.7119672402086094
+              }
+            ],
+            "errors": [],
+            "public_mc": {
+              "samples": 8,
+              "mean_a": 3.540522903006452e-05,
+              "sigma_a": 7.088221905581962e-07,
+              "yield": 1.0,
+              "seeds": [
+                31000,
+                31001,
+                31002,
+                31003,
+                31004,
+                31005,
+                31006,
+                31007
+              ]
+            }
+          }
+        },
+        "operating_point": {
+          "conditions": "TT, nominal supply, 27 C",
+          "expected_transistors": 6,
+          "measured_transistors": 6,
+          "devices": [
+            {
+              "device": "m.xdut.xmn1.msky130_fd_pr__nfet_01v8",
+              "type": "n",
+              "id_uA": 4.420579,
+              "vgs_V": 0.7114958,
+              "vds_V": 0.7113448,
+              "vdsat_V": 0.1298773,
+              "vth_V": 0.605482,
+              "saturation_margin_V": 0.5814675
+            },
+            {
+              "device": "m.xdut.xmn2.msky130_fd_pr__nfet_01v8",
+              "type": "n",
+              "id_uA": 2.897381,
+              "vgs_V": 0.6164088,
+              "vds_V": 1.648837,
+              "vdsat_V": 0.06676818,
+              "vth_V": 0.6114833,
+              "saturation_margin_V": 1.5820688200000002
+            },
+            {
+              "device": "m.xdut.xmp1.msky130_fd_pr__pfet_01v8",
+              "type": "p",
+              "id_uA": 4.420577,
+              "vgs_V": 1.088275,
+              "vds_V": 1.088196,
+              "vdsat_V": 0.1078256,
+              "vth_V": 1.031336,
+              "saturation_margin_V": 0.9803704
+            },
+            {
+              "device": "m.xdut.xmp2.msky130_fd_pr__pfet_01v8",
+              "type": "p",
+              "id_uA": 2.897829,
+              "vgs_V": 1.088302,
+              "vds_V": 0.05579945,
+              "vdsat_V": 0.107782,
+              "vth_V": 1.031438,
+              "saturation_margin_V": -0.05198255
+            },
+            {
+              "device": "m.xdut.xmnout.msky130_fd_pr__nfet_01v8",
+              "type": "n",
+              "id_uA": 35.09943,
+              "vgs_V": 0.7114901,
+              "vds_V": 0.8996865,
+              "vdsat_V": 0.1329093,
+              "vth_V": 0.5869676,
+              "saturation_margin_V": 0.7667771999999999
+            },
+            {
+              "device": "m.xdut.xstart.msky130_fd_pr__pfet_01v8",
+              "type": "p",
+              "id_uA": 2.943005e-12,
+              "vgs_V": 0.05590217,
+              "vds_V": 1.088353,
+              "vdsat_V": 0.03841606,
+              "vth_V": 0.8954837,
+              "saturation_margin_V": 1.0499369399999998
+            }
+          ],
+          "exit_code": 0
+        },
+        "native_processes": 12
+      }
+    }
+  ]
+}

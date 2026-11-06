@@ -1,0 +1,335 @@
+{
+  "build": {
+    "native_export_ok": true,
+    "native_graph_matches": true,
+    "device_count": 12,
+    "parameter_count": 9,
+    "parameter_references": 11,
+    "layout_overlaps": [],
+    "layout_explicit": true,
+    "circuit_sha256": "b7912c9502ebe8d667c3dbde2637356a930512b9087247a8583df2c95f3cc481",
+    "design_sha256": "15669c18a9ff2051044c206480698725d3796c4ee1be323dc0aab9c34901e89a",
+    "native_sha256": "c14b1e8ae56a3f03babc5316ab4ce99c49f4f4a24aa7e8bc98d8a8c4f3fc57c4"
+  },
+  "asset_checks": [
+    {
+      "name": "native_export",
+      "passed": true
+    },
+    {
+      "name": "connectivity_roundtrip",
+      "passed": true
+    },
+    {
+      "name": "parameterization",
+      "passed": true
+    },
+    {
+      "name": "layout_separation",
+      "passed": true
+    },
+    {
+      "name": "documentation",
+      "passed": true
+    },
+    {
+      "name": "reproducible_rebuild",
+      "passed": true
+    }
+  ],
+  "asset_passed": 6,
+  "asset_total": 6,
+  "electrical": {
+    "policy_ok": true,
+    "checks": [
+      {
+        "name": "dc_regulation",
+        "passed": false,
+        "detail": "incomplete regulation matrix"
+      },
+      {
+        "name": "quiescent_current",
+        "passed": false,
+        "detail": "incomplete quiescent-current matrix"
+      },
+      {
+        "name": "psr_1khz",
+        "passed": false,
+        "detail": "incomplete PSR matrix"
+      },
+      {
+        "name": "psr_100khz",
+        "passed": false,
+        "detail": "incomplete PSR matrix"
+      },
+      {
+        "name": "psr_1mhz",
+        "passed": false,
+        "detail": "incomplete PSR matrix"
+      },
+      {
+        "name": "load_step_excursion",
+        "passed": false,
+        "detail": "incomplete 30-point load-step matrix"
+      },
+      {
+        "name": "load_step_recovery",
+        "passed": false,
+        "detail": "incomplete 30-point load-step matrix"
+      },
+      {
+        "name": "startup",
+        "passed": false,
+        "detail": "incomplete startup set (vout may never settle)"
+      }
+    ],
+    "passed": 0,
+    "total": 8,
+    "electrical_pass": false,
+    "matrices": {
+      "dc": [
+        {
+          "name": "tt/1.5V/-40C"
+        },
+        {
+          "name": "tt/1.5V/+27C"
+        },
+        {
+          "name": "tt/1.5V/+85C"
+        },
+        {
+          "name": "tt/1.8V/-40C"
+        },
+        {
+          "name": "tt/1.8V/+27C"
+        },
+        {
+          "name": "tt/1.8V/+85C"
+        },
+        {
+          "name": "ff/1.5V/-40C"
+        },
+        {
+          "name": "ff/1.5V/+27C"
+        },
+        {
+          "name": "ff/1.5V/+85C"
+        },
+        {
+          "name": "ff/1.8V/-40C"
+        },
+        {
+          "name": "ff/1.8V/+27C"
+        },
+        {
+          "name": "ff/1.8V/+85C"
+        },
+        {
+          "name": "ss/1.5V/-40C"
+        },
+        {
+          "name": "ss/1.5V/+27C"
+        },
+        {
+          "name": "ss/1.5V/+85C"
+        },
+        {
+          "name": "ss/1.8V/-40C"
+        },
+        {
+          "name": "ss/1.8V/+27C"
+        },
+        {
+          "name": "ss/1.8V/+85C"
+        },
+        {
+          "name": "fs/1.5V/-40C"
+        },
+        {
+          "name": "fs/1.5V/+27C"
+        },
+        {
+          "name": "fs/1.5V/+85C"
+        },
+        {
+          "name": "fs/1.8V/-40C"
+        },
+        {
+          "name": "fs/1.8V/+27C"
+        },
+        {
+          "name": "fs/1.8V/+85C"
+        },
+        {
+          "name": "sf/1.5V/-40C"
+        },
+        {
+          "name": "sf/1.5V/+27C"
+        },
+        {
+          "name": "sf/1.5V/+85C"
+        },
+        {
+          "name": "sf/1.8V/-40C"
+        },
+        {
+          "name": "sf/1.8V/+27C"
+        },
+        {
+          "name": "sf/1.8V/+85C"
+        }
+      ],
+      "psr": [
+        {
+          "name": "tt/27C/1.5V",
+          "supply": 1.5
+        },
+        {
+          "name": "tt/27C/1.8V",
+          "supply": 1.8
+        },
+        {
+          "name": "ff/27C/1.5V",
+          "supply": 1.5
+        },
+        {
+          "name": "ff/27C/1.8V",
+          "supply": 1.8
+        },
+        {
+          "name": "ss/27C/1.5V",
+          "supply": 1.5
+        },
+        {
+          "name": "ss/27C/1.8V",
+          "supply": 1.8
+        },
+        {
+          "name": "fs/27C/1.5V",
+          "supply": 1.5
+        },
+        {
+          "name": "fs/27C/1.8V",
+          "supply": 1.8
+        },
+        {
+          "name": "sf/27C/1.5V",
+          "supply": 1.5
+        },
+        {
+          "name": "sf/27C/1.8V",
+          "supply": 1.8
+        }
+      ],
+      "step": [
+        {
+          "name": "tt/1.5V/-40C"
+        },
+        {
+          "name": "tt/1.5V/+27C"
+        },
+        {
+          "name": "tt/1.5V/+85C"
+        },
+        {
+          "name": "tt/1.8V/-40C"
+        },
+        {
+          "name": "tt/1.8V/+27C"
+        },
+        {
+          "name": "tt/1.8V/+85C"
+        },
+        {
+          "name": "ff/1.5V/-40C"
+        },
+        {
+          "name": "ff/1.5V/+27C"
+        },
+        {
+          "name": "ff/1.5V/+85C"
+        },
+        {
+          "name": "ff/1.8V/-40C"
+        },
+        {
+          "name": "ff/1.8V/+27C"
+        },
+        {
+          "name": "ff/1.8V/+85C"
+        },
+        {
+          "name": "ss/1.5V/-40C"
+        },
+        {
+          "name": "ss/1.5V/+27C"
+        },
+        {
+          "name": "ss/1.5V/+85C"
+        },
+        {
+          "name": "ss/1.8V/-40C"
+        },
+        {
+          "name": "ss/1.8V/+27C"
+        },
+        {
+          "name": "ss/1.8V/+85C"
+        },
+        {
+          "name": "fs/1.5V/-40C"
+        },
+        {
+          "name": "fs/1.5V/+27C"
+        },
+        {
+          "name": "fs/1.5V/+85C"
+        },
+        {
+          "name": "fs/1.8V/-40C"
+        },
+        {
+          "name": "fs/1.8V/+27C"
+        },
+        {
+          "name": "fs/1.8V/+85C"
+        },
+        {
+          "name": "sf/1.5V/-40C"
+        },
+        {
+          "name": "sf/1.5V/+27C"
+        },
+        {
+          "name": "sf/1.5V/+85C"
+        },
+        {
+          "name": "sf/1.8V/-40C"
+        },
+        {
+          "name": "sf/1.8V/+27C"
+        },
+        {
+          "name": "sf/1.8V/+85C"
+        }
+      ],
+      "startup": {
+        "tt/1.8V/+27C": {},
+        "sf/1.5V/-40C": {},
+        "fs/1.8V/+85C": {},
+        "ss/1.5V/+85C": {}
+      }
+    },
+    "ngspice_processes": 19,
+    "wall_seconds": 24.656000000002678,
+    "circuit_sha256": "c14b1e8ae56a3f03babc5316ab4ce99c49f4f4a24aa7e8bc98d8a8c4f3fc57c4"
+  },
+  "overall_pass": false,
+  "requested_model": "gpt-6-luna",
+  "reported_model": "gpt-6-luna",
+  "model_turns": 20,
+  "development_simulations": 4,
+  "explicit_finish": true,
+  "input_tokens": 232199,
+  "output_tokens": 6438
+}

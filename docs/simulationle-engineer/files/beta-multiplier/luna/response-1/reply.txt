@@ -1,0 +1,31 @@
+```spice
+* Beta-multiplier current reference
+* Pins: vss vdd vref iout
+* Two NMOS devices form the beta-multiplier core.  The resistor in the
+* larger-device source leg sets the current; a PMOS mirror provides the
+* reference branch current and the output sink.  The weak startup device
+* nudges the core away from its zero-current equilibrium during power-up.
+
+.subckt beta_multiplier_reference vss vdd vref iout
+* NMOS core: M1 diode-connected; M2 has four times M1's width.
+XMN1 nref nref vss vss sky130_fd_pr__nfet_01v8 w=2 l=1 nf=1
+XMN2 nmir nref nsrc vss sky130_fd_pr__nfet_01v8 w=8 l=1 nf=1
+
+* Source degeneration establishes the beta-multiplier operating current.
+XRSET nsrc vss vss sky130_fd_pr__res_high_po w=1 l=100
+
+* PMOS mirror load, diode-connected on the reference branch.
+XMP1 nref nref vdd vdd sky130_fd_pr__pfet_01v8 w=12 l=1 nf=1
+XMP2 nout nref vdd vdd sky130_fd_pr__pfet_01v8 w=12 l=1 nf=1
+
+* Output NMOS current sink, biased from the PMOS-mirror output.
+XMNOUT iout nref vss vss sky130_fd_pr__nfet_01v8 w=8 l=1 nf=1
+
+* Startup: a weak PMOS injects current into the diode-connected NMOS node
+* while the supply rises.  Its long channel limits the steady leakage.
+XSTART nref vss vdd vdd sky130_fd_pr__pfet_01v8 w=0.42 l=10 nf=1
+
+* Export the NMOS gate bias.
+RBIAS nref vref 1
+.ends beta_multiplier_reference
+```

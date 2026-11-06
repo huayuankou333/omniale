@@ -1,0 +1,23 @@
+* Beta-multiplier current reference
+* Pins: vss vdd vref iout
+* M1 and M2 form the self-biased NMOS core; M2 has source degeneration.
+* A PMOS mirror loads both core branches. The output NMOS mirrors M1.
+
+.subckt beta_multiplier_reference vss vdd vref iout
+
+* Diode-connected reference NMOS and larger, resistor-degenerated NMOS.
+XMN1 vref vref vss vss sky130_fd_pr__nfet_01v8 w=2 l=1 nf=1
+XMN2 nmir vref nsrc vss sky130_fd_pr__nfet_01v8 w=8 l=1 nf=1
+XRSET nsrc vss vss sky130_fd_pr__res_high_po w=1 l=100
+
+* PMOS mirror: MP1 is diode-connected; MP2 feeds the second core branch.
+XMP1 vref vref vdd vdd sky130_fd_pr__pfet_01v8 w=12 l=1 nf=1
+XMP2 nmir vref vdd vdd sky130_fd_pr__pfet_01v8 w=12 l=1 nf=1
+
+* Output current sink; increased width scales the core current toward 40 uA.
+XMNOUT iout vref vss vss sky130_fd_pr__nfet_01v8 w=14 l=1 nf=1
+
+* Startup assist, controlled by the second core branch node.
+XSTART vref nmir vdd vdd sky130_fd_pr__pfet_01v8 w=0.42 l=10 nf=1
+
+.ends beta_multiplier_reference

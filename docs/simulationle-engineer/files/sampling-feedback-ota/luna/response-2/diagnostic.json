@@ -1,0 +1,311 @@
+{
+  "fixed_suite": {
+    "conditions": "tt, VDD=1.8 V, 27 C; public mismatch seed=51000",
+    "analyses": [
+      "loop",
+      "settling",
+      "noise",
+      "ranges",
+      "cmfb_recovery",
+      "mismatch"
+    ],
+    "additional_op": "TT per-transistor OP at zero differential input, 50 uA external reference",
+    "native_processes_per_design": 7
+  },
+  "analyses": {
+    "loop": {
+      "analysis": "loop",
+      "point": [
+        "tt",
+        1.8,
+        27
+      ],
+      "seed": null,
+      "ngspice_runs": 1,
+      "values": {
+        "output_common_mode_error_v": 0.7229216,
+        "power_w": 9.194753e-05,
+        "low_frequency_loop_gain_db": -107.731,
+        "closed_loop_differential_gain_db": -88.6466
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.2809999999881256,
+        "deck_sha256": "e5481e5e57122b600fcc9bd678ed9440279deb0f05c7c437199af5cbed6d7a1f",
+        "errors": [
+          "Error: measure  loop_ugb_hz  when(WHEN) : out of interval",
+          " meas ac loop_ugb_hz when loop_gain_db=0 fall=1 failed!",
+          "Error: measure  phase_at_ugb_deg  find(AT) : out of interval",
+          " meas ac phase_at_ugb_deg find loop_phase_deg when loop_gain_db=0 fall=1 failed!",
+          "Error: RHS \"180+phase_at_ugb_deg\" invalid"
+        ]
+      },
+      "log_file": "native/ngspice.log"
+    },
+    "settling": {
+      "analysis": "settling",
+      "point": [
+        "tt",
+        1.8,
+        27
+      ],
+      "seed": null,
+      "ngspice_runs": 1,
+      "values": {
+        "fall_tolerance_cross": 6.50782e-08,
+        "rise_output_at_10ns": -0.028278,
+        "fall_output_at_10ns": 0.00359855,
+        "high_static_output": -0.0256244,
+        "low_static_output": 0.00326092,
+        "rise_dynamic_error_fraction": 1.03142,
+        "fall_dynamic_error_fraction": 0.003998387,
+        "high_static_error_fraction": 1.028472,
+        "low_static_error_fraction": 0.003623246
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.437999999994645,
+        "deck_sha256": "0e0f9f6e0dca16fd2479947cba0ece8238cc7ca47cbb48529879461a2b0f0956",
+        "errors": [
+          "Error: measure  rise_tolerance_cross  when(WHEN) : out of interval",
+          " meas tran rise_tolerance_cross when rise_error=9m cross=last from=25n to=64n failed!",
+          "Error: RHS \"rise_tolerance_cross-25n\" invalid"
+        ]
+      },
+      "log_file": "native/ngspice.log"
+    },
+    "noise": {
+      "analysis": "noise",
+      "point": [
+        "tt",
+        1.8,
+        27
+      ],
+      "seed": null,
+      "ngspice_runs": 1,
+      "values": {
+        "output_noise_vrms": 0.000327202
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.2030000000086147,
+        "deck_sha256": "7975eeb9aadc69df94ce3cde79f6573b8845aca84c87cdb247c4358f4cfa4259",
+        "errors": []
+      },
+      "log_file": "native/ngspice.log"
+    },
+    "ranges": {
+      "analysis": "ranges",
+      "point": [
+        "tt",
+        1.8,
+        27
+      ],
+      "seed": null,
+      "ngspice_runs": 1,
+      "values": {},
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.2030000000086147,
+        "deck_sha256": "dad25255f4aec10578fbe63741bd8af0c7758dfc84e3fdf2f88b07582231e5de",
+        "errors": [
+          "Error: argument out of range for db",
+          "Error: Can't evaluate \"db(local_gain)\"",
+          "Error: measure  open_loop_gain_peak_db  max(TRIG) : no such vector as 'local_gain_db'",
+          " meas dc open_loop_gain_peak_db max local_gain_db failed!",
+          "Error: RHS \"open_loop_gain_peak_db-3\" invalid",
+          "Error: &gain_3db_db: no such variable.",
+          "Error: RHS \"\" invalid",
+          "Error: measure  output_range_min_v  find(WHEN) : Cannot evaluate vexprint1 ",
+          " meas dc output_range_min_v find differential_output when local_gain_db=vexprint1 rise=1 failed!",
+          "Error: &gain_3db_db: no such variable.",
+          "Error: RHS \"\" invalid",
+          "Error: measure  output_range_max_v  find(WHEN) : Cannot evaluate vexprint2 ",
+          " meas dc output_range_max_v find differential_output when local_gain_db=vexprint2 fall=1 failed!",
+          "Error: RHS \"output_range_max_v-output_range_min_v\" invalid"
+        ]
+      },
+      "log_file": "native/ngspice.log",
+      "log_tail": "Warning: can't find the initialization file spinit.\n\nNote: No compatibility mode selected!\n\n\nCircuit: * public nominal 3 db-compression differential output-range diagnostic.\n\nDoing analysis at TEMP = 27.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\n Reference value : -2.00000e-05\nError: argument out of range for db\n  in term: db(local_gain)\n\nError: Can't evaluate \"db(local_gain)\"\n\nError: measure  open_loop_gain_peak_db  max(TRIG) : no such vector as 'local_gain_db'\n meas dc open_loop_gain_peak_db max local_gain_db failed!\n\nWarning from checkvalid: vector open_loop_gain_peak_db is not available or has zero length.\nError: RHS \"open_loop_gain_peak_db-3\" invalid\nError: &gain_3db_db: no such variable.\nError: RHS \"\" invalid\n\nError: measure  output_range_min_v  find(WHEN) : Cannot evaluate vexprint1 \n meas dc output_range_min_v find differential_output when local_gain_db=vexprint1 rise=1 failed!\n\nError: &gain_3db_db: no such variable.\nError: RHS \"\" invalid\n\nError: measure  output_range_max_v  find(WHEN) : Cannot evaluate vexprint2 \n meas dc output_range_max_v find differential_output when local_gain_db=vexprint2 fall=1 failed!\n\nWarning from checkvalid: vector output_range_max_v is not available or has zero length.\nError: RHS \"output_range_max_v-output_range_min_v\" invalid\nWarning from checkvalid: vector open_loop_gain_peak_db is not available or has zero length.\n\nNo. of Data Rows : 81\nNote: Simulation executed from .control section \n"
+    },
+    "cmfb_recovery": {
+      "analysis": "cmfb_recovery",
+      "point": [
+        "tt",
+        1.8,
+        27
+      ],
+      "seed": null,
+      "ngspice_runs": 1,
+      "values": {
+        "cmfb_static_error_v": 0.7229216,
+        "cmfb_peak_deviation_v": 1.666093,
+        "cmfb_residual_20ns_v": 0.1727555,
+        "cmfb_residual_100ns_v": 0.09647879,
+        "cmfb_peak_limit_v": 0.1,
+        "cmfb_residual_20ns_limit_v": 0.005,
+        "cmfb_residual_100ns_limit_v": 0.001
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.5939999999827705,
+        "deck_sha256": "4e47782b7fe78968b68fe9664e21249440f4f41d63bc6a636761f79f94bf3621",
+        "errors": []
+      },
+      "log_file": "native/ngspice.log"
+    },
+    "mismatch": {
+      "analysis": "mismatch",
+      "point": [
+        "tt",
+        1.8,
+        27
+      ],
+      "seed": 51000,
+      "ngspice_runs": 1,
+      "values": {
+        "mc_closed_cm_10_db": -152.792,
+        "mc_closed_vdd_10_db": -67.5236,
+        "mc_closed_vss_10_db": -67.5236
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.2030000000086147,
+        "deck_sha256": "621c66cd1c143b31ff429d72de8a43030b8ac5456386a08ad30eeca86529cb7c",
+        "errors": []
+      },
+      "log_file": "native/ngspice.log",
+      "note": "Subtract each reported feedthrough dB value from nominal TT closed_loop_differential_gain_db to obtain CMRR/PSRR. Original public seed 51000 is disjoint from final seeds 41000..41019."
+    }
+  },
+  "operating_point": {
+    "conditions": "TT, nominal supply, 27 C",
+    "expected_transistors": 12,
+    "measured_transistors": 12,
+    "devices": [
+      {
+        "device": "m.xdut.xbn.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 0.0,
+        "vgs_V": 1.091254e-18,
+        "vds_V": 1.091254e-18,
+        "vdsat_V": 0.04283684,
+        "vth_V": 0.7592605,
+        "saturation_margin_V": -0.04283684
+      },
+      {
+        "device": "m.xdut.xbp.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 1.164202e-11,
+        "vgs_V": 9.763807e-08,
+        "vds_V": 9.763806e-08,
+        "vdsat_V": 0.04413727,
+        "vth_V": 0.8017959,
+        "saturation_margin_V": -0.04413717236194
+      },
+      {
+        "device": "m.xdut.xtail.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 1.159346e-06,
+        "vgs_V": -4.72495e-12,
+        "vds_V": 0.7272618,
+        "vdsat_V": 0.0407001,
+        "vth_V": 0.6477983,
+        "saturation_margin_V": 0.6865616999999999
+      },
+      {
+        "device": "m.xdut.xinn.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 1.68557e-06,
+        "vgs_V": 0.1727382,
+        "vds_V": 0.8956597,
+        "vdsat_V": 0.04441846,
+        "vth_V": 0.7971437,
+        "saturation_margin_V": 0.8512412399999999
+      },
+      {
+        "device": "m.xdut.xinp.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 1.68557e-06,
+        "vgs_V": 0.1727382,
+        "vds_V": 0.8956597,
+        "vdsat_V": 0.04441846,
+        "vth_V": 0.7971437,
+        "saturation_margin_V": 0.8512412399999999
+      },
+      {
+        "device": "m.xdut.xcmtail.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 6.000503e-07,
+        "vgs_V": -4.89105e-12,
+        "vds_V": 0.8125296,
+        "vdsat_V": 0.04070039,
+        "vth_V": 0.6472845,
+        "saturation_margin_V": 0.7718292099999999
+      },
+      {
+        "device": "m.xdut.xcmref.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 1.967233e-08,
+        "vgs_V": 0.08747041,
+        "vds_V": 0.7262465,
+        "vdsat_V": 0.0447351,
+        "vth_V": 0.8124329,
+        "saturation_margin_V": 0.6815114
+      },
+      {
+        "device": "m.xdut.xcmsense.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 3.0479750000000002e-06,
+        "vgs_V": 0.2694175,
+        "vds_V": 0.2694175,
+        "vdsat_V": 0.0447347,
+        "vth_V": 0.8151887,
+        "saturation_margin_V": 0.22468279999999996
+      },
+      {
+        "device": "m.xdut.xcmloadr.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 1.297213e-06,
+        "vgs_V": 0.2612239,
+        "vds_V": 0.2612239,
+        "vdsat_V": 0.04489251,
+        "vth_V": 0.9427559,
+        "saturation_margin_V": 0.21633139
+      },
+      {
+        "device": "m.xdut.xcmloado.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 1.609562e-06,
+        "vgs_V": 0.2612239,
+        "vds_V": 0.7180529,
+        "vdsat_V": 0.04489268,
+        "vth_V": 0.9412668,
+        "saturation_margin_V": 0.67316022
+      },
+      {
+        "device": "m.xdut.xlp.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 0.5409776000000001,
+        "vgs_V": 0.7180504,
+        "vds_V": 0.1770735,
+        "vdsat_V": 0.04655318,
+        "vth_V": 0.9430308,
+        "saturation_margin_V": 0.13052032
+      },
+      {
+        "device": "m.xdut.xln.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 0.5409776000000001,
+        "vgs_V": 0.7180504,
+        "vds_V": 0.1770735,
+        "vdsat_V": 0.04655318,
+        "vth_V": 0.9430308,
+        "saturation_margin_V": 0.13052032
+      }
+    ],
+    "exit_code": 0,
+    "log_tail": null
+  },
+  "native_processes": 7
+}

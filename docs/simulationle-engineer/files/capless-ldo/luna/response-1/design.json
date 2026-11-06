@@ -1,0 +1,113 @@
+{
+  "title": "Capacitor-assisted SKY130 LDO concept",
+  "parameters": {
+    "pass_w": 1200,
+    "pass_l": 1,
+    "amp_w": 20,
+    "amp_l": 1,
+    "bias_r": "100k",
+    "feedback_top": "150k",
+    "feedback_bottom": "100k",
+    "output_cap": "800p",
+    "comp_cap": "100p"
+  },
+  "devices": [
+    {
+      "name": "XPASS",
+      "kind": "pmos",
+      "nodes": ["vout", "drive", "vin", "vin"],
+      "model": "sky130_fd_pr__pfet_01v8",
+      "w": "pass_w",
+      "l": "pass_l",
+      "nf": 20,
+      "m": 1,
+      "x": 900,
+      "y": 400,
+      "group": "pass_stage"
+    },
+    {
+      "name": "RBIAS",
+      "kind": "resistor",
+      "nodes": ["vin", "bias"],
+      "value": "bias_r",
+      "x": 300,
+      "y": 700,
+      "group": "bias"
+    },
+    {
+      "name": "XBIAS",
+      "kind": "nmos",
+      "nodes": ["bias", "bias", "vss", "vss"],
+      "model": "sky130_fd_pr__nfet_01v8",
+      "w": 10,
+      "l": 1,
+      "nf": 1,
+      "m": 1,
+      "x": 600,
+      "y": 700,
+      "group": "bias"
+    },
+    {
+      "name": "XAMP",
+      "kind": "pmos",
+      "nodes": ["drive", "fb", "vin", "vin"],
+      "model": "sky130_fd_pr__pfet_01v8",
+      "w": "amp_w",
+      "l": "amp_l",
+      "nf": 2,
+      "m": 1,
+      "x": 900,
+      "y": 1000,
+      "group": "error_stage"
+    },
+    {
+      "name": "XLOAD",
+      "kind": "nmos",
+      "nodes": ["drive", "bias", "vss", "vss"],
+      "model": "sky130_fd_pr__nfet_01v8",
+      "w": 10,
+      "l": 1,
+      "nf": 1,
+      "m": 1,
+      "x": 1200,
+      "y": 1000,
+      "group": "error_stage"
+    },
+    {
+      "name": "RFTOP",
+      "kind": "resistor",
+      "nodes": ["vout", "fb"],
+      "value": "feedback_top",
+      "x": 1500,
+      "y": 400,
+      "group": "feedback"
+    },
+    {
+      "name": "RFBOT",
+      "kind": "resistor",
+      "nodes": ["fb", "vss"],
+      "value": "feedback_bottom",
+      "x": 1800,
+      "y": 400,
+      "group": "feedback"
+    },
+    {
+      "name": "COUT",
+      "kind": "capacitor",
+      "nodes": ["vout", "vss"],
+      "value": "output_cap",
+      "x": 1500,
+      "y": 700,
+      "group": "compensation"
+    },
+    {
+      "name": "CCOMP",
+      "kind": "capacitor",
+      "nodes": ["drive", "vss"],
+      "value": "comp_cap",
+      "x": 1800,
+      "y": 1000,
+      "group": "compensation"
+    }
+  ]
+}

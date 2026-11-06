@@ -1,0 +1,129 @@
+{
+  "fixed_suite": {
+    "conditions": "tt, VIN=1.8 V, 27 C; OP at 20 mA; fixed original DC/PSR/step/startup decks",
+    "analyses": [
+      "op",
+      "dc",
+      "psr",
+      "step",
+      "startup"
+    ],
+    "native_processes_per_design": 5
+  },
+  "analyses": {
+    "dc": {
+      "exit_code": 1,
+      "wall_seconds": 1.2659999999741558,
+      "metrics": {},
+      "circuit_sha256": "0af4db2e96b381cbc5c167aee1d5fbacd29fb99b96e38e1abd3baa4f35e85eaa",
+      "deck_sha256": "2cd8fc2fca76402722f914f3393e5cc53d9026bda7342742ae62d5c989564e2b",
+      "errors": [
+        "Error on line 1137 or its substitute:",
+        "    Simulation interrupted due to error!",
+        "Error: incomplete or empty netlist"
+      ],
+      "policy_ok": true
+    },
+    "psr": {
+      "exit_code": 1,
+      "wall_seconds": 1.2660000000032596,
+      "metrics": {},
+      "circuit_sha256": "0af4db2e96b381cbc5c167aee1d5fbacd29fb99b96e38e1abd3baa4f35e85eaa",
+      "deck_sha256": "9721ae133d10a6232f442cbbb2fc90c9fa7436dca58669c4bcf14bd8d3ab13fa",
+      "errors": [
+        "Error on line 1137 or its substitute:",
+        "    Simulation interrupted due to error!",
+        "Error: incomplete or empty netlist"
+      ],
+      "policy_ok": true
+    },
+    "step": {
+      "exit_code": 1,
+      "wall_seconds": 1.25,
+      "metrics": {},
+      "circuit_sha256": "0af4db2e96b381cbc5c167aee1d5fbacd29fb99b96e38e1abd3baa4f35e85eaa",
+      "deck_sha256": "d476c4c1b945c8e87658f208bfdbb6433a06ce81f270800705453fd12f396e40",
+      "errors": [
+        "Error on line 1137 or its substitute:",
+        "    Simulation interrupted due to error!",
+        "Error: incomplete or empty netlist"
+      ],
+      "policy_ok": true
+    },
+    "startup": {
+      "exit_code": 1,
+      "wall_seconds": 1.1410000000032596,
+      "metrics": {},
+      "circuit_sha256": "0af4db2e96b381cbc5c167aee1d5fbacd29fb99b96e38e1abd3baa4f35e85eaa",
+      "deck_sha256": "008059e2878710d9253c351b0d9b3c1b94899d75dac4379c118eec0f56060277",
+      "errors": [
+        "Error on line 1137 or its substitute:",
+        "    Simulation interrupted due to error!",
+        "Error: incomplete or empty netlist"
+      ],
+      "policy_ok": true
+    }
+  },
+  "operating_point": {
+    "conditions": "TT, nominal supply, 27 C",
+    "expected_transistors": 4,
+    "measured_transistors": 0,
+    "devices": [
+      {
+        "device": "m.xdut.xpass.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": null,
+        "vgs_V": null,
+        "vds_V": null,
+        "vdsat_V": null,
+        "vth_V": null,
+        "saturation_margin_V": null
+      },
+      {
+        "device": "m.xdut.xbias.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": null,
+        "vgs_V": null,
+        "vds_V": null,
+        "vdsat_V": null,
+        "vth_V": null,
+        "saturation_margin_V": null
+      },
+      {
+        "device": "m.xdut.xamp.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": null,
+        "vgs_V": null,
+        "vds_V": null,
+        "vdsat_V": null,
+        "vth_V": null,
+        "saturation_margin_V": null
+      },
+      {
+        "device": "m.xdut.xload.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": null,
+        "vgs_V": null,
+        "vds_V": null,
+        "vdsat_V": null,
+        "vth_V": null,
+        "saturation_margin_V": null
+      }
+    ],
+    "exit_code": 1,
+    "log_tail": "\nNote: No compatibility mode selected!\n\n\nCircuit: * fixed public operating point\n\n\nWarning: can't find the initialization file spinit.\nError on line 1137 or its substitute:\n  m.xdut.xpass.msky130_fd_pr__pfet_01v8 vout xdut.drive vin vin xdut.xpass:pshort_model l=    1.000000000000000e+00     w=    1.200000000000000e+03     ad=    0.000000000000000e+00     as=    0.000000000000000e+00     pd=    0.000000000000000e+00     ps=    0.000000000000000e+00     nrd=    1.166666666666667e-04     nrs=    1.166666666666667e-04     sa=    0.000000000000000e+00     sb=    0.000000000000000e+00     sd=    0.000000000000000e+00     nf=    2.000000000000000e+01     delvto=    0.000000000000000e+00     m=    1.000000000000000e+00   \ncould not find a valid modelname\n    Simulation interrupted due to error!\n\nError: incomplete or empty netlist\n       or no \".plot\", \".print\", or \".fourier\" lines in batch mode;\nno simulations run!\n"
+  },
+  "asset_build": {
+    "native_export_ok": true,
+    "native_graph_matches": true,
+    "device_count": 9,
+    "parameter_count": 9,
+    "parameter_references": 9,
+    "layout_overlaps": [],
+    "layout_explicit": true,
+    "circuit_sha256": "78ac3cc1fa3421bbb6740725c9fb285c92d4db731ffd425fd100a3c9b083d0d7",
+    "design_sha256": "276b5e1c82861c0a4c22414166e1f2b0d914ad709a8cf9b64ba6ac66967612c2",
+    "native_sha256": "0af4db2e96b381cbc5c167aee1d5fbacd29fb99b96e38e1abd3baa4f35e85eaa"
+  },
+  "native_processes": 5
+}

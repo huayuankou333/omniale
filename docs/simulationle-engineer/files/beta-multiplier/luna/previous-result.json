@@ -1,0 +1,128 @@
+{
+  "tests_passed": 7,
+  "tests_total": 12,
+  "raw_score": 0.5833333333333334,
+  "score_caps": [
+    [
+      "PVT reference regulation failure",
+      0.7
+    ],
+    [
+      "output compliance failure",
+      0.8
+    ],
+    [
+      "startup failure",
+      0.75
+    ]
+  ],
+  "reward": 0.5833333333333334,
+  "measurements": {
+    "pvt_current_min_a": 3.969189175806465e-07,
+    "pvt_current_max_a": 0.0001470281450193685,
+    "pvt_vref_min_v": 0.5400898196986594,
+    "pvt_vref_max_v": 1.052975513712489,
+    "pvt_power_max_w": 0.0002791249853147527,
+    "pvt_compliance_current_min_a": 3.289158210968701e-07,
+    "pvt_compliance_current_max_a": 0.000153479556850078,
+    "pvt_compliance_flatness_max": 0.38843861103385136,
+    "startup_final_current_min_a": 2.565719107860113e-05,
+    "startup_final_current_max_a": 6.984632369206448e-05,
+    "startup_final_vref_min_v": 0.7308505909330958,
+    "startup_final_vref_max_v": 0.8262604362896355,
+    "startup_settling_time_max_s": 0.0,
+    "startup_current_overshoot_ratio_max": 1.0001776384781396,
+    "startup_peak_supply_current_max_a": 4.047334699555649e-05,
+    "startup_energy_max_j": 8.836687308459235e-10,
+    "mc_current_mean_a": 3.5154118441659417e-05,
+    "mc_current_sigma_a": 1.369234275807026e-06,
+    "mc_current_yield": 1.0
+  },
+  "ngspice_runs": 95,
+  "workers": 1,
+  "ngspice_threads_per_process": 1,
+  "wall_clock_s": 114.8289999999979,
+  "summed_run_time_s": 113.278999999995,
+  "slowest_run_time_s": 1.4060000000026776,
+  "failed_runs": [],
+  "overall_pass": false,
+  "policy": {
+    "passed": true,
+    "exit_code": 0,
+    "log": "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\runs\\20261105_152447\\gpt-6-luna\\frozen\\circuit.spi: netlist check passed\n"
+  },
+  "checks": [
+    {
+      "name": "complete_signoff",
+      "status": "passed",
+      "message": "runs=95 PVT=27/27 compliance=27/27 startup=18/18 MC=50/50"
+    },
+    {
+      "name": "pvt_output_current",
+      "status": "failed",
+      "message": "current=0.397..147.028uA"
+    },
+    {
+      "name": "nominal_current_accuracy",
+      "status": "passed",
+      "message": "TT/1.8V/27C current=35.574uA"
+    },
+    {
+      "name": "pvt_vref",
+      "status": "failed",
+      "message": "VREF=0.5401..1.0530V"
+    },
+    {
+      "name": "pvt_power",
+      "status": "failed",
+      "message": "power_max=279.12uW"
+    },
+    {
+      "name": "pvt_output_compliance",
+      "status": "failed",
+      "message": "current=0.329..153.480uA flatness_max=38.844%"
+    },
+    {
+      "name": "pvt_multi_ramp_startup_final",
+      "status": "failed",
+      "message": "final_current=25.657..69.846uA VREF=0.7309..0.8263V"
+    },
+    {
+      "name": "pvt_multi_ramp_startup_settling",
+      "status": "passed",
+      "message": "settling_time_max=0.000us"
+    },
+    {
+      "name": "startup_overshoot",
+      "status": "passed",
+      "message": "peak_to_final_current_ratio_max=1.0002"
+    },
+    {
+      "name": "startup_inrush_and_energy",
+      "status": "passed",
+      "message": "peak_supply_current=0.040mA energy=0.884nJ"
+    },
+    {
+      "name": "mc_current_yield",
+      "status": "passed",
+      "message": "samples=50 yield=100.0% in 30..50uA"
+    },
+    {
+      "name": "mc_current_sigma",
+      "status": "passed",
+      "message": "samples=50 sigma=1.369uA"
+    }
+  ],
+  "circuit_sha256": "1971c075d2401651fa56558f60f94e06d46fb3f1ceee4a490e1d4deb25ed3e50",
+  "evaluator": "unchanged upstream score_results/build_cases/metric functions; Windows path/process adapter",
+  "requested_model": "gpt-6-luna",
+  "reported_model": "gpt-6-luna",
+  "model_turns": 36,
+  "development_simulation_calls": 12,
+  "development_native_runs": 12,
+  "explicit_finish": false,
+  "finish_summary": null,
+  "input_tokens": 525210,
+  "output_tokens": 11192,
+  "agent_wall_seconds": 399.0310000000027
+}

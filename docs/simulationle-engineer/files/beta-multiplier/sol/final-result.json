@@ -1,0 +1,1256 @@
+{
+  "tests_passed": 9,
+  "tests_total": 12,
+  "raw_score": 0.75,
+  "score_caps": [
+    [
+      "output compliance failure",
+      0.8
+    ]
+  ],
+  "reward": 0.75,
+  "measurements": {
+    "pvt_current_min_a": 3.726924642766249e-05,
+    "pvt_current_max_a": 5.494407592143702e-05,
+    "pvt_vref_min_v": 0.6085254670102823,
+    "pvt_vref_max_v": 0.7039251926192669,
+    "pvt_power_max_w": 0.00010272469767475616,
+    "pvt_compliance_current_min_a": 3.583703817361394e-05,
+    "pvt_compliance_current_max_a": 5.644330540532927e-05,
+    "pvt_compliance_flatness_max": 0.08507178404224529,
+    "startup_final_current_min_a": 3.9341777952191424e-05,
+    "startup_final_current_max_a": 5.3026791742600135e-05,
+    "startup_final_vref_min_v": 0.6085254670103828,
+    "startup_final_vref_max_v": 0.7039251926205266,
+    "startup_settling_time_max_s": 0.0,
+    "startup_current_overshoot_ratio_max": 1.0165500371253986,
+    "startup_peak_supply_current_max_a": 2.868456686633269e-05,
+    "startup_energy_max_j": 5.209986408978544e-10,
+    "mc_current_mean_a": 4.4850218327963096e-05,
+    "mc_current_sigma_a": 1.8559356976253306e-06,
+    "mc_current_yield": 1.0
+  },
+  "ngspice_runs": 95,
+  "workers": 1,
+  "ngspice_threads_per_process": 1,
+  "wall_clock_s": 119.65600000001723,
+  "summed_run_time_s": 117.84899999984191,
+  "slowest_run_time_s": 1.437999999994645,
+  "failed_runs": [],
+  "overall_pass": false,
+  "policy": {
+    "passed": true,
+    "exit_code": 0,
+    "log": "D:\\LINK\\SimulationLE\\case\\D2\\circuit_beta_multiplier\\runs_feedback3\\20261106_130921\\gpt-6.1-sol\\frozen\\circuit.spi: netlist check passed\n"
+  },
+  "checks": [
+    {
+      "name": "complete_signoff",
+      "status": "passed",
+      "message": "runs=95 PVT=27/27 compliance=27/27 startup=18/18 MC=50/50"
+    },
+    {
+      "name": "pvt_output_current",
+      "status": "passed",
+      "message": "current=37.269..54.944uA"
+    },
+    {
+      "name": "nominal_current_accuracy",
+      "status": "failed",
+      "message": "TT/1.8V/27C current=45.029uA"
+    },
+    {
+      "name": "pvt_vref",
+      "status": "passed",
+      "message": "VREF=0.6085..0.7039V"
+    },
+    {
+      "name": "pvt_power",
+      "status": "failed",
+      "message": "power_max=102.72uW"
+    },
+    {
+      "name": "pvt_output_compliance",
+      "status": "failed",
+      "message": "current=35.837..56.443uA flatness_max=8.507%"
+    },
+    {
+      "name": "pvt_multi_ramp_startup_final",
+      "status": "passed",
+      "message": "final_current=39.342..53.027uA VREF=0.6085..0.7039V"
+    },
+    {
+      "name": "pvt_multi_ramp_startup_settling",
+      "status": "passed",
+      "message": "settling_time_max=0.000us"
+    },
+    {
+      "name": "startup_overshoot",
+      "status": "passed",
+      "message": "peak_to_final_current_ratio_max=1.0166"
+    },
+    {
+      "name": "startup_inrush_and_energy",
+      "status": "passed",
+      "message": "peak_supply_current=0.029mA energy=0.521nJ"
+    },
+    {
+      "name": "mc_current_yield",
+      "status": "passed",
+      "message": "samples=50 yield=100.0% in 30..50uA"
+    },
+    {
+      "name": "mc_current_sigma",
+      "status": "passed",
+      "message": "samples=50 sigma=1.856uA"
+    }
+  ],
+  "circuit_sha256": "1b9195511ead8c2c465f562793c572825527f94de88ece494cb7dba061dbcc6c",
+  "evaluator": "unchanged upstream score_results/build_cases/metric functions; Windows path/process adapter",
+  "protocol": "feedback3-medium-no-tools-v1",
+  "task_case": "beta",
+  "requested_model": "gpt-6.1-sol",
+  "reported_model": "gpt-6.1-sol",
+  "design_attempts": 3,
+  "syntax_retries_used": 0,
+  "response_turns": 3,
+  "reasoning_effort": "medium",
+  "max_output_tokens_per_response": 32768,
+  "input_tokens": 52003,
+  "output_tokens_including_reasoning": 2252,
+  "reasoning_tokens": 884,
+  "model_inference_seconds": 65.11000000001513,
+  "agent_wall_seconds": 109.68799999999464,
+  "final_selection": "last model-authored submission; no best-of selection and no host edits",
+  "hidden_final_feedback_to_model": false,
+  "attempts": [
+    {
+      "response_turn": 1,
+      "valid_design": true,
+      "reply_sha256": "4bd4d0e32bda97ed8b9812fd611eb0099ed295efa433b36411d52a2790ae3314",
+      "inference": {
+        "requested_model": "gpt-6.1-sol",
+        "reported_model": "gpt-6.1-sol",
+        "status": "completed",
+        "incomplete_details": null,
+        "usage": {
+          "input_tokens": 13181,
+          "input_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "output_tokens": 858,
+          "output_tokens_details": {
+            "reasoning_tokens": 409
+          },
+          "total_tokens": 14039,
+          "attribution": {
+            "items": {
+              "msg_0145d14859661643016aed61e2a7a887d28f14c5e1d80a2855": {
+                "input_tokens": 13114,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 13114,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_0145d14859661643016aed61f35a1087d292e9cbb388b66581": {
+                "input_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 449,
+                "content": [
+                  {
+                    "input_tokens": 0,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 449
+                  }
+                ]
+              },
+              "rs_0145d14859661643016aed61f33bb087d29210cc53e3c93f05": {
+                "input_tokens": 2,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 409
+              }
+            },
+            "request_fields": {
+              "instructions": {
+                "input_tokens": 65,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0
+              }
+            }
+          }
+        },
+        "wall_seconds": 25.64100000000326,
+        "transport_retries": 0
+      },
+      "counted_as": "design attempt",
+      "design_attempt": 1,
+      "circuit_sha256": "46d70f4f01b8da5502f394cf9a484084b45e3784bb9ae4b0f5c223056329e001",
+      "public_diagnostic": {
+        "analyses": {
+          "op": {
+            "analysis": "op",
+            "ngspice_runs": 1,
+            "rows": [
+              {
+                "group": "op",
+                "bench": "tb_compliance.spi",
+                "corner": "tt",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 4.977549273788018e-05,
+                "vref_v": 0.6586214046448811,
+                "power_w": 8.095352898719322e-05,
+                "node_voltages": {
+                  "v(vss)": 0.0,
+                  "v(vdd)": 1.8,
+                  "v(iout)": 0.9,
+                  "v(vref)": 0.6586214046448811,
+                  "v(xref.pb)": 0.5642130411628213,
+                  "v(xref.ns)": 0.06086965554560063,
+                  "v(xref.xrset.rb)": 0.05794208355933555,
+                  "v(xref.st)": 0.008180613495630292,
+                  "v(m.xref.xnkick.msky130_fd_pr__nfet_01v8#dbody)": 1.79441575187612e-11,
+                  "v(m.xref.xnkick.msky130_fd_pr__nfet_01v8#body)": 7.177663007501368e-12,
+                  "v(m.xref.xnkick.msky130_fd_pr__nfet_01v8#sbody)": 3.588831503739734e-12,
+                  "v(m.xref.xnsense.msky130_fd_pr__nfet_01v8#dbody)": 3.231943976829373e-13,
+                  "v(m.xref.xnsense.msky130_fd_pr__nfet_01v8#body)": 1.293931278511001e-13,
+                  "v(m.xref.xnsense.msky130_fd_pr__nfet_01v8#sbody)": 6.49849857349562e-14,
+                  "v(m.xref.xpstart.msky130_fd_pr__pfet_01v8#dbody)": 1.799999999943703,
+                  "v(m.xref.xpstart.msky130_fd_pr__pfet_01v8#body)": 1.799999999977476,
+                  "v(m.xref.xpstart.msky130_fd_pr__pfet_01v8#sbody)": 1.799999999988725,
+                  "v(m.xref.xnout.msky130_fd_pr__nfet_01v8#dbody)": 3.832101889441817e-11,
+                  "v(m.xref.xnout.msky130_fd_pr__nfet_01v8#body)": 3.114469949602285e-11,
+                  "v(m.xref.xnout.msky130_fd_pr__nfet_01v8#sbody)": 1.557407829727015e-11,
+                  "v(m.xref.xn2.msky130_fd_pr__nfet_01v8#dbody)": 1.837664837861004e-11,
+                  "v(m.xref.xn2.msky130_fd_pr__nfet_01v8#body)": 8.043298162725511e-12,
+                  "v(m.xref.xn2.msky130_fd_pr__nfet_01v8#sbody)": 5.753243425447707e-12,
+                  "v(m.xref.xn1.msky130_fd_pr__nfet_01v8#dbody)": 2.08938063047407e-11,
+                  "v(m.xref.xn1.msky130_fd_pr__nfet_01v8#body)": 8.359153497556129e-12,
+                  "v(m.xref.xn1.msky130_fd_pr__nfet_01v8#sbody)": 4.181272452431402e-12,
+                  "v(m.xref.xp2.msky130_fd_pr__pfet_01v8#dbody)": 1.799999999958595,
+                  "v(m.xref.xp2.msky130_fd_pr__pfet_01v8#body)": 1.799999999979471,
+                  "v(m.xref.xp2.msky130_fd_pr__pfet_01v8#sbody)": 1.79999999998973,
+                  "v(m.xref.xp1.msky130_fd_pr__pfet_01v8#dbody)": 1.799999999962992,
+                  "v(m.xref.xp1.msky130_fd_pr__pfet_01v8#body)": 1.799999999983544,
+                  "v(m.xref.xp1.msky130_fd_pr__pfet_01v8#sbody)": 1.799999999991767
+                }
+              }
+            ],
+            "errors": []
+          },
+          "compliance": {
+            "analysis": "compliance",
+            "ngspice_runs": 1,
+            "rows": [],
+            "errors": [
+              {
+                "exit_code": 1,
+                "raw_exists": false,
+                "errors": [
+                  "Fatal error: detected during BSIM4v5.5.0 parameter checking for "
+                ],
+                "simulation_log_tail": "Warning: can't find the initialization file spinit.\n\nChecking parameters for BSIM 4.5 model xref.xnsense:nshort_model.21\nWarning: Eta0 = -0.00388734 is negative.\n\nChecking parameters for BSIM 4.5 model xref.xpstart:pshort_model.41\nFatal: Pclm = -0.00102272 is not positive.\nWarning: A2 = 1.1022 is larger than 1. A2 is set to 1 and A1 is set to 0.\nFatal error: detected during BSIM4v5.5.0 parameter checking for \n    model xref.xpstart:pshort_model.41 of device instance m.xref.xpstart.msky130_fd_pr__pfet_01v8\n\ndoAnalyses: no such parameter on this device or parameter is missing\n\nrun simulation(s) aborted\n\nNote: No compatibility mode selected!\n\n\nCircuit: * output-compliance sweep.\n\nASCII raw file \"D:/LINK/SimulationLE/case/D2/circuit_beta_multiplier/runs_feedback3/20261106_130921/gpt-6.1-sol/turn_001/public_diagnostics/compliance/000_compliance/waveform.raw\"\nDoing analysis at TEMP = 125.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\n\nTotal analysis time (seconds) = 0\n\nTotal elapsed time (seconds) = 1.105 \n\nTotal DRAM available = 16108.242 MB.\nDRAM currently available = 1679.801 MB.\nMaximum ngspice program size =   59.043 MB.\nCurrent ngspice program size =   28.871 MB.\n\n"
+              }
+            ]
+          },
+          "startup": {
+            "analysis": "startup",
+            "ngspice_runs": 1,
+            "rows": [
+              {
+                "group": "startup",
+                "bench": "tb_startup.spi",
+                "corner": "ff",
+                "vdd": 1.98,
+                "temp_c": -40,
+                "ramp_s": 1e-06,
+                "startup_final_current_a": 4.135610547116593e-05,
+                "startup_final_vref_v": 0.6705214134741727,
+                "startup_settling_time_s": 0.0,
+                "startup_current_overshoot_ratio": 1.1589599668141406,
+                "startup_peak_supply_current_a": 4.103993666340622e-05,
+                "startup_energy_j": 3.498855463390999e-10
+              }
+            ],
+            "errors": []
+          },
+          "mc_public": {
+            "analysis": "mc_public",
+            "ngspice_runs": 8,
+            "rows": [
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31001,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 4.98484617570405e-05,
+                "vref_v": 0.6587398281165506
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31002,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 4.7180493957244e-05,
+                "vref_v": 0.6551869965807562
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31003,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 5.12317572969323e-05,
+                "vref_v": 0.6604805445730212
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31004,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 4.9974434732869e-05,
+                "vref_v": 0.6583482659102178
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31005,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 5.094108167547073e-05,
+                "vref_v": 0.659797425914966
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31006,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 4.989017130108131e-05,
+                "vref_v": 0.6595767152278018
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31007,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 4.89604701937596e-05,
+                "vref_v": 0.6574611640866151
+              }
+            ],
+            "errors": [
+              {
+                "exit_code": 1,
+                "raw_exists": false,
+                "errors": [
+                  "Fatal error: detected during BSIM4v5.5.0 parameter checking for "
+                ],
+                "simulation_log_tail": "Warning: can't find the initialization file spinit.\n\nChecking parameters for BSIM 4.5 model xref.xpstart:pshort_model.41\nFatal: Pclm = -4.64724e-05 is not positive.\nWarning: A2 = 1.0274 is larger than 1. A2 is set to 1 and A1 is set to 0.\nFatal error: detected during BSIM4v5.5.0 parameter checking for \n    model xref.xpstart:pshort_model.41 of device instance m.xref.xpstart.msky130_fd_pr__pfet_01v8\n\ndoAnalyses: no such parameter on this device or parameter is missing\n\nrun simulation(s) aborted\n\nNote: No compatibility mode selected!\n\n\nCircuit: * deterministic combined process-and-mismatch operating point.\n\nASCII raw file \"D:/LINK/SimulationLE/case/D2/circuit_beta_multiplier/runs_feedback3/20261106_130921/gpt-6.1-sol/turn_001/public_diagnostics/mc_public/000_mc/waveform.raw\"\nDoing analysis at TEMP = 27.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\n\nTotal analysis time (seconds) = 0\n\nTotal elapsed time (seconds) = 1.128 \n\nTotal DRAM available = 16108.242 MB.\nDRAM currently available = 1704.109 MB.\nMaximum ngspice program size =   60.473 MB.\nCurrent ngspice program size =   28.852 MB.\n\n"
+              }
+            ]
+          }
+        },
+        "operating_point": {
+          "conditions": "TT, nominal supply, 27 C",
+          "expected_transistors": 8,
+          "measured_transistors": 8,
+          "devices": [
+            {
+              "device": "m.xdut.xp1.msky130_fd_pr__pfet_01v8",
+              "type": "p",
+              "id_uA": 9.765896,
+              "vgs_V": 1.23561,
+              "vds_V": 1.141026,
+              "vdsat_V": 0.1968875,
+              "vth_V": 1.04293,
+              "saturation_margin_V": 0.9441385000000001
+            },
+            {
+              "device": "m.xdut.xp2.msky130_fd_pr__pfet_01v8",
+              "type": "p",
+              "id_uA": 9.775751999999999,
+              "vgs_V": 1.23561,
+              "vds_V": 1.235434,
+              "vdsat_V": 0.1968874,
+              "vth_V": 1.04293,
+              "saturation_margin_V": 1.0385465999999999
+            },
+            {
+              "device": "m.xdut.xn1.msky130_fd_pr__nfet_01v8",
+              "type": "n",
+              "id_uA": 9.765896999999999,
+              "vgs_V": 0.6585692,
+              "vds_V": 0.658517,
+              "vdsat_V": 0.1127059,
+              "vth_V": 0.5492048,
+              "saturation_margin_V": 0.5458111
+            },
+            {
+              "device": "m.xdut.xn2.msky130_fd_pr__nfet_01v8",
+              "type": "n",
+              "id_uA": 9.775751999999999,
+              "vgs_V": 0.5977387,
+              "vds_V": 0.5033172,
+              "vdsat_V": 0.0698375,
+              "vth_V": 0.5648906,
+              "saturation_margin_V": 0.4334797
+            },
+            {
+              "device": "m.xdut.xnout.msky130_fd_pr__nfet_01v8",
+              "type": "n",
+              "id_uA": 49.77549,
+              "vgs_V": 0.6585682,
+              "vds_V": 0.8998935,
+              "vdsat_V": 0.1127051,
+              "vth_V": 0.5492051,
+              "saturation_margin_V": 0.7871884
+            },
+            {
+              "device": "m.xdut.xpstart.msky130_fd_pr__pfet_01v8",
+              "type": "p",
+              "id_uA": 0.5447834,
+              "vgs_V": 1.799574,
+              "vds_V": 1.790966,
+              "vdsat_V": 0.7324958,
+              "vth_V": 0.8871334,
+              "saturation_margin_V": 1.0584702
+            },
+            {
+              "device": "m.xdut.xnsense.msky130_fd_pr__nfet_01v8",
+              "type": "n",
+              "id_uA": 0.5447852,
+              "vgs_V": 0.6586125,
+              "vds_V": 0.008162851,
+              "vdsat_V": 0.09414847,
+              "vth_V": 0.5942523,
+              "saturation_margin_V": -0.085985619
+            },
+            {
+              "device": "m.xdut.xnkick.msky130_fd_pr__nfet_01v8",
+              "type": "n",
+              "id_uA": 4.3609079999999996e-08,
+              "vgs_V": 0.008180613,
+              "vds_V": 0.564213,
+              "vdsat_V": 0.04124494,
+              "vth_V": 0.5773334,
+              "saturation_margin_V": 0.52296806
+            }
+          ],
+          "exit_code": 0
+        },
+        "native_processes": 12
+      }
+    },
+    {
+      "response_turn": 2,
+      "valid_design": true,
+      "reply_sha256": "7cdd60d4f754a2c5e965686584cfd14ca296261d460a574247ca5ba8ad060a1d",
+      "inference": {
+        "requested_model": "gpt-6.1-sol",
+        "reported_model": "gpt-6.1-sol",
+        "status": "completed",
+        "incomplete_details": null,
+        "usage": {
+          "input_tokens": 17566,
+          "input_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "output_tokens": 709,
+          "output_tokens_details": {
+            "reasoning_tokens": 292
+          },
+          "total_tokens": 18275,
+          "attribution": {
+            "items": {
+              "msg_00eb9491fa0c7f34016aed620b606487d28c247e1a1e9b620c": {
+                "input_tokens": 449,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 449,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_00eb9491fa0c7f34016aed620b606487d28f8913ca062be018": {
+                "input_tokens": 13114,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 13114,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_00eb9491fa0c7f34016aed620b606487d2bf2b29f8e38a2309": {
+                "input_tokens": 3936,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 3936,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_00eb9491fa0c7f34016aed62186e7087d28981bf9c184000bf": {
+                "input_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 417,
+                "content": [
+                  {
+                    "input_tokens": 0,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 417
+                  }
+                ]
+              },
+              "rs_00eb9491fa0c7f34016aed62184f3c87d2bc4ab1a7c40827a0": {
+                "input_tokens": 2,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 292
+              }
+            },
+            "request_fields": {
+              "instructions": {
+                "input_tokens": 65,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0
+              }
+            }
+          }
+        },
+        "wall_seconds": 19.75,
+        "transport_retries": 0
+      },
+      "counted_as": "design attempt",
+      "design_attempt": 2,
+      "circuit_sha256": "25e1b24152db9ed10b772230f153feb45df899475217df87665de8f0e006b05e",
+      "public_diagnostic": {
+        "analyses": {
+          "op": {
+            "analysis": "op",
+            "ngspice_runs": 1,
+            "rows": [
+              {
+                "group": "op",
+                "bench": "tb_compliance.spi",
+                "corner": "tt",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 3.982039464700549e-05,
+                "vref_v": 0.6586214050941789,
+                "power_w": 7.402357928123772e-05,
+                "node_voltages": {
+                  "v(vss)": 0.0,
+                  "v(vdd)": 1.8,
+                  "v(iout)": 0.9,
+                  "v(vref)": 0.6586214050941789,
+                  "v(xref.pb)": 0.5642130403515783,
+                  "v(xref.ns)": 0.06086965576450959,
+                  "v(xref.xrset.rb)": 0.05794208376771592,
+                  "v(xref.xrstart.t1)": 1.799866418226019,
+                  "v(xref.xrstart.t2)": 0.02853698005269784,
+                  "v(xref.st)": 0.02840339827871668,
+                  "v(m.xref.xnkick.msky130_fd_pr__nfet_01v8#dbody)": 1.794415749335301e-11,
+                  "v(m.xref.xnkick.msky130_fd_pr__nfet_01v8#body)": 7.177662997371327e-12,
+                  "v(m.xref.xnkick.msky130_fd_pr__nfet_01v8#sbody)": 3.588831498755372e-12,
+                  "v(m.xref.xnsense.msky130_fd_pr__nfet_01v8#dbody)": 1.065726507418616e-12,
+                  "v(m.xref.xnsense.msky130_fd_pr__nfet_01v8#body)": 4.266447360349057e-13,
+                  "v(m.xref.xnsense.msky130_fd_pr__nfet_01v8#sbody)": 2.142076989247508e-13,
+                  "v(m.xref.xnout.msky130_fd_pr__nfet_01v8#dbody)": 3.634406882716337e-11,
+                  "v(m.xref.xnout.msky130_fd_pr__nfet_01v8#body)": 2.719079936144493e-11,
+                  "v(m.xref.xnout.msky130_fd_pr__nfet_01v8#sbody)": 1.359712823005731e-11,
+                  "v(m.xref.xn2.msky130_fd_pr__nfet_01v8#dbody)": 1.837664835469189e-11,
+                  "v(m.xref.xn2.msky130_fd_pr__nfet_01v8#body)": 8.043298155453711e-12,
+                  "v(m.xref.xn2.msky130_fd_pr__nfet_01v8#sbody)": 5.753243427550682e-12,
+                  "v(m.xref.xn1.msky130_fd_pr__nfet_01v8#dbody)": 2.089380631878108e-11,
+                  "v(m.xref.xn1.msky130_fd_pr__nfet_01v8#body)": 8.359153503190243e-12,
+                  "v(m.xref.xn1.msky130_fd_pr__nfet_01v8#sbody)": 4.181272455260317e-12,
+                  "v(m.xref.xp2.msky130_fd_pr__pfet_01v8#dbody)": 1.799999999958595,
+                  "v(m.xref.xp2.msky130_fd_pr__pfet_01v8#body)": 1.799999999979471,
+                  "v(m.xref.xp2.msky130_fd_pr__pfet_01v8#sbody)": 1.79999999998973,
+                  "v(m.xref.xp1.msky130_fd_pr__pfet_01v8#dbody)": 1.799999999962992,
+                  "v(m.xref.xp1.msky130_fd_pr__pfet_01v8#body)": 1.799999999983544,
+                  "v(m.xref.xp1.msky130_fd_pr__pfet_01v8#sbody)": 1.799999999991767
+                }
+              }
+            ],
+            "errors": []
+          },
+          "compliance": {
+            "analysis": "compliance",
+            "ngspice_runs": 1,
+            "rows": [
+              {
+                "group": "compliance",
+                "bench": "tb_compliance.spi",
+                "corner": "ss",
+                "vdd": 1.62,
+                "temp_c": 125,
+                "output_current_a": 4.930737024300136e-05,
+                "vref_v": 0.6435527829774786,
+                "power_w": 8.60273366625125e-05,
+                "compliance_current_mean_a": 4.951623774299048e-05,
+                "compliance_current_min_a": 4.754640005782962e-05,
+                "compliance_current_max_a": 5.116469751520469e-05,
+                "compliance_flatness": 0.07307294783088149
+              }
+            ],
+            "errors": []
+          },
+          "startup": {
+            "analysis": "startup",
+            "ngspice_runs": 1,
+            "rows": [
+              {
+                "group": "startup",
+                "bench": "tb_startup.spi",
+                "corner": "ff",
+                "vdd": 1.98,
+                "temp_c": -40,
+                "ramp_s": 1e-06,
+                "startup_final_current_a": 3.30959298531258e-05,
+                "startup_final_vref_v": 0.6705214134769368,
+                "startup_settling_time_s": 0.0,
+                "startup_current_overshoot_ratio": 1.0702557521480125,
+                "startup_peak_supply_current_a": 2.452483400662564e-05,
+                "startup_energy_j": 3.688651687288225e-10
+              }
+            ],
+            "errors": []
+          },
+          "mc_public": {
+            "analysis": "mc_public",
+            "ngspice_runs": 8,
+            "rows": [
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31000,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 3.978086139821979e-05,
+                "vref_v": 0.6583695147223894
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31001,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 3.988535173160557e-05,
+                "vref_v": 0.6587398286120971
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31002,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 3.773960299002788e-05,
+                "vref_v": 0.6551869971251645
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31003,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 4.097260945845616e-05,
+                "vref_v": 0.6604805450322785
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31004,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 4.001863117741866e-05,
+                "vref_v": 0.6583482664599679
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31005,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 4.07686790572237e-05,
+                "vref_v": 0.6597974263391211
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31006,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 3.984905607834488e-05,
+                "vref_v": 0.6595767156421536
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31007,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 3.918217478682262e-05,
+                "vref_v": 0.6574611646373735
+              }
+            ],
+            "errors": [],
+            "public_mc": {
+              "samples": 8,
+              "mean_a": 3.977462083476491e-05,
+              "sigma_a": 9.994999013226809e-07,
+              "yield": 1.0,
+              "seeds": [
+                31000,
+                31001,
+                31002,
+                31003,
+                31004,
+                31005,
+                31006,
+                31007
+              ]
+            }
+          }
+        },
+        "operating_point": {
+          "conditions": "TT, nominal supply, 27 C",
+          "expected_transistors": 7,
+          "measured_transistors": 7,
+          "devices": [
+            {
+              "device": "m.xdut.xp1.msky130_fd_pr__pfet_01v8",
+              "type": "p",
+              "id_uA": 9.765896999999999,
+              "vgs_V": 1.23561,
+              "vds_V": 1.141026,
+              "vdsat_V": 0.1968875,
+              "vth_V": 1.04293,
+              "saturation_margin_V": 0.9441385000000001
+            },
+            {
+              "device": "m.xdut.xp2.msky130_fd_pr__pfet_01v8",
+              "type": "p",
+              "id_uA": 9.775751999999999,
+              "vgs_V": 1.23561,
+              "vds_V": 1.235434,
+              "vdsat_V": 0.1968874,
+              "vth_V": 1.04293,
+              "saturation_margin_V": 1.0385465999999999
+            },
+            {
+              "device": "m.xdut.xn1.msky130_fd_pr__nfet_01v8",
+              "type": "n",
+              "id_uA": 9.765896999999999,
+              "vgs_V": 0.6585692,
+              "vds_V": 0.658517,
+              "vdsat_V": 0.1127059,
+              "vth_V": 0.5492048,
+              "saturation_margin_V": 0.5458111
+            },
+            {
+              "device": "m.xdut.xn2.msky130_fd_pr__nfet_01v8",
+              "type": "n",
+              "id_uA": 9.775751999999999,
+              "vgs_V": 0.5977387,
+              "vds_V": 0.5033172,
+              "vdsat_V": 0.0698375,
+              "vth_V": 0.5648906,
+              "saturation_margin_V": 0.4334797
+            },
+            {
+              "device": "m.xdut.xnout.msky130_fd_pr__nfet_01v8",
+              "type": "n",
+              "id_uA": 39.82039,
+              "vgs_V": 0.6585682,
+              "vds_V": 0.8998935,
+              "vdsat_V": 0.1127051,
+              "vth_V": 0.5492051,
+              "saturation_margin_V": 0.7871884
+            },
+            {
+              "device": "m.xdut.xnsense.msky130_fd_pr__nfet_01v8",
+              "type": "n",
+              "id_uA": 1.6723620000000001,
+              "vgs_V": 0.6585941,
+              "vds_V": 0.02834887,
+              "vdsat_V": 0.09413578,
+              "vth_V": 0.5942571,
+              "saturation_margin_V": -0.06578691
+            },
+            {
+              "device": "m.xdut.xnkick.msky130_fd_pr__nfet_01v8",
+              "type": "n",
+              "id_uA": 7.691678e-08,
+              "vgs_V": 0.0284034,
+              "vds_V": 0.564213,
+              "vdsat_V": 0.04124495,
+              "vth_V": 0.5773334,
+              "saturation_margin_V": 0.52296805
+            }
+          ],
+          "exit_code": 0
+        },
+        "native_processes": 12
+      }
+    },
+    {
+      "response_turn": 3,
+      "valid_design": true,
+      "reply_sha256": "1e18429d735782be3dbf8edbe00b1c6a0f6efbde5cf6fae2893e1420142e0d16",
+      "inference": {
+        "requested_model": "gpt-6.1-sol",
+        "reported_model": "gpt-6.1-sol",
+        "status": "completed",
+        "incomplete_details": null,
+        "usage": {
+          "input_tokens": 21256,
+          "input_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "output_tokens": 685,
+          "output_tokens_details": {
+            "reasoning_tokens": 183
+          },
+          "total_tokens": 21941,
+          "attribution": {
+            "items": {
+              "msg_0baafc001b36f8af016aed622d904487d19217589091e78efb": {
+                "input_tokens": 449,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 449,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_0baafc001b36f8af016aed622d904487d1a09202449aadcdad": {
+                "input_tokens": 13114,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 13114,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_0baafc001b36f8af016aed622d904487d1a2b2d8e0802d2678": {
+                "input_tokens": 3273,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 3273,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_0baafc001b36f8af016aed622d904487d1b0e51da40b72ea48": {
+                "input_tokens": 417,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 417,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_0baafc001b36f8af016aed622d904487d1ba8f535f491fcc45": {
+                "input_tokens": 3936,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0,
+                "content": [
+                  {
+                    "input_tokens": 3936,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 0
+                  }
+                ]
+              },
+              "msg_0baafc001b36f8af016aed623622cc87d195b6e7c59a9b86da": {
+                "input_tokens": 0,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 502,
+                "content": [
+                  {
+                    "input_tokens": 0,
+                    "cached_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "output_tokens": 502
+                  }
+                ]
+              },
+              "rs_0baafc001b36f8af016aed623622dc87d1a19041292388db3c": {
+                "input_tokens": 2,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 183
+              }
+            },
+            "request_fields": {
+              "instructions": {
+                "input_tokens": 65,
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "output_tokens": 0
+              }
+            }
+          }
+        },
+        "wall_seconds": 19.719000000011874,
+        "transport_retries": 0
+      },
+      "counted_as": "design attempt",
+      "design_attempt": 3,
+      "circuit_sha256": "1b9195511ead8c2c465f562793c572825527f94de88ece494cb7dba061dbcc6c",
+      "public_diagnostic": {
+        "analyses": {
+          "op": {
+            "analysis": "op",
+            "ngspice_runs": 1,
+            "rows": [
+              {
+                "group": "op",
+                "bench": "tb_compliance.spi",
+                "corner": "tt",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 4.502907443915127e-05,
+                "vref_v": 0.6586214050941789,
+                "power_w": 7.87113910941689e-05,
+                "node_voltages": {
+                  "v(vss)": 0.0,
+                  "v(vdd)": 1.8,
+                  "v(iout)": 0.9,
+                  "v(vref)": 0.6586214050941789,
+                  "v(xref.pb)": 0.5642130403515783,
+                  "v(xref.ns)": 0.06086965576450959,
+                  "v(xref.xrset.rb)": 0.05794208376771592,
+                  "v(xref.xrstart.t1)": 1.799866418226019,
+                  "v(xref.xrstart.t2)": 0.02853698005269784,
+                  "v(xref.st)": 0.02840339827871668,
+                  "v(m.xref.xnkick.msky130_fd_pr__nfet_01v8#dbody)": 1.794415749335301e-11,
+                  "v(m.xref.xnkick.msky130_fd_pr__nfet_01v8#body)": 7.177662997371327e-12,
+                  "v(m.xref.xnkick.msky130_fd_pr__nfet_01v8#sbody)": 3.588831498755372e-12,
+                  "v(m.xref.xnsense.msky130_fd_pr__nfet_01v8#dbody)": 1.065726507418616e-12,
+                  "v(m.xref.xnsense.msky130_fd_pr__nfet_01v8#body)": 4.266447360349057e-13,
+                  "v(m.xref.xnsense.msky130_fd_pr__nfet_01v8#sbody)": 2.142076989247508e-13,
+                  "v(m.xref.xnout.msky130_fd_pr__nfet_01v8#dbody)": 3.604220888465476e-11,
+                  "v(m.xref.xnout.msky130_fd_pr__nfet_01v8#body)": 2.658642435024705e-11,
+                  "v(m.xref.xnout.msky130_fd_pr__nfet_01v8#sbody)": 1.329451533447248e-11,
+                  "v(m.xref.xn2.msky130_fd_pr__nfet_01v8#dbody)": 1.837664835469189e-11,
+                  "v(m.xref.xn2.msky130_fd_pr__nfet_01v8#body)": 8.043298155453711e-12,
+                  "v(m.xref.xn2.msky130_fd_pr__nfet_01v8#sbody)": 5.753243427550682e-12,
+                  "v(m.xref.xn1.msky130_fd_pr__nfet_01v8#dbody)": 2.089380631878108e-11,
+                  "v(m.xref.xn1.msky130_fd_pr__nfet_01v8#body)": 8.359153503190243e-12,
+                  "v(m.xref.xn1.msky130_fd_pr__nfet_01v8#sbody)": 4.181272455260317e-12,
+                  "v(m.xref.xp2.msky130_fd_pr__pfet_01v8#dbody)": 1.799999999958595,
+                  "v(m.xref.xp2.msky130_fd_pr__pfet_01v8#body)": 1.799999999979471,
+                  "v(m.xref.xp2.msky130_fd_pr__pfet_01v8#sbody)": 1.79999999998973,
+                  "v(m.xref.xp1.msky130_fd_pr__pfet_01v8#dbody)": 1.799999999962992,
+                  "v(m.xref.xp1.msky130_fd_pr__pfet_01v8#body)": 1.799999999983544,
+                  "v(m.xref.xp1.msky130_fd_pr__pfet_01v8#sbody)": 1.799999999991767
+                }
+              }
+            ],
+            "errors": []
+          },
+          "compliance": {
+            "analysis": "compliance",
+            "ngspice_runs": 1,
+            "rows": [
+              {
+                "group": "compliance",
+                "bench": "tb_compliance.spi",
+                "corner": "ss",
+                "vdd": 1.62,
+                "temp_c": 125,
+                "output_current_a": 5.302683781915896e-05,
+                "vref_v": 0.6435527829774786,
+                "power_w": 8.937485748105434e-05,
+                "compliance_current_mean_a": 5.31888903769225e-05,
+                "compliance_current_min_a": 5.161440950407492e-05,
+                "compliance_current_max_a": 5.448965098442393e-05,
+                "compliance_flatness": 0.05405718111383116
+              }
+            ],
+            "errors": []
+          },
+          "startup": {
+            "analysis": "startup",
+            "ngspice_runs": 1,
+            "rows": [
+              {
+                "group": "startup",
+                "bench": "tb_startup.spi",
+                "corner": "ff",
+                "vdd": 1.98,
+                "temp_c": -40,
+                "ramp_s": 1e-06,
+                "startup_final_current_a": 3.9341777952203574e-05,
+                "startup_final_vref_v": 0.6705214134769584,
+                "startup_settling_time_s": 0.0,
+                "startup_current_overshoot_ratio": 1.0165500371253986,
+                "startup_peak_supply_current_a": 2.844611366753513e-05,
+                "startup_energy_j": 3.6913414410217015e-10
+              }
+            ],
+            "errors": []
+          },
+          "mc_public": {
+            "analysis": "mc_public",
+            "ngspice_runs": 8,
+            "rows": [
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31000,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 4.489224189252461e-05,
+                "vref_v": 0.6583695147223894
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31001,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 4.520824900344778e-05,
+                "vref_v": 0.6587398286120971
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31002,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 4.272473196786919e-05,
+                "vref_v": 0.6551869971251645
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31003,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 4.615509466998624e-05,
+                "vref_v": 0.6604805450322785
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31004,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 4.519441527173207e-05,
+                "vref_v": 0.6583482664599679
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31005,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 4.602037036560702e-05,
+                "vref_v": 0.6597974263391211
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31006,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 4.534986622206638e-05,
+                "vref_v": 0.6595767156421536
+              },
+              {
+                "group": "mc",
+                "bench": "tb_mc.spi",
+                "seed": 31007,
+                "corner": "mc",
+                "vdd": 1.8,
+                "temp_c": 27,
+                "output_current_a": 4.439341791329099e-05,
+                "vref_v": 0.6574611646373735
+              }
+            ],
+            "errors": [],
+            "public_mc": {
+              "samples": 8,
+              "mean_a": 4.4992298413315535e-05,
+              "sigma_a": 1.0780203045054367e-06,
+              "yield": 1.0,
+              "seeds": [
+                31000,
+                31001,
+                31002,
+                31003,
+                31004,
+                31005,
+                31006,
+                31007
+              ]
+            }
+          }
+        },
+        "operating_point": {
+          "conditions": "TT, nominal supply, 27 C",
+          "expected_transistors": 7,
+          "measured_transistors": 7,
+          "devices": [
+            {
+              "device": "m.xdut.xp1.msky130_fd_pr__pfet_01v8",
+              "type": "p",
+              "id_uA": 9.765896999999999,
+              "vgs_V": 1.23561,
+              "vds_V": 1.141026,
+              "vdsat_V": 0.1968875,
+              "vth_V": 1.04293,
+              "saturation_margin_V": 0.9441385000000001
+            },
+            {
+              "device": "m.xdut.xp2.msky130_fd_pr__pfet_01v8",
+              "type": "p",
+              "id_uA": 9.775751999999999,
+              "vgs_V": 1.23561,
+              "vds_V": 1.235434,
+              "vdsat_V": 0.1968874,
+              "vth_V": 1.04293,
+              "saturation_margin_V": 1.0385465999999999
+            },
+            {
+              "device": "m.xdut.xn1.msky130_fd_pr__nfet_01v8",
+              "type": "n",
+              "id_uA": 9.765896999999999,
+              "vgs_V": 0.6585692,
+              "vds_V": 0.658517,
+              "vdsat_V": 0.1127059,
+              "vth_V": 0.5492048,
+              "saturation_margin_V": 0.5458111
+            },
+            {
+              "device": "m.xdut.xn2.msky130_fd_pr__nfet_01v8",
+              "type": "n",
+              "id_uA": 9.775751999999999,
+              "vgs_V": 0.5977387,
+              "vds_V": 0.5033172,
+              "vdsat_V": 0.0698375,
+              "vth_V": 0.5648906,
+              "saturation_margin_V": 0.4334797
+            },
+            {
+              "device": "m.xdut.xnout.msky130_fd_pr__nfet_01v8",
+              "type": "n",
+              "id_uA": 45.02907,
+              "vgs_V": 0.6585813,
+              "vds_V": 0.8999197,
+              "vdsat_V": 0.1193956,
+              "vth_V": 0.5403457,
+              "saturation_margin_V": 0.7805240999999999
+            },
+            {
+              "device": "m.xdut.xnsense.msky130_fd_pr__nfet_01v8",
+              "type": "n",
+              "id_uA": 1.6723620000000001,
+              "vgs_V": 0.6585941,
+              "vds_V": 0.02834887,
+              "vdsat_V": 0.09413578,
+              "vth_V": 0.5942571,
+              "saturation_margin_V": -0.06578691
+            },
+            {
+              "device": "m.xdut.xnkick.msky130_fd_pr__nfet_01v8",
+              "type": "n",
+              "id_uA": 7.691678e-08,
+              "vgs_V": 0.0284034,
+              "vds_V": 0.564213,
+              "vdsat_V": 0.04124495,
+              "vth_V": 0.5773334,
+              "saturation_margin_V": 0.52296805
+            }
+          ],
+          "exit_code": 0
+        },
+        "native_processes": 12
+      }
+    }
+  ]
+}

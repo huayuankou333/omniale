@@ -1,0 +1,322 @@
+Design attempt 1/3 has been evaluated with the predeclared public diagnostics. You have 2 complete design attempt(s) remaining. The following are measured public results and transistor operating points, not full signoff. Compare these measurements with the original specifications. No hidden PVT or final-score information is supplied. Return a complete revised design in the same output format.
+
+{
+  "analyses": {
+    "loop": {
+      "analysis": "loop",
+      "point": [
+        "tt",
+        1.8,
+        27
+      ],
+      "seed": null,
+      "ngspice_runs": 1,
+      "values": {},
+      "execution": {
+        "exit_code": 1,
+        "errors": [
+          "Fatal: Dsub = -0.197221 is negative.",
+          "Fatal error: detected during BSIM4v5.5.0 parameter checking for ",
+          "Error: RHS \"abs(0.5*(v(voutp)+v(voutn))-v(vocm))\" invalid",
+          "Error: RHS \"-(v(vdd)-v(vss))*i(vdd)\" invalid",
+          "Fatal: Dsub = -0.197221 is negative.",
+          "Fatal error: detected during BSIM4v5.5.0 parameter checking for ",
+          "Error: RHS \"v(voutp)-v(voutn)\" invalid",
+          "Error: RHS \"differential_gain*0.111111111111\" invalid",
+          "Error: RHS \"differential_gain/(1+loop_gain)\" invalid",
+          "Error: RHS \"vdb(loop_gain)\" invalid",
+          "Error: RHS \"180/pi*cph(loop_gain)\" invalid",
+          "Error: measure limited to tran, dc, sp, or ac analysis",
+          " meas ac low_frequency_loop_gain_db find loop_gain_db at=10 failed!",
+          "Error: measure limited to tran, dc, sp, or ac analysis",
+          " meas ac closed_loop_differential_gain_db find vdb(closed_loop_differential_response) at=10 failed!",
+          "Error: measure limited to tran, dc, sp, or ac analysis",
+          " meas ac loop_ugb_hz when loop_gain_db=0 fall=1 failed!",
+          "Error: measure limited to tran, dc, sp, or ac analysis"
+        ]
+      },
+      "simulation_log_tail": "Warning: can't find the initialization file spinit.\n\nChecking parameters for BSIM 4.5 model xota.xbn:nshort_model.21\nFatal: Dsub = -0.197221 is negative.\nFatal error: detected during BSIM4v5.5.0 parameter checking for \n    model xota.xbn:nshort_model.21 of device instance m.xota.xbn.msky130_fd_pr__nfet_01v8\n\ndoAnalyses: no such parameter on this device or parameter is missing\n\nop simulation(s) aborted\nWarning from checkvalid: vector voutp is not available or has zero length.\nError: RHS \"abs(0.5*(v(voutp)+v(voutn))-v(vocm))\" invalid\nWarning from checkvalid: vector vdd is not available or has zero length.\nError: RHS \"-(v(vdd)-v(vss))*i(vdd)\" invalid\nWarning from checkvalid: vector output_common_mode_error_v is not available or has zero length.\nWarning from checkvalid: vector power_w is not available or has zero length.\n\nChecking parameters for BSIM 4.5 model xota.xbn:nshort_model.21\nFatal: Dsub = -0.197221 is negative.\nFatal error: detected during BSIM4v5.5.0 parameter checking for \n    model xota.xbn:nshort_model.21 of device instance m.xota.xbn.msky130_fd_pr__nfet_01v8\n\ndoAnalyses: no such parameter on this device or parameter is missing\n\nac simulation(s) aborted\nWarning from checkvalid: vector voutp is not available or has zero length.\nError: RHS \"v(voutp)-v(voutn)\" invalid\nWarning from checkvalid: vector differential_gain is not available or has zero length.\nError: RHS \"differential_gain*0.111111111111\" invalid\nWarning from checkvalid: vector differential_gain is not available or has zero length.\nError: RHS \"differential_gain/(1+loop_gain)\" invalid\nWarning from checkvalid: vector loop_gain is not available or has zero length.\nError: RHS \"vdb(loop_gain)\" invalid\nWarning from checkvalid: vector loop_gain is not available or has zero length.\nError: RHS \"180/pi*cph(loop_gain)\" invalid\nError: measure limited to tran, dc, sp, or ac analysis\n meas ac low_frequency_loop_gain_db find loop_gain_db at=10 failed!\n\nError: measure limited to tran, dc, sp, or ac analysis\n meas ac closed_loop_differential_gain_db find vdb(closed_loop_differential_response) at=10 failed!\n\nError: measure limited to tran, dc, sp, or ac analysis\n meas ac loop_ugb_hz when loop_gain_db=0 fall=1 failed!\n\nError: measure limited to tran, dc, sp, or ac analysis\n meas ac phase_at_ugb_deg find loop_phase_deg when loop_gain_db=0 fall=1 failed!\n\nWarning from checkvalid: vector phase_at_ugb_deg is not available or has zero length.\nError: RHS \"180+phase_at_ugb_deg\" invalid\nWarning from checkvalid: vector phase_margin_deg is not available or has zero length.\nError: incomplete or empty netlist\n       or no \".plot\", \".print\", or \".fourier\" lines in batch mode;\nno simulations run!\n\nNote: No compatibility mode selected!\n\n\nCircuit: * public nominal return-ratio diagnostic for cs=1pf, cf=125ff, cl=250ff.\n\nDoing analysis at TEMP = 27.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\nDoing analysis at TEMP = 27.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\n"
+    },
+    "settling": {
+      "analysis": "settling",
+      "point": [
+        "tt",
+        1.8,
+        27
+      ],
+      "seed": null,
+      "ngspice_runs": 1,
+      "values": {},
+      "execution": {
+        "exit_code": 1,
+        "errors": [
+          "Fatal: Dsub = -0.197221 is negative.",
+          "Fatal error: detected during BSIM4v5.5.0 parameter checking for ",
+          "Error: RHS \"v(voutp)-v(voutn)\" invalid",
+          "Error: RHS \"abs(differential_output-0.9)\" invalid",
+          "Error: RHS \"abs(differential_output)\" invalid",
+          "Error: measure limited to tran, dc, sp, or ac analysis",
+          " meas tran rise_tolerance_cross when rise_error=9m cross=last from=25n to=64n failed!",
+          "Error: measure limited to tran, dc, sp, or ac analysis",
+          " meas tran fall_tolerance_cross when fall_error=9m cross=last from=65n to=105n failed!",
+          "Error: measure limited to tran, dc, sp, or ac analysis",
+          " meas tran rise_output_at_10ns find differential_output at=35n failed!",
+          "Error: measure limited to tran, dc, sp, or ac analysis",
+          " meas tran fall_output_at_10ns find differential_output at=75n failed!",
+          "Error: measure limited to tran, dc, sp, or ac analysis",
+          " meas tran high_static_output find differential_output at=64n failed!",
+          "Error: measure limited to tran, dc, sp, or ac analysis",
+          " meas tran low_static_output find differential_output at=104n failed!",
+          "Error: RHS \"rise_tolerance_cross-25n\" invalid"
+        ]
+      },
+      "simulation_log_tail": "Warning: can't find the initialization file spinit.\n\nChecking parameters for BSIM 4.5 model xota.xbn:nshort_model.21\nFatal: Dsub = -0.197221 is negative.\nFatal error: detected during BSIM4v5.5.0 parameter checking for \n    model xota.xbn:nshort_model.21 of device instance m.xota.xbn.msky130_fd_pr__nfet_01v8\n\ndoAnalyses: no such parameter on this device or parameter is missing\n\ntran simulation(s) aborted\nWarning from checkvalid: vector voutp is not available or has zero length.\nError: RHS \"v(voutp)-v(voutn)\" invalid\nWarning from checkvalid: vector differential_output is not available or has zero length.\nError: RHS \"abs(differential_output-0.9)\" invalid\nWarning from checkvalid: vector differential_output is not available or has zero length.\nError: RHS \"abs(differential_output)\" invalid\nError: measure limited to tran, dc, sp, or ac analysis\n meas tran rise_tolerance_cross when rise_error=9m cross=last from=25n to=64n failed!\n\nError: measure limited to tran, dc, sp, or ac analysis\n meas tran fall_tolerance_cross when fall_error=9m cross=last from=65n to=105n failed!\n\nError: measure limited to tran, dc, sp, or ac analysis\n meas tran rise_output_at_10ns find differential_output at=35n failed!\n\nError: measure limited to tran, dc, sp, or ac analysis\n meas tran fall_output_at_10ns find differential_output at=75n failed!\n\nError: measure limited to tran, dc, sp, or ac analysis\n meas tran high_static_output find differential_output at=64n failed!\n\nError: measure limited to tran, dc, sp, or ac analysis\n meas tran low_static_output find differential_output at=104n failed!\n\nWarning from checkvalid: vector rise_tolerance_cross is not available or has zero length.\nError: RHS \"rise_tolerance_cross-25n\" invalid\nWarning from checkvalid: vector fall_tolerance_cross is not available or has zero length.\nError: RHS \"fall_tolerance_cross-65n\" invalid\nWarning from checkvalid: vector rise_output_at_10ns is not available or has zero length.\nError: RHS \"abs(rise_output_at_10ns-0.9)/0.9\" invalid\nWarning from checkvalid: vector fall_output_at_10ns is not available or has zero length.\nError: RHS \"abs(fall_output_at_10ns)/0.9\" invalid\nWarning from checkvalid: vector high_static_output is not available or has zero length.\nError: RHS \"abs(high_static_output-0.9)/0.9\" invalid\nWarning from checkvalid: vector low_static_output is not available or has zero length.\nError: RHS \"abs(low_static_output)/0.9\" invalid\nWarning from checkvalid: vector rise_settling_time_s is not available or has zero length.\nWarning from checkvalid: vector rise_dynamic_error_fraction is not available or has zero length.\nWarning from checkvalid: vector high_static_error_fraction is not available or has zero length.\nError: incomplete or empty netlist\n       or no \".plot\", \".print\", or \".fourier\" lines in batch mode;\nno simulations run!\n\nNote: No compatibility mode selected!\n\n\nCircuit: * public nominal gain-8 sampling-feedback transient.\n\nDoing analysis at TEMP = 27.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\n"
+    },
+    "noise": {
+      "analysis": "noise",
+      "point": [
+        "tt",
+        1.8,
+        27
+      ],
+      "seed": null,
+      "ngspice_runs": 1,
+      "values": {},
+      "execution": {
+        "exit_code": 1,
+        "errors": [
+          "Fatal: Dsub = -0.197221 is negative.",
+          "Fatal error: detected during BSIM4v5.5.0 parameter checking for ",
+          "Error: RHS \"onoise_total\" invalid",
+          "Error: incomplete or empty netlist"
+        ]
+      },
+      "simulation_log_tail": "Warning: can't find the initialization file spinit.\n\nChecking parameters for BSIM 4.5 model xota.xbn:nshort_model.21\nFatal: Dsub = -0.197221 is negative.\nFatal error: detected during BSIM4v5.5.0 parameter checking for \n    model xota.xbn:nshort_model.21 of device instance m.xota.xbn.msky130_fd_pr__nfet_01v8\n\ndoAnalyses: no such parameter on this device or parameter is missing\n\nnoise simulation(s) aborted\nWarning from checkvalid: vector onoise_total is not available or has zero length.\nError: RHS \"onoise_total\" invalid\nWarning from checkvalid: vector output_noise_vrms is not available or has zero length.\nError: incomplete or empty netlist\n       or no \".plot\", \".print\", or \".fourier\" lines in batch mode;\nno simulations run!\n\nNote: No compatibility mode selected!\n\n\nCircuit: * public nominal closed-loop differential output-noise diagnostic.\n\nDoing analysis at TEMP = 27.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\n"
+    },
+    "ranges": {
+      "analysis": "ranges",
+      "point": [
+        "tt",
+        1.8,
+        27
+      ],
+      "seed": null,
+      "ngspice_runs": 1,
+      "values": {},
+      "execution": {
+        "exit_code": 1,
+        "errors": [
+          "Fatal: Dsub = -0.197221 is negative.",
+          "Fatal error: detected during BSIM4v5.5.0 parameter checking for ",
+          "Error: RHS \"v(voutp)-v(voutn)\" invalid",
+          "Error: RHS \"deriv(differential_output)\" invalid",
+          "Error: RHS \"db(local_gain)\" invalid",
+          "Error: measure limited to tran, dc, sp, or ac analysis",
+          " meas dc open_loop_gain_peak_db max local_gain_db failed!",
+          "Error: RHS \"open_loop_gain_peak_db-3\" invalid",
+          "Error: &gain_3db_db: no such variable.",
+          "Error: RHS \"\" invalid",
+          "Error: measure limited to tran, dc, sp, or ac analysis",
+          " meas dc output_range_min_v find differential_output when local_gain_db=vexprint1 rise=1 failed!",
+          "Error: &gain_3db_db: no such variable.",
+          "Error: RHS \"\" invalid",
+          "Error: measure limited to tran, dc, sp, or ac analysis",
+          " meas dc output_range_max_v find differential_output when local_gain_db=vexprint2 fall=1 failed!",
+          "Error: RHS \"output_range_max_v-output_range_min_v\" invalid",
+          "Error: incomplete or empty netlist"
+        ]
+      },
+      "simulation_log_tail": "Warning: can't find the initialization file spinit.\n\nChecking parameters for BSIM 4.5 model xota.xbn:nshort_model.21\nFatal: Dsub = -0.197221 is negative.\nFatal error: detected during BSIM4v5.5.0 parameter checking for \n    model xota.xbn:nshort_model.21 of device instance m.xota.xbn.msky130_fd_pr__nfet_01v8\n\ndoAnalyses: no such parameter on this device or parameter is missing\n\ndc simulation(s) aborted\nWarning from checkvalid: vector voutp is not available or has zero length.\nError: RHS \"v(voutp)-v(voutn)\" invalid\nWarning from checkvalid: vector differential_output is not available or has zero length.\nError: RHS \"deriv(differential_output)\" invalid\nWarning from checkvalid: vector local_gain is not available or has zero length.\nError: RHS \"db(local_gain)\" invalid\nError: measure limited to tran, dc, sp, or ac analysis\n meas dc open_loop_gain_peak_db max local_gain_db failed!\n\nWarning from checkvalid: vector open_loop_gain_peak_db is not available or has zero length.\nError: RHS \"open_loop_gain_peak_db-3\" invalid\nError: &gain_3db_db: no such variable.\nError: RHS \"\" invalid\nError: measure limited to tran, dc, sp, or ac analysis\n meas dc output_range_min_v find differential_output when local_gain_db=vexprint1 rise=1 failed!\n\nError: &gain_3db_db: no such variable.\nError: RHS \"\" invalid\nError: measure limited to tran, dc, sp, or ac analysis\n meas dc output_range_max_v find differential_output when local_gain_db=vexprint2 fall=1 failed!\n\nWarning from checkvalid: vector output_range_max_v is not available or has zero length.\nError: RHS \"output_range_max_v-output_range_min_v\" invalid\nWarning from checkvalid: vector open_loop_gain_peak_db is not available or has zero length.\nError: incomplete or empty netlist\n       or no \".plot\", \".print\", or \".fourier\" lines in batch mode;\nno simulations run!\n\nNote: No compatibility mode selected!\n\n\nCircuit: * public nominal 3 db-compression differential output-range diagnostic.\n\nDoing analysis at TEMP = 27.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\n"
+    },
+    "cmfb_recovery": {
+      "analysis": "cmfb_recovery",
+      "point": [
+        "tt",
+        1.8,
+        27
+      ],
+      "seed": null,
+      "ngspice_runs": 1,
+      "values": {},
+      "execution": {
+        "exit_code": 1,
+        "errors": [
+          "Fatal: Dsub = -0.197221 is negative.",
+          "Fatal error: detected during BSIM4v5.5.0 parameter checking for ",
+          "Error: RHS \"abs(0.5*(v(voutp)+v(voutn))-v(vocm))\" invalid",
+          "Error: RHS \"abs(0.5*(v(voutp)+v(voutn))-0.5*(v(routp)+v(routn)))\" invalid",
+          "Error: measure limited to tran, dc, sp, or ac analysis",
+          " meas tran cmfb_static_error_v find cm_error at=15n failed!",
+          "Error: measure limited to tran, dc, sp, or ac analysis",
+          " meas tran cmfb_peak_deviation_v max cm_deviation from=20n to=45n failed!",
+          "Error: measure limited to tran, dc, sp, or ac analysis",
+          " meas tran cmfb_residual_20ns_v find cm_deviation at=60.2n failed!",
+          "Error: measure limited to tran, dc, sp, or ac analysis",
+          " meas tran cmfb_residual_100ns_v find cm_deviation at=140.2n failed!",
+          "Error: incomplete or empty netlist"
+        ]
+      },
+      "simulation_log_tail": "Warning: can't find the initialization file spinit.\n\nChecking parameters for BSIM 4.5 model xref.xbn:nshort_model.21\nFatal: Dsub = -0.197221 is negative.\nFatal error: detected during BSIM4v5.5.0 parameter checking for \n    model xref.xbn:nshort_model.21 of device instance m.xref.xbn.msky130_fd_pr__nfet_01v8\n\ndoAnalyses: no such parameter on this device or parameter is missing\n\ntran simulation(s) aborted\nWarning from checkvalid: vector voutp is not available or has zero length.\nError: RHS \"abs(0.5*(v(voutp)+v(voutn))-v(vocm))\" invalid\nWarning from checkvalid: vector voutp is not available or has zero length.\nError: RHS \"abs(0.5*(v(voutp)+v(voutn))-0.5*(v(routp)+v(routn)))\" invalid\nError: measure limited to tran, dc, sp, or ac analysis\n meas tran cmfb_static_error_v find cm_error at=15n failed!\n\nError: measure limited to tran, dc, sp, or ac analysis\n meas tran cmfb_peak_deviation_v max cm_deviation from=20n to=45n failed!\n\nError: measure limited to tran, dc, sp, or ac analysis\n meas tran cmfb_residual_20ns_v find cm_deviation at=60.2n failed!\n\nError: measure limited to tran, dc, sp, or ac analysis\n meas tran cmfb_residual_100ns_v find cm_deviation at=140.2n failed!\n\nWarning from checkvalid: vector cmfb_static_error_v is not available or has zero length.\nError: incomplete or empty netlist\n       or no \".plot\", \".print\", or \".fourier\" lines in batch mode;\nno simulations run!\n\nNote: No compatibility mode selected!\n\n\nCircuit: * public nominal cmfb recovery diagnostic with the specified disturbance.\n\nDoing analysis at TEMP = 27.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\ncmfb_peak_limit_v = 1.000000e-01\ncmfb_residual_20ns_limit_v = 5.000000e-03\ncmfb_residual_100ns_limit_v = 1.000000e-03\n"
+    },
+    "mismatch": {
+      "analysis": "mismatch",
+      "point": [
+        "tt",
+        1.8,
+        27
+      ],
+      "seed": 51000,
+      "ngspice_runs": 1,
+      "values": {},
+      "execution": {
+        "exit_code": 1,
+        "errors": [
+          "Fatal: Dsub = -0.197221 is negative.",
+          "Fatal error: detected during BSIM4v5.5.0 parameter checking for ",
+          "Error: RHS \"v(voutp)-v(voutn)\" invalid",
+          "Error: RHS \"vdb(closed_common_response)\" invalid",
+          "Fatal: Dsub = -0.197221 is negative.",
+          "Fatal error: detected during BSIM4v5.5.0 parameter checking for ",
+          "Error: RHS \"v(voutp)-v(voutn)\" invalid",
+          "Error: RHS \"vdb(closed_vdd_response)\" invalid",
+          "Fatal: Dsub = -0.197221 is negative.",
+          "Fatal error: detected during BSIM4v5.5.0 parameter checking for ",
+          "Error: RHS \"v(voutp)-v(voutn)\" invalid",
+          "Error: RHS \"vdb(closed_vss_response)\" invalid",
+          "Error: incomplete or empty netlist"
+        ]
+      },
+      "note": "Subtract each reported feedthrough dB value from nominal TT closed_loop_differential_gain_db to obtain CMRR/PSRR. Original public seed 51000 is disjoint from final seeds 41000..41019.",
+      "simulation_log_tail": "Warning: can't find the initialization file spinit.\n\nChecking parameters for BSIM 4.5 model xota.xbn:nshort_model.21\nFatal: Dsub = -0.197221 is negative.\nFatal error: detected during BSIM4v5.5.0 parameter checking for \n    model xota.xbn:nshort_model.21 of device instance m.xota.xbn.msky130_fd_pr__nfet_01v8\n\ndoAnalyses: no such parameter on this device or parameter is missing\n\nac simulation(s) aborted\nWarning from checkvalid: vector voutp is not available or has zero length.\nError: RHS \"v(voutp)-v(voutn)\" invalid\nWarning from checkvalid: vector closed_common_response is not available or has zero length.\nError: RHS \"vdb(closed_common_response)\" invalid\nWarning from checkvalid: vector mc_closed_cm_10_db is not available or has zero length.\n\nChecking parameters for BSIM 4.5 model xota.xbn:nshort_model.21\nFatal: Dsub = -0.197221 is negative.\nFatal error: detected during BSIM4v5.5.0 parameter checking for \n    model xota.xbn:nshort_model.21 of device instance m.xota.xbn.msky130_fd_pr__nfet_01v8\n\ndoAnalyses: no such parameter on this device or parameter is missing\n\nac simulation(s) aborted\nWarning from checkvalid: vector voutp is not available or has zero length.\nError: RHS \"v(voutp)-v(voutn)\" invalid\nWarning from checkvalid: vector closed_vdd_response is not available or has zero length.\nError: RHS \"vdb(closed_vdd_response)\" invalid\nWarning from checkvalid: vector mc_closed_vdd_10_db is not available or has zero length.\n\nChecking parameters for BSIM 4.5 model xota.xbn:nshort_model.21\nFatal: Dsub = -0.197221 is negative.\nFatal error: detected during BSIM4v5.5.0 parameter checking for \n    model xota.xbn:nshort_model.21 of device instance m.xota.xbn.msky130_fd_pr__nfet_01v8\n\ndoAnalyses: no such parameter on this device or parameter is missing\n\nac simulation(s) aborted\nWarning from checkvalid: vector voutp is not available or has zero length.\nError: RHS \"v(voutp)-v(voutn)\" invalid\nWarning from checkvalid: vector closed_vss_response is not available or has zero length.\nError: RHS \"vdb(closed_vss_response)\" invalid\nWarning from checkvalid: vector mc_closed_vss_10_db is not available or has zero length.\nError: incomplete or empty netlist\n       or no \".plot\", \".print\", or \".fourier\" lines in batch mode;\nno simulations run!\n\nNote: No compatibility mode selected!\n\n\nCircuit: * public one-seed local-mismatch rejection diagnostic at 10 hz.\n\nDoing analysis at TEMP = 27.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\nDoing analysis at TEMP = 27.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\nDoing analysis at TEMP = 27.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\n"
+    }
+  },
+  "operating_point": {
+    "conditions": "TT, nominal supply, 27 C",
+    "expected_transistors": 12,
+    "measured_transistors": 12,
+    "devices": [
+      {
+        "device": "m.xdut.xbn.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 0.0,
+        "vgs_V": 0.0,
+        "vds_V": 0.0,
+        "vdsat_V": 0.0,
+        "vth_V": 0.0,
+        "saturation_margin_V": 0.0
+      },
+      {
+        "device": "m.xdut.xbp.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 0.0,
+        "vgs_V": 0.0,
+        "vds_V": 0.0,
+        "vdsat_V": 0.0,
+        "vth_V": 0.0,
+        "saturation_margin_V": 0.0
+      },
+      {
+        "device": "m.xdut.xtail.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 0.0,
+        "vgs_V": 0.0,
+        "vds_V": 0.0,
+        "vdsat_V": 0.0,
+        "vth_V": 0.0,
+        "saturation_margin_V": 0.0
+      },
+      {
+        "device": "m.xdut.xinn.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 0.0,
+        "vgs_V": 0.0,
+        "vds_V": 0.0,
+        "vdsat_V": 0.0,
+        "vth_V": 0.0,
+        "saturation_margin_V": 0.0
+      },
+      {
+        "device": "m.xdut.xinp.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 0.0,
+        "vgs_V": 0.0,
+        "vds_V": 0.0,
+        "vdsat_V": 0.0,
+        "vth_V": 0.0,
+        "saturation_margin_V": 0.0
+      },
+      {
+        "device": "m.xdut.xcmtail.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 0.0,
+        "vgs_V": 0.0,
+        "vds_V": 0.0,
+        "vdsat_V": 0.0,
+        "vth_V": 0.0,
+        "saturation_margin_V": 0.0
+      },
+      {
+        "device": "m.xdut.xcmref.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 0.0,
+        "vgs_V": 0.0,
+        "vds_V": 0.0,
+        "vdsat_V": 0.0,
+        "vth_V": 0.0,
+        "saturation_margin_V": 0.0
+      },
+      {
+        "device": "m.xdut.xcmsense.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 0.0,
+        "vgs_V": 0.0,
+        "vds_V": 0.0,
+        "vdsat_V": 0.0,
+        "vth_V": 0.0,
+        "saturation_margin_V": 0.0
+      },
+      {
+        "device": "m.xdut.xcmloadr.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 0.0,
+        "vgs_V": 0.0,
+        "vds_V": 0.0,
+        "vdsat_V": 0.0,
+        "vth_V": 0.0,
+        "saturation_margin_V": 0.0
+      },
+      {
+        "device": "m.xdut.xcmloado.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 0.0,
+        "vgs_V": 0.0,
+        "vds_V": 0.0,
+        "vdsat_V": 0.0,
+        "vth_V": 0.0,
+        "saturation_margin_V": 0.0
+      },
+      {
+        "device": "m.xdut.xlp.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 0.0,
+        "vgs_V": 0.0,
+        "vds_V": 0.0,
+        "vdsat_V": 0.0,
+        "vth_V": 0.0,
+        "saturation_margin_V": 0.0
+      },
+      {
+        "device": "m.xdut.xln.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 0.0,
+        "vgs_V": 0.0,
+        "vds_V": 0.0,
+        "vdsat_V": 0.0,
+        "vth_V": 0.0,
+        "saturation_margin_V": 0.0
+      }
+    ],
+    "exit_code": 0
+  },
+  "native_processes": 7
+}

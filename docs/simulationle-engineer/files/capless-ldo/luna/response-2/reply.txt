@@ -1,0 +1,184 @@
+```json
+{
+  "title": "Reference-connected PMOS LDO",
+  "parameters": {
+    "pass_w": 100,
+    "pass_l": 1,
+    "pair_w": 12,
+    "pair_l": 1,
+    "mirror_w": 12,
+    "tail_w": 8,
+    "bias_r": "100k",
+    "feedback_top": "150k",
+    "feedback_bottom": "100k",
+    "output_cap": "800p",
+    "comp_cap": "100p"
+  },
+  "devices": [
+    {
+      "name": "XPASS",
+      "kind": "pmos",
+      "nodes": ["vout", "drive", "vin", "vin"],
+      "model": "sky130_fd_pr__pfet_01v8",
+      "w": "pass_w",
+      "l": "pass_l",
+      "nf": 20,
+      "m": 1,
+      "x": 1200,
+      "y": 400,
+      "group": "pass_stage"
+    },
+    {
+      "name": "RBIAS",
+      "kind": "resistor",
+      "nodes": ["vin", "bias"],
+      "value": "bias_r",
+      "x": 300,
+      "y": 700,
+      "group": "bias"
+    },
+    {
+      "name": "XBIAS",
+      "kind": "nmos",
+      "nodes": ["bias", "bias", "vss", "vss"],
+      "model": "sky130_fd_pr__nfet_01v8",
+      "w": 8,
+      "l": 1,
+      "nf": 1,
+      "m": 1,
+      "x": 600,
+      "y": 700,
+      "group": "bias"
+    },
+    {
+      "name": "XTAIL",
+      "kind": "nmos",
+      "nodes": ["tail", "bias", "vss", "vss"],
+      "model": "sky130_fd_pr__nfet_01v8",
+      "w": "tail_w",
+      "l": 1,
+      "nf": 1,
+      "m": 1,
+      "x": 900,
+      "y": 1000,
+      "group": "error_amplifier"
+    },
+    {
+      "name": "XINP",
+      "kind": "nmos",
+      "nodes": ["left", "vref", "tail", "vss"],
+      "model": "sky130_fd_pr__nfet_01v8",
+      "w": "pair_w",
+      "l": "pair_l",
+      "nf": 1,
+      "m": 1,
+      "x": 1200,
+      "y": 1000,
+      "group": "error_amplifier"
+    },
+    {
+      "name": "XINM",
+      "kind": "nmos",
+      "nodes": ["right", "fb", "tail", "vss"],
+      "model": "sky130_fd_pr__nfet_01v8",
+      "w": "pair_w",
+      "l": "pair_l",
+      "nf": 1,
+      "m": 1,
+      "x": 1500,
+      "y": 1000,
+      "group": "error_amplifier"
+    },
+    {
+      "name": "XMP1",
+      "kind": "pmos",
+      "nodes": ["left", "left", "vin", "vin"],
+      "model": "sky130_fd_pr__pfet_01v8",
+      "w": "mirror_w",
+      "l": 1,
+      "nf": 1,
+      "m": 1,
+      "x": 1800,
+      "y": 1000,
+      "group": "error_amplifier"
+    },
+    {
+      "name": "XMP2",
+      "kind": "pmos",
+      "nodes": ["right", "left", "vin", "vin"],
+      "model": "sky130_fd_pr__pfet_01v8",
+      "w": "mirror_w",
+      "l": 1,
+      "nf": 1,
+      "m": 1,
+      "x": 2100,
+      "y": 1000,
+      "group": "error_amplifier"
+    },
+    {
+      "name": "RFTOP",
+      "kind": "resistor",
+      "nodes": ["vout", "fb"],
+      "value": "feedback_top",
+      "x": 300,
+      "y": 1300,
+      "group": "feedback"
+    },
+    {
+      "name": "RFBOT",
+      "kind": "resistor",
+      "nodes": ["fb", "vss"],
+      "value": "feedback_bottom",
+      "x": 600,
+      "y": 1300,
+      "group": "feedback"
+    },
+    {
+      "name": "COUT",
+      "kind": "capacitor",
+      "nodes": ["vout", "vss"],
+      "value": "output_cap",
+      "x": 900,
+      "y": 1300,
+      "group": "compensation"
+    },
+    {
+      "name": "CCOMP",
+      "kind": "capacitor",
+      "nodes": ["drive", "vss"],
+      "value": "comp_cap",
+      "x": 1200,
+      "y": 1300,
+      "group": "compensation"
+    }
+  ]
+}
+```
+
+```markdown
+# Design documentation
+
+## Architecture
+
+The circuit is a reference-connected, PMOS-pass LDO concept. A resistor-fed diode-connected NMOS supplies a simple tail-current bias. An NMOS differential pair compares `vref` against the divided output `fb`; a PMOS current-mirror load converts the differential signal to the pass-gate drive node. The PMOS pass transistor connects `vin` to `vout`.
+
+The divider uses 150 kÎ© over 100 kÎ©, so its nominal feedback fraction is 0.4. Ideal capacitors provide output storage and drive-node compensation, totaling 900 pF.
+
+## Parameters
+
+- `pass_w`, `pass_l`: pass-device geometry. `pass_w` is per-finger width with `nf=20`.
+- `pair_w`, `pair_l`: input differential-pair geometry.
+- `mirror_w`: PMOS active-load geometry.
+- `tail_w`: tail-current transistor width.
+- `bias_r`: resistor-fed bias current control.
+- `feedback_top`, `feedback_bottom`: output-divider ratio.
+- `output_cap`, `comp_cap`: output and drive-node capacitance.
+
+## Validation
+
+Revision 1 failed before simulation because the pass-device instance was rejected as having no valid model name. The reported netlist used a 1200 Âµm device width. This revision reduces the pass-device width parameter to 100 Âµm while retaining 20 fingers, and adds a reference-connected differential input stage. No revised simulations or operating points are available yet; DC, PSR, transient, startup, and PVT performance are unverified.
+
+## Limitations
+
+This is an uncharacterized minimal amplifier and bias implementation, not a proven LDO. Its loop gain, polarity, startup behavior, bias sufficiency, dropout margin, and stability have not been measured. The very large pass device and ideal capacitors are conceptual choices subject to simulation and physical implementation review. No full-PVT or signoff claims are made.
+```

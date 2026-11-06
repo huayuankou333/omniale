@@ -1,0 +1,23 @@
+* Beta-multiplier current reference
+* Pins: vss vdd vref iout
+* The externally visible vref pin is the NMOS core gate-bias node.
+
+.subckt beta_multiplier_reference vss vdd vref iout
+
+* Beta-multiplier core: M2 is wider than diode-connected M1.
+XMN1 vref vref vss vss sky130_fd_pr__nfet_01v8 w=2 l=1 nf=1
+XMN2 nmir vref nsrc vss sky130_fd_pr__nfet_01v8 w=8 l=1 nf=1
+XRSET nsrc vss vss sky130_fd_pr__res_high_po w=1 l=100
+
+* PMOS mirror supplies the core and mirrors current to the output branch.
+XMP1 vref vref vdd vdd sky130_fd_pr__pfet_01v8 w=12 l=1 nf=1
+XMP2 nout vref vdd vdd sky130_fd_pr__pfet_01v8 w=12 l=1 nf=1
+
+* NMOS output current sink.
+XMNOUT iout vref vss vss sky130_fd_pr__nfet_01v8 w=8 l=1 nf=1
+
+* Startup assist: on when the mirror node is low, and reduced as the
+* reference branch establishes its operating point.
+XSTART vref nmir vdd vdd sky130_fd_pr__pfet_01v8 w=0.42 l=10 nf=1
+
+.ends beta_multiplier_reference

@@ -1,0 +1,30 @@
+* Fully differential sampling-feedback OTA
+* Pin order: vss iref vdd vinn vinp vocm voutn voutp
+* iref is the only external analog bias port.
+*
+* The prior version did not use iref, leaving the input pair effectively
+* unbiased. Here the external 50 uA reference establishes an NMOS diode
+* voltage, which is mirrored into the input-pair tail and CMFB bias branches.
+* Output resistors provide a weak DC common-mode return to vocm.
+
+.subckt sampling_feedback_ota vss iref vdd vinn vinp vocm voutn voutp
+
+* Reference current sink and NMOS bias mirror
+XREFN iref iref vss vss sky130_fd_pr__nfet_01v8 l=0.50 w=8 nf=2
+XTAIL nt iref vss vss sky130_fd_pr__nfet_01v8 l=0.50 w=16 nf=4
+
+* Differential input pair
+XINN voutn vinn nt vss sky130_fd_pr__nfet_01v8 l=0.30 w=32 nf=8
+XINP voutp vinp nt vss sky130_fd_pr__nfet_01v8 l=0.30 w=32 nf=8
+
+* PMOS loads: diode-connected reference leg and mirrored output leg.
+* The reference leg is biased from the NMOS input pair's tail current.
+XLOADREF nload nload vdd vdd sky130_fd_pr__pfet_01v8 l=0.50 w=32 nf=8
+XLOADP voutp nload vdd vdd sky130_fd_pr__pfet_01v8 l=0.50 w=32 nf=8
+XLOADN voutn nload vdd vdd sky130_fd_pr__pfet_01v8 l=0.50 w=32 nf=8
+
+* Weak DC common-mode restoration toward the requested reference.
+RVCMP voutp vocm 1meg
+RVCMN voutn vocm 1meg
+
+.ends sampling_feedback_ota

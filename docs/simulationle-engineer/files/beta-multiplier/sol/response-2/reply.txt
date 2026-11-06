@@ -1,0 +1,29 @@
+```spice
+* Self-biased beta-multiplier current reference.
+* Physical PDK devices only; geometry is in micrometres.
+.subckt beta_multiplier_reference vss vdd vref iout
+
+* Equal-current PMOS mirror closes the self-bias loop.
+XP1 vref pb vdd vdd sky130_fd_pr__pfet_01v8 w=12 l=2 nf=2
+XP2 pb   pb vdd vdd sky130_fd_pr__pfet_01v8 w=12 l=2 nf=2
+
+* Four-to-one beta ratio with physical source degeneration.
+XN1 vref vref vss vss sky130_fd_pr__nfet_01v8 w=12 l=2 nf=2
+XN2 pb   vref ns  vss sky130_fd_pr__nfet_01v8 w=48 l=2 nf=8
+XRSET ns vss vss sky130_fd_pr__res_high_po w=1 l=18
+
+* Four-times output-current mirror.
+XNOUT iout vref vss vss sky130_fd_pr__nfet_01v8 w=48 l=2 nf=8
+
+* Resistively enabled, bias-disabled startup.
+* A physical high-resistance poly pullup replaces the problematic
+* narrow, very-long-channel PMOS used in the first submission.
+XRSTART vdd st vss sky130_fd_pr__res_xhigh_po w=1 l=500
+XNSENSE st vref vss vss sky130_fd_pr__nfet_01v8 w=4 l=1 nf=1
+XNKICK pb st vss vss sky130_fd_pr__nfet_01v8 w=1 l=2 nf=1
+
+* Physical bias-node compensation.
+XCBIAS vref vss sky130_fd_pr__cap_mim_m3_1 w=15 l=15 mf=1
+
+.ends beta_multiplier_reference
+```

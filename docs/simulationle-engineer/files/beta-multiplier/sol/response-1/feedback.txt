@@ -1,0 +1,268 @@
+Design attempt 1/3 has been evaluated with the predeclared public diagnostics. You have 2 complete design attempt(s) remaining. The following are measured public results and transistor operating points, not full signoff. Compare these measurements with the original specifications. No hidden PVT or final-score information is supplied. Return a complete revised design in the same output format.
+
+{
+  "analyses": {
+    "op": {
+      "analysis": "op",
+      "ngspice_runs": 1,
+      "rows": [
+        {
+          "group": "op",
+          "bench": "tb_compliance.spi",
+          "corner": "tt",
+          "vdd": 1.8,
+          "temp_c": 27,
+          "output_current_a": 4.977549273788018e-05,
+          "vref_v": 0.6586214046448811,
+          "power_w": 8.095352898719322e-05,
+          "node_voltages": {
+            "v(vss)": 0.0,
+            "v(vdd)": 1.8,
+            "v(iout)": 0.9,
+            "v(vref)": 0.6586214046448811,
+            "v(xref.pb)": 0.5642130411628213,
+            "v(xref.ns)": 0.06086965554560063,
+            "v(xref.xrset.rb)": 0.05794208355933555,
+            "v(xref.st)": 0.008180613495630292,
+            "v(m.xref.xnkick.msky130_fd_pr__nfet_01v8#dbody)": 1.79441575187612e-11,
+            "v(m.xref.xnkick.msky130_fd_pr__nfet_01v8#body)": 7.177663007501368e-12,
+            "v(m.xref.xnkick.msky130_fd_pr__nfet_01v8#sbody)": 3.588831503739734e-12,
+            "v(m.xref.xnsense.msky130_fd_pr__nfet_01v8#dbody)": 3.231943976829373e-13,
+            "v(m.xref.xnsense.msky130_fd_pr__nfet_01v8#body)": 1.293931278511001e-13,
+            "v(m.xref.xnsense.msky130_fd_pr__nfet_01v8#sbody)": 6.49849857349562e-14,
+            "v(m.xref.xpstart.msky130_fd_pr__pfet_01v8#dbody)": 1.799999999943703,
+            "v(m.xref.xpstart.msky130_fd_pr__pfet_01v8#body)": 1.799999999977476,
+            "v(m.xref.xpstart.msky130_fd_pr__pfet_01v8#sbody)": 1.799999999988725,
+            "v(m.xref.xnout.msky130_fd_pr__nfet_01v8#dbody)": 3.832101889441817e-11,
+            "v(m.xref.xnout.msky130_fd_pr__nfet_01v8#body)": 3.114469949602285e-11,
+            "v(m.xref.xnout.msky130_fd_pr__nfet_01v8#sbody)": 1.557407829727015e-11,
+            "v(m.xref.xn2.msky130_fd_pr__nfet_01v8#dbody)": 1.837664837861004e-11,
+            "v(m.xref.xn2.msky130_fd_pr__nfet_01v8#body)": 8.043298162725511e-12,
+            "v(m.xref.xn2.msky130_fd_pr__nfet_01v8#sbody)": 5.753243425447707e-12,
+            "v(m.xref.xn1.msky130_fd_pr__nfet_01v8#dbody)": 2.08938063047407e-11,
+            "v(m.xref.xn1.msky130_fd_pr__nfet_01v8#body)": 8.359153497556129e-12,
+            "v(m.xref.xn1.msky130_fd_pr__nfet_01v8#sbody)": 4.181272452431402e-12,
+            "v(m.xref.xp2.msky130_fd_pr__pfet_01v8#dbody)": 1.799999999958595,
+            "v(m.xref.xp2.msky130_fd_pr__pfet_01v8#body)": 1.799999999979471,
+            "v(m.xref.xp2.msky130_fd_pr__pfet_01v8#sbody)": 1.79999999998973,
+            "v(m.xref.xp1.msky130_fd_pr__pfet_01v8#dbody)": 1.799999999962992,
+            "v(m.xref.xp1.msky130_fd_pr__pfet_01v8#body)": 1.799999999983544,
+            "v(m.xref.xp1.msky130_fd_pr__pfet_01v8#sbody)": 1.799999999991767
+          }
+        }
+      ],
+      "errors": []
+    },
+    "compliance": {
+      "analysis": "compliance",
+      "ngspice_runs": 1,
+      "rows": [],
+      "errors": [
+        {
+          "exit_code": 1,
+          "raw_exists": false,
+          "errors": [
+            "Fatal error: detected during BSIM4v5.5.0 parameter checking for "
+          ],
+          "simulation_log_tail": "Warning: can't find the initialization file spinit.\n\nChecking parameters for BSIM 4.5 model xref.xnsense:nshort_model.21\nWarning: Eta0 = -0.00388734 is negative.\n\nChecking parameters for BSIM 4.5 model xref.xpstart:pshort_model.41\nFatal: Pclm = -0.00102272 is not positive.\nWarning: A2 = 1.1022 is larger than 1. A2 is set to 1 and A1 is set to 0.\nFatal error: detected during BSIM4v5.5.0 parameter checking for \n    model xref.xpstart:pshort_model.41 of device instance m.xref.xpstart.msky130_fd_pr__pfet_01v8\n\ndoAnalyses: no such parameter on this device or parameter is missing\n\nrun simulation(s) aborted\n\nNote: No compatibility mode selected!\n\n\nCircuit: * output-compliance sweep.\n\nASCII raw file \"D:/LINK/SimulationLE/case/D2/circuit_beta_multiplier/runs_feedback3/20261106_130921/gpt-6.1-sol/turn_001/public_diagnostics/compliance/000_compliance/waveform.raw\"\nDoing analysis at TEMP = 125.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\n\nTotal analysis time (seconds) = 0\n\nTotal elapsed time (seconds) = 1.105 \n\nTotal DRAM available = 16108.242 MB.\nDRAM currently available = 1679.801 MB.\nMaximum ngspice program size =   59.043 MB.\nCurrent ngspice program size =   28.871 MB.\n\n"
+        }
+      ]
+    },
+    "startup": {
+      "analysis": "startup",
+      "ngspice_runs": 1,
+      "rows": [
+        {
+          "group": "startup",
+          "bench": "tb_startup.spi",
+          "corner": "ff",
+          "vdd": 1.98,
+          "temp_c": -40,
+          "ramp_s": 1e-06,
+          "startup_final_current_a": 4.135610547116593e-05,
+          "startup_final_vref_v": 0.6705214134741727,
+          "startup_settling_time_s": 0.0,
+          "startup_current_overshoot_ratio": 1.1589599668141406,
+          "startup_peak_supply_current_a": 4.103993666340622e-05,
+          "startup_energy_j": 3.498855463390999e-10
+        }
+      ],
+      "errors": []
+    },
+    "mc_public": {
+      "analysis": "mc_public",
+      "ngspice_runs": 8,
+      "rows": [
+        {
+          "group": "mc",
+          "bench": "tb_mc.spi",
+          "seed": 31001,
+          "corner": "mc",
+          "vdd": 1.8,
+          "temp_c": 27,
+          "output_current_a": 4.98484617570405e-05,
+          "vref_v": 0.6587398281165506
+        },
+        {
+          "group": "mc",
+          "bench": "tb_mc.spi",
+          "seed": 31002,
+          "corner": "mc",
+          "vdd": 1.8,
+          "temp_c": 27,
+          "output_current_a": 4.7180493957244e-05,
+          "vref_v": 0.6551869965807562
+        },
+        {
+          "group": "mc",
+          "bench": "tb_mc.spi",
+          "seed": 31003,
+          "corner": "mc",
+          "vdd": 1.8,
+          "temp_c": 27,
+          "output_current_a": 5.12317572969323e-05,
+          "vref_v": 0.6604805445730212
+        },
+        {
+          "group": "mc",
+          "bench": "tb_mc.spi",
+          "seed": 31004,
+          "corner": "mc",
+          "vdd": 1.8,
+          "temp_c": 27,
+          "output_current_a": 4.9974434732869e-05,
+          "vref_v": 0.6583482659102178
+        },
+        {
+          "group": "mc",
+          "bench": "tb_mc.spi",
+          "seed": 31005,
+          "corner": "mc",
+          "vdd": 1.8,
+          "temp_c": 27,
+          "output_current_a": 5.094108167547073e-05,
+          "vref_v": 0.659797425914966
+        },
+        {
+          "group": "mc",
+          "bench": "tb_mc.spi",
+          "seed": 31006,
+          "corner": "mc",
+          "vdd": 1.8,
+          "temp_c": 27,
+          "output_current_a": 4.989017130108131e-05,
+          "vref_v": 0.6595767152278018
+        },
+        {
+          "group": "mc",
+          "bench": "tb_mc.spi",
+          "seed": 31007,
+          "corner": "mc",
+          "vdd": 1.8,
+          "temp_c": 27,
+          "output_current_a": 4.89604701937596e-05,
+          "vref_v": 0.6574611640866151
+        }
+      ],
+      "errors": [
+        {
+          "exit_code": 1,
+          "raw_exists": false,
+          "errors": [
+            "Fatal error: detected during BSIM4v5.5.0 parameter checking for "
+          ],
+          "simulation_log_tail": "Warning: can't find the initialization file spinit.\n\nChecking parameters for BSIM 4.5 model xref.xpstart:pshort_model.41\nFatal: Pclm = -4.64724e-05 is not positive.\nWarning: A2 = 1.0274 is larger than 1. A2 is set to 1 and A1 is set to 0.\nFatal error: detected during BSIM4v5.5.0 parameter checking for \n    model xref.xpstart:pshort_model.41 of device instance m.xref.xpstart.msky130_fd_pr__pfet_01v8\n\ndoAnalyses: no such parameter on this device or parameter is missing\n\nrun simulation(s) aborted\n\nNote: No compatibility mode selected!\n\n\nCircuit: * deterministic combined process-and-mismatch operating point.\n\nASCII raw file \"D:/LINK/SimulationLE/case/D2/circuit_beta_multiplier/runs_feedback3/20261106_130921/gpt-6.1-sol/turn_001/public_diagnostics/mc_public/000_mc/waveform.raw\"\nDoing analysis at TEMP = 27.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\n\nTotal analysis time (seconds) = 0\n\nTotal elapsed time (seconds) = 1.128 \n\nTotal DRAM available = 16108.242 MB.\nDRAM currently available = 1704.109 MB.\nMaximum ngspice program size =   60.473 MB.\nCurrent ngspice program size =   28.852 MB.\n\n"
+        }
+      ]
+    }
+  },
+  "operating_point": {
+    "conditions": "TT, nominal supply, 27 C",
+    "expected_transistors": 8,
+    "measured_transistors": 8,
+    "devices": [
+      {
+        "device": "m.xdut.xp1.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 9.765896,
+        "vgs_V": 1.23561,
+        "vds_V": 1.141026,
+        "vdsat_V": 0.1968875,
+        "vth_V": 1.04293,
+        "saturation_margin_V": 0.9441385000000001
+      },
+      {
+        "device": "m.xdut.xp2.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 9.775751999999999,
+        "vgs_V": 1.23561,
+        "vds_V": 1.235434,
+        "vdsat_V": 0.1968874,
+        "vth_V": 1.04293,
+        "saturation_margin_V": 1.0385465999999999
+      },
+      {
+        "device": "m.xdut.xn1.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 9.765896999999999,
+        "vgs_V": 0.6585692,
+        "vds_V": 0.658517,
+        "vdsat_V": 0.1127059,
+        "vth_V": 0.5492048,
+        "saturation_margin_V": 0.5458111
+      },
+      {
+        "device": "m.xdut.xn2.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 9.775751999999999,
+        "vgs_V": 0.5977387,
+        "vds_V": 0.5033172,
+        "vdsat_V": 0.0698375,
+        "vth_V": 0.5648906,
+        "saturation_margin_V": 0.4334797
+      },
+      {
+        "device": "m.xdut.xnout.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 49.77549,
+        "vgs_V": 0.6585682,
+        "vds_V": 0.8998935,
+        "vdsat_V": 0.1127051,
+        "vth_V": 0.5492051,
+        "saturation_margin_V": 0.7871884
+      },
+      {
+        "device": "m.xdut.xpstart.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 0.5447834,
+        "vgs_V": 1.799574,
+        "vds_V": 1.790966,
+        "vdsat_V": 0.7324958,
+        "vth_V": 0.8871334,
+        "saturation_margin_V": 1.0584702
+      },
+      {
+        "device": "m.xdut.xnsense.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 0.5447852,
+        "vgs_V": 0.6586125,
+        "vds_V": 0.008162851,
+        "vdsat_V": 0.09414847,
+        "vth_V": 0.5942523,
+        "saturation_margin_V": -0.085985619
+      },
+      {
+        "device": "m.xdut.xnkick.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 4.3609079999999996e-08,
+        "vgs_V": 0.008180613,
+        "vds_V": 0.564213,
+        "vdsat_V": 0.04124494,
+        "vth_V": 0.5773334,
+        "saturation_margin_V": 0.52296806
+      }
+    ],
+    "exit_code": 0
+  },
+  "native_processes": 12
+}

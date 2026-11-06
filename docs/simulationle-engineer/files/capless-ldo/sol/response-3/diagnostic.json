@@ -1,0 +1,164 @@
+{
+  "fixed_suite": {
+    "conditions": "tt, VIN=1.8 V, 27 C; OP at 20 mA; fixed original DC/PSR/step/startup decks",
+    "analyses": [
+      "op",
+      "dc",
+      "psr",
+      "step",
+      "startup"
+    ],
+    "native_processes_per_design": 5
+  },
+  "analyses": {
+    "dc": {
+      "exit_code": 0,
+      "wall_seconds": 1.1560000000172295,
+      "metrics": {
+        "m1_iq_ua": 71.8035,
+        "m1_vmax_v": 1.2055,
+        "m1_vmin_v": 0.994426
+      },
+      "circuit_sha256": "cc9983d09ff0060464384d15e4122ac7d6ea4ab2dbd3604c4d92441a9be5d4ee",
+      "deck_sha256": "997fb55ef59c919799dcf6f764fc8bdcd496db6d3752c4b257507dd213e6a4af",
+      "errors": [],
+      "policy_ok": true
+    },
+    "psr": {
+      "exit_code": 0,
+      "wall_seconds": 1.1719999999913853,
+      "metrics": {
+        "m0_psr1k_db": 27.1467,
+        "m0_psr100k_db": 27.1368,
+        "m0_psr1meg_db": 25.1521
+      },
+      "circuit_sha256": "cc9983d09ff0060464384d15e4122ac7d6ea4ab2dbd3604c4d92441a9be5d4ee",
+      "deck_sha256": "0af3cad9162835cb61acd827c75fc802687b45a8d9261e5d0e0819b5f693cfb9",
+      "errors": [],
+      "policy_ok": true
+    },
+    "step": {
+      "exit_code": 0,
+      "wall_seconds": 1.2969999999913853,
+      "metrics": {
+        "m1_droop_v": -1.06805,
+        "m1_w1max_v": 1.39863,
+        "m1_bump_v": 1.6874,
+        "m1_w2min_v": 0.646251,
+        "m1_t1max_v": 0.994426,
+        "m1_t1min_v": 0.994426,
+        "m1_t2max_v": 1.03919,
+        "m1_t2min_v": 0.986183
+      },
+      "circuit_sha256": "cc9983d09ff0060464384d15e4122ac7d6ea4ab2dbd3604c4d92441a9be5d4ee",
+      "deck_sha256": "432312a8ce474ccb769d6e5e0bf987b0558737bd6ead5fcbd2908ea4d448d3d0",
+      "errors": [],
+      "policy_ok": true
+    },
+    "startup": {
+      "exit_code": 0,
+      "wall_seconds": 1.1719999999913853,
+      "metrics": {
+        "m0_peak_v": 1.23654,
+        "m0_smax_v": 1.01428,
+        "m0_smin_v": 1.01428
+      },
+      "circuit_sha256": "cc9983d09ff0060464384d15e4122ac7d6ea4ab2dbd3604c4d92441a9be5d4ee",
+      "deck_sha256": "648b3ade2a7d3b927eb0c23f1bbe78bc160f770164a19a5c835b3c5f7ec45e51",
+      "errors": [],
+      "policy_ok": true
+    }
+  },
+  "operating_point": {
+    "conditions": "TT, nominal supply, 27 C",
+    "expected_transistors": 7,
+    "measured_transistors": 7,
+    "devices": [
+      {
+        "device": "m.xdut.xbias.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 4.448296,
+        "vgs_V": 1.17749,
+        "vds_V": 1.177395,
+        "vdsat_V": 0.1510486,
+        "vth_V": 1.046582,
+        "saturation_margin_V": 1.0263464
+      },
+      {
+        "device": "m.xdut.xtail.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 62.61457000000001,
+        "vgs_V": 1.177498,
+        "vds_V": 0.706459,
+        "vdsat_V": 0.1473645,
+        "vth_V": 1.05171,
+        "saturation_margin_V": 0.5590944999999999
+      },
+      {
+        "device": "m.xdut.xinfb.msky130_fd_pr__pfet_01v8_lvt",
+        "type": "p",
+        "id_uA": 31.41362,
+        "vgs_V": 0.6955305,
+        "vds_V": 0.3884707,
+        "vdsat_V": 0.1097556,
+        "vth_V": 0.6404159,
+        "saturation_margin_V": 0.2787151
+      },
+      {
+        "device": "m.xdut.xinref.msky130_fd_pr__pfet_01v8_lvt",
+        "type": "p",
+        "id_uA": 31.20095,
+        "vgs_V": 0.6933015,
+        "vds_V": 0.4830946,
+        "vdsat_V": 0.1084387,
+        "vth_V": 0.6404158,
+        "saturation_margin_V": 0.3746559
+      },
+      {
+        "device": "m.xdut.xmirror.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 31.41362,
+        "vgs_V": 0.7046662,
+        "vds_V": 0.7045677,
+        "vdsat_V": 0.1470651,
+        "vth_V": 0.5484169,
+        "saturation_margin_V": 0.5575026000000001
+      },
+      {
+        "device": "m.xdut.xsink.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 31.20095,
+        "vgs_V": 0.7046669,
+        "vds_V": 0.609946,
+        "vdsat_V": 0.1470657,
+        "vth_V": 0.5484167,
+        "saturation_margin_V": 0.4628803
+      },
+      {
+        "device": "m.xdut.xpass.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 20003.98,
+        "vgs_V": 1.189158,
+        "vds_V": 0.8041725,
+        "vdsat_V": 0.2069202,
+        "vth_V": 0.996419,
+        "saturation_margin_V": 0.5972523
+      }
+    ],
+    "exit_code": 0,
+    "log_tail": null
+  },
+  "asset_build": {
+    "native_export_ok": true,
+    "native_graph_matches": true,
+    "device_count": 14,
+    "parameter_count": 17,
+    "parameter_references": 22,
+    "layout_overlaps": [],
+    "layout_explicit": true,
+    "circuit_sha256": "ee19f6aace46d7536d4b06015e98b3b324cb32524390d934d78cfd9991ed46b3",
+    "design_sha256": "7527b3e4fd3f1a955f1a2f5f297e8d5e7a754ffc540c769535bf3a1051030dbe",
+    "native_sha256": "cc9983d09ff0060464384d15e4122ac7d6ea4ab2dbd3604c4d92441a9be5d4ee"
+  },
+  "native_processes": 5
+}

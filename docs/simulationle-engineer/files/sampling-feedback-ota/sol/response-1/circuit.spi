@@ -1,0 +1,56 @@
+* Fully differential two-stage OTA with continuous-time CMFB.
+* Geometry is in micrometres. Models are supplied by the testbench.
+.subckt sampling_feedback_ota vss iref vdd vinn vinp vocm voutn voutp
+
+* Reference distribution: external reference current flows into iref.
+XNR iref iref vss vss sky130_fd_pr__nfet_01v8 l=1.5 w=12
+XPR pb pb vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=30
+XBR pb iref vss vss sky130_fd_pr__nfet_01v8 l=1.5 w=12
+CBN iref vss 1p
+CBP pb vdd 1p
+
+* Input stage: nominal tail current 800 uA.
+XTAIL tail iref vss vss sky130_fd_pr__nfet_01v8 l=1.5 w=192
+XIP xn vinp tail vss sky130_fd_pr__nfet_01v8 l=1.5 w=300
+XIN xp vinn tail vss sky130_fd_pr__nfet_01v8 l=1.5 w=300
+XLP xn pcm1 vdd vdd sky130_fd_pr__pfet_01v8 l=2 w=240
+XLN xp pcm1 vdd vdd sky130_fd_pr__pfet_01v8 l=2 w=240
+
+* First-stage common-mode detector and error amplifier.
+RXP xp xcm 60k
+RXN xn xcm 60k
+XCT1 ct1 pb vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=60
+XC11 cd1 xcm ct1 vdd sky130_fd_pr__pfet_01v8 l=0.6 w=50
+XC12 pcm1 iref ct1 vdd sky130_fd_pr__pfet_01v8 l=0.6 w=50
+XC13 cd1 cd1 vss vss sky130_fd_pr__nfet_01v8 l=1 w=15
+XC14 pcm1 cd1 vss vss sky130_fd_pr__nfet_01v8 l=1 w=15
+CCM1 pcm1 vdd 150f
+
+* Second gain stage, nominally 1.2 mA per output.
+XON voutn xp vss vss sky130_fd_pr__nfet_01v8 l=1.5 w=288
+XOP voutp xn vss vss sky130_fd_pr__nfet_01v8 l=1.5 w=288
+XPLN voutn pcm2 vdd vdd sky130_fd_pr__pfet_01v8 l=1.5 w=720
+XPLP voutp pcm2 vdd vdd sky130_fd_pr__pfet_01v8 l=1.5 w=720
+
+* Differential Miller compensation with zero-nulling resistors.
+RCP xn zcp 90
+CCP zcp voutp 850f
+RCN xp zcn 90
+CCN zcn voutn 850f
+
+* Output common-mode detector.
+ROP voutp ocm 30k
+RON voutn ocm 30k
+
+* Output CMFB: rising output average raises the PMOS load gates.
+XCT2 ct2 pb vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=120
+XC21 cd2 ocm ct2 vdd sky130_fd_pr__pfet_01v8 l=0.5 w=100
+XC22 pcm2 vocm ct2 vdd sky130_fd_pr__pfet_01v8 l=0.5 w=100
+XC23 cd2 cd2 vss vss sky130_fd_pr__nfet_01v8 l=1 w=30
+XC24 pcm2 cd2 vss vss sky130_fd_pr__nfet_01v8 l=1 w=30
+
+* Common-mode loop compensation; symmetric loading of both outputs.
+CCMP pcm2 voutp 200f
+CCMN pcm2 voutn 200f
+
+.ends sampling_feedback_ota

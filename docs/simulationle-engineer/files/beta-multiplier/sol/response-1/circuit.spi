@@ -1,0 +1,27 @@
+* Self-biased beta-multiplier current reference.
+* All dimensions are in micrometres, using the PDK scale convention.
+.subckt beta_multiplier_reference vss vdd vref iout
+
+* Matched PMOS branch-current mirror.
+XP1 vref pb vdd vdd sky130_fd_pr__pfet_01v8 w=12 l=2 nf=2
+XP2 pb   pb vdd vdd sky130_fd_pr__pfet_01v8 w=12 l=2 nf=2
+
+* Beta-multiplier: 4:1 NMOS geometry ratio and physical poly resistor.
+XN1 vref vref vss vss sky130_fd_pr__nfet_01v8 w=12 l=2 nf=2
+XN2 pb   vref ns  vss sky130_fd_pr__nfet_01v8 w=48 l=2 nf=8
+XRSET ns vss vss sky130_fd_pr__res_high_po w=1 l=18
+
+* Five-times output mirror; long channels reduce output conductance.
+XNOUT iout vref vss vss sky130_fd_pr__nfet_01v8 w=60 l=2 nf=10
+
+* Startup detector: weak pullup and bias-controlled pulldown.
+* With vref low, st rises and XNKICK pulls down the PMOS mirror gate.
+* Established bias discharges st and disables the kick transistor.
+XPSTART st vss vdd vdd sky130_fd_pr__pfet_01v8 w=0.42 l=20 nf=1
+XNSENSE st vref vss vss sky130_fd_pr__nfet_01v8 w=4 l=1 nf=1
+XNKICK pb st vss vss sky130_fd_pr__nfet_01v8 w=1 l=2 nf=1
+
+* Physical bias-node compensation capacitor.
+XCBIAS vref vss sky130_fd_pr__cap_mim_m3_1 w=15 l=15 mf=1
+
+.ends beta_multiplier_reference

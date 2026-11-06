@@ -1,0 +1,104 @@
+{
+  "reward": 0.8,
+  "tests_total": 15,
+  "tests_passed": 12,
+  "partial": 0.8,
+  "overall_pass": false,
+  "policy": {
+    "passed": true,
+    "exit_code": 0,
+    "log": "D:\\LINK\\SimulationLE\\case\\D2\\circuit_sampling_ota_gain8\\runs\\20261105_210133\\gpt-6.1-sol\\frozen\\circuit.spi: netlist check passed\n\n"
+  },
+  "checks": [
+    {
+      "name": "pvt_phase_margin",
+      "status": "passed",
+      "message": "worst=71.4645deg at sf/1.98V/+27C; limit >=60deg"
+    },
+    {
+      "name": "pvt_output_common_mode",
+      "status": "passed",
+      "message": "worst=17.4864mV at ff/1.98V/+85C; limit <=25mV"
+    },
+    {
+      "name": "pvt_power",
+      "status": "passed",
+      "message": "worst=8.29782mW at sf/1.98V/+85C; limit <=10mW"
+    },
+    {
+      "name": "pvt_static_accuracy",
+      "status": "passed",
+      "message": "worst=0.0114556% at fs/1.80V/+85C; limit <=1%"
+    },
+    {
+      "name": "pvt_dynamic_accuracy",
+      "status": "failed",
+      "message": "worst=1.3482% at fs/1.80V/+85C; limit <=1%"
+    },
+    {
+      "name": "pvt_rise_settling",
+      "status": "failed",
+      "message": "worst=10.6589ns at fs/1.80V/+85C; limit <=10ns"
+    },
+    {
+      "name": "pvt_fall_settling",
+      "status": "failed",
+      "message": "worst=10.6552ns at fs/1.80V/+85C; limit <=10ns"
+    },
+    {
+      "name": "pvt_output_range",
+      "status": "passed",
+      "message": "3dB-compression differential range=1.84311V at ss/1.80V/+85C; limit >=1.8V"
+    },
+    {
+      "name": "pvt_output_noise",
+      "status": "passed",
+      "message": "worst=996.901uVrms at fs/1.80V/+85C; limit <=1000uVrms"
+    },
+    {
+      "name": "mc_cmrr",
+      "status": "passed",
+      "message": "worst=56.0311dB at tt/1.80V/+27C/seed-41000; limit >=50dB"
+    },
+    {
+      "name": "mc_psrr_plus",
+      "status": "passed",
+      "message": "worst=80.7046dB at tt/1.80V/+27C/seed-41006; limit >=60dB"
+    },
+    {
+      "name": "mc_psrr_minus",
+      "status": "passed",
+      "message": "worst=80.7046dB at tt/1.80V/+27C/seed-41006; limit >=60dB"
+    },
+    {
+      "name": "cmfb_peak_deviation",
+      "status": "passed",
+      "message": "worst=17.3646mV at ss/1.80V/+85C; limit <=100mV"
+    },
+    {
+      "name": "cmfb_residual_20ns",
+      "status": "passed",
+      "message": "worst=0.020395mV at ss/1.80V/+85C; limit <=5mV"
+    },
+    {
+      "name": "cmfb_residual_100ns",
+      "status": "passed",
+      "message": "worst=0.000428129mV at tt/1.80V/+27C; limit <=1mV"
+    }
+  ],
+  "ngspice_runs": 143,
+  "wall_clock_s": 339.1560000000027,
+  "nominal_gate_passed": true,
+  "circuit_sha256": "7f51ae5c55b1ed6e7a8a5ec2ed12b0ac51f109e04cc1c286a4852abf28188b28",
+  "evaluator": "immutable upstream verify.main and utils.parse_measures/write_results; local path/process/output adapter",
+  "requested_model": "gpt-6.1-sol",
+  "reported_model": "gpt-6.1-sol",
+  "model_turns": 36,
+  "development_simulation_calls": 17,
+  "development_native_runs": 157,
+  "explicit_finish": true,
+  "finish_summary": "Implemented and froze a transistor-level two-stage fully differential OTA: NMOS folded-cascode input stage, common-source outputs, internally generated reference/cascode biases, matched 1.05 pF/500 ohm Miller networks, and continuous output CMFB with resistive/capacitive averaging. Approved-device checker passed. Final-source transient diagnostics converged across all 30 PVT points. Nominal rising/falling settling was 8.481/8.511 ns; nominal 10 ns errors were about 0.428%, and high static error was 0.00589%. The final PVT transient sweep did not meet every settling requirement: SS/1.80 V/85 C took approximately 10.249 ns and FS/1.80 V/85 C approximately 10.659 ns, with 10 ns errors approximately 1.126% and 1.348%, respectively. Final integrated noise measured 0.943 mVrms nominal, 0.994 mVrms SS/hot, and 0.896 mVrms FF/high-supply/cold. With the immediately preceding 800 fF compensation values and otherwise identical circuit, representative phase margins were 63.27/65.27/60.58 degrees, powers 7.391/7.396/8.229 mW, CM errors 4.426/5.288/7.170 mV, and differential compression ranges 1.939/1.843/2.258 V. Those loop/range measurements were not rerun after increasing compensation. A prior 1 pF-compensated revision passed the three CM pulse-recovery diagnostics, but final-source recovery was not measured. Final full-grid loop, noise and range signoff and mismatch rejection were not obtained; no claim of complete specification compliance is made.",
+  "input_tokens": 893192,
+  "output_tokens": 11322,
+  "agent_wall_seconds": 876.9060000000027
+}

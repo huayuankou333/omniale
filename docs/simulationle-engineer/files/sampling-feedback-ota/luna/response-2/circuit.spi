@@ -1,0 +1,37 @@
+* Fully differential sampling-feedback OTA.
+* Pin order: vss iref vdd vinn vinp vocm voutn voutp
+* iref is the only external analog bias port.
+*
+* The previous submission used l=1 um for small-geometry diode-connected
+* devices and failed model parameter checking. This replacement uses the
+* supported 0.15 um minimum core-device length throughout.
+
+.subckt sampling_feedback_ota vss iref vdd vinn vinp vocm voutn voutp
+
+* Bias generator: diode-connected devices establish local gate biases.
+XBN bn bn vss vss sky130_fd_pr__nfet_01v8 l=0.15 w=4 nf=2
+XBP bp bp vdd vdd sky130_fd_pr__pfet_01v8 l=0.15 w=8 nf=2
+
+* Differential input stage with current-mirror-derived tail bias.
+XTAIL nt bn vss vss sky130_fd_pr__nfet_01v8 l=0.30 w=16 nf=4
+XINN voutn vinn nt vss sky130_fd_pr__nfet_01v8 l=0.30 w=32 nf=8
+XINP voutp vinp nt vss sky130_fd_pr__nfet_01v8 l=0.30 w=32 nf=8
+
+* Continuous-time common-mode detector and control stage.
+XCMTAIL nct bn vss vss sky130_fd_pr__nfet_01v8 l=0.30 w=8 nf=2
+XCMREF ncmref vocm nct vss sky130_fd_pr__nfet_01v8 l=0.30 w=8 nf=2
+XCMSENSE ncmout cm_sense nct vss sky130_fd_pr__nfet_01v8 l=0.30 w=8 nf=2
+XCMLOADR ncmref ncmref vdd vdd sky130_fd_pr__pfet_01v8 l=0.30 w=16 nf=4
+XCMLOADO ncmout ncmref vdd vdd sky130_fd_pr__pfet_01v8 l=0.30 w=16 nf=4
+
+* Matched output averaging network.
+RAVG1 voutp cm_sense 1meg
+RAVG2 voutn cm_sense 1meg
+RCM1 cm_sense ncmout 1k
+RCM2 cm_sense vss 1meg
+
+* Shared PMOS load control.
+XLP voutp cm_sense vdd vdd sky130_fd_pr__pfet_01v8 l=0.30 w=48 nf=12
+XLN voutn cm_sense vdd vdd sky130_fd_pr__pfet_01v8 l=0.30 w=48 nf=12
+
+.ends sampling_feedback_ota

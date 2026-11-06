@@ -1,0 +1,23 @@
+* Beta-multiplier current reference
+* Pins: vss vdd vref iout
+* Self-biased NMOS core with source degeneration and PMOS current mirror.
+* Output device is sized for a nominal current near the specified target.
+
+.subckt beta_multiplier_reference vss vdd vref iout
+
+* Core reference branch and resistor-degenerated beta-multiplier branch.
+XMN1 vref vref vss vss sky130_fd_pr__nfet_01v8 w=2 l=1 nf=1
+XMN2 nmir vref nsrc vss sky130_fd_pr__nfet_01v8 w=8 l=1 nf=1
+XRSET nsrc vss vss sky130_fd_pr__res_high_po w=1 l=100
+
+* PMOS mirror loading the core branches.
+XMP1 vref vref vdd vdd sky130_fd_pr__pfet_01v8 w=12 l=1 nf=1
+XMP2 nmir vref vdd vdd sky130_fd_pr__pfet_01v8 w=12 l=1 nf=1
+
+* Output sink mirrors the NMOS reference gate bias.
+XMNOUT iout vref vss vss sky130_fd_pr__nfet_01v8 w=14.1 l=1 nf=1
+
+* Startup assist for the self-biased core.
+XSTART vref nmir vdd vdd sky130_fd_pr__pfet_01v8 w=0.42 l=10 nf=1
+
+.ends beta_multiplier_reference

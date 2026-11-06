@@ -1,0 +1,35 @@
+{
+  "title": "PMOS-pass capacitor-free LDO with single-stage error amplifier",
+  "parameters": {
+    "pass_width": 6000,
+    "pass_length": 0.5,
+    "input_width": 100,
+    "input_length": 1,
+    "mirror_width": 10,
+    "mirror_length": 2,
+    "bias_width": 10,
+    "tail_width": 30,
+    "bias_length": 2,
+    "bias_resistance": "50k",
+    "feedback_upper": "150k",
+    "feedback_lower": "100k",
+    "output_capacitance": "900p",
+    "miller_capacitance": "30p",
+    "zero_resistance": "100"
+  },
+  "devices": [
+    {"name":"XBIAS","kind":"pmos","nodes":["pbias","pbias","vin","vin"],"model":"sky130_fd_pr__pfet_01v8","w":"bias_width","l":"bias_length","nf":1,"m":1,"x":300,"y":300,"group":"bias"},
+    {"name":"RBIAS","kind":"resistor","nodes":["pbias","vref"],"value":"bias_resistance","x":300,"y":660,"group":"bias"},
+    {"name":"XTAIL","kind":"pmos","nodes":["tail","pbias","vin","vin"],"model":"sky130_fd_pr__pfet_01v8","w":"tail_width","l":"bias_length","nf":1,"m":1,"x":900,"y":300,"group":"amplifier"},
+    {"name":"XINFB","kind":"pmos","nodes":["mirror","fb","tail","vin"],"model":"sky130_fd_pr__pfet_01v8","w":"input_width","l":"input_length","nf":1,"m":1,"x":900,"y":660,"group":"amplifier"},
+    {"name":"XINREF","kind":"pmos","nodes":["gate","vref","tail","vin"],"model":"sky130_fd_pr__pfet_01v8","w":"input_width","l":"input_length","nf":1,"m":1,"x":1500,"y":660,"group":"amplifier"},
+    {"name":"XMIRROR","kind":"nmos","nodes":["mirror","mirror","vss","vss"],"model":"sky130_fd_pr__nfet_01v8","w":"mirror_width","l":"mirror_length","nf":1,"m":1,"x":900,"y":1020,"group":"amplifier"},
+    {"name":"XSINK","kind":"nmos","nodes":["gate","mirror","vss","vss"],"model":"sky130_fd_pr__nfet_01v8","w":"mirror_width","l":"mirror_length","nf":1,"m":1,"x":1500,"y":1020,"group":"amplifier"},
+    {"name":"XPASS","kind":"pmos","nodes":["vout","gate","vin","vin"],"model":"sky130_fd_pr__pfet_01v8","w":"pass_width","l":"pass_length","nf":100,"m":1,"x":2400,"y":300,"group":"pass"},
+    {"name":"RZERO","kind":"resistor","nodes":["gate","comp"],"value":"zero_resistance","x":2100,"y":1020,"group":"compensation"},
+    {"name":"CMILLER","kind":"capacitor","nodes":["comp","vout"],"value":"miller_capacitance","x":2700,"y":1020,"group":"compensation"},
+    {"name":"COUT","kind":"capacitor","nodes":["vout","vss"],"value":"output_capacitance","x":3000,"y":660,"group":"output"},
+    {"name":"RUPPER","kind":"resistor","nodes":["vout","fb"],"value":"feedback_upper","x":3600,"y":300,"group":"feedback"},
+    {"name":"RLOWER","kind":"resistor","nodes":["fb","vss"],"value":"feedback_lower","x":3600,"y":660,"group":"feedback"}
+  ]
+}

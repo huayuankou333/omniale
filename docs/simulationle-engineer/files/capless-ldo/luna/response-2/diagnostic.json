@@ -1,0 +1,204 @@
+{
+  "fixed_suite": {
+    "conditions": "tt, VIN=1.8 V, 27 C; OP at 20 mA; fixed original DC/PSR/step/startup decks",
+    "analyses": [
+      "op",
+      "dc",
+      "psr",
+      "step",
+      "startup"
+    ],
+    "native_processes_per_design": 5
+  },
+  "analyses": {
+    "dc": {
+      "exit_code": 0,
+      "wall_seconds": 1.172000000020489,
+      "metrics": {
+        "m1_iq_ua": 12.31815,
+        "m1_vmax_v": 1.7987,
+        "m1_vmin_v": -6.47185
+      },
+      "circuit_sha256": "541220f167123b54b1cf3cd16a6db181fb4f68b7202a48a1d730a57e8e79b722",
+      "deck_sha256": "cd465c8b33e6c5d2589b95551a87b33061fefd3b034028e84e37440a4ac5ee1b",
+      "errors": [
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: Dynamic gmin stepping failed",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: True gmin stepping failed",
+        "Warning: source stepping failed"
+      ],
+      "policy_ok": true
+    },
+    "psr": {
+      "exit_code": 0,
+      "wall_seconds": 1.2189999999827705,
+      "metrics": {
+        "m0_psr1k_db": -11.0098,
+        "m0_psr100k_db": -11.0054,
+        "m0_psr1meg_db": -10.5839
+      },
+      "circuit_sha256": "541220f167123b54b1cf3cd16a6db181fb4f68b7202a48a1d730a57e8e79b722",
+      "deck_sha256": "918950f46a9cea6138d0dedafa7630fd363a8a6cd7d56d5474d2da3216a8f26c",
+      "errors": [
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: Dynamic gmin stepping failed",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: True gmin stepping failed",
+        "Warning: source stepping failed"
+      ],
+      "policy_ok": true
+    },
+    "step": {
+      "exit_code": 0,
+      "wall_seconds": 1.2190000000118744,
+      "metrics": {
+        "m1_droop_v": -6.48829,
+        "m1_w1max_v": 1.70026,
+        "m1_bump_v": 1.70026,
+        "m1_w2min_v": -6.48829,
+        "m1_t1max_v": -6.48829,
+        "m1_t1min_v": -6.48829,
+        "m1_t2max_v": 1.70026,
+        "m1_t2min_v": 1.70026
+      },
+      "circuit_sha256": "541220f167123b54b1cf3cd16a6db181fb4f68b7202a48a1d730a57e8e79b722",
+      "deck_sha256": "b7e07f3d68ca55a435f11fc09191dabd8a7049f85c4ea2b6d4e6edb5ea5502e1",
+      "errors": [
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: Dynamic gmin stepping failed",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: True gmin stepping failed",
+        "Warning: source stepping failed"
+      ],
+      "policy_ok": true
+    },
+    "startup": {
+      "exit_code": 0,
+      "wall_seconds": 1.202999999979511,
+      "metrics": {
+        "m0_peak_v": 1.62887,
+        "m0_smax_v": 1.62886,
+        "m0_smin_v": 1.62886
+      },
+      "circuit_sha256": "541220f167123b54b1cf3cd16a6db181fb4f68b7202a48a1d730a57e8e79b722",
+      "deck_sha256": "fda2d6bb401309ebfa9d2a9dcae20f48c8fde2cbb9b4de3c9235adc808248beb",
+      "errors": [
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: Dynamic gmin stepping failed",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: singular matrix:  check node xdut.drive",
+        "Warning: True gmin stepping failed",
+        "Warning: source stepping failed"
+      ],
+      "policy_ok": true
+    }
+  },
+  "operating_point": {
+    "conditions": "TT, nominal supply, 27 C",
+    "expected_transistors": 7,
+    "measured_transistors": 7,
+    "devices": [
+      {
+        "device": "m.xdut.xpass.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 2841.792,
+        "vgs_V": 1.787368,
+        "vds_V": 8.238444,
+        "vdsat_V": 0.743706,
+        "vth_V": 0.8893738,
+        "saturation_margin_V": 7.494738
+      },
+      {
+        "device": "m.xdut.xbias.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 11.26247,
+        "vgs_V": 0.6736264,
+        "vds_V": 0.6735372,
+        "vdsat_V": 0.107146,
+        "vth_V": 0.587321,
+        "saturation_margin_V": 0.5663912
+      },
+      {
+        "device": "m.xdut.xtail.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 0.04157218,
+        "vgs_V": 0.6737176,
+        "vds_V": 0.0002413905,
+        "vdsat_V": 0.1072169,
+        "vth_V": 0.5872968,
+        "saturation_margin_V": -0.10697550950000001
+      },
+      {
+        "device": "m.xdut.xinp.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 0.04173848,
+        "vgs_V": 0.3997582,
+        "vds_V": 0.9828139,
+        "vdsat_V": 0.04160678,
+        "vth_V": 0.5870794,
+        "saturation_margin_V": 0.9412071200000001
+      },
+      {
+        "device": "m.xdut.xinm.msky130_fd_pr__nfet_01v8",
+        "type": "n",
+        "id_uA": 1.1768390000000001e-30,
+        "vgs_V": -2.59556,
+        "vds_V": 1.799755,
+        "vdsat_V": 0.04121925,
+        "vth_V": 0.5870746,
+        "saturation_margin_V": 1.75853575
+      },
+      {
+        "device": "m.xdut.xmp1.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 0.041743619999999995,
+        "vgs_V": 0.8169435,
+        "vds_V": 0.8169427,
+        "vdsat_V": 0.04397559,
+        "vth_V": 1.031344,
+        "saturation_margin_V": 0.7729671100000001
+      },
+      {
+        "device": "m.xdut.xmp2.msky130_fd_pr__pfet_01v8",
+        "type": "p",
+        "id_uA": 6.211707e-06,
+        "vgs_V": 0.8169442,
+        "vds_V": 4.233575e-06,
+        "vdsat_V": 0.04397317,
+        "vth_V": 1.031431,
+        "saturation_margin_V": -0.043968936425
+      }
+    ],
+    "exit_code": 0,
+    "log_tail": null
+  },
+  "asset_build": {
+    "native_export_ok": true,
+    "native_graph_matches": true,
+    "device_count": 12,
+    "parameter_count": 11,
+    "parameter_references": 14,
+    "layout_overlaps": [],
+    "layout_explicit": true,
+    "circuit_sha256": "c5571b121420a1826b101a1f74dce692b1b680b70951d1a6a12e47eac6b75a54",
+    "design_sha256": "e03ec1d88c3ca5b360c8e2aabadcc2299f7321421a36c91d4e8cf136aaebbed1",
+    "native_sha256": "541220f167123b54b1cf3cd16a6db181fb4f68b7202a48a1d730a57e8e79b722"
+  },
+  "native_processes": 5
+}
