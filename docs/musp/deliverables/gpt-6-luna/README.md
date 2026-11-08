@@ -1,0 +1,1 @@
+本地离线研习：将 submission 作为静态站点根目录打开 index.html。无需网络、登录或后端。全部资源相对路径。answers.json 是结构化答案，evidence.json 列出无损音频采样帧及标注图；assets 内为原音频PCM裁片和带红框谱图。若干声部转录/对齐问题留空并说明限制。网页原生播放器支持暂停、拖动；来源 MuSP-Bench，作者 Milan Liessens Dujardin、Song-Ze Yu、Kevin Miao (2026)，ASAP 录音；CC BY-NC-SA 4.0。来源与许可详见 NOTICE.md 和 LICENSE.source.md。
