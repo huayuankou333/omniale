@@ -1,0 +1,21 @@
+.global vdd
+* SKY130 port of the two-stage cascode-biased op-amp (VDD=1.2V)
+.subckt dut iref inp inn out
+* ---- bias generator: 20uA reference -> NMOS diode, PMOS bias branch ----
+XMN0 iref iref 0 0 sky130_fd_pr__nfet_01v8_lvt W=18 L=1 nf=1 m=1
+XMN1 nb iref 0 0 sky130_fd_pr__nfet_01v8_lvt W=4 L=1 nf=1 m=1
+XMP1 nb nb vdd vdd sky130_fd_pr__pfet_01v8_lvt W=6 L=1 nf=1 m=1
+* ---- NMOS tail current source ----
+XMN2 tail iref 0 0 sky130_fd_pr__nfet_01v8_lvt W=72 L=1 nf=1 m=1
+* ---- input pair + PMOS mirror load (first stage) ----
+XMNa x inp tail 0 sky130_fd_pr__nfet_01v8_lvt W=64 L=1 nf=1 m=1
+XMNb xd inn tail 0 sky130_fd_pr__nfet_01v8_lvt W=64 L=1 nf=1 m=1
+XMPa xd xd vdd vdd sky130_fd_pr__pfet_01v8_lvt W=19 L=1 nf=1 m=1
+XMPb x xd vdd vdd sky130_fd_pr__pfet_01v8_lvt W=19 L=1 nf=1 m=1
+* ---- second stage: NMOS common source with PMOS current-source load ----
+XMN3 out x 0 0 sky130_fd_pr__nfet_01v8_lvt W=32 L=0.5 nf=1 m=1
+XMP3 out nb vdd vdd sky130_fd_pr__pfet_01v8_lvt W=122 L=1 nf=1 m=1
+* ---- Miller compensation with nulling resistor ----
+Rz x nz 450
+Cc nz out 1.4p
+.ends dut

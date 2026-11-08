@@ -1,0 +1,40 @@
+* Beta-multiplier (self-biased) current reference with startup
+* vref = NMOS-pair gate node = bias voltage ; iout sinks IO = 10x core current
+*
+* Unit NMOS: w=4 l=1 (nf=1) -> unambiguous total width
+.subckt bm_nu d g s b
+XMU d g s b sky130_fd_pr__nfet_01v8 l=1 w=4 nf=1
+.ends bm_nu
+*
+.subckt beta_multiplier_reference vss vdd vref iout
+* --- PMOS mirror (1:1) ---
+XMP1 x   x    vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=2 nf=1
+XMP2 vref x   vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=2 nf=1
+* --- NMOS pair, 1:8, with source degeneration resistors ---
+XMN1 x    vref s1 vss bm_nu
+XMN2 vref vref s2 vss bm_nu
+XMN3 vref vref s2 vss bm_nu
+XMN4 vref vref s2 vss bm_nu
+XMN5 vref vref s2 vss bm_nu
+XMN6 vref vref s2 vss bm_nu
+XMN7 vref vref s2 vss bm_nu
+XMN8 vref vref s2 vss bm_nu
+XMN9 vref vref s2 vss bm_nu
+* --- source resistors (poly, 300 ohm/sq) ---
+XR1 s1 vss vss sky130_fd_pr__res_high_po w=1 l=72 mult=1
+XR2 s2 vss vss sky130_fd_pr__res_high_po w=1 l=122 mult=1
+* --- output sink mirror (10x unit) ---
+XM10 iout vref vss vss bm_nu
+XM11 iout vref vss vss bm_nu
+XM12 iout vref vss vss bm_nu
+XM13 iout vref vss vss bm_nu
+XM14 iout vref vss vss bm_nu
+XM15 iout vref vss vss bm_nu
+XM16 iout vref vss vss bm_nu
+XM17 iout vref vss vss bm_nu
+XM18 iout vref vss vss bm_nu
+XM19 iout vref vss vss bm_nu
+* --- startup: two diode-connected PMOS from vdd to vref ---
+XMS1 ya   ya vdd vdd sky130_fd_pr__pfet_01v8 l=4 w=0.8 nf=1
+XMS2 vref vref ya vdd sky130_fd_pr__pfet_01v8 l=4 w=0.8 nf=1
+.ends beta_multiplier_reference

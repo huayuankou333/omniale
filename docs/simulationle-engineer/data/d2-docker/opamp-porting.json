@@ -2054,6 +2054,1014 @@
       ],
       "raw_result": "files/d2-docker/opamp-porting/gpt-6.1-sol/result.json",
       "formal_log": "files/d2-docker/opamp-porting/gpt-6.1-sol/formal-console.log"
+    },
+    {
+      "reward": {
+        "outcome": "F",
+        "tests_passed": 3,
+        "tests_total": 8,
+        "official_pass": false,
+        "qualification": "Original P/F/D/I outcome; no percentage score is defined."
+      },
+      "designs_used": 2,
+      "native_runs": 11,
+      "responses": 27,
+      "tool_calls": 25,
+      "output_tokens": 98304,
+      "agent_wall_seconds": 760.207,
+      "frozen_sha256": "6bb3f1679ae4acb37477f4b726227df542e6119e84ac08c7411495e886d313ff",
+      "finish_summary": null,
+      "id": "deepseek-v4.1-flash-1017",
+      "key": "ds",
+      "short_label": "DS",
+      "label": "DS V4.1 Flash 1017",
+      "checks": [
+        {
+          "key": "dc_gain_dB",
+          "label": "直流增益",
+          "requirement": "≥ 78.4 dB",
+          "group": "port",
+          "raw": {
+            "metric": "dc_gain_dB",
+            "value": 61.97,
+            "op": ">=",
+            "limit": 78.4,
+            "source": null,
+            "pass": false
+          },
+          "status": "failed",
+          "message": ""
+        },
+        {
+          "key": "ugf_Hz",
+          "label": "单位增益带宽",
+          "requirement": "≥ 89 MHz",
+          "group": "port",
+          "raw": {
+            "metric": "ugf_Hz",
+            "value": 65910175.18017042,
+            "op": ">=",
+            "limit": 89000000.0,
+            "source": null,
+            "pass": false
+          },
+          "status": "failed",
+          "message": ""
+        },
+        {
+          "key": "pm_deg",
+          "label": "相位裕度",
+          "requirement": "≥ 60 °",
+          "group": "port",
+          "raw": {
+            "metric": "pm_deg",
+            "value": 39.7,
+            "op": ">=",
+            "limit": 60.0,
+            "source": null,
+            "pass": false
+          },
+          "status": "failed",
+          "message": ""
+        },
+        {
+          "key": "gm_dB",
+          "label": "增益裕度",
+          "requirement": "≥ 10 dB",
+          "group": "port",
+          "raw": {
+            "metric": "gm_dB",
+            "value": 8.3,
+            "op": ">=",
+            "limit": 10.0,
+            "source": null,
+            "pass": false
+          },
+          "status": "failed",
+          "message": ""
+        },
+        {
+          "key": "power_uW",
+          "label": "静态功耗",
+          "requirement": "≤ 296.4 µW",
+          "group": "port",
+          "raw": {
+            "metric": "power_uW",
+            "value": 215.96,
+            "op": "<=",
+            "limit": 296.4,
+            "source": null,
+            "pass": true
+          },
+          "status": "passed",
+          "message": ""
+        },
+        {
+          "key": "rise_settle_ns",
+          "label": "上升建立时间",
+          "requirement": "≤ 12.24 ns",
+          "group": "port",
+          "raw": {
+            "metric": "rise_settle_ns",
+            "value": 35.91,
+            "op": "<=",
+            "limit": 12.24,
+            "source": null,
+            "pass": false
+          },
+          "status": "failed",
+          "message": ""
+        },
+        {
+          "key": "fall_settle_ns",
+          "label": "下降建立时间",
+          "requirement": "≤ 26.73 ns",
+          "group": "port",
+          "raw": {
+            "metric": "fall_settle_ns",
+            "value": 17.37,
+            "op": "<=",
+            "limit": 26.73,
+            "source": null,
+            "pass": true
+          },
+          "status": "passed",
+          "message": ""
+        },
+        {
+          "key": "n_triode",
+          "label": "线性区晶体管数",
+          "requirement": "≤ 0 个",
+          "group": "port",
+          "raw": {
+            "metric": "n_triode",
+            "value": 0,
+            "op": "<=",
+            "limit": 0,
+            "source": null,
+            "pass": true
+          },
+          "status": "passed",
+          "message": ""
+        }
+      ],
+      "versions": [
+        {
+          "number": 1,
+          "final": false,
+          "source": "* SKY130 port of the two-stage cascode-biased op-amp (VDD=1.2V)\n.subckt dut iref inp inn out\n* ---- bias generator: 20uA reference -> NMOS diode, PMOS bias branch ----\nXMN0 iref iref 0 0 sky130_fd_pr__nfet_01v8_lvt W=18 L=1 nf=1 m=1\nXMN1 nb iref 0 0 sky130_fd_pr__nfet_01v8_lvt W=4 L=1 nf=1 m=1\nXMP1 nb nb vdd vdd sky130_fd_pr__pfet_01v8_lvt W=6 L=1 nf=1 m=1\n* ---- NMOS tail current source ----\nXMN2 tail iref 0 0 sky130_fd_pr__nfet_01v8_lvt W=72 L=1 nf=1 m=1\n* ---- input pair + PMOS mirror load (first stage) ----\nXMNa x inp tail 0 sky130_fd_pr__nfet_01v8_lvt W=64 L=1 nf=1 m=1\nXMNb xd inn tail 0 sky130_fd_pr__nfet_01v8_lvt W=64 L=1 nf=1 m=1\nXMPa xd xd vdd vdd sky130_fd_pr__pfet_01v8_lvt W=19 L=1 nf=1 m=1\nXMPb x xd vdd vdd sky130_fd_pr__pfet_01v8_lvt W=19 L=1 nf=1 m=1\n* ---- second stage: NMOS common source with PMOS current-source load ----\nXMN3 out x 0 0 sky130_fd_pr__nfet_01v8_lvt W=32 L=0.5 nf=1 m=1\nXMP3 out nb vdd vdd sky130_fd_pr__pfet_01v8_lvt W=122 L=1 nf=1 m=1\n* ---- Miller compensation with nulling resistor ----\nRz x nz 450\nCc nz out 1.4p\n.ends dut\n",
+          "sha256": "0ffed8e8fe1b8f6d5412501956782e9fb164c0ba3f68b0a15b233e71a9ef33fd",
+          "file": "files/d2-docker/opamp-porting/ds-v41-flash-1017/design-1.spi",
+          "circuit": {
+            "pins": [
+              "iref",
+              "inp",
+              "inn",
+              "out"
+            ],
+            "devices": [
+              {
+                "id": "XMN0",
+                "kind": "nmos",
+                "nodes": [
+                  "iref",
+                  "iref",
+                  "0",
+                  "0"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8_lvt",
+                "params": "W=18 L=1 nf=1 m=1",
+                "line": "XMN0 iref iref 0 0 sky130_fd_pr__nfet_01v8_lvt W=18 L=1 nf=1 m=1"
+              },
+              {
+                "id": "XMN1",
+                "kind": "nmos",
+                "nodes": [
+                  "nb",
+                  "iref",
+                  "0",
+                  "0"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8_lvt",
+                "params": "W=4 L=1 nf=1 m=1",
+                "line": "XMN1 nb iref 0 0 sky130_fd_pr__nfet_01v8_lvt W=4 L=1 nf=1 m=1"
+              },
+              {
+                "id": "XMP1",
+                "kind": "pmos",
+                "nodes": [
+                  "nb",
+                  "nb",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8_lvt",
+                "params": "W=6 L=1 nf=1 m=1",
+                "line": "XMP1 nb nb vdd vdd sky130_fd_pr__pfet_01v8_lvt W=6 L=1 nf=1 m=1"
+              },
+              {
+                "id": "XMN2",
+                "kind": "nmos",
+                "nodes": [
+                  "tail",
+                  "iref",
+                  "0",
+                  "0"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8_lvt",
+                "params": "W=72 L=1 nf=1 m=1",
+                "line": "XMN2 tail iref 0 0 sky130_fd_pr__nfet_01v8_lvt W=72 L=1 nf=1 m=1"
+              },
+              {
+                "id": "XMNa",
+                "kind": "nmos",
+                "nodes": [
+                  "x",
+                  "inp",
+                  "tail",
+                  "0"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8_lvt",
+                "params": "W=64 L=1 nf=1 m=1",
+                "line": "XMNa x inp tail 0 sky130_fd_pr__nfet_01v8_lvt W=64 L=1 nf=1 m=1"
+              },
+              {
+                "id": "XMNb",
+                "kind": "nmos",
+                "nodes": [
+                  "xd",
+                  "inn",
+                  "tail",
+                  "0"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8_lvt",
+                "params": "W=64 L=1 nf=1 m=1",
+                "line": "XMNb xd inn tail 0 sky130_fd_pr__nfet_01v8_lvt W=64 L=1 nf=1 m=1"
+              },
+              {
+                "id": "XMPa",
+                "kind": "pmos",
+                "nodes": [
+                  "xd",
+                  "xd",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8_lvt",
+                "params": "W=19 L=1 nf=1 m=1",
+                "line": "XMPa xd xd vdd vdd sky130_fd_pr__pfet_01v8_lvt W=19 L=1 nf=1 m=1"
+              },
+              {
+                "id": "XMPb",
+                "kind": "pmos",
+                "nodes": [
+                  "x",
+                  "xd",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8_lvt",
+                "params": "W=19 L=1 nf=1 m=1",
+                "line": "XMPb x xd vdd vdd sky130_fd_pr__pfet_01v8_lvt W=19 L=1 nf=1 m=1"
+              },
+              {
+                "id": "XMN3",
+                "kind": "nmos",
+                "nodes": [
+                  "out",
+                  "x",
+                  "0",
+                  "0"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8_lvt",
+                "params": "W=32 L=0.5 nf=1 m=1",
+                "line": "XMN3 out x 0 0 sky130_fd_pr__nfet_01v8_lvt W=32 L=0.5 nf=1 m=1"
+              },
+              {
+                "id": "XMP3",
+                "kind": "pmos",
+                "nodes": [
+                  "out",
+                  "nb",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8_lvt",
+                "params": "W=122 L=1 nf=1 m=1",
+                "line": "XMP3 out nb vdd vdd sky130_fd_pr__pfet_01v8_lvt W=122 L=1 nf=1 m=1"
+              },
+              {
+                "id": "Rz",
+                "kind": "resistor",
+                "nodes": [
+                  "x",
+                  "nz"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "450",
+                "line": "Rz x nz 450"
+              },
+              {
+                "id": "Cc",
+                "kind": "capacitor",
+                "nodes": [
+                  "nz",
+                  "out"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal capacitor",
+                "params": "1.4p",
+                "line": "Cc nz out 1.4p"
+              }
+            ],
+            "nets": [
+              "0",
+              "inn",
+              "inp",
+              "iref",
+              "nb",
+              "nz",
+              "out",
+              "tail",
+              "vdd",
+              "x",
+              "xd"
+            ],
+            "counts": {
+              "pmos": 4,
+              "nmos": 6,
+              "resistor": 1,
+              "capacitor": 1
+            },
+            "hierarchy_expanded": false
+          },
+          "svg": "assets/d2-docker/opamp-porting-ds-1.svg"
+        },
+        {
+          "number": 2,
+          "final": true,
+          "source": ".global vdd\n* SKY130 port of the two-stage cascode-biased op-amp (VDD=1.2V)\n.subckt dut iref inp inn out\n* ---- bias generator: 20uA reference -> NMOS diode, PMOS bias branch ----\nXMN0 iref iref 0 0 sky130_fd_pr__nfet_01v8_lvt W=18 L=1 nf=1 m=1\nXMN1 nb iref 0 0 sky130_fd_pr__nfet_01v8_lvt W=4 L=1 nf=1 m=1\nXMP1 nb nb vdd vdd sky130_fd_pr__pfet_01v8_lvt W=6 L=1 nf=1 m=1\n* ---- NMOS tail current source ----\nXMN2 tail iref 0 0 sky130_fd_pr__nfet_01v8_lvt W=72 L=1 nf=1 m=1\n* ---- input pair + PMOS mirror load (first stage) ----\nXMNa x inp tail 0 sky130_fd_pr__nfet_01v8_lvt W=64 L=1 nf=1 m=1\nXMNb xd inn tail 0 sky130_fd_pr__nfet_01v8_lvt W=64 L=1 nf=1 m=1\nXMPa xd xd vdd vdd sky130_fd_pr__pfet_01v8_lvt W=19 L=1 nf=1 m=1\nXMPb x xd vdd vdd sky130_fd_pr__pfet_01v8_lvt W=19 L=1 nf=1 m=1\n* ---- second stage: NMOS common source with PMOS current-source load ----\nXMN3 out x 0 0 sky130_fd_pr__nfet_01v8_lvt W=32 L=0.5 nf=1 m=1\nXMP3 out nb vdd vdd sky130_fd_pr__pfet_01v8_lvt W=122 L=1 nf=1 m=1\n* ---- Miller compensation with nulling resistor ----\nRz x nz 450\nCc nz out 1.4p\n.ends dut\n",
+          "sha256": "6bb3f1679ae4acb37477f4b726227df542e6119e84ac08c7411495e886d313ff",
+          "file": "files/d2-docker/opamp-porting/ds-v41-flash-1017/final.spi",
+          "circuit": {
+            "pins": [
+              "iref",
+              "inp",
+              "inn",
+              "out"
+            ],
+            "devices": [
+              {
+                "id": "XMN0",
+                "kind": "nmos",
+                "nodes": [
+                  "iref",
+                  "iref",
+                  "0",
+                  "0"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8_lvt",
+                "params": "W=18 L=1 nf=1 m=1",
+                "line": "XMN0 iref iref 0 0 sky130_fd_pr__nfet_01v8_lvt W=18 L=1 nf=1 m=1"
+              },
+              {
+                "id": "XMN1",
+                "kind": "nmos",
+                "nodes": [
+                  "nb",
+                  "iref",
+                  "0",
+                  "0"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8_lvt",
+                "params": "W=4 L=1 nf=1 m=1",
+                "line": "XMN1 nb iref 0 0 sky130_fd_pr__nfet_01v8_lvt W=4 L=1 nf=1 m=1"
+              },
+              {
+                "id": "XMP1",
+                "kind": "pmos",
+                "nodes": [
+                  "nb",
+                  "nb",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8_lvt",
+                "params": "W=6 L=1 nf=1 m=1",
+                "line": "XMP1 nb nb vdd vdd sky130_fd_pr__pfet_01v8_lvt W=6 L=1 nf=1 m=1"
+              },
+              {
+                "id": "XMN2",
+                "kind": "nmos",
+                "nodes": [
+                  "tail",
+                  "iref",
+                  "0",
+                  "0"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8_lvt",
+                "params": "W=72 L=1 nf=1 m=1",
+                "line": "XMN2 tail iref 0 0 sky130_fd_pr__nfet_01v8_lvt W=72 L=1 nf=1 m=1"
+              },
+              {
+                "id": "XMNa",
+                "kind": "nmos",
+                "nodes": [
+                  "x",
+                  "inp",
+                  "tail",
+                  "0"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8_lvt",
+                "params": "W=64 L=1 nf=1 m=1",
+                "line": "XMNa x inp tail 0 sky130_fd_pr__nfet_01v8_lvt W=64 L=1 nf=1 m=1"
+              },
+              {
+                "id": "XMNb",
+                "kind": "nmos",
+                "nodes": [
+                  "xd",
+                  "inn",
+                  "tail",
+                  "0"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8_lvt",
+                "params": "W=64 L=1 nf=1 m=1",
+                "line": "XMNb xd inn tail 0 sky130_fd_pr__nfet_01v8_lvt W=64 L=1 nf=1 m=1"
+              },
+              {
+                "id": "XMPa",
+                "kind": "pmos",
+                "nodes": [
+                  "xd",
+                  "xd",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8_lvt",
+                "params": "W=19 L=1 nf=1 m=1",
+                "line": "XMPa xd xd vdd vdd sky130_fd_pr__pfet_01v8_lvt W=19 L=1 nf=1 m=1"
+              },
+              {
+                "id": "XMPb",
+                "kind": "pmos",
+                "nodes": [
+                  "x",
+                  "xd",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8_lvt",
+                "params": "W=19 L=1 nf=1 m=1",
+                "line": "XMPb x xd vdd vdd sky130_fd_pr__pfet_01v8_lvt W=19 L=1 nf=1 m=1"
+              },
+              {
+                "id": "XMN3",
+                "kind": "nmos",
+                "nodes": [
+                  "out",
+                  "x",
+                  "0",
+                  "0"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8_lvt",
+                "params": "W=32 L=0.5 nf=1 m=1",
+                "line": "XMN3 out x 0 0 sky130_fd_pr__nfet_01v8_lvt W=32 L=0.5 nf=1 m=1"
+              },
+              {
+                "id": "XMP3",
+                "kind": "pmos",
+                "nodes": [
+                  "out",
+                  "nb",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8_lvt",
+                "params": "W=122 L=1 nf=1 m=1",
+                "line": "XMP3 out nb vdd vdd sky130_fd_pr__pfet_01v8_lvt W=122 L=1 nf=1 m=1"
+              },
+              {
+                "id": "Rz",
+                "kind": "resistor",
+                "nodes": [
+                  "x",
+                  "nz"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "450",
+                "line": "Rz x nz 450"
+              },
+              {
+                "id": "Cc",
+                "kind": "capacitor",
+                "nodes": [
+                  "nz",
+                  "out"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal capacitor",
+                "params": "1.4p",
+                "line": "Cc nz out 1.4p"
+              }
+            ],
+            "nets": [
+              "0",
+              "inn",
+              "inp",
+              "iref",
+              "nb",
+              "nz",
+              "out",
+              "tail",
+              "vdd",
+              "x",
+              "xd"
+            ],
+            "counts": {
+              "pmos": 4,
+              "nmos": 6,
+              "resistor": 1,
+              "capacitor": 1
+            },
+            "hierarchy_expanded": false
+          },
+          "svg": "assets/d2-docker/opamp-porting-ds-2.svg"
+        }
+      ],
+      "date": "2026.11.08",
+      "run": "20261108T120050Z-ds-v41-flash-1017",
+      "activities": [
+        {
+          "turn": "turn_001",
+          "name": "terminal",
+          "arguments": {
+            "command": "cat /app/AGENT_PROTOCOL.md; echo ---; ls -la /app; echo ---; ls /opt/simulationle-policy; echo ---; cat /app/circuit.spi",
+            "timeout_seconds": 30
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "You are the engineering agent, not a netlist-only answer generator.\nImplement the supplied 1.2-V gain-78.4-dB UGF-89-MHz op-amp migration yourself by porting the supplied TSMC source; start from the empty SKY130 interface.\nYou have an actual persistent Linux shell, Python, NumPy, matplotlib, the SKY130 PDK\nand the real ngspice-46 simulator.\nThe pinned worker reads trusted .spiceinit: set ngbehavior=hsa; set ng_nomodcheck.\nThe original reply-code-block requirement is replaced by editing /app/circuit.spi.\nUse /opt/simulationle-policy/check.py for the original public netlist policy. Use the terminal tool to inspect the public\nmaterials, write/edit your DUT and testbenches, choose experiments, run simulations,\ninspect logs and numerical results, plot them, and revise your design yourself.\nOnly the final /app/circuit.spi is independently graded. No reference solutions,\nprivate verifier implementation, internet access or model API credentials are\ninside your design container. Use /app/experiments for temporary scripts and decks.\n\nBudget: at most THREE DISTINCT VALID CIRCUITS may reach simulation or final\nsubmission. The first complete design and up to two revisions are the three designs.\nAll valid nonconvergent designs count. The trusted ngspice gateway counts the DUT\nin /app/circuit.spi independently of testbench, process corner, voltage and temperature.\nYou may run many experiments on the same design (up to 160 native simulations).\nEvery topology, device dimension, bias or passive value change creates a new design.\nYou may alter independent external V/I sources for test conditions only.\nIn-process DUT alteration, altermod/alterparam, DUT parameter sweeps and DUT/model definitions\noutside /app/circuit.spi are disabled to enforce this budget. Choose different\ntest conditions by writing separate testbenches. Comments/whitespace/case changes\ndo not create a new design. Two extra netlist policy corrections are allowed.\nDo not attempt to bypass the simulator gateway or run an alternative simulator.\nUse normal ngspice -b TESTBENCH [-o LOG] [-r RAW]. Testbenches must include\n/app/circuit.spi and the fixed /opt/sky130 libraries. Use /app/experiments for all generated logs/raw data; worker /tmp is separate.\nNo fixed diagnostic suite is automatically run or supplied as host-generated feedback: you select every experiment.\nThe declared formal targets remain the task's original ones. The formal verifier\nruns only after freeze and is never returned for another design revision.\nUse python3 /opt/simulationle-policy/check.py /app/circuit.spi for full public policy checks.\nCall finish when ready. The last on-disk circuit is submitted at budget exhaustion.\n---\ntotal 32\ndrwxrwxr-x 3 1000 1000 4096 Nov  8 12:00 .\ndrwxr-xr-x 1 root root 4096 Nov  8 12:00 ..\n-rw-rw-r-- 1 1000 1000 2682 Nov  8 12:00 AGENT_PROTOCOL.md\n-rw-rw-rw- 1 1000 1000  401 Nov  6 12:57 PORTING_RUNTIME.md\n-rw-rw-r-- 1 1000 1000 6318 Nov  8 12:00 TASK.md\n-rw-rw-rw- 1 1000 1000   87 Nov  6 12:57 circuit.spi\ndrwxrwxr-x 2 1000 1000 4096 Nov  8 12:00 experiments\n---\ncheck.py\ncheck_netlist.py\nnetlist.py\nsim.py\n---\n.subckt dut iref inp inn out\n* TODO: port and design your SKY130 circuit.\n.ends dut\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_002",
+          "name": "terminal",
+          "arguments": {
+            "command": "cat /app/TASK.md; echo ---; cat /app/PORTING_RUNTIME.md; echo ---; cat /opt/simulationle-policy/check.py | head -100",
+            "timeout_seconds": 30
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "Port the analog circuit below from a TSMC 0.18 µm CMOS process to the SkyWater SKY130 process.\nThe ported circuit will be simulated in ngspice and must meet the specifications listed below.\nYou may change device sizes, biasing and circuit topology, as long as the interface and test conditions are kept.\n\n## Source design (TSMC 0.18 µm)\nTransistor models: tsmc18dN (NMOS) and tsmc18dP (PMOS), BSIM3. Supply VDD = 1.8 V on the global\nnode `vdd`; ground is node `0`.\n\n```spice\n.subckt Cascode_Bias Iin Vbias_1 Vbias_2 Vbias_3 Vbias_4\n  MN1 Vbias_4 Vbias_4 0 0 tsmc18dN w=6.66u l=360.0n as=2.997e-12 ad=2.997e-12 ps=14.22u pd=14.22u m=1\n  MN0 net4 Vbias_4 0 0 tsmc18dN w=6.66u l=360.0n as=2.997e-12 ad=2.997e-12 ps=14.22u pd=14.22u m=1\n  MN3 Vbias_3 Vbias_3 Vbias_4 0 tsmc18dN w=6.66u l=360.0n as=2.997e-12 ad=2.997e-12 ps=14.22u pd=14.22u m=1\n  MN2 Vbias_2 Vbias_3 net4 0 tsmc18dN w=6.66u l=360.0n as=2.997e-12 ad=2.997e-12 ps=14.22u pd=14.22u m=1\n  MP1 Vbias_1 Vbias_1 vdd vdd tsmc18dP w=12.195u l=360.0n as=5.48775e-12 ad=5.48775e-12 ps=25.29u pd=25.29u m=1\n  MP0 Vbias_2 Vbias_2 Vbias_1 vdd tsmc18dP w=12.195u l=360.0n as=5.48775e-12 ad=5.48775e-12 ps=25.29u pd=25.29u m=1\n  RR0 Iin Vbias_3 1\n.ends Cascode_Bias\n.subckt Opamp_2stg Vbias_3 Vbias_4 vm vout vp\n  CC0 net012 vout 500f m=1\n  RR0 net08 net012 3k m=1\n  MP2 vout net08 vdd vdd tsmc18dP w=12.195u l=360.0n as=5.48775e-12 ad=5.48775e-12 ps=25.29u pd=25.29u m=3\n  MP0 net08 net9 vdd vdd tsmc18dP w=12.195u l=360.0n as=5.48775e-12 ad=5.48775e-12 ps=25.29u pd=25.29u m=1\n  MP1 net9 net9 vdd vdd tsmc18dP w=12.195u l=360.0n as=5.48775e-12 ad=5.48775e-12 ps=25.29u pd=25.29u m=1\n  MN5 vout Vbias_3 net1 0 tsmc18dN w=6.66u l=360.0n as=2.997e-12 ad=2.997e-12 ps=14.22u pd=14.22u m=3\n  MN4 net1 Vbias_4 0 0 tsmc18dN w=6.66u l=360.0n as=2.997e-12 ad=2.997e-12 ps=14.22u pd=14.22u m=3\n  MN2 net9 vm net10 0 tsmc18dN w=6.66u l=360.0n as=2.997e-12 ad=2.997e-12 ps=14.22u pd=14.22u m=1\n  MN1 net08 vp net10 0 tsmc18dN w=6.66u l=360.0n as=2.997e-12 ad=2.997e-12 ps=14.22u pd=14.22u m=1\n  MN3 net12 Vbias_4 0 0 tsmc18dN w=6.66u l=360.0n as=2.997e-12 ad=2.997e-12 ps=14.22u pd=14.22u m=2\n  MN0 net10 Vbias_3 net12 0 tsmc18dN w=6.66u l=360.0n as=2.997e-12 ad=2.997e-12 ps=14.22u pd=14.22u m=2\n.ends Opamp_2stg\n.subckt dut iref inp inn out\nXI0 iref vb1 vb2 vb3 vb4 Cascode_Bias\nXI1 vb3 vb4 inn out inp Opamp_2stg\n.ends dut\n```\n\n## Target technology (SKY130)\n- Use only the transistors sky130_fd_pr__nfet_01v8_lvt and sky130_fd_pr__pfet_01v8_lvt.\n- They are subcircuits. Instantiate them with an X prefix and the terminals in the order drain gate source\n  bulk, followed by the parameters W, L, nf and m, each written as name=value and separated by spaces.\n- W is the total gate width and L the gate length, both in micrometres, written as plain numbers without\n  unit suffixes. Minimum L: 0.15 µm for nfet_01v8_lvt, 0.35 µm for pfet_01v8_lvt. Minimum W: 0.42 µm.\n- Always use nf=1. For a wider transistor, increase W, or use m=k to connect k identical transistors in parallel.\n- Sky130 W and L are plain numbers in µm; R and C values keep their SI suffixes (e.g. 2p, 10k).\n  The m parameter means the same in both netlists.\n- Resistors and capacitors may be ideal SPICE R and C elements.\n- Supply: VDD = 1.2 V on the global node `vdd`; ground is node `0`. Both are available inside every\n  subcircuit without being ports.\n- The ideal reference current must be mirrored: it may not flow directly into the source of a transistor.\n  No element may connect `inp` directly to `out`.\n- The testbench includes the model library and provides all sources and analyses. Do not add\n  `.lib`, `.include`, `.option`, sources or analysis statements.\n\n## Netlist format example\nThis example only illustrates the syntax; it is not a suggested design.\n\n```spice\n.subckt example a b c\nXM1 a b 0 0 sky130_fd_pr__nfet_01v8_lvt W=2 L=0.5 nf=1 m=1\nXM2 a c vdd vdd sky130_fd_pr__pfet_01v8_lvt W=4 L=0.5 nf=1 m=2\n.ends example\n```\n\n## Interface\nThe netlist must define the subcircuit `.subckt dut iref inp inn out`, with exactly these ports in this order.\n- `iref`: an ideal bias reference current flows into this node from `vdd`.\n- `inp`, `inn`: non-inverting and inverting inputs.\n- `out`: output.\n\n## Test conditions (TT corner, 27 °C)\n- An ideal 20 µA current source from `vdd` drives `iref`.\n- Unity-gain follower: `out` is connected to `inn`; `inp` is held at VCM = 0.9 V DC.\n- Load: 1 pF from `out` to ground.\n- Loop gain: the feedback loop is broken at the `out`-to-`inn` connection (Middlebrook double injection), AC analysis from 10 Hz to 10 GHz.\n- Step response: `inp` is a pulse between 0.8 V and 1.0 V (10 ps edges, 100 ns period), transient analysis for 200 ns.\n\n## Specifications\nThe requirements below are for this port at VDD = 1.2 V; they are not all derived from the source design's performance.\n| Metric | Definition | Requirement | Source design (180 nm, VDD 1.8 V) |\n|---|---|---|---|\n| dc_gain_dB | loop-gain magnitude at 10 Hz, in dB | ≥ 78.4 | 75.71 |\n| ugf_H",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_003",
+          "name": "terminal",
+          "arguments": {
+            "command": "cat /opt/simulationle-policy/check_netlist.py; echo ===; cat /opt/simulationle-policy/sim.py",
+            "timeout_seconds": 30
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "\"\"\"Extract the netlist from a model reply and check it before it is simulated.\n\nTwo levels of problems:\n  unsafe      never simulated: ngspice control blocks can run shell commands, and include/lib\n              statements can read arbitrary files (.control, .endc, .include, .inc, .lib, .exec)\n  violations  simulated anyway (to keep the information), but the run counts as FAIL:\n              anything the prompt forbids or that changes the testbench (sources, analysis or\n              option statements, .model, other devices, sizes below minimum (W/nf for fingers), nf other than 1, unit suffixes on W/L,\n              overriding testbench parameters, extra .global nets, wrong dut ports)\nA bare `.end` line is removed (harmless, but it would cut off the testbench) and noted. Non-ASCII\ncharacters (e.g. a Greek capital Nu that looks like N) are replaced by ASCII codes, consistently, and noted.\n\"\"\"\nimport re\nimport sys\nfrom pathlib import Path\n\nsys.path.insert(0, str(Path(__file__).resolve().parents[1]))\nfrom netlist import logical_lines, subckt_name   # noqa: E402\n\nCODE_BLOCK = re.compile(r\"```[ \\t]*([A-Za-z0-9_+-]*)[ \\t]*\\n(.*?)```\", re.S)\nUNSAFE = re.compile(r\"^\\s*(\\.control|\\.endc|\\.include|\\.inc|\\.lib|\\.exec)\\b\", re.I | re.M)\nALLOWED_DOT = {\".subckt\", \".ends\", \".param\", \".global\"}\nTB_PARAMS = {\"vdd\", \"iref\", \"vcm\", \"cl\", \"vstep\", \"t\", \"td\", \"tr\"}\nLVT = {\"sky130_fd_pr__nfet_01v8_lvt\": 0.15, \"sky130_fd_pr__pfet_01v8_lvt\": 0.35}\nWMIN = 0.42\n\n\ndef extract(reply):\n    \"\"\"Return (netlist or None, info). Picks the first code block that defines `.subckt dut`.\"\"\"\n    blocks = CODE_BLOCK.findall(reply or \"\")\n    info = {\"n_code_blocks\": len(blocks)}\n    for lang, body in blocks:\n        if re.search(r\"^\\s*\\.subckt\\s+dut\\b\", body, re.I | re.M):\n            info[\"block_language\"] = lang\n            return body, info\n    return None, info\n\n\ndef check(netlist, ports):\n    \"\"\"Return (cleaned netlist, unsafe list, violations list, notes list).\"\"\"\n    notes, violations = [], []\n    lines = netlist.splitlines()\n    kept = [l for l in lines if l.strip().lower() != \".end\"]\n    if len(kept) != len(lines):\n        notes.append(\"removed '.end' line\")\n    cleaned = \"\\n\".join(kept) + \"\\n\"\n    # ngspice cannot address devices whose names contain non-ASCII characters (it mangles them internally).\n    # Replace every such character consistently (same character -> same code), which keeps connectivity.\n    odd = sorted({c for c in cleaned if ord(c) > 127})\n    if odd:\n        cleaned = \"\".join(f\"U{ord(c):04X}\" if ord(c) > 127 else c for c in cleaned)\n        notes.append(\"replaced non-ASCII characters \" + \", \".join(f\"'{c}' (U+{ord(c):04X})\" for c in odd))\n    unsafe = sorted({m.group(1).lower() for m in UNSAFE.finditer(cleaned)})\n\n    defined = {l.split()[1].lower() for l in logical_lines(cleaned) if l.lower().startswith(\".subckt\")}\n    for line in logical_lines(cleaned):\n        t = line.split()\n        key = t[0].lower()\n        if key.startswith(\".\"):\n            if key not in ALLOWED_DOT and f\"{key} statement\" not in violations:\n                violations.append(f\"{key} statement\")\n            if key == \".subckt\" and t[1].lower() == \"dut\":\n                got = [x for x in t[2:] if \"=\" not in x]\n                if [x.lower() for x in got] != ports.split():\n                    violations.append(f\"dut ports are '{' '.join(got)}', expected '{ports}'\")\n            if key == \".param\":\n                for name in re.findall(r\"(\\w+)\\s*=\", line):\n                    if name.lower() in TB_PARAMS:\n                        violations.append(f\".param redefines testbench parameter '{name}'\")\n            if key == \".global\":\n                extra = [n for n in t[1:] if n.lower() not in (\"vdd\", \"0\")]\n                if extra:\n                    violations.append(f\".global adds nets {extra}\")\n        elif key[0] == \"x\":\n            sub = subckt_name(t).lower()\n            if sub in LVT:\n                p = {k.lower(): v for k, v in re.findall(r\"(\\w+)\\s*=\\s*(\\S+)\", line)}\n                nf = p.get(\"nf\", \"1\")\n                if nf not in (\"1\", \"1.0\"):\n                    violations.append(f\"{t[0]}: nf={nf}; the prompt requires nf=1\")\n                nf = float(nf) if re.fullmatch(r\"[\\d.]+\", nf) else 1.0\n                for dim, lo in ((\"l\", LVT[sub]), (\"w\", WMIN * nf)):     # W is total width: W/nf >= WMIN\n                    v = p.get(dim)\n                    if v is None:\n                        violations.append(f\"{t[0]}: {dim.upper()} not given\")\n                    elif not re.fullmatch(r\"[\\d.]+(e[-+]?\\d+)?\", v, re.I):\n                        violations.append(f\"{t[0]}: {dim.upper()}={v} is not a plain number in um\")\n                    elif float(v) < lo - 1e-9:\n                        violations.append(f\"{t[0]}: {dim.upper()}={v} below minimum {lo:g}\"\n                                          + (f\" (W/nf >= {WMIN} with nf={nf:g})\" if dim == \"w\" and nf > 1 else \"\"))\n            elif sub not in defined:\n                violations.append(f\"{t[0]}:",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_004",
+          "name": "terminal",
+          "arguments": {
+            "command": "ls -R /opt/sky130 | head -50; echo ---; head -40 /opt/sky130/continuous/sky130.lib.spice; echo ---; ls /app/experiments; cat ~/.spiceinit 2>/dev/null; ls -la /opt/simulationle-policy/",
+            "timeout_seconds": 30
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "/opt/sky130:\ncontinuous\npdk\n\n/opt/sky130/continuous:\nmodels_bjt.spice\nmodels_capacitors.spice\nmodels_diodes.spice\nmodels_fet.spice\nmodels_global.spice\nmodels_resistors.spice\nparameters_cap_high.spice\nparameters_cap_low.spice\nparameters_cap_nom.spice\nparameters_fet_ff.spice\nparameters_fet_fs.spice\nparameters_fet_sf.spice\nparameters_fet_ss.spice\nparameters_fet_tt.spice\nparameters_res_high.spice\nparameters_res_low.spice\nparameters_res_nom.spice\nsky130.lib.spice\ntest.spice\n\n/opt/sky130/pdk:\nsky130A\n\n/opt/sky130/pdk/sky130A:\nlibs.ref\nlibs.tech\n\n/opt/sky130/pdk/sky130A/libs.ref:\nsky130_fd_pr\n\n/opt/sky130/pdk/sky130A/libs.ref/sky130_fd_pr:\nspice\n\n/opt/sky130/pdk/sky130A/libs.ref/sky130_fd_pr/spice:\nsky130_fd_pr__cap_mim_m3_1.model.spice\nsky130_fd_pr__cap_mim_m3_2.model.spice\nsky130_fd_pr__cap_var_hvt.model.spice\nsky130_fd_pr__cap_var_lvt.model.spice\nsky130_fd_pr__cap_vpp_01p8x01p8_m1m2_noshield.model.spice\nsky130_fd_pr__cap_vpp_02p4x04p6_m1m2_noshield.model.spice\nsky130_fd_pr__cap_vpp_02p7x06p1_m1m2m3m4_shieldl1_fingercap.model.spice\nsky130_fd_pr__cap_vpp_02p7x11p1_m1m2m3m4_shieldl1_fingercap.model.spice\nsky130_fd_pr__cap_vpp_02p7x21p1_m1m2m3m4_shieldl1_fingercap.model.spice\nsky130_fd_pr__cap_vpp_02p7x41p1_m1m2m3m4_shieldl1_fingercap.model.spice\nsky130_fd_pr__cap_vpp_02p9x06p1_m1m2m3m4_shieldl1_fingercap2.model.spice\n---\n* Copyright 2022 The SkyWater PDK Authors\n*\n* Licensed under the Apache License, Version 2.0 (the \"License\");\n* you may not use this file except in compliance with the License.\n* You may obtain a copy of the License at\n*\n*     https://www.apache.org/licenses/LICENSE-2.0\n*\n* Unless required by applicable law or agreed to in writing, software\n* distributed under the License is distributed on an \"AS IS\" BASIS,\n* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n* See the License for the specific language governing permissions and\n* limitations under the License.\n\n******* SkyWater sky130 model library *********\n*\n* This file is for use by ngspice using the \".lib\" statement to select\n* a simulation type or corner.  The defined sections are as follows:\n*\n* Basic corners:\n*\n* tt  --- Typical N/P device, nominal resistance, nominal capacitance\n* ss  --- Slow  N/P device, nominal resistance, nominal capacitance\n* sf  --- Slow N/Fast P device, nominal resistance, nominal capacitance\n* fs  --- Fast N/Slow P device, nominal resistance, nominal capacitance\n* ll  --- Typical N/P device, low resistance, low capacitance\n* hl  --- Typical N/P device, high resistance, low capacitance\n* lh  --- Typical N/P device, low resistance, high capacitance\n* hh  --- Typical N/P device, high resistance, high capacitance\n*\n* Corners with mismatch analysis:\n*\n* tt_mm  --- Typical N/P device, nominal resistance, nominal capacitance\n* ss_mm  --- Slow  N/P device, nominal resistance, nominal capacitance\n* sf_mm  --- Slow N/Fast P device, nominal resistance, nominal capacitance\n* fs_mm  --- Fast N/Slow P device, nominal resistance, nominal capacitance\n* ll_mm  --- Typical N/P device, low resistance, low capacitance\n* hl_mm  --- Typical N/P device, high resistance, low capacitance\n* lh_mm  --- Typical N/P device, low resistance, high capacitance\n* hh_mm  --- Typical N/P device, high resistance, high capacitance\n---\ntotal 28\ndrwxrwxr-x 2 1000 1000 4096 Nov  6 13:03 .\ndrwxr-xr-x 1 root root 4096 Nov  8 12:00 ..\n-rw-rw-rw- 1 1000 1000  647 Nov  6 12:53 check.py\n-rw-rw-rw- 1 1000 1000 7628 Nov  5 15:03 check_netlist.py\n-rw-rw-rw- 1 1000 1000 3377 Nov  5 15:03 netlist.py\n-rw-r--r-- 1 1000 1000  372 Nov  6 13:03 sim.py\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_005",
+          "name": "terminal",
+          "arguments": {
+            "command": "cat /opt/sky130/continuous/test.spice; echo ===; grep -n \"nfet_01v8_lvt\\|pfet_01v8_lvt\" /opt/sky130/continuous/models_fet.spice | head -20",
+            "timeout_seconds": 30
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "* Test the parsers\n*---------------------------------------------------------------------\n* It should be possible to run both ngspice and Xyce on this simple\n* test circuit and have them run without flagging an error.\n* This is clearly not exhaustive;  just a quick check on basic syntax\n*---------------------------------------------------------------------\n.lib sky130.lib.spice tt\nXtest 1 2 3 0 sky130_fd_pr__nfet_01v8 l=2 w=3\n.op\n.end\n===\n3417:.subckt  sky130_fd_pr__nfet_01v8_lvt  d g s b  mult=1\n3421:+ swx_vth = {sw_vth0_sky130_fd_pr__nfet_01v8_lvt+sw_vth0_sky130_fd_pr__nfet_01v8_lvt_mc}\n3423:Msky130_fd_pr__nfet_01v8_lvt  d g s b nlowvt_model l = {l} w = {w} ad = {ad} as = {as} pd = {pd} ps = {ps} nrd = {nrd} nrs = {nrs} sa = {sa} sb = {sb} sd = {sd} nf = {nf}\n3425:* + mulu0  = sw_u0_sky130_fd_pr__nfet_01v8_lvt\n3426:+ delvto = {swx_vth*(0.020*8/l+0.980)*(0.017*7/w+0.983)*(0.0007*56/(w*l)+0.9993)+sw_mm_vth0_sky130_fd_pr__nfet_01v8_lvt*mismatch_factor*MC_MM_SWITCH*AGAUSS(0,1.0,1)/sqrt(l*w*mult)}\n7694:.ends sky130_fd_pr__nfet_01v8_lvt\n27241:.subckt  sky130_fd_pr__pfet_01v8_lvt  d g s b  mult=1\n27246:Msky130_fd_pr__pfet_01v8_lvt  d g s b plowvt_model l = {l} w = {w} ad = {ad} as = {as} pd = {pd} ps = {ps} nrd = {nrd} nrs = {nrs} sa = {sa} sb = {sb} sd = {sd} nf = {nf}\n27248:* + mulu0  = sw_u0_sky130_fd_pr__pfet_01v8_lvt\n27249:+ delvto = {(sw_vth0_sky130_fd_pr__pfet_01v8_lvt+sw_vth0_sky130_fd_pr__pfet_01v8_lvt_mc)*(0.005*8/l+0.995)*(0.008*7/w+0.992)*(0.0006*56/(w*l)+0.9994)+sw_mm_vth0_sky130_fd_pr__pfet_01v8_lvt*mismatch_factor*MC_MM_SWITCH*AGAUSS(0,1.0,1)/sqrt(l*w*mult)+sw_vth0_sky130_fd_pr__pfet_01v8_lvt_mc}\n31440:.ends sky130_fd_pr__pfet_01v8_lvt\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_007",
+          "name": "terminal",
+          "arguments": {
+            "command": "mkdir -p /app/experiments && cat > /app/circuit.spi <<'EOF'\n* SKY130 port of the two-stage cascode-biased op-amp (VDD=1.2V)\n.subckt dut iref inp inn out\n* ---- bias generator: 20uA reference -> NMOS diode, PMOS bias branch ----\nMN0 iref iref 0 0 sky130_fd_pr__nfet_01v8_lvt W=18 L=1 nf=1 m=1\nMN1 nb iref 0 0 sky130_fd_pr__nfet_01v8_lvt W=4 L=1 nf=1 m=1\nMP1 nb nb vdd vdd sky130_fd_pr__pfet_01v8_lvt W=6 L=1 nf=1 m=1\n* ---- NMOS tail current source ----\nMN2 tail iref 0 0 sky130_fd_pr__nfet_01v8_lvt W=72 L=1 nf=1 m=1\n* ---- input pair + PMOS mirror load (first stage) ----\nMNa x inp tail 0 sky130_fd_pr__nfet_01v8_lvt W=64 L=1 nf=1 m=1\nMNb xd inn tail 0 sky130_fd_pr__nfet_01v8_lvt W=64 L=1 nf=1 m=1\nMPa xd xd vdd vdd sky130_fd_pr__pfet_01v8_lvt W=19 L=1 nf=1 m=1\nMPb x xd vdd vdd sky130_fd_pr__pfet_01v8_lvt W=19 L=1 nf=1 m=1\n* ---- second stage: NMOS common source with PMOS current-source load ----\nMN3 out x 0 0 sky130_fd_pr__nfet_01v8_lvt W=32 L=0.5 nf=1 m=1\nMP3 out nb vdd vdd sky130_fd_pr__pfet_01v8_lvt W=122 L=1 nf=1 m=1\n* ---- Miller compensation with nulling resistor ----\nRz x nz 450\nCc nz out 1.4p\n.ends dut\nEOF\ncat > /app/experiments/tb_op.spice <<'EOF'\n* operating point / power / triode check\n.lib /opt/sky130/continuous/sky130.lib.spice tt\n.include /app/circuit.spi\nVdd vdd 0 1.2\nIref vdd iref 20u\nVinp inp 0 dc 0.9\nVsense out inn dc 0\nXdut iref inp inn out dut\nCL out 0 1p\n.op\n.end\nEOF\ncd /app/experiments && ngspice -b tb_op.spice -o op.log 2>&1 | tail -5; echo \"=== EXIT\"; tail -60 op.log",
+            "timeout_seconds": 120
+          },
+          "result": {
+            "exit_code": 1,
+            "stdout": "{\"unsafe\": [], \"violations\": [\"MN0: element type 'M' not allowed\", \"MN1: element type 'M' not allowed\", \"MP1: element type 'M' not allowed\", \"MN2: element type 'M' not allowed\", \"MNa: element type 'M' not allowed\", \"MNb: element type 'M' not allowed\", \"MPa: element type 'M' not allowed\", \"MPb: element type 'M' not allowed\", \"MN3: element type 'M' not allowed\", \"MP3: element type 'M' not allowed\"], \"notes\": [], \"passed\": false}\n=== EXIT\n",
+            "stderr": "tail: cannot open 'op.log' for reading: No such file or directory\n"
+          }
+        },
+        {
+          "turn": "turn_008",
+          "name": "terminal",
+          "arguments": {
+            "command": "cd /app && python3 - <<'EOF'\nimport re\np='/app/circuit.spi'\ns=open(p).read()\ns=re.sub(r'^(M)', r'X\\1', s, flags=re.M)\nopen(p,'w').write(s)\nEOF\ncat /app/circuit.spi; python3 /opt/simulationle-policy/check.py /app/circuit.spi",
+            "timeout_seconds": 60
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "* SKY130 port of the two-stage cascode-biased op-amp (VDD=1.2V)\n.subckt dut iref inp inn out\n* ---- bias generator: 20uA reference -> NMOS diode, PMOS bias branch ----\nXMN0 iref iref 0 0 sky130_fd_pr__nfet_01v8_lvt W=18 L=1 nf=1 m=1\nXMN1 nb iref 0 0 sky130_fd_pr__nfet_01v8_lvt W=4 L=1 nf=1 m=1\nXMP1 nb nb vdd vdd sky130_fd_pr__pfet_01v8_lvt W=6 L=1 nf=1 m=1\n* ---- NMOS tail current source ----\nXMN2 tail iref 0 0 sky130_fd_pr__nfet_01v8_lvt W=72 L=1 nf=1 m=1\n* ---- input pair + PMOS mirror load (first stage) ----\nXMNa x inp tail 0 sky130_fd_pr__nfet_01v8_lvt W=64 L=1 nf=1 m=1\nXMNb xd inn tail 0 sky130_fd_pr__nfet_01v8_lvt W=64 L=1 nf=1 m=1\nXMPa xd xd vdd vdd sky130_fd_pr__pfet_01v8_lvt W=19 L=1 nf=1 m=1\nXMPb x xd vdd vdd sky130_fd_pr__pfet_01v8_lvt W=19 L=1 nf=1 m=1\n* ---- second stage: NMOS common source with PMOS current-source load ----\nXMN3 out x 0 0 sky130_fd_pr__nfet_01v8_lvt W=32 L=0.5 nf=1 m=1\nXMP3 out nb vdd vdd sky130_fd_pr__pfet_01v8_lvt W=122 L=1 nf=1 m=1\n* ---- Miller compensation with nulling resistor ----\nRz x nz 450\nCc nz out 1.4p\n.ends dut\n{\"unsafe\": [], \"violations\": [], \"notes\": [], \"passed\": true}\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_009",
+          "name": "terminal",
+          "arguments": {
+            "command": "cd /app/experiments && ngspice -b tb_op.spice -o op.log 2>&1 | tail -5; echo \"=== EXIT $?\"; wc -l op.log; grep -n -i \"error\\|warn\" op.log | head -20; sed -n '1,80p' op.log",
+            "timeout_seconds": 120
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "\nBatch mode\n\nComments and warnings go to log-file: op.log\n\n=== EXIT 0\n3565 op.log\n240:    lintnoi <<NAN, error = 7>> <<NAN, error = 7>> <<NAN, error = 7>>\n494:    llambda <<NAN, error = 7>> <<NAN, error = 7>> <<NAN, error = 7>>\n495:       lvtl <<NAN, error = 7>> <<NAN, error = 7>> <<NAN, error = 7>>\n496:        lxn <<NAN, error = 7>> <<NAN, error = 7>> <<NAN, error = 7>>\n624:    wlambda <<NAN, error = 7>> <<NAN, error = 7>> <<NAN, error = 7>>\n625:       wvtl <<NAN, error = 7>> <<NAN, error = 7>> <<NAN, error = 7>>\n626:        wxn <<NAN, error = 7>> <<NAN, error = 7>> <<NAN, error = 7>>\n754:    plambda <<NAN, error = 7>> <<NAN, error = 7>> <<NAN, error = 7>>\n755:       pvtl <<NAN, error = 7>> <<NAN, error = 7>> <<NAN, error = 7>>\n756:        pxn <<NAN, error = 7>> <<NAN, error = 7>> <<NAN, error = 7>>\n996:    lintnoi <<NAN, error = 7>> <<NAN, error = 7>> <<NAN, error = 7>>\n1250:    llambda <<NAN, error = 7>> <<NAN, error = 7>> <<NAN, error = 7>>\n1251:       lvtl <<NAN, error = 7>> <<NAN, error = 7>> <<NAN, error = 7>>\n1252:        lxn <<NAN, error = 7>> <<NAN, error = 7>> <<NAN, error = 7>>\n1380:    wlambda <<NAN, error = 7>> <<NAN, error = 7>> <<NAN, error = 7>>\n1381:       wvtl <<NAN, error = 7>> <<NAN, error = 7>> <<NAN, error = 7>>\n1382:        wxn <<NAN, error = 7>> <<NAN, error = 7>> <<NAN, error = 7>>\n1510:    plambda <<NAN, error = 7>> <<NAN, error = 7>> <<NAN, error = 7>>\n1511:       pvtl <<NAN, error = 7>> <<NAN, error = 7>> <<NAN, error = 7>>\n1512:        pxn <<NAN, error = 7>> <<NAN, error = 7>> <<NAN, error = 7>>\n\nNote: Compatibility modes selected: hs a\n\n\nCircuit: * operating point / power / triode check\n\noption SCALE: Scale is set to 1e-06 for instance and model parameters\noption SCALE: Scale is set to 1e-06 for instance and model parameters\nDoing analysis at TEMP = 27.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\n\nNo. of Data Rows : 1\n\tNode                                  Voltage\n\t----                                  -------\n\t----\t-------\n\tm.xdut.xmn0.msky130_fd_pr__nfet_01v8_lvt#sbody   3.489832e-12\n\tm.xdut.xmn0.msky130_fd_pr__nfet_01v8_lvt#body   6.975133e-12\n\tm.xdut.xmn0.msky130_fd_pr__nfet_01v8_lvt#dbody   1.743552e-11\n\tm.xdut.xmn1.msky130_fd_pr__nfet_01v8_lvt#sbody   -3.26037e-29\n\tm.xdut.xmn1.msky130_fd_pr__nfet_01v8_lvt#body   -6.69340e-29\n\tm.xdut.xmn1.msky130_fd_pr__nfet_01v8_lvt#dbody   -1.68198e-28\n\tm.xdut.xmp1.msky130_fd_pr__pfet_01v8_lvt#sbody   1.056670e-17\n\tm.xdut.xmp1.msky130_fd_pr__pfet_01v8_lvt#body   1.056670e-17\n\tm.xdut.xmp1.msky130_fd_pr__pfet_01v8_lvt#dbody   1.056670e-17\n\tm.xdut.xmn2.msky130_fd_pr__nfet_01v8_lvt#sbody   -1.35968e-31\n\tm.xdut.xmn2.msky130_fd_pr__nfet_01v8_lvt#body   -9.06655e-32\n\tm.xdut.xmn2.msky130_fd_pr__nfet_01v8_lvt#dbody   -1.36029e-31\n\tm.xdut.xmna.msky130_fd_pr__nfet_01v8_lvt#sbody   -1.34082e-29\n\tm.xdut.xmna.msky130_fd_pr__nfet_01v8_lvt#body   -8.93879e-30\n\tm.xdut.xmna.msky130_fd_pr__nfet_01v8_lvt#dbody   -1.34082e-29\n\tm.xdut.xmnb.msky130_fd_pr__nfet_01v8_lvt#sbody   3.421194e-29\n\tm.xdut.xmnb.msky130_fd_pr__nfet_01v8_lvt#body   8.613964e-29\n\tm.xdut.xmnb.msky130_fd_pr__nfet_01v8_lvt#dbody   2.242070e-28\n\tm.xdut.xmpa.msky130_fd_pr__pfet_01v8_lvt#sbody   1.056670e-17\n\tm.xdut.xmpa.msky130_fd_pr__pfet_01v8_lvt#body   1.056670e-17\n\tm.xdut.xmpa.msky130_fd_pr__pfet_01v8_lvt#dbody   1.056670e-17\n\tm.xdut.xmpb.msky130_fd_pr__pfet_01v8_lvt#sbody   1.056670e-17\n\tm.xdut.xmpb.msky130_fd_pr__pfet_01v8_lvt#body   1.056670e-17\n\tm.xdut.xmpb.msky130_fd_pr__pfet_01v8_lvt#dbody   1.056670e-17\n\tm.xdut.xmn3.msky130_fd_pr__nfet_01v8_lvt#sbody   6.060203e-29\n\tm.xdut.xmn3.msky130_fd_pr__nfet_01v8_lvt#body   1.210040e-28\n\tm.xdut.xmn3.msky130_fd_pr__nfet_01v8_lvt#dbody   3.024099e-28\n\tm.xdut.xmp3.msky130_fd_pr__pfet_01v8_lvt#sbody   1.056670e-17\n\tm.xdut.xmp3.msky130_fd_pr__pfet_01v8_lvt#body   1.056670e-17\n\tm.xdut.xmp3.msky130_fd_pr__pfet_01v8_lvt#dbody   1.056670e-17\n\txdut.nz                          -2.50817e-24\n\txdut.xd                          6.169688e-18\n\txdut.x                           -2.50817e-24\n\txdut.tail                        -1.89173e-24\n\txdut.vdd                         1.056670e-17\n\txdut.nb                          -3.29440e-18\n\tinn                              7.184151e-18\n\tout                              7.184151e-18\n\tinp                              9.000000e-01\n\tiref                             5.479878e-01\n\tvdd                              1.200000e+00\n\n\tSource\tCurrent\n\t------\t-------\n\n\tvdd#branch                       -2.00000e-05\n\tvinp#branch                      0.000000e+00\n\tvsense#branch                    7.703720e-34\n\n BSIM4v5 models (Berkeley Short Channel IGFET Model-4)\n      model xdut.xmp3:plowvt_mode xdut.xmn3:nlowvt_mode xdut.xmpb:plowvt_mode\n\n     capmod                     2                     2                     2\n     diomod                     1                     1                     1\n     rdsmod                     0                     0                     0\n   trnqsmod                     0            ",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_010",
+          "name": "terminal",
+          "arguments": {
+            "command": "cd /app && sed -i '1i .global vdd' circuit.spi && head -3 circuit.spi && python3 /opt/simulationle-policy/check.py /app/circuit.spi && cd experiments && ngspice -b tb_op.spice -o op.log 2>&1 | tail -3; grep -n \"No. of Data\" -A 30 op.log | head -40",
+            "timeout_seconds": 120
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": ".global vdd\n* SKY130 port of the two-stage cascode-biased op-amp (VDD=1.2V)\n.subckt dut iref inp inn out\n{\"unsafe\": [], \"violations\": [], \"notes\": [], \"passed\": true}\n\nComments and warnings go to log-file: op.log\n\n13:No. of Data Rows : 1\n14-\tNode                                  Voltage\n15-\t----                                  -------\n16-\t----\t-------\n17-\tm.xdut.xmn0.msky130_fd_pr__nfet_01v8_lvt#sbody   3.489832e-12\n18-\tm.xdut.xmn0.msky130_fd_pr__nfet_01v8_lvt#body   6.975133e-12\n19-\tm.xdut.xmn0.msky130_fd_pr__nfet_01v8_lvt#dbody   1.743552e-11\n20-\tm.xdut.xmn1.msky130_fd_pr__nfet_01v8_lvt#sbody   3.747403e-12\n21-\tm.xdut.xmn1.msky130_fd_pr__nfet_01v8_lvt#body   7.490264e-12\n22-\tm.xdut.xmn1.msky130_fd_pr__nfet_01v8_lvt#dbody   1.872338e-11\n23-\tm.xdut.xmp1.msky130_fd_pr__pfet_01v8_lvt#sbody   1.200000e+00\n24-\tm.xdut.xmp1.msky130_fd_pr__pfet_01v8_lvt#body   1.200000e+00\n25-\tm.xdut.xmp1.msky130_fd_pr__pfet_01v8_lvt#dbody   1.200000e+00\n26-\tm.xdut.xmn2.msky130_fd_pr__nfet_01v8_lvt#sbody   2.114709e-12\n27-\tm.xdut.xmn2.msky130_fd_pr__nfet_01v8_lvt#body   4.225087e-12\n28-\tm.xdut.xmn2.msky130_fd_pr__nfet_01v8_lvt#dbody   1.056045e-11\n29-\tm.xdut.xmna.msky130_fd_pr__nfet_01v8_lvt#sbody   1.424027e-11\n30-\tm.xdut.xmna.msky130_fd_pr__nfet_01v8_lvt#body   1.157952e-11\n31-\tm.xdut.xmna.msky130_fd_pr__nfet_01v8_lvt#dbody   2.049826e-11\n32-\tm.xdut.xmnb.msky130_fd_pr__nfet_01v8_lvt#sbody   1.354741e-11\n33-\tm.xdut.xmnb.msky130_fd_pr__nfet_01v8_lvt#body   1.019378e-11\n34-\tm.xdut.xmnb.msky130_fd_pr__nfet_01v8_lvt#dbody   1.703391e-11\n35-\tm.xdut.xmpa.msky130_fd_pr__pfet_01v8_lvt#sbody   1.200000e+00\n36-\tm.xdut.xmpa.msky130_fd_pr__pfet_01v8_lvt#body   1.200000e+00\n37-\tm.xdut.xmpa.msky130_fd_pr__pfet_01v8_lvt#dbody   1.200000e+00\n38-\tm.xdut.xmpb.msky130_fd_pr__pfet_01v8_lvt#sbody   1.200000e+00\n39-\tm.xdut.xmpb.msky130_fd_pr__pfet_01v8_lvt#body   1.200000e+00\n40-\tm.xdut.xmpb.msky130_fd_pr__pfet_01v8_lvt#dbody   1.200000e+00\n41-\tm.xdut.xmn3.msky130_fd_pr__nfet_01v8_lvt#sbody   5.734620e-12\n42-\tm.xdut.xmn3.msky130_fd_pr__nfet_01v8_lvt#body   1.145928e-11\n43-\tm.xdut.xmn3.msky130_fd_pr__nfet_01v8_lvt#dbody   2.855347e-11\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_011",
+          "name": "terminal",
+          "arguments": {
+            "command": "cd /app/experiments && grep -n \"xdut\\.\\|^out\\|^inn\\|iref\" op.log | sed -n '1,40p'; echo === ; grep -n \"vdd#branch\" op.log",
+            "timeout_seconds": 60
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "17:\tm.xdut.xmn0.msky130_fd_pr__nfet_01v8_lvt#sbody   3.489832e-12\n18:\tm.xdut.xmn0.msky130_fd_pr__nfet_01v8_lvt#body   6.975133e-12\n19:\tm.xdut.xmn0.msky130_fd_pr__nfet_01v8_lvt#dbody   1.743552e-11\n20:\tm.xdut.xmn1.msky130_fd_pr__nfet_01v8_lvt#sbody   3.747403e-12\n21:\tm.xdut.xmn1.msky130_fd_pr__nfet_01v8_lvt#body   7.490264e-12\n22:\tm.xdut.xmn1.msky130_fd_pr__nfet_01v8_lvt#dbody   1.872338e-11\n23:\tm.xdut.xmp1.msky130_fd_pr__pfet_01v8_lvt#sbody   1.200000e+00\n24:\tm.xdut.xmp1.msky130_fd_pr__pfet_01v8_lvt#body   1.200000e+00\n25:\tm.xdut.xmp1.msky130_fd_pr__pfet_01v8_lvt#dbody   1.200000e+00\n26:\tm.xdut.xmn2.msky130_fd_pr__nfet_01v8_lvt#sbody   2.114709e-12\n27:\tm.xdut.xmn2.msky130_fd_pr__nfet_01v8_lvt#body   4.225087e-12\n28:\tm.xdut.xmn2.msky130_fd_pr__nfet_01v8_lvt#dbody   1.056045e-11\n29:\tm.xdut.xmna.msky130_fd_pr__nfet_01v8_lvt#sbody   1.424027e-11\n30:\tm.xdut.xmna.msky130_fd_pr__nfet_01v8_lvt#body   1.157952e-11\n31:\tm.xdut.xmna.msky130_fd_pr__nfet_01v8_lvt#dbody   2.049826e-11\n32:\tm.xdut.xmnb.msky130_fd_pr__nfet_01v8_lvt#sbody   1.354741e-11\n33:\tm.xdut.xmnb.msky130_fd_pr__nfet_01v8_lvt#body   1.019378e-11\n34:\tm.xdut.xmnb.msky130_fd_pr__nfet_01v8_lvt#dbody   1.703391e-11\n35:\tm.xdut.xmpa.msky130_fd_pr__pfet_01v8_lvt#sbody   1.200000e+00\n36:\tm.xdut.xmpa.msky130_fd_pr__pfet_01v8_lvt#body   1.200000e+00\n37:\tm.xdut.xmpa.msky130_fd_pr__pfet_01v8_lvt#dbody   1.200000e+00\n38:\tm.xdut.xmpb.msky130_fd_pr__pfet_01v8_lvt#sbody   1.200000e+00\n39:\tm.xdut.xmpb.msky130_fd_pr__pfet_01v8_lvt#body   1.200000e+00\n40:\tm.xdut.xmpb.msky130_fd_pr__pfet_01v8_lvt#dbody   1.200000e+00\n41:\tm.xdut.xmn3.msky130_fd_pr__nfet_01v8_lvt#sbody   5.734620e-12\n42:\tm.xdut.xmn3.msky130_fd_pr__nfet_01v8_lvt#body   1.145928e-11\n43:\tm.xdut.xmn3.msky130_fd_pr__nfet_01v8_lvt#dbody   2.855347e-11\n44:\tm.xdut.xmp3.msky130_fd_pr__pfet_01v8_lvt#sbody   1.200000e+00\n45:\tm.xdut.xmp3.msky130_fd_pr__pfet_01v8_lvt#body   1.200000e+00\n46:\tm.xdut.xmp3.msky130_fd_pr__pfet_01v8_lvt#dbody   1.200000e+00\n47:\txdut.nz                          5.783774e-01\n48:\txdut.xd                          4.675187e-01\n49:\txdut.x                           5.783774e-01\n50:\txdut.tail                        3.279834e-01\n51:\txdut.nb                          5.891998e-01\n55:\tiref                             5.479878e-01\n66:      model xdut.xmp3:plowvt_mode xdut.xmn3:nlowvt_mode xdut.xmpb:plowvt_mode\n822:      model xdut.xmpa:plowvt_mode xdut.xmnb:nlowvt_mode xdut.xmna:nlowvt_mode\n1578:      model xdut.xmn2:nlowvt_mode xdut.xmp1:plowvt_mode xdut.xmn1:nlowvt_mode\n2334:      model xdut.xmn0:nlowvt_mode\n===\n61:\tvdd#branch                       -1.79969e-04\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_012",
+          "name": "terminal",
+          "arguments": {
+            "command": "cd /app/experiments && sed -n '47,64p' op.log; echo \"=== BSIM table sample\"; sed -n '66,140p' op.log",
+            "timeout_seconds": 60
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "\txdut.nz                          5.783774e-01\n\txdut.xd                          4.675187e-01\n\txdut.x                           5.783774e-01\n\txdut.tail                        3.279834e-01\n\txdut.nb                          5.891998e-01\n\tinn                              9.031066e-01\n\tout                              9.031066e-01\n\tinp                              9.000000e-01\n\tiref                             5.479878e-01\n\tvdd                              1.200000e+00\n\n\tSource\tCurrent\n\t------\t-------\n\n\tvdd#branch                       -1.79969e-04\n\tvinp#branch                      0.000000e+00\n\tvsense#branch                    -5.55112e-17\n\n=== BSIM table sample\n      model xdut.xmp3:plowvt_mode xdut.xmn3:nlowvt_mode xdut.xmpb:plowvt_mode\n\n     capmod                     2                     2                     2\n     diomod                     1                     1                     1\n     rdsmod                     0                     0                     0\n   trnqsmod                     0                     0                     0\n   acnqsmod                     0                     0                     0\n     mobmod                     0                     0                     0\n   rbodymod                     1                     1                     1\n   rgatemod                     0                     0                     0\n     permod                     1                     1                     1\n     geomod                     0                     0                     0\n    rgeomod                     0                     0                     0\n    fnoimod                     1                     1                     1\n    tnoimod                     1                     1                     1\n     igcmod                     0                     0                     0\n     igbmod                     0                     0                     0\n    tempmod                     0                     0                     0\n   paramchk                     1                     1                     1\n    binunit                     2                     2                     2\n    version                   4.5                   4.5                   4.5\n       toxe              4.23e-09             4.148e-09              4.23e-09\n       toxp              4.23e-09             4.148e-09              4.23e-09\n       toxm              4.23e-09             4.148e-09              4.23e-09\n     toxref              4.23e-09             4.148e-09              4.23e-09\n       dtox                     0                     0                     0\n     epsrox                   3.9                   3.9                   3.9\n       cdsc            2.8125e-07            3.8556e-37            2.8125e-07\n      cdscb                0.0001           -0.00011484                0.0001\n      cdscd                 1e-10            4.7984e-06                 1e-10\n        cit          -6.39311e-11                 5e-06          -6.39311e-11\n    nfactor               2.59776                1.3469               2.59776\n         xj               1.5e-07               1.5e-07               1.5e-07\n       vsat               90026.1               17610.5               90026.1\n         at                204347               72363.9                204347\n         a0              0.869557               2.02065              0.869557\n        ags            -0.0212896               2.93356            -0.0212896\n         a1                     0                     0                     0\n         a2              0.467037               0.38689              0.467037\n       keta              -0.01258             -0.430501              -0.01258\n       nsub                 6e+16                 6e+16                 6e+16\n       ndep               1.7e+17               1.7e+17               1.7e+17\n        nsd                 1e+20                 1e+20                 1e+20\n       phin                     0                     0                     0\n      ngate                 1e+23                 1e+23                 1e+23\n     gamma1                     0                     0                     0\n     gamma2                     0                     0                     0\n        vbx                     0                     0                     0\n        vbm                    -3                    -3                    -3\n         xt              1.55e-07              1.55e-07              1.55e-07\n         k1               0.64774              0.433799               0.64774\n        kt1             -0.651014             -0.250682             -0.651014\n       kt1l                     0                     0                     0\n        kt2            -0.0933612           -0.00133625            -0.0933612\n         k2            -0.0511026            -0.0171879            -0.0511026\n         k3                  3.39                  1.65                  3.39\n        k3b                     1        ",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_013",
+          "name": "terminal",
+          "arguments": {
+            "command": "cd /app/experiments && grep -n \"^ *\\(vgs\\|vds\\|vdsat\\|gm\\|gds\\|id\\|vth\\|cd\\|cgs\\|cgd\\) \" op.log | head -60",
+            "timeout_seconds": 60
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "3163:         gm           0.000842575            0.00130696           0.000281096\n3164:        gds           3.12763e-05           1.54311e-05           4.76841e-06\n3165:      vdsat              0.156494             0.0941639              0.246425\n3166:        vth              0.470746               0.51482              0.471353\n3167:         id            7.8545e-05            7.8545e-05           3.83189e-05\n3181:        vgs              0.610666              0.578224              0.732056\n3182:        vds              0.296624                0.9028              0.620771\n3184:        cgs          -3.25479e-13          -6.65492e-14          -8.03419e-14\n3185:        cgd          -8.01103e-16          -1.55799e-17          -3.62868e-17\n3255:         gm           0.000283989           0.000754429           0.000757587\n3256:        gds           4.25698e-06           2.98558e-05            1.1503e-05\n3257:      vdsat               0.24642             0.0824289             0.0808503\n3258:        vth              0.471355              0.544316              0.544316\n3259:         id           3.88134e-05           3.88134e-05           3.83189e-05\n3273:        vgs               0.73205              0.575085              0.571979\n3274:        vds              0.731619               0.13946              0.250319\n3276:        cgs          -8.03251e-14           -2.4771e-13          -2.60954e-13\n3277:        cgd          -2.13709e-17          -4.89643e-14          -6.69885e-15\n3347:         gm            0.00130849           4.45685e-05           7.18627e-05\n3348:        gds           1.68631e-05           7.22386e-07           8.57907e-07\n3349:      vdsat             0.0918289               0.15879              0.091744\n3350:        vth              0.482097              0.460498               0.48451\n3351:         id           7.71322e-05           4.29132e-06           4.29132e-06\n3365:        vgs              0.547921              0.610645              0.547918\n3366:        vds               0.32785               0.61049               0.58906\n3368:        cgs          -3.19595e-13          -1.71437e-14          -1.73154e-14\n3369:        cgd          -2.91085e-15          -4.68639e-18          -1.81354e-17\n3439:         gm           0.000336122\n3440:        gds           3.53333e-06\n3441:      vdsat              0.091715\n3442:        vth               0.48233\n3443:         id                 2e-05\n3457:        vgs              0.547918\n3458:        vds              0.547848\n3460:        cgs          -7.96933e-14\n3461:        cgd          -1.06518e-16\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_014",
+          "name": "terminal",
+          "arguments": {
+            "command": "cd /app/experiments && cat > tb_ac.spice <<'EOF'\n* loop gain: series voltage injection between out and inn\n.lib /opt/sky130/continuous/sky130.lib.spice tt\n.include /app/circuit.spi\nVdd vdd 0 1.2\nIref vdd iref 20u\nVinp inp 0 dc 0.9 ac 0\nVsense out inn dc 0 ac 1\nXdut iref inp inn out dut\nCL out 0 1p\n.ac dec 40 10 10G\n.print ac vm(out) vp(out) vm(inn) vp(inn)\n.end\nEOF\nngspice -b tb_ac.spice -o ac.log 2>&1|tail -3; python3 - <<'PY'\nimport numpy as np,re\ntxt=open('/app/experiments/ac.log').read()\nlines=[l for l in txt.splitlines() if re.match(r'^\\s*\\d+\\.\\d+e[+-]\\d+',l)]\nprint(len(lines)); print(lines[:3]); print(lines[-2:])\nimport cmath\nf=[];T=[]\nfor l in lines:\n    v=l.split()\n    fr=float(v[0]); mo=float(v[1]); po=float(v[2]); mi=float(v[3]); pi=float(v[4])\n    T.append(20*np.log10(mo/mi)*1j)  # placeholder\n    f.append(fr)\n    T[-1]=(mo/mi)*np.exp(1j*np.pi/180*(po-pi))\nf=np.array(f); T=np.array(T)\ndb=20*np.log10(np.abs(T)); ph=np.unwrap(np.angle(T))*180/np.pi\nprint(\"dc gain @10Hz = %.2f dB\"%db[0])\ni=np.argmin(abs(db))\nprint(\"ugf ~ %.3e, pm=%.1f\"%(f[i], 180+ph[i]))\n# interpolate\nlr=lambda a,b,x: a+ (b-a)*(x)/(1)\nimport numpy as np\nfu=np.interp(0,db[::-1],f[::-1]) if False else None\nj=np.where(np.diff(np.sign(db))!=0)[0]\nprint(\"crossings idx\",j[:5])\nfor k in j[:3]:\n    fr=f[k]+(f[k+1]-f[k])*db[k]/(db[k]-db[k+1])\n    phr=ph[k]+(ph[k+1]-ph[k])*(np.log(fr)-np.log(f[k]))/(np.log(f[k+1])-np.log(f[k]))\n    print(\"UGF=%.4e Hz  phase=%.1f  PM=%.1f\"%(fr,phr,180+phr))\n# gain margin: phase=-180\nprint(\"min phase\", ph.min(), \"max\", ph.max())\nfor k in range(len(f)-1):\n    if (ph[k]+180)*(ph[k+1]+180)<0:\n        fr=np.exp(np.log(f[k])+(np.log(f[k+1])-np.log(f[k]))*(-180-ph[k])/(ph[k+1]-ph[k]))\n        d=db[k]+(db[k+1]-db[k])*(np.log(fr)-np.log(f[k]))/(np.log(f[k+1])-np.log(f[k]))\n        print(\"phase=-180 at %.4e Hz, gain=%.2f dB -> GM=%.2f dB\"%(fr,d,-d))\nnp.save('/app/experiments/ac2.npy', np.vstack([f,db,ph]))\nPY",
+            "timeout_seconds": 120
+          },
+          "result": {
+            "exit_code": 1,
+            "stdout": "\nComments and warnings go to log-file: ac.log\n\n0\n[]\n[]\n",
+            "stderr": "Traceback (most recent call last):\n  File \"<stdin>\", line 15, in <module>\nIndexError: index 0 is out of bounds for axis 0 with size 0\n"
+          }
+        },
+        {
+          "turn": "turn_015",
+          "name": "terminal",
+          "arguments": {
+            "command": "cd /app/experiments && grep -n \"Index\\|frequency\" ac.log | head; sed -n '/frequency/,+8p' ac.log | head -20; wc -l ac.log",
+            "timeout_seconds": 60
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "17:Index   frequency       vm(out)         vp(out)         \n75:Index   frequency       vm(out)         vp(out)         \n136:Index   frequency       vm(out)         vp(out)         \n197:Index   frequency       vm(out)         vp(out)         \n258:Index   frequency       vm(out)         vp(out)         \n319:Index   frequency       vm(out)         vp(out)         \n380:Index   frequency       vm(out)         vp(out)         \n402:Index   frequency       vm(inn)         vp(inn)         \n460:Index   frequency       vm(inn)         vp(inn)         \n521:Index   frequency       vm(inn)         vp(inn)         \nIndex   frequency       vm(out)         vp(out)         \n--------------------------------------------------------------------------------\n0\t1.000000e+01\t9.992034e-01\t-1.33634e-07\t\n1\t1.059254e+01\t9.992034e-01\t-1.41552e-07\t\n2\t1.122018e+01\t9.992034e-01\t-1.49940e-07\t\n3\t1.188502e+01\t9.992034e-01\t-1.58824e-07\t\n4\t1.258925e+01\t9.992034e-01\t-1.68235e-07\t\n5\t1.333521e+01\t9.992034e-01\t-1.78204e-07\t\n6\t1.412538e+01\t9.992034e-01\t-1.88763e-07\t\nIndex   frequency       vm(out)         vp(out)         \n--------------------------------------------------------------------------------\n55\t2.371374e+02\t9.992034e-01\t-3.16896e-06\t\n56\t2.511886e+02\t9.992034e-01\t-3.35673e-06\t\n57\t2.660725e+02\t9.992034e-01\t-3.55563e-06\t\n58\t2.818383e+02\t9.992034e-01\t-3.76632e-06\t\n59\t2.985383e+02\t9.992034e-01\t-3.98948e-06\t\n60\t3.162278e+02\t9.992034e-01\t-4.22588e-06\t\n61\t3.349654e+02\t9.992034e-01\t-4.47628e-06\t\nIndex   frequency       vm(out)         vp(out)         \n--------------------------------------------------------------------------------\n798 ac.log\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_016",
+          "name": "terminal",
+          "arguments": {
+            "command": "cd /app/experiments && cat > tb_ac.spice <<'EOF'\n* loop gain: series voltage injection between out and inn\n.lib /opt/sky130/continuous/sky130.lib.spice tt\n.include /app/circuit.spi\nVdd vdd 0 1.2\nIref vdd iref 20u\nVinp inp 0 dc 0.9 ac 0\nVsense out inn dc 0 ac 1\nXdut iref inp inn out dut\nCL out 0 1p\n.control\nac dec 60 10 10G\nwrdata /app/experiments/ac.dat mag(v(out)) ph(v(out)) mag(v(inn)) ph(v(inn))\n.endc\n.end\nEOF\nngspice -b tb_ac.spice -o ac.log 2>&1|tail -3; head -3 ac.dat; wc -l ac.dat\ncat > analyze_ac.py <<'PY'\nimport numpy as np\nd=np.loadtxt('/app/experiments/ac.dat')\nf=d[:,0]; mo=d[:,1]; po=d[:,3]; mi=d[:,5]; pi=d[:,7]\nT=(mo/mi)*np.exp(1j*np.deg2rad(po-pi))\ndb=20*np.log10(np.abs(T)); ph=np.unwrap(np.angle(T))*180/np.pi\nprint(\"N=%d  f %.0f..%.3e\"%(len(f),f[0],f[-1]))\nprint(\"DC loop gain = %.2f dB at %.1f Hz\"%(db[0],f[0]))\ndef interp_log(x,y,x0):\n    return np.exp(np.interp(x0, y, np.log(x)))\n# UGF\nfor k in range(len(f)-1):\n    if db[k]>0>=db[k+1]:\n        lfr=np.log(f[k])+(np.log(f[k+1])-np.log(f[k]))*db[k]/(db[k]-db[k+1])\n        fr=np.exp(lfr)\n        phr=ph[k]+(ph[k+1]-ph[k])*(lfr-np.log(f[k]))/(np.log(f[k+1])-np.log(f[k]))\n        print(\"UGF = %.4e Hz   phase=%.2f   PM=%.2f deg\"%(fr,phr,180+phr))\nfor k in range(len(f)-1):\n    if (ph[k]+180)*(ph[k+1]+180)<0:\n        lfr=np.log(f[k])+(np.log(f[k+1])-np.log(f[k]))*(-180-ph[k])/(ph[k+1]-ph[k])\n        fr=np.exp(lfr)\n        dd=db[k]+(db[k+1]-db[k])*(lfr-np.log(f[k]))/(np.log(f[k+1])-np.log(f[k]))\n        print(\"phase=-180 at %.4e Hz  gain=%.2f dB  GM=%.2f dB\"%(fr,dd,-dd))\nprint(\"phase range %.1f .. %.1f\"%(ph.min(),ph.max()))\nprint(\"gain at 1MHz %.2f dB, at 10MHz %.2f dB, at 100MHz %.2f dB\"%(np.interp(1e6,f,db),np.interp(1e7,f,db),np.interp(1e8,f,db)))\nPY\npython3 analyze_ac.py",
+            "timeout_seconds": 120
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "\nComments and warnings go to log-file: ac.log\n\n 1.00000000e+01  9.99203443e-01  1.00000000e+01 -1.33633946e-07  1.00000000e+01  7.96557130e-04  1.00000000e+01 -3.14142502e+00 \n 1.03912230e+01  9.99203443e-01  1.03912230e+01 -1.38862014e-07  1.03912230e+01  7.96557131e-04  1.03912230e+01 -3.14141846e+00 \n 1.07977516e+01  9.99203443e-01  1.07977516e+01 -1.44294616e-07  1.07977516e+01  7.96557132e-04  1.07977516e+01 -3.14141165e+00 \n541 ac.dat\nN=541  f 10..1.000e+10\nDC loop gain = 61.97 dB at 10.0 Hz\nUGF = 6.3604e+07 Hz   phase=0.77   PM=180.77 deg\nphase range -3.1 .. 3.1\ngain at 1MHz 37.47 dB, at 10MHz 17.44 dB, at 100MHz -5.71 dB\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_017",
+          "name": "terminal",
+          "arguments": {
+            "command": "cd /app/experiments && cat > analyze_ac.py <<'PY'\nimport numpy as np,sys\nfn=sys.argv[1] if len(sys.argv)>1 else '/app/experiments/ac.dat'\nd=np.loadtxt(fn)\nf=d[:,0]; mo=d[:,1]; po=d[:,2]; mi=d[:,3]; pi=d[:,4]\nT=(mo/mi)*np.exp(1j*np.deg2rad(po-pi))\nLc=-T   # negative feedback loop gain: DC phase 0\ndb=20*np.log10(np.abs(Lc)); ph=np.unwrap(np.angle(Lc))*180/np.pi\nprint(\"DC loop gain = %.2f dB at %.1f Hz\"%(db[0],f[0]))\nfor k in range(len(f)-1):\n    if db[k]>0>=db[k+1]:\n        lfr=np.log(f[k])+(np.log(f[k+1])-np.log(f[k]))*db[k]/(db[k]-db[k+1]); fr=np.exp(lfr)\n        phr=ph[k]+(ph[k+1]-ph[k])*(lfr-np.log(f[k]))/(np.log(f[k+1])-np.log(f[k]))\n        print(\"UGF = %.4e Hz   phase=%.2f   PM=%.2f deg\"%(fr,phr,180+phr))\nfor k in range(len(f)-1):\n    if (ph[k]+180)*(ph[k+1]+180)<0:\n        lfr=np.log(f[k])+(np.log(f[k+1])-np.log(f[k]))*(-180-ph[k])/(ph[k+1]-ph[k]); fr=np.exp(lfr)\n        dd=db[k]+(db[k+1]-db[k])*(lfr-np.log(f[k]))/(np.log(f[k+1])-np.log(f[k]))\n        print(\"phase=-180 at %.4e Hz  gain=%.2f dB  GM=%.2f dB\"%(fr,dd,-dd))\nprint(\"phase range %.1f .. %.1f\"%(ph.min(),ph.max()))\nfor fx in [1e5,1e6,1e7,3e7,1e8,3e8,1e9]:\n    print(\"  f=%.0e  gain=%.2f dB  phase=%.1f\"%(fx,np.interp(np.log(fx),np.log(f),db),np.interp(np.log(fx),np.log(f),ph)))\nPY\npython3 analyze_ac.py",
+            "timeout_seconds": 60
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "DC loop gain = 137.47 dB at 10.0 Hz\nUGF = 6.8782e+07 Hz   phase=0.00   PM=180.00 deg\nphase range -180.0 .. 0.0\n  f=1e+05  gain=57.47 dB  phase=0.0\n  f=1e+06  gain=37.47 dB  phase=0.0\n  f=1e+07  gain=17.47 dB  phase=0.0\n  f=3e+07  gain=7.94 dB  phase=0.0\n  f=1e+08  gain=-8.30 dB  phase=0.0\n  f=3e+08  gain=-12.95 dB  phase=-180.0\n  f=1e+09  gain=1.76 dB  phase=-180.0\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_018",
+          "name": "terminal",
+          "arguments": {
+            "command": "cd /app/experiments && sed -i 's/mo=d\\[:,1\\]; po=d\\[:,2\\]; mi=d\\[:,3\\]; pi=d\\[:,4\\]/mo=d[:,1]; po=d[:,3]; mi=d[:,5]; pi=d[:,7]/' analyze_ac.py && python3 analyze_ac.py",
+            "timeout_seconds": 60
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "DC loop gain = 61.97 dB at 10.0 Hz\nUGF = 6.3604e+07 Hz   phase=-179.23   PM=0.77 deg\nphase=-180 at 1.1904e+08 Hz  gain=-8.24 dB  GM=8.24 dB\nphase=-180 at 7.4990e+09 Hz  gain=-13.13 dB  GM=13.13 dB\nphase range -183.1 .. -176.9\n  f=1e+05  gain=56.16 dB  phase=-177.9\n  f=1e+06  gain=37.47 dB  phase=-178.4\n  f=1e+07  gain=17.44 dB  phase=-178.5\n  f=3e+07  gain=7.59 dB  phase=-178.8\n  f=1e+08  gain=-5.71 dB  phase=-179.7\n  f=3e+08  gain=-13.71 dB  phase=-182.2\n  f=1e+09  gain=-12.97 dB  phase=-183.0\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_019",
+          "name": "terminal",
+          "arguments": {
+            "command": "cd /app/experiments && cat > devchar.spice <<'EOF'\n* device characterisation: fixed Vgs sweeps at several Vds, NMOS + PMOS lvt\n.lib /opt/sky130/continuous/sky130.lib.spice tt\n.include /app/circuit.spi\nVdd vdd 0 1.2\n* NMOS: all gates on ng, drains on nd, bulk 0 ; body-effect device source on vsn\nVng ng 0 0.55\nVnd nd 0 0.4\nVsn vsn 0 0.30\nXn05_40 nd ng 0 0 sky130_fd_pr__nfet_01v8_lvt W=11.5 L=0.5 nf=1 m=1\nXn1_40  nd ng 0 0 sky130_fd_pr__nfet_01v8_lvt W=23 L=1 nf=1 m=1\nXn2_40  nd ng 0 0 sky130_fd_pr__nfet_01v8_lvt W=46 L=2 nf=1 m=1\nXn3_40  nd ng 0 0 sky130_fd_pr__nfet_01v8_lvt W=69 L=3 nf=1 m=1\nXn05_100 nd ng 0 0 sky130_fd_pr__nfet_01v8_lvt W=28.5 L=0.5 nf=1 m=1\nXn1_100  nd ng 0 0 sky130_fd_pr__nfet_01v8_lvt W=57 L=1 nf=1 m=1\nXn2_100  nd ng 0 0 sky130_fd_pr__nfet_01v8_lvt W=114 L=2 nf=1 m=1\nXn015_100 nd ng 0 0 sky130_fd_pr__nfet_01v8_lvt W=8.5 L=0.15 nf=1 m=1\nXn1_40b  nd ng vsn 0 sky130_fd_pr__nfet_01v8_lvt W=23 L=1 nf=1 m=1\n* PMOS: gates on pg, drains on pd, sources vdd, bulk vdd\nVpg pg 0 0.65\nVpd pd 0 0.8\nXp05_40  pd pg vdd vdd sky130_fd_pr__pfet_01v8_lvt W=50 L=0.5 nf=1 m=1\nXp1_40   pd pg vdd vdd sky130_fd_pr__pfet_01v8_lvt W=100 L=1 nf=1 m=1\nXp2_40   pd pg vdd vdd sky130_fd_pr__pfet_01v8_lvt W=200 L=2 nf=1 m=1\nXp3_40   pd pg vdd vdd sky130_fd_pr__pfet_01v8_lvt W=300 L=3 nf=1 m=1\nXp35_100 pd pg vdd vdd sky130_fd_pr__pfet_01v8_lvt W=175 L=0.35 nf=1 m=1\nXp1_100  pd pg vdd vdd sky130_fd_pr__pfet_01v8_lvt W=250 L=1 nf=1 m=1\nXp2_100  pd pg vdd vdd sky130_fd_pr__pfet_01v8_lvt W=500 L=2 nf=1 m=1\nXp4_100  pd pg vdd vdd sky130_fd_pr__pfet_01v8_lvt W=1000 L=4 nf=1 m=1\n.control\nset wr_singlescale\nset wr_vecnames\ndc Vng 0.35 0.88 0.01\nwrdata /app/experiments/n25.dat id gm gds vdsat vth cgs\n.endc\n.end\nEOF\necho \"NOTE: need @dev params; test naming first\"; ngspice -b devchar.spice -o dev.log 2>&1|tail -3; grep -i \"error\\|warning\" dev.log|head; head -2 n25.dat 2>/dev/null; wc -l n25.dat 2>/dev/null",
+            "timeout_seconds": 120
+          },
+          "result": {
+            "exit_code": 1,
+            "stdout": "NOTE: need @dev params; test naming first\n\nComments and warnings go to log-file: dev.log\n\nError: no such vector id\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_020",
+          "name": "terminal",
+          "arguments": {
+            "command": "cd /app/experiments && cat > t1.spice <<'EOF'\n.lib /opt/sky130/continuous/sky130.lib.spice tt\n.include /app/circuit.spi\nVdd vdd 0 1.2\nVng ng 0 0.55\nVnd nd 0 0.4\nXn1 nd ng 0 0 sky130_fd_pr__nfet_01v8_lvt W=23 L=1 nf=1 m=1\n.control\ndc Vng 0.4 0.7 0.05\ndisplay\nprint @xn1.msky130_fd_pr__nfet_01v8_lvt[id] @xn1.msky130_fd_pr__nfet_01v8_lvt[gm] @xn1.msky130_fd_pr__nfet_01v8_lvt[gds]\n.endc\n.end\nEOF\nngspice -b t1.spice -o t1.log 2>&1|tail -2; grep -A 30 \"Here are the vectors\" t1.log | head -40; grep -A 10 \"ng\\b\" t1.log|tail -20",
+            "timeout_seconds": 120
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "Comments and warnings go to log-file: t1.log\n\nHere are the vectors currently active:\n\nTitle: *lib /opt/sky130/continuous/sky130.lib.spice tt\nName: dc1 (DC transfer characteristic)\nDate: Sun Nov  8 12:11:59  2026\n\n    m.xn1.msky130_fd_pr__nfet_01v8_lvt#body: voltage, real, 7 long\n    m.xn1.msky130_fd_pr__nfet_01v8_lvt#dbody: voltage, real, 7 long\n    m.xn1.msky130_fd_pr__nfet_01v8_lvt#sbody: voltage, real, 7 long\n    nd                  : voltage, real, 7 long\n    ng                  : voltage, real, 7 long\n    v-sweep             : voltage, real, 7 long [default scale]\n    vdd                 : voltage, real, 7 long\n    vdd#branch          : current, real, 7 long\n    vnd#branch          : current, real, 7 long\n    vng#branch          : current, real, 7 long\nError: no such device or model name xn1.msky130_fd_pr__nfet_01v8_lvt\nError: no such device or model name xn1.msky130_fd_pr__nfet_01v8_lvt\nError: no such device or model name xn1.msky130_fd_pr__nfet_01v8_lvt\nWarning from checkvalid: vector @xn1.msky130_fd_pr__nfet_01v8_lvt[id] is not available or has zero length.\nNote: Simulation executed from .control section \n\nTitle: *lib /opt/sky130/continuous/sky130.lib.spice tt\nName: dc1 (DC transfer characteristic)\nDate: Sun Nov  8 12:11:59  2026\n\n    m.xn1.msky130_fd_pr__nfet_01v8_lvt#body: voltage, real, 7 long\n    m.xn1.msky130_fd_pr__nfet_01v8_lvt#dbody: voltage, real, 7 long\n    m.xn1.msky130_fd_pr__nfet_01v8_lvt#sbody: voltage, real, 7 long\n    nd                  : voltage, real, 7 long\n    ng                  : voltage, real, 7 long\n    v-sweep             : voltage, real, 7 long [default scale]\n    vdd                 : voltage, real, 7 long\n    vdd#branch          : current, real, 7 long\n    vnd#branch          : current, real, 7 long\n    vng#branch          : current, real, 7 long\nError: no such device or model name xn1.msky130_fd_pr__nfet_01v8_lvt\nError: no such device or model name xn1.msky130_fd_pr__nfet_01v8_lvt\nError: no such device or model name xn1.msky130_fd_pr__nfet_01v8_lvt\nWarning from checkvalid: vector @xn1.msky130_fd_pr__nfet_01v8_lvt[id] is not available or has zero length.\nNote: Simulation executed from .control section \n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_021",
+          "name": "terminal",
+          "arguments": {
+            "command": "cd /app/experiments && sed -i 's/@xn1\\./@m.xn1./g' t1.spice && ngspice -b t1.spice -o t1.log 2>&1|tail -2; grep -A 10 \"Index\" t1.log | head -14",
+            "timeout_seconds": 120
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "Comments and warnings go to log-file: t1.log\n\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_022",
+          "name": "terminal",
+          "arguments": {
+            "command": "cd /app/experiments && tail -20 t1.log",
+            "timeout_seconds": 60
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "Here are the vectors currently active:\n\nTitle: *lib /opt/sky130/continuous/sky130.lib.spice tt\nName: dc1 (DC transfer characteristic)\nDate: Sun Nov  8 12:12:04  2026\n\n    m.xn1.msky130_fd_pr__nfet_01v8_lvt#body: voltage, real, 7 long\n    m.xn1.msky130_fd_pr__nfet_01v8_lvt#dbody: voltage, real, 7 long\n    m.xn1.msky130_fd_pr__nfet_01v8_lvt#sbody: voltage, real, 7 long\n    nd                  : voltage, real, 7 long\n    ng                  : voltage, real, 7 long\n    v-sweep             : voltage, real, 7 long [default scale]\n    vdd                 : voltage, real, 7 long\n    vdd#branch          : current, real, 7 long\n    vnd#branch          : current, real, 7 long\n    vng#branch          : current, real, 7 long\n@m.xn1.msky130_fd_pr__nfet_01v8_lvt[id] = 1.551961e-04\n@m.xn1.msky130_fd_pr__nfet_01v8_lvt[gm] = 1.292496e-03\n@m.xn1.msky130_fd_pr__nfet_01v8_lvt[gds] = 2.478658e-05\nNote: Simulation executed from .control section \n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_023",
+          "name": "terminal",
+          "arguments": {
+            "command": "cd /app/experiments && cat > t1.spice <<'EOF'\n.lib /opt/sky130/continuous/sky130.lib.spice tt\n.include /app/circuit.spi\nVdd vdd 0 1.2\nVng ng 0 0.55\nVnd nd 0 0.4\nXn1 nd ng 0 0 sky130_fd_pr__nfet_01v8_lvt W=23 L=1 nf=1 m=1\n.dc Vng 0.4 0.7 0.1\n.print dc @m.xn1.msky130_fd_pr__nfet_01v8_lvt[id] @m.xn1.msky130_fd_pr__nfet_01v8_lvt[gm] @m.xn1.msky130_fd_pr__nfet_01v8_lvt[gds] @m.xn1.msky130_fd_pr__nfet_01v8_lvt[vdsat] i(vnd)\n.end\nEOF\nngspice -b t1.spice -o t1.log 2>&1|tail -2; grep -B2 -A 10 \"Index\" t1.log | head -20",
+            "timeout_seconds": 120
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "Comments and warnings go to log-file: t1.log\n\n                DC transfer characteristic  Sun Nov  8 12:12:13  2026\n--------------------------------------------------------------------------------\nIndex   v-sweep         @m.xn1.msky130_ @m.xn1.msky130_ @m.xn1.msky130_ \n--------------------------------------------------------------------------------\n0\t4.000000e-01\t1.014521e-06\t2.552569e-05\t3.524743e-07\t\n1\t5.000000e-01\t1.016294e-05\t2.073500e-04\t2.481580e-06\t\n2\t6.000000e-01\t5.434813e-05\t7.189989e-04\t9.079201e-06\t\n3\t7.000000e-01\t1.551961e-04\t1.292496e-03\t2.478658e-05\t\n\f\n                *lib /opt/sky130/continuous/sky130.lib.spice tt\n                DC transfer characteristic  Sun Nov  8 12:12:13  2026\n--------------------------------------------------------------------------------\nIndex   v-sweep         @m.xn1.msky130_ vnd#branch      \n--------------------------------------------------------------------------------\n0\t4.000000e-01\t4.322554e-02\t-1.01452e-06\t\n1\t5.000000e-01\t6.797016e-02\t-1.01629e-05\t\n2\t6.000000e-01\t1.235424e-01\t-5.43481e-05\t\n3\t7.000000e-01\t1.900105e-01\t-1.55196e-04\t\n\n\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_024",
+          "name": "terminal",
+          "arguments": {
+            "command": "cd /app/experiments && cat > mkvch.py <<'PY'\nimport subprocess,sys,re,numpy as np\nN=[('n05_40',11.5,0.5,40),('n1_40',23,1,40),('n2_40',46,2,40),('n3_40',69,3,40),\n   ('n05_100',28.5,0.5,100),('n1_100',57,1,100),('n2_100',114,2,100),('n015_100',8.5,0.15,100),\n   ('n1_40b',23,1,40)]\nP=[('p05_40',50,0.5,40),('p1_40',100,1,40),('p2_40',200,2,40),('p3_40',300,3,40),\n   ('p35_100',175,0.35,100),('p1_100',250,1,100),('p2_100',500,2,100),('p4_100',1000,4,100)]\nPARAMS=['id','gm','gds','vdsat','vth','cgs','cgd']\ndef deck(typ,vds):\n    if typ=='n':\n        lines=['.lib /opt/sky130/continuous/sky130.lib.spice tt','.include /app/circuit.spi',\n          'Vdd vdd 0 1.2','Vng ng 0 0.5','Vnd nd 0 %g'%vds,'Vsn vsn 0 0.30']\n        for nm,w,l,it in N:\n            if nm.endswith('b'):\n                lines.append('X%s nd ng vsn 0 sky130_fd_pr__nfet_01v8_lvt W=%g L=%g nf=1 m=1'%(nm,w,l))\n            else:\n                lines.append('X%s nd ng 0 0 sky130_fd_pr__nfet_01v8_lvt W=%g L=%g nf=1 m=1'%(nm,w,l))\n        lines+=['.dc Vng 0.30 0.90 0.005']\n        for nm,w,l,it in N:\n            for p in PARAMS:\n                lines.append('.print dc @m.x%s.msky130_fd_pr__nfet_01v8_lvt[%s]'%(nm,p))\n    else:\n        lines=['.lib /opt/sky130/continuous/sky130.lib.spice tt','.include /app/circuit.spi',\n          'Vdd vdd 0 1.2','Vpg pg 0 0.7','Vpd pd 0 %g'%(1.2-vds)]\n        for nm,w,l,it in P:\n            lines.append('X%s pd pg vdd vdd sky130_fd_pr__pfet_01v8_lvt W=%g L=%g nf=1 m=1'%(nm,w,l))\n        lines+=['.dc Vpg 0.30 0.90 0.005']\n        for nm,w,l,it in P:\n            for p in PARAMS:\n                lines.append('.print dc @m.x%s.msky130_fd_pr__pfet_01v8_lvt[%s]'%(nm,p))\n    lines.append('.end')\n    return '\\n'.join(lines)+'\\n'\ndef parse(fn,devs):\n    txt=open(fn,errors='ignore').read().split('\\n')\n    # collect blocks: header line contains 'Index', then dashes, then rows\n    blocks=[]; i=0\n    while i<len(txt):\n        if txt[i].lstrip().startswith('Index'):\n            hdr=txt[i].split()[1:]\n            j=i+2; rows=[]\n            while j<len(txt):\n                t=txt[j].split('\\t')\n                t=[x for x in t if x.strip()!='']\n                if not t or not re.match(r'^\\d+$',t[0].strip()): break\n                rows.append([float(x) for x in t[1:]])\n                j+=1\n            blocks.append((hdr,np.array(rows))); i=j\n        else: i+=1\n    names=[(nm,p) for nm,w,l,it in devs for p in PARAMS]\n    out={k:[] for k in names}\n    for hdr,rows in blocks:\n        nv=len(hdr)-1\n        for c in range(nv):\n            pass\n    # sequential assignment\n    idx=0\n    for hdr,rows in blocks:\n        nv=len(hdr)-1\n        for c in range(nv):\n            key=names[idx]; idx+=1\n            out[key]=rows[:,1+c]\n        out['sweep']=rows[:,0]\n    return out\ndef report(typ,files,targets):\n    devs=N if typ=='n' else P\n    res={}\n    for vds,fn in files:\n        d=parse(fn,devs)\n        sw=d['sweep']\n        for nm,w,l,it in devs:\n            idv=np.abs(d[(nm,'id')]); gm=np.abs(d[(nm,'gm')]); gds=np.abs(d[(nm,'gds')])\n            vdsat=np.abs(d[(nm,'vdsat')]); vth=d[(nm,'vth')]; cgs=np.abs(d[(nm,'cgs')])\n            if typ=='n':\n                vgs = sw - (0.30 if nm.endswith('b') else 0.0)\n                vdsx = vds-0.30 if nm.endswith('b') else vds\n            else:\n                vgs = 1.2-sw; vdsx=vds\n            k=np.argmin(abs(idv-it*1e-6))\n            res[(nm,vds)]=dict(vgs=vgs[k],id=idv[k],gm=gm[k],gds=gds[k],gain=gm[k]/gds[k],\n                vdsat=vdsat[k],vth=vth[k] if typ=='n' else -vth[k],cgs=cgs[k],vds=vdsx,\n                gmoverid=gm[k]/idv[k])\n    # print table\n    print(\"%-9s Vds=%.2f : \"%('dev',0),end='')\n    ds=[v for v,f in files]\n    print(\"  \".join(\"Vd=%.2f\"%v for v in ds))\n    for nm,w,l,it in devs:\n        print(\"%-9s (W=%g L=%g, Itgt=%guA)\"%(nm,w,l,it))\n        for v in ds:\n            r=res[(nm,v)]\n            print(\"   Vd=%.2f  Vgs=%.3f Id=%.1fuA gm=%.3fm gds=%.2fu gm/gds=%5.0f vdsat=%.3f vth=%.3f cgs=%.3ffF gm/Id=%.1f\"%(\n              v,r['vgs'],r['id']*1e6,r['gm']*1e3,r['gds']*1e6,r['gain'],r['vdsat'],r['vth'],r['cgs']*1e15,r['gmoverid']))\n    return res\nif __name__=='__main__':\n    typ=sys.argv[1]\n    files=[]\n    for vds in [float(x) for x in sys.argv[2].split(',')]:\n        fn='/app/experiments/vch_%s_%g.log'%(typ,vds)\n        open('/app/experiments/vch_%s_%g.spice'%(typ,vds),'w').write(deck(typ,vds))\n        r=subprocess.run(['ngspice','-b','/app/experiments/vch_%s_%g.spice'%(typ,vds),'-o',fn],capture_output=True,text=True)\n        files.append((vds,fn))\n    report(typ,files,None)\nPY\npython3 mkvch.py n 0.25,0.4,0.9 2>&1 | tail -70",
+            "timeout_seconds": 150
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "Traceback (most recent call last):\n  File \"/app/experiments/mkvch.py\", line 100, in <module>\n    report(typ,files,None)\n  File \"/app/experiments/mkvch.py\", line 67, in report\n    d=parse(fn,devs)\n      ^^^^^^^^^^^^^^\n  File \"/app/experiments/mkvch.py\", line 59, in parse\n    key=names[idx]; idx+=1\n        ~~~~~^^^^^\nIndexError: list index out of range\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_025",
+          "name": "terminal",
+          "arguments": {
+            "command": "cd /app/experiments && grep -c \"Index\" vch_n_0.4.log; grep -n \"Index\" vch_n_0.4.log | head -5; sed -n '/Index/,+4p' vch_n_0.4.log | head -12",
+            "timeout_seconds": 60
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "189\n17:Index   v-sweep         @m.xn05_40.msky \n75:Index   v-sweep         @m.xn05_40.msky \n136:Index   v-sweep         @m.xn05_40.msky \n150:Index   v-sweep         @m.xn05_40.msky \n208:Index   v-sweep         @m.xn05_40.msky \nIndex   v-sweep         @m.xn05_40.msky \n--------------------------------------------------------------------------------\n0\t3.000000e-01\t3.515591e-08\t\n1\t3.050000e-01\t4.032459e-08\t\n2\t3.100000e-01\t4.623560e-08\t\nIndex   v-sweep         @m.xn05_40.msky \n--------------------------------------------------------------------------------\n55\t5.750000e-01\t2.354043e-05\t\n56\t5.800000e-01\t2.564001e-05\t\n57\t5.850000e-01\t2.787551e-05\t\nIndex   v-sweep         @m.xn05_40.msky \n--------------------------------------------------------------------------------\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_026",
+          "name": "terminal",
+          "arguments": {
+            "command": "cd /app/experiments && cat > vparse.py <<'PY'\nimport re,sys,numpy as np\nPARAMS=['id','gm','gds','vdsat','vth','cgs','cgd']\nN=[('n05_40',11.5,0.5,40),('n1_40',23,1,40),('n2_40',46,2,40),('n3_40',69,3,40),\n   ('n05_100',28.5,0.5,100),('n1_100',57,1,100),('n2_100',114,2,100),('n015_100',8.5,0.15,100),\n   ('n1_40b',23,1,40)]\nP=[('p05_40',50,0.5,40),('p1_40',100,1,40),('p2_40',200,2,40),('p3_40',300,3,40),\n   ('p35_100',175,0.35,100),('p1_100',250,1,100),('p2_100',500,2,100),('p4_100',1000,4,100)]\ndef parse(fn,devs):\n    txt=open(fn,errors='ignore').read().split('\\n')\n    names=[(nm,p) for nm,w,l,it in devs for p in PARAMS]\n    data={}; cur=-1; acc={}\n    i=0\n    while i<len(txt):\n        if txt[i].lstrip().startswith('Index'):\n            j=i+2; rows=[]\n            while j<len(txt):\n                t=[x for x in txt[j].split('\\t') if x.strip()!='']\n                if not t or not re.match(r'^\\d+$',t[0].strip()): break\n                rows.append([float(x) for x in t])\n                j+=1\n            if rows:\n                rows=np.array(rows)\n                if int(rows[0,0])==0:\n                    cur+=1; acc={}\n                nm=names[cur]\n                if nm[0] not in [k[0] for k in data] : pass\n                acc.setdefault(('sweep',),[]).extend(rows[:,1].tolist())\n                acc.setdefault(nm,[]).extend(rows[:,2].tolist())\n                for k,v in acc.items(): data[k]=np.array(v)\n            i=j\n        else: i+=1\n    return data,len(names),cur+1\ndef report(typ,files):\n    devs=N if typ=='n' else P; res={}\n    for vds,fn in files:\n        d,nn,nfound=parse(fn,devs)\n        assert nfound==nn,(nfound,nn)\n        sw=d[('sweep',)]\n        for nm,w,l,it in devs:\n            f=lambda p: np.abs(d[(nm,p)])\n            idv=f('id'); gm=f('gm'); gds=f('gds')\n            vgs = sw-(0.30 if (typ=='n' and nm.endswith('b')) else 0.0)\n            if typ=='p': vgs=1.2-sw\n            k=np.argmin(abs(idv-it*1e-6))\n            res[(nm,vds)]=dict(vgs=vgs[k],id=idv[k],gm=gm[k],gds=gds[k],gain=gm[k]/gds[k],\n              vdsat=f('vdsat')[k],vth=(d[(nm,'vth')][k] if typ=='n' else -d[(nm,'vth')][k]),\n              cgs=f('cgs')[k],cgd=f('cgd')[k],gmoverid=gm[k]/idv[k])\n    print(\"type=%s\"%typ)\n    for nm,w,l,it in devs:\n        print(\"%-9s W=%g L=%g Itgt=%guA\"%(nm,w,l,it))\n        for v,_ in files:\n            r=res[(nm,v)]\n            print(\"   |Vd|=%.2f Vgs=%.3f Id=%.1fuA gm=%.3fmS gds=%.2fuS gm/gds=%5.0f vdsat=%.3f vth=%.3f cgs=%.1ffF cgd=%.1ffF gm/Id=%.1f\"%(\n             v,r['vgs'],r['id']*1e6,r['gm']*1e3,r['gds']*1e6,r['gain'],r['vdsat'],r['vth'],r['cgs']*1e15,r['cgd']*1e15,r['gmoverid']))\n    return res\nif __name__=='__main__':\n    typ=sys.argv[1]; vds=[float(x) for x in sys.argv[2].split(',')]\n    report(typ,[(v,'/app/experiments/vch_%s_%g.log'%(typ,v)) for v in vds])\nPY\npython3 vparse.py n 0.25,0.4,0.9",
+            "timeout_seconds": 60
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "type=n\nn05_40    W=11.5 L=0.5 Itgt=40uA\n   |Vd|=0.25 Vgs=0.610 Id=39.1uA gm=0.579mS gds=17.60uS gm/gds=   33 vdsat=0.113 vth=0.515 cgs=24.7fF cgd=0.8fF gm/Id=14.8\n   |Vd|=0.40 Vgs=0.610 Id=41.2uA gm=0.609mS gds=11.34uS gm/gds=   54 vdsat=0.113 vth=0.515 cgs=24.9fF cgd=0.1fF gm/Id=14.8\n   |Vd|=0.90 Vgs=0.600 Id=39.4uA gm=0.598mS gds=7.13uS gm/gds=   84 vdsat=0.107 vth=0.515 cgs=24.5fF cgd=0.0fF gm/Id=15.2\nn1_40     W=23 L=1 Itgt=40uA\n   |Vd|=0.25 Vgs=0.580 Id=39.9uA gm=0.583mS gds=10.98uS gm/gds=   53 vdsat=0.111 vth=0.482 cgs=105.7fF cgd=3.6fF gm/Id=14.6\n   |Vd|=0.40 Vgs=0.580 Id=41.2uA gm=0.600mS gds=7.26uS gm/gds=   83 vdsat=0.111 vth=0.482 cgs=106.3fF cgd=0.6fF gm/Id=14.6\n   |Vd|=0.90 Vgs=0.575 Id=41.3uA gm=0.603mS gds=5.64uS gm/gds=  107 vdsat=0.108 vth=0.482 cgs=105.6fF cgd=0.0fF gm/Id=14.6\nn2_40     W=46 L=2 Itgt=40uA\n   |Vd|=0.25 Vgs=0.555 Id=40.4uA gm=0.583mS gds=8.62uS gm/gds=   68 vdsat=0.108 vth=0.457 cgs=433.9fF cgd=14.8fF gm/Id=14.4\n   |Vd|=0.40 Vgs=0.555 Id=41.4uA gm=0.596mS gds=5.68uS gm/gds=  105 vdsat=0.108 vth=0.457 cgs=436.3fF cgd=2.3fF gm/Id=14.4\n   |Vd|=0.90 Vgs=0.550 Id=40.9uA gm=0.592mS gds=4.55uS gm/gds=  130 vdsat=0.104 vth=0.457 cgs=433.4fF cgd=0.1fF gm/Id=14.5\nn3_40     W=69 L=3 Itgt=40uA\n   |Vd|=0.25 Vgs=0.540 Id=39.1uA gm=0.567mS gds=5.88uS gm/gds=   96 vdsat=0.111 vth=0.441 cgs=965.5fF cgd=35.5fF gm/Id=14.5\n   |Vd|=0.40 Vgs=0.540 Id=39.7uA gm=0.575mS gds=3.77uS gm/gds=  153 vdsat=0.111 vth=0.441 cgs=970.6fF cgd=5.4fF gm/Id=14.5\n   |Vd|=0.90 Vgs=0.540 Id=41.4uA gm=0.591mS gds=3.23uS gm/gds=  183 vdsat=0.111 vth=0.441 cgs=969.8fF cgd=0.3fF gm/Id=14.3\nn05_100   W=28.5 L=0.5 Itgt=100uA\n   |Vd|=0.25 Vgs=0.610 Id=97.7uA gm=1.441mS gds=43.93uS gm/gds=   33 vdsat=0.113 vth=0.515 cgs=61.4fF cgd=2.1fF gm/Id=14.8\n   |Vd|=0.40 Vgs=0.610 Id=102.8uA gm=1.516mS gds=28.28uS gm/gds=   54 vdsat=0.113 vth=0.515 cgs=61.8fF cgd=0.3fF gm/Id=14.8\n   |Vd|=0.90 Vgs=0.600 Id=98.4uA gm=1.489mS gds=17.76uS gm/gds=   84 vdsat=0.107 vth=0.515 cgs=61.0fF cgd=0.0fF gm/Id=15.1\nn1_100    W=57 L=1 Itgt=100uA\n   |Vd|=0.25 Vgs=0.580 Id=99.2uA gm=1.450mS gds=27.30uS gm/gds=   53 vdsat=0.111 vth=0.482 cgs=262.3fF cgd=9.0fF gm/Id=14.6\n   |Vd|=0.40 Vgs=0.580 Id=102.4uA gm=1.492mS gds=18.04uS gm/gds=   83 vdsat=0.111 vth=0.482 cgs=264.0fF cgd=1.4fF gm/Id=14.6\n   |Vd|=0.90 Vgs=0.575 Id=102.6uA gm=1.497mS gds=14.00uS gm/gds=  107 vdsat=0.108 vth=0.482 cgs=262.2fF cgd=0.1fF gm/Id=14.6\nn2_100    W=114 L=2 Itgt=100uA\n   |Vd|=0.25 Vgs=0.555 Id=100.3uA gm=1.448mS gds=21.39uS gm/gds=   68 vdsat=0.108 vth=0.457 cgs=1076.1fF cgd=36.8fF gm/Id=14.4\n   |Vd|=0.40 Vgs=0.555 Id=102.8uA gm=1.480mS gds=14.10uS gm/gds=  105 vdsat=0.108 vth=0.457 cgs=1082.1fF cgd=5.6fF gm/Id=14.4\n   |Vd|=0.90 Vgs=0.550 Id=101.5uA gm=1.469mS gds=11.28uS gm/gds=  130 vdsat=0.105 vth=0.457 cgs=1074.9fF cgd=0.3fF gm/Id=14.5\nn015_100  W=8.5 L=0.15 Itgt=100uA\n   |Vd|=0.25 Vgs=0.700 Id=96.7uA gm=1.488mS gds=140.47uS gm/gds=   11 vdsat=0.117 vth=0.562 cgs=4.8fF cgd=0.1fF gm/Id=15.4\n   |Vd|=0.40 Vgs=0.690 Id=100.5uA gm=1.563mS gds=120.90uS gm/gds=   13 vdsat=0.117 vth=0.552 cgs=4.8fF cgd=0.2fF gm/Id=15.6\n   |Vd|=0.90 Vgs=0.655 Id=101.8uA gm=1.603mS gds=110.67uS gm/gds=   14 vdsat=0.117 vth=0.518 cgs=4.8fF cgd=0.3fF gm/Id=15.7\nn1_40b    W=23 L=1 Itgt=40uA\n   |Vd|=0.25 Vgs=0.600 Id=30.6uA gm=0.287mS gds=478.10uS gm/gds=    1 vdsat=0.135 vth=0.531 cgs=75.3fF cgd=63.7fF gm/Id=9.4\n   |Vd|=0.40 Vgs=0.600 Id=22.1uA gm=0.357mS gds=63.72uS gm/gds=    6 vdsat=0.098 vth=0.540 cgs=82.9fF cgd=38.1fF gm/Id=16.2\n   |Vd|=0.90 Vgs=0.600 Id=26.8uA gm=0.455mS gds=4.72uS gm/gds=   96 vdsat=0.098 vth=0.540 cgs=99.1fF cgd=0.1fF gm/Id=17.0\n",
+            "stderr": ""
+          }
+        }
+      ],
+      "images": [],
+      "diagnosis": "F：有放大功能，五项性能未达标",
+      "explanation": "提交第 2 版电路，共 11 次开发原生仿真。增益 61.97 dB <78.4 dB、UGF 65.91 MHz <89 MHz、PM 39.7° <60°、增益裕度 8.3 dB <10 dB，上升建立 35.91 ns >12.24 ns；功耗、下降建立和工作区三项通过。原结果 F，3/8 只作诊断，不换算百分制。",
+      "raw_result": "files/d2-docker/opamp-porting/ds-v41-flash-1017/result.json",
+      "formal_log": "files/d2-docker/opamp-porting/ds-v41-flash-1017/formal-console.log",
+      "checks_file": "files/d2-docker/opamp-porting/ds-v41-flash-1017/raw-checks.json",
+      "protocol_file": "files/d2-docker/opamp-porting/ds-v41-flash-1017/protocol.json",
+      "audit_file": "files/d2-docker/opamp-porting/ds-v41-flash-1017/authorship-audit.json",
+      "freeze_file": "files/d2-docker/opamp-porting/ds-v41-flash-1017/frozen-manifest.json",
+      "policy_file": "files/d2-docker/opamp-porting/ds-v41-flash-1017/final-policy.json"
     }
   ],
   "task": "files/d2-docker/opamp-porting/task.md",
@@ -2135,5 +3143,20 @@
       "op": "<=",
       "limit": 0
     }
-  ]
+  ],
+  "provider_runs": {
+    "gpt-6-luna": {
+      "run": "20261106T133145Z",
+      "date": "2026.11.06"
+    },
+    "gpt-6.1-sol": {
+      "run": "20261106T133145Z",
+      "date": "2026.11.06"
+    },
+    "deepseek-v4.1-flash-1017": {
+      "run": "20261108T120050Z-ds-v41-flash-1017",
+      "date": "2026.11.08"
+    }
+  },
+  "comparison_note": "GPT 两模型于 2026-11-06 实测，DS 于 2026-11-08 实测；题面、镜像、评分器及各项额度相同。供应商 medium 参数不证明内部推理算力相同。"
 }
