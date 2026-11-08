@@ -1,0 +1,82 @@
+{
+  "anonymous_id": "P1",
+  "items": [
+    {
+      "evidence_refs": [
+        "additional_browser_evidence.navigation[width=1280,Q01—Q20]",
+        "additional_browser_evidence.navigation[width=390,Q01—Q20]",
+        "settled-navigation-1280.jpg",
+        "settled-navigation-390.jpg"
+      ],
+      "followup_needed": "当前证据足以判定。修复锚点与固定栏的偏移后，应在两个视口重新点击全部20题并等待滚动稳定。",
+      "id": "W04",
+      "reason_zh": "补采已预先加载题图并等待滚动稳定，仍确认两个视口的全部20题题号均被固定栏遮住。各入口可见、可点击且hash正确，但题号顶部均接近0px，固定栏底部分别约为54.80px和143.48px，不满足跳转后题号不被遮挡的要求。保留失败。",
+      "verdict": "fail"
+    },
+    {
+      "evidence_refs": [
+        "additional_browser_evidence.submission_files",
+        "additional_browser_evidence.attribution_files",
+        "additional_browser_evidence.footer_text",
+        "original_notice",
+        "original_license",
+        "attribution-1280.jpg",
+        "attribution-390.jpg"
+      ],
+      "followup_needed": "当前证据足以判定。需在网页或README补入实际来源与作者署名，并保留原通知要求的许可及改编说明，不能仅引用未随交付提供的文件名。",
+      "id": "W14",
+      "reason_zh": "主要交付文件和README打开方法、结构及已知限制齐备，但完整页尾及README仅泛称素材来自本轮任务，未保留MuSP-Bench、三位作者及ASAP等实际来源署名。所引用的NOTICE.md和LICENSE.source.md也未随交付提供。原通知与交付内容现已齐全，可确认署名要求未满足，由unverified改判fail。",
+      "verdict": "fail"
+    },
+    {
+      "evidence_refs": [
+        "additional_browser_evidence.navigation[width=1280,Q01—Q20]",
+        "settled-navigation-1280.jpg"
+      ],
+      "followup_needed": "当前覆盖证据足以判定。修复后复测全部桌面题卡定位，并核对正文计算字号与行高。",
+      "id": "W16",
+      "reason_zh": "新的稳定滚动复测仍显示桌面全部20题标题位于固定栏覆盖范围内；Q01截图直接确认题号与作品标识被遮住。即使其余文字分组和图音分栏较清楚，也未满足无严重覆盖的要求，保留失败。",
+      "verdict": "fail"
+    },
+    {
+      "evidence_refs": [
+        "additional_browser_evidence.navigation[width=390,Q01—Q20]",
+        "settled-navigation-390.jpg"
+      ],
+      "followup_needed": "当前证据足以判定。修复手机固定栏与锚点偏移后，复测全部题卡文字和控件是否完整可见、可触达。",
+      "id": "W17",
+      "reason_zh": "390px稳定滚动复测中，全部20题题号仍被约143.48px高的固定栏遮住。Q01截图还显示题面不可见、结论上部被覆盖。纵向重排及原有无横向溢出的表现不能抵消文字覆盖，保留失败。",
+      "verdict": "fail"
+    },
+    {
+      "evidence_refs": [
+        "additional_browser_evidence.zoom[width=1280,index=1—22]",
+        "additional_browser_evidence.zoom[width=390,index=1—22]",
+        "zoom-1-1280.jpg",
+        "zoom-12-1280.jpg",
+        "zoom-22-1280.jpg",
+        "zoom-1-390.jpg",
+        "zoom-12-390.jpg",
+        "zoom-22-390.jpg",
+        "score-asset-01.png至score-asset-22.png"
+      ],
+      "followup_needed": "无需补采。",
+      "id": "W18",
+      "reason_zh": "补采逐一实际点击了两个视口下全部22张谱图的原图入口，均成功打开并以原始像素宽度显示，覆盖全部必需谱图及Q16对照图。结合完整原始谱图，音符、红框与半透明底色标记清楚可辨，未见标记导致关键内容无法辨认。手机缩略图较小的问题有可发现、可实际使用的原图路径解决，不要求自制查看器，改判pass。",
+      "verdict": "pass"
+    },
+    {
+      "evidence_refs": [
+        "additional_browser_evidence.navigation[width=1280,Q01—Q20]",
+        "additional_browser_evidence.navigation[width=390,Q01—Q20]",
+        "settled-navigation-1280.jpg",
+        "settled-navigation-390.jpg"
+      ],
+      "followup_needed": "当前证据足以判定。修复目录进入单题后的题号、作品和题面可见性，再复核目录进入、阅读与返回流程。",
+      "id": "W20",
+      "reason_zh": "新数据继续确认目录进入单题后的定位问题：手机Q01落点遮住题号、作品标识和问题，学习者需要反向滚动才能确认当前题目；其他题的题号也均被固定栏覆盖。单题图音归属及返回入口虽较清楚，仍不满足学习流程中清楚定位的要求，保留失败。",
+      "verdict": "fail"
+    }
+  ],
+  "summary_zh": "仅复核指定六项：W04、W16、W17、W20由更可靠的稳定滚动补采再次确认遮挡，保留fail；W14完整署名核查确认实际来源署名缺失，由unverified改为fail；W18全部谱图原图路径实际可用且原图可辨，由unverified改为pass。本次未复评音乐答案，也未作听音判断。"
+}

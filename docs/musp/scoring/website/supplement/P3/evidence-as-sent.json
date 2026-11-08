@@ -1,0 +1,1512 @@
+{
+  "original_task": "# 三首钢琴作品的谱面—演奏联合研习\n\n你是一位为高级音乐学习者准备研习材料的助教。请阅读三份乐谱、聆听对应演奏，完成 `QUESTIONS.zh-CN.md` 中的 20 项分析，并制作一份可离线使用的中文研习网页。\n\n## 输入\n\n| 作品 | 原始乐谱 | 原始演奏 |\n|---|---|---|\n| A：肖邦《第一叙事曲》 | `input/A/score.pdf` | `input/A/performance.wav` |\n| B：莫扎特《第十二钢琴奏鸣曲》第三乐章 | `input/B/score.pdf` | `input/B/performance.wav` |\n| C：斯克里亚宾《第五钢琴奏鸣曲》 | `input/C/score.pdf` | `input/C/performance.wav` |\n\n`input/manifest.json` 提供采样率、时长与页数；`questions.json` 是与题目清单一致的结构化版本。作品共约 25 分 37 秒，乐谱共 52 页。录音起点为 00:00；小节号依原乐谱，PDF 页码从 1 开始。\n\n## 需要完成的工作\n\n1. 完成全部 20 项分析。每题写出格式明确的简答，并用中文说明从哪些听觉或谱面线索得出结论。保留有序音符中的顺序和重复音；不确定时可将结构化答案写为 null，并解释原因。\n2. 每题提供至少一段可回听的原录音片段。Q16、Q20 需要前后对照，各提供至少两段，分别展示早先的材料和后来的再现／变奏。每段长度为 1—90 秒，可以增加多个片段提供上下文。\n3. 题目清单标明需要谱面证据的 15 题，至少提供一处可读的谱面截图，并在图上用框、箭头或颜色清楚标记讨论位置。Q16 要对照主题初次出现及后续变奏，至少提供两处谱面标注。注明原 PDF 页码；其余五题的谱面标注可选。\n4. 制作中文 HTML 研习网页：按作品组织，能跳转到每题；题目、结论、解释、标注谱面和音频证据一一对应；支持播放、暂停、重复收听及原速／0.75 倍速切换，并可返回作品目录。为每首作品写一段研习提示，帮助学习者理解本组问题的关注点。\n5. 所有音频、图片、样式和脚本均放在交付目录内，以相对路径引用。使用浏览器通过本地静态服务器打开即可；不得要求登录、联网下载资源、启动后端服务或安装网页插件。页面需在约 1280px 与 390px 两种宽度下保持可读。\n\n演奏中的弹性节奏、力度与踏板处理不必然是错误。请区分分析观察、主观解释和原题明确要求定位的现象，不要自行把所有偏离严格节拍的处理称为失误。\n\n## 交付目录\n\n请在当前工作目录创建 `submission/`：\n\n```text\nsubmission/\n  index.html\n  answers.json\n  evidence.json\n  assets/                 # 音频片段、标注图片和页面所需资源\n  README.md               # 本地打开方法、结构说明、未能完成的部分\n```\n\n答案和证据文件使用所附模板及 `DELIVERY_FORMAT.md` 的格式。结构化答案、网页显示的答案与解释必须一致；不能在网页正确而 JSON 留空，或在两处给出互相矛盾的结论。\n\n## 答案与素材规范\n\n- 题目要求的简答字段只写答案；解释放在 `explanation_zh`。音名、调式与术语使用各题规定的格式，中文解释不受此限制。\n- 时间题以原录音绝对时间 `MM:SS` 作答，向下取整到整秒。改编任务的时间判定允许相对参考时刻最多 1 秒的偏差；其他类型按题目所规定的音高、八度、顺序、数量或术语判定。\n- 分析时可以自行使用代码、频谱、节拍估计、音频转录或图像工具。交付的证据音频必须为原录音的无损 WAV 裁剪，保持声道数、采样率和采样位深，不做变速、降噪、响度或音高修改。网页的播放倍速通过播放器控制。\n- 使用本地提供的素材与已安装工具，不从互联网查找本题答案、现成 MIDI 对齐文件或原 benchmark 的答案／模型输出。材料的来源与许可见 `NOTICE.md`，请在交付网页或 README 中保留署名。\n- 研究与练习提示可解释分析方法，但不应编造无法从素材支持的观察。\n\n内容答案与网页交付将分别验收：页面美观、字数或文件数量不能代替音乐分析正确性。\n",
+  "fixed_criteria": [
+    {
+      "id": "W04",
+      "category": "Spec Implementation",
+      "title": "20题逐题跳转",
+      "operation_sequence": "1. 找到每题导航入口。2. 实际点击20题。3. 核对URL与定位。",
+      "expected_result": "全部20题均有可见、可点击的直接跳转入口，点击后定位正确且题号未被固定栏遮住。仅作品级导航不算逐题跳转。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "20题，1280/390px",
+      "max_score": 5
+    },
+    {
+      "id": "W06",
+      "category": "Spec Implementation",
+      "title": "三部作品的研习提示",
+      "operation_sequence": "1. 阅读每部作品开场提示。2. 核对是否针对该组题目。3. 判断可操作性。",
+      "expected_result": "每部作品至少一段针对本组问题的研习提示，包含学习关注点及如何观察/回听/练习的具体方法。只有主题词清单或泛泛口号不通过；不以参考答案判断内容真伪。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "3部作品",
+      "max_score": 5
+    },
+    {
+      "id": "W13",
+      "category": "Spec Implementation",
+      "title": "网页与证据清单的映射可追溯",
+      "operation_sequence": "1. 对照全部audio/img引用与evidence.json。2. 核对页码/区间标签。3. 查重复与遗漏。",
+      "expected_result": "网页实际图音文件与各题清单对应；给出的页码、时间、文件及描述互相一致，未丢失清单中要求的证据或把另一证据重复冒充对照。只检查文件/标签对应，不以音乐金标准再扣内容分。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "20题、全部资源",
+      "max_score": 5
+    },
+    {
+      "id": "W14",
+      "category": "Spec Implementation",
+      "title": "交付文件与使用说明完整",
+      "operation_sequence": "1. 检查index/answers/evidence/assets/README。2. 阅读本地打开方法。3. 检查来源署名。",
+      "expected_result": "所需文件完整、以相对路径引用；README提供可行打开方法、结构和未完成事项（若有）；网页或README保留素材署名。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "整个交付",
+      "max_score": 5
+    },
+    {
+      "id": "W16",
+      "category": "Design Quality",
+      "title": "桌面文字层级与排版",
+      "operation_sequence": "1. 查看1280px首页和全部题卡。2. 核对字级/行距。3. 检查拥挤与重叠。",
+      "expected_result": "中文正文主字号至少14px、主正文行高至少1.5；作品/题目/结论/解释层级明确，长行、间距与分组适合连续阅读，无严重拥挤、截断或覆盖。原生小型播放器文字不算主正文。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "1280px，20题",
+      "max_score": 5
+    },
+    {
+      "id": "W17",
+      "category": "Design Quality",
+      "title": "手机端完整可读",
+      "operation_sequence": "1. 在390px查看首页与全部题卡。2. 检查横向溢出。3. 检查重排与控件。",
+      "expected_result": "390px下主页面不横向溢出，文字不被挤压或截断，图音与说明按可读顺序重排，所有必需控件完整可触达，无重叠覆盖。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "390px，20题",
+      "max_score": 5
+    },
+    {
+      "id": "W18",
+      "category": "Design Quality",
+      "title": "谱面与后期标记的阅读质量",
+      "operation_sequence": "1. 查看所有必需谱图。2. 分别在桌面与手机检查讨论区域。3. 需要时使用网页已有放大或浏览器原生开图。",
+      "expected_result": "谱图的讨论区域、关键音符及后期标记清楚可辨，标记不遮住关键内容；手机上若缩略图不可辨，需有可发现、可实际使用的放大/原图入口。不要求另造图片查看器；可用原生开图。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "全部必需谱图，1280/390px",
+      "max_score": 5
+    },
+    {
+      "id": "W20",
+      "category": "Design Quality",
+      "title": "学习流程与图文音空间关联",
+      "operation_sequence": "1. 从作品目录进入单题。2. 按题目→结论→解释→图音进行核查。3. 从比较题前后切换。",
+      "expected_result": "学习者能清楚区分作品与题目；单题内图、音、说明的视觉关联明确；比较材料可辨别先后，长页面有可理解的定位与返回路径，无需猜测媒体归属或在无标签材料间来回寻找。依据呈现质量，不额外要求搜索、测验或进度功能。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "整个教学流程、20题",
+      "max_score": 5
+    }
+  ],
+  "prior_decisions_to_review": [
+    {
+      "evidence_refs": [
+        "browser_evidence.navigation[width=390,question=Q12]",
+        "browser_evidence.navigation[width=390,question=Q13]",
+        "browser_evidence.navigation[width=390,question=Q18]",
+        "browser_evidence.navigation[width=390,question=Q19]",
+        "browser_evidence.navigation[width=390,question=Q20]",
+        "navigation-Q12-390.jpg"
+      ],
+      "followup_needed": "修正移动端跳转定位后，重新点击全部20题核验最终位置。",
+      "id": "W04",
+      "reason_zh": "390px点击Q12入口后虽hash正确，但heading_top=927超过920px视口，heading_visible=false；失败截图仍主要显示Q11。Q13、Q18—Q20也有同类实测失败，未满足全部题目正确定位。",
+      "verdict": "fail"
+    },
+    {
+      "evidence_refs": [
+        "browser_evidence.views[*].bodyText：Work A、Work B研习提示",
+        "browser_evidence.views[*].headings",
+        "home-1280.jpg"
+      ],
+      "followup_needed": "补采Work C开场研习提示的完整DOM文本或截图。",
+      "id": "W06",
+      "reason_zh": "A提示包含声部分离、换算时值及慢速核查；B提示包含装饰起音和终止辨认方法。现有bodyText在Q10附近截断，截图也未覆盖C开场提示，无法确认三部作品全部满足。",
+      "verdict": "unverified"
+    },
+    {
+      "evidence_refs": [
+        "browser_evidence.evidence_manifest",
+        "browser_evidence.questions[*].images[*].src",
+        "browser_evidence.questions[*].audio[*].src",
+        "browser_evidence.controls[*].src",
+        "browser_evidence.readme：片段边界说明"
+      ],
+      "followup_needed": "补采全部播放器的audio.currentSrc或子source.src，并逐题对照evidence.json的audio.path。",
+      "id": "W13",
+      "reason_zh": "图像路径、页码、描述及音频时间标签与清单相符；但网页音频src与控件记录src全部为null，未采到实际加载文件路径。不能仅凭数量和时长认定全部音频文件映射正确，也不能把该采集缺口判为网站失败。",
+      "verdict": "unverified"
+    },
+    {
+      "evidence_refs": [
+        "browser_evidence.delivery_files",
+        "browser_evidence.readme",
+        "browser_evidence.evidence_manifest",
+        "browser_evidence.final_image_state",
+        "independent_asset_checks.questions[*].audio"
+      ],
+      "followup_needed": "无。",
+      "id": "W14",
+      "reason_zh": "必需交付文件存在，assets素材已独立检查及浏览器加载；清单使用相对路径。README提供静态服务器打开方式、目录结构、Q10未完成事项，并保留来源作者及许可署名。",
+      "verdict": "pass"
+    },
+    {
+      "evidence_refs": [
+        "browser_evidence.questions[width=1280].paragraphs",
+        "home-1280.jpg",
+        "Q01-1280.jpg",
+        "Q05-1280.jpg",
+        "Q10-1280.jpg",
+        "Q14-1280.jpg",
+        "Q16-1280.jpg",
+        "Q20-1280.jpg"
+      ],
+      "followup_needed": "无。",
+      "id": "W16",
+      "reason_zh": "已逐张查看桌面首页及20题截图，题目、答案色块、解释和证据区层级明确，正文无严重截断或拥挤。全部题卡主解释字号15px、行高29.25px，满足至少14px和1.5倍行高。",
+      "verdict": "pass"
+    },
+    {
+      "evidence_refs": [
+        "browser_evidence.views[width=390].scrollWidth",
+        "Q13-390.jpg",
+        "Q10-390.jpg"
+      ],
+      "followup_needed": "调整悬浮目录按钮的位置或避让空间，再检查全部手机题卡及滚动位置。",
+      "id": "W17",
+      "reason_zh": "整页scrollWidth=390且正文正常重排，但存在可见控件覆盖：Q13-390.jpg中悬浮“作品目录”遮住“打开原尺寸”链接右侧；Q10截图中也覆盖播放器右侧区域。不满足手机端无重叠覆盖的要求。",
+      "verdict": "fail"
+    },
+    {
+      "evidence_refs": [
+        "Q01-390.jpg",
+        "Q07-390.jpg",
+        "Q14-390.jpg",
+        "Q16-390.jpg",
+        "browser_evidence.questions[*].images[*].tabindex",
+        "browser_evidence.questions[*].images[*].zoom_link",
+        "browser_evidence.readme：谱图放大说明"
+      ],
+      "followup_needed": "在两个视口逐一实际打开必需谱图的放大或原图入口，手机横向移至讨论区域，并补采状态与清晰截图。",
+      "id": "W18",
+      "reason_zh": "桌面必需谱图及红框可辨；手机多图只显示左侧，讨论区域在当前截图之外。虽有“打开原尺寸”和横向滑动提示，但未提供这些操作的真实成功记录；不能用README声明代替放大可用性核验。",
+      "verdict": "unverified"
+    },
+    {
+      "evidence_refs": [
+        "browser_evidence.questions[*].text",
+        "browser_evidence.all_anchor_clicks",
+        "Q01-1280.jpg",
+        "Q10-390.jpg",
+        "Q16-1280.jpg",
+        "Q16-390.jpg",
+        "Q20-1280.jpg",
+        "Q20-390.jpg"
+      ],
+      "followup_needed": "无；手机精确跳转和覆盖问题已分别计入W04、W17。",
+      "id": "W20",
+      "reason_zh": "20题均按题目、结论、解释及图音证据分区，媒体位于所属题卡内并带具体标签。比较材料先后关系明确，每题有可理解的返回路径，无需猜测媒体归属或在无标签材料间寻找。",
+      "verdict": "pass"
+    }
+  ],
+  "additional_browser_evidence": {
+    "anonymous_id": "P3",
+    "navigation": [
+      {
+        "width": 1280,
+        "question": "Q01",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 152.0625,
+          "overlay_bottom": 53.796875,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 1280,
+        "question": "Q02",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 151.3125,
+          "overlay_bottom": 53.796875,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 1280,
+        "question": "Q03",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 151.46875,
+          "overlay_bottom": 53.796875,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 1280,
+        "question": "Q04",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 151.859375,
+          "overlay_bottom": 53.796875,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 1280,
+        "question": "Q05",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 151.984375,
+          "overlay_bottom": 53.796875,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 1280,
+        "question": "Q06",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 151.796875,
+          "overlay_bottom": 53.796875,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 1280,
+        "question": "Q07",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 151.9375,
+          "overlay_bottom": 53.796875,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 1280,
+        "question": "Q08",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 151.171875,
+          "overlay_bottom": 53.796875,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 1280,
+        "question": "Q09",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 151.765625,
+          "overlay_bottom": 53.796875,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 1280,
+        "question": "Q10",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 151.59375,
+          "overlay_bottom": 53.796875,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 1280,
+        "question": "Q11",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 151.6875,
+          "overlay_bottom": 53.796875,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 1280,
+        "question": "Q12",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 151.359375,
+          "overlay_bottom": 53.796875,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 1280,
+        "question": "Q13",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 151.609375,
+          "overlay_bottom": 53.796875,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 1280,
+        "question": "Q14",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 151.171875,
+          "overlay_bottom": 53.796875,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 1280,
+        "question": "Q15",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 151.09375,
+          "overlay_bottom": 53.796875,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 1280,
+        "question": "Q16",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 151.09375,
+          "overlay_bottom": 53.796875,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 1280,
+        "question": "Q17",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 151.5,
+          "overlay_bottom": 53.796875,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 1280,
+        "question": "Q18",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 151.375,
+          "overlay_bottom": 53.796875,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 1280,
+        "question": "Q19",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 152.0625,
+          "overlay_bottom": 53.796875,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 1280,
+        "question": "Q20",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 151.4375,
+          "overlay_bottom": 53.796875,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 390,
+        "question": "Q01",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 164.125,
+          "overlay_bottom": 72.78125,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 390,
+        "question": "Q02",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 164.78125,
+          "overlay_bottom": 72.78125,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 390,
+        "question": "Q03",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 165.0625,
+          "overlay_bottom": 72.78125,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 390,
+        "question": "Q04",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 164.796875,
+          "overlay_bottom": 72.78125,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 390,
+        "question": "Q05",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 164.1875,
+          "overlay_bottom": 72.78125,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 390,
+        "question": "Q06",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 164.46875,
+          "overlay_bottom": 72.78125,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 390,
+        "question": "Q07",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 164.90625,
+          "overlay_bottom": 72.78125,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 390,
+        "question": "Q08",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 164.484375,
+          "overlay_bottom": 72.78125,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 390,
+        "question": "Q09",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 164.921875,
+          "overlay_bottom": 72.78125,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 390,
+        "question": "Q10",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 164.28125,
+          "overlay_bottom": 72.78125,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 390,
+        "question": "Q11",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 164.828125,
+          "overlay_bottom": 72.78125,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 390,
+        "question": "Q12",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 165,
+          "overlay_bottom": 72.78125,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 390,
+        "question": "Q13",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 164.40625,
+          "overlay_bottom": 72.78125,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 390,
+        "question": "Q14",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 164.734375,
+          "overlay_bottom": 72.78125,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 390,
+        "question": "Q15",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 164.75,
+          "overlay_bottom": 72.78125,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 390,
+        "question": "Q16",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 165,
+          "overlay_bottom": 72.78125,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 390,
+        "question": "Q17",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 164.734375,
+          "overlay_bottom": 72.78125,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 390,
+        "question": "Q18",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 164.171875,
+          "overlay_bottom": 72.78125,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 390,
+        "question": "Q19",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 164.9375,
+          "overlay_bottom": 72.78125,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      },
+      {
+        "width": 390,
+        "question": "Q20",
+        "visible_entry": true,
+        "hash_matches": true,
+        "geometry": {
+          "heading_top": 164.734375,
+          "overlay_bottom": 72.78125,
+          "viewport_height": 920
+        },
+        "heading_visible": true
+      }
+    ],
+    "zoom": [
+      {
+        "width": 1280,
+        "index": 1,
+        "source": "assets/Q01_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q01_score_1.png"
+        }
+      },
+      {
+        "width": 1280,
+        "index": 2,
+        "source": "assets/Q02_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1527,
+          "displayWidth": 1527,
+          "src": "http://127.0.0.1:48697/P3/assets/Q02_score_1.png"
+        }
+      },
+      {
+        "width": 1280,
+        "index": 3,
+        "source": "assets/Q03_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q03_score_1.png"
+        }
+      },
+      {
+        "width": 1280,
+        "index": 4,
+        "source": "assets/Q04_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q04_score_1.png"
+        }
+      },
+      {
+        "width": 1280,
+        "index": 5,
+        "source": "assets/Q05_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q05_score_1.png"
+        }
+      },
+      {
+        "width": 1280,
+        "index": 6,
+        "source": "assets/Q06_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q06_score_1.png"
+        }
+      },
+      {
+        "width": 1280,
+        "index": 7,
+        "source": "assets/Q07_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1399,
+          "displayWidth": 1399,
+          "src": "http://127.0.0.1:48697/P3/assets/Q07_score_1.png"
+        }
+      },
+      {
+        "width": 1280,
+        "index": 8,
+        "source": "assets/Q08_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1399,
+          "displayWidth": 1399,
+          "src": "http://127.0.0.1:48697/P3/assets/Q08_score_1.png"
+        }
+      },
+      {
+        "width": 1280,
+        "index": 9,
+        "source": "assets/Q09_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1399,
+          "displayWidth": 1399,
+          "src": "http://127.0.0.1:48697/P3/assets/Q09_score_1.png"
+        }
+      },
+      {
+        "width": 1280,
+        "index": 10,
+        "source": "assets/Q10_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1399,
+          "displayWidth": 1399,
+          "src": "http://127.0.0.1:48697/P3/assets/Q10_score_1.png"
+        }
+      },
+      {
+        "width": 1280,
+        "index": 11,
+        "source": "assets/Q11_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1399,
+          "displayWidth": 1399,
+          "src": "http://127.0.0.1:48697/P3/assets/Q11_score_1.png"
+        }
+      },
+      {
+        "width": 1280,
+        "index": 12,
+        "source": "assets/Q12_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1399,
+          "displayWidth": 1399,
+          "src": "http://127.0.0.1:48697/P3/assets/Q12_score_1.png"
+        }
+      },
+      {
+        "width": 1280,
+        "index": 13,
+        "source": "assets/Q13_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1399,
+          "displayWidth": 1399,
+          "src": "http://127.0.0.1:48697/P3/assets/Q13_score_1.png"
+        }
+      },
+      {
+        "width": 1280,
+        "index": 14,
+        "source": "assets/Q14_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 628,
+          "displayWidth": 900,
+          "src": "http://127.0.0.1:48697/P3/assets/Q14_score_1.png"
+        }
+      },
+      {
+        "width": 1280,
+        "index": 15,
+        "source": "assets/Q15_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q15_score_1.png"
+        }
+      },
+      {
+        "width": 1280,
+        "index": 16,
+        "source": "assets/Q16_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q16_score_1.png"
+        }
+      },
+      {
+        "width": 1280,
+        "index": 17,
+        "source": "assets/Q16_score_2.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q16_score_2.png"
+        }
+      },
+      {
+        "width": 1280,
+        "index": 18,
+        "source": "assets/Q17_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q17_score_1.png"
+        }
+      },
+      {
+        "width": 1280,
+        "index": 19,
+        "source": "assets/Q17_score_2.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q17_score_2.png"
+        }
+      },
+      {
+        "width": 1280,
+        "index": 20,
+        "source": "assets/Q18_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q18_score_1.png"
+        }
+      },
+      {
+        "width": 1280,
+        "index": 21,
+        "source": "assets/Q19_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q19_score_1.png"
+        }
+      },
+      {
+        "width": 1280,
+        "index": 22,
+        "source": "assets/Q20_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1527,
+          "displayWidth": 1527,
+          "src": "http://127.0.0.1:48697/P3/assets/Q20_score_1.png"
+        }
+      },
+      {
+        "width": 1280,
+        "index": 23,
+        "source": "assets/Q20_score_2.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q20_score_2.png"
+        }
+      },
+      {
+        "width": 390,
+        "index": 1,
+        "source": "assets/Q01_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q01_score_1.png"
+        }
+      },
+      {
+        "width": 390,
+        "index": 2,
+        "source": "assets/Q02_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1527,
+          "displayWidth": 1527,
+          "src": "http://127.0.0.1:48697/P3/assets/Q02_score_1.png"
+        }
+      },
+      {
+        "width": 390,
+        "index": 3,
+        "source": "assets/Q03_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q03_score_1.png"
+        }
+      },
+      {
+        "width": 390,
+        "index": 4,
+        "source": "assets/Q04_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q04_score_1.png"
+        }
+      },
+      {
+        "width": 390,
+        "index": 5,
+        "source": "assets/Q05_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q05_score_1.png"
+        }
+      },
+      {
+        "width": 390,
+        "index": 6,
+        "source": "assets/Q06_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q06_score_1.png"
+        }
+      },
+      {
+        "width": 390,
+        "index": 7,
+        "source": "assets/Q07_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1399,
+          "displayWidth": 1399,
+          "src": "http://127.0.0.1:48697/P3/assets/Q07_score_1.png"
+        }
+      },
+      {
+        "width": 390,
+        "index": 8,
+        "source": "assets/Q08_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1399,
+          "displayWidth": 1399,
+          "src": "http://127.0.0.1:48697/P3/assets/Q08_score_1.png"
+        }
+      },
+      {
+        "width": 390,
+        "index": 9,
+        "source": "assets/Q09_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1399,
+          "displayWidth": 1399,
+          "src": "http://127.0.0.1:48697/P3/assets/Q09_score_1.png"
+        }
+      },
+      {
+        "width": 390,
+        "index": 10,
+        "source": "assets/Q10_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1399,
+          "displayWidth": 1399,
+          "src": "http://127.0.0.1:48697/P3/assets/Q10_score_1.png"
+        }
+      },
+      {
+        "width": 390,
+        "index": 11,
+        "source": "assets/Q11_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1399,
+          "displayWidth": 1399,
+          "src": "http://127.0.0.1:48697/P3/assets/Q11_score_1.png"
+        }
+      },
+      {
+        "width": 390,
+        "index": 12,
+        "source": "assets/Q12_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1399,
+          "displayWidth": 1399,
+          "src": "http://127.0.0.1:48697/P3/assets/Q12_score_1.png"
+        }
+      },
+      {
+        "width": 390,
+        "index": 13,
+        "source": "assets/Q13_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1399,
+          "displayWidth": 1399,
+          "src": "http://127.0.0.1:48697/P3/assets/Q13_score_1.png"
+        }
+      },
+      {
+        "width": 390,
+        "index": 14,
+        "source": "assets/Q14_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 628,
+          "displayWidth": 900,
+          "src": "http://127.0.0.1:48697/P3/assets/Q14_score_1.png"
+        }
+      },
+      {
+        "width": 390,
+        "index": 15,
+        "source": "assets/Q15_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q15_score_1.png"
+        }
+      },
+      {
+        "width": 390,
+        "index": 16,
+        "source": "assets/Q16_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q16_score_1.png"
+        }
+      },
+      {
+        "width": 390,
+        "index": 17,
+        "source": "assets/Q16_score_2.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q16_score_2.png"
+        }
+      },
+      {
+        "width": 390,
+        "index": 18,
+        "source": "assets/Q17_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q17_score_1.png"
+        }
+      },
+      {
+        "width": 390,
+        "index": 19,
+        "source": "assets/Q17_score_2.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q17_score_2.png"
+        }
+      },
+      {
+        "width": 390,
+        "index": 20,
+        "source": "assets/Q18_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q18_score_1.png"
+        }
+      },
+      {
+        "width": 390,
+        "index": 21,
+        "source": "assets/Q19_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q19_score_1.png"
+        }
+      },
+      {
+        "width": 390,
+        "index": 22,
+        "source": "assets/Q20_score_1.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1527,
+          "displayWidth": 1527,
+          "src": "http://127.0.0.1:48697/P3/assets/Q20_score_1.png"
+        }
+      },
+      {
+        "width": 390,
+        "index": 23,
+        "source": "assets/Q20_score_2.png",
+        "method": "candidate image click opens dialog",
+        "opened": true,
+        "image": {
+          "naturalWidth": 1575,
+          "displayWidth": 1575,
+          "src": "http://127.0.0.1:48697/P3/assets/Q20_score_2.png"
+        }
+      }
+    ],
+    "screenshots": [
+      {
+        "file": "zoom-1-1280.jpg",
+        "type": "zoom",
+        "width": 1280,
+        "index": 1
+      },
+      {
+        "file": "zoom-12-1280.jpg",
+        "type": "zoom",
+        "width": 1280,
+        "index": 12
+      },
+      {
+        "file": "zoom-23-1280.jpg",
+        "type": "zoom",
+        "width": 1280,
+        "index": 23
+      },
+      {
+        "file": "attribution-1280.jpg",
+        "type": "attribution",
+        "width": 1280
+      },
+      {
+        "file": "zoom-1-390.jpg",
+        "type": "zoom",
+        "width": 390,
+        "index": 1
+      },
+      {
+        "file": "zoom-12-390.jpg",
+        "type": "zoom",
+        "width": 390,
+        "index": 12
+      },
+      {
+        "file": "zoom-23-390.jpg",
+        "type": "zoom",
+        "width": 390,
+        "index": 23
+      },
+      {
+        "file": "attribution-390.jpg",
+        "type": "attribution",
+        "width": 390
+      }
+    ],
+    "note": "Supplement all sites equally. Navigation waits for scroll settling and preloads by visiting all questions before repeat, avoiding a fixed-delay false negative. No candidate files modified.",
+    "footer_text": "结构化答案 answers.json\n证据索引 evidence.json\n使用说明\n来源与署名\n许可说明\n\n素材与原始分析问题来自MuSP-Bench（Milan Liessens Dujardin、Song-Ze Yu、Kevin Miao，2026），论文 MuSP-Bench: Advanced Multimodal Benchmarking of Music Understanding Across Score and Performance，arXiv:2608.28212；数据集bryel-labs/MuSP-Bench。三份演奏在原数据中归属ASAP来源。\n\nOmniALE：组合三首作品、翻译问题并增加离线研习与证据要求。原始注释及适用改编使用CC BY-NC-SA 4.0，并受来源特定条款约束。本网页保留相同的非商业、署名及相同方式共享要求。音频证据为原始PCM无损裁剪；谱图为原谱局部加框。原始参考答案未向助教提供。\n\n离线研习版 · 20题索引完整 · Q10保留未定 · 已研习标记仅保存在本机浏览器，不上传任何数据。",
+    "submission_files": [
+      "answers.json",
+      "assets",
+      "evidence.json",
+      "index.html",
+      "LICENSE.source.md",
+      "NOTICE.md",
+      "README.md"
+    ],
+    "attribution_files": {
+      "NOTICE.md": "# 来源与许可\r\n\r\n本题使用 MuSP-Bench 的原始乐谱、对应演奏和经中文翻译的分析问题。作者：Milan Liessens Dujardin、Song-Ze Yu、Kevin Miao，2026。\r\n\r\n来源：MuSP-Bench: Advanced Multimodal Benchmarking of Music Understanding Across Score and Performance，arXiv:2608.28212；数据集 `bryel-labs/MuSP-Bench`。三份钢琴录音在原数据中归属 ASAP 来源。原作品编号、精确文件来源与版本由评测组织者保存在来源清单中。\r\n\r\n原始注释及适用改编使用 CC BY-NC-SA 4.0，并受来源特定条款约束；许可正文见 LICENSE.source.md。许可链接：https://creativecommons.org/licenses/by-nc-sa/4.0/ 。\r\n\r\nOmniALE 修改：组合三首作品、翻译问题并保留英文、增加可回听研习网页与证据交付要求；原录音和乐谱文件未修改。原始参考答案未向受测者提供。改编部分沿用相同的非商业、署名与相同方式共享许可。\r\n",
+      "LICENSE.source.md": "# License\r\n\r\nExcept where a source-specific notice states otherwise, MuSP-Bench's original\r\nannotations and adaptations are licensed under the Creative Commons\r\nAttribution-NonCommercial-ShareAlike 4.0 International license:\r\n\r\nhttps://creativecommons.org/licenses/by-nc-sa/4.0/\r\n\r\nYou must provide attribution, link the license, indicate modifications, use the\r\nmaterial only for noncommercial purposes, and distribute adaptations under the\r\nsame license. Source-dataset attribution and third-party-rights notices are in\r\nREADME.md. No warranty is provided.\r\n",
+      "README.md": "# 从谱面到演奏：三首钢琴作品联合研习\r\n\r\n## 打开方法\r\n\r\n推荐用任意本地静态文件服务器，将 `submission/` 作为站点根目录，在浏览器打开 `index.html`。例如电脑已装 Python 时，可在本目录运行：\r\n\r\n```text\r\npython -m http.server 8000\r\n```\r\n\r\n再访问 `http://localhost:8000/`。这只是静态文件服务，不是应用后端；无需联网、登录、额外下载资源或插件。页面不使用 fetch、CDN 或在线字体，也可直接双击 `index.html`（浏览器若限制本地媒体，请改用静态服务器）。研习本身不需要安装Python。\r\n\r\n## 使用\r\n\r\n- 顶部作品导航、作品内题号导航和桌面逐题目录均可跳转。每题底部可返回本作品或三部作品总目录。\r\n- 每段原音均有浏览器原生播放／暂停、进度条；“重头听”重新从该证据片段起点播放。\r\n- 勾选“循环”可反复回听，速度可切换原速／0.75倍速。播放新片段会暂停其他片段，避免声音叠加。速度只改变播放器行为，不改变WAV。\r\n- 时间标签为原录音绝对时间，播放时下方原录音时钟随进度更新；片段边界的准确值见 evidence.json 的采样帧编号。\r\n- 谱例红框标示讨论位置，并标注原PDF页码。手机谱图可在图框中横向滑动；点击谱例或按回车可在弹窗按原尺寸放大。可按Esc或“关闭”退出。\r\n- “标记已研习”仅保存在本机localStorage，不能当作作答正确性的判断。\r\n\r\n## 文件结构\r\n\r\n- `index.html`：静态中文研习网页，20题题文、答案与说明。\r\n- `answers.json`：保留原case_id、Q01—Q20与对应作品；简答字段为字符串或null。\r\n- `evidence.json`：23段原音和23处标注谱面区域的逐题索引。所有路径相对本目录。\r\n- `assets/Qxx_n.wav`：原WAV的连续无损PCM裁剪。均为44,100Hz、双声道、16-bit PCM；未变速、降噪、响度处理或移调。\r\n- `assets/Qxx_score_n.png`：原PDF局部渲染后加框。图头中Q号与原PDF页码便于核对。\r\n- `assets/style.css`、`assets/app.js`：本地响应式样式及交互。\r\n- `NOTICE.md`、`LICENSE.source.md`：来源和许可说明。\r\n\r\n## 分析边界与未完成部分\r\n\r\n本接口无原生音频输入，未声称直接听到了演奏。演奏层面的答案采用原始音频的短时频谱、起音间隔、能量变化及声部候选，与谱面视觉相互核对。谱峰含谐波，能量不等于琴键力度、RMS不等于速度；踏板动作是从衰减／截断形态推断，未直接测量踏板传感器。学习者应利用所附原音亲自回听核查。\r\n\r\n全部20题均已建立答案、说明和音频证据条目；Q10的简答仍为null：当前末尾匀速外推出现与题设“延后”相反的方向，未能可靠解决其非负整数判定。已保留所用时刻、计算疑问、完整尾声片段与谱例，不把绝对差值强行充当答案。其余19题给出明确简答，但演奏力度、弹性节奏与隐含声部的识别仍属于分析判断，并非权威参考答案。Q05的终界F#包含在音符列表中；Q06用B3表示谱写Cb4的实际音高，解释中保留原拼写。\r\n\r\n页面的答案与解释由已保存的JSON直接生成，Q10在两处都保持未定。Q16同时提供主题初现与后期变奏的音频、谱例；Q20同时提供飞升构思初现与结尾回收的独立证据。\r\n\r\n## 来源、署名与许可\r\n\r\n素材、原始问题与适用改编来自MuSP-Bench：Milan Liessens Dujardin、Song-Ze Yu、Kevin Miao，2026；论文《MuSP-Bench: Advanced Multimodal Benchmarking of Music Understanding Across Score and Performance》，arXiv:2608.28212；数据集bryel-labs/MuSP-Bench。三份钢琴录音在原数据中归属ASAP来源。\r\n\r\nOmniALE改编：组合三首作品、翻译问题，增加离线网页与证据交付要求。原始注释及适用改编采用CC BY-NC-SA 4.0，并受来源特定条款约束；本交付保留署名、非商业与相同方式共享要求。原始完整说明见本目录NOTICE.md及LICENSE.source.md。没有联网查找本题答案、MIDI对齐文件或参考输出。\r\n\r\n## 交付自检记录\r\n\r\n- 20题题号与case_id覆盖检查通过；此检查不评价音乐内容。\r\n- 23段音频逐帧PCM与原录音指定区间相等，声道、采样率、位深和帧数核验通过。\r\n- 所有要求的音频／谱例数量覆盖通过；网页答案与解释和JSON逐项核对一致。\r\n- 真实Chromium以本地静态服务器加载：1280px与390px两种宽度，无整页横向溢出，无脚本错误，无缺失资源、无外网请求；23段音频的播放、暂停、倍速媒体API检查通过。\r\n- 循环、重头播放与单片段独占播放由本地脚本实现；默认不勾选循环。\r\n"
+    },
+    "complete_visible_body_text": "谱面 × 演奏 / 研习札记\n作品目录\nA 肖邦\nB 莫扎特\nC 斯克里亚宾\nSCORE & PERFORMANCE / PIANO STUDY\n从谱面到演奏\n三首钢琴作品联合研习\n\n在时值与呼吸、和声与音色之间，建立可复查的分析。为高级学习者准备的20道问题，配以原录音片段与逐处标注谱例。\n\n20 道问题\n23 段原音\n23 幅谱例\n1 项未定\n如何使用这份研习材料\n先看题目与简答，再阅读依据。回听时可切换原速／0.75倍速，并勾选循环。比较题的早先材料与后期变奏各有独立入口。红框表示讨论位置；点击谱图可放大查看。\n\n所有时间相对原录音00:00；PDF页码从1开始。播放器倍速不改变证据文件本身。\n三部作品 / 三种观察尺度\nA\n肖邦\n第一叙事曲\n\n叙事、延宕与内声部\n\nQ01—Q06 · 原录音 09:00 · 乐谱 17 页\n\n进入研习 →\nB\n莫扎特\n第十二钢琴奏鸣曲 · 第三乐章\n\n装饰、终止与局部脉冲\n\nQ07—Q13 · 原录音 04:50 · 乐谱 10 页\n\n进入研习 →\nC\n斯克里亚宾\n第五钢琴奏鸣曲\n\n和弦拼写、声部迁移与主题变形\n\nQ14—Q20 · 原录音 11:47 · 乐谱 25 页\n\n进入研习 →\n分析方法与证据边界\n\n本接口没有原生听音能力。下列演奏判断基于所提供原WAV的起音、短时频谱、声部音高线索及能量变化，并与谱面视觉核对；不声称直接听到了演奏。这里提供原音供学习者亲自回听验证。\n\n频谱峰可能是谐波，RMS不是速度，攻击能量也不是琴键力度的直接测量。速度比较先核对记谱时值；踏板释放与力度高点属于信号辅助推断。rubato、句末收束及弱奏高潮均不自动构成失误。Q10保留为null，并说明未能解决的判定问题。\n\n研习目录\n0 / 20 题已研习\nA · 肖邦\nQ01 最明显的rubato音\nQ02 引子速度轮廓\nQ03 安静的高潮\nQ04 主题返回的新调\nQ05 连续叹息音型\nQ06 隐含中声部\nB · 莫扎特\nQ07 长音下的术语\nQ08 装饰的实际起音\nQ09 局部突出的音\nQ10 尾声匀速外推\nQ11 两处显著减速\nQ12 关系小调终止\nQ13 小调主主题入口\nC · 斯克里亚宾\nQ14 完整神秘和弦\nQ15 高声部力度高点\nQ16 主题变奏的来源\nQ17 最长整体静默\nQ18 呈示部起点\nQ19 最长下行半音阶\nQ20 结尾构思的首现\n↑ 返回作品目录\nWork A\n肖邦 · 第一叙事曲\nQ01—Q06 ｜ 叙事、延宕与内声部\n研习提示\n先把旋律、低音和快速填充织体分开，再讨论rubato。判断弹性节奏必须先换算记谱时值；高潮也可能通过弱下来、慢下来而非更响来实现。先在谱上唱出内声部，再以0.75倍速逐音核查。\nQ01\nQ02\nQ03\nQ04\nQ05\nQ06\nQ01谱面 × 原音\n标记已研习\n第73—74小节的主旋律中，演奏者对哪一个音使用了最明显的弹性节奏（rubato）处理？\n简答 / ANSWER\nAb5\n依据与解释\n\n第73小节的 Ab5 是这里最显著的延宕点。对照记谱的附点四分音符，频谱起音定位约为03:04.16，下一旋律音 Eb5 约在03:04.80，间隔约0.64秒；邻近四分音符的局部脉冲约0.25—0.30秒。把记谱时值因素扣除后，这个 Ab5 仍被明显拉宽。这里将 rubato 理解为旋律的时间伸缩，而非弹错节奏。\n\n查看英文原题与答案格式\n原录音证据\n\n01 / 73—74小节：比较附点旋律音与邻近脉冲\n\nA · 原录音 02:59 — 03:08 · 9.0秒 · WAV / 44.1kHz / 16-bit / 双声道\n重头听 ↺\n循环\n速度\n原速 1×\n慢速 0.75×\n原录音 02:59\n标注谱面证据\n原PDF第 5 页 · 谱例 1\n打开原尺寸 ↗\n第73小节旋律Ab5：红框是与邻近节拍比较的延宕点。 手机可横向滑动谱图；点击／按回车可放大。\n↑ 返回本作品目录\n三部作品总目录 ↗\nQ02谱面 × 原音\n标记已研习\n聆听开头到第一次整体静默之前的第一个乐思。按先后顺序写出其加速／减速轮廓。\n简答 / ANSWER\nfaster, slower\n依据与解释\n\n引子第一乐思先逐渐加速，再逐渐放慢。对齐谱上同为短时值的起音，约05.72、06.48、07.02、07.44、07.78、08.08、08.38秒对应的间隔依次约0.76、0.54、0.42、0.34、0.30、0.30秒，随后约0.32、0.36、0.38、0.52、0.76秒重新拉开。比较的是相同记谱时值的起音间距，而不是把最初长音与短音直接相比；因此轮廓为faster、slower。此为原WAV起音与谱面核对的数值分析，供回听验证。\n\n查看英文原题与答案格式\n原录音证据\n\n01 / 引子第一乐思：跟踪短音起音间距及首次断开\n\nA · 原录音 00:00 — 00:12 · 12.8秒 · WAV / 44.1kHz / 16-bit / 双声道\n重头听 ↺\n循环\n速度\n原速 1×\n慢速 0.75×\n原录音 00:00\n标注谱面证据\n原PDF第 1 页 · 谱例 1\n打开原尺寸 ↗\n引子第1—3小节：红框覆盖第一次乐思的起音与句末断开。 手机可横向滑动谱图；点击／按回车可放大。\n↑ 返回本作品目录\n三部作品总目录 ↗\nQ03谱面 × 原音\n标记已研习\n从录音02:51开始的主题，在第几小节到达一种反常规的、安静的高潮？此处速度与音量均明显下降。\n简答 / ANSWER\n80\n依据与解释\n\n高音区的到达本可被处理为更强的顶点，但第80小节的高音延续反而弱化，旋律及伴奏的推进也放慢。录音约03:16—03:20处攻击峰明显收敛、起音间距拉开；谱面上它位于第79小节上行跳进之后、装饰性展开之前。这里的“安静高潮”指强度和速度的反向处理，并非音轨真正归零，也不是乐谱要求的全休止。\n\n查看英文原题与答案格式\n原录音证据\n\n01 / 主题初入至第80小节安静高点：比较推进与收束\n\nA · 原录音 02:51 — 03:21 · 30.0秒 · WAV / 44.1kHz / 16-bit / 双声道\n重头听 ↺\n循环\n速度\n原速 1×\n慢速 0.75×\n原录音 02:51\n标注谱面证据\n原PDF第 5 页 · 谱例 1\n打开原尺寸 ↗\n第79—81小节；红框为第80小节的高音延续与回落。 手机可横向滑动谱图；点击／按回车可放大。\n↑ 返回本作品目录\n三部作品总目录 ↗\nQ04谱面 × 原音\n标记已研习\n03:00稍后出现旋律 F, G, G, Eb, Eb, D, C, D, D, Bb。之后音乐继续转调：根据主要主题在新调中的再现，接下来转到什么调？\n简答 / ANSWER\nA minor\n依据与解释\n\n第94小节 a tempo (meno mosso) 处，开头第一主题的节奏及“长音—上行回转”轮廓重新出现，但中心改为 A。低音 E—A 的属、主联系与 C 自然音、G# 导音共同指向 A 小调；不能只凭原有两个降号的调号判断仍在原调。谱面随后也继续展开这一新调中的主题。\n\n查看英文原题与答案格式\n原录音证据\n\n01 / 转调连接及第94小节第一主题在新调中返回\n\nA · 原录音 03:46 — 04:11 · 25.0秒 · WAV / 44.1kHz / 16-bit / 双声道\n重头听 ↺\n循环\n速度\n原速 1×\n慢速 0.75×\n原录音 03:46\n标注谱面证据\n原PDF第 6 页 · 谱例 1\n打开原尺寸 ↗\n第94小节a tempo (meno mosso)：第一主题在A小调返回。 手机可横向滑动谱图；点击／按回车可放大。\n↑ 返回本作品目录\n三部作品总目录 ↗\nQ05谱面 × 原音\n标记已研习\n01:57—02:06之间，演奏者强调了一条由连续叹息音型构成的旋律。按出现顺序写出这条旋律，直到该声部出现 F#3。\n简答 / ANSWER\nF, Eb, Eb, D, F, Eb, Eb, D, D, C, Bb, A, G, F#\n依据与解释\n\n把快速分解织体暂时放在背景，追踪左手上层的两音连线：第40、41小节两次为 F4—Eb4、Eb4—D4；第42小节接 D4—C4、Bb3—A3；第43小节再到 G3—F#3。频谱攻击能量也支持这些低于快速右手的起音。这里把题目的终界 F#3 包含在列表内，保留两次 Eb 和相接的两个 D，不把它们合并成一个音。\n\n查看英文原题与答案格式\n原录音证据\n\n01 / 连续叹息声部，包含终界F#3\n\nA · 原录音 01:56 — 02:07 · 10.7秒 · WAV / 44.1kHz / 16-bit / 双声道\n重头听 ↺\n循环\n速度\n原速 1×\n慢速 0.75×\n原录音 01:56\n标注谱面证据\n原PDF第 3 页 · 谱例 1\n打开原尺寸 ↗\n红框追踪第40—43小节左手上层叹息音型，读出重复音。 手机可横向滑动谱图；点击／按回车可放大。\n↑ 返回本作品目录\n三部作品总目录 ↗\nQ06谱面 × 原音\n标记已研习\n03:37—03:43之间，演奏者突出的短小中声部由哪些具体音组成？\n简答 / ANSWER\nD4, Db4, B3, Bb3\n依据与解释\n\n这是穿过装饰与伴奏的隐含下行线，而非把右手所有快速音逐个抄录。约03:38.52 的 D4 接03:40.26的 Db4，再到03:40.96的 Cb4（实际音高 B3），最后接向 Bb3；谱面在第88—90小节把这些音分配在不同的织体位置。回答统一用实际音高 B3 表示谱写 Cb4，频谱上的相邻半音下行也与此一致。\n\n查看英文原题与答案格式\n原录音证据\n\n01 / 隐含中声部半音下行；忽略表层快速装饰\n\nA · 原录音 03:36 — 03:43 · 6.6秒 · WAV / 44.1kHz / 16-bit / 双声道\n重头听 ↺\n循环\n速度\n原速 1×\n慢速 0.75×\n原录音 03:36\n标注谱面证据\n原PDF第 5 页 · 谱例 1\n打开原尺寸 ↗\n第88—90小节：标出D4、Db4、谱写Cb4（B3）及接续Bb3所在的织体位置。 手机可横向滑动谱图；点击／按回车可放大。\n↑ 返回本作品目录\n三部作品总目录 ↗\nWork B\n莫扎特 · 第十二钢琴奏鸣曲 · 第三乐章\nQ07—Q13 ｜ 装饰、终止与局部脉冲\n研习提示\n把6/8脉冲作为参照，但不要把一切句法呼吸判为偏离。颤音要区分写在谱上的主音与实际第一击；终止要先找导音，再找主和弦。Q10保留了核查而没有强填数字。\nQ07\nQ08\nQ09\nQ10\nQ11\nQ12\nQ13\nQ07谱面 × 原音\n标记已研习\n录音02:56—02:57所对应的较长音符下方，谱面写着什么演奏指示？\n简答 / ANSWER\nsforzando\n依据与解释\n\n第152小节左手较长的降 D 音下方标有 sf。其通常完整写法为 sforzando，表示局部突强／重音，并非整个段落都改成持续的 forte。02:56—02:57 的片段正对应这组低声部长音。\n\n查看英文原题与答案格式\n原录音证据\n\n01 / 152小节左手长音与sf\n\nB · 原录音 02:54 — 02:58 · 4.0秒 · WAV / 44.1kHz / 16-bit / 双声道\n重头听 ↺\n循环\n速度\n原速 1×\n慢速 0.75×\n原录音 02:54\n标注谱面证据\n原PDF第 7 页 · 谱例 1\n打开原尺寸 ↗\n第152小节左手长音及其下方sf，完整术语为sforzando。 手机可横向滑动谱图；点击／按回车可放大。\n↑ 返回本作品目录\n三部作品总目录 ↗\nQ08谱面 × 原音\n标记已研习\n第53小节的装饰音在这次实际演奏中从哪个音开始？\n简答 / ANSWER\nF5\n依据与解释\n\n谱面第53小节写的是 Eb5 上的 tr，但实际装饰从上方辅助音 F5 开始。用约0.09秒短时窗复核，01:01.90—01:01.93附近先有 F5 的新攻击，随后约01:01.97转到 Eb5，再于约01:02.04回到 F5。前一小节尾音的残响不能当作本次装饰起音；这里根据新攻击而非印刷主音作答。\n\n查看英文原题与答案格式\n原录音证据\n\n01 / 53小节装饰：对比F5先起与Eb5主体\n\nB · 原录音 01:00 — 01:03 · 2.6秒 · WAV / 44.1kHz / 16-bit / 双声道\n重头听 ↺\n循环\n速度\n原速 1×\n慢速 0.75×\n原录音 01:00\n标注谱面证据\n原PDF第 3 页 · 谱例 1\n打开原尺寸 ↗\n第53小节Eb5上的tr；红框只指谱面装饰位置，实际起音另由录音核查。 手机可横向滑动谱图；点击／按回车可放大。\n↑ 返回本作品目录\n三部作品总目录 ↗\nQ09谱面 × 原音\n标记已研习\n第243小节中，右手有一个音在实际演奏里受到很强的强调，可能并非有意为之，并略微打断旋律的流动。是哪一个音？\n简答 / ANSWER\nA\n依据与解释\n\n第243小节约04:44.06的 A4，相比同句周围短音具有突出的攻击峰，尤其其高次分音很明显；紧接的 C5 是正常的上行旋律目标，不应仅因音区更高就选它。谱上此 A4 没有另加突强记号。这里仅定位局部凸出的 A，不据此断言演奏者失误或推测其意图。\n\n查看英文原题与答案格式\n原录音证据\n\n01 / 243小节，约284.06秒的A攻击突出\n\nB · 原录音 04:42 — 04:45 · 2.9秒 · WAV / 44.1kHz / 16-bit / 双声道\n重头听 ↺\n循环\n速度\n原速 1×\n慢速 0.75×\n原录音 04:42\n标注谱面证据\n原PDF第 10 页 · 谱例 1\n打开原尺寸 ↗\n第243小节右手A4：红框音符是局部攻击突出的候选。 手机可横向滑动谱图；点击／按回车可放大。\n↑ 返回本作品目录\n三部作品总目录 ↗\nQ10保留未定\n标记已研习\n如果严格保持第243小节的速度，最后一个和弦相对实际演奏将延后多少个八分音符的时值？结果向下取整。\n简答 / ANSWER\n未定 · null\n依据与解释\n\n这一项保留为 null：已按谱面末尾三小节核算，但尚不能把结果可靠地转换成题目要求的“延后”的非负整数。第243小节约04:43.66起，以同小节起音估计八分音符约0.21秒，末尾实际和弦约04:47.50；当前外推得到的是匀速版本反而较早，而不是延后。可能涉及题目对基准速度／最后和弦的取点约定，不能把方向相反的差值强行取绝对值冒充答案。保留完整尾声及标注，供核查；自然的收束也不因此被称为错误。\n\n查看英文原题与答案格式\n原录音证据\n\n01 / 243小节至终止：用于核算匀速外推（本题未定）\n\nB · 原录音 04:42 — 04:49 · 6.9秒 · WAV / 44.1kHz / 16-bit / 双声道\n重头听 ↺\n循环\n速度\n原速 1×\n慢速 0.75×\n原录音 04:42\n标注谱面证据\n原PDF第 10 页 · 谱例 1\n打开原尺寸 ↗\n用于核算的第243小节和第245小节最后和弦；本题答案未定。 手机可横向滑动谱图；点击／按回车可放大。\n↑ 返回本作品目录\n三部作品总目录 ↗\nQ11谱面 × 原音\n标记已研习\n第170—180小节之间，演奏者在哪两个小节减速最明显？\n简答 / ANSWER\n175, 177\n依据与解释\n\n第175小节进入较长的歌唱性音符时，四分音符间隔相对前面的流动十六分音符扩大；第177小节又有更明显的拉宽。对齐后，第175小节约03:23.50开始，第177小节约03:26.06开始；后者一小节约1.62秒，超过此前约1.1—1.3秒的常态。第176小节仍处在宽广速度中，但从前后脉冲的变化看，新的减速落在175和177，而不是把所有长音都视为减速。\n\n查看英文原题与答案格式\n原录音证据\n\n01 / 170—180小节附近：比较175、177的脉冲拉宽\n\nB · 原录音 03:17 — 03:31 · 14.0秒 · WAV / 44.1kHz / 16-bit / 双声道\n重头听 ↺\n循环\n速度\n原速 1×\n慢速 0.75×\n原录音 03:17\n标注谱面证据\n原PDF第 8 页 · 谱例 1\n打开原尺寸 ↗\n上框：第175小节；下框：第177小节。比较长音时需换算成相同拍值。 手机可横向滑动谱图；点击／按回车可放大。\n↑ 返回本作品目录\n三部作品总目录 ↗\nQ12谱面 × 原音\n标记已研习\n在呈示部中，第一次向本曲关系小调形成正格终止发生在什么时间？请给出该终止中导音被奏响的时刻。\n简答 / ANSWER\n00:44\n依据与解释\n\nF大调的关系小调是 D minor。第38小节后半的 C#5 是导向 D 的导音，随后的第39小节落到 D 小调主和声，形成属到主的正格终止。频谱起音定位 C#5 约在44.82秒，按要求向下取整为00:44；不是把主和弦到达的45秒多误报为导音时刻。\n\n查看英文原题与答案格式\n原录音证据\n\n01 / D小调终止：先找44.82秒导音C#，再找主和弦\n\nB · 原录音 00:41 — 00:46 · 5.5秒 · WAV / 44.1kHz / 16-bit / 双声道\n重头听 ↺\n循环\n速度\n原速 1×\n慢速 0.75×\n原录音 00:41\n标注谱面证据\n原PDF第 2 页 · 谱例 1\n打开原尺寸 ↗\n第38小节后半的C#导音，以及通向第39小节D小调终止的连接。 手机可横向滑动谱图；点击／按回车可放大。\n↑ 返回本作品目录\n三部作品总目录 ↗\nQ13谱面 × 原音\n标记已研习\n主主题以小调形式出现，是从录音的什么时间开始的？\n简答 / ANSWER\n01:46\n依据与解释\n\n第91小节重新使用开头的快速主主题音型，但变为 C 小调：低音 C 与 Eb、G 的组合，以及相应的小调音级，区别于开头 F 大调。新段的低音／主题入口约在106.08秒；向下取整为01:46。起点按主题段落第一击计，不等待右手十六分音符跑动完全展开。\n\n查看英文原题与答案格式\n原录音证据\n\n01 / 呈示部收尾与91小节C小调主题入口\n\nB · 原录音 01:43 — 01:50 · 6.5秒 · WAV / 44.1kHz / 16-bit / 双声道\n重头听 ↺\n循环\n速度\n原速 1×\n慢速 0.75×\n原录音 01:43\n标注谱面证据\n原PDF第 5 页 · 谱例 1\n打开原尺寸 ↗\n第91小节小调形态的主主题，与开头相同的十六分音符轮廓。 手机可横向滑动谱图；点击／按回车可放大。\n↑ 返回本作品目录\n三部作品总目录 ↗\nWork C\n斯克里亚宾 · 第五钢琴奏鸣曲\nQ14—Q20 ｜ 和弦拼写、声部迁移与主题变形\n研习提示\n优先辨认节奏骨架、音程轮廓与反复音型，再判断变奏关系。神秘和弦需核对完整六音；半音阶可在中声部跨小节延伸；全局静默要求所有声部的持续音都已释放，而不只是右手休止。\nQ14\nQ15\nQ16\nQ17\nQ18\nQ19\nQ20\nQ14谱面 × 原音\n标记已研习\n从第263小节开始的 meno vivo 段落出现了两次完整的“神秘和弦”。第一次奏响该和弦是在什么时间？\n简答 / ANSWER\n06:28\n依据与解释\n\n第263小节进入 Meno vivo；随后第264小节左手纵向的六音四度叠置，构成完整的神秘和弦。这里读到 A、D#、G、C#、F#、B 六个音级；须把六音整体与此前不完整的和声区分。它采用琶奏方式，低端新攻击约388.52秒开始，接着逐层展开，故以首次奏响的起点向下取整为06:28，而不是等全部高音都展开才计时。\n\n查看英文原题与答案格式\n原录音证据\n\n01 / 263—265小节；完整神秘和弦在264小节琶奏\n\nC · 原录音 06:26 — 06:32 · 5.8秒 · WAV / 44.1kHz / 16-bit / 双声道\n重头听 ↺\n循环\n速度\n原速 1×\n慢速 0.75×\n原录音 06:26\n标注谱面证据\n原PDF第 13 页 · 谱例 1\n打开原尺寸 ↗\n第263小节Meno vivo之后，第264小节左手的完整六音神秘和弦。 手机可横向滑动谱图；点击／按回车可放大。\n↑ 返回本作品目录\n三部作品总目录 ↗\nQ15谱面 × 原音\n标记已研习\n第219—225小节的高声部旋律音中，哪一个音被演奏得最有力度？\n简答 / ANSWER\nC#6\n依据与解释\n\n比较的是第219—225小节中跳到高处的旋律音，而不是整段和弦的总响度。第223小节 m.s. 标示处的 C#6（约05:48.26）有很鲜明的高音新攻击；其后 A5、Bb5、B5 虽继续推进，单独攻击的频谱增量不及此处。C#6 附近的基频新增长与总攻击峰同时支持这一选择；踏板残响、不同琴弦响应仍会影响这种力度代理量，不能把它等同于直接测得琴键速度。\n\n查看英文原题与答案格式\n原录音证据\n\n01 / 219—225小节：高音C#6与后续旋律音力度对照\n\nC · 原录音 05:42 — 05:52 · 10.0秒 · WAV / 44.1kHz / 16-bit / 双声道\n重头听 ↺\n循环\n速度\n原速 1×\n慢速 0.75×\n原录音 05:42\n标注谱面证据\n原PDF第 11 页 · 谱例 1\n打开原尺寸 ↗\n第223小节m.s.高音C#6，需与前后Ab5、A5等旋律攻击比较。 手机可横向滑动谱图；点击／按回车可放大。\n↑ 返回本作品目录\n三部作品总目录 ↗\nQ16前后对照\n标记已研习\n录音11:17—11:28的段落，是先前哪个主题的变奏？请用该主题第一次出现时的速度／表情标记作答。\n简答 / ANSWER\nPresto giocoso\n依据与解释\n\n这不是只因同样“快”而联想主题。第251小节首次出现的 Presto giocoso，具有高音长时值目标后接更高音区短小上行—回落的轮廓；第433小节以后把它扩展为低处密集震音／重复音支撑的强烈变奏。11:17—11:28落在这段后期扩展内。对照截图中的长音与随后高位短音组，节奏外形和音程关系比表面伴奏更能说明亲缘关系。\n\n查看英文原题与答案格式\n原录音证据\n\n01 / 早先材料：251小节Presto giocoso及紧接音组\n\nC · 原录音 06:13 — 06:19 · 5.7秒 · WAV / 44.1kHz / 16-bit / 双声道\n重头听 ↺\n循环\n速度\n原速 1×\n慢速 0.75×\n原录音 06:13\n\n02 / 后期变奏：11:17—11:28及其后衔接\n\nC · 原录音 11:16 — 11:29 · 12.5秒 · WAV / 44.1kHz / 16-bit / 双声道\n重头听 ↺\n循环\n速度\n原速 1×\n慢速 0.75×\n原录音 11:16\n标注谱面证据\n原PDF第 13 页 · 谱例 1\n打开原尺寸 ↗\n早先主题：第251小节Presto giocoso，长音后接高位短音组。 手机可横向滑动谱图；点击／按回车可放大。\n原PDF第 24 页 · 谱例 2\n打开原尺寸 ↗\n后期变奏：第435—438小节，在密集重复织体上扩展早先主题。 手机可横向滑动谱图；点击／按回车可放大。\n↑ 返回本作品目录\n三部作品总目录 ↗\nQ17谱面 × 原音\n标记已研习\n录音07:57—08:41之间，演奏者在哪个小节之前松开踏板、且没有其他音持续，从而形成该区间最长的整体静默？\n简答 / ANSWER\n325\n依据与解释\n\n在给定区间，约08:33.3—08:33.6附近，前一密集音群的残响被明显截断，随后第325小节的低音与新和弦重新起音。这里比较全频段的衰减与下一次新攻击，而不是某一手的休止；房间和录音底噪不要求数值绝对为零。谱面第324小节末与第325小节新起点的对照支持这一定位。踏板松开是依据衰减形态作的推断，没有踏板传感器，不能声称直接测得踏板动作。\n\n查看英文原题与答案格式\n原录音证据\n\n01 / 324末至325：全频衰减截断及新起音\n\nC · 原录音 08:30 — 08:36 · 5.5秒 · WAV / 44.1kHz / 16-bit / 双声道\n重头听 ↺\n循环\n速度\n原速 1×\n慢速 0.75×\n原录音 08:30\n\n02 / 同一区间较早的短暂换气，供静默长度比较\n\nC · 原录音 08:07 — 08:11 · 3.5秒 · WAV / 44.1kHz / 16-bit / 双声道\n重头听 ↺\n循环\n速度\n原速 1×\n慢速 0.75×\n原录音 08:07\n标注谱面证据\n原PDF第 17 页 · 谱例 1\n打开原尺寸 ↗\n第324小节末（右框），核对前一音群的结束与随后全声部截断。 手机可横向滑动谱图；点击／按回车可放大。\n原PDF第 18 页 · 谱例 2\n打开原尺寸 ↗\n第325小节的新低音与和弦起点；静默发生在它之前。 手机可横向滑动谱图；点击／按回车可放大。\n↑ 返回本作品目录\n三部作品总目录 ↗\nQ18谱面 × 原音\n标记已研习\n本曲具有较长的引子，且第一主题由六小节乐句构成。呈示部从录音的什么时间开始？\n简答 / ANSWER\n01:22\n依据与解释\n\n第47小节 Presto con allegrezza 才开启由六小节乐句组织的第一主题。之前第34小节 Accarezzevole 及第44—46小节仍属引子／过渡，不能把第44小节同类和弦纹理提前当作呈示部。录音低音入口约82.98秒，右手稍后进入；取主题段落第一击并向下取整，得到01:22。\n\n查看英文原题与答案格式\n原录音证据\n\n01 / 引子结尾、休止与47小节呈示部第一乐句\n\nC · 原录音 01:18 — 01:29 · 11.0秒 · WAV / 44.1kHz / 16-bit / 双声道\n重头听 ↺\n循环\n速度\n原速 1×\n慢速 0.75×\n原录音 01:18\n标注谱面证据\n原PDF第 3 页 · 谱例 1\n打开原尺寸 ↗\n第47小节Presto con allegrezza为六小节第一主题乐句的起点；44—46仍是过渡。 手机可横向滑动谱图；点击／按回车可放大。\n↑ 返回本作品目录\n三部作品总目录 ↗\nQ19谱面 × 原音\n标记已研习\n10:20稍后到10:30之前，某个中声部出现超过五个音的下行完整半音阶。找出其中最长的连续半音阶线条，并给出起音与终音。\n简答 / ANSWER\nF, G\n依据与解释\n\n沿中声部而非最高长音追踪，第392小节后部从 F5 起，经 Fb5（E5）、Eb5、D5、Db5，接第393小节的 C5，再经 B4、Bb4、A4、Ab4，至第394小节的 G4。C音的延续／再触键是声部与时值衔接，不另行制造一个不存在的半音缺口。整条线跨越小节线；只截取某一小节里的五连音会错失最长的连续下行范围。答案按音级记起点 F、终点 G。\n\n查看英文原题与答案格式\n原录音证据\n\n01 / 391—394小节附近：跨小节追踪中声部半音下行\n\nC · 原录音 10:19 — 10:30 · 11.0秒 · WAV / 44.1kHz / 16-bit / 双声道\n重头听 ↺\n循环\n速度\n原速 1×\n慢速 0.75×\n原录音 10:19\n标注谱面证据\n原PDF第 21 页 · 谱例 1\n打开原尺寸 ↗\n第392—394小节的跨小节中声部下行半音连接，勿只读上方长音。 手机可横向滑动谱图；点击／按回车可放大。\n↑ 返回本作品目录\n三部作品总目录 ↗\nQ20前后对照\n标记已研习\n作品结尾使用了先前引入过的一个音乐构思。这个构思最早是在录音的什么时间引入的？\n简答 / ANSWER\n00:02\n依据与解释\n\n结尾第451—455小节的急速上行音组，回收的是引子第3小节首次插入的飞升动机，而不是第1小节就已经开始的低音震音本身。首次飞升新攻击约在2秒多，故向下取整为00:02。两段片段分别给出其早期低音区形态与结尾移位、增势后的形态；共同点是短促成组上冲、顶音重音及随后释放，而非完整照搬相同音高。\n\n查看英文原题与答案格式\n原录音证据\n\n01 / 首次引入：第3小节的飞升音组（非最初震音）\n\nC · 原录音 00:01 — 00:04 · 2.3秒 · WAV / 44.1kHz / 16-bit / 双声道\n重头听 ↺\n循环\n速度\n原速 1×\n慢速 0.75×\n原录音 00:01\n\n02 / 作品结尾：飞升音组的移位与强化\n\nC · 原录音 11:35 — 11:45 · 10.5秒 · WAV / 44.1kHz / 16-bit / 双声道\n重头听 ↺\n循环\n速度\n原速 1×\n慢速 0.75×\n原录音 11:35\n标注谱面证据\n原PDF第 1 页 · 谱例 1\n打开原尺寸 ↗\n初次出现：第3小节右手上行五音组，晚于最初低音震音。 手机可横向滑动谱图；点击／按回车可放大。\n原PDF第 25 页 · 谱例 2\n打开原尺寸 ↗\n末尾第454—455小节移位、强化的飞升音组，与引子对照。 手机可横向滑动谱图；点击／按回车可放大。\n↑ 返回本作品目录\n三部作品总目录 ↗\n结构化答案 answers.json\n证据索引 evidence.json\n使用说明\n来源与署名\n许可说明\n\n素材与原始分析问题来自MuSP-Bench（Milan Liessens Dujardin、Song-Ze Yu、Kevin Miao，2026），论文 MuSP-Bench: Advanced Multimodal Benchmarking of Music Understanding Across Score and Performance，arXiv:2608.28212；数据集bryel-labs/MuSP-Bench。三份演奏在原数据中归属ASAP来源。\n\nOmniALE：组合三首作品、翻译问题并增加离线研习与证据要求。原始注释及适用改编使用CC BY-NC-SA 4.0，并受来源特定条款约束。本网页保留相同的非商业、署名及相同方式共享要求。音频证据为原始PCM无损裁剪；谱图为原谱局部加框。原始参考答案未向助教提供。\n\n离线研习版 · 20题索引完整 · Q10保留未定 · 已研习标记仅保存在本机浏览器，不上传任何数据。\n\n↑ 作品目录",
+    "actual_audio_sources": [
+      {
+        "question": "Q01",
+        "attribute_src": null,
+        "source_src": "assets/Q01_1.wav",
+        "currentSrc": "/P3/assets/Q01_1.wav",
+        "duration": 9,
+        "readyState": 4,
+        "error": null
+      },
+      {
+        "question": "Q02",
+        "attribute_src": null,
+        "source_src": "assets/Q02_1.wav",
+        "currentSrc": "/P3/assets/Q02_1.wav",
+        "duration": 12.8,
+        "readyState": 4,
+        "error": null
+      },
+      {
+        "question": "Q03",
+        "attribute_src": null,
+        "source_src": "assets/Q03_1.wav",
+        "currentSrc": "/P3/assets/Q03_1.wav",
+        "duration": 30,
+        "readyState": 4,
+        "error": null
+      },
+      {
+        "question": "Q04",
+        "attribute_src": null,
+        "source_src": "assets/Q04_1.wav",
+        "currentSrc": "/P3/assets/Q04_1.wav",
+        "duration": 25,
+        "readyState": 4,
+        "error": null
+      },
+      {
+        "question": "Q05",
+        "attribute_src": null,
+        "source_src": "assets/Q05_1.wav",
+        "currentSrc": "/P3/assets/Q05_1.wav",
+        "duration": 10.7,
+        "readyState": 4,
+        "error": null
+      },
+      {
+        "question": "Q06",
+        "attribute_src": null,
+        "source_src": "assets/Q06_1.wav",
+        "currentSrc": "/P3/assets/Q06_1.wav",
+        "duration": 6.6,
+        "readyState": 4,
+        "error": null
+      },
+      {
+        "question": "Q07",
+        "attribute_src": null,
+        "source_src": "assets/Q07_1.wav",
+        "currentSrc": "/P3/assets/Q07_1.wav",
+        "duration": 4,
+        "readyState": 4,
+        "error": null
+      },
+      {
+        "question": "Q08",
+        "attribute_src": null,
+        "source_src": "assets/Q08_1.wav",
+        "currentSrc": "/P3/assets/Q08_1.wav",
+        "duration": 2.6,
+        "readyState": 4,
+        "error": null
+      },
+      {
+        "question": "Q09",
+        "attribute_src": null,
+        "source_src": "assets/Q09_1.wav",
+        "currentSrc": "/P3/assets/Q09_1.wav",
+        "duration": 2.9,
+        "readyState": 4,
+        "error": null
+      },
+      {
+        "question": "Q10",
+        "attribute_src": null,
+        "source_src": "assets/Q10_1.wav",
+        "currentSrc": "/P3/assets/Q10_1.wav",
+        "duration": 6.9,
+        "readyState": 4,
+        "error": null
+      },
+      {
+        "question": "Q11",
+        "attribute_src": null,
+        "source_src": "assets/Q11_1.wav",
+        "currentSrc": "/P3/assets/Q11_1.wav",
+        "duration": 14,
+        "readyState": 4,
+        "error": null
+      },
+      {
+        "question": "Q12",
+        "attribute_src": null,
+        "source_src": "assets/Q12_1.wav",
+        "currentSrc": "/P3/assets/Q12_1.wav",
+        "duration": 5.5,
+        "readyState": 4,
+        "error": null
+      },
+      {
+        "question": "Q13",
+        "attribute_src": null,
+        "source_src": "assets/Q13_1.wav",
+        "currentSrc": "/P3/assets/Q13_1.wav",
+        "duration": 6.5,
+        "readyState": 4,
+        "error": null
+      },
+      {
+        "question": "Q14",
+        "attribute_src": null,
+        "source_src": "assets/Q14_1.wav",
+        "currentSrc": "/P3/assets/Q14_1.wav",
+        "duration": 5.8,
+        "readyState": 4,
+        "error": null
+      },
+      {
+        "question": "Q15",
+        "attribute_src": null,
+        "source_src": "assets/Q15_1.wav",
+        "currentSrc": "/P3/assets/Q15_1.wav",
+        "duration": 10,
+        "readyState": 1,
+        "error": null
+      },
+      {
+        "question": "Q16",
+        "attribute_src": null,
+        "source_src": "assets/Q16_1.wav",
+        "currentSrc": "/P3/assets/Q16_1.wav",
+        "duration": 5.7,
+        "readyState": 1,
+        "error": null
+      },
+      {
+        "question": "Q16",
+        "attribute_src": null,
+        "source_src": "assets/Q16_2.wav",
+        "currentSrc": "/P3/assets/Q16_2.wav",
+        "duration": 12.5,
+        "readyState": 1,
+        "error": null
+      },
+      {
+        "question": "Q17",
+        "attribute_src": null,
+        "source_src": "assets/Q17_1.wav",
+        "currentSrc": "/P3/assets/Q17_1.wav",
+        "duration": 5.5,
+        "readyState": 1,
+        "error": null
+      },
+      {
+        "question": "Q17",
+        "attribute_src": null,
+        "source_src": "assets/Q17_2.wav",
+        "currentSrc": "/P3/assets/Q17_2.wav",
+        "duration": 3.5,
+        "readyState": 1,
+        "error": null
+      },
+      {
+        "question": "Q18",
+        "attribute_src": null,
+        "source_src": "assets/Q18_1.wav",
+        "currentSrc": "/P3/assets/Q18_1.wav",
+        "duration": 11,
+        "readyState": 1,
+        "error": null
+      },
+      {
+        "question": "Q19",
+        "attribute_src": null,
+        "source_src": "assets/Q19_1.wav",
+        "currentSrc": "/P3/assets/Q19_1.wav",
+        "duration": 11,
+        "readyState": 1,
+        "error": null
+      },
+      {
+        "question": "Q20",
+        "attribute_src": null,
+        "source_src": "assets/Q20_1.wav",
+        "currentSrc": "/P3/assets/Q20_1.wav",
+        "duration": 2.3,
+        "readyState": 1,
+        "error": null
+      },
+      {
+        "question": "Q20",
+        "attribute_src": null,
+        "source_src": "assets/Q20_2.wav",
+        "currentSrc": "/P3/assets/Q20_2.wav",
+        "duration": 10.5,
+        "readyState": 1,
+        "error": null
+      }
+    ],
+    "metadata_capture_note": "All real audio elements were loaded to browser metadata-ready state, including source children where audio.src is absent."
+  },
+  "original_notice": "# 来源与许可\n\n本题使用 MuSP-Bench 的原始乐谱、对应演奏和经中文翻译的分析问题。作者：Milan Liessens Dujardin、Song-Ze Yu、Kevin Miao，2026。\n\n来源：MuSP-Bench: Advanced Multimodal Benchmarking of Music Understanding Across Score and Performance，arXiv:2608.28212；数据集 `bryel-labs/MuSP-Bench`。三份钢琴录音在原数据中归属 ASAP 来源。原作品编号、精确文件来源与版本由评测组织者保存在来源清单中。\n\n原始注释及适用改编使用 CC BY-NC-SA 4.0，并受来源特定条款约束；许可正文见 LICENSE.source.md。许可链接：https://creativecommons.org/licenses/by-nc-sa/4.0/ 。\n\nOmniALE 修改：组合三首作品、翻译问题并保留英文、增加可回听研习网页与证据交付要求；原录音和乐谱文件未修改。原始参考答案未向受测者提供。改编部分沿用相同的非商业、署名与相同方式共享许可。\n",
+  "original_license": "# License\n\nExcept where a source-specific notice states otherwise, MuSP-Bench's original\nannotations and adaptations are licensed under the Creative Commons\nAttribution-NonCommercial-ShareAlike 4.0 International license:\n\nhttps://creativecommons.org/licenses/by-nc-sa/4.0/\n\nYou must provide attribution, link the license, indicate modifications, use the\nmaterial only for noncommercial purposes, and distribute adaptations under the\nsame license. Source-dataset attribution and third-party-rights notices are in\nREADME.md. No warranty is provided.\n"
+}

@@ -1,0 +1,76 @@
+{
+  "anonymous_id": "P2",
+  "items": [
+    {
+      "evidence_refs": [
+        "additional_browser_evidence.navigation（1280px与390px全部40条记录）"
+      ],
+      "followup_needed": "无；补采已确认缺少逐题入口。",
+      "id": "W04",
+      "reason_zh": "补采中两个视口的Q01—Q20均为visible_entry=false，仍无可见、可点击的逐题直接跳转入口。此问题不依赖滚动等待时长，维持失败。",
+      "verdict": "fail"
+    },
+    {
+      "evidence_refs": [
+        "additional_browser_evidence.submission_files",
+        "additional_browser_evidence.attribution_files.README.md",
+        "additional_browser_evidence.footer_text",
+        "attribution-1280.jpg",
+        "attribution-390.jpg",
+        "prior_decisions_to_review.W14"
+      ],
+      "followup_needed": "无。",
+      "id": "W14",
+      "reason_zh": "所需交付文件齐全；原有相对路径及资源可用性检查未被推翻。README提供静态站点打开方法、结构和未完成事项，网页及README保留作者、数据集、录音来源与许可名称。虽提及的NOTICE.md和LICENSE.source.md未随附，但固定条目未要求必须单独交付这两个文件，不能据此新增失败条件。",
+      "verdict": "pass"
+    },
+    {
+      "evidence_refs": [
+        "prior_decisions_to_review.W16",
+        "additional_browser_evidence.navigation（width=1280）",
+        "additional_browser_evidence.screenshots",
+        "additional_browser_evidence.note"
+      ],
+      "followup_needed": "补采1280px首页及全部题卡的稳定布局截图，记录固定导航与正文、题号、谱图的相对位置；没有逐题入口时可手动滚动核验阅读布局。",
+      "id": "W16",
+      "reason_zh": "原有正文16px、行高25.6px的达标证据仍有效，但原覆盖判据来自可能受滚动和懒加载影响的截图。本次未提供桌面题卡的稳定后位置或截图，只有入口缺失、开图及署名证据，不能确认原覆盖问题持续存在，也不足以证明全部题卡无覆盖。",
+      "verdict": "unverified"
+    },
+    {
+      "evidence_refs": [
+        "prior_decisions_to_review.W17",
+        "additional_browser_evidence.navigation（width=390）",
+        "additional_browser_evidence.screenshots",
+        "additional_browser_evidence.note"
+      ],
+      "followup_needed": "补采390px首页及全部题卡稳定后的阅读布局，核验题干、图音说明和必需控件是否完整可触达且无遮挡。",
+      "id": "W17",
+      "reason_zh": "原有页面无横向溢出及纵向重排证据未被推翻，但原失败依赖可能在滚动未稳定时采集的遮挡截图。本次没有手机题卡稳定后的覆盖检查；原生开图成功和署名截图不能替代主页面全部题卡的可读性核验，故暂不能判通过或确认原失败。",
+      "verdict": "unverified"
+    },
+    {
+      "evidence_refs": [
+        "additional_browser_evidence.zoom（两个视口全部32条记录）",
+        "score-asset-09.png（Q11）",
+        "zoom-9-1280.jpg",
+        "zoom-9-390.jpg"
+      ],
+      "followup_needed": "无；标记覆盖问题已有原图与开图截图佐证。",
+      "id": "W18",
+      "reason_zh": "全部谱图均可通过浏览器原生路径打开，未拦截上下文菜单，不能因没有自制查看器判失败。但原图仍存在后期标记覆盖谱面内容的问题：Q11红框下边横穿第176小节起的高音谱表及连续音群符杠，开原图后仍可见该覆盖。放大解决了缩略图尺寸问题，却不能消除标记对谱面符号的遮挡，未完整满足明文标准。",
+      "verdict": "fail"
+    },
+    {
+      "evidence_refs": [
+        "prior_decisions_to_review.W20",
+        "browser_evidence.questions（Q16、Q20）.text",
+        "additional_browser_evidence.zoom（index=13、14，两个视口）"
+      ],
+      "followup_needed": "无；独立于滚动定位的比较材料呈现问题未被推翻。",
+      "id": "W20",
+      "reason_zh": "原有比较材料先后不明的失败证据仍成立：Q20仅以“音频证据1/2”和相同说明呈现，未明确早先与结尾材料；补采亦记录Q16两个图位均打开同一Q16_score_later.png。原始交付中存在不同谱图文件，并不等于网页已正确区分展示。本次未提供推翻这些呈现问题的新证据，故维持失败，不以旧滚动截图作为依据。",
+      "verdict": "fail"
+    }
+  ],
+  "summary_zh": "本次仅复核六项：W14通过；W04、W18、W20失败；W16、W17因缺少稳定后的主页面布局证据标记unverified。原生开图路径已获确认；W18失败依据是标记覆盖谱面符号，而非缺少自制放大功能。未复评音乐答案，也未作音频听辨判断。"
+}

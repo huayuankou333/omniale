@@ -1,0 +1,800 @@
+{
+  "original_task": "# 三首钢琴作品的谱面—演奏联合研习\n\n你是一位为高级音乐学习者准备研习材料的助教。请阅读三份乐谱、聆听对应演奏，完成 `QUESTIONS.zh-CN.md` 中的 20 项分析，并制作一份可离线使用的中文研习网页。\n\n## 输入\n\n| 作品 | 原始乐谱 | 原始演奏 |\n|---|---|---|\n| A：肖邦《第一叙事曲》 | `input/A/score.pdf` | `input/A/performance.wav` |\n| B：莫扎特《第十二钢琴奏鸣曲》第三乐章 | `input/B/score.pdf` | `input/B/performance.wav` |\n| C：斯克里亚宾《第五钢琴奏鸣曲》 | `input/C/score.pdf` | `input/C/performance.wav` |\n\n`input/manifest.json` 提供采样率、时长与页数；`questions.json` 是与题目清单一致的结构化版本。作品共约 25 分 37 秒，乐谱共 52 页。录音起点为 00:00；小节号依原乐谱，PDF 页码从 1 开始。\n\n## 需要完成的工作\n\n1. 完成全部 20 项分析。每题写出格式明确的简答，并用中文说明从哪些听觉或谱面线索得出结论。保留有序音符中的顺序和重复音；不确定时可将结构化答案写为 null，并解释原因。\n2. 每题提供至少一段可回听的原录音片段。Q16、Q20 需要前后对照，各提供至少两段，分别展示早先的材料和后来的再现／变奏。每段长度为 1—90 秒，可以增加多个片段提供上下文。\n3. 题目清单标明需要谱面证据的 15 题，至少提供一处可读的谱面截图，并在图上用框、箭头或颜色清楚标记讨论位置。Q16 要对照主题初次出现及后续变奏，至少提供两处谱面标注。注明原 PDF 页码；其余五题的谱面标注可选。\n4. 制作中文 HTML 研习网页：按作品组织，能跳转到每题；题目、结论、解释、标注谱面和音频证据一一对应；支持播放、暂停、重复收听及原速／0.75 倍速切换，并可返回作品目录。为每首作品写一段研习提示，帮助学习者理解本组问题的关注点。\n5. 所有音频、图片、样式和脚本均放在交付目录内，以相对路径引用。使用浏览器通过本地静态服务器打开即可；不得要求登录、联网下载资源、启动后端服务或安装网页插件。页面需在约 1280px 与 390px 两种宽度下保持可读。\n\n演奏中的弹性节奏、力度与踏板处理不必然是错误。请区分分析观察、主观解释和原题明确要求定位的现象，不要自行把所有偏离严格节拍的处理称为失误。\n\n## 交付目录\n\n请在当前工作目录创建 `submission/`：\n\n```text\nsubmission/\n  index.html\n  answers.json\n  evidence.json\n  assets/                 # 音频片段、标注图片和页面所需资源\n  README.md               # 本地打开方法、结构说明、未能完成的部分\n```\n\n答案和证据文件使用所附模板及 `DELIVERY_FORMAT.md` 的格式。结构化答案、网页显示的答案与解释必须一致；不能在网页正确而 JSON 留空，或在两处给出互相矛盾的结论。\n\n## 答案与素材规范\n\n- 题目要求的简答字段只写答案；解释放在 `explanation_zh`。音名、调式与术语使用各题规定的格式，中文解释不受此限制。\n- 时间题以原录音绝对时间 `MM:SS` 作答，向下取整到整秒。改编任务的时间判定允许相对参考时刻最多 1 秒的偏差；其他类型按题目所规定的音高、八度、顺序、数量或术语判定。\n- 分析时可以自行使用代码、频谱、节拍估计、音频转录或图像工具。交付的证据音频必须为原录音的无损 WAV 裁剪，保持声道数、采样率和采样位深，不做变速、降噪、响度或音高修改。网页的播放倍速通过播放器控制。\n- 使用本地提供的素材与已安装工具，不从互联网查找本题答案、现成 MIDI 对齐文件或原 benchmark 的答案／模型输出。材料的来源与许可见 `NOTICE.md`，请在交付网页或 README 中保留署名。\n- 研究与练习提示可解释分析方法，但不应编造无法从素材支持的观察。\n\n内容答案与网页交付将分别验收：页面美观、字数或文件数量不能代替音乐分析正确性。\n",
+  "fixed_criteria": [
+    {
+      "id": "W04",
+      "category": "Spec Implementation",
+      "title": "20题逐题跳转",
+      "operation_sequence": "1. 找到每题导航入口。2. 实际点击20题。3. 核对URL与定位。",
+      "expected_result": "全部20题均有可见、可点击的直接跳转入口，点击后定位正确且题号未被固定栏遮住。仅作品级导航不算逐题跳转。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "20题，1280/390px",
+      "max_score": 5
+    },
+    {
+      "id": "W14",
+      "category": "Spec Implementation",
+      "title": "交付文件与使用说明完整",
+      "operation_sequence": "1. 检查index/answers/evidence/assets/README。2. 阅读本地打开方法。3. 检查来源署名。",
+      "expected_result": "所需文件完整、以相对路径引用；README提供可行打开方法、结构和未完成事项（若有）；网页或README保留素材署名。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "整个交付",
+      "max_score": 5
+    },
+    {
+      "id": "W16",
+      "category": "Design Quality",
+      "title": "桌面文字层级与排版",
+      "operation_sequence": "1. 查看1280px首页和全部题卡。2. 核对字级/行距。3. 检查拥挤与重叠。",
+      "expected_result": "中文正文主字号至少14px、主正文行高至少1.5；作品/题目/结论/解释层级明确，长行、间距与分组适合连续阅读，无严重拥挤、截断或覆盖。原生小型播放器文字不算主正文。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "1280px，20题",
+      "max_score": 5
+    },
+    {
+      "id": "W17",
+      "category": "Design Quality",
+      "title": "手机端完整可读",
+      "operation_sequence": "1. 在390px查看首页与全部题卡。2. 检查横向溢出。3. 检查重排与控件。",
+      "expected_result": "390px下主页面不横向溢出，文字不被挤压或截断，图音与说明按可读顺序重排，所有必需控件完整可触达，无重叠覆盖。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "390px，20题",
+      "max_score": 5
+    },
+    {
+      "id": "W18",
+      "category": "Design Quality",
+      "title": "谱面与后期标记的阅读质量",
+      "operation_sequence": "1. 查看所有必需谱图。2. 分别在桌面与手机检查讨论区域。3. 需要时使用网页已有放大或浏览器原生开图。",
+      "expected_result": "谱图的讨论区域、关键音符及后期标记清楚可辨，标记不遮住关键内容；手机上若缩略图不可辨，需有可发现、可实际使用的放大/原图入口。不要求另造图片查看器；可用原生开图。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "全部必需谱图，1280/390px",
+      "max_score": 5
+    },
+    {
+      "id": "W20",
+      "category": "Design Quality",
+      "title": "学习流程与图文音空间关联",
+      "operation_sequence": "1. 从作品目录进入单题。2. 按题目→结论→解释→图音进行核查。3. 从比较题前后切换。",
+      "expected_result": "学习者能清楚区分作品与题目；单题内图、音、说明的视觉关联明确；比较材料可辨别先后，长页面有可理解的定位与返回路径，无需猜测媒体归属或在无标签材料间来回寻找。依据呈现质量，不额外要求搜索、测验或进度功能。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "整个教学流程、20题",
+      "max_score": 5
+    }
+  ],
+  "prior_decisions_to_review": [
+    {
+      "evidence_refs": [
+        "browser_evidence.navigation（全部40条记录的visible_entry）",
+        "browser_evidence.all_anchor_clicks",
+        "home-1280.jpg",
+        "home-390.jpg"
+      ],
+      "followup_needed": "无；失败已核实。",
+      "id": "W04",
+      "reason_zh": "两个视口的20题均无可见直接跳转入口，visible_entry全部为false。最小复现：在首页寻找Q01入口，只能找到A/B/C作品链接，不能直接跳至Q01。",
+      "verdict": "fail"
+    },
+    {
+      "evidence_refs": [
+        "browser_evidence.delivery_files",
+        "browser_evidence.readme（README.md正文）",
+        "browser_evidence.evidence_manifest",
+        "browser_evidence.views[].bodyText（来源与许可）",
+        "independent_asset_checks.questions"
+      ],
+      "followup_needed": "无。",
+      "id": "W14",
+      "reason_zh": "index.html、answers.json、evidence.json、README.md均存在，assets资源经检查可用且采用相对路径。README说明静态站点根目录和入口、文件结构与留空限制，并保留作者、数据集、录音来源及许可署名。",
+      "verdict": "pass"
+    },
+    {
+      "evidence_refs": [
+        "browser_evidence.questions（width=1280）.paragraphs[].fontSize",
+        "browser_evidence.questions（width=1280）.paragraphs[].lineHeight",
+        "Q01-1280.jpg",
+        "Q02-1280.jpg",
+        "Q16-1280.jpg"
+      ],
+      "followup_needed": "无；现有截图已显示覆盖问题。",
+      "id": "W16",
+      "reason_zh": "正文16px、行高25.6px达标，结论也有强调，但未满足无覆盖要求。最小例：Q01桌面题卡顶部的作品导航条覆盖题号所在区域；Q16截图中导航条还横穿谱图显示区域。",
+      "verdict": "fail"
+    },
+    {
+      "evidence_refs": [
+        "browser_evidence.views（width=390）.scrollWidth",
+        "browser_evidence.questions（Q04，width=390）.text",
+        "Q04-390.jpg",
+        "Q10-390.jpg",
+        "Q16-390.jpg"
+      ],
+      "followup_needed": "无；现有截图已显示覆盖问题。",
+      "id": "W17",
+      "reason_zh": "390px页面scrollWidth为390，图音也有纵向重排，但仍存在遮挡。最小例：Q04手机截图的作品导航条覆盖题干前部，只剩题干末句可见；Q10题干首行也被导航区域遮住，故不能判完整可读。",
+      "verdict": "fail"
+    },
+    {
+      "evidence_refs": [
+        "browser_evidence.questions（Q03、Q07、Q15，width=390）.images",
+        "Q03-390.jpg",
+        "Q07-390.jpg",
+        "Q15-390.jpg",
+        "browser_evidence.all_anchor_clicks"
+      ],
+      "followup_needed": "对全部必需谱图补采手机端长按或浏览器原生开图操作，记录入口是否可发现、原图能否打开及放大后讨论区域和标记是否清楚；同时补查标记是否遮住关键内容。",
+      "id": "W18",
+      "reason_zh": "已查看全部谱图截图，手机整页谱图缩至约342px，部分细节难以可靠辨读；DOM中zoom_link均为null，但量表允许原生开图，现有证据未测试该路径。不能仅因没有自制放大链接判失败，也不足以确认全部谱图通过。",
+      "verdict": "unverified"
+    },
+    {
+      "evidence_refs": [
+        "browser_evidence.questions（Q16、Q20）.text",
+        "browser_evidence.questions（Q16）.images",
+        "Q16-1280.jpg",
+        "Q16-390.jpg",
+        "Q20-1280.jpg",
+        "Q20-390.jpg"
+      ],
+      "followup_needed": "无；失败已核实。",
+      "id": "W20",
+      "reason_zh": "普通题的题文与媒体归属基本明确，但比较流程需要猜测材料先后。最小例：Q20仅有“音频证据1/2”及相同说明，无法从页面判断哪个是早先材料、哪个是结尾；Q16重复谱图和矛盾页码进一步妨碍对照学习。",
+      "verdict": "fail"
+    }
+  ],
+  "additional_browser_evidence": {
+    "anonymous_id": "P2",
+    "navigation": [
+      {
+        "width": 1280,
+        "question": "Q01",
+        "visible_entry": false
+      },
+      {
+        "width": 1280,
+        "question": "Q02",
+        "visible_entry": false
+      },
+      {
+        "width": 1280,
+        "question": "Q03",
+        "visible_entry": false
+      },
+      {
+        "width": 1280,
+        "question": "Q04",
+        "visible_entry": false
+      },
+      {
+        "width": 1280,
+        "question": "Q05",
+        "visible_entry": false
+      },
+      {
+        "width": 1280,
+        "question": "Q06",
+        "visible_entry": false
+      },
+      {
+        "width": 1280,
+        "question": "Q07",
+        "visible_entry": false
+      },
+      {
+        "width": 1280,
+        "question": "Q08",
+        "visible_entry": false
+      },
+      {
+        "width": 1280,
+        "question": "Q09",
+        "visible_entry": false
+      },
+      {
+        "width": 1280,
+        "question": "Q10",
+        "visible_entry": false
+      },
+      {
+        "width": 1280,
+        "question": "Q11",
+        "visible_entry": false
+      },
+      {
+        "width": 1280,
+        "question": "Q12",
+        "visible_entry": false
+      },
+      {
+        "width": 1280,
+        "question": "Q13",
+        "visible_entry": false
+      },
+      {
+        "width": 1280,
+        "question": "Q14",
+        "visible_entry": false
+      },
+      {
+        "width": 1280,
+        "question": "Q15",
+        "visible_entry": false
+      },
+      {
+        "width": 1280,
+        "question": "Q16",
+        "visible_entry": false
+      },
+      {
+        "width": 1280,
+        "question": "Q17",
+        "visible_entry": false
+      },
+      {
+        "width": 1280,
+        "question": "Q18",
+        "visible_entry": false
+      },
+      {
+        "width": 1280,
+        "question": "Q19",
+        "visible_entry": false
+      },
+      {
+        "width": 1280,
+        "question": "Q20",
+        "visible_entry": false
+      },
+      {
+        "width": 390,
+        "question": "Q01",
+        "visible_entry": false
+      },
+      {
+        "width": 390,
+        "question": "Q02",
+        "visible_entry": false
+      },
+      {
+        "width": 390,
+        "question": "Q03",
+        "visible_entry": false
+      },
+      {
+        "width": 390,
+        "question": "Q04",
+        "visible_entry": false
+      },
+      {
+        "width": 390,
+        "question": "Q05",
+        "visible_entry": false
+      },
+      {
+        "width": 390,
+        "question": "Q06",
+        "visible_entry": false
+      },
+      {
+        "width": 390,
+        "question": "Q07",
+        "visible_entry": false
+      },
+      {
+        "width": 390,
+        "question": "Q08",
+        "visible_entry": false
+      },
+      {
+        "width": 390,
+        "question": "Q09",
+        "visible_entry": false
+      },
+      {
+        "width": 390,
+        "question": "Q10",
+        "visible_entry": false
+      },
+      {
+        "width": 390,
+        "question": "Q11",
+        "visible_entry": false
+      },
+      {
+        "width": 390,
+        "question": "Q12",
+        "visible_entry": false
+      },
+      {
+        "width": 390,
+        "question": "Q13",
+        "visible_entry": false
+      },
+      {
+        "width": 390,
+        "question": "Q14",
+        "visible_entry": false
+      },
+      {
+        "width": 390,
+        "question": "Q15",
+        "visible_entry": false
+      },
+      {
+        "width": 390,
+        "question": "Q16",
+        "visible_entry": false
+      },
+      {
+        "width": 390,
+        "question": "Q17",
+        "visible_entry": false
+      },
+      {
+        "width": 390,
+        "question": "Q18",
+        "visible_entry": false
+      },
+      {
+        "width": 390,
+        "question": "Q19",
+        "visible_entry": false
+      },
+      {
+        "width": 390,
+        "question": "Q20",
+        "visible_entry": false
+      }
+    ],
+    "zoom": [
+      {
+        "width": 1280,
+        "index": 1,
+        "source": "assets/Q01_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 833,
+          "displayWidth": 833
+        }
+      },
+      {
+        "width": 1280,
+        "index": 2,
+        "source": "assets/Q02_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 833,
+          "displayWidth": 833
+        }
+      },
+      {
+        "width": 1280,
+        "index": 3,
+        "source": "assets/Q03_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 833,
+          "displayWidth": 833
+        }
+      },
+      {
+        "width": 1280,
+        "index": 4,
+        "source": "assets/Q04_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 833,
+          "displayWidth": 833
+        }
+      },
+      {
+        "width": 1280,
+        "index": 5,
+        "source": "assets/Q07_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 893,
+          "displayWidth": 893
+        }
+      },
+      {
+        "width": 1280,
+        "index": 6,
+        "source": "assets/Q08_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 833,
+          "displayWidth": 833
+        }
+      },
+      {
+        "width": 1280,
+        "index": 7,
+        "source": "assets/Q09_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 833,
+          "displayWidth": 833
+        }
+      },
+      {
+        "width": 1280,
+        "index": 8,
+        "source": "assets/Q10_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 833,
+          "displayWidth": 833
+        }
+      },
+      {
+        "width": 1280,
+        "index": 9,
+        "source": "assets/Q11_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 833,
+          "displayWidth": 833
+        }
+      },
+      {
+        "width": 1280,
+        "index": 10,
+        "source": "assets/Q12_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 833,
+          "displayWidth": 833
+        }
+      },
+      {
+        "width": 1280,
+        "index": 11,
+        "source": "assets/Q14_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 893,
+          "displayWidth": 893
+        }
+      },
+      {
+        "width": 1280,
+        "index": 12,
+        "source": "assets/Q15_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 893,
+          "displayWidth": 893
+        }
+      },
+      {
+        "width": 1280,
+        "index": 13,
+        "source": "assets/Q16_score_later.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 893,
+          "displayWidth": 893
+        }
+      },
+      {
+        "width": 1280,
+        "index": 14,
+        "source": "assets/Q16_score_later.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 893,
+          "displayWidth": 893
+        }
+      },
+      {
+        "width": 1280,
+        "index": 15,
+        "source": "assets/Q17_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 893,
+          "displayWidth": 893
+        }
+      },
+      {
+        "width": 1280,
+        "index": 16,
+        "source": "assets/Q18_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 833,
+          "displayWidth": 833
+        }
+      },
+      {
+        "width": 390,
+        "index": 1,
+        "source": "assets/Q01_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 833,
+          "displayWidth": 833
+        }
+      },
+      {
+        "width": 390,
+        "index": 2,
+        "source": "assets/Q02_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 833,
+          "displayWidth": 833
+        }
+      },
+      {
+        "width": 390,
+        "index": 3,
+        "source": "assets/Q03_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 833,
+          "displayWidth": 833
+        }
+      },
+      {
+        "width": 390,
+        "index": 4,
+        "source": "assets/Q04_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 833,
+          "displayWidth": 833
+        }
+      },
+      {
+        "width": 390,
+        "index": 5,
+        "source": "assets/Q07_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 893,
+          "displayWidth": 893
+        }
+      },
+      {
+        "width": 390,
+        "index": 6,
+        "source": "assets/Q08_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 833,
+          "displayWidth": 833
+        }
+      },
+      {
+        "width": 390,
+        "index": 7,
+        "source": "assets/Q09_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 833,
+          "displayWidth": 833
+        }
+      },
+      {
+        "width": 390,
+        "index": 8,
+        "source": "assets/Q10_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 833,
+          "displayWidth": 833
+        }
+      },
+      {
+        "width": 390,
+        "index": 9,
+        "source": "assets/Q11_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 833,
+          "displayWidth": 833
+        }
+      },
+      {
+        "width": 390,
+        "index": 10,
+        "source": "assets/Q12_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 833,
+          "displayWidth": 833
+        }
+      },
+      {
+        "width": 390,
+        "index": 11,
+        "source": "assets/Q14_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 893,
+          "displayWidth": 893
+        }
+      },
+      {
+        "width": 390,
+        "index": 12,
+        "source": "assets/Q15_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 893,
+          "displayWidth": 893
+        }
+      },
+      {
+        "width": 390,
+        "index": 13,
+        "source": "assets/Q16_score_later.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 893,
+          "displayWidth": 893
+        }
+      },
+      {
+        "width": 390,
+        "index": 14,
+        "source": "assets/Q16_score_later.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 893,
+          "displayWidth": 893
+        }
+      },
+      {
+        "width": 390,
+        "index": 15,
+        "source": "assets/Q17_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 893,
+          "displayWidth": 893
+        }
+      },
+      {
+        "width": 390,
+        "index": 16,
+        "source": "assets/Q18_score.png",
+        "contextmenu_prevented": false,
+        "method": "browser original image URL; native contextmenu not prevented",
+        "opened": true,
+        "image": {
+          "naturalWidth": 833,
+          "displayWidth": 833
+        }
+      }
+    ],
+    "screenshots": [
+      {
+        "file": "zoom-1-1280.jpg",
+        "type": "zoom",
+        "width": 1280,
+        "index": 1
+      },
+      {
+        "file": "zoom-9-1280.jpg",
+        "type": "zoom",
+        "width": 1280,
+        "index": 9
+      },
+      {
+        "file": "zoom-16-1280.jpg",
+        "type": "zoom",
+        "width": 1280,
+        "index": 16
+      },
+      {
+        "file": "attribution-1280.jpg",
+        "type": "attribution",
+        "width": 1280
+      },
+      {
+        "file": "zoom-1-390.jpg",
+        "type": "zoom",
+        "width": 390,
+        "index": 1
+      },
+      {
+        "file": "zoom-9-390.jpg",
+        "type": "zoom",
+        "width": 390,
+        "index": 9
+      },
+      {
+        "file": "zoom-16-390.jpg",
+        "type": "zoom",
+        "width": 390,
+        "index": 16
+      },
+      {
+        "file": "attribution-390.jpg",
+        "type": "attribution",
+        "width": 390
+      }
+    ],
+    "note": "Supplement all sites equally. Navigation waits for scroll settling and preloads by visiting all questions before repeat, avoiding a fixed-delay false negative. No candidate files modified.",
+    "footer_text": "来源与许可\n\nMuSP-Bench：Milan Liessens Dujardin、Song-Ze Yu、Kevin Miao（2026），数据集 bryel-labs/MuSP-Bench；录音归属 ASAP。CC BY-NC-SA 4.0。详见README、NOTICE.md与LICENSE.source.md。",
+    "submission_files": [
+      "answers.json",
+      "assets",
+      "evidence.json",
+      "index.html",
+      "README.md"
+    ],
+    "attribution_files": {
+      "NOTICE.md": null,
+      "LICENSE.source.md": null,
+      "README.md": "本地离线研习：将 submission 作为静态站点根目录打开 index.html。无需网络、登录或后端。全部资源相对路径。answers.json 是结构化答案，evidence.json 列出无损音频采样帧及标注图；assets 内为原音频PCM裁片和带红框谱图。若干声部转录/对齐问题留空并说明限制。网页原生播放器支持暂停、拖动；来源 MuSP-Bench，作者 Milan Liessens Dujardin、Song-Ze Yu、Kevin Miao (2026)，ASAP 录音；CC BY-NC-SA 4.0。来源与许可详见 NOTICE.md 和 LICENSE.source.md。"
+    }
+  },
+  "original_notice": "# 来源与许可\n\n本题使用 MuSP-Bench 的原始乐谱、对应演奏和经中文翻译的分析问题。作者：Milan Liessens Dujardin、Song-Ze Yu、Kevin Miao，2026。\n\n来源：MuSP-Bench: Advanced Multimodal Benchmarking of Music Understanding Across Score and Performance，arXiv:2608.28212；数据集 `bryel-labs/MuSP-Bench`。三份钢琴录音在原数据中归属 ASAP 来源。原作品编号、精确文件来源与版本由评测组织者保存在来源清单中。\n\n原始注释及适用改编使用 CC BY-NC-SA 4.0，并受来源特定条款约束；许可正文见 LICENSE.source.md。许可链接：https://creativecommons.org/licenses/by-nc-sa/4.0/ 。\n\nOmniALE 修改：组合三首作品、翻译问题并保留英文、增加可回听研习网页与证据交付要求；原录音和乐谱文件未修改。原始参考答案未向受测者提供。改编部分沿用相同的非商业、署名与相同方式共享许可。\n",
+  "original_license": "# License\n\nExcept where a source-specific notice states otherwise, MuSP-Bench's original\nannotations and adaptations are licensed under the Creative Commons\nAttribution-NonCommercial-ShareAlike 4.0 International license:\n\nhttps://creativecommons.org/licenses/by-nc-sa/4.0/\n\nYou must provide attribution, link the license, indicate modifications, use the\nmaterial only for noncommercial purposes, and distribute adaptations under the\nsame license. Source-dataset attribution and third-party-rights notices are in\nREADME.md. No warranty is provided.\n"
+}

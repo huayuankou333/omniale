@@ -1,0 +1,1129 @@
+{
+  "version": "musp-composite-v1",
+  "scored_at": "2026-11-09T00:13:10.271685+08:00",
+  "formula": "0.8 * content_score + 0.2 * website_score",
+  "website_protocol": "musp-site-v1",
+  "protocol_sha256": "fc21e12d8c15f949bd21ba1ca15568ba4ccb406c5ca7755f037c1b73329a2307",
+  "content_scoring_unchanged": true,
+  "candidate_unchanged": true,
+  "model_deliveries_unchanged": true,
+  "music_expert_review": "not_performed",
+  "models": [
+    {
+      "model": "gpt-6-luna",
+      "label": "GPT-6 Luna",
+      "anonymous_id": "P2",
+      "content_score": 10,
+      "content_weight": 0.8,
+      "content_contribution": 8.0,
+      "website_score": 55,
+      "website_weight": 0.2,
+      "website_contribution": 11.0,
+      "total_score": 19.0,
+      "website_passed": 11,
+      "categories": {
+        "Runnability": {
+          "score": 10,
+          "max": 10
+        },
+        "Spec Implementation": {
+          "score": 30,
+          "max": 65
+        },
+        "Design Quality": {
+          "score": 15,
+          "max": 25
+        }
+      },
+      "items": [
+        {
+          "evidence_refs": [
+            "browser_evidence.external_requests",
+            "browser_evidence.failed_resources",
+            "browser_evidence.final_image_state",
+            "browser_evidence.controls（1280/390px，全部22个播放器）"
+          ],
+          "followup_needed": "无。",
+          "id": "W01",
+          "reason_zh": "本地浏览器记录中外部请求和资源失败均为空；两个视口的全部页面图像有有效尺寸，22个音频均可实际播放。未发现登录、联网或后端依赖。Q16的证据替换问题另按W11/W13判定。",
+          "verdict": "pass",
+          "title": "本地独立运行与资源完整",
+          "category": "Runnability",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.page_errors",
+            "browser_evidence.all_anchor_clicks",
+            "browser_evidence.controls",
+            "browser_evidence.questions"
+          ],
+          "followup_needed": "无。",
+          "id": "W02",
+          "reason_zh": "提供的初始及交互异常记录page_errors为空；两个视口均呈现20题，并覆盖现有导航与全部媒体控件操作。倍速功能不符合要求不等同于发生JavaScript异常。",
+          "verdict": "pass",
+          "title": "运行与交互无脚本异常",
+          "category": "Runnability",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.all_anchor_clicks（href为#A、#B、#C、#toc）",
+            "browser_evidence.views[].headings",
+            "home-1280.jpg",
+            "home-390.jpg"
+          ],
+          "followup_needed": "无。",
+          "id": "W03",
+          "reason_zh": "A/B/C作品分组及入口清楚；两个视口中作品入口和返回目录链接的target_exists、hash_matches均为true，存在可用的作品级往返路径。",
+          "verdict": "pass",
+          "title": "作品目录与返回路径",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "additional_browser_evidence.navigation（1280px与390px全部40条记录）"
+          ],
+          "followup_needed": "无；补采已确认缺少逐题入口。",
+          "id": "W04",
+          "reason_zh": "补采中两个视口的Q01—Q20均为visible_entry=false，仍无可见、可点击的逐题直接跳转入口。此问题不依赖滚动等待时长，维持失败。",
+          "verdict": "fail",
+          "title": "20题逐题跳转",
+          "category": "Spec Implementation",
+          "points": 0,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.questions（Q01—Q20，两个视口）.text",
+            "browser_evidence.questions[].answer_matches",
+            "browser_evidence.questions[].explanation_matches",
+            "browser_evidence.questions[].json_explanation"
+          ],
+          "followup_needed": "无。",
+          "id": "W05",
+          "reason_zh": "20题均有题目、答案或“未能可靠确认”状态及中文解释；两个视口全部answer_matches和explanation_matches均为true。这里只确认与answers.json一致，不评价音乐结论，也不因null扣分。",
+          "verdict": "pass",
+          "title": "问题、简答、中文解释与结构化答案一致",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.views[].bodyText（A/B/C开场提示）",
+            "home-1280.jpg",
+            "home-390.jpg"
+          ],
+          "followup_needed": "无；失败已核实。",
+          "id": "W06",
+          "reason_zh": "三部作品的提示均仅列关注主题，没有具体观察、回听或练习方法。最小例：A只有“关注旋律长线、rubato与静默高潮”，不满足可操作研习提示要求。",
+          "verdict": "fail",
+          "title": "三部作品的研习提示",
+          "category": "Spec Implementation",
+          "points": 0,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "independent_asset_checks.questions[].audio",
+            "independent_asset_checks.all_audio_checks_pass",
+            "browser_evidence.evidence_manifest[].audio",
+            "browser_evidence.questions[].audio"
+          ],
+          "followup_needed": "无。",
+          "id": "W07",
+          "reason_zh": "20题共22段音频，Q16/Q20各两段且均有网页入口；长度14—44秒。全部duration_valid、same_format_as_original、pcm_matches_declared_interval、frames_match为true，满足所声明原音区间的无损裁剪要求。",
+          "verdict": "pass",
+          "title": "原音证据覆盖与无损裁剪",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.scope",
+            "browser_evidence.controls（1280/390px，index 1—22）.play",
+            "browser_evidence.controls（1280/390px，index 1—22）.pause",
+            "browser_evidence.questions[].audio[].native_controls"
+          ],
+          "followup_needed": "无。",
+          "id": "W08",
+          "reason_zh": "真实浏览器控件操作记录覆盖两个视口全部22个播放器，play和pause全部为true；页面使用有效的原生播放、暂停控件。判定依据操作状态，不声称听过音频。",
+          "verdict": "pass",
+          "title": "实际播放与暂停",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.controls（1280/390px，index 1—22）.replay",
+            "browser_evidence.questions[].text",
+            "Q16-1280.jpg",
+            "Q20-390.jpg"
+          ],
+          "followup_needed": "无。",
+          "id": "W09",
+          "reason_zh": "每段音频都有“从头重听”按钮；两个视口全部44条播放器操作记录的replay均为true，重复回听不是仅有按钮而无效果。",
+          "verdict": "pass",
+          "title": "重复回听",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.controls（1280/390px，index 1—22）.slow",
+            "browser_evidence.controls[].normal",
+            "Q01-1280.jpg",
+            "Q01-390.jpg"
+          ],
+          "followup_needed": "无；失败已核实。",
+          "id": "W10",
+          "reason_zh": "全部播放器slow均为false，虽normal为true，仍不满足两档实际切换。最小复现：操作Q01音频的0.75倍速选项，对应慢速核验失败；不能用可见下拉框代替实际playbackRate通过。",
+          "verdict": "fail",
+          "title": "原速与0.75倍速切换",
+          "category": "Spec Implementation",
+          "points": 0,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.questions（Q16，两个视口）.images[].src",
+            "browser_evidence.evidence_manifest（Q16）.score_regions",
+            "Q16-1280.jpg",
+            "Q16-390.jpg"
+          ],
+          "followup_needed": "无；失败已核实。",
+          "id": "W11",
+          "reason_zh": "Q16未呈现两处不同谱面：网页两个img均引用assets/Q16_score_later.png，截图也显示同一蓝框谱页重复。清单中的第1页assets/Q16_score.png未展示，已足以使本项失败。",
+          "verdict": "fail",
+          "title": "要求的谱面标注与页码",
+          "category": "Spec Implementation",
+          "points": 0,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.questions（Q16、Q20）.text",
+            "browser_evidence.questions（Q16）.images",
+            "Q16-1280.jpg",
+            "Q16-390.jpg",
+            "Q20-1280.jpg",
+            "Q20-390.jpg"
+          ],
+          "followup_needed": "无；失败已核实。",
+          "id": "W12",
+          "reason_zh": "Q16/Q20虽各有两个播放器，却仅标“音频证据1/2”，配相同泛化说明，未区分早先材料与后续再现。最小例为Q20两个无先后说明的入口；Q16还重复展示同一谱图。",
+          "verdict": "fail",
+          "title": "比较型问题的前后对照",
+          "category": "Spec Implementation",
+          "points": 0,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.evidence_manifest（Q16）.score_regions",
+            "browser_evidence.questions（Q16）.images[].src",
+            "browser_evidence.questions（Q07）.text",
+            "Q07-1280.jpg",
+            "Q16-390.jpg"
+          ],
+          "followup_needed": "无；失败已核实。",
+          "id": "W13",
+          "reason_zh": "最小复现：Q16清单要求第1页Q16_score.png及第20页Q16_score_later.png，网页却将后者展示两次，遗漏前者。此外Q07图标题写原PDF第7页，图下注释却写原谱第1页，标签相互矛盾。",
+          "verdict": "fail",
+          "title": "网页与证据清单的映射可追溯",
+          "category": "Spec Implementation",
+          "points": 0,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "additional_browser_evidence.submission_files",
+            "additional_browser_evidence.attribution_files.README.md",
+            "additional_browser_evidence.footer_text",
+            "attribution-1280.jpg",
+            "attribution-390.jpg",
+            "prior_decisions_to_review.W14"
+          ],
+          "followup_needed": "无。",
+          "id": "W14",
+          "reason_zh": "所需交付文件齐全；原有相对路径及资源可用性检查未被推翻。README提供静态站点打开方法、结构和未完成事项，网页及README保留作者、数据集、录音来源与许可名称。虽提及的NOTICE.md和LICENSE.source.md未随附，但固定条目未要求必须单独交付这两个文件，不能据此新增失败条件。",
+          "verdict": "pass",
+          "title": "交付文件与使用说明完整",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.questions（Q01、Q02、Q11、Q12、Q13、Q14、Q16、Q18、Q20）.json_explanation",
+            "Q01-1280.jpg",
+            "Q11-390.jpg"
+          ],
+          "followup_needed": "无；失败已核实。",
+          "id": "W15",
+          "reason_zh": "多题逐字复用“基于题干定位线索与谱面上下文的研习推断；音频裁剪供学习者复核”，未给题目特定观察及其支持结论的过程。最小例为Q01，其解释没有说明如何比较目标音的rubato；此判定不涉及答案真伪。",
+          "verdict": "fail",
+          "title": "每题解释能支撑教学阅读",
+          "category": "Spec Implementation",
+          "points": 0,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "normal_reading_positions.rows（width=1280，Q01—Q20）",
+            "complete-1280-01.jpg—complete-1280-18.jpg（完整连续覆盖y=0—19672）",
+            "complete-1280-01.jpg（首页、作品标题及Q01层级）",
+            "complete-1280-04.jpg（Q04长题干、长解释及图下说明）",
+            "complete-1280-05.jpg、complete-1280-11.jpg—complete-1280-12.jpg（作品分组与标题）",
+            "complete-1280-14.jpg—complete-1280-15.jpg（Q16全部媒体、后续对照图及说明）",
+            "complete-1280-18.jpg（Q20及页尾）"
+          ],
+          "followup_needed": "无。此前缺少的首页、题卡下半部及Q16后续对照内容均已覆盖，无需补采或新增功能。",
+          "id": "W16",
+          "reason_zh": "通过。1280px整页重叠切片已覆盖首页、20题全部内容及页尾。20题正文与说明的日志字号均为16px、行高25.6px，即1.6倍，满足至少14px及1.5倍的要求；首页说明和页尾文字的可见排版亦清楚可读。页面总标题、作品标题、题号、加粗着色的结论、解释及媒体小标题层级明确。长题干与解释能正常换行，段落间距和卡片分组清楚；谱图造成部分栏内留白，但未形成严重拥挤、截断或覆盖。补充的Q16对照图及末尾说明完整呈现。结合正常滚动阅读位置记录，内容可置于固定导航下方阅读，不因缺少逐题导航在本项扣分。",
+          "verdict": "pass",
+          "title": "桌面文字层级与排版",
+          "category": "Design Quality",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "normal_reading_positions.rows（width=390，Q01—Q20，scrollWidth均为390）",
+            "complete-390-01.jpg—complete-390-19.jpg（完整连续覆盖y=0—20338）",
+            "complete-390-01.jpg（首页标题、目录链接及首题重排）",
+            "complete-390-04.jpg—complete-390-05.jpg（Q04长解释及题卡下半部）",
+            "complete-390-06.jpg、complete-390-12.jpg（长作品标题换行）",
+            "complete-390-14.jpg—complete-390-16.jpg（Q16双音频、全部对照图及图下说明）",
+            "complete-390-18.jpg—complete-390-19.jpg（Q20双音频、返回目录及完整页尾）"
+          ],
+          "followup_needed": "无。首页、所有题卡上下内容、对照图、必需控件及页尾均已覆盖，无未覆盖区域需要补充。",
+          "id": "W17",
+          "reason_zh": "通过。390px下20题的scrollWidth均等于视口宽度390px，完整切片同时确认首页至页尾未见横向溢出或局部文字裁切。首页标题、长作品标题、题干、解释及来源许可文字均正常换行，没有被挤成异常窄列，也无重叠覆盖。桌面并列的音频、谱图与说明在手机端按纵向阅读顺序排列；Q16的两组音频、后续对照图和末尾说明，以及Q20第二组音频均完整展示。播放、从头重听、速度选择和目录链接均位于页面宽度内，可经正常滚动完整触达。切片边缘截开的内容在相邻重叠切片中接续完整，不属于页面截断。结合正常阅读位置日志，固定导航不构成阅读遮挡；本项不新增逐题入口或专用放大器要求。",
+          "verdict": "pass",
+          "title": "手机端完整可读",
+          "category": "Design Quality",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "additional_browser_evidence.zoom（两个视口全部32条记录）",
+            "score-asset-09.png（Q11）",
+            "zoom-9-1280.jpg",
+            "zoom-9-390.jpg"
+          ],
+          "followup_needed": "无；标记覆盖问题已有原图与开图截图佐证。",
+          "id": "W18",
+          "reason_zh": "全部谱图均可通过浏览器原生路径打开，未拦截上下文菜单，不能因没有自制查看器判失败。但原图仍存在后期标记覆盖谱面内容的问题：Q11红框下边横穿第176小节起的高音谱表及连续音群符杠，开原图后仍可见该覆盖。放大解决了缩略图尺寸问题，却不能消除标记对谱面符号的遮挡，未完整满足明文标准。",
+          "verdict": "fail",
+          "title": "谱面与后期标记的阅读质量",
+          "category": "Design Quality",
+          "points": 0,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "home-1280.jpg",
+            "home-390.jpg",
+            "Q01-1280.jpg",
+            "Q07-1280.jpg",
+            "Q14-1280.jpg",
+            "Q05-390.jpg",
+            "Q13-390.jpg",
+            "Q20-390.jpg",
+            "browser_evidence.controls"
+          ],
+          "followup_needed": "无。",
+          "id": "W19",
+          "reason_zh": "三部作品同类题卡采用一致的白底、深色正文、青色加粗答案及媒体模块样式，链接、原生播放按钮、重听按钮和速度选择器均易辨认。朴素控件不构成缺陷；倍速功能失效及导航遮挡分别在对应项目判定。",
+          "verdict": "pass",
+          "title": "视觉一致性与控件辨识",
+          "category": "Design Quality",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "prior_decisions_to_review.W20",
+            "browser_evidence.questions（Q16、Q20）.text",
+            "additional_browser_evidence.zoom（index=13、14，两个视口）"
+          ],
+          "followup_needed": "无；独立于滚动定位的比较材料呈现问题未被推翻。",
+          "id": "W20",
+          "reason_zh": "原有比较材料先后不明的失败证据仍成立：Q20仅以“音频证据1/2”和相同说明呈现，未明确早先与结尾材料；补采亦记录Q16两个图位均打开同一Q16_score_later.png。原始交付中存在不同谱图文件，并不等于网页已正确区分展示。本次未提供推翻这些呈现问题的新证据，故维持失败，不以旧滚动截图作为依据。",
+          "verdict": "fail",
+          "title": "学习流程与图文音空间关联",
+          "category": "Design Quality",
+          "points": 0,
+          "max_score": 5
+        }
+      ],
+      "judge": "gpt-6-astra",
+      "judge_summary_zh": "网站20项中通过11项；未通过项：20题逐题跳转、三部作品的研习提示、原速与0.75倍速切换、要求的谱面标注与页码、比较型问题的前后对照、网页与证据清单的映射可追溯、每题解释能支撑教学阅读、谱面与后期标记的阅读质量、学习流程与图文音空间关联。逐项判定理由与实际证据见下表。",
+      "judge_record": "judgments/gpt-6-luna.json"
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "label": "GPT-6.1 Sol",
+      "anonymous_id": "P3",
+      "content_score": 55,
+      "content_weight": 0.8,
+      "content_contribution": 44.0,
+      "website_score": 95,
+      "website_weight": 0.2,
+      "website_contribution": 19.0,
+      "total_score": 63.0,
+      "website_passed": 19,
+      "categories": {
+        "Runnability": {
+          "score": 10,
+          "max": 10
+        },
+        "Spec Implementation": {
+          "score": 65,
+          "max": 65
+        },
+        "Design Quality": {
+          "score": 20,
+          "max": 25
+        }
+      },
+      "items": [
+        {
+          "evidence_refs": [
+            "browser_evidence.external_requests",
+            "browser_evidence.failed_resources",
+            "browser_evidence.final_image_state",
+            "browser_evidence.questions[*].images",
+            "browser_evidence.controls"
+          ],
+          "followup_needed": "无。",
+          "id": "W01",
+          "reason_zh": "本地浏览器记录中无外部请求和失败资源；两视口逐题图像均取得有效尺寸，23个播放器均能播放。初始部分图片尺寸为0，后续加载已成功，不能据此判为破图。",
+          "verdict": "pass",
+          "title": "本地独立运行与资源完整",
+          "category": "Runnability",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.page_errors",
+            "browser_evidence.navigation",
+            "browser_evidence.all_anchor_clicks",
+            "browser_evidence.controls",
+            "browser_evidence.questions"
+          ],
+          "followup_needed": "无。",
+          "id": "W02",
+          "reason_zh": "两视口导航与全部媒体操作记录覆盖三部作品、20题和23个播放器，page_errors为空，全部题目均已呈现。定位偏差另在W04判定，不等同脚本异常。",
+          "verdict": "pass",
+          "title": "运行与交互无脚本异常",
+          "category": "Runnability",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "home-1280.jpg",
+            "home-390.jpg",
+            "browser_evidence.all_anchor_clicks",
+            "browser_evidence.questions[question=Q20].text",
+            "Q20-390.jpg"
+          ],
+          "followup_needed": "无。",
+          "id": "W03",
+          "reason_zh": "首页及顶部明确区分A/B/C；两个视口的作品入口和返回目录锚点均有目标且点击后hash匹配，后段题卡也提供本作品及总目录返回路径。",
+          "verdict": "pass",
+          "title": "作品目录与返回路径",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "additional_browser_evidence.navigation[width=1280,Q01—Q20]",
+            "additional_browser_evidence.navigation[width=390,Q01—Q20]",
+            "additional_browser_evidence.note"
+          ],
+          "followup_needed": "无。",
+          "id": "W04",
+          "reason_zh": "改判通过。加载全部题图并等待滚动稳定后，两种宽度下20题入口均可见、可点击，hash全部匹配且题号可见。桌面题号顶部约151—152px，手机约164—165px，均低于固定栏底部且位于视口内。新复测推翻旧固定延时采集中的定位失败。",
+          "verdict": "pass",
+          "title": "20题逐题跳转",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.questions[*].text",
+            "browser_evidence.questions[*].answer_matches",
+            "browser_evidence.questions[*].explanation_matches",
+            "Q10-1280.jpg",
+            "Q10-390.jpg"
+          ],
+          "followup_needed": "无。",
+          "id": "W05",
+          "reason_zh": "20题均呈现题目、简答或未定状态及中文解释，两视口的answer_matches和explanation_matches全部为true。Q10明确显示null及原因，不因未确定答案扣分。",
+          "verdict": "pass",
+          "title": "问题、简答、中文解释与结构化答案一致",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "additional_browser_evidence.complete_visible_body_text：Work A研习提示",
+            "additional_browser_evidence.complete_visible_body_text：Work B研习提示",
+            "additional_browser_evidence.complete_visible_body_text：Work C研习提示"
+          ],
+          "followup_needed": "无。",
+          "id": "W06",
+          "reason_zh": "三部作品均有针对本组问题的具体研习方法。A要求分离声部、换算时值并慢速逐音核查；B要求以6/8脉冲参照、区分装饰主音与实际起音，并按导音到主和弦辨认终止；C要求先比节奏骨架和音程轮廓，再判断变奏，并核对六音和弦及全声部释放。不是仅列主题词。",
+          "verdict": "pass",
+          "title": "三部作品的研习提示",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "independent_asset_checks.questions[*].audio",
+            "independent_asset_checks.all_audio_checks_pass",
+            "browser_evidence.questions[*].audio",
+            "browser_evidence.controls",
+            "browser_evidence.evidence_manifest"
+          ],
+          "followup_needed": "无。",
+          "id": "W07",
+          "reason_zh": "20题均有播放器，Q16/Q20各有两段；23段长度为2.3—30秒。独立检查逐段确认格式、帧数及声明区间PCM一致，网页对应数量和时长亦吻合。本项不判断音乐内容。",
+          "verdict": "pass",
+          "title": "原音证据覆盖与无损裁剪",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.scope",
+            "browser_evidence.controls[*].play",
+            "browser_evidence.controls[*].pause",
+            "browser_evidence.questions[*].audio[*].native_controls"
+          ],
+          "followup_needed": "无。",
+          "id": "W08",
+          "reason_zh": "真实页面控件检查覆盖两视口全部23个播放器，46条记录的play及pause均为true；截图中的原生播放控件状态易于理解。",
+          "verdict": "pass",
+          "title": "实际播放与暂停",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.controls[*].replay",
+            "Q01-1280.jpg",
+            "Q16-390.jpg",
+            "Q20-390.jpg"
+          ],
+          "followup_needed": "无。",
+          "id": "W09",
+          "reason_zh": "每个片段均有可见“重头听”按钮，两视口全部播放器的replay实测均为true；不是仅凭按钮存在判定通过。",
+          "verdict": "pass",
+          "title": "重复回听",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.controls[*].slow",
+            "browser_evidence.controls[*].normal",
+            "browser_evidence.questions[*].text"
+          ],
+          "followup_needed": "无。",
+          "id": "W10",
+          "reason_zh": "全部23个播放器在两个视口的slow、normal检查均通过，对应页面标明的0.75倍速及原速切换。",
+          "verdict": "pass",
+          "title": "原速与0.75倍速切换",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "independent_asset_checks.questions[*].required_score_regions",
+            "browser_evidence.evidence_manifest[*].score_regions",
+            "Q01-1280.jpg",
+            "Q02-1280.jpg",
+            "Q03-1280.jpg",
+            "Q04-1280.jpg",
+            "Q07-1280.jpg",
+            "Q08-1280.jpg",
+            "Q09-1280.jpg",
+            "Q10-1280.jpg",
+            "Q11-1280.jpg",
+            "Q12-1280.jpg",
+            "Q14-1280.jpg",
+            "Q15-1280.jpg",
+            "Q16-1280.jpg",
+            "Q17-1280.jpg",
+            "Q18-1280.jpg"
+          ],
+          "followup_needed": "无。",
+          "id": "W11",
+          "reason_zh": "15道必需题的截图均显示实际红框和原PDF页码，标记指向可辨认谱面区域。Q16提供第13页及第24页两幅不同标注谱图，并非仅有JSON矩形或重复图片。",
+          "verdict": "pass",
+          "title": "要求的谱面标注与页码",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.questions[question=Q16]",
+            "browser_evidence.questions[question=Q20]",
+            "Q16-1280.jpg",
+            "Q16-390.jpg",
+            "Q20-1280.jpg",
+            "Q20-390.jpg",
+            "browser_evidence.controls"
+          ],
+          "followup_needed": "无。",
+          "id": "W12",
+          "reason_zh": "Q16以“早先材料／后期变奏”、Q20以“首次引入／作品结尾”区分两个独立播放器，两视口均可操作。Q16的两处谱图同时标明早先主题与后期变奏及不同页码。",
+          "verdict": "pass",
+          "title": "比较型问题的前后对照",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.evidence_manifest",
+            "browser_evidence.questions[*].images[*].src",
+            "additional_browser_evidence.actual_audio_sources",
+            "additional_browser_evidence.complete_visible_body_text",
+            "additional_browser_evidence.zoom"
+          ],
+          "followup_needed": "无。",
+          "id": "W13",
+          "reason_zh": "补采取得全部23段音频的source_src与currentSrc，均对应各题本地WAV路径，消除了原先仅采audio.src导致的缺口。结合原有清单、图像路径及页码和时间标签核对，图音文件与题目对应；Q16、Q17、Q20的多段材料使用独立文件及明确描述，未见遗漏或重复冒充对照。",
+          "verdict": "pass",
+          "title": "网页与证据清单的映射可追溯",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "additional_browser_evidence.submission_files",
+            "additional_browser_evidence.attribution_files.README.md",
+            "additional_browser_evidence.attribution_files.NOTICE.md",
+            "additional_browser_evidence.attribution_files.LICENSE.source.md",
+            "additional_browser_evidence.footer_text",
+            "additional_browser_evidence.actual_audio_sources"
+          ],
+          "followup_needed": "无。",
+          "id": "W14",
+          "reason_zh": "保留通过。必需交付文件齐全，本地素材采用相对路径；README提供可行的静态服务器打开方法、目录结构与Q10未完成事项。网页及README保留来源作者、数据集、ASAP归属、改编说明及许可信息，与所给来源说明相符。",
+          "verdict": "pass",
+          "title": "交付文件与使用说明完整",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.questions[*].json_explanation",
+            "browser_evidence.questions[question=Q10].text",
+            "browser_evidence.questions[question=Q16].text",
+            "browser_evidence.questions[question=Q20].text"
+          ],
+          "followup_needed": "无。",
+          "id": "W15",
+          "reason_zh": "逐题解释均提供具体小节、时间、声部、谱面指示或比较过程，并说明线索与结论的关系。Q10交代外推方向冲突及需核查的取点问题；比较题说明比较维度，未见批量泛化说明。此判断不涉及音乐真伪。",
+          "verdict": "pass",
+          "title": "每题解释能支撑教学阅读",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.questions[width=1280].paragraphs",
+            "prior_decisions_to_review[id=W16]",
+            "additional_browser_evidence.navigation[width=1280,Q01—Q20]",
+            "additional_browser_evidence.complete_visible_body_text"
+          ],
+          "followup_needed": "无。",
+          "id": "W16",
+          "reason_zh": "保留通过。原有全题卡检查记录确认主解释字号15px、行高29.25px，作品、题目、结论、解释及证据分区层级明确，无严重拥挤或截断。新复测中桌面全部题号稳定定位于固定栏下方，未出现推翻原排版结论的问题。",
+          "verdict": "pass",
+          "title": "桌面文字层级与排版",
+          "category": "Design Quality",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.views[width=390].scrollWidth",
+            "prior_decisions_to_review[id=W17]",
+            "Q13-390.jpg",
+            "Q10-390.jpg",
+            "additional_browser_evidence.navigation[width=390,Q01—Q20]",
+            "additional_browser_evidence.note"
+          ],
+          "followup_needed": "为手机悬浮“作品目录”按钮设置避让空间或调整位置，并复测题卡媒体区和原图链接处的覆盖情况。",
+          "id": "W17",
+          "reason_zh": "保留失败。新复测已推翻手机题号定位异常，但只记录题号与顶部固定栏的关系，未推翻另一项独立失败证据：悬浮“作品目录”曾覆盖Q13原尺寸链接及Q10播放器右侧。补采未修改交付文件，也未提供这些位置不存在覆盖的复测记录。整页无横向溢出不能抵消已确认的控件重叠。",
+          "verdict": "fail",
+          "title": "手机端完整可读",
+          "category": "Design Quality",
+          "points": 0,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "additional_browser_evidence.zoom[width=1280,index=1—23]",
+            "additional_browser_evidence.zoom[width=390,index=1—23]",
+            "additional_browser_evidence.complete_visible_body_text：谱图放大入口与操作提示",
+            "zoom-1-1280.jpg",
+            "zoom-12-1280.jpg",
+            "zoom-23-1280.jpg",
+            "zoom-1-390.jpg",
+            "zoom-12-390.jpg",
+            "zoom-23-390.jpg",
+            "score-asset-01.png—score-asset-23.png"
+          ],
+          "followup_needed": "无。",
+          "id": "W18",
+          "reason_zh": "补采确认全部23幅谱图在两种宽度下均可实际点击打开大图，且加载对应原图；页面提供点击放大及横向浏览提示，手机不必依赖缩略图辨认。原始谱图中的讨论区域、音符和红框清楚可辨，标记未使关键内容无法阅读。结合真实开图记录，原先缺少放大操作证据的问题已解决。",
+          "verdict": "pass",
+          "title": "谱面与后期标记的阅读质量",
+          "category": "Design Quality",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "home-1280.jpg",
+            "home-390.jpg",
+            "Q01-1280.jpg",
+            "Q07-1280.jpg",
+            "Q14-1280.jpg",
+            "Q10-390.jpg",
+            "Q16-390.jpg",
+            "Q20-390.jpg",
+            "browser_evidence.controls"
+          ],
+          "followup_needed": "无。",
+          "id": "W19",
+          "reason_zh": "已查看两个视口全部题卡，三组作品使用一致的题卡、答案区、证据区和控件样式；文字与背景分离清楚，未定状态有独立提示。播放、重听及速度控件含义明确，实测状态切换通过。",
+          "verdict": "pass",
+          "title": "视觉一致性与控件辨识",
+          "category": "Design Quality",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "additional_browser_evidence.complete_visible_body_text",
+            "additional_browser_evidence.navigation",
+            "additional_browser_evidence.actual_audio_sources[question=Q16]",
+            "additional_browser_evidence.actual_audio_sources[question=Q20]",
+            "prior_decisions_to_review[id=W20]"
+          ],
+          "followup_needed": "无。",
+          "id": "W20",
+          "reason_zh": "保留通过。20题均有明确作品归属，题目、结论、解释与带标签的图音证据在所属题卡内关联。Q16及Q20明确区分早先材料与后期变奏或结尾，每题提供返回本作品及总目录的路径。新复测确认全部逐题入口定位正确；手机悬浮控件覆盖问题保留在W17，不据此否定已明确的媒体归属和比较关系。",
+          "verdict": "pass",
+          "title": "学习流程与图文音空间关联",
+          "category": "Design Quality",
+          "points": 5,
+          "max_score": 5
+        }
+      ],
+      "judge": "gpt-6-astra",
+      "judge_summary_zh": "网站20项中通过19项；未通过项：手机端完整可读。逐项判定理由与实际证据见下表。",
+      "judge_record": "judgments/gpt-6.1-sol.json"
+    },
+    {
+      "model": "deepseek-v4.1-flash-1017",
+      "label": "DeepSeek V4.1 Flash 1017",
+      "anonymous_id": "P1",
+      "content_score": 15,
+      "content_weight": 0.8,
+      "content_contribution": 12.0,
+      "website_score": 65,
+      "website_weight": 0.2,
+      "website_contribution": 13.0,
+      "total_score": 25.0,
+      "website_passed": 13,
+      "categories": {
+        "Runnability": {
+          "score": 10,
+          "max": 10
+        },
+        "Spec Implementation": {
+          "score": 45,
+          "max": 65
+        },
+        "Design Quality": {
+          "score": 10,
+          "max": 25
+        }
+      },
+      "items": [
+        {
+          "evidence_refs": [
+            "browser_evidence.external_requests",
+            "browser_evidence.failed_resources",
+            "browser_evidence.final_image_state",
+            "browser_evidence.questions[*].images",
+            "browser_evidence.controls"
+          ],
+          "followup_needed": "无。",
+          "id": "W01",
+          "reason_zh": "本地浏览器检查未记录外部请求或失败资源；两个视口逐题检查中全部谱图最终均加载，23个音频入口均能播放。初始视图中的部分naturalWidth=0已被后续逐题及最终加载记录排除，不能据此判为破图。",
+          "verdict": "pass",
+          "title": "本地独立运行与资源完整",
+          "category": "Runnability",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.page_errors",
+            "browser_evidence.navigation",
+            "browser_evidence.all_anchor_clicks",
+            "browser_evidence.controls",
+            "browser_evidence.questions"
+          ],
+          "followup_needed": "无。",
+          "id": "W02",
+          "reason_zh": "两个视口的导航和全部媒体控件操作完成后，page_errors为空，20题均有完整DOM记录。定位遮挡另按导航与排版项目判定，不将其当作脚本异常。",
+          "verdict": "pass",
+          "title": "运行与交互无脚本异常",
+          "category": "Runnability",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "home-1280.jpg",
+            "home-390.jpg",
+            "browser_evidence.all_anchor_clicks",
+            "browser_evidence.questions[*].text"
+          ],
+          "followup_needed": "无。",
+          "id": "W03",
+          "reason_zh": "首页按A/B/C清楚分组，顶部三部作品入口及返回目录链接在两个视口均实测target_exists、hash_matches为true；各题均提供返回作品目录路径。",
+          "verdict": "pass",
+          "title": "作品目录与返回路径",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "additional_browser_evidence.navigation[width=1280,Q01—Q20]",
+            "additional_browser_evidence.navigation[width=390,Q01—Q20]",
+            "settled-navigation-1280.jpg",
+            "settled-navigation-390.jpg"
+          ],
+          "followup_needed": "当前证据足以判定。修复锚点与固定栏的偏移后，应在两个视口重新点击全部20题并等待滚动稳定。",
+          "id": "W04",
+          "reason_zh": "补采已预先加载题图并等待滚动稳定，仍确认两个视口的全部20题题号均被固定栏遮住。各入口可见、可点击且hash正确，但题号顶部均接近0px，固定栏底部分别约为54.80px和143.48px，不满足跳转后题号不被遮挡的要求。保留失败。",
+          "verdict": "fail",
+          "title": "20题逐题跳转",
+          "category": "Spec Implementation",
+          "points": 0,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.questions[Q01—Q20].text",
+            "browser_evidence.questions[*].answer_matches",
+            "browser_evidence.questions[*].explanation_matches",
+            "browser_evidence.questions[Q05,Q06].json_explanation"
+          ],
+          "followup_needed": "无。",
+          "id": "W05",
+          "reason_zh": "20题均提供题目、结论或未确定状态、中文解释，两个视口的answer_matches及explanation_matches全部为true。Q05/Q06明确显示null及原因；不因答案未确定扣分。",
+          "verdict": "pass",
+          "title": "问题、简答、中文解释与结构化答案一致",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.views[width=1280].bodyText：作品A研习提示",
+            "browser_evidence.views[width=1280].bodyText：作品B研习提示",
+            "browser_evidence.views[width=1280].bodyText：作品C研习提示"
+          ],
+          "followup_needed": "无。",
+          "id": "W06",
+          "reason_zh": "三部作品均有针对性方法提示：A比较起音间隔和谱面速度／延长标记，B按小节逐段回听装饰音、强调与收束，C结合段落尺度和局部静默、声部线条观察；不是只有主题词。",
+          "verdict": "pass",
+          "title": "三部作品的研习提示",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "independent_asset_checks.questions[*].audio",
+            "independent_asset_checks.all_audio_checks_pass",
+            "browser_evidence.evidence_manifest",
+            "browser_evidence.questions[*].audio",
+            "browser_evidence.controls"
+          ],
+          "followup_needed": "无。",
+          "id": "W07",
+          "reason_zh": "全部20题有音频，Q16/Q20各有两段；23段长度为16—54秒。独立检查中duration_valid、same_format_as_original、pcm_matches_declared_interval及frames_match全部为true，且网页提供对应入口。此判定仅核验文件与PCM，不表示听辨或音乐结论通过。",
+          "verdict": "pass",
+          "title": "原音证据覆盖与无损裁剪",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.scope",
+            "browser_evidence.controls[width=1280,index=1—23].play",
+            "browser_evidence.controls[width=1280,index=1—23].pause",
+            "browser_evidence.controls[width=390,index=1—23].play",
+            "browser_evidence.controls[width=390,index=1—23].pause"
+          ],
+          "followup_needed": "无。",
+          "id": "W08",
+          "reason_zh": "证据注明通过真实页面控件操作；两个视口全部23个播放器的play、pause均为true，未用文件存在或单个播放器成功代替全覆盖检查。",
+          "verdict": "pass",
+          "title": "实际播放与暂停",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.controls[width=1280,index=1—23].replay",
+            "browser_evidence.controls[width=390,index=1—23].replay",
+            "Q01-1280.jpg",
+            "Q16-390.jpg"
+          ],
+          "followup_needed": "无。",
+          "id": "W09",
+          "reason_zh": "全部播放器均有可见“重听”按钮，两个视口共46条控件检查的replay均为true，支持每段重复回听。",
+          "verdict": "pass",
+          "title": "重复回听",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.controls[width=1280,index=1—23].slow",
+            "browser_evidence.controls[width=1280,index=1—23].normal",
+            "browser_evidence.controls[width=390,index=1—23].slow",
+            "browser_evidence.controls[width=390,index=1—23].normal",
+            "browser_evidence.questions[*].text"
+          ],
+          "followup_needed": "无。",
+          "id": "W10",
+          "reason_zh": "页面提供原速及0.75倍速选择，全部播放器在两个视口的slow、normal实测结果均为true，速度切换覆盖完整。",
+          "verdict": "pass",
+          "title": "原速与0.75倍速切换",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "independent_asset_checks.questions[*].required_score_regions",
+            "browser_evidence.evidence_manifest[*].score_regions",
+            "Q01-1280.jpg至Q04-1280.jpg",
+            "Q07-1280.jpg至Q12-1280.jpg",
+            "Q14-1280.jpg至Q18-1280.jpg",
+            "Q16-390.jpg"
+          ],
+          "followup_needed": "无。",
+          "id": "W11",
+          "reason_zh": "15道必需谱面题均实际显示红框及浅色高亮，并注明原PDF页码；Q16提供第2页和第24页两幅不同谱图及不同标记。这里只确认标注存在并指向可辨认谱面区域，不裁定其音乐定位正确性。",
+          "verdict": "pass",
+          "title": "要求的谱面标注与页码",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.questions[Q16,Q20].text",
+            "browser_evidence.questions[Q16,Q20].audio",
+            "browser_evidence.controls[index=17,18,22,23]",
+            "Q16-1280.jpg",
+            "Q16-390.jpg",
+            "Q20-1280.jpg",
+            "Q20-390.jpg"
+          ],
+          "followup_needed": "无。",
+          "id": "W12",
+          "reason_zh": "Q16/Q20各有两个独立且实测可播放的入口。虽然同题音频共用概括描述，但绝对时间及早期／晚期、开头／结尾说明可区分先后；Q16两幅谱图另有上／下说明和不同页码。解释与片段时间的不一致另在W13判定。",
+          "verdict": "pass",
+          "title": "比较型问题的前后对照",
+          "category": "Spec Implementation",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.questions[Q16].text",
+            "browser_evidence.evidence_manifest[question_id=Q16].audio[1]",
+            "browser_evidence.questions[Q17].text",
+            "browser_evidence.evidence_manifest[question_id=Q17].score_regions[0]",
+            "Q17-1280.jpg"
+          ],
+          "followup_needed": "无需补采即可确认失败；应统一解释、图上标签、图注和清单中的页码／区间描述。",
+          "id": "W13",
+          "reason_zh": "最小复现：Q17解释把讨论位置写为PDF第18页，图注及清单却为第20页，图上后期标签又写“bars 374-379”，与图注“第325小节前”不一致。另Q16解释称早期材料约00:14—00:30，实际对照入口及清单为00:52—01:10。这些是站内标签矛盾，无须音乐参考答案即可核验。",
+          "verdict": "fail",
+          "title": "网页与证据清单的映射可追溯",
+          "category": "Spec Implementation",
+          "points": 0,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "additional_browser_evidence.submission_files",
+            "additional_browser_evidence.attribution_files",
+            "additional_browser_evidence.footer_text",
+            "original_notice",
+            "original_license",
+            "attribution-1280.jpg",
+            "attribution-390.jpg"
+          ],
+          "followup_needed": "当前证据足以判定。需在网页或README补入实际来源与作者署名，并保留原通知要求的许可及改编说明，不能仅引用未随交付提供的文件名。",
+          "id": "W14",
+          "reason_zh": "主要交付文件和README打开方法、结构及已知限制齐备，但完整页尾及README仅泛称素材来自本轮任务，未保留MuSP-Bench、三位作者及ASAP等实际来源署名。所引用的NOTICE.md和LICENSE.source.md也未随交付提供。原通知与交付内容现已齐全，可确认署名要求未满足，由unverified改判fail。",
+          "verdict": "fail",
+          "title": "交付文件与使用说明完整",
+          "category": "Spec Implementation",
+          "points": 0,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "browser_evidence.questions[Q05].json_explanation",
+            "browser_evidence.questions[Q06].json_explanation",
+            "Q05-1280.jpg",
+            "Q06-1280.jpg"
+          ],
+          "followup_needed": "无需补采即可确认失败；应为未确定题补充各自具体的辨认障碍及可执行核查步骤。",
+          "id": "W15",
+          "reason_zh": "最小复现：Q05与Q06解释完全相同，只泛称密集多声部难以对应音高，未指出各题具体卡在哪一声部／位置，也未说明学习者如何进一步核查。失败原因是缺少题目特定的教学过程，不是null或音乐答案错误。",
+          "verdict": "fail",
+          "title": "每题解释能支撑教学阅读",
+          "category": "Spec Implementation",
+          "points": 0,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "additional_browser_evidence.navigation[width=1280,Q01—Q20]",
+            "settled-navigation-1280.jpg"
+          ],
+          "followup_needed": "当前覆盖证据足以判定。修复后复测全部桌面题卡定位，并核对正文计算字号与行高。",
+          "id": "W16",
+          "reason_zh": "新的稳定滚动复测仍显示桌面全部20题标题位于固定栏覆盖范围内；Q01截图直接确认题号与作品标识被遮住。即使其余文字分组和图音分栏较清楚，也未满足无严重覆盖的要求，保留失败。",
+          "verdict": "fail",
+          "title": "桌面文字层级与排版",
+          "category": "Design Quality",
+          "points": 0,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "additional_browser_evidence.navigation[width=390,Q01—Q20]",
+            "settled-navigation-390.jpg"
+          ],
+          "followup_needed": "当前证据足以判定。修复手机固定栏与锚点偏移后，复测全部题卡文字和控件是否完整可见、可触达。",
+          "id": "W17",
+          "reason_zh": "390px稳定滚动复测中，全部20题题号仍被约143.48px高的固定栏遮住。Q01截图还显示题面不可见、结论上部被覆盖。纵向重排及原有无横向溢出的表现不能抵消文字覆盖，保留失败。",
+          "verdict": "fail",
+          "title": "手机端完整可读",
+          "category": "Design Quality",
+          "points": 0,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "additional_browser_evidence.zoom[width=1280,index=1—22]",
+            "additional_browser_evidence.zoom[width=390,index=1—22]",
+            "zoom-1-1280.jpg",
+            "zoom-12-1280.jpg",
+            "zoom-22-1280.jpg",
+            "zoom-1-390.jpg",
+            "zoom-12-390.jpg",
+            "zoom-22-390.jpg",
+            "score-asset-01.png至score-asset-22.png"
+          ],
+          "followup_needed": "无需补采。",
+          "id": "W18",
+          "reason_zh": "补采逐一实际点击了两个视口下全部22张谱图的原图入口，均成功打开并以原始像素宽度显示，覆盖全部必需谱图及Q16对照图。结合完整原始谱图，音符、红框与半透明底色标记清楚可辨，未见标记导致关键内容无法辨认。手机缩略图较小的问题有可发现、可实际使用的原图路径解决，不要求自制查看器，改判pass。",
+          "verdict": "pass",
+          "title": "谱面与后期标记的阅读质量",
+          "category": "Design Quality",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "home-1280.jpg",
+            "home-390.jpg",
+            "Q01-1280.jpg至Q20-1280.jpg",
+            "Q01-390.jpg至Q20-390.jpg",
+            "browser_evidence.controls"
+          ],
+          "followup_needed": "无。",
+          "id": "W19",
+          "reason_zh": "三部作品统一使用浅色卡片、深色正文、酒红色播放及返回控件，结论框、图注和媒体模块样式一致。播放、重听与速度选择含义明确，实测控件功能完整；未见妨碍辨识的配色冲突。",
+          "verdict": "pass",
+          "title": "视觉一致性与控件辨识",
+          "category": "Design Quality",
+          "points": 5,
+          "max_score": 5
+        },
+        {
+          "evidence_refs": [
+            "additional_browser_evidence.navigation[width=1280,Q01—Q20]",
+            "additional_browser_evidence.navigation[width=390,Q01—Q20]",
+            "settled-navigation-1280.jpg",
+            "settled-navigation-390.jpg"
+          ],
+          "followup_needed": "当前证据足以判定。修复目录进入单题后的题号、作品和题面可见性，再复核目录进入、阅读与返回流程。",
+          "id": "W20",
+          "reason_zh": "新数据继续确认目录进入单题后的定位问题：手机Q01落点遮住题号、作品标识和问题，学习者需要反向滚动才能确认当前题目；其他题的题号也均被固定栏覆盖。单题图音归属及返回入口虽较清楚，仍不满足学习流程中清楚定位的要求，保留失败。",
+          "verdict": "fail",
+          "title": "学习流程与图文音空间关联",
+          "category": "Design Quality",
+          "points": 0,
+          "max_score": 5
+        }
+      ],
+      "judge": "gpt-6-astra",
+      "judge_summary_zh": "网站20项中通过13项；未通过项：20题逐题跳转、网页与证据清单的映射可追溯、交付文件与使用说明完整、每题解释能支撑教学阅读、桌面文字层级与排版、手机端完整可读、学习流程与图文音空间关联。逐项判定理由与实际证据见下表。",
+      "judge_record": "judgments/deepseek-v4.1-flash-1017.json"
+    }
+  ]
+}

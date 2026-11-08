@@ -1,0 +1,248 @@
+{
+  "version": "musp-site-v1",
+  "created_at": "2026-11-08T23:32:55.216972+08:00",
+  "status": "frozen_before_astra_judging",
+  "case_id": "omniale-d6-musp-01-v1",
+  "sources": [
+    {
+      "title": "WebCompass paper",
+      "url": "https://arxiv.org/abs/2604.18224",
+      "usage": "三维评价、任务专属checklist、浏览器执行与视觉核验"
+    },
+    {
+      "title": "WebCompass official checklist prompt",
+      "url": "https://github.com/NJU-LINK/WebCompass/blob/d5fe352e065f6dcf87aca605babf01499b2b12a3/generation/checklist/prompts.py",
+      "usage": "参考10%/60–70%/20–25%的类别配分；适配为10/65/25"
+    },
+    {
+      "title": "WebCompass official scoring code",
+      "url": "https://github.com/NJU-LINK/WebCompass/blob/d5fe352e065f6dcf87aca605babf01499b2b12a3/generation/evaluation/evaluate.py",
+      "usage": "采用其sum(score)/sum(max_score)归一化；不采用另报的harmonic_mean"
+    }
+  ],
+  "adaptation": "非原WebCompass分数复现。没有参考设计截图，故设计项按教学网页任务可用性评价；原10–16项及部分分改编为20项全有或全无的5分项，沿用本项目严格二元约定。",
+  "aggregation": {
+    "content_weight": 0.8,
+    "website_weight": 0.2,
+    "website_score": "sum of 20 binary 0/5 items, out of 100",
+    "total": "0.8 * frozen content score + 0.2 * website score",
+    "rounding": "计算使用原值，仅最终显示最多2位小数",
+    "category_max": {
+      "Runnability": 10,
+      "Spec Implementation": 65,
+      "Design Quality": 25
+    }
+  },
+  "judge": {
+    "requested_model": "gpt-6-astra",
+    "reasoning_effort": "high",
+    "blind": true,
+    "no_model_names_or_content_scores": true,
+    "calls": "each site: independent criterion decisions grounded in browser evidence and screenshots",
+    "no_target_score": true
+  },
+  "scope": "本次事后新增网站评价；原受测题面、素材、预算、交付及内容评分完全不变。网站项不使用音乐参考答案。未覆盖音乐证据正确性的专家复核，不将功能检查通过等同完整音乐验收。",
+  "failure_policy": "证据缺失不算模型失败：标unverified并补采；只有基于已观察到的不满足才计0。judge须逐项引证，确定性失败不得被截图外观覆盖。",
+  "items": [
+    {
+      "id": "W01",
+      "category": "Runnability",
+      "title": "本地独立运行与资源完整",
+      "operation_sequence": "1. 通过本地静态服务器打开。2. 阻断外部请求。3. 检查全部题目图像与音频加载。",
+      "expected_result": "无需登录、后端、联网或插件；全部必需资源均来自交付目录且能加载，无404/500、破图或失效音频。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "全部资源，1280/390px",
+      "max_score": 5
+    },
+    {
+      "id": "W02",
+      "category": "Runnability",
+      "title": "运行与交互无脚本异常",
+      "operation_sequence": "1. 收集初始Console。2. 执行全部导航与媒体操作。3. 检查pageerror。",
+      "expected_result": "初始与实际交互均无JavaScript异常，所有作品与20题可呈现。纯warning不扣分。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "全部操作，1280/390px",
+      "max_score": 5
+    },
+    {
+      "id": "W03",
+      "category": "Spec Implementation",
+      "title": "作品目录与返回路径",
+      "operation_sequence": "1. 查看三部作品组织。2. 点击各作品入口。3. 从后段题目返回目录。",
+      "expected_result": "A/B/C分组清楚，三部作品均有可见可点击入口及可用的返回作品目录路径。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "3部作品，1280/390px",
+      "max_score": 5
+    },
+    {
+      "id": "W04",
+      "category": "Spec Implementation",
+      "title": "20题逐题跳转",
+      "operation_sequence": "1. 找到每题导航入口。2. 实际点击20题。3. 核对URL与定位。",
+      "expected_result": "全部20题均有可见、可点击的直接跳转入口，点击后定位正确且题号未被固定栏遮住。仅作品级导航不算逐题跳转。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "20题，1280/390px",
+      "max_score": 5
+    },
+    {
+      "id": "W05",
+      "category": "Spec Implementation",
+      "title": "问题、简答、中文解释与结构化答案一致",
+      "operation_sequence": "1. 打开每题。2. 对照answers.json。3. 核对空答案状态。",
+      "expected_result": "20题均显示题目、简答/未确定状态和中文解释；网页与JSON均一致，无缺漏或自相矛盾。只判一致与呈现，不判简答音乐真伪；null不自动扣分。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "20题",
+      "max_score": 5
+    },
+    {
+      "id": "W06",
+      "category": "Spec Implementation",
+      "title": "三部作品的研习提示",
+      "operation_sequence": "1. 阅读每部作品开场提示。2. 核对是否针对该组题目。3. 判断可操作性。",
+      "expected_result": "每部作品至少一段针对本组问题的研习提示，包含学习关注点及如何观察/回听/练习的具体方法。只有主题词清单或泛泛口号不通过；不以参考答案判断内容真伪。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "3部作品",
+      "max_score": 5
+    },
+    {
+      "id": "W07",
+      "category": "Spec Implementation",
+      "title": "原音证据覆盖与无损裁剪",
+      "operation_sequence": "1. 对照evidence.json与实际播放器。2. 检查片段数量/长度。3. 核验PCM与原音区间。",
+      "expected_result": "每题至少1段，Q16/Q20至少2段；每段1—90秒，保持原采样率、声道与位深，PCM等于所声明原录音区间；实际网页均提供相应入口。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "全部音频与20题",
+      "max_score": 5
+    },
+    {
+      "id": "W08",
+      "category": "Spec Implementation",
+      "title": "实际播放与暂停",
+      "operation_sequence": "1. 对每个播放器点击可见播放控件。2. 核对播放状态。3. 点击暂停。",
+      "expected_result": "全部播放器均能通过页面真实控件播放及暂停，状态可理解。不得用直接调用audio.play/pause替代控件核验。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "全部播放器，1280/390px",
+      "max_score": 5
+    },
+    {
+      "id": "W09",
+      "category": "Spec Implementation",
+      "title": "重复回听",
+      "operation_sequence": "1. 从播放中段操作重听或重复控件。2. 核对回到开头或循环。3. 重复检查。",
+      "expected_result": "每个片段均有可用的重复回听方式：重听按钮重置到开头并播放，或可操作的循环控件；只出现按钮而无效果不通过。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "全部播放器，1280/390px",
+      "max_score": 5
+    },
+    {
+      "id": "W10",
+      "category": "Spec Implementation",
+      "title": "原速与0.75倍速切换",
+      "operation_sequence": "1. 操作每个可见速度控件。2. 读取对应audio.playbackRate。3. 切回1倍。",
+      "expected_result": "全部播放器经页面控件确实切换到0.75及1；改变无关DOM属性或仅修改标签不算。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "全部播放器，1280/390px",
+      "max_score": 5
+    },
+    {
+      "id": "W11",
+      "category": "Spec Implementation",
+      "title": "要求的谱面标注与页码",
+      "operation_sequence": "1. 查看15题要求的谱图。2. 检查图上实际标记。3. 核对PDF页码呈现。",
+      "expected_result": "15道要求谱面证据的题均提供实际标注图并显示原PDF页码；Q16至少两处不同谱面。仅JSON矩形、未画出的标记或只有一幅重复截图不算。标记必须指向可辨认区域，不要求裁定音乐答案真伪。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "题面要求的15题、Q16两处",
+      "max_score": 5
+    },
+    {
+      "id": "W12",
+      "category": "Spec Implementation",
+      "title": "比较型问题的前后对照",
+      "operation_sequence": "1. 打开Q16及Q20。2. 找到早先与后续片段。3. 查看Q16两处谱图及标签。",
+      "expected_result": "Q16/Q20均有至少两个独立可播放入口，并用可理解的标签区分早先材料与后续再现；Q16同时呈现两处有区分的谱图。泛称音频1/2且无说明不通过。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "Q16与Q20，1280/390px",
+      "max_score": 5
+    },
+    {
+      "id": "W13",
+      "category": "Spec Implementation",
+      "title": "网页与证据清单的映射可追溯",
+      "operation_sequence": "1. 对照全部audio/img引用与evidence.json。2. 核对页码/区间标签。3. 查重复与遗漏。",
+      "expected_result": "网页实际图音文件与各题清单对应；给出的页码、时间、文件及描述互相一致，未丢失清单中要求的证据或把另一证据重复冒充对照。只检查文件/标签对应，不以音乐金标准再扣内容分。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "20题、全部资源",
+      "max_score": 5
+    },
+    {
+      "id": "W14",
+      "category": "Spec Implementation",
+      "title": "交付文件与使用说明完整",
+      "operation_sequence": "1. 检查index/answers/evidence/assets/README。2. 阅读本地打开方法。3. 检查来源署名。",
+      "expected_result": "所需文件完整、以相对路径引用；README提供可行打开方法、结构和未完成事项（若有）；网页或README保留素材署名。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "整个交付",
+      "max_score": 5
+    },
+    {
+      "id": "W15",
+      "category": "Spec Implementation",
+      "title": "每题解释能支撑教学阅读",
+      "operation_sequence": "1. 阅读20题中文解释。2. 检查是否指出具体谱面/回听线索。3. 检查是否说明线索与结论关系。",
+      "expected_result": "每题都给出题目特定的观察或分析过程，并解释其支持结论的方式；不确定题说明实际障碍及如何核查。批量复用同一句泛化推断、仅重述答案或只说请自行复核不通过。本项评价说明的教学呈现，不复评音乐事实。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "20题",
+      "max_score": 5
+    },
+    {
+      "id": "W16",
+      "category": "Design Quality",
+      "title": "桌面文字层级与排版",
+      "operation_sequence": "1. 查看1280px首页和全部题卡。2. 核对字级/行距。3. 检查拥挤与重叠。",
+      "expected_result": "中文正文主字号至少14px、主正文行高至少1.5；作品/题目/结论/解释层级明确，长行、间距与分组适合连续阅读，无严重拥挤、截断或覆盖。原生小型播放器文字不算主正文。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "1280px，20题",
+      "max_score": 5
+    },
+    {
+      "id": "W17",
+      "category": "Design Quality",
+      "title": "手机端完整可读",
+      "operation_sequence": "1. 在390px查看首页与全部题卡。2. 检查横向溢出。3. 检查重排与控件。",
+      "expected_result": "390px下主页面不横向溢出，文字不被挤压或截断，图音与说明按可读顺序重排，所有必需控件完整可触达，无重叠覆盖。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "390px，20题",
+      "max_score": 5
+    },
+    {
+      "id": "W18",
+      "category": "Design Quality",
+      "title": "谱面与后期标记的阅读质量",
+      "operation_sequence": "1. 查看所有必需谱图。2. 分别在桌面与手机检查讨论区域。3. 需要时使用网页已有放大或浏览器原生开图。",
+      "expected_result": "谱图的讨论区域、关键音符及后期标记清楚可辨，标记不遮住关键内容；手机上若缩略图不可辨，需有可发现、可实际使用的放大/原图入口。不要求另造图片查看器；可用原生开图。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "全部必需谱图，1280/390px",
+      "max_score": 5
+    },
+    {
+      "id": "W19",
+      "category": "Design Quality",
+      "title": "视觉一致性与控件辨识",
+      "operation_sequence": "1. 查看三部作品中的样式。2. 操作按钮/选择器。3. 检查文字背景与状态。",
+      "expected_result": "三部作品的同类模块排版、配色和间距一致；文字/链接/控件与背景清楚分离，控制含义及播放/暂停、速度等状态易辨。无破坏理解的色彩冲突或混乱布局；不因风格朴素扣分。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "首页及20题，两个视口",
+      "max_score": 5
+    },
+    {
+      "id": "W20",
+      "category": "Design Quality",
+      "title": "学习流程与图文音空间关联",
+      "operation_sequence": "1. 从作品目录进入单题。2. 按题目→结论→解释→图音进行核查。3. 从比较题前后切换。",
+      "expected_result": "学习者能清楚区分作品与题目；单题内图、音、说明的视觉关联明确；比较材料可辨别先后，长页面有可理解的定位与返回路径，无需猜测媒体归属或在无标签材料间来回寻找。依据呈现质量，不额外要求搜索、测验或进度功能。",
+      "criteria": "仅完整满足预期结果且证据充分计5分；任一适用对象失败计0分。无法核验标记unverified，不得猜测通过。",
+      "coverage": "整个教学流程、20题",
+      "max_score": 5
+    }
+  ]
+}
