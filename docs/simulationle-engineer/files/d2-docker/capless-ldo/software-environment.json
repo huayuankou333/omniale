@@ -1,0 +1,78 @@
+{
+  "case": "circuit_ldo",
+  "updated": "2026-11-08",
+  "software": [
+    {
+      "name": "ngspice",
+      "version": "46",
+      "role": "DC 负载扫描、AC 电源抑制、负载阶跃与启动瞬态，覆盖题目规定的 PVT 工况。"
+    },
+    {
+      "name": "SKY130 PDK",
+      "role": "SKY130 1.8 V NMOS / PMOS（含 LVT）与理想 R/C；DUT 内总理想电容上限 1 nF。",
+      "commit": "c6d73a35f524070e85faff4a6a9eef49553ebc2b"
+    },
+    {
+      "name": "Python 3 / NumPy / Matplotlib",
+      "role": "Agent 可自行分析仿真数据与绘制诊断波形；实际生成与读取以工具记录为准。"
+    },
+    {
+      "name": "Linux / Docker",
+      "role": "Agent、原生仿真及正式验收隔离；通过受审计网关调用真实 ngspice。"
+    }
+  ],
+  "operation_mode": "Agent 通过 terminal 编写 SPICE 网表与自选测试台，调用 ngspice；可选 read_image 查看生成的图。",
+  "delivery": "ldo 子电路 / SPICE 网表",
+  "schematic_provenance": "页面器件连接图由冻结网表重绘；不是 EDA GUI 原生截图。",
+  "images": {
+    "base_image": "ghcr.io/arcadia-1/analog-arena-sky130-tools@sha256:668783dd8cbcd5ebce5264785803ce73a9466e79dbe4c98cdf4566348a33437a",
+    "agent_image": "simulationle-beta-agent:docker3-v1",
+    "verifier_image": "simulationle-ldo-verifier:docker3-v2"
+  },
+  "usage": [
+    {
+      "model_id": "gpt-6-luna",
+      "model_label": "GPT-6 Luna",
+      "designs_used": 3,
+      "native_runs": 4,
+      "read_image_calls": 0,
+      "saved_figures": 0
+    },
+    {
+      "model_id": "gpt-6.1-sol",
+      "model_label": "GPT-6.1 Sol",
+      "designs_used": 3,
+      "native_runs": 8,
+      "read_image_calls": 0,
+      "saved_figures": 0
+    },
+    {
+      "model_id": "deepseek-v4.1-flash-1017",
+      "model_label": "DPSK · V4.1 Flash 1017",
+      "designs_used": 0,
+      "native_runs": 0,
+      "read_image_calls": 0,
+      "saved_figures": 0
+    }
+  ],
+  "count_definition": "native_runs 为受审计网关的开发原生仿真计数，包含求解失败，不含独立正式验收；一条 terminal 命令可发起多个仿真。",
+  "note": "DPSK 未形成合法电路，开发仿真为 0 次；冻结的空子电路被策略检查拒绝，8 项电气检查未执行。",
+  "evidence": {
+    "protocol": "files/d2-docker/capless-ldo/protocol.json",
+    "audit": "files/d2-docker/capless-ldo/authorship-audit.json",
+    "runtime_source_hashes": [
+      {
+        "path": "docker_agent/agent.Dockerfile",
+        "sha256": "38f621c041610cf164fbc86fa1674d6458383d365ba7ad4b181af9400969b074"
+      },
+      {
+        "path": "docker_agent/validation/images.json",
+        "sha256": "c9c561a0f758f2b6f1bd162f6cf585b659689878a61aaf02ef21f088af61ccf5"
+      },
+      {
+        "path": "docker_agent/verifier.Dockerfile",
+        "sha256": "748e0e0ebe3bad06cc73a1d1a46cfd29adf51b24d92709015ba713f3621a8536"
+      }
+    ]
+  }
+}

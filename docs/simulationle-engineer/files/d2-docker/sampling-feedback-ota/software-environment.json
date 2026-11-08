@@ -1,0 +1,78 @@
+{
+  "case": "circuit_sampling_ota_gain8",
+  "updated": "2026-11-08",
+  "software": [
+    {
+      "name": "ngspice",
+      "version": "46",
+      "role": "AC 稳定性、采样反馈阶跃、积分噪声、CMFB 扰动，以及 PVT 与失配分析。"
+    },
+    {
+      "name": "SKY130 PDK",
+      "role": "SKY130 PDK MOS 封装与理想 R/C；标称 1.8 V，使用题目给定的采样反馈测试接口。",
+      "commit": "c6d73a35f524070e85faff4a6a9eef49553ebc2b"
+    },
+    {
+      "name": "Python 3 / NumPy / Matplotlib",
+      "role": "Agent 可自行分析仿真数据与绘制诊断波形；实际生成与读取以工具记录为准。"
+    },
+    {
+      "name": "Linux / Docker",
+      "role": "Agent、原生仿真及正式验收隔离；通过受审计网关调用真实 ngspice。"
+    }
+  ],
+  "operation_mode": "Agent 通过 terminal 编写 SPICE 网表与自选测试台，调用 ngspice；可选 read_image 查看生成的图。",
+  "delivery": "全差分 OTA 子电路 / SPICE 网表",
+  "schematic_provenance": "页面器件连接图由冻结网表重绘；不是 EDA GUI 原生截图。",
+  "images": {
+    "base_image": "ghcr.io/arcadia-1/analog-arena-sky130-tools@sha256:668783dd8cbcd5ebce5264785803ce73a9466e79dbe4c98cdf4566348a33437a",
+    "agent_image": "simulationle-beta-agent:docker3-v1",
+    "verifier_image": "simulationle-ota-verifier:docker3-v2"
+  },
+  "usage": [
+    {
+      "model_id": "gpt-6-luna",
+      "model_label": "GPT-6 Luna",
+      "designs_used": 3,
+      "native_runs": 3,
+      "read_image_calls": 0,
+      "saved_figures": 0
+    },
+    {
+      "model_id": "gpt-6.1-sol",
+      "model_label": "GPT-6.1 Sol",
+      "designs_used": 3,
+      "native_runs": 153,
+      "read_image_calls": 2,
+      "saved_figures": 2
+    },
+    {
+      "model_id": "deepseek-v4.1-flash-1017",
+      "model_label": "DPSK · V4.1 Flash 1017",
+      "designs_used": 0,
+      "native_runs": 0,
+      "read_image_calls": 0,
+      "saved_figures": 0
+    }
+  ],
+  "count_definition": "native_runs 为受审计网关的开发原生仿真计数，包含求解失败，不含独立正式验收；一条 terminal 命令可发起多个仿真。",
+  "note": "Sol 通过终端脚本发起 153 次开发仿真，并生成、读取 2 张波形图。DPSK 未形成合法电路，15 项正式电气检查未执行。",
+  "evidence": {
+    "protocol": "files/d2-docker/sampling-feedback-ota/protocol.json",
+    "audit": "files/d2-docker/sampling-feedback-ota/authorship-audit.json",
+    "runtime_source_hashes": [
+      {
+        "path": "docker_agent/agent.Dockerfile",
+        "sha256": "38f621c041610cf164fbc86fa1674d6458383d365ba7ad4b181af9400969b074"
+      },
+      {
+        "path": "docker_agent/validation/images.json",
+        "sha256": "362fbbac5b6866528f71456e4578f4864c4dcc08f89e543bdd78c31fe641d0ec"
+      },
+      {
+        "path": "docker_agent/verifier.Dockerfile",
+        "sha256": "0ceea67f5e7e56e10cc7b237d115752d40ce248166c43b178010702cef17d3c4"
+      }
+    ]
+  }
+}
