@@ -1,0 +1,19 @@
+.subckt sampling_feedback_ota vss iref vdd vinn vinp vocm voutn voutp
+* High-gain differential pair with diode-connected loads and symmetric output bias.
+RREF iref vss 100k
+X1 a vinp t vss sky130_fd_pr__nfet_01v8 l=0.5 w=40 nf=4
+X2 b vinn t vss sky130_fd_pr__nfet_01v8 l=0.5 w=40 nf=4
+XT t vb vss vss sky130_fd_pr__nfet_01v8 l=1 w=40 nf=4
+X3 a a vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=40 nf=4
+X4 b a vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=40 nf=4
+* wide complementary output devices biased around vocm
+XP1 voutp vb vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=80 nf=8
+XP2 voutn vb vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=80 nf=8
+XN1 voutp a vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8
+XN2 voutn b vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8
+RB1 vdd vb 20k
+RB2 vb vss 20k
+RCP voutp cm 100k
+RCN voutn cm 100k
+RCM cm vocm 100k
+.ends sampling_feedback_ota

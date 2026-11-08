@@ -1,0 +1,75 @@
+{
+  "name": "docker-shell-three-designs-v1",
+  "models": [
+    "gpt-6-luna",
+    "gpt-6.1-sol"
+  ],
+  "limits": {
+    "max_designs": 3,
+    "max_policy_errors": 2,
+    "max_native_runs": 160,
+    "max_responses": 36,
+    "max_tool_calls": 96,
+    "max_output_tokens": 98304,
+    "max_output_per_response": 32768,
+    "reasoning_effort": "medium",
+    "max_wall_seconds": 7200,
+    "simulation_timeout": 120,
+    "terminal_timeout": 180
+  },
+  "base_image": "ghcr.io/arcadia-1/analog-arena-sky130-tools@sha256:668783dd8cbcd5ebce5264785803ce73a9466e79dbe4c98cdf4566348a33437a",
+  "agent_image": "simulationle-beta-agent:docker3-v1",
+  "verifier_image": "simulationle-beta-verifier:upstream-972f7cd",
+  "endpoint": "https://api-temporary.nju-link.com/v1",
+  "agent_tools": [
+    "terminal",
+    "read_image",
+    "finish"
+  ],
+  "public_diagnostics": "agent-authored and agent-selected",
+  "selection": "last on-disk circuit",
+  "runs_per_model": 1,
+  "host_design_edits": false,
+  "hidden_final_feedback": false,
+  "api_credentials_in_agent_container": false,
+  "upstream_commit": "972f7cd7c95381134387b250edf18f3bd23bdd25",
+  "qualification": "SimulationLE three-design budget adaptation; not the original ADB two-hour protocol",
+  "hashes": {
+    "config.py": "a9e81780373396d3a87f1c0fc7ac11a640d209196c6e31b31d6e768344dcae05",
+    "api_client.py": "a08650ec930cd79f7b0c5d86b9f3486e5e7e153d23d8b8d9c8c1e14e6900bb52",
+    "gateway_cli.py": "a1b49d6e1d2219a229f367e58ce01ae9b212fc00dd2fe9fbaf0733ee084c19dc",
+    "reproduce.py": "39a743ded478af6e3c7a788629c3278869f3b68b6dacba3ce5c48576c2213bac",
+    "native.py": "6f08d28eb2c884670934afeec46a7f30c679848c97c395f6ff9d1a33b1be76bb",
+    "check_gateway.py": "37eb486d30796a1b52e2f0e27bbfd0beb07e366ad131b40a45e0e11855564c7e",
+    "broker.py": "8df37580636a152db47a94ff098f3304089f36fa478762e6a34d8f4121b049fa",
+    "audit.py": "a0068b929ddf83ae02fe559f4eb9ba354ed2bb35139a595c07279b1ca0a0f508",
+    "run_agent.py": "abff5574919bf0d1bf18418099982aa749b643e25bfacd652486d04c041e04c2",
+    "launch.py": "200746cf58b03298dcead17fa0b704f0542fc07c8f58829b2c426dcbcada3df9",
+    "deploy.py": "a8169700bd90b66f9aa996f01082f51ce32a91bad9e38d812a0f901080ae44a4"
+  },
+  "image_ids": {
+    "ghcr.io/arcadia-1/analog-arena-sky130-tools@sha256:668783dd8cbcd5ebce5264785803ce73a9466e79dbe4c98cdf4566348a33437a": "sha256:668783dd8cbcd5ebce5264785803ce73a9466e79dbe4c98cdf4566348a33437a",
+    "simulationle-beta-agent:docker3-v1": "sha256:1c2bcad24e264302928cbe44d78eda66350f71131b789d051503203b6147ae1f",
+    "simulationle-beta-verifier:upstream-972f7cd": "sha256:61b66ac3f757a3dcb3c4a390134e5e2343c07865d35334196e24c15c2d0019d2"
+  },
+  "upstream_hashes": {
+    "source_manifest.json": "cecab5a2c370c5e5fd2bc5e14532efd4ee1cf9985244f273eac7a236e2f8ec09",
+    "instruction.md": "4c3801f9c329449f7348eb346f0cd42b5174ffb82899648e9e071d014a10086c",
+    "LICENSE": "7d4a87942d5adc7c8a43fb0db75cfa5155f3cdcee8190179a293643c4366a562",
+    "tests/test.sh": "3013c3e97f4cfeaf03a827df960650fb313d45fbc41b525290bf6ad7f5f99001",
+    "tests/Dockerfile": "585204d89c5dd9a45cdf4a36ffc0c5fffff523a9ecdf447973afddeb0c0049a1",
+    "tests/verify.py": "6bcf6b6421911ba7ca0ad9e3119fd10cf22f739cad9471b37151289b65806c15",
+    "tests/benches/tb_mc.spi": "b5098cd9f1a07644ccedf4786e08a275f76c6df1a787cc728e09cf8270a15c62",
+    "tests/benches/tb_startup.spi": "7a90634d38ae7aa574387a08a532f8684effa5b530ce035ffb1702d390a5621b",
+    "tests/benches/tb_compliance.spi": "fc1e25f03155922f76e9740acdd37ef83732b7b0d7d9ac729cb01fa351c16ee8",
+    "tests/models/sky130_mc_mm.lib.spice": "d1cac494614ce0d8997251c5c2eb5a0eda0d6b46b9bef230aa8100fc92e2a3b0",
+    "environment/Dockerfile": "1455c1a7c6a6a7bc92c69ec9522854f107f269ca24d449d49987bf042f331be2",
+    "environment/starter/circuit.spi": "10d6204dc7b43543decbe9edd4d374d36670a7452ed626ee82b1d1a0075436b1",
+    "environment/starter/testbench/sky130_mc_mm.lib.spice": "b2a9177c2c81f80c4f91fa805c4152fa63c6cf4b2d95178c9776c1f9510555a6",
+    "environment/starter/testbench/tb_mc.spi": "831cf6433c1b4ad1aa210f91c7c392f2bd2de140d6e2fe9db7c4b881865b6a5c",
+    "environment/starter/testbench/run_mc.py": "c819502984ee7300928121ddd9342f3c4cf130fc8898d82835cd428ef877cc3a",
+    "environment/starter/testbench/tb_startup_ff.spi": "10e054e42d40c1aacfd7fd9ab464c915ff391bf92650fd7f1d295c57ead6aaf0",
+    "environment/starter/testbench/tb_compliance_ss.spi": "78e13fb9ff25a26674160d7b96c3233c48f3e6b6cfa2017cc46a7cb1ab0ec320",
+    "environment/starter/testbench/tb_op_tt.spi": "2e1dc3c7d7434aa58ab0f4ad9e8eb958c30f949350f52d46808c44c17289c8ab"
+  }
+}

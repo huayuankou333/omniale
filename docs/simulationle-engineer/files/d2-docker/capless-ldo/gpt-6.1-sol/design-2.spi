@@ -1,0 +1,19 @@
+* PMOS-input error amplifier, common-source PMOS power stage.
+.subckt capless_ldo vin vout vss vref
+RBIAS vin nb 190k
+XNB nb nb vss vss sky130_fd_pr__nfet_01v8 l=1 w=5
+XPB pb pb vin vin sky130_fd_pr__pfet_01v8 l=1 w=20
+XBI pb nb vss vss sky130_fd_pr__nfet_01v8 l=1 w=50
+XTAIL tail pb vin vin sky130_fd_pr__pfet_01v8 l=1 w=20
+* feedback rises -> gate rises -> output falls
+XIN1 n1 vref tail vin sky130_fd_pr__pfet_01v8 l=0.5 w=100
+XIN2 gate fb tail vin sky130_fd_pr__pfet_01v8 l=0.5 w=100
+XDN1 n1 n1 vss vss sky130_fd_pr__nfet_01v8 l=1 w=20
+XDN2 gate n1 vss vss sky130_fd_pr__nfet_01v8 l=1 w=20
+XPASS vout gate vin vin sky130_fd_pr__pfet_01v8 l=0.15 w=400 nf=40 m=10
+RTOP vout fb 120k
+RBOT fb vss 80k
+CC gate cz 12p
+RZ cz vout 80
+CO vout vss 950p
+.ends capless_ldo

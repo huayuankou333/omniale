@@ -1,0 +1,29 @@
+* Two-stage fully differential OTA, continuous resistive common-mode servo.
+.subckt sampling_feedback_ota vss iref vdd vinn vinp vocm voutn voutp
+* Bias reference and mirrors
+Xref iref iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=10
+Xtail tail iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=160
+Xon voutn iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=180
+Xop voutp iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=180
+* Input stage
+Xip ap vinp tail vss sky130_fd_pr__nfet_01v8 l=0.6 w=160
+Xin an vinn tail vss sky130_fd_pr__nfet_01v8 l=0.6 w=160
+Xlp ap cmctl vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=160
+Xln an cmctl vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=160
+* Second stage
+Xpp voutp ap vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=300
+Xpn voutn an vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=300
+Rzp ap cp 140
+Rzn an cn 140
+Ccp cp voutp 0.6p
+Ccn cn voutn 0.6p
+* Average sensing and error amplifier
+Ravp voutp sense 20k
+Ravn voutn sense 20k
+Xct ct iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=20
+Xcs cmctl sense ct vss sky130_fd_pr__nfet_01v8 l=1 w=20
+Xcr cmref vocm ct vss sky130_fd_pr__nfet_01v8 l=1 w=20
+Xcd cmref cmref vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=30
+Xcm cmctl cmref vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=30
+Ccm cmctl vss 0.15p
+.ends sampling_feedback_ota

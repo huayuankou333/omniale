@@ -1,0 +1,24 @@
+.subckt sampling_feedback_ota vss iref vdd vinn vinp vocm voutn voutp
+* Complementary common-source differential stages with local source degeneration and CM servo.
+* Bias current from sole reference port; resistor scaling establishes internal bias.
+RBI iref vss 100k
+* Differential NMOS input pair
+XM1 x1 vinp tail vss sky130_fd_pr__nfet_01v8 l=0.5 w=40 nf=4
+XM2 x2 vinn tail vss sky130_fd_pr__nfet_01v8 l=0.5 w=40 nf=4
+XMT tail b vss vss sky130_fd_pr__nfet_01v8 l=1 w=20 nf=4
+* PMOS active loads
+XMP1 x1 x1 vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=30 nf=4
+XMP2 x2 x1 vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=30 nf=4
+* Output gain and buffers
+XMN1 voutp x1 vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8
+XMN2 voutn x2 vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8
+XMP3 voutp b vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=100 nf=10
+XMP4 voutn b vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=100 nf=10
+* internal bias nominally gate regulated from iref
+RB1 b vss 50k
+RB2 vdd b 100k
+* continuous common mode feedback via resistive sensing and transistor loads
+RC1 voutp cm 1meg
+RC2 voutn cm 1meg
+RC3 cm vocm 1meg
+.ends sampling_feedback_ota

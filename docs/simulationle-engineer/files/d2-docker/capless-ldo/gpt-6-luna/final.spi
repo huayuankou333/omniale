@@ -1,0 +1,22 @@
+.subckt capless_ldo vin vout vss vref
+* divider feedback, 1V output
+RFB1 vout fb 150k
+RFB2 fb vss 100k
+* high-side pass device
+XPASS vout gate vin vin sky130_fd_pr__pfet_01v8 l=0.5 w=1000 nf=20
+* error amp differential pair and active mirror load
+XIN1 n1 vref tail vss sky130_fd_pr__nfet_01v8 l=1 w=10 nf=2
+XIN2 n2 fb tail vss sky130_fd_pr__nfet_01v8 l=1 w=10 nf=2
+XTAIL tail bias vss vss sky130_fd_pr__nfet_01v8 l=2 w=10 nf=2
+XLOAD1 n1 n1 vin vin sky130_fd_pr__pfet_01v8 l=1 w=20 nf=2
+XLOAD2 n2 n1 vin vin sky130_fd_pr__pfet_01v8 l=1 w=20 nf=2
+* bias resistor and diode-connected NMOS
+RBIAS vin bias 300k
+XBIAS vss bias vss vss sky130_fd_pr__nfet_01v8 l=2 w=10 nf=2
+* gate driver: n2 falling when fb high -> pass off; invert needs proper behavior
+XDRV gate n2 vin vin sky130_fd_pr__pfet_01v8 l=0.5 w=200 nf=4
+XDN gate n2 vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=100 nf=4
+* compensation
+CCOMP n2 fb 100p
+COUT vout vss 100p
+.ends capless_ldo

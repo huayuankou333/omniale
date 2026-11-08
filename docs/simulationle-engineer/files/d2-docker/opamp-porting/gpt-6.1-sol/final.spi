@@ -1,0 +1,24 @@
+.subckt dut iref inp inn out
+* Two diode reference levels provide mirrored sink and cascode gates.
+Xref nb nb 0 0 sky130_fd_pr__nfet_01v8_lvt W=20 L=1 nf=1 m=1
+Xrefc iref iref nb 0 sky130_fd_pr__nfet_01v8_lvt W=20 L=1 nf=1 m=1
+Xtail tail nb 0 0 sky130_fd_pr__nfet_01v8_lvt W=60 L=1 nf=1 m=1
+Xip n1 inn tail 0 sky130_fd_pr__nfet_01v8_lvt W=60 L=0.8 nf=1 m=1
+Xin n2 inp tail 0 sky130_fd_pr__nfet_01v8_lvt W=60 L=0.8 nf=1 m=1
+Xp1 n1 n1 vdd vdd sky130_fd_pr__pfet_01v8_lvt W=15 L=0.6 nf=1 m=1
+Xp2 n2 n1 vdd vdd sky130_fd_pr__pfet_01v8_lvt W=15 L=0.6 nf=1 m=1
+* Cascoded second stage, both polarities.
+Xpo pu n2 vdd vdd sky130_fd_pr__pfet_01v8_lvt W=350 L=0.7 nf=1 m=1
+Xpc out pb pu vdd sky130_fd_pr__pfet_01v8_lvt W=700 L=0.7 nf=1 m=1
+Xno nd nb 0 0 sky130_fd_pr__nfet_01v8_lvt W=120 L=1 nf=1 m=1
+Xnc out iref nd 0 sky130_fd_pr__nfet_01v8_lvt W=120 L=1 nf=1 m=1
+* Low-current, level-shifted PMOS cascode reference.
+Xbp pd pd vdd vdd sky130_fd_pr__pfet_01v8_lvt W=20 L=0.35 nf=1 m=1
+Rbias pd pb 78k
+Xbn pb nb 0 0 sky130_fd_pr__nfet_01v8_lvt W=5 L=1 nf=1 m=1
+Cbp pb 0 20p
+Cbn nb 0 10p
+Cbc iref 0 10p
+Rc n2 nc 3k
+Cc nc out 1.2p
+.ends dut

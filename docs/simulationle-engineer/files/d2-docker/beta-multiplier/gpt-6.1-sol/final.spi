@@ -1,0 +1,9 @@
+* Self-biased low-current reference: resistor-fed diode NMOS and long-channel sink
+.subckt beta_multiplier_reference vss vdd vref iout
+* poly resistor establishes the operating current from the supply
+XRBIAS vdd vref vss sky130_fd_pr__res_high_po w=1 l=60
+* diode-connected reference transistor
+XND vref vref vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=8.0 nf=4
+* matched, long-channel output sink
+XNO iout vref vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=6.0 nf=4
+.ends beta_multiplier_reference

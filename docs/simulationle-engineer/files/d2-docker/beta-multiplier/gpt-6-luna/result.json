@@ -1,0 +1,73 @@
+{
+  "reward": {
+    "reward": 0.3333333333333333,
+    "tests_total": 12,
+    "tests_passed": 4,
+    "partial": 0.3333333333333333
+  },
+  "summary": {
+    "tests_passed": 4,
+    "tests_total": 12,
+    "raw_score": 0.3333333333333333,
+    "score_caps": [
+      [
+        "PVT reference regulation failure",
+        0.7
+      ],
+      [
+        "output compliance failure",
+        0.8
+      ],
+      [
+        "startup failure",
+        0.75
+      ],
+      [
+        "Monte Carlo robustness failure",
+        0.8
+      ]
+    ],
+    "reward": 0.3333333333333333,
+    "measurements": {
+      "pvt_current_min_a": 0.0006050705498949066,
+      "pvt_current_max_a": 0.001700542726151361,
+      "pvt_vref_min_v": 1.619999999990529,
+      "pvt_vref_max_v": 1.980000000009025,
+      "pvt_power_max_w": 0.0019965682289695497,
+      "pvt_compliance_current_min_a": 0.0003979537447977438,
+      "pvt_compliance_current_max_a": 0.001788941529111548,
+      "pvt_compliance_flatness_max": 0.5680331880916921,
+      "startup_final_current_min_a": 0.0006050705426795711,
+      "startup_final_current_max_a": 0.0017005427228046937,
+      "startup_final_vref_min_v": 1.619999996758549,
+      "startup_final_vref_max_v": 1.979999999351021,
+      "startup_settling_time_max_s": 1.11249999999999e-06,
+      "startup_current_overshoot_ratio_max": 1.0000000098794084,
+      "startup_peak_supply_current_max_a": 0.000235393825972631,
+      "startup_energy_max_j": 5.306542355607423e-09,
+      "mc_current_mean_a": 0.001054202384524133,
+      "mc_current_sigma_a": 3.1656053858249154e-06,
+      "mc_current_yield": 0.0
+    },
+    "ngspice_runs": 95,
+    "workers": 1,
+    "ngspice_threads_per_process": 1,
+    "wall_clock_s": 67.28164295013994,
+    "summed_run_time_s": 66.91873861383647,
+    "slowest_run_time_s": 0.8779047657735646,
+    "failed_runs": []
+  },
+  "exit_code": 1,
+  "wall_seconds": 67.89,
+  "frozen_sha256": "02094a54170660b9f558bf127eb16564b307a62c89a00fc18d7c6121a9c966bc",
+  "requested_model": "gpt-6-luna",
+  "reported_model": "gpt-6-luna",
+  "tool_calls": 12,
+  "responses": 12,
+  "designs_used": 3,
+  "native_runs": 11,
+  "explicit_finish": true,
+  "finish_summary": "Submitted the third and final candidate in /app/circuit.spi. The file passes the public structural checker and has the required beta_multiplier_reference interface. Nominal TT simulation measured 1.055 mA output, vref=1.8 V, and 1.22 mW, far outside specification. The public eight-sample mismatch diagnostic also produced roughly 1.05 mA mean. No further candidate revisions were available under the design limit. PVT and startup signoff were not completed; this candidate is knowingly noncompliant.",
+  "output_tokens": 1798,
+  "agent_wall_seconds": 80.997
+}

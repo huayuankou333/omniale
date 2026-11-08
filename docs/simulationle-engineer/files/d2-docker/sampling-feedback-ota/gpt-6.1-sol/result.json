@@ -1,0 +1,107 @@
+{
+  "reward": {
+    "reward": 0.0,
+    "tests_total": 15,
+    "tests_passed": 0,
+    "partial": 0.0
+  },
+  "summary": {
+    "results": {
+      "summary": {
+        "tests": 15,
+        "passed": 0,
+        "failed": 15
+      },
+      "tests": [
+        {
+          "name": "pvt_phase_margin",
+          "status": "failed",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+        },
+        {
+          "name": "pvt_output_common_mode",
+          "status": "failed",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+        },
+        {
+          "name": "pvt_power",
+          "status": "failed",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+        },
+        {
+          "name": "pvt_static_accuracy",
+          "status": "failed",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+        },
+        {
+          "name": "pvt_dynamic_accuracy",
+          "status": "failed",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+        },
+        {
+          "name": "pvt_rise_settling",
+          "status": "failed",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+        },
+        {
+          "name": "pvt_fall_settling",
+          "status": "failed",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+        },
+        {
+          "name": "pvt_output_range",
+          "status": "failed",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+        },
+        {
+          "name": "pvt_output_noise",
+          "status": "failed",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+        },
+        {
+          "name": "mc_cmrr",
+          "status": "failed",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+        },
+        {
+          "name": "mc_psrr_plus",
+          "status": "failed",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+        },
+        {
+          "name": "mc_psrr_minus",
+          "status": "failed",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+        },
+        {
+          "name": "cmfb_peak_deviation",
+          "status": "failed",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+        },
+        {
+          "name": "cmfb_residual_20ns",
+          "status": "failed",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+        },
+        {
+          "name": "cmfb_residual_100ns",
+          "status": "failed",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+        }
+      ]
+    }
+  },
+  "exit_code": 0,
+  "wall_seconds": 10.033,
+  "frozen_sha256": "51aaddeac04eae00a7dd806cce0e480d226126d58efd2364f9e3ceda79291c20",
+  "requested_model": "gpt-6.1-sol",
+  "reported_model": "gpt-6.1-sol",
+  "tool_calls": 23,
+  "responses": 23,
+  "designs_used": 3,
+  "native_runs": 153,
+  "explicit_finish": true,
+  "finish_summary": "Implemented /app/circuit.spi with the required interface, SKY130 MOS devices and ideal R/C only; both public netlist checks pass. Three candidates were consumed (one revision encountered an unsupported MOS width, corrected in the final candidate). Final-circuit measurements: all 30 PVT points have phase margin 64.22–70.63 degrees, power 3.85–5.66 mW, zero-input output common-mode error <=2.403 mV, and integrated differential output noise 0.693–0.839 mVrms. Nominal open-loop 3-dB differential range is 2.144 V; all 15 tested 1.80-V corner/temperature combinations exceed 1.8 V (minimum 1.970 V); range at 1.98 V was not swept. Specified output-current common-mode disturbances pass at nominal, ss/1.80V/85C, and ff/1.98V/-25C: worst peak deviation 8.583 mV, worst 20-ns residual 0.208 mV, worst 100-ns residual 0.364 mV. Twenty local-mismatch diagnostic seeds 51000–51019 all converged; worst measured CMRR/PSRR+/PSRR- are 77.59/89.37/90.69 dB using separate simultaneous independent test instances (not asserted identical to formal seed/instance setup). Known failure: insufficient high-level closed-loop static accuracy. Nominal high output is 0.889767 V (1.137% error), and nominal rising output at 10 ns is 0.889634 V (1.152% error), so commanded-level rising settling fails. Only 8/30 matrix points pass high-static accuracy and 6/30 pass rising 10-ns accuracy. No claim of full specification compliance. Detailed generated decks, logs, JSON measurements, and final waveform plot are under /app/experiments.",
+  "output_tokens": 9779,
+  "agent_wall_seconds": 3594.937
+}

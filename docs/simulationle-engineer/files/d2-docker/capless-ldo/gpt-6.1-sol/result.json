@@ -1,0 +1,72 @@
+{
+  "reward": {
+    "reward": 0.0,
+    "tests_total": 8,
+    "tests_passed": 0,
+    "partial": 0.0
+  },
+  "summary": {
+    "results": {
+      "summary": {
+        "tests": 8,
+        "passed": 0,
+        "failed": 8
+      },
+      "tests": [
+        {
+          "name": "dc_regulation",
+          "status": "failed",
+          "message": "worst |vout-1.0V| over the 0-20mA DC sweep = 800mV at tt/1.8V/+27C/vmax_v (max 30mV)"
+        },
+        {
+          "name": "quiescent_current",
+          "status": "failed",
+          "message": "blocked: nominal tt regulation failed"
+        },
+        {
+          "name": "psr_1khz",
+          "status": "failed",
+          "message": "blocked: nominal tt regulation failed"
+        },
+        {
+          "name": "psr_100khz",
+          "status": "failed",
+          "message": "blocked: nominal tt regulation failed"
+        },
+        {
+          "name": "psr_1mhz",
+          "status": "failed",
+          "message": "blocked: nominal tt regulation failed"
+        },
+        {
+          "name": "load_step_excursion",
+          "status": "failed",
+          "message": "blocked: nominal tt regulation failed"
+        },
+        {
+          "name": "load_step_recovery",
+          "status": "failed",
+          "message": "blocked: nominal tt regulation failed"
+        },
+        {
+          "name": "startup",
+          "status": "failed",
+          "message": "blocked: nominal tt regulation failed"
+        }
+      ]
+    }
+  },
+  "exit_code": 0,
+  "wall_seconds": 1.291,
+  "frozen_sha256": "230d599643c82eeac37f183b75254c5ba367f20ac32c02be97f4d2cfad986a06",
+  "requested_model": "gpt-6.1-sol",
+  "reported_model": "gpt-6.1-sol",
+  "tool_calls": 9,
+  "responses": 9,
+  "designs_used": 3,
+  "native_runs": 8,
+  "explicit_finish": true,
+  "finish_summary": "Implemented /app/circuit.spi with a VIN-biased folded PMOS-input amplifier, PMOS pass transistor, internal 120k/80k divider, and 962 pF total ideal capacitance. Public policy checks pass. All three circuit candidates have been consumed, so no further edits were made. Final nominal development simulations expose a feedback-polarity error: output remains near VIN rather than regulating. At tt/27 C/1.65 V, DC output spans 1.63174–1.64999 V over 0–20 mA; no-load VIN current is 58.74 uA. Nominal PSR is approximately -0.13 dB, and startup peaks at 1.79926 V for 1.8 V input. Thus the final circuit does not meet the regulation, transient, startup, or PSR targets. Full PVT matrices were not run after this decisive nominal failure.",
+  "output_tokens": 4070,
+  "agent_wall_seconds": 371.362
+}

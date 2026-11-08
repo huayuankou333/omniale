@@ -1,0 +1,26 @@
+* Folded PMOS-input error amplifier and PMOS power stage.
+.subckt capless_ldo vin vout vss vref
+* VIN-derived current references.
+RB vin nb 450k
+XNB nb nb vss vss sky130_fd_pr__nfet_01v8 l=2 w=12
+XBI pb nb vss vss sky130_fd_pr__nfet_01v8 l=2 w=120
+XPB pb pb vin vin sky130_fd_pr__pfet_01v8 l=1 w=30
+XTAIL tail pb vin vin sky130_fd_pr__pfet_01v8 l=1 w=30
+RCB vin cb 450k
+XCB cb cb vss vss sky130_fd_pr__nfet_01v8 l=1 w=4
+* Input transconductor and folded branches.
+XIP a vref tail vin sky130_fd_pr__pfet_01v8 l=0.5 w=100
+XIM b fb tail vin sky130_fd_pr__pfet_01v8 l=0.5 w=100
+XSA a nb vss vss sky130_fd_pr__nfet_01v8 l=2 w=96
+XSB b nb vss vss sky130_fd_pr__nfet_01v8 l=2 w=96
+XFA p cb a vss sky130_fd_pr__nfet_01v8_lvt l=0.5 w=20
+XFB gate cb b vss sky130_fd_pr__nfet_01v8_lvt l=0.5 w=20
+XPA p p vin vin sky130_fd_pr__pfet_01v8 l=1 w=20
+XPBOUT gate p vin vin sky130_fd_pr__pfet_01v8 l=1 w=20
+XPASS vout gate vin vin sky130_fd_pr__pfet_01v8 l=0.15 w=400 nf=40 m=10
+RTOP vout fb 120k
+RBOT fb vss 80k
+CC gate cz 12p
+RZ cz vout 1000
+CO vout vss 950p
+.ends capless_ldo

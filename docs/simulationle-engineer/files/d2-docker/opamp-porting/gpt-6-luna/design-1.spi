@@ -1,0 +1,17 @@
+.subckt dut iref inp inn out
+* 1.2V complementary input differential pair, cascoded first stage and class-A output
+* Reference current sunk by diode-connected NMOS, mirrored to bias branches
+XMREF nb nb 0 0 sky130_fd_pr__nfet_01v8_lvt W=8 L=1 nf=1 m=1
+RREF iref nb 1
+* PMOS input pair; tail current set from reference-derived PMOS mirror
+XPTAIL pt nb vdd vdd sky130_fd_pr__pfet_01v8_lvt W=16 L=1 nf=1 m=1
+XPI n1 inp pt vdd sky130_fd_pr__pfet_01v8_lvt W=16 L=1 nf=1 m=1
+XNI n1 inn nt 0 sky130_fd_pr__nfet_01v8_lvt W=8 L=1 nf=1 m=1
+XNT nt nb 0 0 sky130_fd_pr__nfet_01v8_lvt W=8 L=1 nf=1 m=1
+* second input side output first-stage node
+XPD n2 n2 vdd vdd sky130_fd_pr__pfet_01v8_lvt W=8 L=1 nf=1 m=1
+XND n2 nb 0 0 sky130_fd_pr__nfet_01v8_lvt W=8 L=1 nf=1 m=1
+* second stage, NMOS common source with PMOS active load
+XPO out n2 vdd vdd sky130_fd_pr__pfet_01v8_lvt W=80 L=0.5 nf=1 m=1
+XNO out nb 0 0 sky130_fd_pr__nfet_01v8_lvt W=32 L=0.5 nf=1 m=1
+.ends dut

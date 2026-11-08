@@ -1,0 +1,3357 @@
+{
+  "case": "circuit_sampling_ota_gain8",
+  "title": "增益 8 / 10 ns 采样反馈 OTA",
+  "short": "采样反馈 OTA",
+  "no": "006",
+  "headline": "10 ns 内建立，也要稳定、低噪。",
+  "lead": "自主设计全差分 OTA、偏置和共模反馈，使增益 8 的闭环在 PVT 与失配下保持准确、快速和稳定。",
+  "facts": [
+    [
+      "8×",
+      "闭环目标增益"
+    ],
+    [
+      "10 ns",
+      "双沿建立"
+    ],
+    [
+      "1 mVrms",
+      "噪声上限"
+    ],
+    [
+      "15",
+      "正式检查点"
+    ]
+  ],
+  "kind": "adb",
+  "flow": [
+    "标称电气门槛",
+    "30 点 PVT",
+    "输出范围 / 噪声",
+    "3 点 CMFB",
+    "20 个失配样本"
+  ],
+  "diagnosis": [
+    "标称环路或工作点指标缺失",
+    "标称建立时间指标缺失"
+  ],
+  "explain": [
+    "原评分器未取得完整的标称环路或工作点指标，15 项检查均按原规则阻断。不能把阻断项理解为已独立测量失败。",
+    "自主进行了 153 次开发仿真并读取波形图，但最终电路在原验收测试台中缺少标称 settling 指标，15 项被阻断。"
+  ],
+  "date": "2026.11.06",
+  "updated": "2026.11.08",
+  "run": "20261106T133144Z",
+  "protocol": "docker-shell-three-designs-v2.1",
+  "limits": {
+    "max_designs": 3,
+    "max_policy_errors": 2,
+    "max_native_runs": 160,
+    "max_responses": 36,
+    "max_tool_calls": 96,
+    "max_output_tokens": 98304,
+    "max_output_per_response": 32768,
+    "reasoning_effort": "medium",
+    "max_wall_seconds": 7200,
+    "simulation_timeout": 120,
+    "terminal_timeout": 180
+  },
+  "specs": [
+    [
+      "准确度 / 建立",
+      "0.9 V 差分阶跃；静态与 10 ns 误差 ≤1%，双沿建立 ≤10 ns"
+    ],
+    [
+      "稳定性 / 摆幅",
+      "相位裕度 ≥60°；开环差分输出范围 >1.8 V"
+    ],
+    [
+      "噪声",
+      "10 Hz–10 GHz 积分输出噪声 ≤1 mVrms"
+    ],
+    [
+      "共模 / 功耗",
+      "30 点 PVT：共模误差 ≤25 mV；VDD 功耗 ≤10 mW"
+    ],
+    [
+      "失配抑制",
+      "20 样本：CMRR ≥50 dB；双电源 PSRR ≥60 dB"
+    ],
+    [
+      "CMFB 扰动恢复",
+      "峰值 ≤100 mV；释放后 20 ns ≤5 mV，100 ns ≤1 mV"
+    ]
+  ],
+  "models": [
+    {
+      "reward": {
+        "reward": 0.0,
+        "tests_total": 15,
+        "tests_passed": 0,
+        "partial": 0.0
+      },
+      "designs_used": 3,
+      "native_runs": 3,
+      "responses": 10,
+      "tool_calls": 10,
+      "output_tokens": 2059,
+      "agent_wall_seconds": 181.355,
+      "frozen_sha256": "be3678b0bcb3752af0d91332aae8b86cb89f3ce7a73a70065124b15e035fa6c9",
+      "finish_summary": "Submitted /app/circuit.spi after three candidate designs. The final candidate passed the public netlist policy checker but the attempted nominal transient did not run: ngspice reported an unknown subcircuit because the final design's XN2 instance line omitted the required sky130_fd_pr__nfet_01v8 wrapper name. Accordingly, no electrical performance is established and the design does not meet the requested validation evidence.",
+      "id": "gpt-6-luna",
+      "key": "luna",
+      "label": "GPT-6 Luna",
+      "checks": [
+        {
+          "key": "pvt_phase_margin",
+          "label": "PVT 相位裕度",
+          "requirement": "30 点 PVT：PM ≥60°",
+          "group": "pvt",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics",
+          "raw": {
+            "name": "pvt_phase_margin",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics"
+          }
+        },
+        {
+          "key": "pvt_output_common_mode",
+          "label": "PVT 输出共模",
+          "requirement": "30 点 PVT：共模误差 ≤25 mV",
+          "group": "pvt",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics",
+          "raw": {
+            "name": "pvt_output_common_mode",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics"
+          }
+        },
+        {
+          "key": "pvt_power",
+          "label": "PVT 总功耗",
+          "requirement": "30 点 PVT：VDD 功耗 ≤10 mW",
+          "group": "pvt",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics",
+          "raw": {
+            "name": "pvt_power",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics"
+          }
+        },
+        {
+          "key": "pvt_static_accuracy",
+          "label": "PVT 静态准确度",
+          "requirement": "增益 8：0.9 V 差分阶跃，静态误差 ≤1%",
+          "group": "pvt",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics",
+          "raw": {
+            "name": "pvt_static_accuracy",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics"
+          }
+        },
+        {
+          "key": "pvt_dynamic_accuracy",
+          "label": "PVT 10 ns 准确度",
+          "requirement": "0.9 V 差分阶跃，10 ns 时误差 ≤1%",
+          "group": "pvt",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics",
+          "raw": {
+            "name": "pvt_dynamic_accuracy",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics"
+          }
+        },
+        {
+          "key": "pvt_rise_settling",
+          "label": "PVT 上升建立时间",
+          "requirement": "所有要求 PVT 点：≤10 ns",
+          "group": "pvt",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics",
+          "raw": {
+            "name": "pvt_rise_settling",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics"
+          }
+        },
+        {
+          "key": "pvt_fall_settling",
+          "label": "PVT 下降建立时间",
+          "requirement": "所有要求 PVT 点：≤10 ns",
+          "group": "pvt",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics",
+          "raw": {
+            "name": "pvt_fall_settling",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics"
+          }
+        },
+        {
+          "key": "pvt_output_range",
+          "label": "PVT 输出范围",
+          "requirement": "开环差分输出范围 >1.8 V",
+          "group": "pvt",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics",
+          "raw": {
+            "name": "pvt_output_range",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics"
+          }
+        },
+        {
+          "key": "pvt_output_noise",
+          "label": "PVT 输出噪声",
+          "requirement": "10 Hz–10 GHz 积分 ≤1 mVrms",
+          "group": "noise",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics",
+          "raw": {
+            "name": "pvt_output_noise",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics"
+          }
+        },
+        {
+          "key": "mc_cmrr",
+          "label": "失配共模抑制",
+          "requirement": "20 样本：CMRR ≥50 dB",
+          "group": "mc",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics",
+          "raw": {
+            "name": "mc_cmrr",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics"
+          }
+        },
+        {
+          "key": "mc_psrr_plus",
+          "label": "失配正电源抑制",
+          "requirement": "20 样本：PSRR+ ≥60 dB",
+          "group": "mc",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics",
+          "raw": {
+            "name": "mc_psrr_plus",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics"
+          }
+        },
+        {
+          "key": "mc_psrr_minus",
+          "label": "失配负电源抑制",
+          "requirement": "20 样本：PSRR− ≥60 dB",
+          "group": "mc",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics",
+          "raw": {
+            "name": "mc_psrr_minus",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics"
+          }
+        },
+        {
+          "key": "cmfb_peak_deviation",
+          "label": "CMFB 峰值偏移",
+          "requirement": "3 点共模扰动：峰值 ≤100 mV",
+          "group": "cmfb",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics",
+          "raw": {
+            "name": "cmfb_peak_deviation",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics"
+          }
+        },
+        {
+          "key": "cmfb_residual_20ns",
+          "label": "CMFB 20 ns 残差",
+          "requirement": "扰动释放后 20 ns：≤5 mV",
+          "group": "cmfb",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics",
+          "raw": {
+            "name": "cmfb_residual_20ns",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics"
+          }
+        },
+        {
+          "key": "cmfb_residual_100ns",
+          "label": "CMFB 100 ns 残差",
+          "requirement": "扰动释放后 100 ns：≤1 mV",
+          "group": "cmfb",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics",
+          "raw": {
+            "name": "cmfb_residual_100ns",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal loop or operating-point metrics"
+          }
+        }
+      ],
+      "versions": [
+        {
+          "number": 1,
+          "final": false,
+          "source": ".subckt sampling_feedback_ota vss iref vdd vinn vinp vocm voutn voutp\n* Complementary common-source differential stages with local source degeneration and CM servo.\n* Bias current from sole reference port; resistor scaling establishes internal bias.\nRBI iref vss 100k\n* Differential NMOS input pair\nXM1 x1 vinp tail vss sky130_fd_pr__nfet_01v8 l=0.5 w=40 nf=4\nXM2 x2 vinn tail vss sky130_fd_pr__nfet_01v8 l=0.5 w=40 nf=4\nXMT tail b vss vss sky130_fd_pr__nfet_01v8 l=1 w=20 nf=4\n* PMOS active loads\nXMP1 x1 x1 vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=30 nf=4\nXMP2 x2 x1 vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=30 nf=4\n* Output gain and buffers\nXMN1 voutp x1 vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8\nXMN2 voutn x2 vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8\nXMP3 voutp b vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=100 nf=10\nXMP4 voutn b vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=100 nf=10\n* internal bias nominally gate regulated from iref\nRB1 b vss 50k\nRB2 vdd b 100k\n* continuous common mode feedback via resistive sensing and transistor loads\nRC1 voutp cm 1meg\nRC2 voutn cm 1meg\nRC3 cm vocm 1meg\n.ends sampling_feedback_ota\n",
+          "sha256": "ff8f5706d838207484cdcbd726462844b2ab5df8720ca1d6bc956804a0c345da",
+          "file": "files/d2-docker/sampling-feedback-ota/gpt-6-luna/design-1.spi",
+          "circuit": {
+            "pins": [
+              "vss",
+              "iref",
+              "vdd",
+              "vinn",
+              "vinp",
+              "vocm",
+              "voutn",
+              "voutp"
+            ],
+            "devices": [
+              {
+                "id": "RBI",
+                "kind": "resistor",
+                "nodes": [
+                  "iref",
+                  "vss"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "100k",
+                "line": "RBI iref vss 100k"
+              },
+              {
+                "id": "XM1",
+                "kind": "nmos",
+                "nodes": [
+                  "x1",
+                  "vinp",
+                  "tail",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=0.5 w=40 nf=4",
+                "line": "XM1 x1 vinp tail vss sky130_fd_pr__nfet_01v8 l=0.5 w=40 nf=4"
+              },
+              {
+                "id": "XM2",
+                "kind": "nmos",
+                "nodes": [
+                  "x2",
+                  "vinn",
+                  "tail",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=0.5 w=40 nf=4",
+                "line": "XM2 x2 vinn tail vss sky130_fd_pr__nfet_01v8 l=0.5 w=40 nf=4"
+              },
+              {
+                "id": "XMT",
+                "kind": "nmos",
+                "nodes": [
+                  "tail",
+                  "b",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=20 nf=4",
+                "line": "XMT tail b vss vss sky130_fd_pr__nfet_01v8 l=1 w=20 nf=4"
+              },
+              {
+                "id": "XMP1",
+                "kind": "pmos",
+                "nodes": [
+                  "x1",
+                  "x1",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=0.5 w=30 nf=4",
+                "line": "XMP1 x1 x1 vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=30 nf=4"
+              },
+              {
+                "id": "XMP2",
+                "kind": "pmos",
+                "nodes": [
+                  "x2",
+                  "x1",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=0.5 w=30 nf=4",
+                "line": "XMP2 x2 x1 vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=30 nf=4"
+              },
+              {
+                "id": "XMN1",
+                "kind": "nmos",
+                "nodes": [
+                  "voutp",
+                  "x1",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=0.5 w=80 nf=8",
+                "line": "XMN1 voutp x1 vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8"
+              },
+              {
+                "id": "XMN2",
+                "kind": "nmos",
+                "nodes": [
+                  "voutn",
+                  "x2",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=0.5 w=80 nf=8",
+                "line": "XMN2 voutn x2 vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8"
+              },
+              {
+                "id": "XMP3",
+                "kind": "pmos",
+                "nodes": [
+                  "voutp",
+                  "b",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=0.5 w=100 nf=10",
+                "line": "XMP3 voutp b vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=100 nf=10"
+              },
+              {
+                "id": "XMP4",
+                "kind": "pmos",
+                "nodes": [
+                  "voutn",
+                  "b",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=0.5 w=100 nf=10",
+                "line": "XMP4 voutn b vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=100 nf=10"
+              },
+              {
+                "id": "RB1",
+                "kind": "resistor",
+                "nodes": [
+                  "b",
+                  "vss"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "50k",
+                "line": "RB1 b vss 50k"
+              },
+              {
+                "id": "RB2",
+                "kind": "resistor",
+                "nodes": [
+                  "vdd",
+                  "b"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "100k",
+                "line": "RB2 vdd b 100k"
+              },
+              {
+                "id": "RC1",
+                "kind": "resistor",
+                "nodes": [
+                  "voutp",
+                  "cm"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "1meg",
+                "line": "RC1 voutp cm 1meg"
+              },
+              {
+                "id": "RC2",
+                "kind": "resistor",
+                "nodes": [
+                  "voutn",
+                  "cm"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "1meg",
+                "line": "RC2 voutn cm 1meg"
+              },
+              {
+                "id": "RC3",
+                "kind": "resistor",
+                "nodes": [
+                  "cm",
+                  "vocm"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "1meg",
+                "line": "RC3 cm vocm 1meg"
+              }
+            ],
+            "nets": [
+              "b",
+              "cm",
+              "iref",
+              "tail",
+              "vdd",
+              "vinn",
+              "vinp",
+              "vocm",
+              "voutn",
+              "voutp",
+              "vss",
+              "x1",
+              "x2"
+            ],
+            "counts": {
+              "pmos": 4,
+              "nmos": 5,
+              "resistor": 6,
+              "capacitor": 0
+            }
+          },
+          "svg": "assets/d2-docker/sampling-feedback-ota-luna-1.svg"
+        },
+        {
+          "number": 2,
+          "final": false,
+          "source": ".subckt sampling_feedback_ota vss iref vdd vinn vinp vocm voutn voutp\n* High-gain differential pair with diode-connected loads and symmetric output bias.\nRREF iref vss 100k\nX1 a vinp t vss sky130_fd_pr__nfet_01v8 l=0.5 w=40 nf=4\nX2 b vinn t vss sky130_fd_pr__nfet_01v8 l=0.5 w=40 nf=4\nXT t vb vss vss sky130_fd_pr__nfet_01v8 l=1 w=40 nf=4\nX3 a a vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=40 nf=4\nX4 b a vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=40 nf=4\n* wide complementary output devices biased around vocm\nXP1 voutp vb vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=80 nf=8\nXP2 voutn vb vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=80 nf=8\nXN1 voutp a vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8\nXN2 voutn b vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8\nRB1 vdd vb 20k\nRB2 vb vss 20k\nRCP voutp cm 100k\nRCN voutn cm 100k\nRCM cm vocm 100k\n.ends sampling_feedback_ota\n",
+          "sha256": "735471d0f9e513483233c42b6a05974130e363f9402d69baddd2e8361ad5b586",
+          "file": "files/d2-docker/sampling-feedback-ota/gpt-6-luna/design-2.spi",
+          "circuit": {
+            "pins": [
+              "vss",
+              "iref",
+              "vdd",
+              "vinn",
+              "vinp",
+              "vocm",
+              "voutn",
+              "voutp"
+            ],
+            "devices": [
+              {
+                "id": "RREF",
+                "kind": "resistor",
+                "nodes": [
+                  "iref",
+                  "vss"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "100k",
+                "line": "RREF iref vss 100k"
+              },
+              {
+                "id": "X1",
+                "kind": "nmos",
+                "nodes": [
+                  "a",
+                  "vinp",
+                  "t",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=0.5 w=40 nf=4",
+                "line": "X1 a vinp t vss sky130_fd_pr__nfet_01v8 l=0.5 w=40 nf=4"
+              },
+              {
+                "id": "X2",
+                "kind": "nmos",
+                "nodes": [
+                  "b",
+                  "vinn",
+                  "t",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=0.5 w=40 nf=4",
+                "line": "X2 b vinn t vss sky130_fd_pr__nfet_01v8 l=0.5 w=40 nf=4"
+              },
+              {
+                "id": "XT",
+                "kind": "nmos",
+                "nodes": [
+                  "t",
+                  "vb",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=40 nf=4",
+                "line": "XT t vb vss vss sky130_fd_pr__nfet_01v8 l=1 w=40 nf=4"
+              },
+              {
+                "id": "X3",
+                "kind": "pmos",
+                "nodes": [
+                  "a",
+                  "a",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=1 w=40 nf=4",
+                "line": "X3 a a vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=40 nf=4"
+              },
+              {
+                "id": "X4",
+                "kind": "pmos",
+                "nodes": [
+                  "b",
+                  "a",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=1 w=40 nf=4",
+                "line": "X4 b a vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=40 nf=4"
+              },
+              {
+                "id": "XP1",
+                "kind": "pmos",
+                "nodes": [
+                  "voutp",
+                  "vb",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=0.5 w=80 nf=8",
+                "line": "XP1 voutp vb vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=80 nf=8"
+              },
+              {
+                "id": "XP2",
+                "kind": "pmos",
+                "nodes": [
+                  "voutn",
+                  "vb",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=0.5 w=80 nf=8",
+                "line": "XP2 voutn vb vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=80 nf=8"
+              },
+              {
+                "id": "XN1",
+                "kind": "nmos",
+                "nodes": [
+                  "voutp",
+                  "a",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=0.5 w=80 nf=8",
+                "line": "XN1 voutp a vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8"
+              },
+              {
+                "id": "XN2",
+                "kind": "nmos",
+                "nodes": [
+                  "voutn",
+                  "b",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=0.5 w=80 nf=8",
+                "line": "XN2 voutn b vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8"
+              },
+              {
+                "id": "RB1",
+                "kind": "resistor",
+                "nodes": [
+                  "vdd",
+                  "vb"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "20k",
+                "line": "RB1 vdd vb 20k"
+              },
+              {
+                "id": "RB2",
+                "kind": "resistor",
+                "nodes": [
+                  "vb",
+                  "vss"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "20k",
+                "line": "RB2 vb vss 20k"
+              },
+              {
+                "id": "RCP",
+                "kind": "resistor",
+                "nodes": [
+                  "voutp",
+                  "cm"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "100k",
+                "line": "RCP voutp cm 100k"
+              },
+              {
+                "id": "RCN",
+                "kind": "resistor",
+                "nodes": [
+                  "voutn",
+                  "cm"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "100k",
+                "line": "RCN voutn cm 100k"
+              },
+              {
+                "id": "RCM",
+                "kind": "resistor",
+                "nodes": [
+                  "cm",
+                  "vocm"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "100k",
+                "line": "RCM cm vocm 100k"
+              }
+            ],
+            "nets": [
+              "a",
+              "b",
+              "cm",
+              "iref",
+              "t",
+              "vb",
+              "vdd",
+              "vinn",
+              "vinp",
+              "vocm",
+              "voutn",
+              "voutp",
+              "vss"
+            ],
+            "counts": {
+              "pmos": 4,
+              "nmos": 5,
+              "resistor": 6,
+              "capacitor": 0
+            }
+          },
+          "svg": "assets/d2-docker/sampling-feedback-ota-luna-2.svg"
+        },
+        {
+          "number": 3,
+          "final": true,
+          "source": ".subckt sampling_feedback_ota vss iref vdd vinn vinp vocm voutn voutp\n* Differential voltage amplifier with internal reference and continuous CM control.\nRREF iref vss 100k\nX1 a vinp t vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8\nX2 b vinn t vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8\nXT t vb vss vss sky130_fd_pr__nfet_01v8 l=1 w=80 nf=8\nX3 a a vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=80 nf=8\nX4 b a vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=80 nf=8\n* output stage\nXP1 voutp vb vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=160 nf=16\nXP2 voutn vb vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=160 nf=16\nXN1 voutp a vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=160 nf=16\nXN2 voutn b vss sky130_fd_pr__nfet_01v8 l=0.5 w=160 nf=16\nRB1 vdd vb 20k\nRB2 vb vss 20k\nRCP voutp cm 100k\nRCN voutn cm 100k\nRCM cm vocm 100k\n.ends sampling_feedback_ota\n",
+          "sha256": "be3678b0bcb3752af0d91332aae8b86cb89f3ce7a73a70065124b15e035fa6c9",
+          "file": "files/d2-docker/sampling-feedback-ota/gpt-6-luna/final.spi",
+          "circuit": {
+            "pins": [
+              "vss",
+              "iref",
+              "vdd",
+              "vinn",
+              "vinp",
+              "vocm",
+              "voutn",
+              "voutp"
+            ],
+            "devices": [
+              {
+                "id": "RREF",
+                "kind": "resistor",
+                "nodes": [
+                  "iref",
+                  "vss"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "100k",
+                "line": "RREF iref vss 100k"
+              },
+              {
+                "id": "X1",
+                "kind": "nmos",
+                "nodes": [
+                  "a",
+                  "vinp",
+                  "t",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=0.5 w=80 nf=8",
+                "line": "X1 a vinp t vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8"
+              },
+              {
+                "id": "X2",
+                "kind": "nmos",
+                "nodes": [
+                  "b",
+                  "vinn",
+                  "t",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=0.5 w=80 nf=8",
+                "line": "X2 b vinn t vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8"
+              },
+              {
+                "id": "XT",
+                "kind": "nmos",
+                "nodes": [
+                  "t",
+                  "vb",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=80 nf=8",
+                "line": "XT t vb vss vss sky130_fd_pr__nfet_01v8 l=1 w=80 nf=8"
+              },
+              {
+                "id": "X3",
+                "kind": "pmos",
+                "nodes": [
+                  "a",
+                  "a",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=1 w=80 nf=8",
+                "line": "X3 a a vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=80 nf=8"
+              },
+              {
+                "id": "X4",
+                "kind": "pmos",
+                "nodes": [
+                  "b",
+                  "a",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=1 w=80 nf=8",
+                "line": "X4 b a vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=80 nf=8"
+              },
+              {
+                "id": "XP1",
+                "kind": "pmos",
+                "nodes": [
+                  "voutp",
+                  "vb",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=0.5 w=160 nf=16",
+                "line": "XP1 voutp vb vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=160 nf=16"
+              },
+              {
+                "id": "XP2",
+                "kind": "pmos",
+                "nodes": [
+                  "voutn",
+                  "vb",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=0.5 w=160 nf=16",
+                "line": "XP2 voutn vb vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=160 nf=16"
+              },
+              {
+                "id": "XN1",
+                "kind": "nmos",
+                "nodes": [
+                  "voutp",
+                  "a",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=0.5 w=160 nf=16",
+                "line": "XN1 voutp a vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=160 nf=16"
+              },
+              {
+                "id": "XN2",
+                "kind": "nmos",
+                "nodes": [
+                  "voutn",
+                  "b",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=0.5 w=160 nf=16",
+                "line": "XN2 voutn b vss sky130_fd_pr__nfet_01v8 l=0.5 w=160 nf=16"
+              },
+              {
+                "id": "RB1",
+                "kind": "resistor",
+                "nodes": [
+                  "vdd",
+                  "vb"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "20k",
+                "line": "RB1 vdd vb 20k"
+              },
+              {
+                "id": "RB2",
+                "kind": "resistor",
+                "nodes": [
+                  "vb",
+                  "vss"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "20k",
+                "line": "RB2 vb vss 20k"
+              },
+              {
+                "id": "RCP",
+                "kind": "resistor",
+                "nodes": [
+                  "voutp",
+                  "cm"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "100k",
+                "line": "RCP voutp cm 100k"
+              },
+              {
+                "id": "RCN",
+                "kind": "resistor",
+                "nodes": [
+                  "voutn",
+                  "cm"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "100k",
+                "line": "RCN voutn cm 100k"
+              },
+              {
+                "id": "RCM",
+                "kind": "resistor",
+                "nodes": [
+                  "cm",
+                  "vocm"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "100k",
+                "line": "RCM cm vocm 100k"
+              }
+            ],
+            "nets": [
+              "a",
+              "b",
+              "cm",
+              "iref",
+              "t",
+              "vb",
+              "vdd",
+              "vinn",
+              "vinp",
+              "vocm",
+              "voutn",
+              "voutp",
+              "vss"
+            ],
+            "counts": {
+              "pmos": 4,
+              "nmos": 5,
+              "resistor": 6,
+              "capacitor": 0
+            }
+          },
+          "svg": "assets/d2-docker/sampling-feedback-ota-luna-3.svg"
+        }
+      ],
+      "diagnosis": "标称环路或工作点指标缺失",
+      "explanation": "原评分器未取得完整的标称环路或工作点指标，15 项检查均按原规则阻断。不能把阻断项理解为已独立测量失败。",
+      "images": [],
+      "activities": [
+        {
+          "turn": "turn_001",
+          "name": "terminal",
+          "arguments": {
+            "command": "cat /app/AGENT_PROTOCOL.md; cat /opt/analog-arena/SKY130_NETLIST_GUIDE.md; ls -R /app | head -100; cat /app/circuit.spi; cat /app/experiments/* 2>/dev/null | head -100",
+            "timeout_seconds": 10
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "You are the engineering agent, not a netlist-only answer generator.\nImplement the supplied gain-8 10-ns sampling-feedback OTA yourself from its empty starter.\nYou have an actual persistent Linux shell, Python, NumPy, matplotlib, the SKY130 PDK\nand the real ngspice-46 simulator. Use the terminal tool to inspect the public\nmaterials, write/edit your DUT and testbenches, choose experiments, run simulations,\ninspect logs and numerical results, plot them, and revise your design yourself.\nOnly the final /app/circuit.spi is independently graded. No reference solutions,\nprivate verifier implementation, internet access or model API credentials are\ninside your design container. Use /app/experiments for temporary scripts and decks.\n\nBudget: at most THREE DISTINCT VALID CIRCUITS may reach simulation or final\nsubmission. The first complete design and up to two revisions are the three designs.\nAll valid nonconvergent designs count. The trusted ngspice gateway counts the DUT\nin /app/circuit.spi independently of testbench, process corner, voltage and temperature.\nYou may run many experiments on the same design (up to 160 native simulations).\nEvery topology, device dimension, bias or passive value change creates a new design.\nYou may alter independent external V/I sources for test conditions only.\nIn-process DUT alteration, altermod/alterparam, DUT parameter sweeps and DUT/model definitions\noutside /app/circuit.spi are disabled to enforce this budget. Choose different\ntest conditions by writing separate testbenches. Comments/whitespace/case changes\ndo not create a new design. Two extra netlist policy corrections are allowed.\nDo not attempt to bypass the simulator gateway or run an alternative simulator.\nUse normal ngspice -b TESTBENCH [-o LOG] [-r RAW]. Testbenches must include\n/app/circuit.spi and the fixed /opt/sky130 libraries. Use /app/experiments for all generated logs/raw data; worker /tmp is separate.\nNo fixed diagnostic suite is automatically run or supplied as host-generated feedback: you select every experiment.\nThe declared formal targets remain the task's original ones. The formal verifier\nruns only after freeze and is never returned for another design revision.\nUse python3 /opt/simulationle-policy/check.py /app/circuit.spi for full public policy checks.\nCall finish when ready. The last on-disk circuit is submitted at budget exhaustion.\n# SKY130 netlist reference\n\nThis reference lists SKY130 SPICE device syntax, geometry conventions, hierarchy rules, simulation corners, and measurement definitions.\n\n## Model selection\n\nLoad the required SKY130 model library in the testbench and select the intended process corner with `.lib`. Keep model loading out of the circuit under test so that the same circuit can be reused with different corners and model installations.\n\n```spice\n.lib \"/path/to/sky130.lib.spice\" tt\n```\n\nUse a model set that contains every device instantiated by the circuit. Core CMOS simulations may need only the continuous MOS models, while physical resistors, capacitors, varactors, inductors, BJTs, and specialized devices require their corresponding PDK models.\n\n## MOS devices\n\nThe commonly used 1.8 V core and low-threshold MOS wrappers are:\n\n```spice\nsky130_fd_pr__nfet_01v8\nsky130_fd_pr__pfet_01v8\nsky130_fd_pr__nfet_01v8_lvt\nsky130_fd_pr__pfet_01v8_lvt\n```\n\nThe 5.0 V-gate/10.5 V-drain MOS wrappers are:\n\n```spice\nsky130_fd_pr__nfet_g5v0d10v5\nsky130_fd_pr__pfet_g5v0d10v5\n```\n\nInstantiate MOS wrappers as four-terminal subcircuits:\n\n```spice\nXMN drain gate source bulk sky130_fd_pr__nfet_01v8 l=0.15 w=0.84 nf=2\nXMP drain gate source bulk sky130_fd_pr__pfet_01v8 l=0.15 w=1.68 nf=2\nXNHV drain gate source bulk sky130_fd_pr__nfet_g5v0d10v5 l=0.5 w=10 nf=5\nXPHV drain gate source bulk sky130_fd_pr__pfet_g5v0d10v5 l=0.5 w=20 nf=5\n```\n\nThe terminal order is drain, gate, source, bulk.\n\nThe SKY130 ngspice model libraries set `scale=1u`; therefore, numeric `l` and `w` values are expressed in micrometres and do not use a `u` suffix.\n\n| Wrapper | Minimum modeled `l` (µm) |\n| --- | ---: |\n| `sky130_fd_pr__nfet_01v8` | `0.15` |\n| `sky130_fd_pr__pfet_01v8` | `0.15` |\n| `sky130_fd_pr__nfet_01v8_lvt` | `0.15` |\n| `sky130_fd_pr__pfet_01v8_lvt` | `0.35` |\n| `sky130_fd_pr__nfet_g5v0d10v5` | `0.50` |\n| `sky130_fd_pr__pfet_g5v0d10v5` | `0.50` |\n\nThe `w` parameter is total channel width, `nf` is the positive integer number of fingers, and `w/nf` is the width of one finger.\n\n## Subcircuits and hierarchy\n\nDefine a subcircuit with `.subckt` and terminate it with `.ends`:\n\n```spice\n.subckt example vss ibias vdd vinn vinp vout\n* Circuit implementation.\n.ends example\n```\n\nNodes listed after the subcircuit name are external terminals. Other nodes are local to the subcircuit, except node `0` and nodes declared with `.global`.\n\n## Passive and RF devices\n\nIdeal passives use ordinary SPICE syntax:\n\n```spice\nR1 n1 n2 10k\nC1 n2 vss 2p\nL1 n3 n4 4n\n```\n\nSPICE suffixes are case-insensitive, and `M` means milli rather than mega. Use `meg` for mega.\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_002",
+          "name": "terminal",
+          "arguments": {
+            "command": "cat /app/testbench/README.md; cat /app/testbench/tb_nominal.spi; cat /app/testbench/tb_cmfb_nominal.spi; cat /opt/analog-arena/SKY130_NETLIST_GUIDE.md >/dev/null; cat > /app/circuit.spi <<'EOF'\n.subckt sampling_feedback_ota vss iref vdd vinn vinp vocm voutn voutp\n* Complementary common-source differential stages with local source degeneration and CM servo.\n* Bias current from sole reference port; resistor scaling establishes internal bias.\nRBI iref vss 100k\n* Differential NMOS input pair\nM1 x1 vinp tail vss sky130_fd_pr__nfet_01v8 l=0.5 w=40 nf=4\nM2 x2 vinn tail vss sky130_fd_pr__nfet_01v8 l=0.5 w=40 nf=4\nMT tail b vss vss sky130_fd_pr__nfet_01v8 l=1 w=20 nf=4\n* PMOS active loads\nMP1 x1 x1 vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=30 nf=4\nMP2 x2 x1 vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=30 nf=4\n* Output gain and buffers\nMN1 voutp x1 vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8\nMN2 voutn x2 vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8\nMP3 voutp b vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=100 nf=10\nMP4 voutn b vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=100 nf=10\n* internal bias nominally gate regulated from iref\nRB1 b vss 50k\nRB2 vdd b 100k\n* continuous common mode feedback via resistive sensing and transistor loads\nRC1 voutp cm 1meg\nRC2 voutn cm 1meg\nRC3 cm vocm 1meg\n.ends sampling_feedback_ota\nEOF\npython3 /opt/analog-arena/check_circuit.py /app/circuit.spi --allow-ideal R C; cat /app/testbench/tb_nominal.spi",
+            "timeout_seconds": 10
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "# Public development diagnostics\n\nRun these files from this directory with `ngspice -b <file>`. They use the\ndeclared nominal supply, temperature, interface, and electrical definitions.\nThey are diagnostics, not the complete hidden PVT or mismatch sweep.\n\n- `tb_nominal.spi`: closed-loop accuracy and settling for 0 V to 0.9 V\n  differential-output transitions.\n- `tb_loop_nominal.spi`: return-ratio loop gain, unity crossing, phase margin,\n  output common mode, and power.\n- `tb_noise_nominal.spi`: closed-loop differential output noise from 10 Hz to\n  10 GHz.\n- `tb_range_nominal.spi`: 3 dB-compression differential output range from the\n  slope of one nominal DC transfer sweep.\n- `tb_cmfb_nominal.spi`: common-mode static error and recovery after the\n  specified 50 uA-per-output disturbance; the peak, 20 ns, and 100 ns\n  deviation limits are 100 mV, 5 mV, and 1 mV, respectively.\n- `tb_mismatch_nominal.spi`: one fixed-seed local-mismatch common-mode, VDD,\n  and VSS feedthrough diagnostic at 10 Hz. Final signoff uses the published\n  20 fixed-seed sample set.\n\nUse `closed_loop_differential_gain_db` from the nominal-TT\n`tb_loop_nominal.spi` run as the common numerator. At 10 Hz, compute CMRR as\n`closed_loop_differential_gain_db - mc_closed_cm_10_db`; compute PSRR+ and\nPSRR- by replacing the second term with\n`mc_closed_vdd_10_db` and `mc_closed_vss_10_db`, respectively.\n* Public nominal gain-8 sampling-feedback transient.\n.lib \"/opt/sky130/continuous/sky130.lib.spice\" tt\n.include \"../circuit.spi\"\n.options reltol=2e-4\nVSS vss 0 0\nVDD vdd vss 1.8\nIREF vdd iref 50u\nVOCM vocm vss 0.9\nVSIGP srcp vss PULSE(0.9 0.95625 25n 50p 50p 40n 100n)\nVSIGN srcn vss PULSE(0.9 0.84375 25n 50p 50p 40n 100n)\nCSP srcp vinp 1p\nCSN srcn vinn 1p\nCFP voutn vinp 125f\nCFN voutp vinn 125f\nLBP vocm vinp 1G\nLBN vocm vinn 1G\nXOTA vss iref vdd vinn vinp vocm voutn voutp sampling_feedback_ota\nCLP voutp vss 250f\nCLN voutn vss 250f\n.control\ntran 10p 105n\nlet differential_output = v(voutp)-v(voutn)\nlet rise_error = abs(differential_output-0.9)\nlet fall_error = abs(differential_output)\nmeas tran rise_tolerance_cross when rise_error=9m cross=last from=25n to=64n\nmeas tran fall_tolerance_cross when fall_error=9m cross=last from=65n to=105n\nmeas tran rise_output_at_10ns find differential_output at=35n\nmeas tran fall_output_at_10ns find differential_output at=75n\nmeas tran high_static_output find differential_output at=64n\nmeas tran low_static_output find differential_output at=104n\nlet rise_settling_time_s = rise_tolerance_cross-25n\nlet fall_settling_time_s = fall_tolerance_cross-65n\nlet rise_dynamic_error_fraction = abs(rise_output_at_10ns-0.9)/0.9\nlet fall_dynamic_error_fraction = abs(fall_output_at_10ns)/0.9\nlet high_static_error_fraction = abs(high_static_output-0.9)/0.9\nlet low_static_error_fraction = abs(low_static_output)/0.9\nprint rise_settling_time_s fall_settling_time_s\nprint rise_dynamic_error_fraction fall_dynamic_error_fraction\nprint high_static_error_fraction low_static_error_fraction\n.endc\n.end\n* Public nominal CMFB recovery diagnostic with the specified disturbance.\n* Limits: peak deviation <=100 mV, 20 ns residual <=5 mV,\n* and 100 ns residual <=1 mV.\n.lib \"/opt/sky130/continuous/sky130.lib.spice\" tt\n.include \"../circuit.spi\"\n.options filetype=ascii reltol=2e-4 abstol=1e-12 vntol=1e-8 method=gear\nVSS vss 0 0\nVDD vdd vss 1.8\nIREF vdd iref 50u\nIREFR vdd irefr 50u\nVOCM vocm vss 0.9\nVINP vinp vss 0.9\nVINN vinn vss 0.9\nXOTA vss iref vdd vinn vinp vocm voutn voutp sampling_feedback_ota\nXREF vss irefr vdd vinn vinp vocm routn routp sampling_feedback_ota\nCLP voutp vss 250f\nCLN voutn vss 250f\nCLRP routp vss 250f\nCLRN routn vss 250f\nIDISTP voutp vss PULSE(0 50u 20n 100p 100p 20n 200n)\nIDISTN voutn vss PULSE(0 50u 20n 100p 100p 20n 200n)\n.control\ntran 20p 150n\nlet cm_error = abs(0.5*(v(voutp)+v(voutn))-v(vocm))\nlet cm_deviation = abs(0.5*(v(voutp)+v(voutn))-0.5*(v(routp)+v(routn)))\nlet cmfb_peak_limit_v = 100m\nlet cmfb_residual_20ns_limit_v = 5m\nlet cmfb_residual_100ns_limit_v = 1m\nmeas tran cmfb_static_error_v find cm_error at=15n\nmeas tran cmfb_peak_deviation_v max cm_deviation from=20n to=45n\nmeas tran cmfb_residual_20ns_v find cm_deviation at=60.2n\nmeas tran cmfb_residual_100ns_v find cm_deviation at=140.2n\nprint cmfb_static_error_v cmfb_peak_deviation_v cmfb_residual_20ns_v cmfb_residual_100ns_v\nprint cmfb_peak_limit_v cmfb_residual_20ns_limit_v cmfb_residual_100ns_limit_v\n.endc\n.end\n/app/circuit.spi:6: disallowed M: M1 x1 vinp tail vss sky130_fd_pr__nfet_01v8 l=0.5 w=40 nf=4\n/app/circuit.spi:7: disallowed M: M2 x2 vinn tail vss sky130_fd_pr__nfet_01v8 l=0.5 w=40 nf=4\n/app/circuit.spi:8: disallowed M: MT tail b vss vss sky130_fd_pr__nfet_01v8 l=1 w=20 nf=4\n/app/circuit.spi:10: disallowed M: MP1 x1 x1 vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=30 nf=4\n/app/circuit.spi:11: disallowed M: MP2 x2 x1 vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=30 nf=4\n/app/circuit.spi:13: disallowed M: MN1 voutp x1 vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8\n/app/circuit.s",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_003",
+          "name": "terminal",
+          "arguments": {
+            "command": "",
+            "timeout_seconds": 10
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_004",
+          "name": "terminal",
+          "arguments": {
+            "command": "python3 /opt/simulationle-policy/check.py /app/circuit.spi; cat /opt/analog-arena/check_circuit.py | head -20;",
+            "timeout_seconds": 10
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "/app/circuit.spi:6: disallowed M: M1 x1 vinp tail vss sky130_fd_pr__nfet_01v8 l=0.5 w=40 nf=4\n/app/circuit.spi:7: disallowed M: M2 x2 vinn tail vss sky130_fd_pr__nfet_01v8 l=0.5 w=40 nf=4\n/app/circuit.spi:8: disallowed M: MT tail b vss vss sky130_fd_pr__nfet_01v8 l=1 w=20 nf=4\n/app/circuit.spi:10: disallowed M: MP1 x1 x1 vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=30 nf=4\n/app/circuit.spi:11: disallowed M: MP2 x2 x1 vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=30 nf=4\n/app/circuit.spi:13: disallowed M: MN1 voutp x1 vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8\n/app/circuit.spi:14: disallowed M: MN2 voutn x2 vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8\n/app/circuit.spi:15: disallowed M: MP3 voutp b vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=100 nf=10\n/app/circuit.spi:16: disallowed M: MP4 voutn b vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=100 nf=10\n#!/usr/bin/env python3\n\"\"\"Check that a circuit uses approved PDK and ideal elements.\"\"\"\n\nimport argparse\nimport math\nimport os\nimport re\nfrom pathlib import Path\n\n\nIDEAL_ELEMENTS = {\"R\", \"C\", \"L\", \"K\"}\nALLOWED_DIRECTIVES = {\".subckt\", \".ends\"}\nSOURCE_PDK_LIST = Path(__file__).with_name(\"sky130_pdk_subcircuits.txt\")\nNUMBER_RE = re.compile(\n    r\"^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:e[+-]?\\d+)?[a-z]*$\",\n    re.IGNORECASE,\n)\nSCALE_FACTORS = {\n    \"t\": 1e12,\n    \"g\": 1e9,\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_005",
+          "name": "terminal",
+          "arguments": {
+            "command": "python3 - <<'PY'\np='/app/circuit.spi'\ns=open(p).read()\n# replace MOS prefix M device syntax with wrapper X syntax, terminal order preserved\nimport re\ns=re.sub(r'^(M\\w+) (\\S+) (\\S+) (\\S+) (\\S+) (sky130_fd_pr__\\S+)',r'X\\1 \\2 \\3 \\4 \\5 \\6',s,flags=re.M)\nopen(p,'w').write(s)\nPY\npython3 /opt/analog-arena/check_circuit.py /app/circuit.spi --allow-ideal R C; python3 /opt/simulationle-policy/check.py /app/circuit.spi",
+            "timeout_seconds": 10
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "/app/circuit.spi: netlist check passed\n/app/circuit.spi: netlist check passed\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_006",
+          "name": "terminal",
+          "arguments": {
+            "command": "cd /app/testbench && ngspice -b tb_nominal.spi -o /app/experiments/nom.log; tail -30 /app/experiments/nom.log",
+            "timeout_seconds": 180
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: /app/experiments/nom.log\n\nvsign#branch                                 0\nvsigp#branch                                 0\nvocm#branch                       -5.70122e-07\nvdd#branch                        -0.000865659\nvss#branch                        -3.67204e-16\n\n\nNo. of Data Rows : 10522\n\nError: measure  rise_tolerance_cross  when(WHEN) : out of interval\n meas tran rise_tolerance_cross when rise_error=9m cross=last from=25n to=64n failed!\n\n\nError: measure  fall_tolerance_cross  when(WHEN) : out of interval\n meas tran fall_tolerance_cross when fall_error=9m cross=last from=65n to=105n failed!\n\nrise_output_at_10ns =  2.39237e-02\nfall_output_at_10ns =  3.19729e-02\nhigh_static_output  =  4.04525e-02\nlow_static_output   =  2.84047e-02\nWarning from checkvalid: vector rise_tolerance_cross is not available or has zero length.\nError: RHS \"rise_tolerance_cross-25n\" invalid\nWarning from checkvalid: vector fall_tolerance_cross is not available or has zero length.\nError: RHS \"fall_tolerance_cross-65n\" invalid\nWarning from checkvalid: vector rise_settling_time_s is not available or has zero length.\nrise_dynamic_error_fraction = 9.734181e-01\nfall_dynamic_error_fraction = 3.552548e-02\nhigh_static_error_fraction = 9.550527e-01\nlow_static_error_fraction = 3.156082e-02\nNote: Simulation executed from .control section \n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_007",
+          "name": "terminal",
+          "arguments": {
+            "command": "cat /app/circuit.spi; cat /app/testbench/tb_loop_nominal.spi",
+            "timeout_seconds": 10
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": ".subckt sampling_feedback_ota vss iref vdd vinn vinp vocm voutn voutp\n* Complementary common-source differential stages with local source degeneration and CM servo.\n* Bias current from sole reference port; resistor scaling establishes internal bias.\nRBI iref vss 100k\n* Differential NMOS input pair\nXM1 x1 vinp tail vss sky130_fd_pr__nfet_01v8 l=0.5 w=40 nf=4\nXM2 x2 vinn tail vss sky130_fd_pr__nfet_01v8 l=0.5 w=40 nf=4\nXMT tail b vss vss sky130_fd_pr__nfet_01v8 l=1 w=20 nf=4\n* PMOS active loads\nXMP1 x1 x1 vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=30 nf=4\nXMP2 x2 x1 vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=30 nf=4\n* Output gain and buffers\nXMN1 voutp x1 vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8\nXMN2 voutn x2 vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8\nXMP3 voutp b vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=100 nf=10\nXMP4 voutn b vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=100 nf=10\n* internal bias nominally gate regulated from iref\nRB1 b vss 50k\nRB2 vdd b 100k\n* continuous common mode feedback via resistive sensing and transistor loads\nRC1 voutp cm 1meg\nRC2 voutn cm 1meg\nRC3 cm vocm 1meg\n.ends sampling_feedback_ota\n* Public nominal return-ratio diagnostic for Cs=1pF, Cf=125fF, CL=250fF.\n.lib \"/opt/sky130/continuous/sky130.lib.spice\" tt\n.include \"../circuit.spi\"\n.options filetype=ascii reltol=2e-4 abstol=1e-12 vntol=1e-7\nVSS vss 0 0\nVDD vdd vss 1.8\nIREF vdd iref 50u\nVOCM vocm vss 0.9\nVINP vinp vss DC 0.9 AC 0.5\nVINN vinn vss DC 0.9 AC -0.5\nXOTA vss iref vdd vinn vinp vocm voutn voutp sampling_feedback_ota\nCLP voutp vss 361.111f\nCLN voutn vss 361.111f\n.control\nop\nlet output_common_mode_error_v = abs(0.5*(v(voutp)+v(voutn))-v(vocm))\nlet power_w = -(v(vdd)-v(vss))*i(vdd)\nprint output_common_mode_error_v\nprint power_w\nac dec 80 10 100G\nlet differential_gain = v(voutp)-v(voutn)\nlet loop_gain = differential_gain*0.111111111111\nlet closed_loop_differential_response = differential_gain/(1+loop_gain)\nlet loop_gain_db = vdb(loop_gain)\nlet loop_phase_deg = 180/pi*cph(loop_gain)\nmeas ac low_frequency_loop_gain_db find loop_gain_db at=10\nmeas ac closed_loop_differential_gain_db find vdb(closed_loop_differential_response) at=10\nmeas ac loop_ugb_hz when loop_gain_db=0 fall=1\nmeas ac phase_at_ugb_deg find loop_phase_deg when loop_gain_db=0 fall=1\nlet phase_margin_deg = 180+phase_at_ugb_deg\nprint phase_margin_deg\n.endc\n.end\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_008",
+          "name": "terminal",
+          "arguments": {
+            "command": "cat > /app/circuit.spi <<'EOF'\n.subckt sampling_feedback_ota vss iref vdd vinn vinp vocm voutn voutp\n* High-gain differential pair with diode-connected loads and symmetric output bias.\nRREF iref vss 100k\nX1 a vinp t vss sky130_fd_pr__nfet_01v8 l=0.5 w=40 nf=4\nX2 b vinn t vss sky130_fd_pr__nfet_01v8 l=0.5 w=40 nf=4\nXT t vb vss vss sky130_fd_pr__nfet_01v8 l=1 w=40 nf=4\nX3 a a vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=40 nf=4\nX4 b a vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=40 nf=4\n* wide complementary output devices biased around vocm\nXP1 voutp vb vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=80 nf=8\nXP2 voutn vb vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=80 nf=8\nXN1 voutp a vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8\nXN2 voutn b vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8\nRB1 vdd vb 20k\nRB2 vb vss 20k\nRCP voutp cm 100k\nRCN voutn cm 100k\nRCM cm vocm 100k\n.ends sampling_feedback_ota\nEOF\npython3 /opt/analog-arena/check_circuit.py /app/circuit.spi --allow-ideal R C\ncd /app/testbench && ngspice -b tb_nominal.spi -o /app/experiments/r2.log; tail -25 /app/experiments/r2.log",
+            "timeout_seconds": 180
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "/app/circuit.spi: netlist check passed\n******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: /app/experiments/r2.log\n\nxota.vb                                    0.9\nxota.cm                                1.46484\nlbn#branch                                   0\nlbp#branch                                   0\nvsign#branch                                 0\nvsigp#branch                                 0\nvocm#branch                        5.64844e-06\nvdd#branch                        -0.000436707\nvss#branch                        -1.08941e-15\n\n\nNo. of Data Rows : 10525\nrise_tolerance_cross=  6.01125e-08\nfall_tolerance_cross=  9.90297e-08\nrise_output_at_10ns =  1.25284e+00\nfall_output_at_10ns =  4.37636e-01\nhigh_static_output  =  9.93551e-01\nlow_static_output   =  4.50279e-02\nrise_settling_time_s = 3.511245e-08\nfall_settling_time_s = 3.402971e-08\nrise_dynamic_error_fraction = 3.920400e-01\nfall_dynamic_error_fraction = 4.862622e-01\nhigh_static_error_fraction = 1.039459e-01\nlow_static_error_fraction = 5.003100e-02\nNote: Simulation executed from .control section \n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_009",
+          "name": "terminal",
+          "arguments": {
+            "command": "cat > /app/circuit.spi <<'EOF'\n.subckt sampling_feedback_ota vss iref vdd vinn vinp vocm voutn voutp\n* Differential voltage amplifier with internal reference and continuous CM control.\nRREF iref vss 100k\nX1 a vinp t vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8\nX2 b vinn t vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8\nXT t vb vss vss sky130_fd_pr__nfet_01v8 l=1 w=80 nf=8\nX3 a a vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=80 nf=8\nX4 b a vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=80 nf=8\n* output stage\nXP1 voutp vb vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=160 nf=16\nXP2 voutn vb vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=160 nf=16\nXN1 voutp a vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=160 nf=16\nXN2 voutn b vss sky130_fd_pr__nfet_01v8 l=0.5 w=160 nf=16\nRB1 vdd vb 20k\nRB2 vb vss 20k\nRCP voutp cm 100k\nRCN voutn cm 100k\nRCM cm vocm 100k\n.ends sampling_feedback_ota\nEOF\ncd /app/testbench && ngspice -b tb_nominal.spi -o /app/experiments/r3.log; tail -18 /app/experiments/r3.log; python3 /opt/simulationle-policy/check.py /app/circuit.spi",
+            "timeout_seconds": 180
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: /app/experiments/r3.log\n\n\nNote: No compatibility mode selected!\n\n\nCircuit: * public nominal gain-8 sampling-feedback transient.\n\nError: unknown subckt: xota.xn2 voutn xota.b vss xota.sky130_fd_pr__nfet_01v8 \n    in line no. 13 from file ./../circuit.spi\n    Simulation interrupted due to error!\n\n/app/circuit.spi: netlist check passed\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_010",
+          "name": "finish",
+          "arguments": {
+            "summary": "Submitted /app/circuit.spi after three candidate designs. The final candidate passed the public netlist policy checker but the attempted nominal transient did not run: ngspice reported an unknown subcircuit because the final design's XN2 instance line omitted the required sky130_fd_pr__nfet_01v8 wrapper name. Accordingly, no electrical performance is established and the design does not meet the requested validation evidence."
+          },
+          "result": {
+            "budget": {
+              "designs_used": 3,
+              "native_runs": 3,
+              "max_designs": 3,
+              "max_native_runs": 160
+            }
+          }
+        }
+      ],
+      "raw_result": "files/d2-docker/sampling-feedback-ota/gpt-6-luna/result.json",
+      "formal_log": "files/d2-docker/sampling-feedback-ota/gpt-6-luna/formal-console.log",
+      "checks_file": "files/d2-docker/sampling-feedback-ota/gpt-6-luna/raw-checks.json"
+    },
+    {
+      "reward": {
+        "reward": 0.0,
+        "tests_total": 15,
+        "tests_passed": 0,
+        "partial": 0.0
+      },
+      "designs_used": 3,
+      "native_runs": 153,
+      "responses": 23,
+      "tool_calls": 23,
+      "output_tokens": 9779,
+      "agent_wall_seconds": 3594.937,
+      "frozen_sha256": "51aaddeac04eae00a7dd806cce0e480d226126d58efd2364f9e3ceda79291c20",
+      "finish_summary": "Implemented /app/circuit.spi with the required interface, SKY130 MOS devices and ideal R/C only; both public netlist checks pass. Three candidates were consumed (one revision encountered an unsupported MOS width, corrected in the final candidate). Final-circuit measurements: all 30 PVT points have phase margin 64.22–70.63 degrees, power 3.85–5.66 mW, zero-input output common-mode error <=2.403 mV, and integrated differential output noise 0.693–0.839 mVrms. Nominal open-loop 3-dB differential range is 2.144 V; all 15 tested 1.80-V corner/temperature combinations exceed 1.8 V (minimum 1.970 V); range at 1.98 V was not swept. Specified output-current common-mode disturbances pass at nominal, ss/1.80V/85C, and ff/1.98V/-25C: worst peak deviation 8.583 mV, worst 20-ns residual 0.208 mV, worst 100-ns residual 0.364 mV. Twenty local-mismatch diagnostic seeds 51000–51019 all converged; worst measured CMRR/PSRR+/PSRR- are 77.59/89.37/90.69 dB using separate simultaneous independent test instances (not asserted identical to formal seed/instance setup). Known failure: insufficient high-level closed-loop static accuracy. Nominal high output is 0.889767 V (1.137% error), and nominal rising output at 10 ns is 0.889634 V (1.152% error), so commanded-level rising settling fails. Only 8/30 matrix points pass high-static accuracy and 6/30 pass rising 10-ns accuracy. No claim of full specification compliance. Detailed generated decks, logs, JSON measurements, and final waveform plot are under /app/experiments.",
+      "id": "gpt-6.1-sol",
+      "key": "sol",
+      "label": "GPT-6.1 Sol",
+      "checks": [
+        {
+          "key": "pvt_phase_margin",
+          "label": "PVT 相位裕度",
+          "requirement": "30 点 PVT：PM ≥60°",
+          "group": "pvt",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics",
+          "raw": {
+            "name": "pvt_phase_margin",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+          }
+        },
+        {
+          "key": "pvt_output_common_mode",
+          "label": "PVT 输出共模",
+          "requirement": "30 点 PVT：共模误差 ≤25 mV",
+          "group": "pvt",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics",
+          "raw": {
+            "name": "pvt_output_common_mode",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+          }
+        },
+        {
+          "key": "pvt_power",
+          "label": "PVT 总功耗",
+          "requirement": "30 点 PVT：VDD 功耗 ≤10 mW",
+          "group": "pvt",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics",
+          "raw": {
+            "name": "pvt_power",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+          }
+        },
+        {
+          "key": "pvt_static_accuracy",
+          "label": "PVT 静态准确度",
+          "requirement": "增益 8：0.9 V 差分阶跃，静态误差 ≤1%",
+          "group": "pvt",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics",
+          "raw": {
+            "name": "pvt_static_accuracy",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+          }
+        },
+        {
+          "key": "pvt_dynamic_accuracy",
+          "label": "PVT 10 ns 准确度",
+          "requirement": "0.9 V 差分阶跃，10 ns 时误差 ≤1%",
+          "group": "pvt",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics",
+          "raw": {
+            "name": "pvt_dynamic_accuracy",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+          }
+        },
+        {
+          "key": "pvt_rise_settling",
+          "label": "PVT 上升建立时间",
+          "requirement": "所有要求 PVT 点：≤10 ns",
+          "group": "pvt",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics",
+          "raw": {
+            "name": "pvt_rise_settling",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+          }
+        },
+        {
+          "key": "pvt_fall_settling",
+          "label": "PVT 下降建立时间",
+          "requirement": "所有要求 PVT 点：≤10 ns",
+          "group": "pvt",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics",
+          "raw": {
+            "name": "pvt_fall_settling",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+          }
+        },
+        {
+          "key": "pvt_output_range",
+          "label": "PVT 输出范围",
+          "requirement": "开环差分输出范围 >1.8 V",
+          "group": "pvt",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics",
+          "raw": {
+            "name": "pvt_output_range",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+          }
+        },
+        {
+          "key": "pvt_output_noise",
+          "label": "PVT 输出噪声",
+          "requirement": "10 Hz–10 GHz 积分 ≤1 mVrms",
+          "group": "noise",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics",
+          "raw": {
+            "name": "pvt_output_noise",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+          }
+        },
+        {
+          "key": "mc_cmrr",
+          "label": "失配共模抑制",
+          "requirement": "20 样本：CMRR ≥50 dB",
+          "group": "mc",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics",
+          "raw": {
+            "name": "mc_cmrr",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+          }
+        },
+        {
+          "key": "mc_psrr_plus",
+          "label": "失配正电源抑制",
+          "requirement": "20 样本：PSRR+ ≥60 dB",
+          "group": "mc",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics",
+          "raw": {
+            "name": "mc_psrr_plus",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+          }
+        },
+        {
+          "key": "mc_psrr_minus",
+          "label": "失配负电源抑制",
+          "requirement": "20 样本：PSRR− ≥60 dB",
+          "group": "mc",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics",
+          "raw": {
+            "name": "mc_psrr_minus",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+          }
+        },
+        {
+          "key": "cmfb_peak_deviation",
+          "label": "CMFB 峰值偏移",
+          "requirement": "3 点共模扰动：峰值 ≤100 mV",
+          "group": "cmfb",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics",
+          "raw": {
+            "name": "cmfb_peak_deviation",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+          }
+        },
+        {
+          "key": "cmfb_residual_20ns",
+          "label": "CMFB 20 ns 残差",
+          "requirement": "扰动释放后 20 ns：≤5 mV",
+          "group": "cmfb",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics",
+          "raw": {
+            "name": "cmfb_residual_20ns",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+          }
+        },
+        {
+          "key": "cmfb_residual_100ns",
+          "label": "CMFB 100 ns 残差",
+          "requirement": "扰动释放后 100 ns：≤1 mV",
+          "group": "cmfb",
+          "status": "blocked",
+          "message": "blocked: nominal electrical gate failed; missing nominal settling metrics",
+          "raw": {
+            "name": "cmfb_residual_100ns",
+            "status": "failed",
+            "message": "blocked: nominal electrical gate failed; missing nominal settling metrics"
+          }
+        }
+      ],
+      "versions": [
+        {
+          "number": 1,
+          "final": false,
+          "source": "* Two-stage fully differential OTA, continuous resistive common-mode servo.\n.subckt sampling_feedback_ota vss iref vdd vinn vinp vocm voutn voutp\n* Bias reference and mirrors\nXref iref iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=10\nXtail tail iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=160\nXon voutn iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=180\nXop voutp iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=180\n* Input stage\nXip ap vinp tail vss sky130_fd_pr__nfet_01v8 l=0.6 w=160\nXin an vinn tail vss sky130_fd_pr__nfet_01v8 l=0.6 w=160\nXlp ap cmctl vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=160\nXln an cmctl vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=160\n* Second stage\nXpp voutp ap vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=300\nXpn voutn an vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=300\nRzp ap cp 140\nRzn an cn 140\nCcp cp voutp 0.6p\nCcn cn voutn 0.6p\n* Average sensing and error amplifier\nRavp voutp sense 20k\nRavn voutn sense 20k\nXct ct iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=20\nXcs cmctl sense ct vss sky130_fd_pr__nfet_01v8 l=1 w=20\nXcr cmref vocm ct vss sky130_fd_pr__nfet_01v8 l=1 w=20\nXcd cmref cmref vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=30\nXcm cmctl cmref vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=30\nCcm cmctl vss 0.15p\n.ends sampling_feedback_ota\n",
+          "sha256": "a318e8d413e7e7a98ab695588c8ada44a73deb25dd179d6c89125bcfb068ff3a",
+          "file": "files/d2-docker/sampling-feedback-ota/gpt-6.1-sol/design-1.spi",
+          "circuit": {
+            "pins": [
+              "vss",
+              "iref",
+              "vdd",
+              "vinn",
+              "vinp",
+              "vocm",
+              "voutn",
+              "voutp"
+            ],
+            "devices": [
+              {
+                "id": "Xref",
+                "kind": "nmos",
+                "nodes": [
+                  "iref",
+                  "iref",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=10",
+                "line": "Xref iref iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=10"
+              },
+              {
+                "id": "Xtail",
+                "kind": "nmos",
+                "nodes": [
+                  "tail",
+                  "iref",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=160",
+                "line": "Xtail tail iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=160"
+              },
+              {
+                "id": "Xon",
+                "kind": "nmos",
+                "nodes": [
+                  "voutn",
+                  "iref",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=180",
+                "line": "Xon voutn iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=180"
+              },
+              {
+                "id": "Xop",
+                "kind": "nmos",
+                "nodes": [
+                  "voutp",
+                  "iref",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=180",
+                "line": "Xop voutp iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=180"
+              },
+              {
+                "id": "Xip",
+                "kind": "nmos",
+                "nodes": [
+                  "ap",
+                  "vinp",
+                  "tail",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=0.6 w=160",
+                "line": "Xip ap vinp tail vss sky130_fd_pr__nfet_01v8 l=0.6 w=160"
+              },
+              {
+                "id": "Xin",
+                "kind": "nmos",
+                "nodes": [
+                  "an",
+                  "vinn",
+                  "tail",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=0.6 w=160",
+                "line": "Xin an vinn tail vss sky130_fd_pr__nfet_01v8 l=0.6 w=160"
+              },
+              {
+                "id": "Xlp",
+                "kind": "pmos",
+                "nodes": [
+                  "ap",
+                  "cmctl",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=1 w=160",
+                "line": "Xlp ap cmctl vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=160"
+              },
+              {
+                "id": "Xln",
+                "kind": "pmos",
+                "nodes": [
+                  "an",
+                  "cmctl",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=1 w=160",
+                "line": "Xln an cmctl vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=160"
+              },
+              {
+                "id": "Xpp",
+                "kind": "pmos",
+                "nodes": [
+                  "voutp",
+                  "ap",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=0.5 w=300",
+                "line": "Xpp voutp ap vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=300"
+              },
+              {
+                "id": "Xpn",
+                "kind": "pmos",
+                "nodes": [
+                  "voutn",
+                  "an",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=0.5 w=300",
+                "line": "Xpn voutn an vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=300"
+              },
+              {
+                "id": "Rzp",
+                "kind": "resistor",
+                "nodes": [
+                  "ap",
+                  "cp"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "140",
+                "line": "Rzp ap cp 140"
+              },
+              {
+                "id": "Rzn",
+                "kind": "resistor",
+                "nodes": [
+                  "an",
+                  "cn"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "140",
+                "line": "Rzn an cn 140"
+              },
+              {
+                "id": "Ccp",
+                "kind": "capacitor",
+                "nodes": [
+                  "cp",
+                  "voutp"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal capacitor",
+                "params": "0.6p",
+                "line": "Ccp cp voutp 0.6p"
+              },
+              {
+                "id": "Ccn",
+                "kind": "capacitor",
+                "nodes": [
+                  "cn",
+                  "voutn"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal capacitor",
+                "params": "0.6p",
+                "line": "Ccn cn voutn 0.6p"
+              },
+              {
+                "id": "Ravp",
+                "kind": "resistor",
+                "nodes": [
+                  "voutp",
+                  "sense"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "20k",
+                "line": "Ravp voutp sense 20k"
+              },
+              {
+                "id": "Ravn",
+                "kind": "resistor",
+                "nodes": [
+                  "voutn",
+                  "sense"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "20k",
+                "line": "Ravn voutn sense 20k"
+              },
+              {
+                "id": "Xct",
+                "kind": "nmos",
+                "nodes": [
+                  "ct",
+                  "iref",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=20",
+                "line": "Xct ct iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=20"
+              },
+              {
+                "id": "Xcs",
+                "kind": "nmos",
+                "nodes": [
+                  "cmctl",
+                  "sense",
+                  "ct",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=20",
+                "line": "Xcs cmctl sense ct vss sky130_fd_pr__nfet_01v8 l=1 w=20"
+              },
+              {
+                "id": "Xcr",
+                "kind": "nmos",
+                "nodes": [
+                  "cmref",
+                  "vocm",
+                  "ct",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=20",
+                "line": "Xcr cmref vocm ct vss sky130_fd_pr__nfet_01v8 l=1 w=20"
+              },
+              {
+                "id": "Xcd",
+                "kind": "pmos",
+                "nodes": [
+                  "cmref",
+                  "cmref",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=1 w=30",
+                "line": "Xcd cmref cmref vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=30"
+              },
+              {
+                "id": "Xcm",
+                "kind": "pmos",
+                "nodes": [
+                  "cmctl",
+                  "cmref",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=1 w=30",
+                "line": "Xcm cmctl cmref vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=30"
+              },
+              {
+                "id": "Ccm",
+                "kind": "capacitor",
+                "nodes": [
+                  "cmctl",
+                  "vss"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal capacitor",
+                "params": "0.15p",
+                "line": "Ccm cmctl vss 0.15p"
+              }
+            ],
+            "nets": [
+              "an",
+              "ap",
+              "cmctl",
+              "cmref",
+              "cn",
+              "cp",
+              "ct",
+              "iref",
+              "sense",
+              "tail",
+              "vdd",
+              "vinn",
+              "vinp",
+              "vocm",
+              "voutn",
+              "voutp",
+              "vss"
+            ],
+            "counts": {
+              "pmos": 6,
+              "nmos": 9,
+              "resistor": 4,
+              "capacitor": 3
+            }
+          },
+          "svg": "assets/d2-docker/sampling-feedback-ota-sol-1.svg"
+        },
+        {
+          "number": 2,
+          "final": false,
+          "source": "* Two-stage fully differential OTA, continuous resistive common-mode servo.\n.subckt sampling_feedback_ota vss iref vdd vinn vinp vocm voutn voutp\n* Bias reference and mirrors\nXref iref iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=10\nXtail tail iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=160\nXon voutn cmctl vss vss sky130_fd_pr__nfet_01v8 l=1 w=180\nXop voutp cmctl vss vss sky130_fd_pr__nfet_01v8 l=1 w=180\n* Input stage\nXip ap vinp tail vss sky130_fd_pr__nfet_01v8 l=0.6 w=160\nXin an vinn tail vss sky130_fd_pr__nfet_01v8 l=0.6 w=160\nXlp ap loadcm vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=160\nXln an loadcm vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=160\n* Second stage\nXpp voutp ap vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=300\nXpn voutn an vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=300\nRzp ap cp 140\nRzn an cn 140\nCcp cp voutp 0.6p\nCcn cn voutn 0.6p\n* Average sensing and error amplifier\nRavp voutp sense 20k\nRavn voutn sense 20k\nXct ct iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=20\nXcs cmref sense ct vss sky130_fd_pr__nfet_01v8 l=1 w=20\nXcr cmctl vocm ct vss sky130_fd_pr__nfet_01v8 l=1 w=20\nXcd cmref cmref vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=30\nXcm cmctl cmref vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=30\n* Local first-stage common-mode stabilization\nRlap ap loadcm 200k\nRlan an loadcm 200k\nXoffset loadcm iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=0.164\n* Output common-mode Miller compensation\nCcmp cmctl voutp 0.5p\nCcmn cmctl voutn 0.5p\n.ends sampling_feedback_ota\n",
+          "sha256": "acb712572ebe049db7eb67c23f6412de01b61f12e10a8f0c9d1d47da314048c1",
+          "file": "files/d2-docker/sampling-feedback-ota/gpt-6.1-sol/design-2.spi",
+          "circuit": {
+            "pins": [
+              "vss",
+              "iref",
+              "vdd",
+              "vinn",
+              "vinp",
+              "vocm",
+              "voutn",
+              "voutp"
+            ],
+            "devices": [
+              {
+                "id": "Xref",
+                "kind": "nmos",
+                "nodes": [
+                  "iref",
+                  "iref",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=10",
+                "line": "Xref iref iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=10"
+              },
+              {
+                "id": "Xtail",
+                "kind": "nmos",
+                "nodes": [
+                  "tail",
+                  "iref",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=160",
+                "line": "Xtail tail iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=160"
+              },
+              {
+                "id": "Xon",
+                "kind": "nmos",
+                "nodes": [
+                  "voutn",
+                  "cmctl",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=180",
+                "line": "Xon voutn cmctl vss vss sky130_fd_pr__nfet_01v8 l=1 w=180"
+              },
+              {
+                "id": "Xop",
+                "kind": "nmos",
+                "nodes": [
+                  "voutp",
+                  "cmctl",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=180",
+                "line": "Xop voutp cmctl vss vss sky130_fd_pr__nfet_01v8 l=1 w=180"
+              },
+              {
+                "id": "Xip",
+                "kind": "nmos",
+                "nodes": [
+                  "ap",
+                  "vinp",
+                  "tail",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=0.6 w=160",
+                "line": "Xip ap vinp tail vss sky130_fd_pr__nfet_01v8 l=0.6 w=160"
+              },
+              {
+                "id": "Xin",
+                "kind": "nmos",
+                "nodes": [
+                  "an",
+                  "vinn",
+                  "tail",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=0.6 w=160",
+                "line": "Xin an vinn tail vss sky130_fd_pr__nfet_01v8 l=0.6 w=160"
+              },
+              {
+                "id": "Xlp",
+                "kind": "pmos",
+                "nodes": [
+                  "ap",
+                  "loadcm",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=1 w=160",
+                "line": "Xlp ap loadcm vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=160"
+              },
+              {
+                "id": "Xln",
+                "kind": "pmos",
+                "nodes": [
+                  "an",
+                  "loadcm",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=1 w=160",
+                "line": "Xln an loadcm vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=160"
+              },
+              {
+                "id": "Xpp",
+                "kind": "pmos",
+                "nodes": [
+                  "voutp",
+                  "ap",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=0.5 w=300",
+                "line": "Xpp voutp ap vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=300"
+              },
+              {
+                "id": "Xpn",
+                "kind": "pmos",
+                "nodes": [
+                  "voutn",
+                  "an",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=0.5 w=300",
+                "line": "Xpn voutn an vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=300"
+              },
+              {
+                "id": "Rzp",
+                "kind": "resistor",
+                "nodes": [
+                  "ap",
+                  "cp"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "140",
+                "line": "Rzp ap cp 140"
+              },
+              {
+                "id": "Rzn",
+                "kind": "resistor",
+                "nodes": [
+                  "an",
+                  "cn"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "140",
+                "line": "Rzn an cn 140"
+              },
+              {
+                "id": "Ccp",
+                "kind": "capacitor",
+                "nodes": [
+                  "cp",
+                  "voutp"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal capacitor",
+                "params": "0.6p",
+                "line": "Ccp cp voutp 0.6p"
+              },
+              {
+                "id": "Ccn",
+                "kind": "capacitor",
+                "nodes": [
+                  "cn",
+                  "voutn"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal capacitor",
+                "params": "0.6p",
+                "line": "Ccn cn voutn 0.6p"
+              },
+              {
+                "id": "Ravp",
+                "kind": "resistor",
+                "nodes": [
+                  "voutp",
+                  "sense"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "20k",
+                "line": "Ravp voutp sense 20k"
+              },
+              {
+                "id": "Ravn",
+                "kind": "resistor",
+                "nodes": [
+                  "voutn",
+                  "sense"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "20k",
+                "line": "Ravn voutn sense 20k"
+              },
+              {
+                "id": "Xct",
+                "kind": "nmos",
+                "nodes": [
+                  "ct",
+                  "iref",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=20",
+                "line": "Xct ct iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=20"
+              },
+              {
+                "id": "Xcs",
+                "kind": "nmos",
+                "nodes": [
+                  "cmref",
+                  "sense",
+                  "ct",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=20",
+                "line": "Xcs cmref sense ct vss sky130_fd_pr__nfet_01v8 l=1 w=20"
+              },
+              {
+                "id": "Xcr",
+                "kind": "nmos",
+                "nodes": [
+                  "cmctl",
+                  "vocm",
+                  "ct",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=20",
+                "line": "Xcr cmctl vocm ct vss sky130_fd_pr__nfet_01v8 l=1 w=20"
+              },
+              {
+                "id": "Xcd",
+                "kind": "pmos",
+                "nodes": [
+                  "cmref",
+                  "cmref",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=1 w=30",
+                "line": "Xcd cmref cmref vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=30"
+              },
+              {
+                "id": "Xcm",
+                "kind": "pmos",
+                "nodes": [
+                  "cmctl",
+                  "cmref",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=1 w=30",
+                "line": "Xcm cmctl cmref vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=30"
+              },
+              {
+                "id": "Rlap",
+                "kind": "resistor",
+                "nodes": [
+                  "ap",
+                  "loadcm"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "200k",
+                "line": "Rlap ap loadcm 200k"
+              },
+              {
+                "id": "Rlan",
+                "kind": "resistor",
+                "nodes": [
+                  "an",
+                  "loadcm"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "200k",
+                "line": "Rlan an loadcm 200k"
+              },
+              {
+                "id": "Xoffset",
+                "kind": "nmos",
+                "nodes": [
+                  "loadcm",
+                  "iref",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=0.164",
+                "line": "Xoffset loadcm iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=0.164"
+              },
+              {
+                "id": "Ccmp",
+                "kind": "capacitor",
+                "nodes": [
+                  "cmctl",
+                  "voutp"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal capacitor",
+                "params": "0.5p",
+                "line": "Ccmp cmctl voutp 0.5p"
+              },
+              {
+                "id": "Ccmn",
+                "kind": "capacitor",
+                "nodes": [
+                  "cmctl",
+                  "voutn"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal capacitor",
+                "params": "0.5p",
+                "line": "Ccmn cmctl voutn 0.5p"
+              }
+            ],
+            "nets": [
+              "an",
+              "ap",
+              "cmctl",
+              "cmref",
+              "cn",
+              "cp",
+              "ct",
+              "iref",
+              "loadcm",
+              "sense",
+              "tail",
+              "vdd",
+              "vinn",
+              "vinp",
+              "vocm",
+              "voutn",
+              "voutp",
+              "vss"
+            ],
+            "counts": {
+              "pmos": 6,
+              "nmos": 10,
+              "resistor": 6,
+              "capacitor": 4
+            }
+          },
+          "svg": "assets/d2-docker/sampling-feedback-ota-sol-2.svg"
+        },
+        {
+          "number": 3,
+          "final": true,
+          "source": "* Two-stage fully differential OTA, continuous resistive common-mode servo.\n.subckt sampling_feedback_ota vss iref vdd vinn vinp vocm voutn voutp\n* Bias reference and mirrors\nXref iref iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=10\nXtail tail iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=160\nXon voutn cmctl vss vss sky130_fd_pr__nfet_01v8 l=1 w=180\nXop voutp cmctl vss vss sky130_fd_pr__nfet_01v8 l=1 w=180\n* Input stage\nXip ap vinp tail vss sky130_fd_pr__nfet_01v8 l=0.6 w=160\nXin an vinn tail vss sky130_fd_pr__nfet_01v8 l=0.6 w=160\nXlp ap loadcm vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=160\nXln an loadcm vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=160\n* Second stage\nXpp voutp ap vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=300\nXpn voutn an vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=300\nRzp ap cp 140\nRzn an cn 140\nCcp cp voutp 0.6p\nCcn cn voutn 0.6p\n* Average sensing and error amplifier\nRavp voutp sense 20k\nRavn voutn sense 20k\nXct ct iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=20\nXcs cmref sense ct vss sky130_fd_pr__nfet_01v8 l=1 w=20\nXcr cmctl vocm ct vss sky130_fd_pr__nfet_01v8 l=1 w=20\nXcd cmref cmref vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=30\nXcm cmctl cmref vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=30\n* Local first-stage common-mode stabilization\nRlap ap loadcm 200k\nRlan an loadcm 200k\nXoffset loadcm iref vss vss sky130_fd_pr__nfet_01v8 l=6.1 w=1\n* Output common-mode Miller compensation\nCcmp cmctl voutp 0.5p\nCcmn cmctl voutn 0.5p\n.ends sampling_feedback_ota\n",
+          "sha256": "51aaddeac04eae00a7dd806cce0e480d226126d58efd2364f9e3ceda79291c20",
+          "file": "files/d2-docker/sampling-feedback-ota/gpt-6.1-sol/final.spi",
+          "circuit": {
+            "pins": [
+              "vss",
+              "iref",
+              "vdd",
+              "vinn",
+              "vinp",
+              "vocm",
+              "voutn",
+              "voutp"
+            ],
+            "devices": [
+              {
+                "id": "Xref",
+                "kind": "nmos",
+                "nodes": [
+                  "iref",
+                  "iref",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=10",
+                "line": "Xref iref iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=10"
+              },
+              {
+                "id": "Xtail",
+                "kind": "nmos",
+                "nodes": [
+                  "tail",
+                  "iref",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=160",
+                "line": "Xtail tail iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=160"
+              },
+              {
+                "id": "Xon",
+                "kind": "nmos",
+                "nodes": [
+                  "voutn",
+                  "cmctl",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=180",
+                "line": "Xon voutn cmctl vss vss sky130_fd_pr__nfet_01v8 l=1 w=180"
+              },
+              {
+                "id": "Xop",
+                "kind": "nmos",
+                "nodes": [
+                  "voutp",
+                  "cmctl",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=180",
+                "line": "Xop voutp cmctl vss vss sky130_fd_pr__nfet_01v8 l=1 w=180"
+              },
+              {
+                "id": "Xip",
+                "kind": "nmos",
+                "nodes": [
+                  "ap",
+                  "vinp",
+                  "tail",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=0.6 w=160",
+                "line": "Xip ap vinp tail vss sky130_fd_pr__nfet_01v8 l=0.6 w=160"
+              },
+              {
+                "id": "Xin",
+                "kind": "nmos",
+                "nodes": [
+                  "an",
+                  "vinn",
+                  "tail",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=0.6 w=160",
+                "line": "Xin an vinn tail vss sky130_fd_pr__nfet_01v8 l=0.6 w=160"
+              },
+              {
+                "id": "Xlp",
+                "kind": "pmos",
+                "nodes": [
+                  "ap",
+                  "loadcm",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=1 w=160",
+                "line": "Xlp ap loadcm vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=160"
+              },
+              {
+                "id": "Xln",
+                "kind": "pmos",
+                "nodes": [
+                  "an",
+                  "loadcm",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=1 w=160",
+                "line": "Xln an loadcm vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=160"
+              },
+              {
+                "id": "Xpp",
+                "kind": "pmos",
+                "nodes": [
+                  "voutp",
+                  "ap",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=0.5 w=300",
+                "line": "Xpp voutp ap vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=300"
+              },
+              {
+                "id": "Xpn",
+                "kind": "pmos",
+                "nodes": [
+                  "voutn",
+                  "an",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=0.5 w=300",
+                "line": "Xpn voutn an vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=300"
+              },
+              {
+                "id": "Rzp",
+                "kind": "resistor",
+                "nodes": [
+                  "ap",
+                  "cp"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "140",
+                "line": "Rzp ap cp 140"
+              },
+              {
+                "id": "Rzn",
+                "kind": "resistor",
+                "nodes": [
+                  "an",
+                  "cn"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "140",
+                "line": "Rzn an cn 140"
+              },
+              {
+                "id": "Ccp",
+                "kind": "capacitor",
+                "nodes": [
+                  "cp",
+                  "voutp"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal capacitor",
+                "params": "0.6p",
+                "line": "Ccp cp voutp 0.6p"
+              },
+              {
+                "id": "Ccn",
+                "kind": "capacitor",
+                "nodes": [
+                  "cn",
+                  "voutn"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal capacitor",
+                "params": "0.6p",
+                "line": "Ccn cn voutn 0.6p"
+              },
+              {
+                "id": "Ravp",
+                "kind": "resistor",
+                "nodes": [
+                  "voutp",
+                  "sense"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "20k",
+                "line": "Ravp voutp sense 20k"
+              },
+              {
+                "id": "Ravn",
+                "kind": "resistor",
+                "nodes": [
+                  "voutn",
+                  "sense"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "20k",
+                "line": "Ravn voutn sense 20k"
+              },
+              {
+                "id": "Xct",
+                "kind": "nmos",
+                "nodes": [
+                  "ct",
+                  "iref",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=20",
+                "line": "Xct ct iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=20"
+              },
+              {
+                "id": "Xcs",
+                "kind": "nmos",
+                "nodes": [
+                  "cmref",
+                  "sense",
+                  "ct",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=20",
+                "line": "Xcs cmref sense ct vss sky130_fd_pr__nfet_01v8 l=1 w=20"
+              },
+              {
+                "id": "Xcr",
+                "kind": "nmos",
+                "nodes": [
+                  "cmctl",
+                  "vocm",
+                  "ct",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=1 w=20",
+                "line": "Xcr cmctl vocm ct vss sky130_fd_pr__nfet_01v8 l=1 w=20"
+              },
+              {
+                "id": "Xcd",
+                "kind": "pmos",
+                "nodes": [
+                  "cmref",
+                  "cmref",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=1 w=30",
+                "line": "Xcd cmref cmref vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=30"
+              },
+              {
+                "id": "Xcm",
+                "kind": "pmos",
+                "nodes": [
+                  "cmctl",
+                  "cmref",
+                  "vdd",
+                  "vdd"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__pfet_01v8",
+                "params": "l=1 w=30",
+                "line": "Xcm cmctl cmref vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=30"
+              },
+              {
+                "id": "Rlap",
+                "kind": "resistor",
+                "nodes": [
+                  "ap",
+                  "loadcm"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "200k",
+                "line": "Rlap ap loadcm 200k"
+              },
+              {
+                "id": "Rlan",
+                "kind": "resistor",
+                "nodes": [
+                  "an",
+                  "loadcm"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal resistor",
+                "params": "200k",
+                "line": "Rlan an loadcm 200k"
+              },
+              {
+                "id": "Xoffset",
+                "kind": "nmos",
+                "nodes": [
+                  "loadcm",
+                  "iref",
+                  "vss",
+                  "vss"
+                ],
+                "terminals": [
+                  "D",
+                  "G",
+                  "S",
+                  "B"
+                ],
+                "model": "sky130_fd_pr__nfet_01v8",
+                "params": "l=6.1 w=1",
+                "line": "Xoffset loadcm iref vss vss sky130_fd_pr__nfet_01v8 l=6.1 w=1"
+              },
+              {
+                "id": "Ccmp",
+                "kind": "capacitor",
+                "nodes": [
+                  "cmctl",
+                  "voutp"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal capacitor",
+                "params": "0.5p",
+                "line": "Ccmp cmctl voutp 0.5p"
+              },
+              {
+                "id": "Ccmn",
+                "kind": "capacitor",
+                "nodes": [
+                  "cmctl",
+                  "voutn"
+                ],
+                "terminals": [
+                  "1",
+                  "2"
+                ],
+                "model": "ideal capacitor",
+                "params": "0.5p",
+                "line": "Ccmn cmctl voutn 0.5p"
+              }
+            ],
+            "nets": [
+              "an",
+              "ap",
+              "cmctl",
+              "cmref",
+              "cn",
+              "cp",
+              "ct",
+              "iref",
+              "loadcm",
+              "sense",
+              "tail",
+              "vdd",
+              "vinn",
+              "vinp",
+              "vocm",
+              "voutn",
+              "voutp",
+              "vss"
+            ],
+            "counts": {
+              "pmos": 6,
+              "nmos": 10,
+              "resistor": 6,
+              "capacitor": 4
+            }
+          },
+          "svg": "assets/d2-docker/sampling-feedback-ota-sol-3.svg"
+        }
+      ],
+      "diagnosis": "标称建立时间指标缺失",
+      "explanation": "自主进行了 153 次开发仿真并读取波形图，但最终电路在原验收测试台中缺少标称 settling 指标，15 项被阻断。",
+      "images": [
+        {
+          "file": "files/d2-docker/sampling-feedback-ota/gpt-6.1-sol/final_waveforms.png",
+          "caption": "模型自主测试台波形；不是原验收曲线",
+          "name": "final_waveforms.png"
+        },
+        {
+          "file": "files/d2-docker/sampling-feedback-ota/gpt-6.1-sol/first.png",
+          "caption": "模型自主测试台波形；不是原验收曲线",
+          "name": "first.png"
+        }
+      ],
+      "activities": [
+        {
+          "turn": "turn_001",
+          "name": "terminal",
+          "arguments": {
+            "command": "cat /app/AGENT_PROTOCOL.md; cat /opt/analog-arena/SKY130_NETLIST_GUIDE.md; ls -la /app; cat /app/circuit.spi",
+            "timeout_seconds": 10
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "You are the engineering agent, not a netlist-only answer generator.\nImplement the supplied gain-8 10-ns sampling-feedback OTA yourself from its empty starter.\nYou have an actual persistent Linux shell, Python, NumPy, matplotlib, the SKY130 PDK\nand the real ngspice-46 simulator. Use the terminal tool to inspect the public\nmaterials, write/edit your DUT and testbenches, choose experiments, run simulations,\ninspect logs and numerical results, plot them, and revise your design yourself.\nOnly the final /app/circuit.spi is independently graded. No reference solutions,\nprivate verifier implementation, internet access or model API credentials are\ninside your design container. Use /app/experiments for temporary scripts and decks.\n\nBudget: at most THREE DISTINCT VALID CIRCUITS may reach simulation or final\nsubmission. The first complete design and up to two revisions are the three designs.\nAll valid nonconvergent designs count. The trusted ngspice gateway counts the DUT\nin /app/circuit.spi independently of testbench, process corner, voltage and temperature.\nYou may run many experiments on the same design (up to 160 native simulations).\nEvery topology, device dimension, bias or passive value change creates a new design.\nYou may alter independent external V/I sources for test conditions only.\nIn-process DUT alteration, altermod/alterparam, DUT parameter sweeps and DUT/model definitions\noutside /app/circuit.spi are disabled to enforce this budget. Choose different\ntest conditions by writing separate testbenches. Comments/whitespace/case changes\ndo not create a new design. Two extra netlist policy corrections are allowed.\nDo not attempt to bypass the simulator gateway or run an alternative simulator.\nUse normal ngspice -b TESTBENCH [-o LOG] [-r RAW]. Testbenches must include\n/app/circuit.spi and the fixed /opt/sky130 libraries. Use /app/experiments for all generated logs/raw data; worker /tmp is separate.\nNo fixed diagnostic suite is automatically run or supplied as host-generated feedback: you select every experiment.\nThe declared formal targets remain the task's original ones. The formal verifier\nruns only after freeze and is never returned for another design revision.\nUse python3 /opt/simulationle-policy/check.py /app/circuit.spi for full public policy checks.\nCall finish when ready. The last on-disk circuit is submitted at budget exhaustion.\n# SKY130 netlist reference\n\nThis reference lists SKY130 SPICE device syntax, geometry conventions, hierarchy rules, simulation corners, and measurement definitions.\n\n## Model selection\n\nLoad the required SKY130 model library in the testbench and select the intended process corner with `.lib`. Keep model loading out of the circuit under test so that the same circuit can be reused with different corners and model installations.\n\n```spice\n.lib \"/path/to/sky130.lib.spice\" tt\n```\n\nUse a model set that contains every device instantiated by the circuit. Core CMOS simulations may need only the continuous MOS models, while physical resistors, capacitors, varactors, inductors, BJTs, and specialized devices require their corresponding PDK models.\n\n## MOS devices\n\nThe commonly used 1.8 V core and low-threshold MOS wrappers are:\n\n```spice\nsky130_fd_pr__nfet_01v8\nsky130_fd_pr__pfet_01v8\nsky130_fd_pr__nfet_01v8_lvt\nsky130_fd_pr__pfet_01v8_lvt\n```\n\nThe 5.0 V-gate/10.5 V-drain MOS wrappers are:\n\n```spice\nsky130_fd_pr__nfet_g5v0d10v5\nsky130_fd_pr__pfet_g5v0d10v5\n```\n\nInstantiate MOS wrappers as four-terminal subcircuits:\n\n```spice\nXMN drain gate source bulk sky130_fd_pr__nfet_01v8 l=0.15 w=0.84 nf=2\nXMP drain gate source bulk sky130_fd_pr__pfet_01v8 l=0.15 w=1.68 nf=2\nXNHV drain gate source bulk sky130_fd_pr__nfet_g5v0d10v5 l=0.5 w=10 nf=5\nXPHV drain gate source bulk sky130_fd_pr__pfet_g5v0d10v5 l=0.5 w=20 nf=5\n```\n\nThe terminal order is drain, gate, source, bulk.\n\nThe SKY130 ngspice model libraries set `scale=1u`; therefore, numeric `l` and `w` values are expressed in micrometres and do not use a `u` suffix.\n\n| Wrapper | Minimum modeled `l` (µm) |\n| --- | ---: |\n| `sky130_fd_pr__nfet_01v8` | `0.15` |\n| `sky130_fd_pr__pfet_01v8` | `0.15` |\n| `sky130_fd_pr__nfet_01v8_lvt` | `0.15` |\n| `sky130_fd_pr__pfet_01v8_lvt` | `0.35` |\n| `sky130_fd_pr__nfet_g5v0d10v5` | `0.50` |\n| `sky130_fd_pr__pfet_g5v0d10v5` | `0.50` |\n\nThe `w` parameter is total channel width, `nf` is the positive integer number of fingers, and `w/nf` is the width of one finger.\n\n## Subcircuits and hierarchy\n\nDefine a subcircuit with `.subckt` and terminate it with `.ends`:\n\n```spice\n.subckt example vss ibias vdd vinn vinp vout\n* Circuit implementation.\n.ends example\n```\n\nNodes listed after the subcircuit name are external terminals. Other nodes are local to the subcircuit, except node `0` and nodes declared with `.global`.\n\n## Passive and RF devices\n\nIdeal passives use ordinary SPICE syntax:\n\n```spice\nR1 n1 n2 10k\nC1 n2 vss 2p\nL1 n3 n4 4n\n```\n\nSPICE suffixes are case-insensitive, and `M` means milli rather than mega. Use `meg` for mega.\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_002",
+          "name": "terminal",
+          "arguments": {
+            "command": "ls /app/testbench; find /opt/sky130 -name 'sky130.lib.spice' | head; cat /app/testbench/*",
+            "timeout_seconds": 10
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "README.md\ntb_cmfb_nominal.spi\ntb_loop_nominal.spi\ntb_mismatch_nominal.spi\ntb_noise_nominal.spi\ntb_nominal.spi\ntb_range_nominal.spi\n/opt/sky130/continuous/sky130.lib.spice\n/opt/sky130/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice\n# Public development diagnostics\n\nRun these files from this directory with `ngspice -b <file>`. They use the\ndeclared nominal supply, temperature, interface, and electrical definitions.\nThey are diagnostics, not the complete hidden PVT or mismatch sweep.\n\n- `tb_nominal.spi`: closed-loop accuracy and settling for 0 V to 0.9 V\n  differential-output transitions.\n- `tb_loop_nominal.spi`: return-ratio loop gain, unity crossing, phase margin,\n  output common mode, and power.\n- `tb_noise_nominal.spi`: closed-loop differential output noise from 10 Hz to\n  10 GHz.\n- `tb_range_nominal.spi`: 3 dB-compression differential output range from the\n  slope of one nominal DC transfer sweep.\n- `tb_cmfb_nominal.spi`: common-mode static error and recovery after the\n  specified 50 uA-per-output disturbance; the peak, 20 ns, and 100 ns\n  deviation limits are 100 mV, 5 mV, and 1 mV, respectively.\n- `tb_mismatch_nominal.spi`: one fixed-seed local-mismatch common-mode, VDD,\n  and VSS feedthrough diagnostic at 10 Hz. Final signoff uses the published\n  20 fixed-seed sample set.\n\nUse `closed_loop_differential_gain_db` from the nominal-TT\n`tb_loop_nominal.spi` run as the common numerator. At 10 Hz, compute CMRR as\n`closed_loop_differential_gain_db - mc_closed_cm_10_db`; compute PSRR+ and\nPSRR- by replacing the second term with\n`mc_closed_vdd_10_db` and `mc_closed_vss_10_db`, respectively.\n* Public nominal CMFB recovery diagnostic with the specified disturbance.\n* Limits: peak deviation <=100 mV, 20 ns residual <=5 mV,\n* and 100 ns residual <=1 mV.\n.lib \"/opt/sky130/continuous/sky130.lib.spice\" tt\n.include \"../circuit.spi\"\n.options filetype=ascii reltol=2e-4 abstol=1e-12 vntol=1e-8 method=gear\nVSS vss 0 0\nVDD vdd vss 1.8\nIREF vdd iref 50u\nIREFR vdd irefr 50u\nVOCM vocm vss 0.9\nVINP vinp vss 0.9\nVINN vinn vss 0.9\nXOTA vss iref vdd vinn vinp vocm voutn voutp sampling_feedback_ota\nXREF vss irefr vdd vinn vinp vocm routn routp sampling_feedback_ota\nCLP voutp vss 250f\nCLN voutn vss 250f\nCLRP routp vss 250f\nCLRN routn vss 250f\nIDISTP voutp vss PULSE(0 50u 20n 100p 100p 20n 200n)\nIDISTN voutn vss PULSE(0 50u 20n 100p 100p 20n 200n)\n.control\ntran 20p 150n\nlet cm_error = abs(0.5*(v(voutp)+v(voutn))-v(vocm))\nlet cm_deviation = abs(0.5*(v(voutp)+v(voutn))-0.5*(v(routp)+v(routn)))\nlet cmfb_peak_limit_v = 100m\nlet cmfb_residual_20ns_limit_v = 5m\nlet cmfb_residual_100ns_limit_v = 1m\nmeas tran cmfb_static_error_v find cm_error at=15n\nmeas tran cmfb_peak_deviation_v max cm_deviation from=20n to=45n\nmeas tran cmfb_residual_20ns_v find cm_deviation at=60.2n\nmeas tran cmfb_residual_100ns_v find cm_deviation at=140.2n\nprint cmfb_static_error_v cmfb_peak_deviation_v cmfb_residual_20ns_v cmfb_residual_100ns_v\nprint cmfb_peak_limit_v cmfb_residual_20ns_limit_v cmfb_residual_100ns_limit_v\n.endc\n.end\n* Public nominal return-ratio diagnostic for Cs=1pF, Cf=125fF, CL=250fF.\n.lib \"/opt/sky130/continuous/sky130.lib.spice\" tt\n.include \"../circuit.spi\"\n.options filetype=ascii reltol=2e-4 abstol=1e-12 vntol=1e-7\nVSS vss 0 0\nVDD vdd vss 1.8\nIREF vdd iref 50u\nVOCM vocm vss 0.9\nVINP vinp vss DC 0.9 AC 0.5\nVINN vinn vss DC 0.9 AC -0.5\nXOTA vss iref vdd vinn vinp vocm voutn voutp sampling_feedback_ota\nCLP voutp vss 361.111f\nCLN voutn vss 361.111f\n.control\nop\nlet output_common_mode_error_v = abs(0.5*(v(voutp)+v(voutn))-v(vocm))\nlet power_w = -(v(vdd)-v(vss))*i(vdd)\nprint output_common_mode_error_v\nprint power_w\nac dec 80 10 100G\nlet differential_gain = v(voutp)-v(voutn)\nlet loop_gain = differential_gain*0.111111111111\nlet closed_loop_differential_response = differential_gain/(1+loop_gain)\nlet loop_gain_db = vdb(loop_gain)\nlet loop_phase_deg = 180/pi*cph(loop_gain)\nmeas ac low_frequency_loop_gain_db find loop_gain_db at=10\nmeas ac closed_loop_differential_gain_db find vdb(closed_loop_differential_response) at=10\nmeas ac loop_ugb_hz when loop_gain_db=0 fall=1\nmeas ac phase_at_ugb_deg find loop_phase_deg when loop_gain_db=0 fall=1\nlet phase_margin_deg = 180+phase_at_ugb_deg\nprint phase_margin_deg\n.endc\n.end\n* Public one-seed local-mismatch rejection diagnostic at 10 Hz.\n.option seed=51000\n.lib \"/opt/sky130/continuous/sky130.lib.spice\" tt_mm\n.include \"../circuit.spi\"\n.options filetype=ascii reltol=2e-4 abstol=1e-12 vntol=1e-8 method=gear\nVSS vss 0 DC 0 AC 0\nVDD vdd vss DC 1.8 AC 0\nIREF vdd iref 50u\nVOCM vocm vss 0.9\nVDIFF diff vss DC 0 AC 0\nVCMTEST cmtest vss DC 0 AC 1\nEINP vinp vss value={v(vocm,vss)+v(cmtest,vss)-0.0555555555556*(v(voutp)-v(voutn))+0.5*v(diff,vss)}\nEINN vinn vss value={v(vocm,vss)+v(cmtest,vss)+0.0555555555556*(v(voutp)-v(voutn))-0.5*v(diff,vss)}\nXOTA vss iref vdd vinn vinp vocm voutn voutp sampling_feedback_ota\nCLP voutp vss 361.111f\nCLN voutn vss 361.111f\n.control\nac lin 1 10 10\nlet closed_common_response = v(voutp)-v(voutn)\nlet mc_c",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_003",
+          "name": "terminal",
+          "arguments": {
+            "command": "cat > /app/circuit.spi <<'EOF'\n* Two-stage fully differential OTA, continuous resistive common-mode servo.\n.subckt sampling_feedback_ota vss iref vdd vinn vinp vocm voutn voutp\n* Bias reference and mirrors\nXref bn bn vss vss sky130_fd_pr__nfet_01v8 l=1 w=10\nXtail tail bn vss vss sky130_fd_pr__nfet_01v8 l=1 w=160\nXon voutn bn vss vss sky130_fd_pr__nfet_01v8 l=1 w=180\nXop voutp bn vss vss sky130_fd_pr__nfet_01v8 l=1 w=180\n* Input stage\nXip ap vinp tail vss sky130_fd_pr__nfet_01v8 l=0.6 w=160\nXin an vinn tail vss sky130_fd_pr__nfet_01v8 l=0.6 w=160\nXlp ap cmctl vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=160\nXln an cmctl vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=160\n* Second stage\nXpp voutp ap vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=300\nXpn voutn an vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=300\nRzp ap cp 140\nRzn an cn 140\nCcp cp voutp 0.6p\nCcn cn voutn 0.6p\n* Average sensing and error amplifier\nRavp voutp sense 20k\nRavn voutn sense 20k\nXct ct bn vss vss sky130_fd_pr__nfet_01v8 l=1 w=20\nXcs cmctl sense ct vss sky130_fd_pr__nfet_01v8 l=1 w=20\nXcr cmref vocm ct vss sky130_fd_pr__nfet_01v8 l=1 w=20\nXcd cmref cmref vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=30\nXcm cmctl cmref vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=30\nCcm cmctl vss 0.15p\n.ends sampling_feedback_ota\nEOF\n# correct reference pin connection\nsed -i 's/Xref bn bn/Xref iref iref/; s/ bn / iref /g' /app/circuit.spi\npython3 /opt/simulationle-policy/check.py /app/circuit.spi\nmkdir -p /app/experiments\npython3 - <<'PY'\nfrom pathlib import Path\nfor f in Path('/app/testbench').glob('*.spi'):\n s=f.read_text().replace('../circuit.spi','/app/circuit.spi')\n Path('/app/experiments/'+f.name).write_text(s)\nPY\nngspice -b /app/experiments/tb_loop_nominal.spi -o /app/experiments/loop1.log\ncat /app/experiments/loop1.log | tail -35",
+            "timeout_seconds": 180
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "/app/circuit.spi: netlist check passed\n******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: /app/experiments/loop1.log\n\n\nNote: No compatibility mode selected!\n\n\nCircuit: * public nominal return-ratio diagnostic for cs=1pf, cf=125ff, cl=250ff.\n\nDoing analysis at TEMP = 27.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\nNote: Starting dynamic gmin stepping\nNote: Dynamic gmin stepping completed\n\nNo. of Data Rows : 1\noutput_common_mode_error_v = 5.546743e-04\npower_w = 4.820541e-03\nDoing analysis at TEMP = 27.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\nNote: Starting dynamic gmin stepping\nNote: Dynamic gmin stepping completed\n\nNo. of Data Rows : 801\nlow_frequency_loop_gain_db=  5.25225e+01\nclosed_loop_differential_gain_db=  1.90643e+01\nloop_ugb_hz         =  1.47640e+08\nphase_at_ugb_deg    =  -1.04640e+02\nphase_margin_deg = 7.536000e+01\nNote: Simulation executed from .control section \n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_004",
+          "name": "terminal",
+          "arguments": {
+            "command": "for b in nominal noise_nominal range_nominal cmfb_nominal mismatch_nominal; do ngspice -b /app/experiments/tb_$b.spi -o /app/experiments/${b}1.log >/dev/null; echo ==== $b; tail -25 /app/experiments/${b}1.log; done",
+            "timeout_seconds": 180
+          },
+          "result": {
+            "exit_code": 1,
+            "stdout": "==== nominal\nxota.ct                               0.160297\nxota.cmref                            0.591165\nlbn#branch                                   0\nlbp#branch                                   0\nvsign#branch                                 0\nvsigp#branch                                 0\nvocm#branch                                  0\nvdd#branch                         -0.00267808\nvss#branch                         4.58391e-15\n\n\nNo. of Data Rows : 10523\nrise_tolerance_cross=  5.22614e-08\nfall_tolerance_cross=  6.69046e-08\nrise_output_at_10ns =  8.71924e-01\nfall_output_at_10ns =  5.12704e-09\nhigh_static_output  =  6.22396e-01\nlow_static_output   =  -2.90678e-10\nrise_settling_time_s = 2.726138e-08\nfall_settling_time_s = 1.904640e-09\nrise_dynamic_error_fraction = 3.119578e-02\nfall_dynamic_error_fraction = 5.696709e-09\nhigh_static_error_fraction = 3.084488e-01\nlow_static_error_fraction = 3.229752e-10\nNote: Simulation executed from .control section \n==== noise_nominal\n\nNote: No compatibility mode selected!\n\n\nCircuit: * public nominal closed-loop differential output-noise diagnostic.\n\nDoing analysis at TEMP = 27.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\nNote: Starting dynamic gmin stepping\nNote: Dynamic gmin stepping completed\n\nNo. of Data Rows : 721\n\nNo. of Data Rows : 1\noutput_noise_vrms = 8.048800e-04\nNote: Simulation executed from .control section \n==== range_nominal\nNote: No compatibility mode selected!\n\n\nCircuit: * public nominal 3 db-compression differential output-range diagnostic.\n\nDoing analysis at TEMP = 27.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\nNote: Starting dynamic gmin stepping\nNote: Dynamic gmin stepping completed\n\nNo. of Data Rows : 81\nopen_loop_gain_peak_db=  7.16074e+01 at=  -5.00000e-07\n\nError: measure  output_range_min_v  find(AT) : out of interval\n meas dc output_range_min_v find differential_output when local_gain_db=6.860740e+01 rise=1 failed!\n\n\nError: measure  output_range_max_v  find(AT) : out of interval\n meas dc output_range_max_v find differential_output when local_gain_db=6.860740e+01 fall=1 failed!\n\nWarning from checkvalid: vector output_range_max_v is not available or has zero length.\nError: RHS \"output_range_max_v-output_range_min_v\" invalid\nWarning from checkvalid: vector output_range_min_v is not available or has zero length.\nNote: Simulation executed from .control section \n==== cmfb_nominal\nxref.cp                               0.619612\nxref.cn                               0.619612\nxref.sense                            0.900555\nxref.ct                               0.160297\nxref.cmref                            0.591165\nvinn#branch                                  0\nvinp#branch                                  0\nvocm#branch                                  0\nvdd#branch                         -0.00535616\nvss#branch                        -1.91956e-14\n\n\nNo. of Data Rows : 7520\ncmfb_static_error_v =  5.54674e-04\ncmfb_peak_deviation_v=  8.92803e-01 at=  4.49900e-08\ncmfb_residual_20ns_v=  9.17604e-01\ncmfb_residual_100ns_v=  1.72528e+00\ncmfb_static_error_v = 5.546743e-04\ncmfb_peak_deviation_v = 8.928035e-01\ncmfb_residual_20ns_v = 9.176037e-01\ncmfb_residual_100ns_v = 1.725284e+00\ncmfb_peak_limit_v = 1.000000e-01\ncmfb_residual_20ns_limit_v = 5.000000e-03\ncmfb_residual_100ns_limit_v = 1.000000e-03\nNote: Simulation executed from .control section \n==== mismatch_nominal\n",
+            "stderr": "Simulation gateway: Only independently defined external V/I test sources may be altered\ntail: cannot open '/app/experiments/mismatch_nominal1.log' for reading: No such file or directory\n"
+          }
+        },
+        {
+          "turn": "turn_005",
+          "name": "terminal",
+          "arguments": {
+            "command": "head -65 /app/experiments/nominal1.log; python3 - <<'PY'\nfrom pathlib import Path\np=Path('/app/experiments/tb_cmfb_nominal.spi');s=p.read_text().replace('tran 20p 150n','tran 10p 150n\\nwrdata /app/experiments/cm1.dat v(voutp) v(voutn) v(xota.cmctl) v(xota.ap)');p.with_name('cmplot.spi').write_text(s)\ns=Path('/app/experiments/tb_nominal.spi').read_text().replace('tran 10p 105n','tran 10p 105n\\nwrdata /app/experiments/tr1.dat v(voutp) v(voutn) v(xota.cmctl) v(xota.ap)');Path('/app/experiments/trplot.spi').write_text(s)\nPY\nngspice -b /app/experiments/cmplot.spi -o /app/experiments/cmpl.log >/dev/null\nngspice -b /app/experiments/trplot.spi -o /app/experiments/trpl.log >/dev/null\npython3 - <<'PY'\nimport numpy as np, matplotlib.pyplot as plt\nfig,ax=plt.subplots(2)\nfor a,f in zip(ax,['cm1','tr1']):\n d=np.loadtxt('/app/experiments/'+f+'.dat');\n for i,l in enumerate(['op','on','ctl','ap']):a.plot(d[:,0]*1e9,d[:,2*i+1],label=l)\n a.legend();a.set_title(f)\nplt.tight_layout();plt.savefig('/app/experiments/first.png')\nPY",
+            "timeout_seconds": 180
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "\nNote: No compatibility mode selected!\n\n\nCircuit: * public nominal gain-8 sampling-feedback transient.\n\nDoing analysis at TEMP = 27.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\nNote: Starting dynamic gmin stepping\nNote: Dynamic gmin stepping completed\n\nInitial Transient Solution\n--------------------------\n\nNode                                   Voltage\n----                                   -------\nvss                                          0\nvdd                                        1.8\niref                                  0.774347\nvocm                                       0.9\nsrcp                                       0.9\nsrcn                                       0.9\nvinp                                       0.9\nvinn                                       0.9\nvoutn                                 0.900555\nvoutp                                 0.900555\nxota.tail                             0.170745\nxota.ap                               0.619612\nxota.an                               0.619612\nxota.cmctl                            0.537997\nxota.cp                               0.619612\nxota.cn                               0.619612\nxota.sense                            0.900555\nxota.ct                               0.160297\nxota.cmref                            0.591165\nlbn#branch                                   0\nlbp#branch                                   0\nvsign#branch                                 0\nvsigp#branch                                 0\nvocm#branch                                  0\nvdd#branch                         -0.00267808\nvss#branch                         4.58391e-15\n\n\nNo. of Data Rows : 10523\nrise_tolerance_cross=  5.22614e-08\nfall_tolerance_cross=  6.69046e-08\nrise_output_at_10ns =  8.71924e-01\nfall_output_at_10ns =  5.12704e-09\nhigh_static_output  =  6.22396e-01\nlow_static_output   =  -2.90678e-10\nrise_settling_time_s = 2.726138e-08\nfall_settling_time_s = 1.904640e-09\nrise_dynamic_error_fraction = 3.119578e-02\nfall_dynamic_error_fraction = 5.696709e-09\nhigh_static_error_fraction = 3.084488e-01\nlow_static_error_fraction = 3.229752e-10\nNote: Simulation executed from .control section \n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_006",
+          "name": "read_image",
+          "arguments": {
+            "path": "/app/experiments/first.png"
+          },
+          "result": {
+            "image_path": "/app/experiments/first.png",
+            "sha256": "f12126b78ae66834a8a73312e3758897df9631a5d76e3578ad794060e31496cd",
+            "budget": {
+              "designs_used": 1,
+              "native_runs": 7,
+              "max_designs": 3,
+              "max_native_runs": 160
+            }
+          }
+        },
+        {
+          "turn": "turn_007",
+          "name": "terminal",
+          "arguments": {
+            "command": "python3 - <<'PY'\nfrom pathlib import Path\ns=Path('/app/experiments/tb_loop_nominal.spi').read_text();s=s.replace('op\\n','op\\nshow all\\n')\nPath('/app/experiments/op.spi').write_text(s)\n# CM ac response for initial design\ns=Path('/app/experiments/tb_loop_nominal.spi').read_text().replace('VOCM vocm vss 0.9','VOCM vocm vss DC 0.9 AC 1').replace('AC 0.5','AC 0').replace('AC -0.5','AC 0').replace('ac dec 80 10 100G','ac dec 80 10 100G\\nwrdata /app/experiments/cmac1.dat v(voutp) v(xota.cmctl)')\nPath('/app/experiments/cmac.spi').write_text(s)\nPY\nngspice -b /app/experiments/op.spi -o /app/experiments/op.log >/dev/null\ngrep -A65 'device.*xota.xpp' /app/experiments/op.log | head -70",
+            "timeout_seconds": 180
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "     device m.xota.xpp.msky130_fd m.xota.xln.msky130_fd m.xota.xlp.msky130_fd\n      model xota.xpp:pshort_model xota.xln:pshort_model xota.xlp:pshort_model\n          l                 5e-07                 1e-06                 1e-06\n          w                0.0003               0.00016               0.00016\n          m                     1                     1                     1\n         nf                     1                     1                     1\n         sa                     0                     0                     0\n         sb                     0                     0                     0\n         sd                     0                     0                     0\n        sca                     0                     0                     0\n        scb                     0                     0                     0\n        scc                     0                     0                     0\n         sc                     0                     0                     0\n        min                     0                     0                     0\n         ad                     0                     0                     0\n         as                     0                     0                     0\n         pd                     0                     0                     0\n         ps                     0                     0                     0\n        nrd           0.000466667              0.000875              0.000875\n        nrs           0.000466667              0.000875              0.000875\n        off                     0                     0                     0\n       rbdb                    50                    50                    50\n       rbsb                    50                    50                    50\n       rbpb                    50                    50                    50\n       rbps                    50                    50                    50\n       rbpd                    50                    50                    50\n     delvto                     0                     0                     0\n      mulu0                     1                     1                     1\n        xgw                     0                     0                     0\n      ngcon                     1                     1                     1\n   trnqsmod                     0                     0                     0\n   acnqsmod                     0                     0                     0\n   rbodymod                     1                     1                     1\n   rgatemod                     0                     0                     0\n     geomod                     0                     0                     0\n    rgeomod                     0                     0                     0\n       gmbs            0.00207162           0.000709585           0.000709585\n         gm            0.00814108            0.00270002            0.00270002\n        gds            7.7967e-05           8.92441e-06           8.92441e-06\n      vdsat              0.198551              0.229948              0.229948\n        vth              0.997733               1.03567               1.03567\n         id           0.000916259            0.00035452            0.00035452\n        ibd          -9.08808e-13          -1.18993e-12          -1.18993e-12\n        ibs          -8.16292e-16           -5.9294e-16           -5.9294e-16\n        gbd                 1e-12                 1e-12                 1e-12\n        gbs           1.27854e-12           1.27993e-12           1.27993e-12\n       isub           1.86808e-13           3.36392e-16           3.36392e-16\n      igidl                     0                     0                     0\n      igisl                     0                     0                     0\n        igs                     0                     0                     0\n        igd                     0                     0                     0\n        igb                     0                     0                     0\n       igcs                     0                     0                     0\n       igcd                     0                     0                     0\n        vbs          -0.000637193          -0.000462595          -0.000462595\n        vgs               1.17975               1.26154               1.26154\n        vds              0.898171               1.17946               1.17946\n        cgg           8.00559e-13           8.62299e-13           8.62299e-13\n        cgs          -7.49855e-13          -8.01148e-13          -8.01148e-13\n        cgd           1.74372e-15          -6.19445e-17          -6.19445e-17\n        cbg          -1.46789e-13          -1.41195e-13          -1.41195e-13\n        cbd            9.4563e-17          -5.51994e-17          -5.51994e-17\n        cbs          -8.04803e-14          -1.17856e-13          -1.17856e-13\n        cdg          -2.61753e-13          -2.88595e-13          -2.88595e-13\n        ",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_008",
+          "name": "terminal",
+          "arguments": {
+            "command": "cp /app/circuit.spi /app/experiments/design1.txt\npython3 - <<'PY'\np='/app/circuit.spi';s=open(p).read().replace('voutn iref','voutn cmctl').replace('voutp iref','voutp cmctl').replace('ap cmctl','ap loadcm').replace('an cmctl','an loadcm')\ns=s.replace('Xcs cmctl sense','Xcs cmref sense').replace('Xcr cmref vocm','Xcr cmctl vocm')\ns=s.replace('Ccm cmctl vss 0.15p','''* Local first-stage common-mode stabilization\nRlap ap loadcm 200k\nRlan an loadcm 200k\nXoffset loadcm iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=0.164\n* Output common-mode Miller compensation\nCcmp cmctl voutp 0.5p\nCcmn cmctl voutn 0.5p''')\nopen(p,'w').write(s)\nPY\npython3 /opt/simulationle-policy/check.py /app/circuit.spi\nfor b in loop_nominal nominal cmfb_nominal noise_nominal; do ngspice -b /app/experiments/tb_$b.spi -o /app/experiments/${b}2.log >/dev/null; echo ==== $b; tail -22 /app/experiments/${b}2.log; done",
+            "timeout_seconds": 180
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "/app/circuit.spi: netlist check passed\n==== loop_nominal\n\nNote: No compatibility mode selected!\n\n\nCircuit: * public nominal return-ratio diagnostic for cs=1pf, cf=125ff, cl=250ff.\n\nError on line 770 or its substitute:\n  m.xota.xoffset.msky130_fd_pr__nfet_01v8 xota.loadcm iref vss vss xota.xoffset:nshort_model l=    1.000000000000000e+00     w=    1.640000000000000e-01     ad=    0.000000000000000e+00     as=    0.000000000000000e+00     pd=    0.000000000000000e+00     ps=    0.000000000000000e+00     nrd=    8.536585365853659e-01     nrs=    8.536585365853659e-01     sa=    0.000000000000000e+00     sb=    0.000000000000000e+00     sd=    0.000000000000000e+00     nf=    1.000000000000000e+00     delvto=    0.000000000000000e+00   \ncould not find a valid modelname\n    Simulation interrupted due to error!\n\n==== nominal\n\nNote: No compatibility mode selected!\n\n\nCircuit: * public nominal gain-8 sampling-feedback transient.\n\nError on line 770 or its substitute:\n  m.xota.xoffset.msky130_fd_pr__nfet_01v8 xota.loadcm iref vss vss xota.xoffset:nshort_model l=    1.000000000000000e+00     w=    1.640000000000000e-01     ad=    0.000000000000000e+00     as=    0.000000000000000e+00     pd=    0.000000000000000e+00     ps=    0.000000000000000e+00     nrd=    8.536585365853659e-01     nrs=    8.536585365853659e-01     sa=    0.000000000000000e+00     sb=    0.000000000000000e+00     sd=    0.000000000000000e+00     nf=    1.000000000000000e+00     delvto=    0.000000000000000e+00   \ncould not find a valid modelname\n    Simulation interrupted due to error!\n\n==== cmfb_nominal\n\nNote: No compatibility mode selected!\n\n\nCircuit: * public nominal cmfb recovery diagnostic with the specified disturbance.\n\nError on line 770 or its substitute:\n  m.xota.xoffset.msky130_fd_pr__nfet_01v8 xota.loadcm iref vss vss xota.xoffset:nshort_model l=    1.000000000000000e+00     w=    1.640000000000000e-01     ad=    0.000000000000000e+00     as=    0.000000000000000e+00     pd=    0.000000000000000e+00     ps=    0.000000000000000e+00     nrd=    8.536585365853659e-01     nrs=    8.536585365853659e-01     sa=    0.000000000000000e+00     sb=    0.000000000000000e+00     sd=    0.000000000000000e+00     nf=    1.000000000000000e+00     delvto=    0.000000000000000e+00   \ncould not find a valid modelname\n    Simulation interrupted due to error!\n\n==== noise_nominal\n\nNote: No compatibility mode selected!\n\n\nCircuit: * public nominal closed-loop differential output-noise diagnostic.\n\nError on line 770 or its substitute:\n  m.xota.xoffset.msky130_fd_pr__nfet_01v8 xota.loadcm iref vss vss xota.xoffset:nshort_model l=    1.000000000000000e+00     w=    1.640000000000000e-01     ad=    0.000000000000000e+00     as=    0.000000000000000e+00     pd=    0.000000000000000e+00     ps=    0.000000000000000e+00     nrd=    8.536585365853659e-01     nrs=    8.536585365853659e-01     sa=    0.000000000000000e+00     sb=    0.000000000000000e+00     sd=    0.000000000000000e+00     nf=    1.000000000000000e+00     delvto=    0.000000000000000e+00   \ncould not find a valid modelname\n    Simulation interrupted due to error!\n\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_009",
+          "name": "terminal",
+          "arguments": {
+            "command": "grep -n 'lmin\\|lmax\\|wmin\\|wmax' /opt/sky130/continuous/models/sky130_fd_pr__nfet_01v8* 2>/dev/null | head; find /opt/sky130/continuous -maxdepth 2 -type f | head; cat /app/circuit.spi",
+            "timeout_seconds": 10
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "/opt/sky130/continuous/parameters_fet_fs.spice\n/opt/sky130/continuous/parameters_res_high.spice\n/opt/sky130/continuous/models_fet.spice\n/opt/sky130/continuous/models_diodes.spice\n/opt/sky130/continuous/test.spice\n/opt/sky130/continuous/models_bjt.spice\n/opt/sky130/continuous/parameters_res_nom.spice\n/opt/sky130/continuous/parameters_fet_ff.spice\n/opt/sky130/continuous/parameters_cap_high.spice\n/opt/sky130/continuous/models_global.spice\n* Two-stage fully differential OTA, continuous resistive common-mode servo.\n.subckt sampling_feedback_ota vss iref vdd vinn vinp vocm voutn voutp\n* Bias reference and mirrors\nXref iref iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=10\nXtail tail iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=160\nXon voutn cmctl vss vss sky130_fd_pr__nfet_01v8 l=1 w=180\nXop voutp cmctl vss vss sky130_fd_pr__nfet_01v8 l=1 w=180\n* Input stage\nXip ap vinp tail vss sky130_fd_pr__nfet_01v8 l=0.6 w=160\nXin an vinn tail vss sky130_fd_pr__nfet_01v8 l=0.6 w=160\nXlp ap loadcm vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=160\nXln an loadcm vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=160\n* Second stage\nXpp voutp ap vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=300\nXpn voutn an vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=300\nRzp ap cp 140\nRzn an cn 140\nCcp cp voutp 0.6p\nCcn cn voutn 0.6p\n* Average sensing and error amplifier\nRavp voutp sense 20k\nRavn voutn sense 20k\nXct ct iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=20\nXcs cmref sense ct vss sky130_fd_pr__nfet_01v8 l=1 w=20\nXcr cmctl vocm ct vss sky130_fd_pr__nfet_01v8 l=1 w=20\nXcd cmref cmref vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=30\nXcm cmctl cmref vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=30\n* Local first-stage common-mode stabilization\nRlap ap loadcm 200k\nRlan an loadcm 200k\nXoffset loadcm iref vss vss sky130_fd_pr__nfet_01v8 l=1 w=0.164\n* Output common-mode Miller compensation\nCcmp cmctl voutp 0.5p\nCcmn cmctl voutn 0.5p\n.ends sampling_feedback_ota\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_010",
+          "name": "terminal",
+          "arguments": {
+            "command": "sed -i 's/l=1 w=0.164/l=6.1 w=1/' /app/circuit.spi\npython3 /opt/simulationle-policy/check.py /app/circuit.spi\nfor b in loop_nominal nominal cmfb_nominal noise_nominal; do ngspice -b /app/experiments/tb_$b.spi -o /app/experiments/${b}3.log >/dev/null; echo ==== $b; tail -23 /app/experiments/${b}3.log; done",
+            "timeout_seconds": 180
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "/app/circuit.spi: netlist check passed\n==== loop_nominal\n\nDoing analysis at TEMP = 27.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\nNote: Starting dynamic gmin stepping\nNote: Dynamic gmin stepping completed\n\nNo. of Data Rows : 1\noutput_common_mode_error_v = 1.557821e-03\npower_w = 4.521615e-03\nDoing analysis at TEMP = 27.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\nNote: Starting dynamic gmin stepping\nNote: Dynamic gmin stepping completed\n\nNo. of Data Rows : 801\nlow_frequency_loop_gain_db=  5.20330e+01\nclosed_loop_differential_gain_db=  1.90631e+01\nloop_ugb_hz         =  1.42315e+08\nphase_at_ugb_deg    =  -1.12184e+02\nphase_margin_deg = 6.781570e+01\nNote: Simulation executed from .control section \n==== nominal\nvocm#branch                                  0\nvdd#branch                         -0.00251201\nvss#branch                        -3.75688e-16\n\n\nNo. of Data Rows : 10522\n\nError: measure  rise_tolerance_cross  when(WHEN) : out of interval\n meas tran rise_tolerance_cross when rise_error=9m cross=last from=25n to=64n failed!\n\nfall_tolerance_cross=  7.07340e-08\nrise_output_at_10ns =  8.89634e-01\nfall_output_at_10ns =  1.56881e-04\nhigh_static_output  =  8.89767e-01\nlow_static_output   =  7.70438e-07\nWarning from checkvalid: vector rise_tolerance_cross is not available or has zero length.\nError: RHS \"rise_tolerance_cross-25n\" invalid\nWarning from checkvalid: vector rise_settling_time_s is not available or has zero length.\nrise_dynamic_error_fraction = 1.151789e-02\nfall_dynamic_error_fraction = 1.743122e-04\nhigh_static_error_fraction = 1.136978e-02\nlow_static_error_fraction = 8.560422e-07\nNote: Simulation executed from .control section \n==== cmfb_nominal\nxref.sense                            0.901558\nxref.ct                               0.161274\nxref.cmref                            0.590626\nvinn#branch                                  0\nvinp#branch                                  0\nvocm#branch                                  0\nvdd#branch                         -0.00502402\nvss#branch                        -4.22773e-15\n\n\nNo. of Data Rows : 7520\ncmfb_static_error_v =  1.55782e-03\ncmfb_peak_deviation_v=  8.47705e-03 at=  4.09300e-08\ncmfb_residual_20ns_v=  3.39118e-05\ncmfb_residual_100ns_v=  2.98888e-04\ncmfb_static_error_v = 1.557821e-03\ncmfb_peak_deviation_v = 8.477053e-03\ncmfb_residual_20ns_v = 3.391180e-05\ncmfb_residual_100ns_v = 2.988875e-04\ncmfb_peak_limit_v = 1.000000e-01\ncmfb_residual_20ns_limit_v = 5.000000e-03\ncmfb_residual_100ns_limit_v = 1.000000e-03\nNote: Simulation executed from .control section \n==== noise_nominal\n\nNote: No compatibility mode selected!\n\n\nCircuit: * public nominal closed-loop differential output-noise diagnostic.\n\nDoing analysis at TEMP = 27.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\nNote: Starting dynamic gmin stepping\nNote: Dynamic gmin stepping completed\n\nNo. of Data Rows : 721\n\nNo. of Data Rows : 1\noutput_noise_vrms = 7.633539e-04\nNote: Simulation executed from .control section \n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_011",
+          "name": "terminal",
+          "arguments": {
+            "command": "cat > /app/experiments/matrix.py <<'PY'\nfrom pathlib import Path\nimport subprocess, re, json\nbase=Path('/app/experiments');out=[]\nfor c in ['tt','ff','ss','fs','sf']:\n for v in [1.8,1.98]:\n  for t in [-25,27,85]:\n   row=dict(corner=c,vdd=v,temp=t)\n   for kind in ['loop_nominal','nominal','noise_nominal']:\n    s=(base/f'tb_{kind}.spi').read_text().replace('\" tt','\" '+c).replace('VDD vdd vss 1.8',f'VDD vdd vss {v}').replace('.include',f'.temp {t}\\n.include')\n    name=f'{c}_{v}_{t}_{kind}';p=base/(name+'.spi');p.write_text(s)\n    subprocess.run(['ngspice','-b',str(p),'-o',str(base/(name+'.log'))],stdout=subprocess.DEVNULL)\n    log=(base/(name+'.log')).read_text()\n    for key in ['output_common_mode_error_v','power_w','low_frequency_loop_gain_db','loop_ugb_hz','phase_margin_deg','rise_output_at_10ns','fall_output_at_10ns','high_static_output','low_static_output','fall_settling_time_s','rise_settling_time_s','output_noise_vrms']:\n     m=re.search(r'\\b'+key+r'\\s*=\\s*([-+\\deE.]+)',log)\n     if m:row[key]=float(m[1])\n   out.append(row);print(row,flush=True)\n   (base/'matrix.json').write_text(json.dumps(out,indent=2))\nPY\npython3 /app/experiments/matrix.py > /app/experiments/matrix_progress.log 2>&1",
+            "timeout_seconds": 180
+          },
+          "result": {
+            "exit_code": 124,
+            "stdout": "",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_012",
+          "name": "terminal",
+          "arguments": {
+            "command": "python3 - <<'PY'\np='/app/experiments/matrix.py';s=open(p).read();s=s.replace(\"subprocess.run(['ngspice'\", \"if not (base/(name+'.log')).exists(): subprocess.run(['ngspice'\")\nopen(p,'w').write(s)\nPY\nnohup python3 /app/experiments/matrix.py > /app/experiments/matrix_progress.log 2>&1 &\npython3 - <<'PY'\nfrom pathlib import Path\ns=Path('/app/experiments/tb_range_nominal.spi').read_text().replace('dc VID -20u 20u 500n','dc VID -2m 2m 1u').replace('let local_gain =','wrdata /app/experiments/range3.dat differential_output\\nlet local_gain =')\nPath('/app/experiments/range_wide.spi').write_text(s)\nPY\nngspice -b /app/experiments/range_wide.spi -o /app/experiments/range3.log >/dev/null\ntail -16 /app/experiments/range3.log; tail -2 /app/experiments/matrix_progress.log",
+            "timeout_seconds": 180
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "Doing analysis at TEMP = 27.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\nNote: Starting dynamic gmin stepping\nNote: Dynamic gmin stepping completed\n\nNo. of Data Rows : 4001\nopen_loop_gain_peak_db=  7.11178e+01 at=  -5.89090e-17\noutput_range_min_v  =  -1.07195e+00\noutput_range_max_v  =  1.07195e+00\nopen_loop_gain_peak_db = 7.111782e+01\ngain_3db_db = 6.811782e+01\noutput_range_min_v = -1.07195e+00\noutput_range_max_v = 1.071948e+00\ndifferential_range_v = 2.143896e+00\nNote: Simulation executed from .control section \n{'corner': 'tt', 'vdd': 1.98, 'temp': 27, 'output_common_mode_error_v': 3.999043e-05, 'power_w': 0.005018135, 'low_frequency_loop_gain_db': 54.0276, 'loop_ugb_hz': 144026000.0, 'phase_margin_deg': 67.8108, 'rise_output_at_10ns': 0.890902, 'fall_output_at_10ns': 0.000138392, 'high_static_output': 0.891018, 'low_static_output': 3.72862e-07, 'fall_settling_time_s': 5.6632e-09, 'rise_settling_time_s': 1.133648e-08, 'output_noise_vrms': 0.0007673614}\n{'corner': 'tt', 'vdd': 1.98, 'temp': 85, 'output_common_mode_error_v': 0.0006768118, 'power_w': 0.005580757, 'low_frequency_loop_gain_db': 53.1213, 'loop_ugb_hz': 130419000.0, 'phase_margin_deg': 69.841, 'rise_output_at_10ns': 0.889694, 'fall_output_at_10ns': 0.000526902, 'high_static_output': 0.890216, 'low_static_output': 3.47684e-07, 'output_noise_vrms': 0.0008384417}\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_013",
+          "name": "terminal",
+          "arguments": {
+            "command": "cat > /app/experiments/mismatch.py <<'PY'\nfrom pathlib import Path\nimport subprocess,re,json\nbase=Path('/app/experiments'); rows=[]\nfor seed in range(51000,51020):\n s=f'''* fixed-source three-channel local mismatch rejection diagnostic\n.option seed={seed}\n.lib \"/opt/sky130/continuous/sky130.lib.spice\" tt_mm\n.include \"/app/circuit.spi\"\n.options reltol=2e-4 abstol=1e-12 vntol=1e-8\n'''\n for k in ['cm','vp','vn']:\n  s+=f'''VSS{k} vs{k} 0 DC 0 AC {int(k=='vn')}\nVDD{k} vd{k} vs{k} DC 1.8 AC {-1 if k=='vn' else int(k=='vp')}\nIR{k} vd{k} ir{k} 50u\nVOC{k} vc{k} vs{k} 0.9\nVCM{k} cm{k} vs{k} DC 0 AC {int(k=='cm')}\nEIP{k} ip{k} vs{k} value={{v(vc{k},vs{k})+v(cm{k},vs{k})-0.0555555555556*(v(op{k})-v(on{k}))}}\nEIN{k} in{k} vs{k} value={{v(vc{k},vs{k})+v(cm{k},vs{k})+0.0555555555556*(v(op{k})-v(on{k}))}}\nX{k} vs{k} ir{k} vd{k} in{k} ip{k} vc{k} on{k} op{k} sampling_feedback_ota\nCP{k} op{k} vs{k} 361.111f\nCN{k} on{k} vs{k} 361.111f\n'''\n s+='''.control\nac lin 1 10 10\n'''\n for k in ['cm','vp','vn']:s+=f'let response_{k} = vdb(v(op{k})-v(on{k}))\\nprint response_{k}\\n'\n s+='.endc\\n.end\\n'\n p=base/f'mm{seed}.spi';p.write_text(s)\n subprocess.run(['ngspice','-b',str(p),'-o',str(base/f'mm{seed}.log')],stdout=subprocess.DEVNULL)\n log=(base/f'mm{seed}.log').read_text();row={'seed':seed}\n for k in ['cm','vp','vn']:\n  m=re.search('response_'+k+r'\\s*=\\s*([-+\\deE.]+)',log)\n  if m:row[k]=19.0631-float(m[1])\n rows.append(row);print(row,flush=True)\n (base/'mismatch.json').write_text(json.dumps(rows,indent=2))\nPY\nnohup python3 /app/experiments/mismatch.py > /app/experiments/mm_progress.log 2>&1 &\ntail -2 /app/experiments/matrix_progress.log; ps -ef | grep -E 'matrix.py|mismatch.py' | grep -v grep",
+            "timeout_seconds": 10
+          },
+          "result": {
+            "exit_code": 1,
+            "stdout": "{'corner': 'tt', 'vdd': 1.98, 'temp': 85, 'output_common_mode_error_v': 0.0006768118, 'power_w': 0.005580757, 'low_frequency_loop_gain_db': 53.1213, 'loop_ugb_hz': 130419000.0, 'phase_margin_deg': 69.841, 'rise_output_at_10ns': 0.889694, 'fall_output_at_10ns': 0.000526902, 'high_static_output': 0.890216, 'low_static_output': 3.47684e-07, 'output_noise_vrms': 0.0008384417}\n{'corner': 'ff', 'vdd': 1.8, 'temp': -25, 'output_common_mode_error_v': 0.001879149, 'power_w': 0.003979262, 'low_frequency_loop_gain_db': 52.5677, 'loop_ugb_hz': 158322000.0, 'phase_margin_deg': 65.3877, 'rise_output_at_10ns': 0.890123, 'fall_output_at_10ns': 1.89219e-05, 'high_static_output': 0.890127, 'low_static_output': 8.11423e-07, 'output_noise_vrms': 0.0006958788}\n",
+            "stderr": "bash: line 39: ps: command not found\n"
+          }
+        },
+        {
+          "turn": "turn_014",
+          "name": "terminal",
+          "arguments": {
+            "command": "python3 - <<'PY'\nfrom pathlib import Path\nimport subprocess\nb=Path('/app/experiments')\nfor c,v,t in [('ss',1.8,85),('ff',1.98,-25)]:\n s=(b/'tb_cmfb_nominal.spi').read_text().replace('\" tt','\" '+c).replace('VDD vdd vss 1.8',f'VDD vdd vss {v}').replace('.include',f'.temp {t}\\n.include')\n p=b/f'cmfb_{c}.spi';p.write_text(s)\n subprocess.run(['ngspice','-b',str(p),'-o',str(b/f'cmfb_{c}.log')],stdout=subprocess.DEVNULL)\n print((b/f'cmfb_{c}.log').read_text()[-1100:])\nPY\ntail -3 /app/experiments/mm_progress.log; tail -1 /app/experiments/matrix_progress.log",
+            "timeout_seconds": 180
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "                              0.682859\nxref.an                               0.682859\nxref.loadcm                            0.59667\nxref.cp                               0.682859\nxref.cn                               0.682859\nxref.sense                            0.901138\nxref.ct                               0.168949\nxref.cmref                            0.656263\nvinn#branch                                  0\nvinp#branch                                  0\nvocm#branch                                  0\nvdd#branch                         -0.00553093\nvss#branch                        -7.35011e-16\n\n\nNo. of Data Rows : 7520\ncmfb_static_error_v =  1.13796e-03\ncmfb_peak_deviation_v=  8.58205e-03 at=  4.09900e-08\ncmfb_residual_20ns_v=  2.07782e-04\ncmfb_residual_100ns_v=  3.63309e-04\ncmfb_static_error_v = 1.137962e-03\ncmfb_peak_deviation_v = 8.582055e-03\ncmfb_residual_20ns_v = 2.077819e-04\ncmfb_residual_100ns_v = 3.633090e-04\ncmfb_peak_limit_v = 1.000000e-01\ncmfb_residual_20ns_limit_v = 5.000000e-03\ncmfb_residual_100ns_limit_v = 1.000000e-03\nNote: Simulation executed from .control section \n\n                              0.768865\nxref.an                               0.768865\nxref.loadcm                           0.668538\nxref.cp                               0.768865\nxref.cn                               0.768865\nxref.sense                            0.900271\nxref.ct                                0.15383\nxref.cmref                            0.715469\nvinn#branch                                  0\nvinp#branch                                  0\nvocm#branch                                  0\nvdd#branch                         -0.00445678\nvss#branch                         2.69655e-16\n\n\nNo. of Data Rows : 7520\ncmfb_static_error_v =  2.70809e-04\ncmfb_peak_deviation_v=  8.50344e-03 at=  4.08900e-08\ncmfb_residual_20ns_v=  9.02824e-05\ncmfb_residual_100ns_v=  1.77485e-04\ncmfb_static_error_v = 2.708090e-04\ncmfb_peak_deviation_v = 8.503438e-03\ncmfb_residual_20ns_v = 9.028243e-05\ncmfb_residual_100ns_v = 1.774855e-04\ncmfb_peak_limit_v = 1.000000e-01\ncmfb_residual_20ns_limit_v = 5.000000e-03\ncmfb_residual_100ns_limit_v = 1.000000e-03\nNote: Simulation executed from .control section \n\n{'seed': 51003}\n{'seed': 51004}\n{'seed': 51005}\n{'corner': 'ff', 'vdd': 1.8, 'temp': 85, 'output_common_mode_error_v': 0.0006782896, 'power_w': 0.005045042, 'low_frequency_loop_gain_db': 50.9975, 'loop_ugb_hz': 130589000.0, 'phase_margin_deg': 69.9568, 'rise_output_at_10ns': 0.887831, 'fall_output_at_10ns': 0.00055202, 'high_static_output': 0.888385, 'low_static_output': -1.98667e-08, 'output_noise_vrms': 0.0008338743}\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_015",
+          "name": "terminal",
+          "arguments": {
+            "command": "tail -45 /app/experiments/mm51000.log; tail -2 /app/experiments/mm_progress.log; tail -1 /app/experiments/matrix_progress.log",
+            "timeout_seconds": 10
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "\nNote: No compatibility mode selected!\n\n\nCircuit: * fixed-source three-channel local mismatch rejection diagnostic\n\nDoing analysis at TEMP = 27.000000 and TNOM = 27.000000\n\nUsing SPARSE 1.3 as Direct Linear Solver\nNote: Starting dynamic gmin stepping\nNote: Dynamic gmin stepping completed\n\nNo. of Data Rows : 1\nError: bad v() syntax\n  in term: vdb(v(opcm)-v(oncm))\n\nError: Can't evaluate \"vdb(v(opcm)-v(oncm))\"\nWarning from checkvalid: vector response_cm is not available or has zero length.\nError: bad v() syntax\n  in term: vdb(v(opvp)-v(onvp))\n\nError: Can't evaluate \"vdb(v(opvp)-v(onvp))\"\nWarning from checkvalid: vector response_vp is not available or has zero length.\nError: bad v() syntax\n  in term: vdb(v(opvn)-v(onvn))\n\nError: Can't evaluate \"vdb(v(opvn)-v(onvn))\"\nWarning from checkvalid: vector response_vn is not available or has zero length.\nNote: Simulation executed from .control section \n{'seed': 51004}\n{'seed': 51005}\n{'corner': 'ff', 'vdd': 1.8, 'temp': 85, 'output_common_mode_error_v': 0.0006782896, 'power_w': 0.005045042, 'low_frequency_loop_gain_db': 50.9975, 'loop_ugb_hz': 130589000.0, 'phase_margin_deg': 69.9568, 'rise_output_at_10ns': 0.887831, 'fall_output_at_10ns': 0.00055202, 'high_static_output': 0.888385, 'low_static_output': -1.98667e-08, 'output_noise_vrms': 0.0008338743}\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_016",
+          "name": "terminal",
+          "arguments": {
+            "command": "python3 - <<'PY'\nimport os,signal\nfrom pathlib import Path\nfor p in Path('/proc').glob('[0-9]*/cmdline'):\n try:\n  cmd=p.read_bytes().split(b'\\0')\n  if len(cmd)>1 and cmd[1]==b'/app/experiments/mismatch.py':os.kill(int(p.parent.name),signal.SIGTERM)\n except (OSError,ProcessLookupError):pass\np=Path('/app/experiments/mismatch.py');s=p.read_text().replace('vdb(v(op{k})-v(on{k}))','db(v(op{k})-v(on{k}))');p.write_text(s)\nPY\nnohup python3 /app/experiments/mismatch.py > /app/experiments/mm_progress.log 2>&1 &\nsleep 40\ntail -3 /app/experiments/mm_progress.log; tail -1 /app/experiments/matrix_progress.log",
+            "timeout_seconds": 60
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "{'seed': 51009, 'cm': 88.8243, 'vp': 90.15, 'vn': 110.31700000000001}\n{'seed': 51010, 'cm': 86.6713, 'vp': 89.3717, 'vn': 96.874}\n{'seed': 51011, 'cm': 81.76859999999999, 'vp': 122.6061, 'vn': 115.92009999999999}\n{'corner': 'ff', 'vdd': 1.8, 'temp': 85, 'output_common_mode_error_v': 0.0006782896, 'power_w': 0.005045042, 'low_frequency_loop_gain_db': 50.9975, 'loop_ugb_hz': 130589000.0, 'phase_margin_deg': 69.9568, 'rise_output_at_10ns': 0.887831, 'fall_output_at_10ns': 0.00055202, 'high_static_output': 0.888385, 'low_static_output': -1.98667e-08, 'output_noise_vrms': 0.0008338743}\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_017",
+          "name": "terminal",
+          "arguments": {
+            "command": "tail -12 /app/experiments/matrix_progress.log; ls -lt /app/experiments/*ff* | head; cat /app/experiments/matrix.py | tail -18; python3 - <<'PY'\nfrom pathlib import Path\nfor p in Path('/proc').glob('[0-9]*/cmdline'):\n try:\n  c=p.read_bytes().replace(b'\\0',b' ')\n  if c.startswith(b'python3 /app/experiments') or c.startswith(b'ngspice'):print(p,c)\n except:pass\nPY",
+            "timeout_seconds": 10
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "{'corner': 'tt', 'vdd': 1.8, 'temp': -25, 'output_common_mode_error_v': 0.002082872, 'power_w': 0.004006399, 'low_frequency_loop_gain_db': 52.7641, 'loop_ugb_hz': 156288000.0, 'phase_margin_deg': 65.5393, 'rise_output_at_10ns': 0.8905, 'fall_output_at_10ns': 2.33095e-05, 'high_static_output': 0.890502, 'low_static_output': 8.3237e-07, 'output_noise_vrms': 0.0006960383}\n{'corner': 'tt', 'vdd': 1.8, 'temp': 27, 'output_common_mode_error_v': 0.001557821, 'power_w': 0.004521615, 'low_frequency_loop_gain_db': 52.033, 'loop_ugb_hz': 142315000.0, 'phase_margin_deg': 67.8157, 'rise_output_at_10ns': 0.889634, 'fall_output_at_10ns': 0.000156881, 'high_static_output': 0.889767, 'low_static_output': 7.70438e-07, 'output_noise_vrms': 0.0007633539}\n{'corner': 'tt', 'vdd': 1.8, 'temp': 85, 'output_common_mode_error_v': 0.0009199072, 'power_w': 0.005026096, 'low_frequency_loop_gain_db': 51.1958, 'loop_ugb_hz': 128899000.0, 'phase_margin_deg': 69.8435, 'rise_output_at_10ns': 0.888229, 'fall_output_at_10ns': 0.000579276, 'high_static_output': 0.888812, 'low_static_output': 7.11753e-07, 'output_noise_vrms': 0.0008343999}\n{'corner': 'tt', 'vdd': 1.98, 'temp': -25, 'output_common_mode_error_v': 0.0004851089, 'power_w': 0.004443922, 'low_frequency_loop_gain_db': 54.7851, 'loop_ugb_hz': 158161000.0, 'phase_margin_deg': 65.5349, 'rise_output_at_10ns': 0.891629, 'fall_output_at_10ns': 1.9137e-05, 'high_static_output': 0.891633, 'low_static_output': 3.62619e-07, 'fall_settling_time_s': 4.91232e-09, 'rise_settling_time_s': 7.00881e-09, 'output_noise_vrms': 0.0007001084}\n{'corner': 'tt', 'vdd': 1.98, 'temp': 27, 'output_common_mode_error_v': 3.999043e-05, 'power_w': 0.005018135, 'low_frequency_loop_gain_db': 54.0276, 'loop_ugb_hz': 144026000.0, 'phase_margin_deg': 67.8108, 'rise_output_at_10ns': 0.890902, 'fall_output_at_10ns': 0.000138392, 'high_static_output': 0.891018, 'low_static_output': 3.72862e-07, 'fall_settling_time_s': 5.6632e-09, 'rise_settling_time_s': 1.133648e-08, 'output_noise_vrms': 0.0007673614}\n{'corner': 'tt', 'vdd': 1.98, 'temp': 85, 'output_common_mode_error_v': 0.0006768118, 'power_w': 0.005580757, 'low_frequency_loop_gain_db': 53.1213, 'loop_ugb_hz': 130419000.0, 'phase_margin_deg': 69.841, 'rise_output_at_10ns': 0.889694, 'fall_output_at_10ns': 0.000526902, 'high_static_output': 0.890216, 'low_static_output': 3.47684e-07, 'output_noise_vrms': 0.0008384417}\n{'corner': 'ff', 'vdd': 1.8, 'temp': -25, 'output_common_mode_error_v': 0.001879149, 'power_w': 0.003979262, 'low_frequency_loop_gain_db': 52.5677, 'loop_ugb_hz': 158322000.0, 'phase_margin_deg': 65.3877, 'rise_output_at_10ns': 0.890123, 'fall_output_at_10ns': 1.89219e-05, 'high_static_output': 0.890127, 'low_static_output': 8.11423e-07, 'output_noise_vrms': 0.0006958788}\n{'corner': 'ff', 'vdd': 1.8, 'temp': 27, 'output_common_mode_error_v': 0.001338673, 'power_w': 0.004517273, 'low_frequency_loop_gain_db': 51.8385, 'loop_ugb_hz': 144170000.0, 'phase_margin_deg': 67.8338, 'rise_output_at_10ns': 0.889247, 'fall_output_at_10ns': 0.000145175, 'high_static_output': 0.889373, 'low_static_output': -7.98265e-09, 'output_noise_vrms': 0.000762976}\n{'corner': 'ff', 'vdd': 1.8, 'temp': 85, 'output_common_mode_error_v': 0.0006782896, 'power_w': 0.005045042, 'low_frequency_loop_gain_db': 50.9975, 'loop_ugb_hz': 130589000.0, 'phase_margin_deg': 69.9568, 'rise_output_at_10ns': 0.887831, 'fall_output_at_10ns': 0.00055202, 'high_static_output': 0.888385, 'low_static_output': -1.98667e-08, 'output_noise_vrms': 0.0008338743}\n-rw-r--r-- 1 1000 1000 2563 Nov  6 14:12 /app/experiments/cmfb_ff.log\n-rw-r--r-- 1 1000 1000 1426 Nov  6 14:12 /app/experiments/cmfb_ff.spi\n-rw-r--r-- 1 1000 1000 2149 Nov  6 14:09 /app/experiments/ff_1.98_-25_nominal.log\n-rw-r--r-- 1 1000 1000 1644 Nov  6 14:08 /app/experiments/ff_1.98_-25_nominal.spi\n-rw-r--r-- 1 1000 1000  673 Nov  6 14:08 /app/experiments/ff_1.98_-25_loop_nominal.log\n-rw-r--r-- 1 1000 1000 1228 Nov  6 14:08 /app/experiments/ff_1.98_-25_loop_nominal.spi\n-rw-r--r-- 1 1000 1000  419 Nov  6 14:08 /app/experiments/ff_1.8_85_noise_nominal.log\n-rw-r--r-- 1 1000 1000  665 Nov  6 14:07 /app/experiments/ff_1.8_85_noise_nominal.spi\n-rw-r--r-- 1 1000 1000 2498 Nov  6 14:07 /app/experiments/ff_1.8_85_nominal.log\n-rw-r--r-- 1 1000 1000 1642 Nov  6 14:07 /app/experiments/ff_1.8_85_nominal.spi\nfrom pathlib import Path\nimport subprocess, re, json\nbase=Path('/app/experiments');out=[]\nfor c in ['tt','ff','ss','fs','sf']:\n for v in [1.8,1.98]:\n  for t in [-25,27,85]:\n   row=dict(corner=c,vdd=v,temp=t)\n   for kind in ['loop_nominal','nominal','noise_nominal']:\n    s=(base/f'tb_{kind}.spi').read_text().replace('\" tt','\" '+c).replace('VDD vdd vss 1.8',f'VDD vdd vss {v}').replace('.include',f'.temp {t}\\n.include')\n    name=f'{c}_{v}_{t}_{kind}';p=base/(name+'.spi');p.write_text(s)\n    if not (base/(name+'.log')).exists(): subprocess.run(['ngspice','-b',str(p),'-o',str(base/(name+'.log'))],stdout=subprocess.DEVNULL)\n    log=(base/(name+'.log')).read_text()\n    ",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_018",
+          "name": "terminal",
+          "arguments": {
+            "command": "python3 /app/experiments/matrix.py > /app/experiments/matrix_progress.log 2>&1",
+            "timeout_seconds": 180
+          },
+          "result": {
+            "exit_code": 124,
+            "stdout": "",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_019",
+          "name": "terminal",
+          "arguments": {
+            "command": "python3 /app/experiments/matrix.py > /app/experiments/matrix_progress.log 2>&1\npython3 - <<'PY'\nimport json,numpy as np\nfrom pathlib import Path\nb=Path('/app/experiments');r=json.loads((b/'matrix.json').read_text()); print('matrix rows',len(r))\nfor k in ['phase_margin_deg','power_w','output_common_mode_error_v','output_noise_vrms','high_static_output','rise_output_at_10ns','fall_output_at_10ns']:\n a=[(x[k],x['corner'],x['vdd'],x['temp']) for x in r if k in x];print(k, 'min',min(a),'max',max(a))\nm=json.loads((b/'mismatch.json').read_text());print('mismatch count',len(m));\nfor k in ['cm','vp','vn']:print(k,min(x[k] for x in m if k in x))\nPY",
+            "timeout_seconds": 180
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "matrix rows 30\nphase_margin_deg min (64.2176, 'sf', 1.98, -25) max (70.6265, 'fs', 1.98, 85)\npower_w min (0.003854069, 'sf', 1.8, -25) max (0.005661299, 'fs', 1.98, 85)\noutput_common_mode_error_v min (3.999043e-05, 'tt', 1.98, 27) max (0.002402476, 'sf', 1.8, -25)\noutput_noise_vrms min (0.0006934053, 'sf', 1.8, -25) max (0.0008389026, 'ss', 1.98, 85)\nhigh_static_output min (0.888341, 'sf', 1.8, 85) max (0.891976, 'ss', 1.98, -25)\nrise_output_at_10ns min (0.887831, 'ff', 1.8, 85) max (0.891972, 'ss', 1.98, -25)\nfall_output_at_10ns min (6.80238e-07, 'sf', 1.98, -25) max (0.000801768, 'fs', 1.8, 85)\nmismatch count 20\ncm 77.58879999999999\nvp 89.3717\nvn 90.6884\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_020",
+          "name": "terminal",
+          "arguments": {
+            "command": "cat > /app/experiments/ranges.py <<'PY'\nfrom pathlib import Path\nimport subprocess,re,json\nb=Path('/app/experiments');rows=[]\nfor c in ['tt','ff','ss','fs','sf']:\n for t in [-25,27,85]:\n  s=(b/'range_wide.spi').read_text().replace('\" tt','\" '+c).replace('.include',f'.temp {t}\\n.include').replace('wrdata /app/experiments/range3.dat differential_output','')\n  p=b/f'range_{c}_{t}.spi';p.write_text(s)\n  subprocess.run(['ngspice','-b',str(p),'-o',str(p.with_suffix('.log'))],stdout=subprocess.DEVNULL)\n  log=p.with_suffix('.log').read_text();m=re.search(r'differential_range_v\\s*=\\s*([-+\\deE.]+)',log)\n  rows.append(dict(corner=c,temp=t,range=float(m[1]) if m else None))\n  print(rows[-1],flush=True);(b/'ranges.json').write_text(json.dumps(rows,indent=2))\nPY\npython3 /app/experiments/ranges.py",
+            "timeout_seconds": 180
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "{'corner': 'tt', 'temp': -25, 'range': 2.296492}\n{'corner': 'tt', 'temp': 27, 'range': 2.143896}\n{'corner': 'tt', 'temp': 85, 'range': 1.986133}\n{'corner': 'ff', 'temp': -25, 'range': 2.314324}\n{'corner': 'ff', 'temp': 27, 'range': 2.158346}\n{'corner': 'ff', 'temp': 85, 'range': 1.997856}\n{'corner': 'ss', 'temp': -25, 'range': 2.283096}\n{'corner': 'ss', 'temp': 27, 'range': 2.133112}\n{'corner': 'ss', 'temp': 85, 'range': 1.977567}\n{'corner': 'fs', 'temp': -25, 'range': 2.27543}\n{'corner': 'fs', 'temp': 27, 'range': 2.125082}\n{'corner': 'fs', 'temp': 85, 'range': 1.969642}\n{'corner': 'sf', 'temp': -25, 'range': 2.327012}\n{'corner': 'sf', 'temp': 27, 'range': 2.17064}\n{'corner': 'sf', 'temp': 85, 'range': 2.009568}\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_021",
+          "name": "terminal",
+          "arguments": {
+            "command": "ngspice -b /app/experiments/trplot.spi -o /app/experiments/finaltr.log >/dev/null\nngspice -b /app/experiments/cmplot.spi -o /app/experiments/finalcm.log >/dev/null\npython3 - <<'PY'\nimport numpy as np,matplotlib.pyplot as plt,json\nfig,ax=plt.subplots(2,1,figsize=(8,6))\nd=np.loadtxt('/app/experiments/tr1.dat');ax[0].plot(d[:,0]*1e9,d[:,1]-d[:,3]);ax[0].axhline(.9,color='k',ls='--');ax[0].axhspan(.891,.909,alpha=.2,color='green');ax[0].set_ylabel('Differential output (V)');ax[0].set_xlim(20,85)\nd=np.loadtxt('/app/experiments/cm1.dat');ax[1].plot(d[:,0]*1e9,(d[:,1]+d[:,3])/2);ax[1].axhline(.9,color='k',ls='--');ax[1].set_ylabel('Output common mode (V)');ax[1].set_xlabel('Time (ns)');plt.tight_layout();plt.savefig('/app/experiments/final_waveforms.png')\nr=json.load(open('/app/experiments/matrix.json'));print('high static passing',sum(abs(x['high_static_output']-.9)<=.009 for x in r),'/30');print('rising 10ns passing',sum(abs(x['rise_output_at_10ns']-.9)<=.009 for x in r),'/30')\nPY\npython3 /opt/analog-arena/check_circuit.py /app/circuit.spi --allow-ideal R C\npython3 /opt/simulationle-policy/check.py /app/circuit.spi",
+            "timeout_seconds": 180
+          },
+          "result": {
+            "exit_code": 0,
+            "stdout": "high static passing 8 /30\nrising 10ns passing 6 /30\n/app/circuit.spi: netlist check passed\n/app/circuit.spi: netlist check passed\n",
+            "stderr": ""
+          }
+        },
+        {
+          "turn": "turn_022",
+          "name": "read_image",
+          "arguments": {
+            "path": "/app/experiments/final_waveforms.png"
+          },
+          "result": {
+            "image_path": "/app/experiments/final_waveforms.png",
+            "sha256": "24a64a28ec4596b24058f182a38826b4a3f65757791cd796c31f06a6adbd335b",
+            "budget": {
+              "designs_used": 3,
+              "native_runs": 153,
+              "max_designs": 3,
+              "max_native_runs": 160
+            }
+          }
+        },
+        {
+          "turn": "turn_023",
+          "name": "finish",
+          "arguments": {
+            "summary": "Implemented /app/circuit.spi with the required interface, SKY130 MOS devices and ideal R/C only; both public netlist checks pass. Three candidates were consumed (one revision encountered an unsupported MOS width, corrected in the final candidate). Final-circuit measurements: all 30 PVT points have phase margin 64.22–70.63 degrees, power 3.85–5.66 mW, zero-input output common-mode error <=2.403 mV, and integrated differential output noise 0.693–0.839 mVrms. Nominal open-loop 3-dB differential range is 2.144 V; all 15 tested 1.80-V corner/temperature combinations exceed 1.8 V (minimum 1.970 V); range at 1.98 V was not swept. Specified output-current common-mode disturbances pass at nominal, ss/1.80V/85C, and ff/1.98V/-25C: worst peak deviation 8.583 mV, worst 20-ns residual 0.208 mV, worst 100-ns residual 0.364 mV. Twenty local-mismatch diagnostic seeds 51000–51019 all converged; worst measured CMRR/PSRR+/PSRR- are 77.59/89.37/90.69 dB using separate simultaneous independent test instances (not asserted identical to formal seed/instance setup). Known failure: insufficient high-level closed-loop static accuracy. Nominal high output is 0.889767 V (1.137% error), and nominal rising output at 10 ns is 0.889634 V (1.152% error), so commanded-level rising settling fails. Only 8/30 matrix points pass high-static accuracy and 6/30 pass rising 10-ns accuracy. No claim of full specification compliance. Detailed generated decks, logs, JSON measurements, and final waveform plot are under /app/experiments."
+          },
+          "result": {
+            "budget": {
+              "designs_used": 3,
+              "native_runs": 153,
+              "max_designs": 3,
+              "max_native_runs": 160
+            }
+          }
+        }
+      ],
+      "raw_result": "files/d2-docker/sampling-feedback-ota/gpt-6.1-sol/result.json",
+      "formal_log": "files/d2-docker/sampling-feedback-ota/gpt-6.1-sol/formal-console.log",
+      "checks_file": "files/d2-docker/sampling-feedback-ota/gpt-6.1-sol/raw-checks.json"
+    }
+  ],
+  "task": "files/d2-docker/sampling-feedback-ota/task.md",
+  "protocol_file": "files/d2-docker/sampling-feedback-ota/protocol.json",
+  "upstream_file": "files/d2-docker/sampling-feedback-ota/upstream-manifest.json",
+  "audit_file": "files/d2-docker/sampling-feedback-ota/authorship-audit.json",
+  "reference": {
+    "reward": 1.0,
+    "tests_total": 15,
+    "tests_passed": 15,
+    "partial": 1.0
+  },
+  "gateway": 14,
+  "upstream_commit": "972f7cd7c95381134387b250edf18f3bd23bdd25",
+  "history": "cases/sampling-feedback-ota/history-feedback3.html",
+  "port_specs": []
+}

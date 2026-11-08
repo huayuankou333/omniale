@@ -1,0 +1,19 @@
+.subckt sampling_feedback_ota vss iref vdd vinn vinp vocm voutn voutp
+* Differential voltage amplifier with internal reference and continuous CM control.
+RREF iref vss 100k
+X1 a vinp t vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8
+X2 b vinn t vss sky130_fd_pr__nfet_01v8 l=0.5 w=80 nf=8
+XT t vb vss vss sky130_fd_pr__nfet_01v8 l=1 w=80 nf=8
+X3 a a vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=80 nf=8
+X4 b a vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=80 nf=8
+* output stage
+XP1 voutp vb vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=160 nf=16
+XP2 voutn vb vdd vdd sky130_fd_pr__pfet_01v8 l=0.5 w=160 nf=16
+XN1 voutp a vss vss sky130_fd_pr__nfet_01v8 l=0.5 w=160 nf=16
+XN2 voutn b vss sky130_fd_pr__nfet_01v8 l=0.5 w=160 nf=16
+RB1 vdd vb 20k
+RB2 vb vss 20k
+RCP voutp cm 100k
+RCN voutn cm 100k
+RCM cm vocm 100k
+.ends sampling_feedback_ota

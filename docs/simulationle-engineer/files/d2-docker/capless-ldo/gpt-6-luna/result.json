@@ -1,0 +1,72 @@
+{
+  "reward": {
+    "reward": 0.0,
+    "tests_total": 8,
+    "tests_passed": 0,
+    "partial": 0.0
+  },
+  "summary": {
+    "results": {
+      "summary": {
+        "tests": 8,
+        "passed": 0,
+        "failed": 8
+      },
+      "tests": [
+        {
+          "name": "dc_regulation",
+          "status": "failed",
+          "message": "worst |vout-1.0V| over the 0-20mA DC sweep = 3169mV at tt/1.5V/+27C/vmin_v (max 30mV)"
+        },
+        {
+          "name": "quiescent_current",
+          "status": "failed",
+          "message": "blocked: nominal tt regulation failed"
+        },
+        {
+          "name": "psr_1khz",
+          "status": "failed",
+          "message": "blocked: nominal tt regulation failed"
+        },
+        {
+          "name": "psr_100khz",
+          "status": "failed",
+          "message": "blocked: nominal tt regulation failed"
+        },
+        {
+          "name": "psr_1mhz",
+          "status": "failed",
+          "message": "blocked: nominal tt regulation failed"
+        },
+        {
+          "name": "load_step_excursion",
+          "status": "failed",
+          "message": "blocked: nominal tt regulation failed"
+        },
+        {
+          "name": "load_step_recovery",
+          "status": "failed",
+          "message": "blocked: nominal tt regulation failed"
+        },
+        {
+          "name": "startup",
+          "status": "failed",
+          "message": "blocked: nominal tt regulation failed"
+        }
+      ]
+    }
+  },
+  "exit_code": 0,
+  "wall_seconds": 1.433,
+  "frozen_sha256": "7e32672e27fc997dd54305755df8bf8b2ec3989f899e711c4de0bc93b7720dbb",
+  "requested_model": "gpt-6-luna",
+  "reported_model": "gpt-6-luna",
+  "tool_calls": 8,
+  "responses": 8,
+  "designs_used": 3,
+  "native_runs": 4,
+  "explicit_finish": true,
+  "finish_summary": "Implemented and froze /app/circuit.spi as a transistor-level PMOS-pass LDO with an internal 150k/100k feedback divider, differential NMOS error stage, resistor-derived bias, pass gate driver, and 100pF output / 100pF compensation capacitance. The public DC development bench at tt/27C/1.65V reported approximately 1.0046–1.0048V across 0–20mA and 87.2uA no-load VIN current. However, transient step measurements showed catastrophic numerical output excursions (down to roughly -320V and up to 1.64V); the dynamic requirements are not met. Only the nominal DC bench was evaluated after the final topology. Full corner, line, temperature, PSR, startup and formal signoff remain unverified.",
+  "output_tokens": 1104,
+  "agent_wall_seconds": 389.532
+}

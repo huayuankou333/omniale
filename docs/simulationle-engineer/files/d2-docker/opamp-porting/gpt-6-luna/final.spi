@@ -1,0 +1,16 @@
+.subckt dut iref inp inn out
+* Reference current is sensed by a diode NMOS and mirrored into a tail branch.
+XMREF nb nb 0 0 sky130_fd_pr__nfet_01v8_lvt W=8 L=1 nf=1 m=1
+RREF iref nb 1
+* PMOS diff pair with NMOS mirror load
+XPT pt nb vdd vdd sky130_fd_pr__pfet_01v8_lvt W=16 L=1 nf=1 m=1
+XPI n1 inp pt vdd sky130_fd_pr__pfet_01v8_lvt W=16 L=1 nf=1 m=1
+XPN n2 inn pt vdd sky130_fd_pr__pfet_01v8_lvt W=16 L=1 nf=1 m=1
+XNL n1 n1 0 0 sky130_fd_pr__nfet_01v8_lvt W=8 L=1 nf=1 m=1
+XNR n1 n2 0 0 sky130_fd_pr__nfet_01v8_lvt W=8 L=1 nf=1 m=1
+* high gain second stage
+XPO out n2 vdd vdd sky130_fd_pr__pfet_01v8_lvt W=80 L=0.5 nf=1 m=1
+XNO out nb 0 0 sky130_fd_pr__nfet_01v8_lvt W=32 L=0.5 nf=1 m=1
+CC n2 out 500f
+RR n2 out 3k
+.ends dut

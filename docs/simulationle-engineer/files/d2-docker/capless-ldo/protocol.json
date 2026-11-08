@@ -1,0 +1,123 @@
+{
+  "name": "docker-shell-three-designs-v2.1",
+  "models": [
+    "gpt-6-luna",
+    "gpt-6.1-sol"
+  ],
+  "limits": {
+    "max_designs": 3,
+    "max_policy_errors": 2,
+    "max_native_runs": 160,
+    "max_responses": 36,
+    "max_tool_calls": 96,
+    "max_output_tokens": 98304,
+    "max_output_per_response": 32768,
+    "reasoning_effort": "medium",
+    "max_wall_seconds": 7200,
+    "simulation_timeout": 120,
+    "terminal_timeout": 180
+  },
+  "base_image": "ghcr.io/arcadia-1/analog-arena-sky130-tools@sha256:668783dd8cbcd5ebce5264785803ce73a9466e79dbe4c98cdf4566348a33437a",
+  "agent_image": "simulationle-beta-agent:docker3-v1",
+  "verifier_image": "simulationle-ldo-verifier:docker3-v2",
+  "endpoint": "https://api-temporary.nju-link.com/v1",
+  "agent_tools": [
+    "terminal",
+    "read_image",
+    "finish"
+  ],
+  "public_diagnostics": "agent-authored and agent-selected",
+  "selection": "last on-disk circuit",
+  "runs_per_model": 1,
+  "host_design_edits": false,
+  "hidden_final_feedback": false,
+  "strict_model_identity": true,
+  "api_credentials_in_agent_container": false,
+  "upstream_commit": "972f7cd7c95381134387b250edf18f3bd23bdd25",
+  "task": "sky130-capless-ldo-1v0-20ma-pvt",
+  "runtime_profile": {
+    "case": "circuit_ldo",
+    "slug": "ldo",
+    "title": "external-capacitor-free LDO",
+    "kind": "adb",
+    "top": "capless_ldo",
+    "pins": [
+      "vin",
+      "vout",
+      "vss",
+      "vref"
+    ],
+    "checks": 8,
+    "run": "20261106_125440",
+    "task": "sky130-capless-ldo-1v0-20ma-pvt",
+    "bench": "tb_dc_tt.spi",
+    "commit": "972f7cd7c95381134387b250edf18f3bd23bdd25",
+    "agent_image": "simulationle-beta-agent:docker3-v1",
+    "verifier_image": "simulationle-ldo-verifier:docker3-v2"
+  },
+  "qualification": "SimulationLE autonomous-shell three-design adaptation; original task scorer preserved",
+  "hashes": {
+    "config.py": "85bfce9ce647878d31a8c1c70abb500c7517ae2bb74b9a5215a4402b10a585f2",
+    "port_worker.py": "03685469fa60cd0cdb6fbddc5ac0c4b65ffd026e7fffe955f0521cb7177f4c35",
+    "api_client.py": "a08650ec930cd79f7b0c5d86b9f3486e5e7e153d23d8b8d9c8c1e14e6900bb52",
+    "gateway_cli.py": "a1b49d6e1d2219a229f367e58ce01ae9b212fc00dd2fe9fbaf0733ee084c19dc",
+    "reproduce.py": "39a743ded478af6e3c7a788629c3278869f3b68b6dacba3ce5c48576c2213bac",
+    "native.py": "e007fc6ea5925f9b0ca1e631aef16be672fdc442d40015a817ba73cc86e9dcdb",
+    "check_gateway.py": "8949e72cbbf244ef196fdff11e86dd609b70bfc53ad7e4306c231ebe428f14ee",
+    "port_policy.py": "382dc36e8ad8b947156d76b774c5638a9d988fff415af7c24fd24ddd943d57f0",
+    "broker.py": "1962607e90769004a802b713e89abc4722bbee05e2dc288d179d705cf00693a0",
+    "audit.py": "a0068b929ddf83ae02fe559f4eb9ba354ed2bb35139a595c07279b1ca0a0f508",
+    "run_agent.py": "128b90f314f5b9179e25c1d8b64335350d4c25db606c39bfee2fbee2cca0e880",
+    "launch.py": "200746cf58b03298dcead17fa0b704f0542fc07c8f58829b2c426dcbcada3df9",
+    "deploy.py": "6789e069747a29efa51e8db0ccb4d23a775a9d52366bcbb6136890447268e065"
+  },
+  "image_ids": {
+    "ghcr.io/arcadia-1/analog-arena-sky130-tools@sha256:668783dd8cbcd5ebce5264785803ce73a9466e79dbe4c98cdf4566348a33437a": "sha256:668783dd8cbcd5ebce5264785803ce73a9466e79dbe4c98cdf4566348a33437a",
+    "simulationle-beta-agent:docker3-v1": "sha256:1c2bcad24e264302928cbe44d78eda66350f71131b789d051503203b6147ae1f",
+    "simulationle-ldo-verifier:docker3-v2": "sha256:3b54a6bb27a3d042ae16a9e985d94d0d96baf82d420a26b9645a131065e47b6e"
+  },
+  "runtime_source_hashes": {
+    "public_policy/check.py": "7d73a1d503537831f2abc5f8b70756ceb66eb18f78672e63cc4be0f59df41937",
+    "starter/circuit.spi": "ee54f870e34e9c65006723465511e88ad969e3665d5556c07d40c7e334407028",
+    "starter/testbench/README.md": "dddbbca5f29a919498a7e344d93c5ff56c194660c5d2277ce42fbc0b3315b211",
+    "starter/testbench/tb_step_tt.spi": "146583fd832a2211253927b79aeea38ad976a61a9a888c49707ac6f062e5ff4e",
+    "starter/testbench/tb_dc_tt.spi": "9455058f8db06900d857b1441d170bdd997bf2acb38e3187eca120aa8f1bee6f",
+    "starter/testbench/tb_start_tt.spi": "87b1963ff9ba989668acbefd39a3642dd50af7d1e4108183bae460c2ef313cac",
+    "starter/testbench/tb_psr_tt.spi": "eb6444aa3a0c2be6655a850dbb67e0348cfc6ae3ae1efb6f55353b9c92342d2f"
+  },
+  "upstream_hashes": {
+    "manifest.json": "1d9d6d7583e7e007776109c296658067bd8e12c6bddd1fc8947edf5f33b4d02a",
+    "amd64_manifest.json": "b68f17995b9212bf9e20c6bd8fa10cfce1dace9ff1d6b8a7f8a5856def11542e",
+    "image_config.json": "b7f985c9b60471e64de8a01560a385bf527355edf33e712c13281671f1a2d7c1",
+    "task.toml": "be85a03f96380c3ee18ece5655c97b9ab60f6c8ceb5a799567d86ba2cab42692",
+    "instruction.md": "3988efc5b2b6b083521e7f73ed64f6a640065a756fc28138069b17a5af3f9391",
+    "LICENSE": "7d4a87942d5adc7c8a43fb0db75cfa5155f3cdcee8190179a293643c4366a562",
+    "image_manifest.json": "94019822586ccf7a8c45e477b5bb8755a2f6173717049582faf0392d468d3b26",
+    "tests/utils.py": "8f9909aa283429e11d3d5b55b33d5e55d5c54f4bad33aaa599f1c8a35a99e299",
+    "tests/test.sh": "a49f04194acbbf4ec8392903de18a1495f3a1d46f3df31c02c44d2aaa6f419cf",
+    "tests/Dockerfile": "748e0e0ebe3bad06cc73a1d1a46cfd29adf51b24d92709015ba713f3621a8536",
+    "tests/verify.py": "0938d71db743943e7a662f33c364a68abf18cf5497bcf39d10be65b30fc68986",
+    "tests/benches/tb_matrix.spi": "e13479312b7015ea4ee461575a20a2d67132e0cec68ac2bc240cc8f4ebb3aa94",
+    "tests/benches/tb_psr.spi": "d62ce1bb687ed859e902e31c47565446a97699dcaad51a9588f607b30075e8c4",
+    "tests/benches/tb_step.spi": "7ecb9ab1cac7032e3aae0805f20c938460273952849a579cab028b031c5868f7",
+    "tests/benches/tb_start.spi": "dad806f7a39edf5f65e0288500bbfbccf6e68853c51ef836848a97d659c944e2",
+    "results/reference.json": "9db911fc05b65403555e825ddac01d7a463f51e1bddb6f854aee63c886551425",
+    "LICENSES/Apache-2.0.txt": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+    "LICENSES/CC-BY-NC-4.0.txt": "cc97a2c4ff7723a1f25179dc7c18f676fa84191bbb36ea7d0061acaf3c102559",
+    "environment/Dockerfile": "1455c1a7c6a6a7bc92c69ec9522854f107f269ca24d449d49987bf042f331be2",
+    "environment/starter/circuit.spi": "ee54f870e34e9c65006723465511e88ad969e3665d5556c07d40c7e334407028",
+    "environment/starter/testbench/README.md": "dddbbca5f29a919498a7e344d93c5ff56c194660c5d2277ce42fbc0b3315b211",
+    "environment/starter/testbench/tb_step_tt.spi": "146583fd832a2211253927b79aeea38ad976a61a9a888c49707ac6f062e5ff4e",
+    "environment/starter/testbench/tb_dc_tt.spi": "9455058f8db06900d857b1441d170bdd997bf2acb38e3187eca120aa8f1bee6f",
+    "environment/starter/testbench/tb_start_tt.spi": "87b1963ff9ba989668acbefd39a3642dd50af7d1e4108183bae460c2ef313cac",
+    "environment/starter/testbench/tb_psr_tt.spi": "eb6444aa3a0c2be6655a850dbb67e0348cfc6ae3ae1efb6f55353b9c92342d2f",
+    "solution/circuit.spi": "5a64fa9df6bb593677774e14213b866b336a9d7102eedd1ffea9e96f805956c4",
+    "solution/solve.sh": "6e94fc3f5d6e43cc067219d84f333fbf0b3340b07271af20e76cef2ef0be3a28"
+  },
+  "entrypoint_hashes": {
+    "profile.json": "dc9836b9e40c81ad3bd042d371c9ca1d571eb23fbf314f02f5d0423490168c2a",
+    "TASK.md": "3988efc5b2b6b083521e7f73ed64f6a640065a756fc28138069b17a5af3f9391",
+    "verifier.Dockerfile": "748e0e0ebe3bad06cc73a1d1a46cfd29adf51b24d92709015ba713f3621a8536",
+    "agent.Dockerfile": "38f621c041610cf164fbc86fa1674d6458383d365ba7ad4b181af9400969b074"
+  }
+}

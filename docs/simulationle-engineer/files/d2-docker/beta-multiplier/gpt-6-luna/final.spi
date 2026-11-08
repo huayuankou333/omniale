@@ -1,0 +1,10 @@
+.subckt beta_multiplier_reference vss vdd vref iout
+* Beta multiplier core with source degeneration in smaller transistor branch.
+XR ns vss vss sky130_fd_pr__res_xhigh_po w=1 l=1000
+XN1 ns vref ns vss sky130_fd_pr__nfet_01v8 l=1 w=8
+XN2 nb vref vss vss sky130_fd_pr__nfet_01v8 l=1 w=16
+XP1 ns nb vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=8
+XP2 nb nb vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=8
+XNOUT iout vref vss vss sky130_fd_pr__nfet_01v8 l=1 w=8
+XRS vdd vref vss sky130_fd_pr__res_xhigh_po w=1 l=1000
+.ends beta_multiplier_reference

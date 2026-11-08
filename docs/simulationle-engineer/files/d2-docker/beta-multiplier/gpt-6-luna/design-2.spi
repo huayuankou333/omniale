@@ -1,0 +1,13 @@
+.subckt beta_multiplier_reference vss vdd vref iout
+* Two-branch self-biased beta multiplier; resistor degeneration sets tens of uA.
+XR ns vss vss sky130_fd_pr__res_high_po w=1 l=25
+XN1 ns vref ns vss sky130_fd_pr__nfet_01v8 l=1 w=8
+XN2 nb vref vss vss sky130_fd_pr__nfet_01v8 l=1 w=16
+* PMOS mirror loads establish the common gate voltage.
+XP1 ns nb vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=8
+XP2 nb nb vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=8
+* Output current mirror
+XNOUT iout vref vss vss sky130_fd_pr__nfet_01v8 l=1 w=8
+* startup injection via weak high-poly resistor
+XRS vdd vref vss sky130_fd_pr__res_high_po w=1 l=200
+.ends beta_multiplier_reference

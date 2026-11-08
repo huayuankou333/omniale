@@ -1,0 +1,13 @@
+.subckt beta_multiplier_reference vss vdd vref iout
+* Self-biased NMOS beta core: unequal source degeneration sets current.
+XRSET ns vss vss sky130_fd_pr__res_high_po w=1 l=25
+XN1 ns vref ns vss sky130_fd_pr__nfet_01v8 l=1 w=8
+XN2 nb vref nb vss sky130_fd_pr__nfet_01v8 l=1 w=8
+* positive feedback/current mirror through PMOS load, with 2:1 branch sizing
+XP1 ns nb vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=8
+XP2 nb nb vdd vdd sky130_fd_pr__pfet_01v8 l=1 w=8
+* diode-connected output branch mirrors core bias
+XNOUT iout vref vss vss sky130_fd_pr__nfet_01v8 l=1 w=8
+* Startup kick from supply to reference; weak resistive startup
+XRSTART vdd vref vss sky130_fd_pr__res_high_po w=1 l=200
+.ends beta_multiplier_reference
