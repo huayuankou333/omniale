@@ -44,6 +44,15 @@ for item in read(SITE/'files/media-manifest.json'):
     media=SITE/item['web_file'];assert sha(media)==item['web_sha256']
     assert item['source_audio_packet_sha256']==item['web_audio_packet_sha256']
     assert media.stat().st_size<100*1024*1024
+references=read(SITE/'files/reference-media-manifest.json')
+assert references['v2_is_not_the_director_revision_gold_mix']
+assert not references['normalization'] and not references['source_separation']
+assert len(references['media'])==2
+for item in references['media']:
+    assert sha(SITE/item['web_file'])==item['web_sha256']
+    assert item['reference_audio_packet_sha256']==item['web_audio_packet_sha256']
+    assert item['silent_web_video_packet_sha256']==item['web_video_packet_sha256']
+    assert item['audio_channels']==2 and item['sample_rate']==48000
 
 total=0
 for slug,count in [('luna',45),('sol',95),('deepseek',300)]:
@@ -60,6 +69,6 @@ for path in SITE.rglob('*'):
     if path.is_file() and path.suffix in ['.json','.html','.js','.md','.txt','.css']:
         text=path.read_text(encoding='utf8')
         assert not re.search(r'(?<![A-Za-z0-9_])(?:github_pat_[A-Za-z0-9_]{30,}|sk-[A-Za-z0-9_.-]{18,}|hf_[A-Za-z0-9]{20,})',text),path
-report={'passed':True,'models':3,'rubric_items_each':24,'weights':r['weights'],'original_judgments_unchanged':True,'trace_events':440,'static_links_checked':links_checked,'media':8,'audio_bitstreams_unchanged':True}
+report={'passed':True,'models':3,'rubric_items_each':24,'weights':r['weights'],'original_judgments_unchanged':True,'trace_events':440,'static_links_checked':links_checked,'media':10,'audio_bitstreams_unchanged':True,'official_mix_reference_versions':2,'reference_picture_matches_task':True}
 (SITE/'files/site-validation.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf8')
 print(json.dumps(report))

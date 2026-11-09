@@ -42,6 +42,7 @@ async function init(){
  const response=await fetch('results.json');if(!response.ok)throw new Error('评分文件加载失败');data=await response.json();
  renderModels();renderRubrics();renderAnalysis();$('#rubric-filter').addEventListener('change',renderRubrics);
  $('#input-stage').addEventListener('change',e=>{const stage=e.target.value;$('#input-video').src=`media/input-${stage}.mp4`;$('#input-video').poster=`media/input-${stage}.jpg`});
+ $('#reference-stage').addEventListener('change',e=>{const stage=e.target.value,v=$('#reference-video');v.pause();v.src=`media/reference-${stage}.mp4`;v.poster=`media/input-${stage}.jpg`;$('#reference-caption').textContent=stage==='v1'?'原电影 00:48.000–02:18.000，保留官方混音播放增益；网页画面缩放至1280×536。':'按返修画面删除首版[4,5)秒与[66,67)秒，合计88秒；未执行环境总线降低4 dB。'});
  const traces=await (await fetch('data/traces.json')).json();
  $('#trace-summary').innerHTML=`<table><thead><tr><th>模型</th><th>工具记录</th><th>留存画面引用</th><th>REAPER渲染调用</th><th>Shotcut导出调用</th><th>完整记录</th></tr></thead><tbody>${traces.map(m=>`<tr><td>${esc(m.model)}</td><td>${m.events}</td><td>${m.images}</td><td>${m.actions.render_reaper||0}</td><td>${m.actions.render_shotcut||0}</td><td><a href="traces.html?model=${m.slug}">浏览 →</a></td></tr>`).join('')}</tbody></table>`;
  $('#page-status').textContent='三模型交付与24项评分已加载';
