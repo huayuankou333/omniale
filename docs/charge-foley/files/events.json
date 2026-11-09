@@ -1,0 +1,1111 @@
+{
+  "version": "charge-v3-design-20261107",
+  "time_base": "integer 24-fps picture frames; event spans half-open, contact intervals inclusive",
+  "events": [
+    {
+      "id": "E01",
+      "rubric": "C01",
+      "name": "人物接近电池工位",
+      "source_owner": "人物",
+      "compatible_sound_description": "身体移动、衣料与可辨的脚步/落步层；不强求看不见的每一步",
+      "suggested_bus": "FOLEY_HUMAN",
+      "source_frame_interval": [
+        1158,
+        1192
+      ],
+      "v1_frame_intervals": [
+        [
+          6,
+          40
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          6,
+          40
+        ]
+      ],
+      "v1_seconds": [
+        0.25,
+        1.666667
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E02",
+      "rubric": "C01",
+      "name": "上方夹具松开或抬升",
+      "source_owner": "生产设备",
+      "compatible_sound_description": "短机械解锁及运动；不得误当人物重击",
+      "suggested_bus": "MECH",
+      "source_frame_interval": [
+        1214,
+        1230
+      ],
+      "v1_frame_intervals": [
+        [
+          62,
+          78
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          62,
+          78
+        ]
+      ],
+      "v1_seconds": [
+        2.583333,
+        3.25
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E03",
+      "rubric": "C01",
+      "name": "握住并尝试转动/拔出电池",
+      "source_owner": "人物与电池",
+      "compatible_sound_description": "手与硬质外壳接触、扭动；允许轻声的细节",
+      "suggested_bus": "FOLEY_PROPS",
+      "source_frame_interval": [
+        1230,
+        1310
+      ],
+      "v1_frame_intervals": [
+        [
+          78,
+          158
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          78,
+          96
+        ],
+        [
+          96,
+          134
+        ]
+      ],
+      "v1_seconds": [
+        3.25,
+        6.583333
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E04",
+      "rubric": "C02",
+      "name": "另一机械夹手抓住电池并拉扯",
+      "source_owner": "机械夹手与电池",
+      "compatible_sound_description": "抓取接触加持续机械受力；不能只剩环境底噪",
+      "suggested_bus": "MECH",
+      "source_frame_interval": [
+        1313,
+        1358
+      ],
+      "v1_frame_intervals": [
+        [
+          161,
+          206
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          137,
+          182
+        ]
+      ],
+      "v1_seconds": [
+        6.708333,
+        8.583333
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E05",
+      "rubric": "C02",
+      "name": "人物收回电池、夹手张开并转向",
+      "source_owner": "人物与夹手",
+      "compatible_sound_description": "短释放动作和后续机械状态改变",
+      "suggested_bus": "MECH",
+      "source_frame_interval": [
+        1358,
+        1422
+      ],
+      "v1_frame_intervals": [
+        [
+          206,
+          270
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          182,
+          246
+        ]
+      ],
+      "v1_seconds": [
+        8.583333,
+        11.25
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E06",
+      "rubric": "C02",
+      "name": "门开启、保安机器人出现",
+      "source_owner": "门与保安机器人",
+      "compatible_sound_description": "门机构、通气/空间变化和机器人活动可区分",
+      "suggested_bus": "MECH",
+      "source_frame_interval": [
+        1446,
+        1525
+      ],
+      "v1_frame_intervals": [
+        [
+          294,
+          373
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          270,
+          349
+        ]
+      ],
+      "v1_seconds": [
+        12.25,
+        15.541667
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E07",
+      "rubric": "C03",
+      "name": "保安机器人武器组件展开",
+      "source_owner": "保安机器人",
+      "compatible_sound_description": "可辨的装置展开和锁定过程；不是提前发射",
+      "suggested_bus": "MECH",
+      "source_frame_interval": [
+        1529,
+        1565
+      ],
+      "v1_frame_intervals": [
+        [
+          377,
+          413
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          353,
+          389
+        ]
+      ],
+      "v1_seconds": [
+        15.708333,
+        17.208333
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E08",
+      "rubric": "C03",
+      "name": "第一组连续发射",
+      "source_owner": "保安机器人武器",
+      "compatible_sound_description": "短促发射序列对应可见闪光；音色允许科幻设计",
+      "suggested_bus": "SFX",
+      "source_frame_interval": [
+        1587,
+        1604
+      ],
+      "v1_frame_intervals": [
+        [
+          435,
+          452
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          411,
+          428
+        ]
+      ],
+      "v1_seconds": [
+        18.125,
+        18.833333
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E09",
+      "rubric": "C03",
+      "name": "掩体/工位遭击中并出现火花",
+      "source_owner": "被击中的工位与掩体",
+      "compatible_sound_description": "与发射声区分的材质接触和碎屑；避免所有声源同一响度",
+      "suggested_bus": "SFX",
+      "source_frame_interval": [
+        1604,
+        1711
+      ],
+      "v1_frame_intervals": [
+        [
+          452,
+          559
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          428,
+          535
+        ]
+      ],
+      "v1_seconds": [
+        18.833333,
+        23.291667
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E10",
+      "rubric": "C04",
+      "name": "伸手取出喷罐",
+      "source_owner": "人物、口袋、喷罐",
+      "compatible_sound_description": "衣料/口袋与硬质罐体的处理动作",
+      "suggested_bus": "FOLEY_PROPS",
+      "source_frame_interval": [
+        1734,
+        1789
+      ],
+      "v1_frame_intervals": [
+        [
+          582,
+          637
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          558,
+          613
+        ]
+      ],
+      "v1_seconds": [
+        24.25,
+        26.541667
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E11",
+      "rubric": "C04",
+      "name": "挥臂将喷罐抛出",
+      "source_owner": "人物与喷罐",
+      "compatible_sound_description": "挥臂衣料、离手和合理的运动处理；不强制夸张飞行啸叫",
+      "suggested_bus": "FOLEY_HUMAN",
+      "source_frame_interval": [
+        1789,
+        1816
+      ],
+      "v1_frame_intervals": [
+        [
+          637,
+          664
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          613,
+          640
+        ]
+      ],
+      "v1_seconds": [
+        26.541667,
+        27.666667
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E12",
+      "rubric": "C04",
+      "name": "喷罐被击穿并破裂喷出内容物",
+      "source_owner": "喷罐",
+      "compatible_sound_description": "穿破/压力释放与喷散；不能误作玻璃酒瓶落地",
+      "suggested_bus": "SFX",
+      "source_frame_interval": [
+        1816,
+        1842
+      ],
+      "v1_frame_intervals": [
+        [
+          664,
+          690
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          640,
+          666
+        ]
+      ],
+      "v1_seconds": [
+        27.666667,
+        28.75
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E13",
+      "rubric": "C05",
+      "name": "喷涂覆盖机器人头部并引起动作",
+      "source_owner": "保安机器人与喷涂物",
+      "compatible_sound_description": "喷溅及受影响机械动作；不得当人物进食或水池跳水",
+      "suggested_bus": "SFX",
+      "source_frame_interval": [
+        1842,
+        1873
+      ],
+      "v1_frame_intervals": [
+        [
+          690,
+          721
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          666,
+          697
+        ]
+      ],
+      "v1_seconds": [
+        28.75,
+        30.041667
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E14",
+      "rubric": "C05",
+      "name": "乱射击中工厂设备",
+      "source_owner": "工厂设备",
+      "compatible_sound_description": "多处撞击、电气火花/损伤，区分发射与被击中",
+      "suggested_bus": "SFX",
+      "source_frame_interval": [
+        1872,
+        1930
+      ],
+      "v1_frame_intervals": [
+        [
+          720,
+          778
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          696,
+          754
+        ]
+      ],
+      "v1_seconds": [
+        30.0,
+        32.416667
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E15",
+      "rubric": "C05",
+      "name": "设备发生持续电弧和烟气",
+      "source_owner": "工厂设备",
+      "compatible_sound_description": "持续电气状态及局部变化，不能单个爆炸后完全静音",
+      "suggested_bus": "SFX",
+      "source_frame_interval": [
+        1930,
+        2034
+      ],
+      "v1_frame_intervals": [
+        [
+          778,
+          882
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          754,
+          858
+        ]
+      ],
+      "v1_seconds": [
+        32.416667,
+        36.75
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E16",
+      "rubric": "C06",
+      "name": "人物持工具上前并跃向机器人",
+      "source_owner": "人物",
+      "compatible_sound_description": "跑动/起跳/衣料与身体重量，不能把连续电弧当作全部动作声",
+      "suggested_bus": "FOLEY_HUMAN",
+      "source_frame_interval": [
+        1986,
+        2089
+      ],
+      "v1_frame_intervals": [
+        [
+          834,
+          937
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          810,
+          913
+        ]
+      ],
+      "v1_seconds": [
+        34.75,
+        39.041667
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E17",
+      "rubric": "C06",
+      "name": "抓住武器组件并近距离敲击/抵抗",
+      "source_owner": "人物机械手、工具与机器人",
+      "compatible_sound_description": "接触、金属受力与短促运动，区分旁边仍有的发射",
+      "suggested_bus": "FOLEY_PROPS",
+      "source_frame_interval": [
+        2089,
+        2131
+      ],
+      "v1_frame_intervals": [
+        [
+          937,
+          979
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          913,
+          955
+        ]
+      ],
+      "v1_seconds": [
+        39.041667,
+        40.791667
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E18",
+      "rubric": "C06",
+      "name": "人物被击飞并落到工位上",
+      "source_owner": "机器人、人物与工位",
+      "compatible_sound_description": "扫击、身体重落及衣料/装备余响；不是全金属机器人落地",
+      "suggested_bus": "FOLEY_HUMAN",
+      "source_frame_interval": [
+        2136,
+        2190
+      ],
+      "v1_frame_intervals": [
+        [
+          984,
+          1038
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          960,
+          1014
+        ]
+      ],
+      "v1_seconds": [
+        41.0,
+        43.25
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E19",
+      "rubric": "C07",
+      "name": "机器人追击、人物避让",
+      "source_owner": "双方及附近工位",
+      "compatible_sound_description": "追击机械动作和人物闪避；不能对每次挥臂虚构击中人体",
+      "suggested_bus": "MECH",
+      "source_frame_interval": [
+        2203,
+        2248
+      ],
+      "v1_frame_intervals": [
+        [
+          1051,
+          1096
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          1027,
+          1072
+        ]
+      ],
+      "v1_seconds": [
+        43.791667,
+        45.666667
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E20",
+      "rubric": "C07",
+      "name": "持工具近身交锋、扫击与抵挡",
+      "source_owner": "双方、工具",
+      "compatible_sound_description": "连续交锋与抵挡的材质和动作区别；按可见接触处理",
+      "suggested_bus": "FOLEY_PROPS",
+      "source_frame_interval": [
+        2248,
+        2330
+      ],
+      "v1_frame_intervals": [
+        [
+          1096,
+          1178
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          1072,
+          1154
+        ]
+      ],
+      "v1_seconds": [
+        45.666667,
+        49.083333
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E21",
+      "rubric": "C07",
+      "name": "人物翻滚、落地并低姿撑起",
+      "source_owner": "人物与地面",
+      "compatible_sound_description": "衣料、装备、身体与地面摩擦/支撑；不能一直循环脚步",
+      "suggested_bus": "FOLEY_HUMAN",
+      "source_frame_interval": [
+        2330,
+        2454
+      ],
+      "v1_frame_intervals": [
+        [
+          1178,
+          1302
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          1154,
+          1278
+        ]
+      ],
+      "v1_seconds": [
+        49.083333,
+        54.25
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E22",
+      "rubric": "C08",
+      "name": "机器人收展/改变手臂末端结构",
+      "source_owner": "保安机器人",
+      "compatible_sound_description": "机械结构变化和末端到位；不应延续无依据的开枪声",
+      "suggested_bus": "MECH",
+      "source_frame_interval": [
+        2455,
+        2527
+      ],
+      "v1_frame_intervals": [
+        [
+          1303,
+          1375
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          1279,
+          1351
+        ]
+      ],
+      "v1_seconds": [
+        54.291667,
+        57.291667
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E23",
+      "rubric": "C08",
+      "name": "人物挥动工具，机器人挡住",
+      "source_owner": "人物工具与机器人",
+      "compatible_sound_description": "挥动加明确的硬质抵挡；工具仍被握持，不标为自由投掷",
+      "suggested_bus": "FOLEY_PROPS",
+      "source_frame_interval": [
+        2537,
+        2594
+      ],
+      "v1_frame_intervals": [
+        [
+          1385,
+          1442
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          1361,
+          1418
+        ]
+      ],
+      "v1_seconds": [
+        57.708333,
+        60.083333
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E24",
+      "rubric": "C08",
+      "name": "双方短距离格挡和反击",
+      "source_owner": "人物机械手与机器人",
+      "compatible_sound_description": "多个接触/转动和力量变化；不能只用一条平直的伺服循环",
+      "suggested_bus": "MECH",
+      "source_frame_interval": [
+        2599,
+        2686
+      ],
+      "v1_frame_intervals": [
+        [
+          1447,
+          1534
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          1423,
+          1510
+        ]
+      ],
+      "v1_seconds": [
+        60.291667,
+        63.916667
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E25",
+      "rubric": "C09",
+      "name": "人物机械手结构展开并前伸",
+      "source_owner": "人物机械手",
+      "compatible_sound_description": "小尺度机械展开与向前动作，和大型保安机器人的音色角色可区分",
+      "suggested_bus": "MECH",
+      "source_frame_interval": [
+        2912,
+        2939
+      ],
+      "v1_frame_intervals": [
+        [
+          1760,
+          1787
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          1712,
+          1739
+        ]
+      ],
+      "v1_seconds": [
+        73.333333,
+        74.458333
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E26",
+      "rubric": "C09",
+      "name": "机械手穿入机器人躯干、持续火花",
+      "source_owner": "人物机械手与机器人躯干",
+      "compatible_sound_description": "明确接触/刺入及持续受力火花；不能仅放远处爆炸",
+      "suggested_bus": "SFX",
+      "source_frame_interval": [
+        2939,
+        3005
+      ],
+      "v1_frame_intervals": [
+        [
+          1787,
+          1853
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          1739,
+          1805
+        ]
+      ],
+      "v1_seconds": [
+        74.458333,
+        77.208333
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E27",
+      "rubric": "C09",
+      "name": "机器人失去动力并倒下",
+      "source_owner": "保安机器人",
+      "compatible_sound_description": "能量/机械状态衰减、重量变化和停止；不凭空增加大爆炸",
+      "suggested_bus": "MECH",
+      "source_frame_interval": [
+        3000,
+        3106
+      ],
+      "v1_frame_intervals": [
+        [
+          1848,
+          1954
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          1800,
+          1906
+        ]
+      ],
+      "v1_seconds": [
+        77.0,
+        81.416667
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E28",
+      "rubric": "C10",
+      "name": "人物再次取出并查看电池",
+      "source_owner": "人物、衣料与电池",
+      "compatible_sound_description": "轻量衣料和物件处理，与前面的重击区分",
+      "suggested_bus": "FOLEY_PROPS",
+      "source_frame_interval": [
+        3126,
+        3168
+      ],
+      "v1_frame_intervals": [
+        [
+          1974,
+          2016
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          1926,
+          1968
+        ]
+      ],
+      "v1_seconds": [
+        82.25,
+        84.0
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E29",
+      "rubric": "C10",
+      "name": "人物转身离开近景",
+      "source_owner": "人物",
+      "compatible_sound_description": "转身衣料和撤离动作，音量/远近随可见状态合理变化",
+      "suggested_bus": "FOLEY_HUMAN",
+      "source_frame_interval": [
+        3211,
+        3252
+      ],
+      "v1_frame_intervals": [
+        [
+          2059,
+          2100
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          2011,
+          2052
+        ]
+      ],
+      "v1_seconds": [
+        85.791667,
+        87.5
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    },
+    {
+      "id": "E30",
+      "rubric": "C10",
+      "name": "切至损坏工厂远景",
+      "source_owner": "工厂空间与火焰",
+      "compatible_sound_description": "保留事故后环境和远处空间；不继续近景贴耳搏斗/人物踩步",
+      "suggested_bus": "AMB",
+      "source_frame_interval": [
+        3252,
+        3312
+      ],
+      "v1_frame_intervals": [
+        [
+          2100,
+          2160
+        ]
+      ],
+      "v2_frame_intervals": [
+        [
+          2052,
+          2112
+        ]
+      ],
+      "v1_seconds": [
+        87.5,
+        90.0
+      ],
+      "annotation_status": "assistant_visually_checked; independent_human_review_pending",
+      "timing_note": "These are event association spans, NOT precise contact-onset ground truth."
+    }
+  ],
+  "contact_anchors": [
+    {
+      "id": "A01",
+      "event_id": "E08",
+      "source_contact_interval_frames_inclusive": [
+        1590,
+        1591
+      ],
+      "v1_contact_interval_frames_inclusive": [
+        438,
+        439
+      ],
+      "v2_contact_interval_frames_inclusive": [
+        414,
+        415
+      ],
+      "evidence_image": "frames/anchor-muzzle.jpg",
+      "note": "第一道明显发射闪光",
+      "status": "assistant_frame_inspection; human_signoff_pending"
+    },
+    {
+      "id": "A02",
+      "event_id": "E09",
+      "source_contact_interval_frames_inclusive": [
+        1605,
+        1606
+      ],
+      "v1_contact_interval_frames_inclusive": [
+        453,
+        454
+      ],
+      "v2_contact_interval_frames_inclusive": [
+        429,
+        430
+      ],
+      "evidence_image": "frames/anchor-surface-hit.jpg",
+      "note": "第一处工位击中火花",
+      "status": "assistant_frame_inspection; human_signoff_pending"
+    },
+    {
+      "id": "A03",
+      "event_id": "E12",
+      "source_contact_interval_frames_inclusive": [
+        1817,
+        1819
+      ],
+      "v1_contact_interval_frames_inclusive": [
+        665,
+        667
+      ],
+      "v2_contact_interval_frames_inclusive": [
+        641,
+        643
+      ],
+      "evidence_image": "frames/anchor-can-burst.jpg",
+      "note": "弹道穿过喷罐与首个穿破迹象",
+      "status": "assistant_frame_inspection; human_signoff_pending"
+    },
+    {
+      "id": "A04",
+      "event_id": "E17",
+      "source_contact_interval_frames_inclusive": [
+        2092,
+        2094
+      ],
+      "v1_contact_interval_frames_inclusive": [
+        940,
+        942
+      ],
+      "v2_contact_interval_frames_inclusive": [
+        916,
+        918
+      ],
+      "evidence_image": "frames/anchor-arm-clash.jpg",
+      "note": "机械手抓到武器组件；伴随近处发射需分声源",
+      "status": "assistant_frame_inspection; human_signoff_pending"
+    },
+    {
+      "id": "A05",
+      "event_id": "E18",
+      "source_contact_interval_frames_inclusive": [
+        2172,
+        2174
+      ],
+      "v1_contact_interval_frames_inclusive": [
+        1020,
+        1022
+      ],
+      "v2_contact_interval_frames_inclusive": [
+        996,
+        998
+      ],
+      "evidence_image": "frames/anchor-body-land.jpg",
+      "note": "身体开始接触工位表面",
+      "status": "assistant_frame_inspection; human_signoff_pending"
+    },
+    {
+      "id": "A06",
+      "event_id": "E23",
+      "source_contact_interval_frames_inclusive": [
+        2567,
+        2569
+      ],
+      "v1_contact_interval_frames_inclusive": [
+        1415,
+        1417
+      ],
+      "v2_contact_interval_frames_inclusive": [
+        1391,
+        1393
+      ],
+      "evidence_image": "frames/anchor-throw-block.jpg",
+      "note": "工具挥击被机器人手部截住；不是自由投掷",
+      "status": "assistant_frame_inspection; human_signoff_pending"
+    },
+    {
+      "id": "A07",
+      "event_id": "E26",
+      "source_contact_interval_frames_inclusive": [
+        2942,
+        2943
+      ],
+      "v1_contact_interval_frames_inclusive": [
+        1790,
+        1791
+      ],
+      "v2_contact_interval_frames_inclusive": [
+        1742,
+        1743
+      ],
+      "evidence_image": "frames/anchor-chest-contact.jpg",
+      "note": "机械手与躯干接触、首批火花",
+      "status": "assistant_frame_inspection; human_signoff_pending"
+    }
+  ],
+  "burst_sequence": {
+    "event_id": "E08",
+    "source_flash_intervals_frames_inclusive": [
+      [
+        1590,
+        1591
+      ],
+      [
+        1593,
+        1594
+      ],
+      [
+        1597,
+        1598
+      ],
+      [
+        1600,
+        1601
+      ]
+    ],
+    "v1_flash_intervals_frames_inclusive": [
+      [
+        438,
+        439
+      ],
+      [
+        441,
+        442
+      ],
+      [
+        445,
+        446
+      ],
+      [
+        448,
+        449
+      ]
+    ],
+    "v2_flash_intervals_frames_inclusive": [
+      [
+        414,
+        415
+      ],
+      [
+        417,
+        418
+      ],
+      [
+        421,
+        422
+      ],
+      [
+        424,
+        425
+      ]
+    ],
+    "evidence_image": "frames/anchor-muzzle.jpg"
+  },
+  "continuous_events": [
+    "E03",
+    "E05",
+    "E07",
+    "E15",
+    "E22",
+    "E27"
+  ]
+}

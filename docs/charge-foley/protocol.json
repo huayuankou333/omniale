@@ -1,0 +1,329 @@
+{
+  "version": "charge-qwen-human-review-v3-P10-C50-T30-M10",
+  "created_at": "2026-11-09T00:19:26.628912+08:00",
+  "status": "user_requested_uncalibrated_complete_trial",
+  "judge_model": "qwen3.8-omni-flash",
+  "endpoint": "http[LOCAL]/v1",
+  "reported_model_identity_not_independently_verified": true,
+  "user_instruction": "先让qwen完整评测三个模型的交付，我再逐个人工合对每个rubric的正确性；我想先看看总分如何",
+  "calibration_passed": false,
+  "calibration_evidence": "[WORK]\\charge-reference-qwen-20261108\\VALIDATION.json",
+  "not_a_certified_benchmark_score": true,
+  "does_not_override_failed_calibration": true,
+  "repetitions_per_event_version": 1,
+  "purpose": "Single complete pass for subsequent human correction, not repeat-consistency or statistical inference.",
+  "rubric": [
+    {
+      "id": "P01",
+      "max_points": 2.6666666666666665,
+      "criterion": "在线检索与来源链真实、完整",
+      "evidence_rule": "每项 1 分：宿主有真实查询/试听或下载记录；使用文件与下载哈希对应；作者、原页面和许可字段可核验；加工素材到工程引用可追溯。不按下载数量计分，候选自写日志不单独证明操作发生。 当前分值按该项原子检查的原始得分比例换算；下述原始1分/2分不直接等于新权重下的1分/2分。",
+      "method": "source_chain_verified",
+      "previous_max_points": 4,
+      "original_evidence_rule": "每项 1 分：宿主有真实查询/试听或下载记录；使用文件与下载哈希对应；作者、原页面和许可字段可核验；加工素材到工程引用可追溯。不按下载数量计分，候选自写日志不单独证明操作发生。"
+    },
+    {
+      "id": "P02",
+      "max_points": 2.6666666666666665,
+      "criterion": "REAPER 两版工程可编辑、可重放",
+      "evidence_rule": "v1 与 v2 在新的路径重开并原生导出各 1 分；事件/总线可编辑且不靠单条扁平成片冒充 1 分；原生重放与交付混音一致 1 分。 当前分值按该项原子检查的原始得分比例换算；下述原始1分/2分不直接等于新权重下的1分/2分。",
+      "method": "native_replay_verified",
+      "previous_max_points": 4,
+      "original_evidence_rule": "v1 与 v2 在新的路径重开并原生导出各 1 分；事件/总线可编辑且不靠单条扁平成片冒充 1 分；原生重放与交付混音一致 1 分。"
+    },
+    {
+      "id": "P03",
+      "max_points": 2.6666666666666665,
+      "criterion": "Shotcut 两版交接和成片成立",
+      "evidence_rule": "两版 MLT 在新的路径重开导出各 1 分；媒体引用完整、交付画面帧序正确 1 分；五分轨只混合一次且实际原生导出有证据 1 分。 当前分值按该项原子检查的原始得分比例换算；下述原始1分/2分不直接等于新权重下的1分/2分。",
+      "method": "native_replay_verified",
+      "previous_max_points": 4,
+      "original_evidence_rule": "两版 MLT 在新的路径重开导出各 1 分；媒体引用完整、交付画面帧序正确 1 分；五分轨只混合一次且实际原生导出有证据 1 分。"
+    },
+    {
+      "id": "P04",
+      "max_points": 2.0,
+      "criterion": "首版封存、固定返修与版本审计",
+      "evidence_rule": "首版在返修提示释放前有宿主快照和哈希 1 分；返修包的同一版本/同一哈希确实按阶段发放 1 分；返修报告的变更可在文件或轨迹中验证 1 分。宿主自身未能正确封存不是候选扣分理由，应使本次流程证据待定。 当前分值按该项原子检查的原始得分比例换算；下述原始1分/2分不直接等于新权重下的1分/2分。",
+      "method": "verified_report_contradiction",
+      "previous_max_points": 3,
+      "original_evidence_rule": "首版在返修提示释放前有宿主快照和哈希 1 分；返修包的同一版本/同一哈希确实按阶段发放 1 分；返修报告的变更可在文件或轨迹中验证 1 分。宿主自身未能正确封存不是候选扣分理由，应使本次流程证据待定。"
+    },
+    {
+      "id": "C01",
+      "max_points": 5.0,
+      "criterion": "人物接近工位、夹具释放与电池握持",
+      "evidence_rule": "E01–E03",
+      "method": "uncalibrated_qwen_best_estimate",
+      "previous_max_points": 4,
+      "original_evidence_rule": "E01–E03"
+    },
+    {
+      "id": "C02",
+      "max_points": 5.0,
+      "criterion": "夹手争夺、释放转向与机器人进入",
+      "evidence_rule": "E04–E06",
+      "method": "uncalibrated_qwen_best_estimate",
+      "previous_max_points": 4,
+      "original_evidence_rule": "E04–E06"
+    },
+    {
+      "id": "C03",
+      "max_points": 5.0,
+      "criterion": "武器展开、连续发射与掩体受击的声源区别",
+      "evidence_rule": "E07–E09",
+      "method": "uncalibrated_qwen_best_estimate",
+      "previous_max_points": 4,
+      "original_evidence_rule": "E07–E09"
+    },
+    {
+      "id": "C04",
+      "max_points": 5.0,
+      "criterion": "取喷罐、抛出与击穿喷散",
+      "evidence_rule": "E10–E12",
+      "method": "uncalibrated_qwen_best_estimate",
+      "previous_max_points": 4,
+      "original_evidence_rule": "E10–E12"
+    },
+    {
+      "id": "C05",
+      "max_points": 5.0,
+      "criterion": "喷溅机器人、设备损坏与持续电弧",
+      "evidence_rule": "E13–E15",
+      "method": "uncalibrated_qwen_best_estimate",
+      "previous_max_points": 4,
+      "original_evidence_rule": "E13–E15"
+    },
+    {
+      "id": "C06",
+      "max_points": 5.0,
+      "criterion": "人物跃近、近距接触与身体落到工位",
+      "evidence_rule": "E16–E18",
+      "method": "uncalibrated_qwen_best_estimate",
+      "previous_max_points": 4,
+      "original_evidence_rule": "E16–E18"
+    },
+    {
+      "id": "C07",
+      "max_points": 5.0,
+      "criterion": "追击闪避、工具交锋与翻滚撑起",
+      "evidence_rule": "E19–E21",
+      "method": "uncalibrated_qwen_best_estimate",
+      "previous_max_points": 4,
+      "original_evidence_rule": "E19–E21"
+    },
+    {
+      "id": "C08",
+      "max_points": 5.0,
+      "criterion": "机器人结构改变、工具被挡与格挡反击",
+      "evidence_rule": "E22–E24",
+      "method": "uncalibrated_qwen_best_estimate",
+      "previous_max_points": 4,
+      "original_evidence_rule": "E22–E24"
+    },
+    {
+      "id": "C09",
+      "max_points": 5.0,
+      "criterion": "人物机械手展开、刺入与机器人停机",
+      "evidence_rule": "E25–E27",
+      "method": "uncalibrated_qwen_best_estimate",
+      "previous_max_points": 4,
+      "original_evidence_rule": "E25–E27"
+    },
+    {
+      "id": "C10",
+      "max_points": 5.0,
+      "criterion": "电池轻量处理、撤离与事故后远景环境",
+      "evidence_rule": "E28–E30",
+      "method": "uncalibrated_qwen_best_estimate",
+      "previous_max_points": 4,
+      "original_evidence_rule": "E28–E30"
+    },
+    {
+      "id": "T01",
+      "max_points": 9.6,
+      "criterion": "6 个不同接触事件的可闻起音",
+      "evidence_rule": "本轮实际方法：六个接触事件 E09/E12/E17/E18/E23/E26，逐事件按感知时序 q=0/0.5/1 取均值；未计算逐帧起音误差。",
+      "method": "uncalibrated_qwen_best_estimate",
+      "previous_max_points": 8,
+      "original_evidence_rule": "使用 A02–A07；先核实声源，再比较实际可闻起音与逐帧接触区间，按下面的分段函数取均值。A01 属于发射序列，不在此重复计分。"
+    },
+    {
+      "id": "T02",
+      "max_points": 6.0,
+      "criterion": "第一组 4 次发射的节奏和一对一对应",
+      "evidence_rule": "本轮实际方法：对 E08 首组四次发射的节奏及对应给出一个感知 q=0/0.5/1；未计算攻击点匹配 precision/recall/F1。",
+      "method": "uncalibrated_qwen_best_estimate",
+      "previous_max_points": 5,
+      "original_evidence_rule": "使用 E08 四个闪光区间。音频攻击点与视觉闪光做一对一匹配，计算加权 precision/recall 的 F1；同一攻击点不能重复匹配多个闪光。"
+    },
+    {
+      "id": "T03",
+      "max_points": 4.8,
+      "criterion": "连续运动/状态的起止与覆盖",
+      "evidence_rule": "本轮实际方法：E03/E05/E07/E15/E22/E27 的运动或状态按感知时序 q=0/0.5/1 取均值；未计算声源活动时间 IoU。",
+      "method": "uncalibrated_qwen_best_estimate",
+      "previous_max_points": 4,
+      "original_evidence_rule": "E03、E05、E07、E15、E22、E27。对确认属于目标声源的活动区间计算时间 IoU，并核查启动/停止。不能把环境底噪当目标声源的活动区间。"
+    },
+    {
+      "id": "T04",
+      "max_points": 6.0,
+      "criterion": "返修后的分段时间迁移",
+      "evidence_rule": "本轮实际代理：每个保留素材片段抽查三处源位置；源时间误差≤1帧记1、≤2帧记0.5、否则0，按片段平均。它检查返修迁移，不验证原始动作与声音是否同步。",
+      "method": "exploratory_source_piece_proxy",
+      "previous_max_points": 5,
+      "original_evidence_rule": "根据宿主 EDL，逐个比较保留事件的 v1 和 v2 起音/活动区间。检查删区事件无残留、两个剪口后不同的位移量均落实；不能只把全片平移 1 秒。"
+    },
+    {
+      "id": "T05",
+      "max_points": 3.6,
+      "criterion": "实际 MP4 音轨与 REAPER 混音时间基准一致",
+      "evidence_rule": "两版分别解码，比对 mix、MP4 音轨的全片及分段相关；检查实际时长、头尾和累积漂移。先正确处理容器时间戳与编码 priming，不能把解码器差异当候选错误。 当前分值按该项原子检查的原始得分比例换算；下述原始1分/2分不直接等于新权重下的1分/2分。",
+      "method": "measured",
+      "previous_max_points": 3,
+      "original_evidence_rule": "两版分别解码，比对 mix、MP4 音轨的全片及分段相关；检查实际时长、头尾和累积漂移。先正确处理容器时间戳与编码 priming，不能把解码器差异当候选错误。"
+    },
+    {
+      "id": "M01",
+      "max_points": 2.0,
+      "criterion": "交付声级与峰值",
+      "evidence_rule": "v1 integrated loudness -20±2 LUFS 得 2 分；v1 true peak ≤-1 dBTP 得 1 分；v2 true peak ≤-1 dBTP 得 1 分。按 ITU-R BS.1770 / EBU 的测量方法执行。v2 integrated loudness 只记录，不因指定环境降音再强迫全片增益。 当前分值按该项原子检查的原始得分比例换算；下述原始1分/2分不直接等于新权重下的1分/2分。",
+      "method": "measured",
+      "previous_max_points": 4,
+      "original_evidence_rule": "v1 integrated loudness -20±2 LUFS 得 2 分；v1 true peak ≤-1 dBTP 得 1 分；v2 true peak ≤-1 dBTP 得 1 分。按 ITU-R BS.1770 / EBU 的测量方法执行。v2 integrated loudness 只记录，不因指定环境降音再强迫全片增益。"
+    },
+    {
+      "id": "M02",
+      "max_points": 2.0,
+      "criterion": "可定位的制作伪影",
+      "evidence_rule": "两版各按四类检查：非意图削波/失真；剪口/素材边界爆音；显著机械重复的短循环；不合理的环境/尾音断裂。每类 q∈{0,0.5,1} 后平均。必须定位时间并区分真实撞击/电弧的合法瞬态，检测器告警不能直接扣分。",
+      "method": "uncalibrated_qwen_best_estimate",
+      "previous_max_points": 4,
+      "original_evidence_rule": "两版各按四类检查：非意图削波/失真；剪口/素材边界爆音；显著机械重复的短循环；不合理的环境/尾音断裂。每类 q∈{0,0.5,1} 后平均。必须定位时间并区分真实撞击/电弧的合法瞬态，检测器告警不能直接扣分。"
+    },
+    {
+      "id": "M03",
+      "max_points": 2.0,
+      "criterion": "前景、背景与动态层次",
+      "evidence_rule": "使用 E03、E12、E17、E26 四个固定窗口；检查应占主导的动作未被环境或无关层持续遮蔽，同时弱动作与强动作不被压成相同强度。声级和局部频谱为证据，感知判断必须对应具体窗口。不给“电影感/好莱坞感”独立分。",
+      "method": "uncalibrated_qwen_best_estimate",
+      "previous_max_points": 4,
+      "original_evidence_rule": "使用 E03、E12、E17、E26 四个固定窗口；检查应占主导的动作未被环境或无关层持续遮蔽，同时弱动作与强动作不被压成相同强度。声级和局部频谱为证据，感知判断必须对应具体窗口。不给“电影感/好莱坞感”独立分。"
+    },
+    {
+      "id": "M04",
+      "max_points": 2.0,
+      "criterion": "声源身份与空间关系",
+      "evidence_rule": "机器人 E06/E22 与电池 E03/E28 的身份对应占本项一半；E29/E30 近远镜头的声级、尺度和混响占一半。Judge输入为单声道，未评价立体声声像。",
+      "method": "uncalibrated_qwen_best_estimate",
+      "previous_max_points": 4,
+      "original_evidence_rule": "2 分检查同一角色/机器人/电池跨镜头的声音身份可解释；2 分检查有明确视觉距离变化时的近远、声像和混响关系。没有明确空间证据不强制某个声像数值；创意音色不是错误。按预先标注的配对窗口评价，见 protocol。"
+    },
+    {
+      "id": "M05",
+      "max_points": 2.0,
+      "criterion": "环境降音与非目标保护",
+      "evidence_rule": "本轮实际代理：一半检查对应 AMB 源位置与 -4±0.5 dB 增益；一半按四个前景总线的源位置、增益和处理参数保留比例汇总。不是完整听感验证。",
+      "method": "exploratory_source_gain_proxy",
+      "previous_max_points": 4,
+      "original_evidence_rule": "2 分：映射后 AMB 为 v1 同段的 -4.0±0.5 dB，仍有对应环境；2 分：四个前景分轨在排除剪口后声级与内容保持。依据对应波形、增益估计、工程和短窗听评，不能用整体降音代替。"
+    }
+  ],
+  "weights": {
+    "P": 10,
+    "C": 50,
+    "T": 30,
+    "M": 10
+  },
+  "dual_version_weights": {
+    "v1": 0.3,
+    "v2": 0.7
+  },
+  "timing_definition": "T01-T03 use ordinal perceptual best estimates; NOT original 2/4/6-frame or precise activity-IoU criteria. All weights unchanged.",
+  "objective_proxy_definition": {
+    "at": "2026-11-08T23:58:57.657873+08:00",
+    "method": "Three source-position samples per retained item-piece, equal item-piece weights; M05 equal foreground-bus weights. Source errors converted by playback rate; looping source position modulo actual source duration. Known current candidate results predate this post-hoc protocol."
+  },
+  "M04_definition": "Two points source identity (robot E06/E22 and battery E03/E28 mean) and two points near/far/reverberation (E29/E30). Mono transmission cannot validate stereo panning.",
+  "uncertainty": "Qwen must give a best-estimate numeric q (0,.5,1) even when uncertain and explicitly flag uncertainty for human review. No host conversion of null into zero.",
+  "modality": "Anonymous candidate audio only first; then same unnormalized mono24kHzPCM16 audio plus silent motion video on matching local timeline. No sequential R/X audio mismatch. Original-mix model notes supplied as fallible examples, not unique timbre answer.",
+  "process_points": "P01-P04,T05,M01 reuse prior host-audited factual points. T04,M05 use documented source-piece/gain proxy, not fabricated Qwen judgments of software internals.",
+  "foreground_mix_rule": "M03 uses E03,E12,E17,E26; separate mixing defects from a solely absent event. Absence is content/timing, not an automatic mixing penalty.",
+  "aggregation": "Each C = 4*mean(three event q), T01=8*mean(six contact temporal_q), T02=5*E08 burst temporal_q, T03=4*mean(six continuous temporal_q). M02=4*mean(four global artifact q). M03=4*mean(four fixed-window foreground q). M04=2*mean(two identity q)+2*space q. Each of these aggregates .3*v1+.7*v2.",
+  "prior_reference_annotations": {
+    "reference\\v2\\C01\\annotation.json": "c9370436c24e35cb5ef8a1ca903617a06c9b8315a3e2e96b8c7fc0f560d3450c",
+    "reference\\v2\\C02\\annotation.json": "e3e217e0779a7721a7757b09b9f948b5f87f1f73b657c8c5cc6d3fa33b761626",
+    "reference\\v2\\C03\\annotation.json": "d894f6456a0b4ba0e6f4457429c977d5dc74d1c049ce02ec398b3e21518fcc0d",
+    "reference\\v2\\C04\\annotation.json": "96e9205b8ecee25a5c4854b0ca93dacf505dfd8cffba82b37edaf749c8ff64d7",
+    "reference\\v2\\C05\\annotation.json": "a0137d82d9742f1a38438e64c5355028eea7ef2833475e9ee412da5d51c4509c",
+    "reference\\v2\\C06\\annotation.json": "6f113d1efb4dfb654e2886437eb28887bcf3223fd3c719b8d40ee80f1b74c77d",
+    "reference\\v2\\C07\\annotation.json": "9cda7b99af8bdac22a8f91832a7164cae1d9b123d32b6d02ecb9194882fd7186",
+    "reference\\v2\\C08\\annotation.json": "2c0f5f2e7a32a1f1339a29f8c13ecc15bad6b76f5a5b5d5dd521eee0349908d8",
+    "reference\\v2\\C09\\annotation.json": "f6267503ce61772369a476166d966ea4538f8cb687d126842b63219d400962ad",
+    "reference\\v2\\C10\\annotation.json": "056ff97f60a984e3922d4b4679a5d1b308dcf83f0a839cc11663e018da33a700",
+    "reference\\v1\\C01\\annotation.json": "20ea77cba8eedc86c4cbe9f26d2e0ffa26dd9f65258e59fc56ad0055f25e4cf0",
+    "reference\\v1\\C02\\annotation.json": "293ae2fc6bbe5bbf3c80fe8794b7c9f068a70ad75b8804239cb1b1a1e411b5ad",
+    "reference\\v1\\C03\\annotation.json": "c184939a02743c6320774518bb957bc999fb5b56318fc20fb392e015ed0a1977",
+    "reference\\v1\\C04\\annotation.json": "0cea162edcd6ebdd2d4ce2220547a801e0dcc2baa9216bebec39748666f792e9",
+    "reference\\v1\\C05\\annotation.json": "d31f9ca1c608f337cb301cd42abe63426702651f781915c8a3b54ae5e20e81be",
+    "reference\\v1\\C06\\annotation.json": "e0520bcb8840908b196a5e14ac3b50e7cdde52422db974c160921f53a99cfe4e",
+    "reference\\v1\\C07\\annotation.json": "ae1525d9dbf1b986fd5541dc2786ed9e0b9af7fd3296ff65f6748212e8408c65",
+    "reference\\v1\\C08\\annotation.json": "f7255b916224152116174599986450eecdfe54c383e429d673e4619af3f9d3fc",
+    "reference\\v1\\C09\\annotation.json": "251fbd3c214e62c7bf7501b8bfeda956945a55056b955e4b3cc12ca161b5572d",
+    "reference\\v1\\C10\\annotation.json": "29e027c11535714fc465e52a7f033777160946030ec699fc9d7f130f99968301"
+  },
+  "protected_files": {
+    "private\\evaluation\\rubric.json": "efe67a33b5ea923ea808bd95f44fae81660fbeffe402ef8c2f85facb2a2b546a",
+    "private\\evaluation\\events.json": "5dddbf5a131c10550955ef23e46f2509cdb6fa1fddb87513c6086acc3687b5bb",
+    "infrastructure\\freeze.json": "1dc1eb7ae7c56f0f26f26646cdcdb4d2e4a466edfd56e04d542de12a79ce9b9e"
+  },
+  "submission_hashes": {
+    "X17": {
+      "v1/final.mp4": "336f34787fcdfa70d7e70745b22f0472dbf0e1ec7442f6c04391d36d20e5eaa9",
+      "v1/mix.wav": "c700e816ff4dece9df6c87bb83855347cf7f56ec367f20f8977c1c39c5c58cd2",
+      "v1/rendered_plan.json": "37cfa5a563037e66c59c9ea8def8e6b97a5f12e433a3b6a8c9a40c03dbfedb38",
+      "v2/final.mp4": "bb2d2e0888dcc8a89fbc49826ce3f40d662bf8bf0c0aa7240fc92cb563a47e8a",
+      "v2/mix.wav": "00e36dffcb6e6bd55609b09f3481841e143f65c0d2df85a4e4d5f52046b4bce2",
+      "v2/rendered_plan.json": "c83651e021f96b4e09181756b254cbba9a4413b3438426b278050bb1aa48d5a1"
+    },
+    "X42": {
+      "v1/final.mp4": "3672bf2bf739bb8896f90616ae4ffa2e8a1ee98cc49aa7ec86811c9dde3db9c3",
+      "v1/mix.wav": "70706e86a817f4b97814fc35ae79e8aacbf968722ad8e0c1041e7a7276105f3f",
+      "v1/rendered_plan.json": "b7d861ffd95d51e35362428c3846a50b4fa840ee2ed729f17371e8d1dfb595d1",
+      "v2/final.mp4": "268e4a3166a2e65359737d6939db67de030fc861947a0d88ae0a8c3a4db6089f",
+      "v2/mix.wav": "a6dc84672d5a98dc8c95f2966bd0ad000e4629fd86527d5273597d3b99ffd051",
+      "v2/rendered_plan.json": "3a9ce48d47d6aa41856f9ed58520b107e6b5a38d9a2af13082f57f9b2958ad95"
+    },
+    "X83": {
+      "v1/final.mp4": "f65831de3c5dc5bbf3905f707a8ec71da4aa9b48acad56224dad66754fb249c4",
+      "v1/mix.wav": "ecf9c79a86d5cff4dc9bd3ca98b2306811ed905a9fd59567518d137af4b72b0c",
+      "v1/rendered_plan.json": "505ac0a4ca6beecdfb72fdf8e1246182977831771a58ec80f6fa8c5f940dbdf0",
+      "v2/final.mp4": "98c5dfd0f0d7d00cfd876d6dc54c8b239784196e9911282a31d6cae8d918d74e",
+      "v2/mix.wav": "c6e6e5147a7512e1ef00401fde55ac2401a7abd9e4ce8fe95549d3e798697303",
+      "v2/rendered_plan.json": "dfc7b43491c65976fe2611ac7eaa86580961d90c6ae073a070dea9b8b40ca7a2"
+    }
+  },
+  "prior_result_files": {
+    "D:\\omniale\\case\\D3音频后期与声音工具\\case3c-v3-charge电影拟音与固定返修\\results\\RESULTS.md": "3622a32e8c92fdb1e26e2e3a798a7ee9acb3707a3f926954d4dc5b7d722ef641",
+    "D:\\omniale\\case\\D3音频后期与声音工具\\case3c-v3-charge电影拟音与固定返修\\results\\results.json": "d4bcb32465d44312813e6f36fb135413036292c8cd57e5dbca503acb7603fa8a",
+    "D:\\omniale\\case\\D3音频后期与声音工具\\case3c-v3-charge电影拟音与固定返修\\results\\ds-flash-1017\\RESULTS.md": "6ce4d3cbb368eabe58ca591eb43fa2b9d69bd1fbc446c5e0aab2f16044381ca7",
+    "D:\\omniale\\case\\D3音频后期与声音工具\\case3c-v3-charge电影拟音与固定返修\\results\\ds-flash-1017\\result.json": "52add0c0e56a3054d694a5219335b5c94255ab225ebe386772275774e5061672"
+  },
+  "previous_weights": {
+    "P": 15,
+    "C": 40,
+    "T": 25,
+    "M": 20
+  },
+  "reweighting_only": true,
+  "source_judgments_sha256": "dbbce5228279fe7a579326b95a8093cd0587f35dbe77d4b71bdea90a0029ac64",
+  "publication_note": "Post-hoc development-set reweighting requested after observing results; no regeneration, rejudging, or binary-threshold conversion.",
+  "category_scaling": {
+    "P": 0.6666666666666666,
+    "C": 1.25,
+    "T": 1.2,
+    "M": 0.5
+  },
+  "previous_protocol_sha256": "988a923006e6921715c71dd5bc3772377a3f76fa9e9eb51b05cf972c9e3af2b6"
+}
