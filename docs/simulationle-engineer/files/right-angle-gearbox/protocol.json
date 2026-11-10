@@ -1,0 +1,61 @@
+{
+  "name": "simulationle-right-angle-gearbox-public-contract-v2",
+  "models": [
+    "gpt-6-luna",
+    "gpt-6.1-sol",
+    "deepseek-v4.1-flash-1017"
+  ],
+  "limits": {
+    "max_candidates": 3,
+    "max_responses": 36,
+    "max_tool_calls": 96,
+    "max_output_tokens": 98304,
+    "max_output_per_response": 32768,
+    "reasoning_effort": "medium",
+    "max_wall_seconds": 7200,
+    "terminal_timeout": 180
+  },
+  "adaptation": "Original scorer and design target; fixture spans/diameter, execution whitelist and static compatibility helper are public. SimulationLE budget and offline environment.",
+  "public_documents": [
+    "TASK.md",
+    "DELIVERY_FORMAT.md",
+    "delivery_format.json",
+    "AGENT_PROTOCOL.md",
+    "PUBLIC_CONTRACT.md",
+    "FIXTURE.json",
+    "/opt/simulationle-public/check_submission.py"
+  ],
+  "public_static_compatibility_code": true,
+  "public_dynamics_code": false,
+  "runtime": {
+    "runtime_image_id": "sha256:6df971ccc342c4c4794d1d961b6559c3567e475fa410182b0aadc1f794808dc7",
+    "image_tag": "simulationle-right-angle-runtime:20261109",
+    "python_probe": "3.11.15 (main, Jul 14 2026, 02:08:37) [GCC 14.2.0]\n0.10.0\n2.4.2\n4.11.2\n",
+    "blender": "Blender 4.3.2",
+    "base": "ghcr.io/astral-sh/uv:python3.11-trixie-slim@sha256:015fe7b33cea4a9a0a2fcda085cbfa3fa03419f973ff1b6a3e337edde48ba9ff",
+    "source_scoring_unchanged": true,
+    "large_dependencies_external": true
+  },
+  "tools": [
+    "terminal",
+    "read_image",
+    "submit_candidate",
+    "finish"
+  ],
+  "official_feedback_during_development": false,
+  "host_design_edits": false,
+  "selection": "last on-disk desktop",
+  "runs_per_model": 1,
+  "resources": {
+    "cpus": 8,
+    "memory_gib": 12
+  },
+  "initial_input_hashes": {
+    "TASK.md": "5c957ff5e3bd0de49dc9fb54f2e4c5561c55a80b28265be3f60c327f06dde7e0",
+    "DELIVERY_FORMAT.md": "0a93634f75584e731601b54dff566e038378afff652787df40bc1b608adcabff",
+    "delivery_format.json": "bc43656f7dc8b4789202b00e50ba84f25732ad6faa89b1898438c1b0041784fd",
+    "public/PUBLIC_CONTRACT.md": "b94dc96984245e02eb8e5e85241d61aa8a068a23140ec72c239773e7095e40af",
+    "public/FIXTURE.json": "3d09d6f545bf1f68392e5105ab65b48bfc05474e720eb6bad7ded13f338dc5df",
+    "public/check_submission.py": "ad6bc151deb79c715ab0f4f3cec1a29d217820173608a310110ade0d76dfbcac"
+  }
+}
