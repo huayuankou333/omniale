@@ -1,0 +1,148 @@
+{
+  "at": "2026-11-11T21:19:23.528488+08:00",
+  "project": "Omniale_CRANE_REPLAY_20261111_211904",
+  "initial": {
+    "at": 1794403150,
+    "id": "ac0b051551494e5295b7443b41ce8472",
+    "ok": true,
+    "op": "run",
+    "prints": {},
+    "result": {
+      "frames": 241,
+      "job": "8f9b83b1-c7a2-4bc1-9bca-4b0908065147",
+      "started": true,
+      "tracks": [
+        {
+          "finish": 241,
+          "name": "input.mp4",
+          "nodes": [
+            {
+              "id": "MediaIn",
+              "name": "MediaIn1"
+            },
+            {
+              "id": "Custom",
+              "name": "Key_Colour_And_Regions"
+            },
+            {
+              "id": "ErodeDilate",
+              "name": "Matte_Open_Grow"
+            },
+            {
+              "id": "LUTBezier",
+              "name": "CustomTool3LUTIn4"
+            },
+            {
+              "id": "ErodeDilate",
+              "name": "Matte_Close_Shrink"
+            },
+            {
+              "id": "LUTBezier",
+              "name": "CustomTool3LUTIn3"
+            },
+            {
+              "id": "LUTBezier",
+              "name": "CustomTool3LUTIn1"
+            },
+            {
+              "id": "ErodeDilate",
+              "name": "Matte_Open_Shrink"
+            },
+            {
+              "id": "LUTBezier",
+              "name": "CustomTool2LUTIn4"
+            },
+            {
+              "id": "LUTBezier",
+              "name": "CustomTool2LUTIn2"
+            },
+            {
+              "id": "Background",
+              "name": "Green_00FF00"
+            },
+            {
+              "id": "ErodeDilate",
+              "name": "Matte_Close_Grow"
+            },
+            {
+              "id": "LUTBezier",
+              "name": "CustomTool3LUTIn2"
+            },
+            {
+              "id": "MediaOut",
+              "name": "MediaOut1"
+            },
+            {
+              "id": "Merge",
+              "name": "Green_Canvas_Merge"
+            },
+            {
+              "id": "Custom",
+              "name": "Composite_Protect_FineDetail"
+            },
+            {
+              "id": "LUTBezier",
+              "name": "CustomTool2LUTIn3"
+            },
+            {
+              "id": "LUTBezier",
+              "name": "CustomTool2LUTIn1"
+            }
+          ],
+          "source": "runs/terra-1\\input\\media\\input.mp4",
+          "start": 0,
+          "track": 1
+        }
+      ]
+    },
+    "session": "[omitted]",
+    "v": 2
+  },
+  "render_status": {
+    "at": 1794403163,
+    "id": "790d5ff8caa348f9ac81798495cca79b",
+    "ok": true,
+    "op": "run",
+    "prints": {},
+    "result": {
+      "CompletionPercentage": 100,
+      "JobStatus": "Complete",
+      "TimeTakenToRenderInMs": 11808
+    },
+    "session": "[omitted]",
+    "v": 2
+  },
+  "output": "runs/terra-1\\results\\replay\\replay.mp4",
+  "passed": true,
+  "decoded_sample_comparison": [
+    {
+      "frame": 0,
+      "rgb_mae": 0.030919691547751427
+    },
+    {
+      "frame": 24,
+      "rgb_mae": 0.0350135937333107
+    },
+    {
+      "frame": 48,
+      "rgb_mae": 0.03393937647342682
+    },
+    {
+      "frame": 96,
+      "rgb_mae": 0.04160204157233238
+    },
+    {
+      "frame": 144,
+      "rgb_mae": 0.03340465947985649
+    },
+    {
+      "frame": 192,
+      "rgb_mae": 0.0399174727499485
+    },
+    {
+      "frame": 240,
+      "rgb_mae": 0.03548607975244522
+    }
+  ],
+  "visual_replay_matches": true
+}

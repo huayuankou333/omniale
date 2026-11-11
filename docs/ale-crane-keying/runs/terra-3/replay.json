@@ -1,0 +1,152 @@
+{
+  "at": "2026-11-11T23:10:59.858545+08:00",
+  "project": "Omniale_CRANE_REPLAY_20261111_231048",
+  "initial": {
+    "at": 1794409852,
+    "id": "2e96db3ac9c146eda34fecbf2467b991",
+    "ok": true,
+    "op": "run",
+    "prints": {},
+    "result": {
+      "frames": 241,
+      "job": "16d4fd11-e615-4e25-88f8-fca3d205b8c8",
+      "started": true,
+      "tracks": [
+        {
+          "finish": 241,
+          "name": "input.mp4",
+          "nodes": [
+            {
+              "id": "MediaIn",
+              "name": "MediaIn1"
+            },
+            {
+              "id": "Merge",
+              "name": "GarbageBound"
+            },
+            {
+              "id": "Background",
+              "name": "PureGreen"
+            },
+            {
+              "id": "LUTBezier",
+              "name": "CustomTool2LUTIn1"
+            },
+            {
+              "id": "LUTBezier",
+              "name": "ChromaCompositeLUTIn3"
+            },
+            {
+              "id": "LUTBezier",
+              "name": "CustomTool2LUTIn3"
+            },
+            {
+              "id": "LUTBezier",
+              "name": "CustomTool2LUTIn4"
+            },
+            {
+              "id": "Custom",
+              "name": "CoreLuma"
+            },
+            {
+              "id": "LUTBezier",
+              "name": "CustomTool2LUTIn2"
+            },
+            {
+              "id": "ErodeDilate",
+              "name": "CoreGrow"
+            },
+            {
+              "id": "MediaOut",
+              "name": "MediaOut1"
+            },
+            {
+              "id": "LUTBezier",
+              "name": "ChromaCompositeLUTIn4"
+            },
+            {
+              "id": "Custom",
+              "name": "ChromaComposite"
+            },
+            {
+              "id": "LUTBezier",
+              "name": "ChromaCompositeLUTIn1"
+            },
+            {
+              "id": "Merge",
+              "name": "CloudCleanup"
+            },
+            {
+              "id": "BezierSpline",
+              "name": "CloudCleanupBlend"
+            },
+            {
+              "id": "RectangleMask",
+              "name": "CloudCleanupMask"
+            },
+            {
+              "id": "LUTBezier",
+              "name": "ChromaCompositeLUTIn2"
+            },
+            {
+              "id": "PolylineMask",
+              "name": "GarbageCrane"
+            }
+          ],
+          "source": "runs/terra-3\\input\\media\\input.mp4",
+          "start": 0,
+          "track": 1
+        }
+      ]
+    },
+    "session": "[omitted]",
+    "v": 2
+  },
+  "render_status": {
+    "at": 1794409859,
+    "id": "cbfa55d5454f465dbdc9c2d08c4a2cc8",
+    "ok": true,
+    "op": "run",
+    "prints": {},
+    "result": {
+      "CompletionPercentage": 100,
+      "JobStatus": "Complete",
+      "TimeTakenToRenderInMs": 6786
+    },
+    "session": "[omitted]",
+    "v": 2
+  },
+  "output": "runs/terra-3\\results\\replay\\replay.mp4",
+  "passed": true,
+  "decoded_sample_comparison": [
+    {
+      "frame": 0,
+      "rgb_mae": 0.0066521139815449715
+    },
+    {
+      "frame": 24,
+      "rgb_mae": 0.014074946753680706
+    },
+    {
+      "frame": 48,
+      "rgb_mae": 0.010151462629437447
+    },
+    {
+      "frame": 96,
+      "rgb_mae": 0.013504805974662304
+    },
+    {
+      "frame": 144,
+      "rgb_mae": 0.00869858730584383
+    },
+    {
+      "frame": 192,
+      "rgb_mae": 0.010607192292809486
+    },
+    {
+      "frame": 240,
+      "rgb_mae": 0.0174460019916296
+    }
+  ],
+  "visual_replay_matches": true
+}

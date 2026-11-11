@@ -1,37 +1,38 @@
 {
-  "at": "2026-11-05T17:21:47.949729+08:00",
+  "at": "2026-11-11T23:21:46.765498+08:00",
+  "reasoning": "xhigh",
   "models": [
     {
       "model": "gpt-6.1-sol",
       "required_runs": 3,
       "finished_runs": 3,
       "native_scores": [
-        0.5254622793351755,
-        0.522342592710204,
-        0.4820579706574491
+        0.4581308083664621,
+        0.4941583201212051,
+        0.5346788694087239
       ],
       "scored_runs": 3,
-      "mean": 0.5099542809009429,
-      "sample_standard_deviation": 0.024209217357453926,
-      "minimum": 0.4820579706574491,
-      "maximum": 0.5254622793351755,
+      "mean": 0.495655999298797,
+      "sample_standard_deviation": 0.03829600102519458,
+      "minimum": 0.4581308083664621,
+      "maximum": 0.5346788694087239,
       "delivery_completion_rate": 1.0,
-      "independent_replay_rate": 1.0
+      "independent_replay_rate": 0.6666666666666666
     },
     {
-      "model": "gpt-6-luna",
+      "model": "gpt-6.1-terra",
       "required_runs": 3,
       "finished_runs": 3,
       "native_scores": [
-        0.09182800314477889,
-        0.25695113253972196,
-        0.20831014870451176
+        0.4796494414325303,
+        0.524296293186827,
+        0.293236143786037
       ],
       "scored_runs": 3,
-      "mean": 0.18569642812967085,
-      "sample_standard_deviation": 0.08485250281501727,
-      "minimum": 0.09182800314477889,
-      "maximum": 0.25695113253972196,
+      "mean": 0.43239395946846476,
+      "sample_standard_deviation": 0.12256430390623911,
+      "minimum": 0.293236143786037,
+      "maximum": 0.524296293186827,
       "delivery_completion_rate": 1.0,
       "independent_replay_rate": 1.0
     }
@@ -42,567 +43,71 @@
       "model": "gpt-6.1-sol",
       "short": "sol",
       "trial": 1,
-      "native_score": 0.5254622793351755,
-      "elapsed_seconds": 1784.56,
-      "tool_calls": 60,
-      "api_requests": 62,
+      "native_score": 0.4581308083664621,
+      "elapsed_seconds": 3941.23,
+      "tool_calls": 85,
+      "api_requests": 110,
       "actions": {
-        "frames": 14,
+        "list_files": 2,
         "image": 1,
-        "read_file": 1,
-        "resolve_lua": 23,
+        "frames": 23,
+        "read_file": 2,
         "pixels": 7,
-        "render_video": 8,
-        "probe": 1,
-        "fusion_paste": 1,
-        "write_file": 1,
-        "export_project": 1,
-        "list_files": 1,
-        "finish": 1
-      },
-      "error_count": 2,
-      "image_count": 113,
-      "resume_events": [],
-      "frames": [
-        {
-          "identifier": "bp00",
-          "index": 0,
-          "time_sec": 1.0,
-          "input_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "output_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "full_frame_edge_iou": 0.5424430641821946,
-          "roi_edge_iou": 0.5424430641821946,
-          "roi_input_cv": 0.8428346223919778,
-          "roi_input_gate_passed": true,
-          "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.5424430641821946,
-          "soft_frame_score": 1.0,
-          "soft_gate_passed": true,
-          "final_frame_score": 0.5424430641821946
-        },
-        {
-          "identifier": "bp01",
-          "index": 1,
-          "time_sec": 3.0,
-          "input_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "output_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "full_frame_edge_iou": 0.5147551978537894,
-          "roi_edge_iou": 0.5147551978537894,
-          "roi_input_cv": 0.8250943224773118,
-          "roi_input_gate_passed": true,
-          "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.5147551978537894,
-          "soft_frame_score": 1.0,
-          "soft_gate_passed": true,
-          "final_frame_score": 0.5147551978537894
-        },
-        {
-          "identifier": "bp02",
-          "index": 2,
-          "time_sec": 5.0,
-          "input_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "output_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "full_frame_edge_iou": 0.5122824141857817,
-          "roi_edge_iou": 0.5122824141857817,
-          "roi_input_cv": 0.8248620076180748,
-          "roi_input_gate_passed": true,
-          "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.5122824141857817,
-          "soft_frame_score": 1.0,
-          "soft_gate_passed": true,
-          "final_frame_score": 0.5122824141857817
-        },
-        {
-          "identifier": "bp03",
-          "index": 3,
-          "time_sec": 7.0,
-          "input_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "output_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "full_frame_edge_iou": 0.5160668380462725,
-          "roi_edge_iou": 0.5160668380462725,
-          "roi_input_cv": 0.8187432995743325,
-          "roi_input_gate_passed": true,
-          "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.5160668380462725,
-          "soft_frame_score": 1.0,
-          "soft_gate_passed": true,
-          "final_frame_score": 0.5160668380462725
-        },
-        {
-          "identifier": "bp04",
-          "index": 4,
-          "time_sec": 9.0,
-          "input_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "output_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "full_frame_edge_iou": 0.5417638824078395,
-          "roi_edge_iou": 0.5417638824078395,
-          "roi_input_cv": 0.8579679120893038,
-          "roi_input_gate_passed": true,
-          "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.5417638824078395,
-          "soft_frame_score": 1.0,
-          "soft_gate_passed": true,
-          "final_frame_score": 0.5417638824078395
-        }
-      ],
-      "soft_evaluations": [
-        {
-          "identifier": "bp00",
-          "index": 0,
-          "time_sec": 1.0,
-          "score": 1.0,
-          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky has been replaced with a solid green background while the crane remains reasonably preserved.\"}",
-          "checklist_answers": {
-            "real_keying_edit_done": "YES",
-            "not_raw_input_copy": "YES",
-            "foreground_subject_preserved": "YES"
-          },
-          "checklist_scores": {
-            "real_keying_edit_done": 1.0,
-            "not_raw_input_copy": 1.0,
-            "foreground_subject_preserved": 1.0
-          },
-          "summary": "The sky has been replaced with a solid green background while the crane remains reasonably preserved."
-        },
-        {
-          "identifier": "bp01",
-          "index": 1,
-          "time_sec": 3.0,
-          "score": 1.0,
-          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky background has been replaced with solid green while the crane remains reasonably preserved.\"}",
-          "checklist_answers": {
-            "real_keying_edit_done": "YES",
-            "not_raw_input_copy": "YES",
-            "foreground_subject_preserved": "YES"
-          },
-          "checklist_scores": {
-            "real_keying_edit_done": 1.0,
-            "not_raw_input_copy": 1.0,
-            "foreground_subject_preserved": 1.0
-          },
-          "summary": "The sky background has been replaced with solid green while the crane remains reasonably preserved."
-        },
-        {
-          "identifier": "bp02",
-          "index": 2,
-          "time_sec": 5.0,
-          "score": 1.0,
-          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky background was replaced with solid green while the flying crane remains reasonably preserved.\"}",
-          "checklist_answers": {
-            "real_keying_edit_done": "YES",
-            "not_raw_input_copy": "YES",
-            "foreground_subject_preserved": "YES"
-          },
-          "checklist_scores": {
-            "real_keying_edit_done": 1.0,
-            "not_raw_input_copy": 1.0,
-            "foreground_subject_preserved": 1.0
-          },
-          "summary": "The sky background was replaced with solid green while the flying crane remains reasonably preserved."
-        },
-        {
-          "identifier": "bp03",
-          "index": 3,
-          "time_sec": 7.0,
-          "score": 1.0,
-          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky has been replaced with a solid green background while the crane remains reasonably preserved.\"}",
-          "checklist_answers": {
-            "real_keying_edit_done": "YES",
-            "not_raw_input_copy": "YES",
-            "foreground_subject_preserved": "YES"
-          },
-          "checklist_scores": {
-            "real_keying_edit_done": 1.0,
-            "not_raw_input_copy": 1.0,
-            "foreground_subject_preserved": 1.0
-          },
-          "summary": "The sky has been replaced with a solid green background while the crane remains reasonably preserved."
-        },
-        {
-          "identifier": "bp04",
-          "index": 4,
-          "time_sec": 9.0,
-          "score": 1.0,
-          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky background has been replaced with solid green while the flying crane remains reasonably preserved.\"}",
-          "checklist_answers": {
-            "real_keying_edit_done": "YES",
-            "not_raw_input_copy": "YES",
-            "foreground_subject_preserved": "YES"
-          },
-          "checklist_scores": {
-            "real_keying_edit_done": 1.0,
-            "not_raw_input_copy": 1.0,
-            "foreground_subject_preserved": 1.0
-          },
-          "summary": "The sky background has been replaced with solid green while the flying crane remains reasonably preserved."
-        }
-      ],
-      "replay_passed": true,
-      "files": {
-        "output.mp4": {
-          "sha256": "5dadc0987ce7ca77205f0d3cacdfcd59671035e369426c045e2e47c3e7d554c0",
-          "bytes": 2562197
-        },
-        "project.drp": {
-          "sha256": "09f202fb5b982148bb0ee51a5592d5619127ba4235236e3dfe60ce6dfe85bec3",
-          "bytes": 44362
-        },
-        "README.md": {
-          "sha256": "10448eadd7990bb8b97f20842b26c3a1c8a900431444943418a80e9cbb932621",
-          "bytes": 3290
-        }
-      }
-    },
-    {
-      "id": "luna-1",
-      "model": "gpt-6-luna",
-      "short": "luna",
-      "trial": 1,
-      "native_score": 0.09182800314477889,
-      "elapsed_seconds": 269.17,
-      "tool_calls": 32,
-      "api_requests": 33,
-      "actions": {
-        "list_files": 1,
-        "image": 1,
-        "probe": 1,
-        "frames": 7,
-        "read_file": 1,
-        "resolve_lua": 12,
-        "render_video": 6,
-        "write_file": 1,
-        "export_project": 1,
-        "finish": 1
-      },
-      "error_count": 1,
-      "image_count": 17,
-      "resume_events": [
-        {
-          "at": "2026-11-05T13:41:00.106329+08:00",
-          "previous_termination": "infrastructure_abort",
-          "manifest": "D:\\omniale\\case\\case3a-resolve白鹤抠像\\evaluations\\native-repeat-20261105-130605\\infrastructure\\runscript-channel\\prepared-manifest.json"
-        }
-      ],
-      "frames": [
-        {
-          "identifier": "bp00",
-          "index": 0,
-          "time_sec": 1.0,
-          "input_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "output_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "full_frame_edge_iou": 0.10291595197255575,
-          "roi_edge_iou": 0.10291595197255575,
-          "roi_input_cv": 0.5987514638246474,
-          "roi_input_gate_passed": true,
-          "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.10291595197255574,
-          "soft_frame_score": 0.6666666666666666,
-          "soft_gate_passed": true,
-          "final_frame_score": 0.10291595197255574
-        },
-        {
-          "identifier": "bp01",
-          "index": 1,
-          "time_sec": 3.0,
-          "input_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "output_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "full_frame_edge_iou": 0.0971386647101981,
-          "roi_edge_iou": 0.0971386647101981,
-          "roi_input_cv": 0.5945579266745386,
-          "roi_input_gate_passed": true,
-          "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.09713866471019808,
-          "soft_frame_score": 0.6666666666666666,
-          "soft_gate_passed": true,
-          "final_frame_score": 0.09713866471019808
-        },
-        {
-          "identifier": "bp02",
-          "index": 2,
-          "time_sec": 5.0,
-          "input_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "output_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "full_frame_edge_iou": 0.08990442054958184,
-          "roi_edge_iou": 0.08990442054958184,
-          "roi_input_cv": 0.5854220365429464,
-          "roi_input_gate_passed": true,
-          "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.08990442054958184,
-          "soft_frame_score": 0.6666666666666666,
-          "soft_gate_passed": true,
-          "final_frame_score": 0.08990442054958184
-        },
-        {
-          "identifier": "bp03",
-          "index": 3,
-          "time_sec": 7.0,
-          "input_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "output_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "full_frame_edge_iou": 0.08155565230010157,
-          "roi_edge_iou": 0.08155565230010157,
-          "roi_input_cv": 0.5791952954204447,
-          "roi_input_gate_passed": true,
-          "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.08155565230010157,
-          "soft_frame_score": 0.6666666666666666,
-          "soft_gate_passed": true,
-          "final_frame_score": 0.08155565230010157
-        },
-        {
-          "identifier": "bp04",
-          "index": 4,
-          "time_sec": 9.0,
-          "input_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "output_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "full_frame_edge_iou": 0.08762532619145721,
-          "roi_edge_iou": 0.08762532619145721,
-          "roi_input_cv": 0.5763402987591988,
-          "roi_input_gate_passed": true,
-          "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.08762532619145721,
-          "soft_frame_score": 0.6666666666666666,
-          "soft_gate_passed": true,
-          "final_frame_score": 0.08762532619145721
-        }
-      ],
-      "soft_evaluations": [
-        {
-          "identifier": "bp00",
-          "index": 0,
-          "time_sec": 1.0,
-          "score": 0.6666666666666666,
-          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"NO\"}, \"summary\": \"The output shows a clear keying-related change to green, but much of the crane’s head, neck, legs, and dark wing detail is missing.\"}",
-          "checklist_answers": {
-            "real_keying_edit_done": "YES",
-            "not_raw_input_copy": "YES",
-            "foreground_subject_preserved": "NO"
-          },
-          "checklist_scores": {
-            "real_keying_edit_done": 1.0,
-            "not_raw_input_copy": 1.0,
-            "foreground_subject_preserved": 0.0
-          },
-          "summary": "The output shows a clear keying-related change to green, but much of the crane’s head, neck, legs, and dark wing detail is missing."
-        },
-        {
-          "identifier": "bp01",
-          "index": 1,
-          "time_sec": 3.0,
-          "score": 0.6666666666666666,
-          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"NO\"}, \"summary\": \"The output shows a clear keying-related change, but substantial parts of the crane, including its neck, legs, and dark feathers, are missing.\"}",
-          "checklist_answers": {
-            "real_keying_edit_done": "YES",
-            "not_raw_input_copy": "YES",
-            "foreground_subject_preserved": "NO"
-          },
-          "checklist_scores": {
-            "real_keying_edit_done": 1.0,
-            "not_raw_input_copy": 1.0,
-            "foreground_subject_preserved": 0.0
-          },
-          "summary": "The output shows a clear keying-related change, but substantial parts of the crane, including its neck, legs, and dark feathers, are missing."
-        },
-        {
-          "identifier": "bp02",
-          "index": 2,
-          "time_sec": 5.0,
-          "score": 0.6666666666666666,
-          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"NO\"}, \"summary\": \"The output shows a clear keying-related change to green, but substantial parts of the crane are missing.\"}",
-          "checklist_answers": {
-            "real_keying_edit_done": "YES",
-            "not_raw_input_copy": "YES",
-            "foreground_subject_preserved": "NO"
-          },
-          "checklist_scores": {
-            "real_keying_edit_done": 1.0,
-            "not_raw_input_copy": 1.0,
-            "foreground_subject_preserved": 0.0
-          },
-          "summary": "The output shows a clear keying-related change to green, but substantial parts of the crane are missing."
-        },
-        {
-          "identifier": "bp03",
-          "index": 3,
-          "time_sec": 7.0,
-          "score": 0.6666666666666666,
-          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"NO\"}, \"summary\": \"The output shows a clear keying-related change to green, but substantial parts of the crane, including its legs and neck, are missing.\"}",
-          "checklist_answers": {
-            "real_keying_edit_done": "YES",
-            "not_raw_input_copy": "YES",
-            "foreground_subject_preserved": "NO"
-          },
-          "checklist_scores": {
-            "real_keying_edit_done": 1.0,
-            "not_raw_input_copy": 1.0,
-            "foreground_subject_preserved": 0.0
-          },
-          "summary": "The output shows a clear keying-related change to green, but substantial parts of the crane, including its legs and neck, are missing."
-        },
-        {
-          "identifier": "bp04",
-          "index": 4,
-          "time_sec": 9.0,
-          "score": 0.6666666666666666,
-          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"NO\"}, \"summary\": \"A clear keying-related edit replaces much of the image with green, but removes substantial portions of the crane.\"}",
-          "checklist_answers": {
-            "real_keying_edit_done": "YES",
-            "not_raw_input_copy": "YES",
-            "foreground_subject_preserved": "NO"
-          },
-          "checklist_scores": {
-            "real_keying_edit_done": 1.0,
-            "not_raw_input_copy": 1.0,
-            "foreground_subject_preserved": 0.0
-          },
-          "summary": "A clear keying-related edit replaces much of the image with green, but removes substantial portions of the crane."
-        }
-      ],
-      "replay_passed": true,
-      "files": {
-        "output.mp4": {
-          "sha256": "cfd35aadcc5fbd4983d9aec0ff96d5aa3ab707360dd1c069aed977522d280c12",
-          "bytes": 2795808
-        },
-        "project.drp": {
-          "sha256": "386d27b8f389f05d5c11a67536bcdc68f23eb4443b687a4b83694701ae24b98e",
-          "bytes": 41883
-        },
-        "README.md": {
-          "sha256": "65b04489f49b1013d804927296b9d54b6db0602ebda89116ef0aaae76cd8d2c2",
-          "bytes": 1270
-        }
-      }
-    },
-    {
-      "id": "sol-2",
-      "model": "gpt-6.1-sol",
-      "short": "sol",
-      "trial": 2,
-      "native_score": 0.522342592710204,
-      "elapsed_seconds": 1852.38,
-      "tool_calls": 79,
-      "api_requests": 80,
-      "actions": {
-        "list_files": 1,
-        "image": 1,
-        "frames": 18,
-        "read_file": 3,
-        "pixels": 9,
         "resolve_lua": 28,
-        "render_video": 14,
-        "probe": 1,
-        "fusion_paste": 1,
-        "write_file": 1,
+        "render_video": 17,
+        "fusion_paste": 2,
         "export_project": 1,
+        "write_file": 1,
         "finish": 1
       },
-      "error_count": 2,
-      "image_count": 167,
+      "error_count": 3,
+      "image_count": 229,
       "resume_events": [
         {
-          "at": "2026-11-05T14:09:19.438294+08:00",
+          "at": "2026-11-11T16:12:30.053048+08:00",
           "previous_termination": "infrastructure_abort",
-          "manifest": "D:\\omniale\\case\\case3a-resolve白鹤抠像\\evaluations\\native-repeat-20261105-130605\\infrastructure\\runscript-channel\\prepared-manifest.json"
+          "manifest": "F:\\omniale-runtime-cache\\crane-xhigh-20261111\\case\\evaluations\\native-xhigh-20261111-152109\\infrastructure\\runscript-channel-v3\\prepared-manifest.json"
+        },
+        {
+          "at": "2026-11-11T16:14:54.043364+08:00",
+          "previous_termination": "infrastructure_abort",
+          "manifest": "F:\\omniale-runtime-cache\\crane-xhigh-20261111\\case\\evaluations\\native-xhigh-20261111-152109\\infrastructure\\runscript-channel-v3\\prepared-manifest.json"
+        },
+        {
+          "at": "2026-11-11T16:16:07.132273+08:00",
+          "previous_termination": "infrastructure_abort",
+          "manifest": "F:\\omniale-runtime-cache\\crane-xhigh-20261111\\case\\evaluations\\native-xhigh-20261111-152109\\infrastructure\\runscript-channel-v3\\prepared-manifest.json"
+        },
+        {
+          "at": "2026-11-11T16:17:19.788498+08:00",
+          "previous_termination": "infrastructure_abort",
+          "manifest": "F:\\omniale-runtime-cache\\crane-xhigh-20261111\\case\\evaluations\\native-xhigh-20261111-152109\\infrastructure\\runscript-channel-v3\\prepared-manifest.json"
+        },
+        {
+          "at": "2026-11-11T16:21:56.967633+08:00",
+          "previous_termination": "infrastructure_abort",
+          "manifest": "F:\\omniale-runtime-cache\\crane-xhigh-20261111\\case\\evaluations\\native-xhigh-20261111-152109\\infrastructure\\runscript-channel-v3\\prepared-manifest.json"
+        },
+        {
+          "at": "2026-11-11T16:28:02.349266+08:00",
+          "previous_termination": "infrastructure_abort",
+          "manifest": "F:\\omniale-runtime-cache\\crane-xhigh-20261111\\case\\evaluations\\native-xhigh-20261111-152109\\infrastructure\\runscript-channel-v3\\prepared-manifest.json"
+        },
+        {
+          "at": "2026-11-11T16:32:37.235322+08:00",
+          "previous_termination": "infrastructure_abort",
+          "manifest": "F:\\omniale-runtime-cache\\crane-xhigh-20261111\\case\\evaluations\\native-xhigh-20261111-152109\\infrastructure\\runscript-channel-v3\\prepared-manifest.json"
+        }
+      ],
+      "requested_reasoning": "xhigh",
+      "application_recovery_events": [
+        {
+          "at": "2026-11-11T16:12:25.041558+08:00",
+          "checkpoint": "F:\\omniale-runtime-cache\\crane-xhigh-20261111\\case\\evaluations\\native-xhigh-20261111-152109\\gpt-6.1-sol\\trial-01\\infrastructure\\application-crash-recovery",
+          "pending_tool_settled_as_failure": true,
+          "new_model_session": false,
+          "new_trial_created": false,
+          "manifest": "F:\\omniale-runtime-cache\\crane-xhigh-20261111\\case\\evaluations\\native-xhigh-20261111-152109\\infrastructure\\runscript-channel-v3\\prepared-manifest.json"
         }
       ],
       "frames": [
@@ -622,15 +127,15 @@
             1.0,
             1.0
           ],
-          "full_frame_edge_iou": 0.5325157334193965,
-          "roi_edge_iou": 0.5325157334193965,
-          "roi_input_cv": 0.8248568622466795,
+          "full_frame_edge_iou": 0.4497659906396256,
+          "roi_edge_iou": 0.4497659906396256,
+          "roi_input_cv": 0.830852309625958,
           "roi_input_gate_passed": true,
           "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.5325157334193965,
+          "hard_quality_frame_score": 0.4497659906396255,
           "soft_frame_score": 1.0,
           "soft_gate_passed": true,
-          "final_frame_score": 0.5325157334193965
+          "final_frame_score": 0.4497659906396255
         },
         {
           "identifier": "bp01",
@@ -648,15 +153,15 @@
             1.0,
             1.0
           ],
-          "full_frame_edge_iou": 0.5297029702970297,
-          "roi_edge_iou": 0.5297029702970297,
-          "roi_input_cv": 0.8145546628447242,
+          "full_frame_edge_iou": 0.4829365739970035,
+          "roi_edge_iou": 0.4829365739970035,
+          "roi_input_cv": 0.8228091239540356,
           "roi_input_gate_passed": true,
           "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.5297029702970297,
+          "hard_quality_frame_score": 0.4829365739970035,
           "soft_frame_score": 1.0,
           "soft_gate_passed": true,
-          "final_frame_score": 0.5297029702970297
+          "final_frame_score": 0.4829365739970035
         },
         {
           "identifier": "bp02",
@@ -674,15 +179,15 @@
             1.0,
             1.0
           ],
-          "full_frame_edge_iou": 0.49135399673735725,
-          "roi_edge_iou": 0.49135399673735725,
-          "roi_input_cv": 0.8110931493404966,
+          "full_frame_edge_iou": 0.4395308289744809,
+          "roi_edge_iou": 0.4395308289744809,
+          "roi_input_cv": 0.8134685290933024,
           "roi_input_gate_passed": true,
           "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.4913539967373572,
+          "hard_quality_frame_score": 0.4395308289744809,
           "soft_frame_score": 1.0,
           "soft_gate_passed": true,
-          "final_frame_score": 0.4913539967373572
+          "final_frame_score": 0.4395308289744809
         },
         {
           "identifier": "bp03",
@@ -700,15 +205,15 @@
             1.0,
             1.0
           ],
-          "full_frame_edge_iou": 0.51796798431885,
-          "roi_edge_iou": 0.51796798431885,
-          "roi_input_cv": 0.8234175401669941,
+          "full_frame_edge_iou": 0.45295335137716924,
+          "roi_edge_iou": 0.45295335137716924,
+          "roi_input_cv": 0.8303562522780656,
           "roi_input_gate_passed": true,
           "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.51796798431885,
+          "hard_quality_frame_score": 0.45295335137716924,
           "soft_frame_score": 1.0,
           "soft_gate_passed": true,
-          "final_frame_score": 0.51796798431885
+          "final_frame_score": 0.45295335137716924
         },
         {
           "identifier": "bp04",
@@ -726,15 +231,15 @@
             1.0,
             1.0
           ],
-          "full_frame_edge_iou": 0.5401722787783868,
-          "roi_edge_iou": 0.5401722787783868,
-          "roi_input_cv": 0.8530228190324851,
+          "full_frame_edge_iou": 0.4654672968440311,
+          "roi_edge_iou": 0.4654672968440311,
+          "roi_input_cv": 0.8639994304250471,
           "roi_input_gate_passed": true,
           "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.5401722787783868,
+          "hard_quality_frame_score": 0.4654672968440311,
           "soft_frame_score": 1.0,
           "soft_gate_passed": true,
-          "final_frame_score": 0.5401722787783868
+          "final_frame_score": 0.4654672968440311
         }
       ],
       "soft_evaluations": [
@@ -743,7 +248,7 @@
           "index": 0,
           "time_sec": 1.0,
           "score": 1.0,
-          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky has been replaced with a solid green background while the crane remains reasonably preserved.\"}",
+          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky has been replaced with solid green while the flying crane remains reasonably preserved.\"}",
           "checklist_answers": {
             "real_keying_edit_done": "YES",
             "not_raw_input_copy": "YES",
@@ -754,7 +259,7 @@
             "not_raw_input_copy": 1.0,
             "foreground_subject_preserved": 1.0
           },
-          "summary": "The sky has been replaced with a solid green background while the crane remains reasonably preserved."
+          "summary": "The sky has been replaced with solid green while the flying crane remains reasonably preserved."
         },
         {
           "identifier": "bp01",
@@ -815,6 +320,275 @@
           "index": 4,
           "time_sec": 9.0,
           "score": 1.0,
+          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky has been replaced with solid green while the crane remains present and reasonably preserved.\"}",
+          "checklist_answers": {
+            "real_keying_edit_done": "YES",
+            "not_raw_input_copy": "YES",
+            "foreground_subject_preserved": "YES"
+          },
+          "checklist_scores": {
+            "real_keying_edit_done": 1.0,
+            "not_raw_input_copy": 1.0,
+            "foreground_subject_preserved": 1.0
+          },
+          "summary": "The sky has been replaced with solid green while the crane remains present and reasonably preserved."
+        }
+      ],
+      "full_duration_and_format": true,
+      "replay_passed": true,
+      "files": {
+        "output.mp4": {
+          "sha256": "393e533d3fd62a9ec3698d6812b5c921edddffc59110af7f740552907d759edb",
+          "bytes": 2137898
+        },
+        "project.drp": {
+          "sha256": "92ad88602a2f58d715a3f0a9abf6fcc8da62967ecb580c32c6726676b5489e7a",
+          "bytes": 44126
+        },
+        "README.md": {
+          "sha256": "1ac940652da3c9969fbac00891001b36b5fbd9b0f11193fd2467718b6fdeb8ad",
+          "bytes": 3895
+        }
+      }
+    },
+    {
+      "id": "sol-2",
+      "model": "gpt-6.1-sol",
+      "short": "sol",
+      "trial": 2,
+      "native_score": 0.4941583201212051,
+      "elapsed_seconds": 3407.27,
+      "tool_calls": 76,
+      "api_requests": 79,
+      "actions": {
+        "list_files": 1,
+        "image": 1,
+        "frames": 20,
+        "read_file": 4,
+        "pixels": 7,
+        "resolve_lua": 23,
+        "render_video": 14,
+        "probe": 1,
+        "fusion_paste": 2,
+        "write_file": 1,
+        "export_project": 1,
+        "finish": 1
+      },
+      "error_count": 2,
+      "image_count": 145,
+      "resume_events": [],
+      "requested_reasoning": "xhigh",
+      "application_recovery_events": [],
+      "frames": [
+        {
+          "identifier": "bp00",
+          "index": 0,
+          "time_sec": 1.0,
+          "input_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "output_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "full_frame_edge_iou": 0.5023313646254274,
+          "roi_edge_iou": 0.5023313646254274,
+          "roi_input_cv": 0.8409982206519258,
+          "roi_input_gate_passed": true,
+          "soft_gate_threshold": 0.5,
+          "hard_quality_frame_score": 0.5023313646254274,
+          "soft_frame_score": 1.0,
+          "soft_gate_passed": true,
+          "final_frame_score": 0.5023313646254274
+        },
+        {
+          "identifier": "bp01",
+          "index": 1,
+          "time_sec": 3.0,
+          "input_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "output_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "full_frame_edge_iou": 0.4981901941428101,
+          "roi_edge_iou": 0.4981901941428101,
+          "roi_input_cv": 0.8275297472916707,
+          "roi_input_gate_passed": true,
+          "soft_gate_threshold": 0.5,
+          "hard_quality_frame_score": 0.49819019414281007,
+          "soft_frame_score": 1.0,
+          "soft_gate_passed": true,
+          "final_frame_score": 0.49819019414281007
+        },
+        {
+          "identifier": "bp02",
+          "index": 2,
+          "time_sec": 5.0,
+          "input_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "output_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "full_frame_edge_iou": 0.48201552844240214,
+          "roi_edge_iou": 0.48201552844240214,
+          "roi_input_cv": 0.7969231742627989,
+          "roi_input_gate_passed": true,
+          "soft_gate_threshold": 0.5,
+          "hard_quality_frame_score": 0.48201552844240214,
+          "soft_frame_score": 1.0,
+          "soft_gate_passed": true,
+          "final_frame_score": 0.48201552844240214
+        },
+        {
+          "identifier": "bp03",
+          "index": 3,
+          "time_sec": 7.0,
+          "input_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "output_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "full_frame_edge_iou": 0.4955364388897906,
+          "roi_edge_iou": 0.4955364388897906,
+          "roi_input_cv": 0.8164032256700683,
+          "roi_input_gate_passed": true,
+          "soft_gate_threshold": 0.5,
+          "hard_quality_frame_score": 0.49553643888979054,
+          "soft_frame_score": 1.0,
+          "soft_gate_passed": true,
+          "final_frame_score": 0.49553643888979054
+        },
+        {
+          "identifier": "bp04",
+          "index": 4,
+          "time_sec": 9.0,
+          "input_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "output_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "full_frame_edge_iou": 0.49271807450559557,
+          "roi_edge_iou": 0.49271807450559557,
+          "roi_input_cv": 0.8507961782564284,
+          "roi_input_gate_passed": true,
+          "soft_gate_threshold": 0.5,
+          "hard_quality_frame_score": 0.4927180745055955,
+          "soft_frame_score": 1.0,
+          "soft_gate_passed": true,
+          "final_frame_score": 0.4927180745055955
+        }
+      ],
+      "soft_evaluations": [
+        {
+          "identifier": "bp00",
+          "index": 0,
+          "time_sec": 1.0,
+          "score": 1.0,
+          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky background has been replaced with solid green while the flying crane remains reasonably preserved.\"}",
+          "checklist_answers": {
+            "real_keying_edit_done": "YES",
+            "not_raw_input_copy": "YES",
+            "foreground_subject_preserved": "YES"
+          },
+          "checklist_scores": {
+            "real_keying_edit_done": 1.0,
+            "not_raw_input_copy": 1.0,
+            "foreground_subject_preserved": 1.0
+          },
+          "summary": "The sky background has been replaced with solid green while the flying crane remains reasonably preserved."
+        },
+        {
+          "identifier": "bp01",
+          "index": 1,
+          "time_sec": 3.0,
+          "score": 1.0,
+          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky background has been replaced with solid green while the crane remains present and reasonably preserved.\"}",
+          "checklist_answers": {
+            "real_keying_edit_done": "YES",
+            "not_raw_input_copy": "YES",
+            "foreground_subject_preserved": "YES"
+          },
+          "checklist_scores": {
+            "real_keying_edit_done": 1.0,
+            "not_raw_input_copy": 1.0,
+            "foreground_subject_preserved": 1.0
+          },
+          "summary": "The sky background has been replaced with solid green while the crane remains present and reasonably preserved."
+        },
+        {
+          "identifier": "bp02",
+          "index": 2,
+          "time_sec": 5.0,
+          "score": 1.0,
+          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky has been replaced with solid green while the crane remains present and reasonably preserved.\"}",
+          "checklist_answers": {
+            "real_keying_edit_done": "YES",
+            "not_raw_input_copy": "YES",
+            "foreground_subject_preserved": "YES"
+          },
+          "checklist_scores": {
+            "real_keying_edit_done": 1.0,
+            "not_raw_input_copy": 1.0,
+            "foreground_subject_preserved": 1.0
+          },
+          "summary": "The sky has been replaced with solid green while the crane remains present and reasonably preserved."
+        },
+        {
+          "identifier": "bp03",
+          "index": 3,
+          "time_sec": 7.0,
+          "score": 1.0,
+          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky background has been replaced with solid green while the flying crane remains reasonably preserved.\"}",
+          "checklist_answers": {
+            "real_keying_edit_done": "YES",
+            "not_raw_input_copy": "YES",
+            "foreground_subject_preserved": "YES"
+          },
+          "checklist_scores": {
+            "real_keying_edit_done": 1.0,
+            "not_raw_input_copy": 1.0,
+            "foreground_subject_preserved": 1.0
+          },
+          "summary": "The sky background has been replaced with solid green while the flying crane remains reasonably preserved."
+        },
+        {
+          "identifier": "bp04",
+          "index": 4,
+          "time_sec": 9.0,
+          "score": 1.0,
           "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky background has been replaced with solid green while the flying crane remains reasonably preserved.\"}",
           "checklist_answers": {
             "real_keying_edit_done": "YES",
@@ -829,334 +603,50 @@
           "summary": "The sky background has been replaced with solid green while the flying crane remains reasonably preserved."
         }
       ],
+      "full_duration_and_format": true,
       "replay_passed": true,
       "files": {
         "output.mp4": {
-          "sha256": "a7d95e74a615a0f470b7368ee24376d680f415ae811814da77754689a65a9e7a",
-          "bytes": 2565763
+          "sha256": "01259e3482ba2226412edc843cd471351c3e0878bca9680f7d39022af66bb1b7",
+          "bytes": 2379781
         },
         "project.drp": {
-          "sha256": "0d0b7416f5fc5a7c94e8499d972864264b672966d5ecb4802e57fa1a5b1227ea",
-          "bytes": 44961
+          "sha256": "0b769fcbb07574bca4e8c823b3163a06b2e8b279e665fe0c65df65f97ef82ed4",
+          "bytes": 45076
         },
         "README.md": {
-          "sha256": "995b409f406b5499c042a48c8706246ceaec75dd7777b2454a972ed13d9ab0ac",
-          "bytes": 4179
+          "sha256": "12e249d4c446c88b71dc1b8f53a514d5945ac58bbdc2173c586aff6564729c30",
+          "bytes": 3733
         }
       }
     },
     {
-      "id": "luna-2",
-      "model": "gpt-6-luna",
-      "short": "luna",
-      "trial": 2,
-      "native_score": 0.25695113253972196,
-      "elapsed_seconds": 305.22,
-      "tool_calls": 28,
-      "api_requests": 32,
+      "id": "terra-1",
+      "model": "gpt-6.1-terra",
+      "short": "terra",
+      "trial": 1,
+      "native_score": 0.4796494414325303,
+      "elapsed_seconds": 1941.16,
+      "tool_calls": 83,
+      "api_requests": 84,
       "actions": {
-        "list_files": 1,
-        "probe": 1,
+        "frames": 22,
         "image": 1,
-        "frames": 6,
-        "resolve_lua": 8,
+        "pixels": 6,
+        "resolve_lua": 27,
+        "render_video": 21,
         "read_file": 1,
-        "render_video": 6,
-        "pixels": 1,
-        "export_project": 1,
-        "write_file": 1,
-        "finish": 1
-      },
-      "error_count": 1,
-      "image_count": 17,
-      "resume_events": [
-        {
-          "at": "2026-11-05T14:18:59.220929+08:00",
-          "previous_termination": "infrastructure_abort",
-          "manifest": "D:\\omniale\\case\\case3a-resolve白鹤抠像\\evaluations\\native-repeat-20261105-130605\\infrastructure\\runscript-channel\\prepared-manifest.json"
-        },
-        {
-          "at": "2026-11-05T14:19:11.388678+08:00",
-          "previous_termination": "infrastructure_abort",
-          "manifest": "D:\\omniale\\case\\case3a-resolve白鹤抠像\\evaluations\\native-repeat-20261105-130605\\infrastructure\\runscript-channel\\prepared-manifest.json"
-        },
-        {
-          "at": "2026-11-05T14:19:26.667194+08:00",
-          "previous_termination": "infrastructure_abort",
-          "manifest": "D:\\omniale\\case\\case3a-resolve白鹤抠像\\evaluations\\native-repeat-20261105-130605\\infrastructure\\runscript-channel\\prepared-manifest.json"
-        },
-        {
-          "at": "2026-11-05T14:19:44.856495+08:00",
-          "previous_termination": "infrastructure_abort",
-          "manifest": "D:\\omniale\\case\\case3a-resolve白鹤抠像\\evaluations\\native-repeat-20261105-130605\\infrastructure\\runscript-channel\\prepared-manifest.json"
-        }
-      ],
-      "frames": [
-        {
-          "identifier": "bp00",
-          "index": 0,
-          "time_sec": 1.0,
-          "input_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "output_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "full_frame_edge_iou": 0.22450476889214968,
-          "roi_edge_iou": 0.22450476889214968,
-          "roi_input_cv": 0.8084015830491232,
-          "roi_input_gate_passed": true,
-          "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.22450476889214968,
-          "soft_frame_score": 1.0,
-          "soft_gate_passed": true,
-          "final_frame_score": 0.22450476889214968
-        },
-        {
-          "identifier": "bp01",
-          "index": 1,
-          "time_sec": 3.0,
-          "input_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "output_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "full_frame_edge_iou": 0.2657833203429462,
-          "roi_edge_iou": 0.2657833203429462,
-          "roi_input_cv": 0.8016258185810099,
-          "roi_input_gate_passed": true,
-          "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.2657833203429462,
-          "soft_frame_score": 1.0,
-          "soft_gate_passed": true,
-          "final_frame_score": 0.2657833203429462
-        },
-        {
-          "identifier": "bp02",
-          "index": 2,
-          "time_sec": 5.0,
-          "input_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "output_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "full_frame_edge_iou": 0.26049354243542433,
-          "roi_edge_iou": 0.26049354243542433,
-          "roi_input_cv": 0.7934340594659444,
-          "roi_input_gate_passed": true,
-          "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.26049354243542433,
-          "soft_frame_score": 1.0,
-          "soft_gate_passed": true,
-          "final_frame_score": 0.26049354243542433
-        },
-        {
-          "identifier": "bp03",
-          "index": 3,
-          "time_sec": 7.0,
-          "input_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "output_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "full_frame_edge_iou": 0.2622596153846154,
-          "roi_edge_iou": 0.2622596153846154,
-          "roi_input_cv": 0.7959448221203729,
-          "roi_input_gate_passed": true,
-          "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.2622596153846154,
-          "soft_frame_score": 1.0,
-          "soft_gate_passed": true,
-          "final_frame_score": 0.2622596153846154
-        },
-        {
-          "identifier": "bp04",
-          "index": 4,
-          "time_sec": 9.0,
-          "input_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "output_bbox_norm": [
-            0.0,
-            0.0,
-            1.0,
-            1.0
-          ],
-          "full_frame_edge_iou": 0.2717144156434743,
-          "roi_edge_iou": 0.2717144156434743,
-          "roi_input_cv": 0.8146027997025087,
-          "roi_input_gate_passed": true,
-          "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.2717144156434743,
-          "soft_frame_score": 1.0,
-          "soft_gate_passed": true,
-          "final_frame_score": 0.2717144156434743
-        }
-      ],
-      "soft_evaluations": [
-        {
-          "identifier": "bp00",
-          "index": 0,
-          "time_sec": 1.0,
-          "score": 1.0,
-          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky is largely replaced with bright green while the crane remains reasonably preserved, demonstrating a real keying-related edit.\"}",
-          "checklist_answers": {
-            "real_keying_edit_done": "YES",
-            "not_raw_input_copy": "YES",
-            "foreground_subject_preserved": "YES"
-          },
-          "checklist_scores": {
-            "real_keying_edit_done": 1.0,
-            "not_raw_input_copy": 1.0,
-            "foreground_subject_preserved": 1.0
-          },
-          "summary": "The sky is largely replaced with bright green while the crane remains reasonably preserved, demonstrating a real keying-related edit."
-        },
-        {
-          "identifier": "bp01",
-          "index": 1,
-          "time_sec": 3.0,
-          "score": 1.0,
-          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky is largely replaced with bright green while the crane remains reasonably preserved, demonstrating a real keying-related edit.\"}",
-          "checklist_answers": {
-            "real_keying_edit_done": "YES",
-            "not_raw_input_copy": "YES",
-            "foreground_subject_preserved": "YES"
-          },
-          "checklist_scores": {
-            "real_keying_edit_done": 1.0,
-            "not_raw_input_copy": 1.0,
-            "foreground_subject_preserved": 1.0
-          },
-          "summary": "The sky is largely replaced with bright green while the crane remains reasonably preserved, demonstrating a real keying-related edit."
-        },
-        {
-          "identifier": "bp02",
-          "index": 2,
-          "time_sec": 5.0,
-          "score": 1.0,
-          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"Most of the sky has been replaced with bright green while the crane remains reasonably preserved, demonstrating a real keying-related edit.\"}",
-          "checklist_answers": {
-            "real_keying_edit_done": "YES",
-            "not_raw_input_copy": "YES",
-            "foreground_subject_preserved": "YES"
-          },
-          "checklist_scores": {
-            "real_keying_edit_done": 1.0,
-            "not_raw_input_copy": 1.0,
-            "foreground_subject_preserved": 1.0
-          },
-          "summary": "Most of the sky has been replaced with bright green while the crane remains reasonably preserved, demonstrating a real keying-related edit."
-        },
-        {
-          "identifier": "bp03",
-          "index": 3,
-          "time_sec": 7.0,
-          "score": 1.0,
-          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky has been largely replaced with bright green while the crane remains reasonably preserved, demonstrating a real keying-related edit.\"}",
-          "checklist_answers": {
-            "real_keying_edit_done": "YES",
-            "not_raw_input_copy": "YES",
-            "foreground_subject_preserved": "YES"
-          },
-          "checklist_scores": {
-            "real_keying_edit_done": 1.0,
-            "not_raw_input_copy": 1.0,
-            "foreground_subject_preserved": 1.0
-          },
-          "summary": "The sky has been largely replaced with bright green while the crane remains reasonably preserved, demonstrating a real keying-related edit."
-        },
-        {
-          "identifier": "bp04",
-          "index": 4,
-          "time_sec": 9.0,
-          "score": 1.0,
-          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky has been largely replaced with bright green while the crane remains present and reasonably preserved.\"}",
-          "checklist_answers": {
-            "real_keying_edit_done": "YES",
-            "not_raw_input_copy": "YES",
-            "foreground_subject_preserved": "YES"
-          },
-          "checklist_scores": {
-            "real_keying_edit_done": 1.0,
-            "not_raw_input_copy": 1.0,
-            "foreground_subject_preserved": 1.0
-          },
-          "summary": "The sky has been largely replaced with bright green while the crane remains present and reasonably preserved."
-        }
-      ],
-      "replay_passed": true,
-      "files": {
-        "output.mp4": {
-          "sha256": "48238e97a23bcf0703f11c4e574a3c2e94f5ca512fa1048ba8efb8d8226b9493",
-          "bytes": 4762849
-        },
-        "project.drp": {
-          "sha256": "398cea9cf0acf28bde62d7a336ac8cf6f1f94067544221fb502751756ac39714",
-          "bytes": 41594
-        },
-        "README.md": {
-          "sha256": "40b5bee9804c1de6790bce7fc769aa2c61d02a11efa450747bccea0849368ce3",
-          "bytes": 1299
-        }
-      }
-    },
-    {
-      "id": "sol-3",
-      "model": "gpt-6.1-sol",
-      "short": "sol",
-      "trial": 3,
-      "native_score": 0.4820579706574491,
-      "elapsed_seconds": 2892.88,
-      "tool_calls": 86,
-      "api_requests": 90,
-      "actions": {
-        "image": 1,
-        "frames": 23,
-        "list_files": 2,
-        "read_file": 3,
-        "pixels": 8,
-        "resolve_lua": 29,
-        "render_video": 14,
         "probe": 1,
-        "fusion_paste": 2,
-        "write_file": 1,
+        "list_files": 1,
         "export_project": 1,
+        "write_file": 1,
         "finish": 1
       },
-      "error_count": 1,
-      "image_count": 200,
+      "error_count": 0,
+      "image_count": 140,
       "resume_events": [],
+      "requested_reasoning": "xhigh",
+      "application_recovery_events": [],
       "frames": [
         {
           "identifier": "bp00",
@@ -1174,15 +664,15 @@
             1.0,
             1.0
           ],
-          "full_frame_edge_iou": 0.4731267783749605,
-          "roi_edge_iou": 0.4731267783749605,
-          "roi_input_cv": 0.8278987479366151,
+          "full_frame_edge_iou": 0.5206090433712703,
+          "roi_edge_iou": 0.5206090433712703,
+          "roi_input_cv": 0.8570776503015778,
           "roi_input_gate_passed": true,
           "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.4731267783749604,
+          "hard_quality_frame_score": 0.5206090433712702,
           "soft_frame_score": 1.0,
           "soft_gate_passed": true,
-          "final_frame_score": 0.4731267783749604
+          "final_frame_score": 0.5206090433712702
         },
         {
           "identifier": "bp01",
@@ -1200,15 +690,15 @@
             1.0,
             1.0
           ],
-          "full_frame_edge_iou": 0.5013577732518669,
-          "roi_edge_iou": 0.5013577732518669,
-          "roi_input_cv": 0.8145026526574919,
+          "full_frame_edge_iou": 0.47676475317575173,
+          "roi_edge_iou": 0.47676475317575173,
+          "roi_input_cv": 0.8393066353378932,
           "roi_input_gate_passed": true,
           "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.5013577732518669,
+          "hard_quality_frame_score": 0.47676475317575173,
           "soft_frame_score": 1.0,
           "soft_gate_passed": true,
-          "final_frame_score": 0.5013577732518669
+          "final_frame_score": 0.47676475317575173
         },
         {
           "identifier": "bp02",
@@ -1226,15 +716,15 @@
             1.0,
             1.0
           ],
-          "full_frame_edge_iou": 0.457931920359666,
-          "roi_edge_iou": 0.457931920359666,
-          "roi_input_cv": 0.8054370459511054,
+          "full_frame_edge_iou": 0.4524796560724704,
+          "roi_edge_iou": 0.4524796560724704,
+          "roi_input_cv": 0.8265597371968131,
           "roi_input_gate_passed": true,
           "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.457931920359666,
+          "hard_quality_frame_score": 0.4524796560724704,
           "soft_frame_score": 1.0,
           "soft_gate_passed": true,
-          "final_frame_score": 0.457931920359666
+          "final_frame_score": 0.4524796560724704
         },
         {
           "identifier": "bp03",
@@ -1252,15 +742,15 @@
             1.0,
             1.0
           ],
-          "full_frame_edge_iou": 0.4820529478642196,
-          "roi_edge_iou": 0.4820529478642196,
-          "roi_input_cv": 0.8129067695745981,
+          "full_frame_edge_iou": 0.45722713864306785,
+          "roi_edge_iou": 0.45722713864306785,
+          "roi_input_cv": 0.8317894304455778,
           "roi_input_gate_passed": true,
           "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.48205294786421954,
+          "hard_quality_frame_score": 0.4572271386430678,
           "soft_frame_score": 1.0,
           "soft_gate_passed": true,
-          "final_frame_score": 0.48205294786421954
+          "final_frame_score": 0.4572271386430678
         },
         {
           "identifier": "bp04",
@@ -1278,15 +768,15 @@
             1.0,
             1.0
           ],
-          "full_frame_edge_iou": 0.4958204334365325,
-          "roi_edge_iou": 0.4958204334365325,
-          "roi_input_cv": 0.8525514279575724,
+          "full_frame_edge_iou": 0.49116661590009136,
+          "roi_edge_iou": 0.49116661590009136,
+          "roi_input_cv": 0.8628169244815522,
           "roi_input_gate_passed": true,
           "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.4958204334365325,
+          "hard_quality_frame_score": 0.49116661590009136,
           "soft_frame_score": 1.0,
           "soft_gate_passed": true,
-          "final_frame_score": 0.4958204334365325
+          "final_frame_score": 0.49116661590009136
         }
       ],
       "soft_evaluations": [
@@ -1349,6 +839,274 @@
           "index": 3,
           "time_sec": 7.0,
           "score": 1.0,
+          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky has been replaced with solid green while the flying crane remains reasonably preserved.\"}",
+          "checklist_answers": {
+            "real_keying_edit_done": "YES",
+            "not_raw_input_copy": "YES",
+            "foreground_subject_preserved": "YES"
+          },
+          "checklist_scores": {
+            "real_keying_edit_done": 1.0,
+            "not_raw_input_copy": 1.0,
+            "foreground_subject_preserved": 1.0
+          },
+          "summary": "The sky has been replaced with solid green while the flying crane remains reasonably preserved."
+        },
+        {
+          "identifier": "bp04",
+          "index": 4,
+          "time_sec": 9.0,
+          "score": 1.0,
+          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky has been replaced with a solid green background while the flying crane remains reasonably preserved.\"}",
+          "checklist_answers": {
+            "real_keying_edit_done": "YES",
+            "not_raw_input_copy": "YES",
+            "foreground_subject_preserved": "YES"
+          },
+          "checklist_scores": {
+            "real_keying_edit_done": 1.0,
+            "not_raw_input_copy": 1.0,
+            "foreground_subject_preserved": 1.0
+          },
+          "summary": "The sky has been replaced with a solid green background while the flying crane remains reasonably preserved."
+        }
+      ],
+      "full_duration_and_format": true,
+      "replay_passed": true,
+      "files": {
+        "output.mp4": {
+          "sha256": "c9474644cf102ddbddb1193f622c8f2299839a85b232684ca440844f58b8eb73",
+          "bytes": 2713680
+        },
+        "project.drp": {
+          "sha256": "cf99091e249c4d0edb7a0328d6b41cad91392cc59fe7bc8e8b8bdcac61df93a7",
+          "bytes": 42444
+        },
+        "README.md": {
+          "sha256": "5e43d7a904c4431c9db50dbb665793e17f50faf193ad51fabc6f6829d626e66d",
+          "bytes": 1699
+        }
+      }
+    },
+    {
+      "id": "sol-3",
+      "model": "gpt-6.1-sol",
+      "short": "sol",
+      "trial": 3,
+      "native_score": 0.5346788694087239,
+      "elapsed_seconds": 2798.47,
+      "tool_calls": 57,
+      "api_requests": 59,
+      "actions": {
+        "list_files": 2,
+        "image": 1,
+        "frames": 15,
+        "read_file": 3,
+        "pixels": 5,
+        "resolve_lua": 17,
+        "render_video": 10,
+        "fusion_paste": 1,
+        "export_project": 1,
+        "write_file": 1,
+        "finish": 1
+      },
+      "error_count": 2,
+      "image_count": 153,
+      "resume_events": [],
+      "requested_reasoning": "xhigh",
+      "application_recovery_events": [],
+      "frames": [
+        {
+          "identifier": "bp00",
+          "index": 0,
+          "time_sec": 1.0,
+          "input_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "output_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "full_frame_edge_iou": 0.5439364461738002,
+          "roi_edge_iou": 0.5439364461738002,
+          "roi_input_cv": 0.8318802908760148,
+          "roi_input_gate_passed": true,
+          "soft_gate_threshold": 0.5,
+          "hard_quality_frame_score": 0.5439364461738001,
+          "soft_frame_score": 1.0,
+          "soft_gate_passed": true,
+          "final_frame_score": 0.5439364461738001
+        },
+        {
+          "identifier": "bp01",
+          "index": 1,
+          "time_sec": 3.0,
+          "input_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "output_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "full_frame_edge_iou": 0.5381861575178998,
+          "roi_edge_iou": 0.5381861575178998,
+          "roi_input_cv": 0.8206520238953704,
+          "roi_input_gate_passed": true,
+          "soft_gate_threshold": 0.5,
+          "hard_quality_frame_score": 0.5381861575178998,
+          "soft_frame_score": 1.0,
+          "soft_gate_passed": true,
+          "final_frame_score": 0.5381861575178998
+        },
+        {
+          "identifier": "bp02",
+          "index": 2,
+          "time_sec": 5.0,
+          "input_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "output_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "full_frame_edge_iou": 0.50623973727422,
+          "roi_edge_iou": 0.50623973727422,
+          "roi_input_cv": 0.8164866997804525,
+          "roi_input_gate_passed": true,
+          "soft_gate_threshold": 0.5,
+          "hard_quality_frame_score": 0.50623973727422,
+          "soft_frame_score": 1.0,
+          "soft_gate_passed": true,
+          "final_frame_score": 0.50623973727422
+        },
+        {
+          "identifier": "bp03",
+          "index": 3,
+          "time_sec": 7.0,
+          "input_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "output_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "full_frame_edge_iou": 0.5311421528348398,
+          "roi_edge_iou": 0.5311421528348398,
+          "roi_input_cv": 0.8268817804183524,
+          "roi_input_gate_passed": true,
+          "soft_gate_threshold": 0.5,
+          "hard_quality_frame_score": 0.5311421528348398,
+          "soft_frame_score": 1.0,
+          "soft_gate_passed": true,
+          "final_frame_score": 0.5311421528348398
+        },
+        {
+          "identifier": "bp04",
+          "index": 4,
+          "time_sec": 9.0,
+          "input_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "output_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "full_frame_edge_iou": 0.5538898532428594,
+          "roi_edge_iou": 0.5538898532428594,
+          "roi_input_cv": 0.860254539163501,
+          "roi_input_gate_passed": true,
+          "soft_gate_threshold": 0.5,
+          "hard_quality_frame_score": 0.5538898532428594,
+          "soft_frame_score": 1.0,
+          "soft_gate_passed": true,
+          "final_frame_score": 0.5538898532428594
+        }
+      ],
+      "soft_evaluations": [
+        {
+          "identifier": "bp00",
+          "index": 0,
+          "time_sec": 1.0,
+          "score": 1.0,
+          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky has been replaced with solid green while the crane remains present and reasonably preserved.\"}",
+          "checklist_answers": {
+            "real_keying_edit_done": "YES",
+            "not_raw_input_copy": "YES",
+            "foreground_subject_preserved": "YES"
+          },
+          "checklist_scores": {
+            "real_keying_edit_done": 1.0,
+            "not_raw_input_copy": 1.0,
+            "foreground_subject_preserved": 1.0
+          },
+          "summary": "The sky has been replaced with solid green while the crane remains present and reasonably preserved."
+        },
+        {
+          "identifier": "bp01",
+          "index": 1,
+          "time_sec": 3.0,
+          "score": 1.0,
+          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky has been replaced with solid green while the flying crane remains reasonably preserved.\"}",
+          "checklist_answers": {
+            "real_keying_edit_done": "YES",
+            "not_raw_input_copy": "YES",
+            "foreground_subject_preserved": "YES"
+          },
+          "checklist_scores": {
+            "real_keying_edit_done": 1.0,
+            "not_raw_input_copy": 1.0,
+            "foreground_subject_preserved": 1.0
+          },
+          "summary": "The sky has been replaced with solid green while the flying crane remains reasonably preserved."
+        },
+        {
+          "identifier": "bp02",
+          "index": 2,
+          "time_sec": 5.0,
+          "score": 1.0,
+          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky has been replaced with a solid green background while the flying crane remains reasonably preserved.\"}",
+          "checklist_answers": {
+            "real_keying_edit_done": "YES",
+            "not_raw_input_copy": "YES",
+            "foreground_subject_preserved": "YES"
+          },
+          "checklist_scores": {
+            "real_keying_edit_done": 1.0,
+            "not_raw_input_copy": 1.0,
+            "foreground_subject_preserved": 1.0
+          },
+          "summary": "The sky has been replaced with a solid green background while the flying crane remains reasonably preserved."
+        },
+        {
+          "identifier": "bp03",
+          "index": 3,
+          "time_sec": 7.0,
+          "score": 1.0,
           "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky background has been replaced with solid green while the flying crane remains reasonably preserved.\"}",
           "checklist_answers": {
             "real_keying_edit_done": "YES",
@@ -1367,7 +1125,7 @@
           "index": 4,
           "time_sec": 9.0,
           "score": 1.0,
-          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky background has been replaced with solid green while the crane remains reasonably preserved.\"}",
+          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky background was replaced with solid green while the crane remains clearly present and reasonably preserved.\"}",
           "checklist_answers": {
             "real_keying_edit_done": "YES",
             "not_raw_input_copy": "YES",
@@ -1378,49 +1136,53 @@
             "not_raw_input_copy": 1.0,
             "foreground_subject_preserved": 1.0
           },
-          "summary": "The sky background has been replaced with solid green while the crane remains reasonably preserved."
+          "summary": "The sky background was replaced with solid green while the crane remains clearly present and reasonably preserved."
         }
       ],
-      "replay_passed": true,
+      "full_duration_and_format": true,
+      "replay_passed": false,
       "files": {
         "output.mp4": {
-          "sha256": "3cf97247e5a8a97a7c762b52216e4d278199abc4ba61bcedc3eb76ef6d4ba682",
-          "bytes": 2379661
+          "sha256": "6bd91fd84829e15abcec8c88a82b6d7490461f4bbee3493495f689e3ecb6c0ee",
+          "bytes": 2538882
         },
         "project.drp": {
-          "sha256": "7821de5c3074643d5d524a03473ed7cf0c8688aa3b1b50317f882db9e3e8ebf7",
-          "bytes": 47226
+          "sha256": "8978a50dbf68bb48cd3f14acddf2ff2b9ca82bd66df1b9b8c7c6e43b1b366624",
+          "bytes": 44005
         },
         "README.md": {
-          "sha256": "54b4c91f74a8be1c86d579839d1bc0bd8a96bf6e40ac727f0af9e82732e1c240",
-          "bytes": 3530
+          "sha256": "8399e68030aeb6004fbf97edb57b754590c0a5ec83cb35b523f9233dec542053",
+          "bytes": 3204
         }
       }
     },
     {
-      "id": "luna-3",
-      "model": "gpt-6-luna",
-      "short": "luna",
-      "trial": 3,
-      "native_score": 0.20831014870451176,
-      "elapsed_seconds": 288.06,
-      "tool_calls": 30,
-      "api_requests": 30,
+      "id": "terra-2",
+      "model": "gpt-6.1-terra",
+      "short": "terra",
+      "trial": 2,
+      "native_score": 0.524296293186827,
+      "elapsed_seconds": 2703.52,
+      "tool_calls": 64,
+      "api_requests": 76,
       "actions": {
-        "list_files": 1,
-        "probe": 1,
+        "frames": 18,
         "image": 1,
-        "frames": 6,
-        "resolve_lua": 12,
-        "read_file": 1,
-        "render_video": 5,
-        "write_file": 1,
+        "pixels": 4,
+        "resolve_lua": 21,
+        "render_video": 10,
+        "fusion_paste": 5,
+        "probe": 1,
         "export_project": 1,
+        "write_file": 1,
+        "list_files": 1,
         "finish": 1
       },
       "error_count": 1,
-      "image_count": 23,
+      "image_count": 161,
       "resume_events": [],
+      "requested_reasoning": "xhigh",
+      "application_recovery_events": [],
       "frames": [
         {
           "identifier": "bp00",
@@ -1438,15 +1200,15 @@
             1.0,
             1.0
           ],
-          "full_frame_edge_iou": 0.19665228999794618,
-          "roi_edge_iou": 0.19665228999794618,
-          "roi_input_cv": 0.7144929069375063,
+          "full_frame_edge_iou": 0.557275047862157,
+          "roi_edge_iou": 0.557275047862157,
+          "roi_input_cv": 0.842398417593116,
           "roi_input_gate_passed": true,
           "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.19665228999794615,
+          "hard_quality_frame_score": 0.557275047862157,
           "soft_frame_score": 1.0,
           "soft_gate_passed": true,
-          "final_frame_score": 0.19665228999794615
+          "final_frame_score": 0.557275047862157
         },
         {
           "identifier": "bp01",
@@ -1464,15 +1226,15 @@
             1.0,
             1.0
           ],
-          "full_frame_edge_iou": 0.20687079910380882,
-          "roi_edge_iou": 0.20687079910380882,
-          "roi_input_cv": 0.711914682956304,
+          "full_frame_edge_iou": 0.5189894319682959,
+          "roi_edge_iou": 0.5189894319682959,
+          "roi_input_cv": 0.8367412275419347,
           "roi_input_gate_passed": true,
           "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.2068707991038088,
+          "hard_quality_frame_score": 0.5189894319682959,
           "soft_frame_score": 1.0,
           "soft_gate_passed": true,
-          "final_frame_score": 0.2068707991038088
+          "final_frame_score": 0.5189894319682959
         },
         {
           "identifier": "bp02",
@@ -1490,15 +1252,15 @@
             1.0,
             1.0
           ],
-          "full_frame_edge_iou": 0.2151967142239516,
-          "roi_edge_iou": 0.2151967142239516,
-          "roi_input_cv": 0.6764245291097165,
+          "full_frame_edge_iou": 0.4836767036450079,
+          "roi_edge_iou": 0.4836767036450079,
+          "roi_input_cv": 0.8272417668232218,
           "roi_input_gate_passed": true,
           "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.2151967142239516,
+          "hard_quality_frame_score": 0.4836767036450079,
           "soft_frame_score": 1.0,
           "soft_gate_passed": true,
-          "final_frame_score": 0.2151967142239516
+          "final_frame_score": 0.4836767036450079
         },
         {
           "identifier": "bp03",
@@ -1516,15 +1278,15 @@
             1.0,
             1.0
           ],
-          "full_frame_edge_iou": 0.21526315789473685,
-          "roi_edge_iou": 0.21526315789473685,
-          "roi_input_cv": 0.6871422914777674,
+          "full_frame_edge_iou": 0.5208064516129032,
+          "roi_edge_iou": 0.5208064516129032,
+          "roi_input_cv": 0.8388322180189786,
           "roi_input_gate_passed": true,
           "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.21526315789473682,
+          "hard_quality_frame_score": 0.5208064516129032,
           "soft_frame_score": 1.0,
           "soft_gate_passed": true,
-          "final_frame_score": 0.21526315789473682
+          "final_frame_score": 0.5208064516129032
         },
         {
           "identifier": "bp04",
@@ -1542,15 +1304,15 @@
             1.0,
             1.0
           ],
-          "full_frame_edge_iou": 0.2075677823021154,
-          "roi_edge_iou": 0.2075677823021154,
-          "roi_input_cv": 0.695671424236076,
+          "full_frame_edge_iou": 0.5407338308457711,
+          "roi_edge_iou": 0.5407338308457711,
+          "roi_input_cv": 0.8700288199722715,
           "roi_input_gate_passed": true,
           "soft_gate_threshold": 0.5,
-          "hard_quality_frame_score": 0.2075677823021154,
+          "hard_quality_frame_score": 0.5407338308457711,
           "soft_frame_score": 1.0,
           "soft_gate_passed": true,
-          "final_frame_score": 0.2075677823021154
+          "final_frame_score": 0.5407338308457711
         }
       ],
       "soft_evaluations": [
@@ -1559,7 +1321,7 @@
           "index": 0,
           "time_sec": 1.0,
           "score": 1.0,
-          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The output shows selective green replacement of dark regions, indicating a keying-related edit while keeping the crane recognizable and largely intact.\"}",
+          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky background has been replaced with solid green while the flying crane remains reasonably preserved.\"}",
           "checklist_answers": {
             "real_keying_edit_done": "YES",
             "not_raw_input_copy": "YES",
@@ -1570,14 +1332,14 @@
             "not_raw_input_copy": 1.0,
             "foreground_subject_preserved": 1.0
           },
-          "summary": "The output shows selective green replacement of dark regions, indicating a keying-related edit while keeping the crane recognizable and largely intact."
+          "summary": "The sky background has been replaced with solid green while the flying crane remains reasonably preserved."
         },
         {
           "identifier": "bp01",
           "index": 1,
           "time_sec": 3.0,
           "score": 1.0,
-          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The output shows selective green replacement of dark regions, indicating a keying-related edit while keeping the crane recognizable.\"}",
+          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky has been replaced with solid green while the flying crane remains reasonably preserved.\"}",
           "checklist_answers": {
             "real_keying_edit_done": "YES",
             "not_raw_input_copy": "YES",
@@ -1588,14 +1350,14 @@
             "not_raw_input_copy": 1.0,
             "foreground_subject_preserved": 1.0
           },
-          "summary": "The output shows selective green replacement of dark regions, indicating a keying-related edit while keeping the crane recognizable."
+          "summary": "The sky has been replaced with solid green while the flying crane remains reasonably preserved."
         },
         {
           "identifier": "bp02",
           "index": 2,
           "time_sec": 5.0,
           "score": 1.0,
-          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The output shows selective green replacement of dark regions, demonstrating a keying-related edit while keeping the crane recognizable and largely preserved.\"}",
+          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky has been replaced with a solid green background while the flying crane remains reasonably preserved.\"}",
           "checklist_answers": {
             "real_keying_edit_done": "YES",
             "not_raw_input_copy": "YES",
@@ -1606,14 +1368,14 @@
             "not_raw_input_copy": 1.0,
             "foreground_subject_preserved": 1.0
           },
-          "summary": "The output shows selective green replacement of dark regions, demonstrating a keying-related edit while keeping the crane recognizable and largely preserved."
+          "summary": "The sky has been replaced with a solid green background while the flying crane remains reasonably preserved."
         },
         {
           "identifier": "bp03",
           "index": 3,
           "time_sec": 7.0,
           "score": 1.0,
-          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"Selective regions now reveal bright green, indicating a keying-related edit, while the crane remains recognizable and reasonably preserved.\"}",
+          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky background has been replaced with solid green while the flying crane remains reasonably preserved.\"}",
           "checklist_answers": {
             "real_keying_edit_done": "YES",
             "not_raw_input_copy": "YES",
@@ -1624,14 +1386,14 @@
             "not_raw_input_copy": 1.0,
             "foreground_subject_preserved": 1.0
           },
-          "summary": "Selective regions now reveal bright green, indicating a keying-related edit, while the crane remains recognizable and reasonably preserved."
+          "summary": "The sky background has been replaced with solid green while the flying crane remains reasonably preserved."
         },
         {
           "identifier": "bp04",
           "index": 4,
           "time_sec": 9.0,
           "score": 1.0,
-          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The output shows selective keying-related changes revealing bright green in dark regions, while the crane remains present and recognizable.\"}",
+          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky has been replaced with solid green while the crane remains present and reasonably preserved.\"}",
           "checklist_answers": {
             "real_keying_edit_done": "YES",
             "not_raw_input_copy": "YES",
@@ -1642,24 +1404,360 @@
             "not_raw_input_copy": 1.0,
             "foreground_subject_preserved": 1.0
           },
-          "summary": "The output shows selective keying-related changes revealing bright green in dark regions, while the crane remains present and recognizable."
+          "summary": "The sky has been replaced with solid green while the crane remains present and reasonably preserved."
         }
       ],
+      "full_duration_and_format": true,
       "replay_passed": true,
       "files": {
         "output.mp4": {
-          "sha256": "31e3c1775f62f38fbbd46d6f4847e6e55e46b1a88d06ee79155867fcf32d4f43",
-          "bytes": 5927264
+          "sha256": "b2c19ca357c23287c004ad8195c2246c217990eac7cb6240cc93e773e4857850",
+          "bytes": 2677343
         },
         "project.drp": {
-          "sha256": "1a5acf8d1414dc69d27b40d8fabc91017c4f84fc89aea4deed3751cbbedc9c7e",
-          "bytes": 41820
+          "sha256": "320ed54f672325584e130195196d84b59b55e134599e689eac59d9a74ad48f9e",
+          "bytes": 42998
         },
         "README.md": {
-          "sha256": "3d3aa80aff32f7e6554061d6f5590726c31d27f55f38d17a11841a4509d39f6d",
-          "bytes": 1183
+          "sha256": "ac035b716f7c027b1d32e3a129d33530647369d71e1f45596aaccda67b61c907",
+          "bytes": 2010
         }
       }
+    },
+    {
+      "id": "terra-3",
+      "model": "gpt-6.1-terra",
+      "short": "terra",
+      "trial": 3,
+      "native_score": 0.293236143786037,
+      "elapsed_seconds": 1135.72,
+      "tool_calls": 62,
+      "api_requests": 63,
+      "actions": {
+        "image": 1,
+        "frames": 16,
+        "pixels": 7,
+        "resolve_lua": 22,
+        "render_video": 11,
+        "fusion_paste": 1,
+        "read_file": 1,
+        "export_project": 1,
+        "write_file": 1,
+        "finish": 1
+      },
+      "error_count": 2,
+      "image_count": 105,
+      "resume_events": [],
+      "requested_reasoning": "xhigh",
+      "application_recovery_events": [],
+      "frames": [
+        {
+          "identifier": "bp00",
+          "index": 0,
+          "time_sec": 1.0,
+          "input_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "output_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "full_frame_edge_iou": 0.28662162162162164,
+          "roi_edge_iou": 0.28662162162162164,
+          "roi_input_cv": 0.7949484789663785,
+          "roi_input_gate_passed": true,
+          "soft_gate_threshold": 0.5,
+          "hard_quality_frame_score": 0.28662162162162164,
+          "soft_frame_score": 1.0,
+          "soft_gate_passed": true,
+          "final_frame_score": 0.28662162162162164
+        },
+        {
+          "identifier": "bp01",
+          "index": 1,
+          "time_sec": 3.0,
+          "input_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "output_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "full_frame_edge_iou": 0.3126376045794804,
+          "roi_edge_iou": 0.3126376045794804,
+          "roi_input_cv": 0.7883151006454563,
+          "roi_input_gate_passed": true,
+          "soft_gate_threshold": 0.5,
+          "hard_quality_frame_score": 0.3126376045794804,
+          "soft_frame_score": 1.0,
+          "soft_gate_passed": true,
+          "final_frame_score": 0.3126376045794804
+        },
+        {
+          "identifier": "bp02",
+          "index": 2,
+          "time_sec": 5.0,
+          "input_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "output_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "full_frame_edge_iou": 0.2867284844972472,
+          "roi_edge_iou": 0.2867284844972472,
+          "roi_input_cv": 0.7646475667506663,
+          "roi_input_gate_passed": true,
+          "soft_gate_threshold": 0.5,
+          "hard_quality_frame_score": 0.2867284844972472,
+          "soft_frame_score": 1.0,
+          "soft_gate_passed": true,
+          "final_frame_score": 0.2867284844972472
+        },
+        {
+          "identifier": "bp03",
+          "index": 3,
+          "time_sec": 7.0,
+          "input_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "output_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "full_frame_edge_iou": 0.2942678774120318,
+          "roi_edge_iou": 0.2942678774120318,
+          "roi_input_cv": 0.7805270211315827,
+          "roi_input_gate_passed": true,
+          "soft_gate_threshold": 0.5,
+          "hard_quality_frame_score": 0.2942678774120318,
+          "soft_frame_score": 1.0,
+          "soft_gate_passed": true,
+          "final_frame_score": 0.2942678774120318
+        },
+        {
+          "identifier": "bp04",
+          "index": 4,
+          "time_sec": 9.0,
+          "input_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "output_bbox_norm": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "full_frame_edge_iou": 0.2859251308198041,
+          "roi_edge_iou": 0.2859251308198041,
+          "roi_input_cv": 0.8193677596574812,
+          "roi_input_gate_passed": true,
+          "soft_gate_threshold": 0.5,
+          "hard_quality_frame_score": 0.2859251308198041,
+          "soft_frame_score": 1.0,
+          "soft_gate_passed": true,
+          "final_frame_score": 0.2859251308198041
+        }
+      ],
+      "soft_evaluations": [
+        {
+          "identifier": "bp00",
+          "index": 0,
+          "time_sec": 1.0,
+          "score": 1.0,
+          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky has been replaced with solid green while the flying crane remains reasonably preserved.\"}",
+          "checklist_answers": {
+            "real_keying_edit_done": "YES",
+            "not_raw_input_copy": "YES",
+            "foreground_subject_preserved": "YES"
+          },
+          "checklist_scores": {
+            "real_keying_edit_done": 1.0,
+            "not_raw_input_copy": 1.0,
+            "foreground_subject_preserved": 1.0
+          },
+          "summary": "The sky has been replaced with solid green while the flying crane remains reasonably preserved."
+        },
+        {
+          "identifier": "bp01",
+          "index": 1,
+          "time_sec": 3.0,
+          "score": 1.0,
+          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky background has been replaced with solid green while the flying crane remains reasonably preserved.\"}",
+          "checklist_answers": {
+            "real_keying_edit_done": "YES",
+            "not_raw_input_copy": "YES",
+            "foreground_subject_preserved": "YES"
+          },
+          "checklist_scores": {
+            "real_keying_edit_done": 1.0,
+            "not_raw_input_copy": 1.0,
+            "foreground_subject_preserved": 1.0
+          },
+          "summary": "The sky background has been replaced with solid green while the flying crane remains reasonably preserved."
+        },
+        {
+          "identifier": "bp02",
+          "index": 2,
+          "time_sec": 5.0,
+          "score": 1.0,
+          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky has been replaced with solid green while the flying crane remains reasonably preserved.\"}",
+          "checklist_answers": {
+            "real_keying_edit_done": "YES",
+            "not_raw_input_copy": "YES",
+            "foreground_subject_preserved": "YES"
+          },
+          "checklist_scores": {
+            "real_keying_edit_done": 1.0,
+            "not_raw_input_copy": 1.0,
+            "foreground_subject_preserved": 1.0
+          },
+          "summary": "The sky has been replaced with solid green while the flying crane remains reasonably preserved."
+        },
+        {
+          "identifier": "bp03",
+          "index": 3,
+          "time_sec": 7.0,
+          "score": 1.0,
+          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky has been replaced with a solid green background while the flying crane remains reasonably preserved.\"}",
+          "checklist_answers": {
+            "real_keying_edit_done": "YES",
+            "not_raw_input_copy": "YES",
+            "foreground_subject_preserved": "YES"
+          },
+          "checklist_scores": {
+            "real_keying_edit_done": 1.0,
+            "not_raw_input_copy": 1.0,
+            "foreground_subject_preserved": 1.0
+          },
+          "summary": "The sky has been replaced with a solid green background while the flying crane remains reasonably preserved."
+        },
+        {
+          "identifier": "bp04",
+          "index": 4,
+          "time_sec": 9.0,
+          "score": 1.0,
+          "vlm_response": "{\"answers\": {\"real_keying_edit_done\": \"YES\", \"not_raw_input_copy\": \"YES\", \"foreground_subject_preserved\": \"YES\"}, \"summary\": \"The sky background has been replaced with solid green while the flying crane remains reasonably preserved.\"}",
+          "checklist_answers": {
+            "real_keying_edit_done": "YES",
+            "not_raw_input_copy": "YES",
+            "foreground_subject_preserved": "YES"
+          },
+          "checklist_scores": {
+            "real_keying_edit_done": 1.0,
+            "not_raw_input_copy": 1.0,
+            "foreground_subject_preserved": 1.0
+          },
+          "summary": "The sky background has been replaced with solid green while the flying crane remains reasonably preserved."
+        }
+      ],
+      "full_duration_and_format": true,
+      "replay_passed": true,
+      "files": {
+        "output.mp4": {
+          "sha256": "350e02688db4e989a16958f25d67c906becb1652203660ed9b827b863fb2b67b",
+          "bytes": 2388196
+        },
+        "project.drp": {
+          "sha256": "9fcf156bf1583798ad0c65ff8a3bccdfbc290ce2c445361f70a1321c56966dc8",
+          "bytes": 43107
+        },
+        "README.md": {
+          "sha256": "b5f10bea0d05b8e0cd30f9bf1b1e85d1f211fc48bed2da91b152a29d09a816d9",
+          "bytes": 1498
+        }
+      }
+    }
+  ],
+  "comparison": [
+    {
+      "model": "gpt-6.1-sol",
+      "high": {
+        "model": "gpt-6.1-sol",
+        "required_runs": 3,
+        "finished_runs": 3,
+        "native_scores": [
+          0.5254622793351755,
+          0.522342592710204,
+          0.4820579706574491
+        ],
+        "scored_runs": 3,
+        "mean": 0.5099542809009429,
+        "sample_standard_deviation": 0.024209217357453926,
+        "minimum": 0.4820579706574491,
+        "maximum": 0.5254622793351755,
+        "delivery_completion_rate": 1.0,
+        "independent_replay_rate": 1.0
+      },
+      "xhigh": {
+        "model": "gpt-6.1-sol",
+        "required_runs": 3,
+        "finished_runs": 3,
+        "native_scores": [
+          0.4581308083664621,
+          0.4941583201212051,
+          0.5346788694087239
+        ],
+        "scored_runs": 3,
+        "mean": 0.495655999298797,
+        "sample_standard_deviation": 0.03829600102519458,
+        "minimum": 0.4581308083664621,
+        "maximum": 0.5346788694087239,
+        "delivery_completion_rate": 1.0,
+        "independent_replay_rate": 0.6666666666666666
+      },
+      "mean_difference": -0.014298281602145857,
+      "baseline_status": "available",
+      "independent_batches": true,
+      "runs_per_model_per_effort": 3
+    },
+    {
+      "model": "gpt-6.1-terra",
+      "high": null,
+      "xhigh": {
+        "model": "gpt-6.1-terra",
+        "required_runs": 3,
+        "finished_runs": 3,
+        "native_scores": [
+          0.4796494414325303,
+          0.524296293186827,
+          0.293236143786037
+        ],
+        "scored_runs": 3,
+        "mean": 0.43239395946846476,
+        "sample_standard_deviation": 0.12256430390623911,
+        "minimum": 0.293236143786037,
+        "maximum": 0.524296293186827,
+        "delivery_completion_rate": 1.0,
+        "independent_replay_rate": 1.0
+      },
+      "mean_difference": null,
+      "baseline_status": "not_evaluated",
+      "independent_batches": true,
+      "runs_per_model_per_effort": null
     }
   ],
   "soft_judge_model": "gpt-6-astra",
@@ -1668,5 +1766,35 @@
     0,
     1
   ],
-  "batch": "native-repeat-20261105-130605"
+  "batch": "native-xhigh-20261111-152109",
+  "model_replacement": {
+    "reason": "User requested replacing Luna with GPT-6.1 Terra after provider limits",
+    "original_protocol": "case\\evaluations\\native-xhigh-20261111-152109\\protocol.common.json",
+    "event": "case\\evaluations\\native-xhigh-20261111-152109\\infrastructure\\model-replacement\\user-replacement-event.json",
+    "completed_trials_retained": [
+      "Sol1",
+      "Sol2"
+    ],
+    "remaining_execution_order": [
+      "Terra1",
+      "Sol3",
+      "Terra2",
+      "Terra3"
+    ],
+    "actual_previous_execution_order": [
+      "Sol1",
+      "Luna1 (completed, excluded)",
+      "Sol2",
+      "Luna2 (cancelled by user, excluded)"
+    ],
+    "excluded_models": [
+      "gpt-6-luna"
+    ],
+    "exclusion_was_user_directed_before_native_scoring": true,
+    "original_solvers_tools_budgets_and_scoring_unchanged": true,
+    "terra_runner_change": "Only application project name prefix LUNA -> TERRA; all other bytes identical",
+    "original_ordinals_preserved": true,
+    "ordinal_is_not_display_or_chronological_order_after_amendment": true,
+    "no_terra_high_baseline": true
+  }
 }

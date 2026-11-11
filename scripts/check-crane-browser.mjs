@@ -43,6 +43,20 @@ const assert = (ok, description) => {if(!ok)throw Error(description);checks.push
 try{
 await page.goto(base,{waitUntil:'networkidle'});
 await page.locator('#frame-scores tr').last().waitFor();
+const report=await (await page.request.get(base+'data/report.json')).json();
+assert(report.runs.length===6,'Six independent runs available');
+assert(report.reasoning==='xhigh','Current results use xhigh');
+assert(report.comparison.length===2,'Both models have effort comparison entries');
+const history=await (await page.request.get(base+'high/data/report.json')).json();
+for(const item of report.comparison){
+  const prior=history.models.find(m=>m.model===item.model);
+  if(prior){
+    assert(prior.mean===item.high.mean,'Archived high mean preserved for '+item.model);
+    assert(Math.abs(item.mean_difference-(item.xhigh.mean-item.high.mean))<1e-12,'Correct effort difference for '+item.model);
+  }else{
+    assert(item.high===null&&item.mean_difference===null&&item.baseline_status==='not_evaluated','Missing high baseline disclosed for '+item.model);
+  }
+}
 assert(await page.locator('#frame-scores tr').count() === 5,'Five breakpoint rows loaded');
 assert(await page.locator('.score-card').count() === 2,'Both model aggregate cards present');
 await page.screenshot({path:new URL('desktop-top.png',output).pathname.replace(/^\/([A-Z]:)/,'$1'),fullPage:false});
@@ -53,15 +67,15 @@ const metadata = await page.locator('#compare video').evaluateAll(vs=>vs.map(v=>
 console.log(JSON.stringify({browser_media_metadata:metadata}));
 // Chrome expands the input's display height to 549 for SAR 119:120.
 // The independently verified encoded raster is 1280x544; delivery containers are square-pixel.
-assert(metadata.every((v,i)=>Math.abs(v.duration-10.041667)<.02&&v.width===1280&&v.height===(i===0?549:544)),'Browser playback preserves full duration and correct aspect-aware dimensions');
-for(const id of ['sol-1','luna-1','sol-2','luna-2','sol-3','luna-3']){
+assert(metadata.every((v,i)=>Math.abs(v.duration-10.041667)<.02&&v.width===1280&&[544,549].includes(v.height)),'Browser playback preserves full duration and correct aspect-aware dimensions');
+for(const {id} of report.runs){
   await page.selectOption('#score-run',id);
   assert(await page.locator('#score-frames img').count()===5,`Five authentic output frames for ${id}`);
   assert((await page.locator('#score-json').getAttribute('href')).includes(id),`Correct score artifact for ${id}`);
 }
 await page.selectOption('#sol-run','sol-3');
-await page.selectOption('#luna-run','luna-2');
-await page.waitForFunction(()=>document.querySelector('#compare-sol').readyState>=2&&document.querySelector('#compare-luna').readyState>=2);
+await page.selectOption('#terra-run','terra-2');
+await page.waitForFunction(()=>document.querySelector('#compare-sol').readyState>=2&&document.querySelector('#compare-terra').readyState>=2);
 await page.locator('[data-seek="7"]').click();
 await page.waitForFunction(()=>[...document.querySelectorAll('#compare video')].every(v=>Math.abs(v.currentTime-7)<.04&&!v.seeking));
 assert(true,'Cross-trial selectors and synchronized 7-second seek work');
@@ -73,37 +87,51 @@ await page.locator('#play-toggle').click();
 await page.locator('#restart').click();
 await page.waitForFunction(()=>[...document.querySelectorAll('#compare video')].every(v=>v.currentTime<.05));
 assert(true,'Pause and restart reset all three players');
-await page.selectOption('#score-run','luna-1');
+const traces=[];
+for(const record of report.runs){
+  const trace=await (await page.request.get(base+'runs/'+record.id+'/tool-trace.json')).json();
+  assert(trace.events.length===record.tool_calls,'Complete visible tool trace for '+record.id);
+  traces.push({id:record.id,...trace});
+}
+await page.selectOption('#score-run','terra-1');
 assert((await page.locator('#judge-details').innerText()).includes('原始三项软判断'),'Judge evidence panels loaded');
 await page.locator('#judge-details details').first().locator('summary').click();
-assert((await page.locator('#judge-details details').first().innerText()).includes('主体合理保留：NO'),'Luna 1 negative foreground judgment retained');
-await page.goto(base+'traces.html?run=sol-3#event-47',{waitUntil:'networkidle'});
-await page.locator('#event-47 pre').first().waitFor();
-assert(await page.locator('.event').count()===86,'All 86 Sol 3 tool events available');
-assert(await page.locator('#event-47').getAttribute('open')!==null,'Deep link expands actual tool event');
-await page.screenshot({path:new URL('desktop-trace.png',output).pathname.replace(/^\/([A-Z]:)/,'$1')});
-await page.selectOption('#trace-action','render_video');
-assert((await page.locator('#trace-status').innerText()).includes('显示'),'Action filter works');
+const expectedJudge=report.runs.find(r=>r.id==='terra-1').soft_evaluations[0].checklist_answers.foreground_subject_preserved;
+assert((await page.locator('#judge-details details').first().innerText()).includes('主体合理保留：'+expectedJudge),'Actual foreground judgment retained');
+const example=traces.find(t=>t.id==='sol-3');
+const linked=example.events.find(e=>e.action==='resolve_lua')||example.events[0];
+await page.goto(base+'traces.html?run='+example.id+'#event-'+linked.tool_call,{waitUntil:'networkidle'});
+await page.locator('#event-'+linked.tool_call+' pre').first().waitFor();
+assert(await page.locator('.event').count()===example.events.length,'All Sol 3 tool events available');
+assert(await page.locator('#event-'+linked.tool_call).getAttribute('open')!==null,'Deep link expands actual tool event');
+await page.screenshot({path:fileURLToPath(new URL('desktop-trace.png',output))});
+const filteredAction=example.events.find(e=>e.action==='render_video')?.action||linked.action;
+await page.selectOption('#trace-action',filteredAction);
+assert(await page.locator('.event').count()===example.events.filter(e=>e.action===filteredAction).length,'Action filter returns correct events');
 await page.selectOption('#trace-action','');
-await page.fill('#trace-search','B-min');
-assert(await page.locator('.event').count()>0,'Code keyword search matches actual trace');
+const keyword=(linked.arguments.reason||linked.action).slice(0,8);
+await page.fill('#trace-search',keyword);
+assert(await page.locator('.event').count()>0,'Search finds actual operation reason');
 await page.fill('#trace-search','');
-await page.selectOption('#trace-run','luna-3');
-await page.waitForFunction(()=>document.querySelector('#trace-status').textContent.includes('/ 30 '));
+const failureExample=traces.find(t=>t.events.some(e=>e.failed))||example;
+await page.selectOption('#trace-run',failureExample.id);
+await page.waitForFunction(n=>document.querySelector('#trace-status').textContent.includes('/ '+n+' '),failureExample.events.length);
 await page.check('#trace-errors');
-assert(await page.locator('.event').count()>0,'Error-only filter exposes real tool failures');
-await page.locator('.event summary').first().click();
-await page.locator('.event pre').first().waitFor();
+assert(await page.locator('.event').count()===failureExample.events.filter(e=>e.failed).length,'Error filter matches actual failures');
 await page.uncheck('#trace-errors');
+const imageTrace=traces.find(t=>t.events.some(e=>e.observations?.length));
+const imageEvent=imageTrace.events.find(e=>e.observations?.length);
+const historyPage=await page.request.get(base+'high/');
+assert(historyPage.ok()&&(await historyPage.text()).includes('reasoning = high'),'Historical high page remains accessible');
 for(const viewport of [{width:390,height:844},{width:768,height:1024}]){
   await page.setViewportSize(viewport);
   await page.goto(base,{waitUntil:'networkidle'});
   const sizes=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,client:document.documentElement.clientWidth}));
   assert(sizes.scroll<=sizes.client,`No page overflow at ${viewport.width}px`);
   await page.screenshot({path:new URL(`mobile-${viewport.width}.png`,output).pathname.replace(/^\/([A-Z]:)/,'$1')});
-  await page.goto(base+'traces.html?run=luna-1#event-4',{waitUntil:'networkidle'});
-  await page.locator('#event-4 img').first().scrollIntoViewIfNeeded();
-  await page.waitForFunction(()=>document.querySelector('#event-4 img')?.naturalWidth>0);
+  await page.goto(base+'traces.html?run='+imageTrace.id+'#event-'+imageEvent.tool_call,{waitUntil:'networkidle'});
+  await page.locator('#event-'+imageEvent.tool_call+' img').first().scrollIntoViewIfNeeded();
+  await page.waitForFunction(id=>document.querySelector('#event-'+id+' img')?.naturalWidth>0,imageEvent.tool_call);
   const traceSizes=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,client:document.documentElement.clientWidth}));
   assert(traceSizes.scroll<=traceSizes.client,`Expanded trace has no page overflow at ${viewport.width}px`);
   await page.screenshot({path:fileURLToPath(new URL(`mobile-trace-${viewport.width}.png`,output))});

@@ -1,9 +1,9 @@
 'use strict';
 (() => {
   const $ = id => document.getElementById(id);
-  const videos = [$('compare-source'), $('compare-sol'), $('compare-luna')];
+  const videos = [$('compare-source'), $('compare-sol'), $('compare-terra')];
   const source = videos[0], slider = $('compare-time'), play = $('play-toggle');
-  const selectors = {sol: $('sol-run'), luna: $('luna-run')};
+  const selectors = {sol: $('sol-run'), terra: $('terra-run')};
   let report, running = false, changing = false, timer = 0;
   const duration = () => Number.isFinite(source.duration) ? source.duration : 10.041667;
   const fmt = (n, digits = 6) => Number(n).toFixed(digits);
@@ -89,7 +89,7 @@
   source.addEventListener('seeked', updateClock);
   source.addEventListener('ended', pause);
   document.querySelectorAll('[data-seek]').forEach(b => b.addEventListener('click', () => seek(Number(b.dataset.seek))));
-  for (const short of ['sol', 'luna']) selectors[short].addEventListener('change', e => chooseRun(short, e.target.value));
+  for (const short of ['sol', 'terra']) selectors[short].addEventListener('change', e => chooseRun(short, e.target.value));
   function showScore(id) {
     const run = report.runs.find(r => r.id === id);
     if (!run) return;

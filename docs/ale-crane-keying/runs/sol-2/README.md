@@ -1,43 +1,30 @@
-# 白鹤天空背景分离 — Resolve/Fusion 原生交付
+# 白鹤原片 → 纯绿背景
 
 ## 正式交付
-- `output.mp4`：Resolve 原生渲染的 H.264 成片，1280×544、24 fps、241 帧、10.041667 秒，无音频。
-- `project.drp`：本次独立工程的原生导出。主时间线为 `Crane_Green_24fps`，一个完整源片段、一个 Fusion 合成。
-- `Crane_Key.comp`：最终 Fusion 图的补充原生备份；主要编辑入口仍为 DRP 中该片段的 Fusion 页面。
+- `output.mp4`：DaVinci Resolve 原生渲染的 H.264 成片，1280×544，24 fps，241 帧，10.041667 秒，无音频。
+- `project.drp`：本次新建 Resolve 工程，时间线 `Crane_Green_Master`；抠像、遮罩、核心清理和合成均保留在片段 Fusion 中，可继续编辑与重渲染。
+- `final_graph.comp`：同一最终 Fusion 合成的原生文本导出，便于追溯节点、参数和素材路径。
 
-`test*.mp4`、`raster_check.mp4`、`green_calibration.mp4` 和 `node_inspection.comp` 是保留的制作/试渲染检查记录，**不是正式成片**。正式视频以 `output.mp4` 为准。
+目录中的 `test_key_v*.mp4`、`test_source_geometry.mp4` 和 `inspection*.comp` 是制作过程中的诊断版本，不是正式成片；最终文件以 `output.mp4` 为准。
 
-## 素材与运动
-唯一视频源是本次输入 `input/media/input.mp4`，工程内 `MediaIn1` 可追溯至其完整原始路径。官方 `input.png` 只用于观看外观，没有被导入为主体、动画或替代帧。没有生成替代白鹤，没有冻结、剪短、重定时、稳定、裁切或重定位主体。
+## 素材与时间范围
+唯一运动/主体来源为本次输入的 `input/media/input.mp4`。`input/media/input.png` 仅用于观看目标外观，没有放入时间线替代视频。保留源帧 0–240；没有裁短时间、冻结、时间重映射、主体平移缩放或生成替代白鹤。
 
-源视频在 Resolve 中报告 PAR≈0.991667；`SquareRaster_NoReposition` 使用原生 Custom 双图像通道采样，将原始像素复制到 1280×544 方形像素画布，避免合成时自动横向压缩。
+源媒体带约 0.991667 的 PAR 解释。`Square_Pixel_Geometry` 使用 1280×544 原画布、零偏移，仅声明方形像素，避免输出侧边黑条；不裁掉任何输入像素。若在其他位置导入 DRP 后媒体离线，请将 `input.mp4` 重链接到随任务提供的原视频。DRP 不打包源媒体。
 
-## 原生节点链路
-1. **Subject_Travel_GarbageMask**：手工观察原片后设计的原生 PolylineMask，圈定完整运动范围；不是精细轮廓，也不代替逐帧抠像。可在查看器直接调整顶点。
-2. **Crane_ChromaLuma_Matte**：Custom 数学色差键。以 `B-min(R,G)` 区分蓝灰天空与中性羽毛，同时合并黑羽、白羽亮度保护。远端细腿使用独立暗部键；薄前翼/翼根有局部浅色保护。
-3. **Interior_Holdout_Erode / Wing_Adaptive_Garbage_Grow**：仅处理 alpha 的 Box 形态学链，按每一帧实际 matte 形成动态主体引导，去除孤立云片和编码宏块。收缩量 -0.009，扩张量 +0.0105；引导与原 matte 相交，而非把扩张形状直接画成主体。
-4. **Core_Close_Expand / Core_Close_Contract**：+0.003 / -0.006 的内部保护链，限制于翼根区域，减轻色度压缩导致的灰羽小孔，避免填平腿间和羽尖真实空隙。
-5. **Cloud_Clean_Protected_Feathers**：结合原视频 RGB、原 matte 与形态学引导，单次预乘。
-6. **PureGreen_00FF00 → Crane_Over_PureGreen → MediaOut1**：在不透明 RGB `(0,1,0)` 纯绿背景上合成。没有外部抠像模型或外部生成素材。
+## 可编辑原生 Fusion 链路
+1. `MediaIn1` → `Square_Pixel_Geometry`：读取完整原视频并保持原始像素坐标。
+2. `Motion_Envelope` / `Garbage_Matte_Image`：覆盖全部拍翼范围的宽松垃圾遮罩，剔除远处云层；详细轮廓仍由每帧源画面键控产生。
+3. `Sky_Chroma_Matte`：利用白、黑、红主体与蓝紫天空的差异作软键。主要色量为 `C=max(B-R,B-G)`；中性软键的拒绝/实体参数为 **0.020 / 0.002**。另用最小 RGB **0.870–0.945** 保护白羽实体，并以平滑分区亮度条件恢复颈、喙、上翼及黑腿。腿部恢复权重较低，避免暗云混入。
+4. `High_Confidence_Core`：从 alpha > **0.985** 取得置信核心，排除部分粉云误选；`Core_Support_Expand` 与 `Core_Close_Inset` 使用原生 ErodeDilate **+0.008 / -0.008**，支持柔边并保护小型内部孔洞。
+5. `Core_Support_Channels` / `Supported_Edge_Matte`：组合原始软 matte、核心支持与受限的内部孔洞保护。主体 RGB 直接取自原始视频分支；细长喙有单独支持旁路，防止核心截短。
+6. `Edge_Sky_Decontaminate`：仅对半透明边缘减少原天空混色，强度 **0.65**；不改变不透明主体内部颜色。
+7. `Pure_Green_00FF00`：背景 RGBA 精确为 **(0,1,0,1)**，经 `Crane_Over_Green` 合成到 `MediaOut1`。
 
-### 可调关键参数
-`Crane_ChromaLuma_Matte` 的 Numbers 页已暴露并命名：
+上述节点内均有 Comments 说明；没有外部抠像模型、隐藏参考视频、预烘焙 matte 或替换主体素材依赖。
 
-| 控件 | 值 |
-|---|---:|
-| Blue excess cutoff / Chroma softness | 0.032 / 0.022 |
-| Dark feather ceiling / softness | 0.44 / 0.13 |
-| White feather floor / softness | 0.88 / 0.06 |
-| Thin wing white floor / softness | 0.82 / 0.05 |
+## 已执行的检查
+多次使用 Resolve 实际渲染全片，并查看了首末帧、全时段多个时刻和拍翼周期内的密集样本，特别对照了水平薄翼、脚趾和喙尖。最后一次正式 `output.mp4` 重渲染后再次查看实际解码帧，并确认规格为 241 帧、24 fps、1280×544。最终输出在 5.166667 秒的远背景及原云斑区域抽样 RGB 均为 **(0,252,0)**；这是原生纯绿经当前 H.264 输出链路后的微小编码/电平误差，不是天空图像残留。
 
-局部保护区域及最终组合公式位于相应 Custom 的 Intermediates/Channels 页面。节点有处理注释；时间线在首帧、薄翼检查帧和末帧有标记。
-
-## 实际导出检查与局限
-进行了多轮完整原生试渲染，查看了各秒及大量非整秒拍翼过渡帧，并检查了正式 `output.mp4` 的首帧、末帧、细腿、羽尖、浅灰薄翼与原云斑位置。确认正式文件保留全部 241 帧。
-
-已清理可见天空、云片及孤立宏块。原素材本身为有损压缩且主体已与天空合成，极细羽丝、喙尖和低透明度运动模糊不能保证完全恢复；少数边缘可能有约 1–2 像素的细节收缩、局部绿色混合或轻微抖动，不宣称像素级完美分离。
-
-Fusion 背景设定严格为 #00FF00。正式 H.264 的远离主体背景抽样解码为 RGB `(0,252,0)`，包括画面角落和原云斑位置；这是实际输出的轻微编码/色阶偏差，而不是保留天空。主体交界处还受抗锯齿、半透明合成和 H.264 色度采样影响。
-
-## 继续编辑 / 重渲染
-导入 `project.drp`，打开 `Crane_Green_24fps`，进入唯一视频片段的 Fusion 页面。若换机器后素材离线，将其重新链接到本次原始 `media/input.mp4`，不要链接任何试片。保持 24 fps、1280×544 和全时间线范围 0–240 帧渲染。工程不依赖试渲染视频或参考 PNG。
+## 已知限制
+输入本身为 8-bit 有损、且主体已经与天空混合；无法精确恢复被原合成覆盖的透明度。极细脚趾、羽间隙和运动模糊末端仍可能有少量像素收缩、轻微边缘硬化或局部极小低透明区，未宣称逐像素完美。H.264 色度采样也会在绿/白/黑高反差边缘产生轻微颜色偏差。完整拍翼、原始主体位置和全部时长均保留。
