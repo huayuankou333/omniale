@@ -1,0 +1,19 @@
+All paths relative to input or submission. Private answers, original soundtrack, internet and shell are unavailable.
+Read input_manifest.json, dialogue-script.json, role-cards.json and candidate-index.csv. 200 real files,76 source utterance families, not200 independent takes. Search text refers to parent words; partial clips omit words and context can contain a second speaker.
+act(action,params,reason):
+- list_files(root,offset=0), read_file(path,root,offset=0,length<=24000).
+- write_file(path,content STRING): bounded JSON/MD/TXT/CSV into submission. edit_json(path,operations=[{op:replace|add|remove,path:'/pointer',value:...}]); '-' appends.
+- frames(path='picture.mp4',root='input',times=[...]): up to12 actual frames/call,480 total. To inspect a role card, use frames(path='roles/A.jpg',times=[0]). You receive real image pixels.
+- probe_media(path,root).
+- audio_analysis(path,root,start=0,duration<=15): acoustic envelope, peaks and activity; no automatic semantic or word truth.
+- speech_words(path,root): unavailable for this new case; use parent-text index plus audition.
+- listen_audio(paths=[files],root='input',start=0,duration<=15,question='...'): up to4 actual mono clips per call, shared start/duration; Qwen3.8-omni-flash auditory observer. Up to80 calls. It can transcribe and compare voices/emotion but may err. It sees no source identity or answers. Single-file offset audition supported. On service failure returns unavailable after bounded retry; continue checkpointing, do not loop. Auditory service walltime is excluded from active editing budget.
+- render_reaper(plan='edit_plan.json'): executes exact authored edit plan in native REAPER. Outputs mix.wav,role_A..H.wav and portable reaper/session.rpp. Does not choose candidates, align speech, normalize or repair edits.
+- render_shotcut(): native Shotcut/MLT export of current mix and locked142sec picture; saves shotcut/project.mlt and final.mp4. Repeat after any audio change.
+- finish(): end this single-stage run, no fixed revision. Missing deliverables remain missing. Plain final text also ends the run.
+
+edit_plan.json: {"duration":142,"tracks":[{"role":"A","name":"Celia","gain_db":0,"items":[{"path":"candidates/C001.wav","label":"U01","at":1.0,"duration":0.5,"source_offset":0.2,"rate":1,"gain_db":0,"fade_in":0.008,"fade_out":0.015}]}]}.
+Syntax example only, not a correct answer. Roles A..H,1..24 tracks,<=240 pieces. Source_offset+duration*rate must fit candidate duration; at+duration<=142;rate0.5..2 preserves pitch. Candidate path must retain Cxxx.wav stem. Use multiple pieces if needed. Track gain multiplies item gain. No external/synthesized speech or full movie soundtrack. No music or Foley required; source-origin bleed/distortion is not your fault.
+cue_sheet.json: {"cues":[{"id":"U01","role":"D","candidate_ids":["C001"],"evidence":"actual seen/heard facts","confidence":0.0,"uncertainty":"..."},...]}. Also save checkpoints.md as you work.
+
+Budget:120 active editing minutes,240 API turns,420 tools,480 frames,80 auditory calls,max14000 output tokens/turn. Successful and failed external audition walltime and provider outages are excluded; normal model reasoning and native rendering count. At70% of time/calls finish a playable first export; at85% stop new audition and verify delivery. Save a minimal renderable plan early, update every4 cues. Do not spend the whole run cataloguing the pool. These operational reminders contain no answers.
