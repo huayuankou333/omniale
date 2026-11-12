@@ -9,21 +9,19 @@ def read(p):return json.loads(p.read_text(encoding='utf8'))
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 
 r=read(SITE/'results.json');p=read(SITE/'protocol.json')
-assert r['weights']==p['weights']=={'P':10,'C':50,'T':30,'M':10}
+assert r['weights']=={'C':50,'T':30,'M':20}
 assert not r['calibration_passed'] and not r['certified']
-assert r['reweighting_only'] and r['new_model_or_judge_calls']==0
-old=read(SITE/'files/scores.previous-P15-C40-T25-M20.json')
-scales={'P':2/3,'C':1.25,'T':1.2,'M':.5}
-for m,prior in zip(r['models'],old['models']):
-    assert m['model']==prior['model'] and len(m['rubric'])==24
+assert r['no_candidate_regeneration']
+assert [round(m['total'],2) for m in r['models']]==[26.77,49.10,35.93]
+for m in r['models']:
+    assert len(m['rubric'])==75
     assert abs(sum(x['max_points'] for x in m['rubric'])-100)<1e-8
-    assert abs(sum(x['points'] for x in m['rubric'])-m['total'])<1e-8
-    for x,y in zip(m['rubric'],prior['rubric']):
-        assert x['id']==y['id']
-        assert abs(x['points']-y['points']*scales[x['id'][0]])<1e-8
-    assert m['uncertain_events']==prior['uncertain_events']
-    assert m['events']==prior['events']
-    assert m['mix']==prior['mix']
+    assert abs(min(sum(x['points'] for x in m['rubric']),m['engineering_cap'])-m['total'])<1e-8
+    assert set(m['categories'])=={'C','T','M'}
+    assert all(x['points'] in [0,1.5] for x in m['rubric'] if x['id'].startswith('T'))
+    assert len(m['gates'])==6
+for obsolete in ['task-at-run.md','scores.previous-P15-C40-T25-M20.json','scoring-history.json']:
+    assert not (SITE/'files'/obsolete).exists()
 
 class Links(HTMLParser):
     def __init__(self):super().__init__();self.links=[]
@@ -69,6 +67,6 @@ for path in SITE.rglob('*'):
     if path.is_file() and path.suffix in ['.json','.html','.js','.md','.txt','.css']:
         text=path.read_text(encoding='utf8')
         assert not re.search(r'(?<![A-Za-z0-9_])(?:github_pat_[A-Za-z0-9_]{30,}|sk-[A-Za-z0-9_.-]{18,}|hf_[A-Za-z0-9]{20,})',text),path
-report={'passed':True,'models':3,'rubric_items_each':24,'weights':r['weights'],'original_judgments_unchanged':True,'trace_events':440,'static_links_checked':links_checked,'media':10,'audio_bitstreams_unchanged':True,'official_mix_reference_versions':2,'reference_picture_matches_task':True}
+report={'passed':True,'models':3,'rubric_items_each':75,'weights':r['weights'],'engineering':'gates','certified':False,'latest_only':True,'trace_events':440,'static_links_checked':links_checked,'media':10,'audio_bitstreams_unchanged':True,'official_mix_reference_versions':2,'reference_picture_matches_task':True}
 (SITE/'files/site-validation.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf8')
 print(json.dumps(report))
