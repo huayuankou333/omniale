@@ -1,0 +1,23 @@
+All paths relative to root=input, submission(active version), previous(sealed v1 in v2). You cannot read hidden answers or execute shell.
+act(action,params,reason):
+- list_files(root,offset=0): up to300 files; paginate with offset.
+- read_file(path,root,offset=0,length<=24000): text/JSON. Read voice_groups.json first to organize the 360-clip pool. Metadata does not identify target roles or emotion.
+- write_file(path,content STRING): write JSON/MD/TXT/CSV under submission.
+- edit_json(path,operations=[{op:replace|add|remove,path:'/JSON/pointer',value:...}]): patch your submission JSON; '-' appends.
+- frames(path='picture_locked.mp4',root='input',times=[...]): up to12 actual frames/call,600 total. Times are local seconds. You receive image pixels. Inspect calibrations and fine-grained mouth motion; sparse frames can miss expressions.
+- probe_media(path,root): media metadata.
+- audio_analysis(path,root,start=0,duration<=15):10ms envelope,activity,peaks. Not exact word/lip truth.
+- speech_words(path,root): only available if an offline ASR cache exists. In this version it may return unavailable; use listen_audio.
+- listen_audio(paths=[files],root='input',question='...'): up to4 real anonymous audio clips, each up to8 seconds. Single-file start,duration supported. Qwen3.8-omni-flash can transcribe, compare candidate voices to calibration clips, describe emotion/intensity, and listen to edits. It sees no hidden dataset labels.200 calls total. The observer may be wrong; you choose all decisions. Clips use one root, so compare inputs together or outputs together.
+- render_reaper(plan='audio_plan.json'): executes your exact plan in real REAPER; outputs mix.wav,role_A.wav...role_H.wav and portable reaper/session.rpp. Preserves pitch. Does not choose identity/takes, infer timing, normalize or repair.
+- render_shotcut(): exports actual current mix and locked picture using Shotcut/MLT, saves shotcut/project.mlt and final.mp4. Repeat after audio changes.
+- submit_v1(): seal v1, unlock four fixed revisions, copy to editable v2. Previous is read-only.
+- finish(): end v2. Plain final text in v1 seals it and reveals revision automatically.
+
+audio_plan.json: {"duration":EXACT_INPUT_MANIFEST_DURATION,"tracks":[{"name":"Role A","role":"A","gain_db":0,"items":[{"path":"candidates/C001.wav","shot":"S01","at":0.5,"duration":0.4,"source_offset":0.7,"rate":1,"fade_in":0.008,"fade_out":0.015,"gain_db":0,"pitch":0}]}]}.
+This is syntax only, not a correct candidate/timing. Roles A–H;1..24 tracks,total<=240 pieces. rate=source seconds per timeline second,range0.5..2. source_offset+duration*rate must fit source; at+duration must fit picture. Multiple locally stretched pieces per sentence allowed. Source paths must remain candidates/Cxxx.wav. No calibration or generated audio. Fades in seconds. Track gain multiplies item gain. Optional fx:[{name:'actual REAPER effect',parameters:{'parameter_index':normalized_value}}]; don't guess effects.
+edit_log.json:{"shots":[{"shot":"S01","role":"A","candidate_ids":["C001"],"sync_evidence":"observed evidence","processing":"your edits","limits":"uncertainties"},...]}.
+When modifying v2, preserve nonrequested samples. Use source candidates in the plan; adapter copies them to the portable project. Logs, plans and outputs must match.
+Budget:v1 120min,v2 35min,360 API turns,650 tools,600 frames,200 auditory calls. Provider failures/retry waits are excluded from effective time and checkpoint is resumable. All models get identical tools and limits.
+
+This variant has exactly360 candidates grouped into12 anonymous voices. Inspect voice_groups.json and compare neutral calibration voices before auditioning full groups. No role/emotion/intensity answers are supplied. Auditory service waiting is excluded from active edit time.

@@ -1,0 +1,795 @@
+{
+  "model": "gpt-6.1-terra",
+  "run": "[CASE]/runs/gpt-6.1-terra-take360-gated-20261113",
+  "scoring_protocol": "take360-gated-v4-20261113",
+  "task_variant": "RAVDESS-take360",
+  "score": 22.24,
+  "score_unrounded": 22.23611111111111,
+  "raw_total": 22.236111,
+  "engineering_cap": 100,
+  "max_score": 100,
+  "category_weights": {
+    "identity_content_performance": 60,
+    "audiovisual_sync": 30,
+    "quality": 10
+  },
+  "category_scores": {
+    "identity_content_performance": 6.0,
+    "audiovisual_sync": 7.625,
+    "quality": 8.6111
+  },
+  "engineering_additive_points": 0,
+  "engineering_gates": [
+    {
+      "id": "G00",
+      "name": "成片可解码并含实际音轨",
+      "cap_on_failure": 0,
+      "passed": true,
+      "additive_points": 0
+    },
+    {
+      "id": "G01",
+      "name": "可追溯来源日志与成片音轨一致",
+      "cap_on_failure": 50,
+      "passed": true,
+      "additive_points": 0
+    },
+    {
+      "id": "G02",
+      "name": "REAPER 工程可重放且与混音一致",
+      "cap_on_failure": 60,
+      "passed": true,
+      "additive_points": 0
+    },
+    {
+      "id": "G03",
+      "name": "Shotcut 工程与锁画规格完整",
+      "cap_on_failure": 75,
+      "passed": true,
+      "additive_points": 0
+    },
+    {
+      "id": "G04",
+      "name": "八条角色分轨完整、隔离且可求和",
+      "cap_on_failure": 85,
+      "passed": true,
+      "additive_points": 0
+    }
+  ],
+  "rubrics": [
+    {
+      "id": "C01",
+      "category": "identity_content_performance",
+      "weight": 5,
+      "shots": [
+        "S01",
+        "S02"
+      ],
+      "rule": "Each shot 2.5. Gate: same actual actor and sentence >=98% of active source, >=90% retained source speech coverage, complete audible words. If gate fails:0. If gate passes: identity/content .75; correct emotion +1.25; correct intensity within correct emotion +.5. Emotion/intensity checks are binary >=98% active source. Source labels and actual delivered audio, not self-reported labels.",
+      "score": 0.0,
+      "pending": false,
+      "evidence": {
+        "per_shot": {
+          "S01": 0,
+          "S02": 0
+        },
+        "wrong_identity_or_incomplete_words_gate": true
+      },
+      "human_review": {
+        "accepted": null,
+        "corrected_score": null,
+        "notes": ""
+      },
+      "score_unrounded": 0.0
+    },
+    {
+      "id": "C02",
+      "category": "identity_content_performance",
+      "weight": 5,
+      "shots": [
+        "S03",
+        "S04"
+      ],
+      "rule": "Each shot 2.5. Gate: same actual actor and sentence >=98% of active source, >=90% retained source speech coverage, complete audible words. If gate fails:0. If gate passes: identity/content .75; correct emotion +1.25; correct intensity within correct emotion +.5. Emotion/intensity checks are binary >=98% active source. Source labels and actual delivered audio, not self-reported labels.",
+      "score": 0.75,
+      "pending": false,
+      "evidence": {
+        "per_shot": {
+          "S03": 0,
+          "S04": 0.75
+        },
+        "wrong_identity_or_incomplete_words_gate": true
+      },
+      "human_review": {
+        "accepted": null,
+        "corrected_score": null,
+        "notes": ""
+      },
+      "score_unrounded": 0.75
+    },
+    {
+      "id": "C03",
+      "category": "identity_content_performance",
+      "weight": 5,
+      "shots": [
+        "S05",
+        "S06"
+      ],
+      "rule": "Each shot 2.5. Gate: same actual actor and sentence >=98% of active source, >=90% retained source speech coverage, complete audible words. If gate fails:0. If gate passes: identity/content .75; correct emotion +1.25; correct intensity within correct emotion +.5. Emotion/intensity checks are binary >=98% active source. Source labels and actual delivered audio, not self-reported labels.",
+      "score": 0.0,
+      "pending": false,
+      "evidence": {
+        "per_shot": {
+          "S05": 0,
+          "S06": 0
+        },
+        "wrong_identity_or_incomplete_words_gate": true
+      },
+      "human_review": {
+        "accepted": null,
+        "corrected_score": null,
+        "notes": ""
+      },
+      "score_unrounded": 0.0
+    },
+    {
+      "id": "C04",
+      "category": "identity_content_performance",
+      "weight": 5,
+      "shots": [
+        "S07",
+        "S08"
+      ],
+      "rule": "Each shot 2.5. Gate: same actual actor and sentence >=98% of active source, >=90% retained source speech coverage, complete audible words. If gate fails:0. If gate passes: identity/content .75; correct emotion +1.25; correct intensity within correct emotion +.5. Emotion/intensity checks are binary >=98% active source. Source labels and actual delivered audio, not self-reported labels.",
+      "score": 0.0,
+      "pending": false,
+      "evidence": {
+        "per_shot": {
+          "S07": 0,
+          "S08": 0
+        },
+        "wrong_identity_or_incomplete_words_gate": true
+      },
+      "human_review": {
+        "accepted": null,
+        "corrected_score": null,
+        "notes": ""
+      },
+      "score_unrounded": 0.0
+    },
+    {
+      "id": "C05",
+      "category": "identity_content_performance",
+      "weight": 5,
+      "shots": [
+        "S09",
+        "S10"
+      ],
+      "rule": "Each shot 2.5. Gate: same actual actor and sentence >=98% of active source, >=90% retained source speech coverage, complete audible words. If gate fails:0. If gate passes: identity/content .75; correct emotion +1.25; correct intensity within correct emotion +.5. Emotion/intensity checks are binary >=98% active source. Source labels and actual delivered audio, not self-reported labels.",
+      "score": 1.5,
+      "pending": false,
+      "evidence": {
+        "per_shot": {
+          "S09": 0.75,
+          "S10": 0.75
+        },
+        "wrong_identity_or_incomplete_words_gate": true
+      },
+      "human_review": {
+        "accepted": null,
+        "corrected_score": null,
+        "notes": ""
+      },
+      "score_unrounded": 1.5
+    },
+    {
+      "id": "C06",
+      "category": "identity_content_performance",
+      "weight": 5,
+      "shots": [
+        "S11",
+        "S12"
+      ],
+      "rule": "Each shot 2.5. Gate: same actual actor and sentence >=98% of active source, >=90% retained source speech coverage, complete audible words. If gate fails:0. If gate passes: identity/content .75; correct emotion +1.25; correct intensity within correct emotion +.5. Emotion/intensity checks are binary >=98% active source. Source labels and actual delivered audio, not self-reported labels.",
+      "score": 0.75,
+      "pending": false,
+      "evidence": {
+        "per_shot": {
+          "S11": 0.75,
+          "S12": 0
+        },
+        "wrong_identity_or_incomplete_words_gate": true
+      },
+      "human_review": {
+        "accepted": null,
+        "corrected_score": null,
+        "notes": ""
+      },
+      "score_unrounded": 0.75
+    },
+    {
+      "id": "C07",
+      "category": "identity_content_performance",
+      "weight": 5,
+      "shots": [
+        "S13",
+        "S14"
+      ],
+      "rule": "Each shot 2.5. Gate: same actual actor and sentence >=98% of active source, >=90% retained source speech coverage, complete audible words. If gate fails:0. If gate passes: identity/content .75; correct emotion +1.25; correct intensity within correct emotion +.5. Emotion/intensity checks are binary >=98% active source. Source labels and actual delivered audio, not self-reported labels.",
+      "score": 0.0,
+      "pending": false,
+      "evidence": {
+        "per_shot": {
+          "S13": 0,
+          "S14": 0
+        },
+        "wrong_identity_or_incomplete_words_gate": true
+      },
+      "human_review": {
+        "accepted": null,
+        "corrected_score": null,
+        "notes": ""
+      },
+      "score_unrounded": 0.0
+    },
+    {
+      "id": "C08",
+      "category": "identity_content_performance",
+      "weight": 5,
+      "shots": [
+        "S15",
+        "S16"
+      ],
+      "rule": "Each shot 2.5. Gate: same actual actor and sentence >=98% of active source, >=90% retained source speech coverage, complete audible words. If gate fails:0. If gate passes: identity/content .75; correct emotion +1.25; correct intensity within correct emotion +.5. Emotion/intensity checks are binary >=98% active source. Source labels and actual delivered audio, not self-reported labels.",
+      "score": 1.5,
+      "pending": false,
+      "evidence": {
+        "per_shot": {
+          "S15": 0.75,
+          "S16": 0.75
+        },
+        "wrong_identity_or_incomplete_words_gate": true
+      },
+      "human_review": {
+        "accepted": null,
+        "corrected_score": null,
+        "notes": ""
+      },
+      "score_unrounded": 1.5
+    },
+    {
+      "id": "C09",
+      "category": "identity_content_performance",
+      "weight": 5,
+      "shots": [
+        "S17",
+        "S18"
+      ],
+      "rule": "Each shot 2.5. Gate: same actual actor and sentence >=98% of active source, >=90% retained source speech coverage, complete audible words. If gate fails:0. If gate passes: identity/content .75; correct emotion +1.25; correct intensity within correct emotion +.5. Emotion/intensity checks are binary >=98% active source. Source labels and actual delivered audio, not self-reported labels.",
+      "score": 0.75,
+      "pending": false,
+      "evidence": {
+        "per_shot": {
+          "S17": 0,
+          "S18": 0.75
+        },
+        "wrong_identity_or_incomplete_words_gate": true
+      },
+      "human_review": {
+        "accepted": null,
+        "corrected_score": null,
+        "notes": ""
+      },
+      "score_unrounded": 0.75
+    },
+    {
+      "id": "C10",
+      "category": "identity_content_performance",
+      "weight": 5,
+      "shots": [
+        "S19",
+        "S20"
+      ],
+      "rule": "Each shot 2.5. Gate: same actual actor and sentence >=98% of active source, >=90% retained source speech coverage, complete audible words. If gate fails:0. If gate passes: identity/content .75; correct emotion +1.25; correct intensity within correct emotion +.5. Emotion/intensity checks are binary >=98% active source. Source labels and actual delivered audio, not self-reported labels.",
+      "score": 0.75,
+      "pending": false,
+      "evidence": {
+        "per_shot": {
+          "S19": 0.75,
+          "S20": 0
+        },
+        "wrong_identity_or_incomplete_words_gate": true
+      },
+      "human_review": {
+        "accepted": null,
+        "corrected_score": null,
+        "notes": ""
+      },
+      "score_unrounded": 0.75
+    },
+    {
+      "id": "C11",
+      "category": "identity_content_performance",
+      "weight": 5,
+      "shots": [
+        "S21",
+        "S22"
+      ],
+      "rule": "Each shot 2.5. Gate: same actual actor and sentence >=98% of active source, >=90% retained source speech coverage, complete audible words. If gate fails:0. If gate passes: identity/content .75; correct emotion +1.25; correct intensity within correct emotion +.5. Emotion/intensity checks are binary >=98% active source. Source labels and actual delivered audio, not self-reported labels.",
+      "score": 0.0,
+      "pending": false,
+      "evidence": {
+        "per_shot": {
+          "S21": 0,
+          "S22": 0
+        },
+        "wrong_identity_or_incomplete_words_gate": true
+      },
+      "human_review": {
+        "accepted": null,
+        "corrected_score": null,
+        "notes": ""
+      },
+      "score_unrounded": 0.0
+    },
+    {
+      "id": "C12",
+      "category": "identity_content_performance",
+      "weight": 5,
+      "shots": [
+        "S23",
+        "S24"
+      ],
+      "rule": "Each shot 2.5. Gate: same actual actor and sentence >=98% of active source, >=90% retained source speech coverage, complete audible words. If gate fails:0. If gate passes: identity/content .75; correct emotion +1.25; correct intensity within correct emotion +.5. Emotion/intensity checks are binary >=98% active source. Source labels and actual delivered audio, not self-reported labels.",
+      "score": 0.0,
+      "pending": false,
+      "evidence": {
+        "per_shot": {
+          "S23": 0,
+          "S24": 0
+        },
+        "wrong_identity_or_incomplete_words_gate": true
+      },
+      "human_review": {
+        "accepted": null,
+        "corrected_score": null,
+        "notes": ""
+      },
+      "score_unrounded": 0.0
+    },
+    {
+      "id": "T01",
+      "category": "audiovisual_sync",
+      "weight": 5,
+      "shots": [
+        "S01",
+        "S02",
+        "S03",
+        "S04"
+      ],
+      "rule": "Each shot1.25: onset .375; end .375; six internal acoustic anchors .5. Per anchor full <=80ms, half <=160ms,0 beyond. Original-take MFCC-DTW is a timing proxy, not verified lip ground truth. Missing/poorly aligned speech is0; uncertain alignment is flagged pending.",
+      "score": 0.916667,
+      "pending": false,
+      "evidence": {
+        "per_shot": {
+          "S01": 0.041666666666666664,
+          "S02": 0.0,
+          "S03": 0.6875,
+          "S04": 0.1875
+        },
+        "status": "acoustic-proxy-provisional",
+        "human_lip_sync_review_required": true
+      },
+      "human_review": {
+        "accepted": null,
+        "corrected_score": null,
+        "notes": ""
+      },
+      "score_unrounded": 0.9166666666666666
+    },
+    {
+      "id": "T02",
+      "category": "audiovisual_sync",
+      "weight": 5,
+      "shots": [
+        "S05",
+        "S06",
+        "S07",
+        "S08"
+      ],
+      "rule": "Each shot1.25: onset .375; end .375; six internal acoustic anchors .5. Per anchor full <=80ms, half <=160ms,0 beyond. Original-take MFCC-DTW is a timing proxy, not verified lip ground truth. Missing/poorly aligned speech is0; uncertain alignment is flagged pending.",
+      "score": 1.770833,
+      "pending": false,
+      "evidence": {
+        "per_shot": {
+          "S05": 0.5208333333333333,
+          "S06": 0.7291666666666666,
+          "S07": 0.08333333333333333,
+          "S08": 0.4375
+        },
+        "status": "acoustic-proxy-provisional",
+        "human_lip_sync_review_required": true
+      },
+      "human_review": {
+        "accepted": null,
+        "corrected_score": null,
+        "notes": ""
+      },
+      "score_unrounded": 1.7708333333333333
+    },
+    {
+      "id": "T03",
+      "category": "audiovisual_sync",
+      "weight": 5,
+      "shots": [
+        "S09",
+        "S10",
+        "S11",
+        "S12"
+      ],
+      "rule": "Each shot1.25: onset .375; end .375; six internal acoustic anchors .5. Per anchor full <=80ms, half <=160ms,0 beyond. Original-take MFCC-DTW is a timing proxy, not verified lip ground truth. Missing/poorly aligned speech is0; uncertain alignment is flagged pending.",
+      "score": 0.9375,
+      "pending": false,
+      "evidence": {
+        "per_shot": {
+          "S09": 0.1875,
+          "S10": 0.0,
+          "S11": 0.2708333333333333,
+          "S12": 0.4791666666666667
+        },
+        "status": "acoustic-proxy-provisional",
+        "human_lip_sync_review_required": true
+      },
+      "human_review": {
+        "accepted": null,
+        "corrected_score": null,
+        "notes": ""
+      },
+      "score_unrounded": 0.9375
+    },
+    {
+      "id": "T04",
+      "category": "audiovisual_sync",
+      "weight": 5,
+      "shots": [
+        "S13",
+        "S14",
+        "S15",
+        "S16"
+      ],
+      "rule": "Each shot1.25: onset .375; end .375; six internal acoustic anchors .5. Per anchor full <=80ms, half <=160ms,0 beyond. Original-take MFCC-DTW is a timing proxy, not verified lip ground truth. Missing/poorly aligned speech is0; uncertain alignment is flagged pending.",
+      "score": 1.666667,
+      "pending": false,
+      "evidence": {
+        "per_shot": {
+          "S13": 0.2708333333333333,
+          "S14": 0.75,
+          "S15": 0.4791666666666667,
+          "S16": 0.16666666666666666
+        },
+        "status": "acoustic-proxy-provisional",
+        "human_lip_sync_review_required": true
+      },
+      "human_review": {
+        "accepted": null,
+        "corrected_score": null,
+        "notes": ""
+      },
+      "score_unrounded": 1.6666666666666667
+    },
+    {
+      "id": "T05",
+      "category": "audiovisual_sync",
+      "weight": 5,
+      "shots": [
+        "S17",
+        "S18",
+        "S19",
+        "S20"
+      ],
+      "rule": "Each shot1.25: onset .375; end .375; six internal acoustic anchors .5. Per anchor full <=80ms, half <=160ms,0 beyond. Original-take MFCC-DTW is a timing proxy, not verified lip ground truth. Missing/poorly aligned speech is0; uncertain alignment is flagged pending.",
+      "score": 1.041667,
+      "pending": false,
+      "evidence": {
+        "per_shot": {
+          "S17": 0.2708333333333333,
+          "S18": 0.1875,
+          "S19": 0.39583333333333337,
+          "S20": 0.1875
+        },
+        "status": "acoustic-proxy-provisional",
+        "human_lip_sync_review_required": true
+      },
+      "human_review": {
+        "accepted": null,
+        "corrected_score": null,
+        "notes": ""
+      },
+      "score_unrounded": 1.0416666666666667
+    },
+    {
+      "id": "T06",
+      "category": "audiovisual_sync",
+      "weight": 5,
+      "shots": [
+        "S21",
+        "S22",
+        "S23",
+        "S24"
+      ],
+      "rule": "Each shot1.25: onset .375; end .375; six internal acoustic anchors .5. Per anchor full <=80ms, half <=160ms,0 beyond. Original-take MFCC-DTW is a timing proxy, not verified lip ground truth. Missing/poorly aligned speech is0; uncertain alignment is flagged pending.",
+      "score": 1.291667,
+      "pending": false,
+      "evidence": {
+        "per_shot": {
+          "S21": 0.4375,
+          "S22": 0.1875,
+          "S23": 0.2708333333333333,
+          "S24": 0.39583333333333337
+        },
+        "status": "acoustic-proxy-provisional",
+        "human_lip_sync_review_required": true
+      },
+      "human_review": {
+        "accepted": null,
+        "corrected_score": null,
+        "notes": ""
+      },
+      "score_unrounded": 1.2916666666666665
+    },
+    {
+      "id": "Q01",
+      "category": "quality",
+      "weight": 6.666666666666667,
+      "rule": "逐镜头盲听的接缝质量与自然度均值，按原2:1听感/客观混音比例扩为10分；单项满分20/3。",
+      "score": 6.388889,
+      "pending": false,
+      "evidence": {
+        "judge": "qwen3.8-omni-flash",
+        "blinded": true,
+        "per_shot": {
+          "S01": {
+            "transcript": "Kids are talking by the door.",
+            "seam_quality": 1,
+            "naturalness": 1,
+            "intelligibility": 1,
+            "evidence": "The audio contains a single, continuous utterance of the expected sentence. The words 'Kids are talking by the door' are clearly articulated with natural prosody and pitch variation. There are no audible clicks, cuts, or truncations at the boundaries, and no signs of time-stretching or artificial synthesis artifacts.",
+            "judged_mix_sha256": "da3b9bbc0d45721005aa9f63f95d31917a3fa01c319e3d371bf27b09660081e1"
+          },
+          "S02": {
+            "transcript": "Kids are talking by the door!",
+            "seam_quality": 1,
+            "naturalness": 1,
+            "intelligibility": 1,
+            "evidence": "The audio contains a single, continuous utterance of the expected sentence spoken with an angry, shouting tone. There are no audible clicks, cuts, or truncated consonants. All words are clearly intelligible in order.",
+            "judged_mix_sha256": "da3b9bbc0d45721005aa9f63f95d31917a3fa01c319e3d371bf27b09660081e1"
+          },
+          "S03": {
+            "transcript": "Kids are talking by the door.",
+            "seam_quality": 1,
+            "naturalness": 1,
+            "intelligibility": 1,
+            "evidence": "The audible sequence is 'Kids', 'are', 'talking', 'by', 'the', 'door' in order. No click, cut, or truncated consonant is audible. The pitch and prosody sound natural, with no material stretch or splice damage. All intended words are clear and intelligible.",
+            "judged_mix_sha256": "da3b9bbc0d45721005aa9f63f95d31917a3fa01c319e3d371bf27b09660081e1"
+          },
+          "S04": {
+            "transcript": "Kids are talking by the door.",
+            "seam_quality": 1,
+            "naturalness": 1,
+            "intelligibility": 1,
+            "evidence": "The audible words are 'Kids are talking by the door.' All expected words are present in order. No click, cut, or truncated consonant is audible, and the prosody/pitch remains continuous without material stretch or fragmentation artifacts.",
+            "judged_mix_sha256": "da3b9bbc0d45721005aa9f63f95d31917a3fa01c319e3d371bf27b09660081e1"
+          },
+          "S05": {
+            "transcript": "Kids are talking by the door.",
+            "seam_quality": 1,
+            "naturalness": 1,
+            "intelligibility": 1,
+            "evidence": "The audio contains a single, clear utterance of the expected sentence 'Kids are talking by the door.' The speech exhibits natural prosody and pitch without any audible clicks, cuts, truncated consonants, or artificial stretching. All words are fully intelligible and presented in the correct order.",
+            "judged_mix_sha256": "da3b9bbc0d45721005aa9f63f95d31917a3fa01c319e3d371bf27b09660081e1"
+          },
+          "S06": {
+            "transcript": "Kids are talking by the door.",
+            "seam_quality": 1,
+            "naturalness": 1,
+            "intelligibility": 1,
+            "evidence": "All six expected words are audible in correct order: 'Kids', 'are', 'talking', 'by', 'the', 'door'. No click, cut, or truncated consonant is present; the final /ɔːr/ of 'door' decays naturally without an abrupt splice. The voice shows emotional tremor and a slightly halting, breathy delivery (consistent with acted fear/distress), but pitch and prosody remain human and continuous with no material stretch, stutter, or fragmentation artifacts. Every intended word is clearly distinguishable, so intelligibility is full.",
+            "judged_mix_sha256": "da3b9bbc0d45721005aa9f63f95d31917a3fa01c319e3d371bf27b09660081e1"
+          },
+          "S07": {
+            "transcript": "Dogs are sitting by the door.",
+            "seam_quality": 1,
+            "naturalness": 1,
+            "intelligibility": 1,
+            "evidence": "The phrase 'Dogs are sitting by the door' is spoken clearly with natural prosody and consistent pitch. There are no audible clicks, cuts, or truncated consonants, and all intended words are fully intelligible in order.",
+            "judged_mix_sha256": "da3b9bbc0d45721005aa9f63f95d31917a3fa01c319e3d371bf27b09660081e1"
+          },
+          "S08": {
+            "transcript": "Kids are talking by the door.",
+            "seam_quality": 1,
+            "naturalness": 1,
+            "intelligibility": 1,
+            "evidence": "A single clear utterance is heard: 'Kids are talking by the door.' No clicks, cuts, truncated consonants, stuttering, or unnatural stretching are audible; all words are intelligible in order.",
+            "judged_mix_sha256": "da3b9bbc0d45721005aa9f63f95d31917a3fa01c319e3d371bf27b09660081e1"
+          },
+          "S09": {
+            "transcript": "Dogs are sitting by the door?",
+            "seam_quality": 1,
+            "naturalness": 1,
+            "intelligibility": 1,
+            "evidence": "The audible words are 'Dogs', 'are', 'sitting', 'by', 'the', 'door', in the expected order. The final 'door' has a rising, question-like intonation, but no word is missing, wrong, or unintelligible. No click, cut, or truncated consonant defect is evident, and there is no audible material stretch or fragmentation damage.",
+            "judged_mix_sha256": "da3b9bbc0d45721005aa9f63f95d31917a3fa01c319e3d371bf27b09660081e1"
+          },
+          "S10": {
+            "transcript": "Mmm kids are talking by the door.",
+            "seam_quality": 1,
+            "naturalness": 0.5,
+            "intelligibility": 1,
+            "evidence": "The audio begins with a low, breathy hum ('Mmm') before the speaker delivers the target sentence. The speech is very slow, quiet, and mumbled, with a flat, unnatural prosody that suggests either a strained vocal performance or artificial generation, but all words of the expected sentence ('Kids are talking by the door') are discernible without obvious clicking or truncation defects.",
+            "judged_mix_sha256": "da3b9bbc0d45721005aa9f63f95d31917a3fa01c319e3d371bf27b09660081e1"
+          },
+          "S11": {
+            "transcript": "Dogs are sitting by the door.",
+            "seam_quality": 1,
+            "naturalness": 1,
+            "intelligibility": 1,
+            "evidence": "The audio contains a single male voice clearly stating the full sentence 'Dogs are sitting by the door.' There are no audible clicks, cuts, or truncated consonants. The prosody and pitch sound natural and continuous, with no evidence of artificial stretching or fragmentation. All intended words are distinct and audible in the correct order.",
+            "judged_mix_sha256": "da3b9bbc0d45721005aa9f63f95d31917a3fa01c319e3d371bf27b09660081e1"
+          },
+          "S12": {
+            "transcript": "Dogs are sitting by the door?",
+            "seam_quality": 1,
+            "naturalness": 1,
+            "intelligibility": 1,
+            "evidence": "The audible words are “Dogs,” “are,” “sitting,” “by,” “the,” and “door,” in that order. The phrase is continuous with no audible click, cut, dropped consonant, or truncated ending. The voice has natural pitch movement, including a rising intonation on “door,” without obvious stretching, stuttering, or fragmented editing. All intended words are clear and intelligible.",
+            "judged_mix_sha256": "da3b9bbc0d45721005aa9f63f95d31917a3fa01c319e3d371bf27b09660081e1"
+          },
+          "S13": {
+            "transcript": "Kids are talking by the door.",
+            "seam_quality": 1,
+            "naturalness": 1,
+            "intelligibility": 1,
+            "evidence": "The speaker delivers the full sentence 'Kids are talking by the door' clearly. The voice has a strained, emotional quality (consistent with acted fear or urgency), but the prosody and pitch contours sound natural and human. There are no audible clicks, cuts, or truncated consonants indicating splicing or synthesis artifacts.",
+            "judged_mix_sha256": "da3b9bbc0d45721005aa9f63f95d31917a3fa01c319e3d371bf27b09660081e1"
+          },
+          "S14": {
+            "transcript": "Kids are talking by the door.",
+            "seam_quality": 1,
+            "naturalness": 1,
+            "intelligibility": 1,
+            "evidence": "The speaker articulates the full sentence 'Kids are talking by the door' clearly. There are no audible editing artifacts such as clicks, cuts, or truncated consonants. The pitch and rhythm sound natural and continuous.",
+            "judged_mix_sha256": "da3b9bbc0d45721005aa9f63f95d31917a3fa01c319e3d371bf27b09660081e1"
+          },
+          "S15": {
+            "transcript": "Kids are talking by the door.",
+            "seam_quality": 1,
+            "naturalness": 1,
+            "intelligibility": 1,
+            "evidence": "The audio contains a single, continuous utterance of the expected sentence. The voice sounds natural with standard pitch variation and pacing. There are no audible editing artifacts, clicks, or truncations. Every word ('Kids', 'are', 'talking', 'by', 'the', 'door') is clearly intelligible.",
+            "judged_mix_sha256": "da3b9bbc0d45721005aa9f63f95d31917a3fa01c319e3d371bf27b09660081e1"
+          },
+          "S16": {
+            "transcript": "Dogs are sitting by the door!",
+            "seam_quality": 1,
+            "naturalness": 1,
+            "intelligibility": 1,
+            "evidence": "The audio contains a single, continuous utterance of the expected sentence spoken with high volume and anger. All words are clearly articulated without any audible clicks, cuts, or unnatural stretching of syllables.",
+            "judged_mix_sha256": "da3b9bbc0d45721005aa9f63f95d31917a3fa01c319e3d371bf27b09660081e1"
+          },
+          "S17": {
+            "transcript": "Dogs are sitting by the d-",
+            "seam_quality": 0.5,
+            "naturalness": 1,
+            "intelligibility": 0.5,
+            "evidence": "The phrase 'Dogs are sitting by the' is clearly audible with natural prosody and pitch. However, the final word 'door' is truncated: only the initial /d/ consonant is heard before the audio cuts abruptly to silence. This is a single localized truncation defect at the end of the clip. The spoken portion preceding the cut shows no stretch artifacts, stuttering, or unnatural pitch shifts, so naturalness of the delivered speech is intact. Because 'door' is reduced to just its onset consonant, one intended word is incomplete, placing intelligibility at 0.5 rather than 0 (the rest of the sentence is fully clear and in order).",
+            "judged_mix_sha256": "da3b9bbc0d45721005aa9f63f95d31917a3fa01c319e3d371bf27b09660081e1"
+          },
+          "S18": {
+            "transcript": "Dogs are sitting by the door.",
+            "seam_quality": 1,
+            "naturalness": 1,
+            "intelligibility": 1,
+            "evidence": "The audio contains a single, continuous utterance of the expected sentence. The speaker's voice is steady, and all words ('Dogs', 'are', 'sitting', 'by', 'the', 'door') are clearly articulated without any audible clicks, cuts, or truncated sounds. The prosody is natural for a spoken sentence.",
+            "judged_mix_sha256": "da3b9bbc0d45721005aa9f63f95d31917a3fa01c319e3d371bf27b09660081e1"
+          },
+          "S19": {
+            "transcript": "Kids are talking by the door.",
+            "seam_quality": 1,
+            "naturalness": 1,
+            "intelligibility": 1,
+            "evidence": "The phrase 'Kids are talking by the door' is spoken clearly with consistent volume and pitch. There are no audible clicks, cuts, or truncated consonants at the beginning or end of the utterance. The prosody is steady and the words are fully intelligible.",
+            "judged_mix_sha256": "da3b9bbc0d45721005aa9f63f95d31917a3fa01c319e3d371bf27b09660081e1"
+          },
+          "S20": {
+            "transcript": "Dogs are sitting by the door.",
+            "seam_quality": 1,
+            "naturalness": 1,
+            "intelligibility": 1,
+            "evidence": "The utterance begins cleanly with a fully formed /d/ in 'Dogs' and ends with a complete /ɔːr/ in 'door', showing no truncated consonants or abrupt cuts. Word transitions are smooth (e.g., 'sitting by' connects naturally without glottal breaks or digital clicks). Prosody features appropriate stress on 'sitting' and 'door' with a slight rising-falling contour typical of spontaneous speech, and the vocal quality includes natural breath support and subtle tension consistent with acted urgency rather than synthetic stretching. All six expected words are distinctly audible in correct order with no masking, omission, or distortion.",
+            "judged_mix_sha256": "da3b9bbc0d45721005aa9f63f95d31917a3fa01c319e3d371bf27b09660081e1"
+          },
+          "S21": {
+            "transcript": "Kids are talking by the door.",
+            "seam_quality": 1,
+            "naturalness": 1,
+            "intelligibility": 1,
+            "evidence": "The audio contains a single, continuous utterance of the expected sentence. The speech is clear, with natural prosody and no audible clicks, cuts, or truncations.",
+            "judged_mix_sha256": "da3b9bbc0d45721005aa9f63f95d31917a3fa01c319e3d371bf27b09660081e1"
+          },
+          "S22": {
+            "transcript": "Kids are talking by the door?",
+            "seam_quality": 1,
+            "naturalness": 1,
+            "intelligibility": 1,
+            "evidence": "The full phrase 'Kids are talking by the door' is audible in correct order. Onset consonants (/k/ in 'Kids', /t/ in 'talking', /d/ in 'door') are clean with no truncation. No click, cut, or splice artifact is present between words. Prosody shows a natural rising interrogative contour on 'door?', consistent with a single spontaneous utterance rather than edited concatenation. No stretch or pitch discontinuity detected.",
+            "judged_mix_sha256": "da3b9bbc0d45721005aa9f63f95d31917a3fa01c319e3d371bf27b09660081e1"
+          },
+          "S23": {
+            "transcript": "Kids are talking by the door.",
+            "seam_quality": 1,
+            "naturalness": 1,
+            "intelligibility": 1,
+            "evidence": "The audible words are, in order: 'Kids', 'are', 'talking', 'by', 'the', 'door'. No click, cut, truncated consonant, stutter, or material stretch damage is audible, and the phrase sounds naturally continuous.",
+            "judged_mix_sha256": "da3b9bbc0d45721005aa9f63f95d31917a3fa01c319e3d371bf27b09660081e1"
+          },
+          "S24": {
+            "transcript": "Dogs are sitting by the",
+            "seam_quality": 0.5,
+            "naturalness": 0.5,
+            "intelligibility": 0.5,
+            "evidence": "The speaker clearly says 'Dogs are sitting by the' with natural prosody and pitch. However, the clip ends with an abrupt hard cut immediately after 'the' — the final word 'door' from the expected sentence is entirely missing/truncated. This is one localized editing defect (abrupt truncation at the end). The spoken portion before the cut sounds natural with no stretch artifacts, but the missing final word reduces intelligibility (one word absent) and constitutes a seam/truncation defect.",
+            "judged_mix_sha256": "da3b9bbc0d45721005aa9f63f95d31917a3fa01c319e3d371bf27b09660081e1"
+          }
+        }
+      },
+      "human_review": {
+        "accepted": null,
+        "corrected_score": null,
+        "notes": ""
+      },
+      "score_unrounded": 6.388888888888889
+    },
+    {
+      "id": "Q02",
+      "category": "quality",
+      "weight": 3.3333333333333335,
+      "rule": "等分三项：-20±3 LUFS、真峰值≤-1dBTP、无数字削波；单项满分10/3。",
+      "score": 2.222222,
+      "pending": false,
+      "evidence": {
+        "integrated_lufs": -25.26,
+        "true_peak_dbtp": -3.49,
+        "checks": [
+          false,
+          true,
+          true
+        ],
+        "prior_checks_from_mono_peak": [
+          false,
+          true,
+          true
+        ],
+        "native_channel_sample_peak": 0.6653842926025391,
+        "clipping_measurement": "original channel PCM at native sample rate, no downmix or resampling"
+      },
+      "human_review": {
+        "accepted": null,
+        "corrected_score": null,
+        "notes": ""
+      },
+      "score_unrounded": 2.222222222222222
+    }
+  ],
+  "rubric_count": 20,
+  "delivery_stage": "v2",
+  "judge": "qwen3.8-omni-flash",
+  "status": "provisional_automatic_pending_human_audio_and_lip_sync_review",
+  "sync_method": "MFCC-DTW acoustic landmarks against original AV take plus onset/end; not human-verified lip landmarks",
+  "uncertain_rubrics": [],
+  "fixed_revision_scored": false,
+  "fixed_revision_task_retained_for_comparability": true,
+  "reweighting_only_no_new_generation_or_judge": true,
+  "clipping_bugfix": "native per-channel PCM instead of peak after equal-power mono downmix",
+  "evidence_score_sha256": "634f773bbb09b291c8308a02f7a9c2f7331c7bf5a395a7e8512c05cd1e4aabf3",
+  "at": "2026-11-13T06:03:01.866341+00:00"
+}

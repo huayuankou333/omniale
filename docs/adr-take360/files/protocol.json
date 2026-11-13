@@ -1,0 +1,48 @@
+{
+  "version": "take360-gated-v4-20261113",
+  "weights": {
+    "identity_content_performance": 60,
+    "audiovisual_sync": 30,
+    "quality": 10
+  },
+  "rubric_count": 20,
+  "engineering_additive_points": 0,
+  "engineering_gates": [
+    {
+      "id": "G00",
+      "name": "成片可解码并含实际音轨",
+      "cap_on_failure": 0
+    },
+    {
+      "id": "G01",
+      "name": "可追溯来源日志与成片音轨一致",
+      "cap_on_failure": 50
+    },
+    {
+      "id": "G02",
+      "name": "REAPER 工程可重放且与混音一致",
+      "cap_on_failure": 60
+    },
+    {
+      "id": "G03",
+      "name": "Shotcut 工程与锁画规格完整",
+      "cap_on_failure": 75
+    },
+    {
+      "id": "G04",
+      "name": "八条角色分轨完整、隔离且可求和",
+      "cap_on_failure": 85
+    }
+  ],
+  "formula": "min(sum(C12+T6+Q2), lowest failed engineering cap or 100)",
+  "quality_ratio": "2:1 unchanged; Q01=20/3, Q02=10/3",
+  "fixed_revision_dimension_deleted": true,
+  "fixed_revision_task_retained_for_delivery_comparability": true,
+  "development_set_reweighting": true,
+  "sol_historical_delivery_seen_before_design": true,
+  "terra_deepseek_frozen_before_generation": true,
+  "no_new_sol_generation_or_judge_calls": true,
+  "sync": "MFCC-DTW acoustic proxy, human lip verification pending",
+  "input_files_unchanged": true,
+  "no_model_score_target": true
+}
