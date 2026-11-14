@@ -1,0 +1,57 @@
+{
+  "version": "2.0",
+  "date": "2026-11-14",
+  "scope": "Post-hoc revised evaluation of unchanged v1 submissions; exploratory regrade, not an unseen preregistered model run.",
+  "voice": {
+    "weights": {
+      "target_identity": 30,
+      "naturalness": 25,
+      "artifact_freedom": 15,
+      "content_preservation": 10,
+      "worst_chunk_target_identity": 5,
+      "spectral_target_progress": 10,
+      "performance_preservation": 5
+    },
+    "speech_singing_weight": [
+      0.5,
+      0.5
+    ],
+    "identity": "OpenVoice V2 tone-color encoder. Public 01/09/13 source and target prototypes. 8s chunks, 4s hops. Margin=cos(target)-cos(source). Zero=P95 authentic heldout source margins; full=P05 authentic heldout target margins; clip linear 0..1. Query identity=median chunk progress; worst chunk=P20.",
+    "identity_validation": "Require heldout target P05 minus source P95 >0.03 in each mode. This is a dataset-specific tone-color proxy, not human-validated speaker verification.",
+    "no_change": "After polarity/global gain and at most 20ms delay compensation: abs waveform correlation>=0.995 AND >=80% active 0.5s blocks have residual <=-30dB. Such a query scores 0. Silence/missing audio also scores 0. Active threshold=guide peak block RMS -40dB.",
+    "spectral_progress": "For spectral/vowel/consonant errors from frozen v1 measures, weights .6/.25/.15; progress=clip((unchanged_source_error-candidate_error)/(unchanged_source_error-v1_full_threshold),0,1). Omit non-discriminating metrics with baseline-full<=0.1; renormalize remaining weights.",
+    "performance": "3*clip((2-pitch_error)/(2-.25),0,1) + 1*clip((.5-vibrato_error)/(.5-.05),0,1) + 1*clip((guide_envelope_correlation-.5)/.45,0,1). Pitch/voicing and vibrato definitions retained from v1.",
+    "judge": "Qwen native audio receives separate reference/guide/candidate files, blinded to condition, model and previous score. Naturalness/artifact/content integer 0..4 anchors in prompt; points=weight*rating/4. Qwen identity judgments are diagnostic ONLY because identity calibration failed.",
+    "repeats": "Two file orders; if any scored rating differs by >1, request a third order. Average two when consistent, otherwise median of three. Retain all raw judgments. Full query audio, no candidate-based excerpt selection.",
+    "caps": {
+      "identity_progress<.25": 19,
+      "identity_progress<.5": 59,
+      "naturalness<1.5": 39,
+      "naturalness<3": 59,
+      "content<1.5": 29,
+      "content<2.5": 59
+    },
+    "aggregation": "Apply caps and no-change penalty per query; average queries within each mode, then modes equally. Also apply the same caps to each mode mean of identity/naturalness/content, so one failed mode cannot be hidden by the other.",
+    "acceptance": "Sound>=80 and existing engineering pass; engineering contributes 0 points."
+  },
+  "synth": {
+    "objective_weight": 70,
+    "judge_weights": {
+      "timbre_match": 20,
+      "temporal_match": 7,
+      "artifact_freedom": 3
+    },
+    "objective": "Retain the 12 declared behavioral probe groups, using baseline-relative gain instead of old preset zero thresholds. For each asset/rubric: progress=clip((native_init_error-candidate_error)/(native_init_error-v1_full_threshold),0,1). Rubrics with baseline-full<0.5dB are non-discriminating and omitted; remaining original weights renormalize to 70. Native Init uses original hidden MIDI, default instrument, no adaptation.",
+    "judge": "All 24 full query pairs against independent native target renders, two file orders; third presentation on scored rating disagreement >1. Native Qwen assesses timbre, temporal behavior, unwanted artifacts; mono judge never scores stereo.",
+    "judge_mapping": "Match ratings 0/1 ->0, 2->.25, 3->.65, 4->1 (linear interpolation between anchors); artifact_freedom=rating/4.",
+    "caps": {
+      "mean_timbre_rating<2": 39,
+      "mean_timbre_rating<3": 69,
+      "mean_artifact_rating<1.5": 39
+    },
+    "aggregation": "Per-asset objective+judge, apply per-asset caps; A/B/C equal. Engineering contributes 0.",
+    "acceptance": "Sound>=80, each asset>=65, existing engineering pass. Missing executable instruments or input-audio replay engines are invalid submissions, not playable reconstructions."
+  },
+  "integrity": "Freeze protocol, v2 scripts, calibration and pre-existing rendered-query hashes BEFORE grading existing Sol outputs with v2. Retain original v1 files and scores. All media work and API requests inside remote Docker. Local receives reports/unchanged deliverables only.",
+  "judge_limitations": "One model family, two orders, limited controlled validation; not expert listening/MOS. Algorithmic identity is dataset-specific; constructed WORLD spectrum contributes only 10 voice points. Results remain subject to user review."
+}

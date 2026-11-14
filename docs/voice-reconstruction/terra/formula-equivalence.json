@@ -1,0 +1,12 @@
+{
+  "frozen_function_sha256": "d228075fbfe51a67634c03a94eefcd1c6c84efa26804113592ba532d1f123dd7",
+  "adapted_function_sha256": "53550c93084672db87c902cfbebab30917036f4c119ddd63d820d6586d0735db",
+  "reversible_path_metadata_transform_only": true,
+  "replacements": {
+    "v1=read(ROOT/'reports/voice/evaluation.json')": "v1=prepared_v1",
+    "grading/sol-v1/outputs": "grading/terra-v2/outputs",
+    "OUT/'voice-judgments'": "adapter_output/'judge'",
+    "write(OUT/'voice-evaluation-v2.json',result)": "write(adapter_output/'evaluation.json',result)",
+    "'model':'gpt-6.1-sol'": "'model':adapter_model"
+  }
+}

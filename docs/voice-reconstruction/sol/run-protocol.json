@@ -1,0 +1,139 @@
+{
+  "version": "audio-pair-voice-v1",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "limits": {
+    "active_seconds": 10800,
+    "successful_api_calls": 180,
+    "output_tokens": 196608,
+    "per_response_output_tokens": 8192,
+    "shell_timeout_max_seconds": 600,
+    "tool_text_characters": 24000,
+    "max_images_per_action": 8
+  },
+  "config_sha256": "7c1ed7b7de2322bcc1d1849244fc67465d558d637ecaedf2672dfb8fd9480dcb",
+  "runner_sha256": "bc967ac0a966026c02c660f1f671fde2551f735b2f3e26466add25305c3128b1",
+  "container": "omni-proc-ed456eef069536f1",
+  "image": "sha256:3cc36458e10a940aadf3cbccc65765b02b4c6698069ef72542c3baa55fd0e7d1",
+  "native_audio_input": false,
+  "container_paused_during_api": true,
+  "instructions": "You are the agent under evaluation. Complete the task by saving deliverables in /workspace/submission.\nRead /workspace/task/TASK.zh-CN.md and TOOLS.md first. Task materials are read-only. /workspace is writable.\nUse run_shell for bash and view_images for genuine image observations. Use finish after checking deliverables.\nThis endpoint has no native audio input. You may use local audio analysis, synthesis, plots, programming, optimization and installed pretrained models. Describe the evidence accurately; do not claim direct listening.\nNetwork is disabled. No hidden answers or external assistant models are available. Neutral helpers are under /opt/case-tools. If provided, /opt/models contains generic models only.\nThe container pauses during API calls. Interface failures do not consume the work budget. Budget usage is reported after each response.\n\nWork budget: {\"active_seconds\": 10800, \"successful_api_calls\": 180, \"output_tokens\": 196608, \"per_response_output_tokens\": 8192, \"shell_timeout_max_seconds\": 600, \"tool_text_characters\": 24000, \"max_images_per_action\": 8}",
+  "tools": [
+    {
+      "type": "function",
+      "name": "run_shell",
+      "description": "Execute bash in /workspace. Save long results in files.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "command": {
+            "type": "string"
+          },
+          "timeout": {
+            "type": "integer"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "command",
+          "timeout",
+          "reason"
+        ],
+        "additionalProperties": false
+      },
+      "strict": true
+    },
+    {
+      "type": "function",
+      "name": "view_images",
+      "description": "Observe up to 8 actual image files from your workspace or task materials.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "paths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "paths",
+          "reason"
+        ],
+        "additionalProperties": false
+      },
+      "strict": true
+    },
+    {
+      "type": "function",
+      "name": "finish",
+      "description": "Finish after saving and checking the required deliverables.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "summary": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "summary"
+        ],
+        "additionalProperties": false
+      },
+      "strict": true
+    }
+  ],
+  "case_tools_manifest": [
+    {
+      "path": "__pycache__/openvoice_runtime.cpython-310.pyc",
+      "bytes": 3902,
+      "sha256": "7cd2e1179220f24e8d9fb93b57e39647998d853769a5c9fb62bce536ca8803e6"
+    },
+    {
+      "path": "__pycache__/reaper_audio_project.cpython-310.pyc",
+      "bytes": 3716,
+      "sha256": "3e45b74bf00a98e9fa480b1d45c0010a3373f853531b77fefd0b1ee87b72f9d5"
+    },
+    {
+      "path": "__pycache__/reaper_project.cpython-310.pyc",
+      "bytes": 5538,
+      "sha256": "0e4eb2049eeae3eb3d754f47eb5013fbd5f88aafe8094a0412d58c82c9c5d943"
+    },
+    {
+      "path": "__pycache__/surge_tools.cpython-310.pyc",
+      "bytes": 5361,
+      "sha256": "e8f648c2c960c711e8b7494f7023cf67fe10f79cc8fc0d145cdf3a79425671d6"
+    },
+    {
+      "path": "openvoice_runtime.py",
+      "bytes": 3225,
+      "sha256": "7305ea5cd74256641c8405c4157d605e0c5e3846c89b41b559299925a77af6a3"
+    },
+    {
+      "path": "reaper_audio_project.py",
+      "bytes": 3420,
+      "sha256": "31146d9bfa84cee07d7586859a4946f68772aa2914a011b10d70d367df64d33e"
+    },
+    {
+      "path": "reaper_project.py",
+      "bytes": 5181,
+      "sha256": "602eb3e8c4c49efc904094ffb901d4b77c3e899879218f78775f94463d5afe87"
+    },
+    {
+      "path": "surge_tools.py",
+      "bytes": 3957,
+      "sha256": "5f055070a22df79502baf535a9e5948d387c153e786ad02f634e3b594d6aa30d"
+    },
+    {
+      "path": "world_tools.py",
+      "bytes": 1356,
+      "sha256": "00aae4944b06851c5183030ae98661f3d452c802f970251a08e7080aee7ca10f"
+    }
+  ]
+}
