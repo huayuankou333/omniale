@@ -1,0 +1,25 @@
+.subckt dut iref inp inn out
+R0 iref vnc 1
+Rn vnc vnb 13k
+XNR3 vnb vnc nr1 0 sky130_fd_pr__nfet_01v8_lvt W=20 L=0.5 nf=1 m=1
+XNR1 nr1 vnb 0 0 sky130_fd_pr__nfet_01v8_lvt W=40 L=2 nf=1 m=1
+XNS1 vpc vnb 0 0 sky130_fd_pr__nfet_01v8_lvt W=10 L=2 nf=1 m=1
+Rp vpb vpc 34k
+XPR3 vpb vpc pr1 vdd sky130_fd_pr__pfet_01v8_lvt W=20 L=0.5 nf=1 m=1
+XPR1 pr1 vpb vdd vdd sky130_fd_pr__pfet_01v8_lvt W=20 L=2 nf=1 m=1
+XNT tail vnb 0 0 sky130_fd_pr__nfet_01v8_lvt W=90 L=2 nf=1 m=1
+XNI1 fa inp tail 0 sky130_fd_pr__nfet_01v8_lvt W=40 L=0.5 nf=1 m=1
+XNI2 fb inn tail 0 sky130_fd_pr__nfet_01v8_lvt W=40 L=0.5 nf=1 m=1
+XPS1 fa vpb vdd vdd sky130_fd_pr__pfet_01v8_lvt W=20 L=2 nf=1 m=6
+XPS2 fb vpb vdd vdd sky130_fd_pr__pfet_01v8_lvt W=20 L=2 nf=1 m=6
+XPC1 o1 vpc fa vdd sky130_fd_pr__pfet_01v8_lvt W=24.5 L=0.35 nf=1 m=1
+XPC2 d1 vpc fb vdd sky130_fd_pr__pfet_01v8_lvt W=24.5 L=0.35 nf=1 m=1
+XNL3 d1 vnc nl1 0 sky130_fd_pr__nfet_01v8_lvt W=20 L=0.5 nf=1 m=1
+XNL1 nl1 d1 0 0 sky130_fd_pr__nfet_01v8_lvt W=10 L=0.5 nf=1 m=1
+XNL4 o1 vnc nl2 0 sky130_fd_pr__nfet_01v8_lvt W=20 L=0.5 nf=1 m=1
+XNL2 nl2 d1 0 0 sky130_fd_pr__nfet_01v8_lvt W=10 L=0.5 nf=1 m=1
+XN6 out o1 0 0 sky130_fd_pr__nfet_01v8_lvt W=40 L=0.36 nf=1 m=1
+XP7 out vpb vdd vdd sky130_fd_pr__pfet_01v8_lvt W=20 L=2 nf=1 m=27
+Rz o1 cz 1.75k
+Cc cz out 850f
+.ends dut

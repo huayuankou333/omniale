@@ -1,0 +1,29 @@
+* A2 fixed sensor application: tracking, gain 4
+.lib /opt/sky130/continuous/sky130.lib.spice tt
+.include /app/circuit.spi
+.global vdd
+.options method=gear maxord=2 reltol=1e-4 gmin=1e-12 vntol=1e-7 abstol=1e-13
+.temp 27
+VSUP vdd 0 1.2
+IREF vdd iref 20u
+VREF ref 0 0.75
+VIN sensor 0 dc 0.625 PULSE(0.625 0.825 200n 1n 1n 300n 600n)
+Rs sensor inpraw 10k
+VPIN inpraw inp 0
+VNIN innraw inn 0
+XDUT iref inp inn out dut
+Rcable out sensed 20
+CL sensed 0 6p
+RL sensed ref 50k
+Rf sensed innraw 30k
+Rg innraw ref 10k
+.control
+set wr_singlescale
+set wr_vecnames
+option numdgt=15
+tran 100p 1.4u 0 100p
+wrdata wave.txt v(sensor) v(inp) v(sensed) v(out) i(VSUP) i(VPIN) i(VNIN)
+dc VIN 0.625 0.825 0.004999999999999999
+wrdata dc.txt v(sensor) v(inp) v(sensed) i(VSUP) i(VREF) i(VIN) i(VPIN) i(VNIN)
+.endc
+.end

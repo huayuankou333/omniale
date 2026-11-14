@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "checks": {
+    "a1_preserved": true,
+    "model_trace_audit": true,
+    "final_simulation_complete": true,
+    "final_circuit_hash": true,
+    "runtime_fix_tested": true,
+    "runtime_archive_hash": true,
+    "A2_case.zip_sealed_files": true,
+    "A2_case.zip_zip_integrity": true,
+    "A2_case_runtime_v1_1.zip_sealed_files": true,
+    "A2_case_runtime_v1_1.zip_zip_integrity": true,
+    "evidence_zip_integrity": true,
+    "evidence_contains_both_audits": true,
+    "evidence_result_matches": true,
+    "evidence_circuit_matches": true,
+    "runtime_changes_only_two_tool_files": true,
+    "delivered_task_and_contract_match_frozen": true
+  },
+  "archives": {
+    "A2_case.zip": {
+      "sealed_files": 184,
+      "mismatches": [],
+      "sha256": "a1be9936bac33d79ef41113f8c7b55339d50fd863e98b19c390dea228f004cc1"
+    },
+    "A2_case_runtime_v1_1.zip": {
+      "sealed_files": 186,
+      "mismatches": [],
+      "sha256": "665822dc13460c39230fe27c6885d8ca75715b05f49adde8d0f9dee0df61a242"
+    }
+  },
+  "runtime_changed_files": [
+    "check_gateway.py",
+    "run_agent.py"
+  ],
+  "known_auxiliary_issue": "Frozen v1 had a missing direct policy-check path; corrected runtime v1.1 was gateway-tested but not separately tested with Sol.",
+  "preserved_a1_files": 25
+}

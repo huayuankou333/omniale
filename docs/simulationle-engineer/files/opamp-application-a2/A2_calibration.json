@@ -1,0 +1,52 @@
+{
+  "ready": true,
+  "reference_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+  "reference_evidence": "validation/reference_full/result.json",
+  "original_pass": true,
+  "original_checks_passed": 8,
+  "application_groups_passed": 5,
+  "application_cases_passed": 63,
+  "reference_native_invocations": 65,
+  "negative_controls": [
+    {
+      "name": "original_golden",
+      "original_outcome": "P",
+      "targeted_application_checks": [
+        {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": false
+        }
+      ]
+    },
+    {
+      "name": "nominal_only",
+      "original_outcome": "P",
+      "targeted_application_checks": [
+        {
+          "application_range_and_loading": false,
+          "application_power": false,
+          "application_tracking": false,
+          "application_stability": true
+        }
+      ]
+    },
+    {
+      "name": "naive_migration",
+      "original_outcome": "F",
+      "targeted_application_checks": [
+        {
+          "application_range_and_loading": false,
+          "application_power": true,
+          "application_tracking": false,
+          "application_stability": false
+        }
+      ]
+    }
+  ],
+  "negative_control_scope": "Original signoff plus declared targeted new-application tests; not full-matrix scores",
+  "numerics_converged": true,
+  "original_source_matches_pinned_image": true,
+  "sol_trials_started": 0
+}

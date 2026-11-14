@@ -1,0 +1,33 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>A2 · 应用级运放迁移</title>
+<style>body{max-width:960px;margin:48px auto;padding:0 24px;font:17px/1.7 system-ui;color:#20332e;background:#f6f7f2}h1{font-size:38px;line-height:1.25}a{color:#216457}table{border-collapse:collapse;width:100%}td,th{padding:12px;text-align:left;border-bottom:1px solid #ccd6cd}.result{padding:24px;background:#e4ede1;border-radius:16px}small{color:#59665c}</style>
+<a href="../../">← SimulationLE 案例档案</a><p>D2 · 工程改编 · 冻结 v1</p><h1>迁移运放，也保持应用功能。</h1>
+<p>保留原题八项开环与瞬态要求，以同一电路完成增益 1/4 的传感器接口、PVT 和负载变化，以及过载恢复。</p>
+<div class="result"><strong>GPT-6.1-Sol · 20 / 100 · FullPass 0</strong><p>原题 8/8；新增语义要求 1/5 组。一次独立试验，44 次回复、157 次开发批处理、65 次最终验收。</p></div>
+<table><tr><th>新增要求组</th><th>通过工况</th><th>整组结果</th></tr><tr><td>范围与加载精度</td><td>9/54</td><td>未通过</td></tr><tr><td>应用功耗</td><td>54/54</td><td>通过</td></tr><tr><td>跟踪与建立</td><td>11/54</td><td>未通过</td></tr><tr><td>过冲与纹波</td><td>38/54</td><td>未通过</td></tr><tr><td>过载恢复</td><td>1/9</td><td>未通过</td></tr></table>
+<h2>版本与审计边界</h2><p>20 分属于实际测试的 frozen v1。v1 的 TASK 复制曾规范换行，且直接 policy helper 未挂载；已核实题面文本与终态一致，全部开发批处理通过自动 policy 检查，最终验收完整完成。初始失败审计与后续核查均保存。</p><p>runtime v1.1 修复以上辅助接口，单独通过网关验证；没有再跑 Sol。电气合同和评分不变。两套研究者包都包含参考答案，不得整体暴露给被测模型。</p>
+<h2>题目、源代码与证据</h2><p><a href="https://github.com/huayuankou333/omniale/tree/main/cases/D2/circuit_opamp_application_porting_a2">浏览两版源码与来源说明</a></p><ul><li><a href="../../files/opamp-application-a2/A2_calibration.json">A2_calibration.json</a></li>
+<li><a href="../../files/opamp-application-a2/A2_case.zip">A2_case.zip</a></li>
+<li><a href="../../files/opamp-application-a2/A2_case_runtime_v1_1.zip">A2_case_runtime_v1_1.zip</a></li>
+<li><a href="../../files/opamp-application-a2/A2_compute_inventory.json">A2_compute_inventory.json</a></li>
+<li><a href="../../files/opamp-application-a2/A2_contract.json">A2_contract.json</a></li>
+<li><a href="../../files/opamp-application-a2/A2_delivery_verification.json">A2_delivery_verification.json</a></li>
+<li><a href="../../files/opamp-application-a2/A2_gateway_checks.json">A2_gateway_checks.json</a></li>
+<li><a href="../../files/opamp-application-a2/A2_negative_controls.json">A2_negative_controls.json</a></li>
+<li><a href="../../files/opamp-application-a2/A2_numerics.json">A2_numerics.json</a></li>
+<li><a href="../../files/opamp-application-a2/A2_original_integrity.json">A2_original_integrity.json</a></li>
+<li><a href="../../files/opamp-application-a2/A2_original_profile_integrity.json">A2_original_profile_integrity.json</a></li>
+<li><a href="../../files/opamp-application-a2/A2_publication_scan.json">A2_publication_scan.json</a></li>
+<li><a href="../../files/opamp-application-a2/A2_reference.spi">A2_reference.spi</a></li>
+<li><a href="../../files/opamp-application-a2/A2_reference_result.json">A2_reference_result.json</a></li>
+<li><a href="../../files/opamp-application-a2/A2_runtime_fix_verification.json">A2_runtime_fix_verification.json</a></li>
+<li><a href="../../files/opamp-application-a2/A2_seal.json">A2_seal.json</a></li>
+<li><a href="../../files/opamp-application-a2/A2_Sol_circuit.spi">A2_Sol_circuit.spi</a></li>
+<li><a href="../../files/opamp-application-a2/A2_Sol_evidence.zip">A2_Sol_evidence.zip</a></li>
+<li><a href="../../files/opamp-application-a2/A2_Sol_manifest.json">A2_Sol_manifest.json</a></li>
+<li><a href="../../files/opamp-application-a2/A2_Sol_protocol.json">A2_Sol_protocol.json</a></li>
+<li><a href="../../files/opamp-application-a2/A2_Sol_result.json">A2_Sol_result.json</a></li>
+<li><a href="../../files/opamp-application-a2/A2_TASK.md">A2_TASK.md</a></li>
+<li><a href="../../files/opamp-application-a2/A2_trace_audit.json">A2_trace_audit.json</a></li>
+<li><a href="../../files/opamp-application-a2/A2_实测报告_20261114.md">A2_实测报告_20261114.md</a></li>
+<li><a href="../../files/opamp-application-a2/A2_预算说明.md">A2_预算说明.md</a></li>
+<li><a href="../../files/opamp-application-a2/A2_题目说明.md">A2_题目说明.md</a></li></ul><p><small>预算：2 小时、48 回复、120 工具、160 原生批处理；无三候选上限。参考解通过原题及全部新增工况。详细报告含全部限制与实际消耗。</small></p></html>

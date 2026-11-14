@@ -1,0 +1,145 @@
+{
+  "passed": true,
+  "checks": {
+    "sealed_source_unchanged": true,
+    "model_identity_reported_correctly": true,
+    "executed_arguments_match_model_calls": true,
+    "final_is_last_on_disk": true,
+    "native_count_consistent": true,
+    "public_files_unchanged": true,
+    "final_design_recorded": true,
+    "task_first_simulation_snapshot_matches_final": true
+  },
+  "public_file_checks": {
+    "source_tsmc18.spi": true,
+    "ORIGINAL_TASK.md": true,
+    "application_check.py": true,
+    "PORTING_RUNTIME.md": true,
+    "testbench/opamp_loop.spi": true,
+    "testbench/tracking_g4_tt_c6.json": true,
+    "testbench/overload_tt.json": true,
+    "testbench/tracking_g1_tt_c6.json": true,
+    "testbench/tracking_g1_tt_c6.spi": true,
+    "testbench/opamp_tran.spi": true,
+    "testbench/overload_tt.spi": true,
+    "testbench/tracking_g4_tt_c6.spi": true,
+    "TASK.md": true,
+    "contract.json": true
+  },
+  "input_tokens_sum": 2183980,
+  "output_tokens": 28675,
+  "transport_retry_records": 10,
+  "reported_models": [
+    "gpt-6.1-sol"
+  ],
+  "identity_scope": "API reported identity; model weights were not independently inspected",
+  "run": "/home/adminweihunj/SimulationLE/case/D2/circuit_opamp_application_porting_a2/runs_a2/20261114T134431Z",
+  "frozen_sha256": "fb5bf091d0a5e8119117738c906a69362605ea416097c4d512c45d101db83f6a",
+  "task_newline_audit": {
+    "source_bytes_sha256": "167aa6ae5aff7a95e1665912f76563a09a13774a7a2615cbbcff8a94841991b6",
+    "workspace_bytes_sha256": "e1c3e06ba7b8377b4926faa109d88e6135b55188a69922ab444bc4fd77e1504b",
+    "byte_identical": false,
+    "only_CRLF_to_LF_conversion": true,
+    "source_CRLF_count": 53,
+    "workspace_CRLF_count": 0,
+    "first_gateway_snapshot_equals_final": true,
+    "cause": "Sealed runner copies TASK.md with read_text/write_text, which normalizes CRLF before mounting it read-only. Task text is unchanged."
+  },
+  "native_exit_code_counts": {
+    "0": 154,
+    "1": 3
+  },
+  "automatic_policy_checks_passed": 157,
+  "failed_provider_events": [
+    {
+      "trace": "turn_033/events_attempt_0.jsonl",
+      "error": {
+        "code": "gateway_concurrency_limit",
+        "message": "Concurrency limit exceeded for account, please retry later"
+      },
+      "usage": null
+    },
+    {
+      "trace": "turn_012/events_attempt_0.jsonl",
+      "error": {
+        "code": "gateway_concurrency_limit",
+        "message": "Concurrency limit exceeded for account, please retry later"
+      },
+      "usage": null
+    },
+    {
+      "trace": "turn_015/events_attempt_1.jsonl",
+      "error": {
+        "code": "gateway_concurrency_limit",
+        "message": "Concurrency limit exceeded for account, please retry later"
+      },
+      "usage": null
+    },
+    {
+      "trace": "turn_015/events_attempt_0.jsonl",
+      "error": {
+        "code": "gateway_concurrency_limit",
+        "message": "Concurrency limit exceeded for account, please retry later"
+      },
+      "usage": null
+    },
+    {
+      "trace": "turn_007/events_attempt_0.jsonl",
+      "error": {
+        "code": "gateway_concurrency_limit",
+        "message": "Concurrency limit exceeded for user, please retry later"
+      },
+      "usage": null
+    },
+    {
+      "trace": "turn_008/events_attempt_1.jsonl",
+      "error": {
+        "code": "gateway_concurrency_limit",
+        "message": "Concurrency limit exceeded for user, please retry later"
+      },
+      "usage": null
+    },
+    {
+      "trace": "turn_008/events_attempt_0.jsonl",
+      "error": {
+        "code": "gateway_concurrency_limit",
+        "message": "Concurrency limit exceeded for user, please retry later"
+      },
+      "usage": null
+    },
+    {
+      "trace": "turn_002/events_attempt_1.jsonl",
+      "error": {
+        "code": "gateway_concurrency_limit",
+        "message": "Concurrency limit exceeded for user, please retry later"
+      },
+      "usage": null
+    },
+    {
+      "trace": "turn_002/events_attempt_0.jsonl",
+      "error": {
+        "code": "gateway_concurrency_limit",
+        "message": "Concurrency limit exceeded for user, please retry later"
+      },
+      "usage": null
+    },
+    {
+      "trace": "turn_010/events_attempt_0.jsonl",
+      "error": {
+        "code": "gateway_concurrency_limit",
+        "message": "Concurrency limit exceeded for account, please retry later"
+      },
+      "usage": null
+    }
+  ],
+  "known_auxiliary_tool_issue": {
+    "turn": 41,
+    "command": "python3 /opt/simulationle-policy/check.py /app/circuit.spi",
+    "issue": "Documented direct helper path was not mounted in agent container. Agent observed missing file and continued.",
+    "automatic_gateway_policy_checks_passed": 157,
+    "final_policy_valid": true,
+    "final_simulations_complete": true,
+    "repair": "Separate runtime v1.1 adds a read-only policy mount; frozen v1 and its results remain unchanged.",
+    "scope": "This limits claims about a flawless public tool interface. All submitted native batches passed automatic policy validation; final electrical failures are measured on a valid circuit."
+  }
+}

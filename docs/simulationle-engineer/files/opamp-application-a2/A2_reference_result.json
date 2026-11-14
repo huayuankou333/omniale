@@ -1,0 +1,3999 @@
+{
+  "reward": {
+    "reward": 1,
+    "spec_score": 100.0
+  },
+  "summary": {
+    "contract_version": "a2-opamp-application-porting-v1",
+    "valid_submission": true,
+    "full_pass": true,
+    "spec_score": 100.0,
+    "original_outcome": "P",
+    "original_pass": true,
+    "original_passed": 8,
+    "original_total": 8,
+    "added_checks": {
+      "application_range_and_loading": {
+        "pass": true
+      },
+      "application_power": {
+        "pass": true
+      },
+      "application_tracking": {
+        "pass": true
+      },
+      "application_stability": {
+        "pass": true
+      },
+      "overload_recovery": {
+        "pass": true
+      }
+    },
+    "added_passed": 5,
+    "added_total": 5,
+    "original": {
+      "reward": {
+        "outcome": "P",
+        "tests_passed": 8,
+        "tests_total": 8,
+        "official_pass": true,
+        "qualification": "Original P/F/D/I outcome; no percentage score is defined."
+      },
+      "summary": {
+        "task": "T3__opamp_2stg__hard_1_gain_ugf",
+        "tier": "T3",
+        "infeasible_flag": false,
+        "metrics": {
+          "dc_gain_dB": 83.22,
+          "ugf_Hz": 94793895.46439089,
+          "pm_deg": 80.1,
+          "gm_dB": 11.5,
+          "power_uW": 273.11,
+          "input_current_uA": 0.0,
+          "rise_settle_ns": 10.58,
+          "rise_overshoot_pct": 0.99,
+          "rise_slew_V_per_us": 20.5,
+          "fall_settle_ns": 12.94,
+          "fall_overshoot_pct": 7.38,
+          "fall_slew_V_per_us": 21.9,
+          "n_triode": 0
+        },
+        "failed_limits": [],
+        "outcome": "P",
+        "why": [],
+        "evaluation": {
+          "circuit": "opamp_2stg",
+          "netlist": "/logs/verifier/native/score_answer/T3__opamp_2stg__hard_1_gain_ugf/netlist.sp",
+          "tech": "sky130_lvt",
+          "vdd": 1.2,
+          "corner": "tt",
+          "metrics": {
+            "dc_gain_dB": 83.22,
+            "ugf_Hz": 94793895.46439089,
+            "pm_deg": 80.1,
+            "gm_dB": 11.5,
+            "power_uW": 273.11,
+            "input_current_uA": 0.0,
+            "rise_settle_ns": 10.58,
+            "rise_overshoot_pct": 0.99,
+            "rise_slew_V_per_us": 20.5,
+            "fall_settle_ns": 12.94,
+            "fall_overshoot_pct": 7.38,
+            "fall_slew_V_per_us": 21.9,
+            "n_triode": 0
+          },
+          "errors": [],
+          "warnings": [],
+          "headroom": {
+            "n_triode": 0,
+            "min_sat_margin_V": 0.12,
+            "triode_devices": [],
+            "devices": [
+              {
+                "device": "m.xdut.xnr3.msky130_fd_pr__nfet_01v8_lvt",
+                "type": "n",
+                "drain": "xdut.vnb",
+                "id_uA": 20.0,
+                "vgs_V": 0.572,
+                "vds_V": 0.312,
+                "vdsat_V": 0.075,
+                "margin_V": 0.238
+              },
+              {
+                "device": "m.xdut.xnr1.msky130_fd_pr__nfet_01v8_lvt",
+                "type": "n",
+                "drain": "xdut.nr1",
+                "id_uA": 20.0,
+                "vgs_V": 0.52,
+                "vds_V": 0.207,
+                "vdsat_V": 0.087,
+                "margin_V": 0.12
+              },
+              {
+                "device": "m.xdut.xns1.msky130_fd_pr__nfet_01v8_lvt",
+                "type": "n",
+                "drain": "xdut.vpc",
+                "id_uA": 5.15,
+                "vgs_V": 0.52,
+                "vds_V": 0.421,
+                "vdsat_V": 0.087,
+                "margin_V": 0.335
+              },
+              {
+                "device": "m.xdut.xpr3.msky130_fd_pr__pfet_01v8_lvt",
+                "type": "p",
+                "drain": "xdut.vpb",
+                "id_uA": 5.15,
+                "vgs_V": 0.497,
+                "vds_V": 0.322,
+                "vdsat_V": 0.082,
+                "margin_V": 0.24
+              },
+              {
+                "device": "m.xdut.xpr1.msky130_fd_pr__pfet_01v8_lvt",
+                "type": "p",
+                "drain": "xdut.pr1",
+                "id_uA": 5.15,
+                "vgs_V": 0.603,
+                "vds_V": 0.281,
+                "vdsat_V": 0.15,
+                "margin_V": 0.131
+              },
+              {
+                "device": "m.xdut.xnt.msky130_fd_pr__nfet_01v8_lvt",
+                "type": "n",
+                "drain": "xdut.tail",
+                "id_uA": 46.296,
+                "vgs_V": 0.52,
+                "vds_V": 0.337,
+                "vdsat_V": 0.087,
+                "margin_V": 0.25
+              },
+              {
+                "device": "m.xdut.xni1.msky130_fd_pr__nfet_01v8_lvt",
+                "type": "n",
+                "drain": "xdut.fa",
+                "id_uA": 23.133,
+                "vgs_V": 0.563,
+                "vds_V": 0.499,
+                "vdsat_V": 0.064,
+                "margin_V": 0.435
+              },
+              {
+                "device": "m.xdut.xni2.msky130_fd_pr__nfet_01v8_lvt",
+                "type": "n",
+                "drain": "xdut.fb",
+                "id_uA": 23.163,
+                "vgs_V": 0.563,
+                "vds_V": 0.492,
+                "vdsat_V": 0.064,
+                "margin_V": 0.429
+              },
+              {
+                "device": "m.xdut.xps1.msky130_fd_pr__pfet_01v8_lvt",
+                "type": "p",
+                "drain": "xdut.fa",
+                "id_uA": 31.376,
+                "vgs_V": 0.603,
+                "vds_V": 0.364,
+                "vdsat_V": 0.15,
+                "margin_V": 0.214
+              },
+              {
+                "device": "m.xdut.xps2.msky130_fd_pr__pfet_01v8_lvt",
+                "type": "p",
+                "drain": "xdut.fb",
+                "id_uA": 31.403,
+                "vgs_V": 0.603,
+                "vds_V": 0.37,
+                "vdsat_V": 0.15,
+                "margin_V": 0.22
+              },
+              {
+                "device": "m.xdut.xpc1.msky130_fd_pr__pfet_01v8_lvt",
+                "type": "p",
+                "drain": "xdut.o1",
+                "id_uA": 8.243,
+                "vgs_V": 0.414,
+                "vds_V": 0.242,
+                "vdsat_V": 0.079,
+                "margin_V": 0.163
+              },
+              {
+                "device": "m.xdut.xpc2.msky130_fd_pr__pfet_01v8_lvt",
+                "type": "p",
+                "drain": "xdut.d1",
+                "id_uA": 8.239,
+                "vgs_V": 0.408,
+                "vds_V": 0.3,
+                "vdsat_V": 0.076,
+                "margin_V": 0.224
+              },
+              {
+                "device": "m.xdut.xnl3.msky130_fd_pr__nfet_01v8_lvt",
+                "type": "n",
+                "drain": "xdut.d1",
+                "id_uA": 8.239,
+                "vgs_V": 0.537,
+                "vds_V": 0.287,
+                "vdsat_V": 0.06,
+                "margin_V": 0.227
+              },
+              {
+                "device": "m.xdut.xnl1.msky130_fd_pr__nfet_01v8_lvt",
+                "type": "n",
+                "drain": "xdut.nl1",
+                "id_uA": 8.239,
+                "vgs_V": 0.53,
+                "vds_V": 0.243,
+                "vdsat_V": 0.07,
+                "margin_V": 0.173
+              },
+              {
+                "device": "m.xdut.xnl4.msky130_fd_pr__nfet_01v8_lvt",
+                "type": "n",
+                "drain": "xdut.o1",
+                "id_uA": 8.243,
+                "vgs_V": 0.536,
+                "vds_V": 0.35,
+                "vdsat_V": 0.059,
+                "margin_V": 0.291
+              },
+              {
+                "device": "m.xdut.xnl2.msky130_fd_pr__nfet_01v8_lvt",
+                "type": "n",
+                "drain": "xdut.nl2",
+                "id_uA": 8.243,
+                "vgs_V": 0.53,
+                "vds_V": 0.244,
+                "vdsat_V": 0.07,
+                "margin_V": 0.174
+              },
+              {
+                "device": "m.xdut.xn6.msky130_fd_pr__nfet_01v8_lvt",
+                "type": "n",
+                "drain": "nout",
+                "id_uA": 139.663,
+                "vgs_V": 0.594,
+                "vds_V": 0.9,
+                "vdsat_V": 0.092,
+                "margin_V": 0.808
+              },
+              {
+                "device": "m.xdut.xp7.msky130_fd_pr__pfet_01v8_lvt",
+                "type": "p",
+                "drain": "nout",
+                "id_uA": 139.663,
+                "vgs_V": 0.603,
+                "vds_V": 0.3,
+                "vdsat_V": 0.15,
+                "margin_V": 0.15
+              }
+            ]
+          },
+          "spec": "/opt/port-upstream/benchmark/circuits/opamp_2stg/profiles/hard_1_gain_ugf.yaml",
+          "checks": [
+            {
+              "metric": "dc_gain_dB",
+              "value": 83.22,
+              "op": ">=",
+              "limit": 78.4,
+              "source": null,
+              "pass": true
+            },
+            {
+              "metric": "ugf_Hz",
+              "value": 94793895.46439089,
+              "op": ">=",
+              "limit": 89000000.0,
+              "source": null,
+              "pass": true
+            },
+            {
+              "metric": "pm_deg",
+              "value": 80.1,
+              "op": ">=",
+              "limit": 60.0,
+              "source": null,
+              "pass": true
+            },
+            {
+              "metric": "gm_dB",
+              "value": 11.5,
+              "op": ">=",
+              "limit": 10.0,
+              "source": null,
+              "pass": true
+            },
+            {
+              "metric": "power_uW",
+              "value": 273.11,
+              "op": "<=",
+              "limit": 296.4,
+              "source": null,
+              "pass": true
+            },
+            {
+              "metric": "rise_settle_ns",
+              "value": 10.58,
+              "op": "<=",
+              "limit": 12.24,
+              "source": null,
+              "pass": true
+            },
+            {
+              "metric": "fall_settle_ns",
+              "value": 12.94,
+              "op": "<=",
+              "limit": 26.73,
+              "source": null,
+              "pass": true
+            },
+            {
+              "metric": "n_triode",
+              "value": 0,
+              "op": "<=",
+              "limit": 0,
+              "source": null,
+              "pass": true
+            }
+          ],
+          "pass": true,
+          "out_dir": "/logs/verifier/native/eval/opamp_2stg/score_answer/T3__opamp_2stg__hard_1_gain_ugf"
+        },
+        "checks": [
+          {
+            "metric": "dc_gain_dB",
+            "value": 83.22,
+            "op": ">=",
+            "limit": 78.4,
+            "source": null,
+            "pass": true
+          },
+          {
+            "metric": "ugf_Hz",
+            "value": 94793895.46439089,
+            "op": ">=",
+            "limit": 89000000.0,
+            "source": null,
+            "pass": true
+          },
+          {
+            "metric": "pm_deg",
+            "value": 80.1,
+            "op": ">=",
+            "limit": 60.0,
+            "source": null,
+            "pass": true
+          },
+          {
+            "metric": "gm_dB",
+            "value": 11.5,
+            "op": ">=",
+            "limit": 10.0,
+            "source": null,
+            "pass": true
+          },
+          {
+            "metric": "power_uW",
+            "value": 273.11,
+            "op": "<=",
+            "limit": 296.4,
+            "source": null,
+            "pass": true
+          },
+          {
+            "metric": "rise_settle_ns",
+            "value": 10.58,
+            "op": "<=",
+            "limit": 12.24,
+            "source": null,
+            "pass": true
+          },
+          {
+            "metric": "fall_settle_ns",
+            "value": 12.94,
+            "op": "<=",
+            "limit": 26.73,
+            "source": null,
+            "pass": true
+          },
+          {
+            "metric": "n_triode",
+            "value": 0,
+            "op": "<=",
+            "limit": 0,
+            "source": null,
+            "pass": true
+          }
+        ],
+        "limits_passed": 8,
+        "limits_total": 8,
+        "official_pass": true
+      },
+      "exit_code": 0,
+      "wall_seconds": 22.555,
+      "frozen_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7"
+    },
+    "cases": [
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "tt",
+          "temp": -20,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 1
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.445
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0001361243497267628,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002749244529988856,
+          "dc_total_positive_power_max_w": 0.00027567244497048534,
+          "steps": [
+            {
+              "settling_s": 2.215000000000169e-08,
+              "overshoot_fraction": 0.08194425739986631,
+              "late_error_max_v": 0.00013515258336793678,
+              "late_ripple_v": 4.542556397701958e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 1.7750000000001334e-08,
+              "overshoot_fraction": 0.06480025843619137,
+              "late_error_max_v": 0.00013379592608830926,
+              "late_ripple_v": 1.883719868978062e-08,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 2.2150000000001664e-08,
+              "overshoot_fraction": 0.08195870014635026,
+              "late_error_max_v": 0.0001351496183450429,
+              "late_ripple_v": 4.4817004107855496e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 1.7750000000002075e-08,
+              "overshoot_fraction": 0.06479953454441854,
+              "late_error_max_v": 0.00013379585542627748,
+              "late_ripple_v": 1.8855962236052903e-08,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "tt",
+          "temp": -20,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 3
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.853
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0001361243497267628,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002749244529988856,
+          "dc_total_positive_power_max_w": 0.00027567244497048534,
+          "steps": [
+            {
+              "settling_s": 3.185000000000239e-08,
+              "overshoot_fraction": 0.10501292090904,
+              "late_error_max_v": 0.00013515943994701907,
+              "late_ripple_v": 4.6832534961183114e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 2.2150000000001664e-08,
+              "overshoot_fraction": 0.07593309870531527,
+              "late_error_max_v": 0.00013379597683738087,
+              "late_ripple_v": 1.8824241609927128e-08,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 3.185000000000239e-08,
+              "overshoot_fraction": 0.10502589044855347,
+              "late_error_max_v": 0.00013515647706996425,
+              "late_ripple_v": 4.622436500234528e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 2.2150000000001982e-08,
+              "overshoot_fraction": 0.07593355176512975,
+              "late_error_max_v": 0.00013379590585971268,
+              "late_ripple_v": 1.8842567173216196e-08,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "tt",
+          "temp": -20,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.821
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0001361243497267628,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002749244529988856,
+          "dc_total_positive_power_max_w": 0.00027567244497048534,
+          "steps": [
+            {
+              "settling_s": 4.7850000000003595e-08,
+              "overshoot_fraction": 0.16665165972005697,
+              "late_error_max_v": 0.0001351847545580931,
+              "late_ripple_v": 5.20275200699416e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 3.245000000000244e-08,
+              "overshoot_fraction": 0.09087438380996163,
+              "late_error_max_v": 0.0001337972956846345,
+              "late_ripple_v": 1.8482196995073252e-08,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 4.7850000000003595e-08,
+              "overshoot_fraction": 0.16668612777963976,
+              "late_error_max_v": 0.0001351818485810785,
+              "late_ripple_v": 5.143112513650294e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 3.245000000000297e-08,
+              "overshoot_fraction": 0.09087455872946347,
+              "late_error_max_v": 0.00013379722616080336,
+              "late_ripple_v": 1.8500287080058797e-08,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "tt",
+          "temp": -20,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 1
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.832
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0006676313250483235,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002814309438073356,
+          "dc_total_positive_power_max_w": 0.00029828341125011533,
+          "steps": [
+            {
+              "settling_s": 4.3150000000003295e-08,
+              "overshoot_fraction": 0.001064392049982821,
+              "late_error_max_v": 0.0004127134842861757,
+              "late_ripple_v": 9.35754828956803e-07,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 6.005000000000451e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0006659738080898037,
+              "late_ripple_v": 4.3063066090809343e-07,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 4.315000000000324e-08,
+              "overshoot_fraction": 0.0010494037198252595,
+              "late_error_max_v": 0.0004126422403520902,
+              "late_ripple_v": 9.211580238588368e-07,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 6.005000000000504e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0006659721596766754,
+              "late_ripple_v": 4.3105925057185246e-07,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "tt",
+          "temp": -20,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 3
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.63
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0006676313250483235,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002814309438073356,
+          "dc_total_positive_power_max_w": 0.00029828341125011533,
+          "steps": [
+            {
+              "settling_s": 6.475000000000486e-08,
+              "overshoot_fraction": 0.018996351602849074,
+              "late_error_max_v": 0.000412709168839287,
+              "late_ripple_v": 9.34868400026545e-07,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 4.7850000000003595e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0006659635478518111,
+              "late_ripple_v": 4.3329699650485054e-07,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 6.475000000000486e-08,
+              "overshoot_fraction": 0.018991181565230223,
+              "late_error_max_v": 0.00041263747187714195,
+              "late_ripple_v": 9.201795239111021e-07,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 4.785000000000391e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0006659618884434226,
+              "late_ripple_v": 4.337280531951926e-07,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "tt",
+          "temp": -20,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.634
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0006676313250483235,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002814309438073356,
+          "dc_total_positive_power_max_w": 0.00029828341125011533,
+          "steps": [
+            {
+              "settling_s": 6.98500000000053e-08,
+              "overshoot_fraction": 0.06818976780326531,
+              "late_error_max_v": 0.0004125671125900787,
+              "late_ripple_v": 9.057619370089753e-07,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.1050000000003835e-08,
+              "overshoot_fraction": 0.01217474142472787,
+              "late_error_max_v": 0.0006659498123071095,
+              "late_ripple_v": 4.3686572881451724e-07,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 6.985000000000525e-08,
+              "overshoot_fraction": 0.06827604320681886,
+              "late_error_max_v": 0.0004124942401251275,
+              "late_ripple_v": 8.908321649236939e-07,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.105000000000394e-08,
+              "overshoot_fraction": 0.012173734022908996,
+              "late_error_max_v": 0.0006659481259659872,
+              "late_ripple_v": 4.3730431337207776e-07,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "overload",
+          "corner": "tt",
+          "temp": -20,
+          "gain": 4,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.059
+        },
+        "metrics": {
+          "recoveries": [
+            {
+              "settling_s": 8.38500000000064e-08,
+              "overshoot_fraction": 0.01480072542252664,
+              "late_error_max_v": 0.0005429487938409805,
+              "late_ripple_v": 6.597776389227761e-06,
+              "target_v": 0.65
+            },
+            {
+              "settling_s": 6.615000000000497e-08,
+              "overshoot_fraction": 0.054583457949048175,
+              "late_error_max_v": 0.0005656748948613677,
+              "late_ripple_v": 6.955211820924845e-07,
+              "target_v": 0.65
+            }
+          ]
+        },
+        "checks": {
+          "overload_recovery": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "tt",
+          "temp": 27,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 1
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.266
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0001530466524108931,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002773915860260171,
+          "dc_total_positive_power_max_w": 0.00027813931026695135,
+          "steps": [
+            {
+              "settling_s": 2.1950000000001676e-08,
+              "overshoot_fraction": 0.07850928400377302,
+              "late_error_max_v": 0.00015168597964598796,
+              "late_ripple_v": 8.058939693356137e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 1.835000000000138e-08,
+              "overshoot_fraction": 0.0666496789761206,
+              "late_error_max_v": 0.00015148630887407144,
+              "late_ripple_v": 5.1295369174475525e-08,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 2.195000000000165e-08,
+              "overshoot_fraction": 0.07852431066146007,
+              "late_error_max_v": 0.00015167167435792273,
+              "late_ripple_v": 7.799926393659007e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 1.8350000000001908e-08,
+              "overshoot_fraction": 0.06665270080681443,
+              "late_error_max_v": 0.00015148575313506107,
+              "late_ripple_v": 5.141897008176244e-08,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "tt",
+          "temp": 27,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 3
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.416
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0001530466524108931,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002773915860260171,
+          "dc_total_positive_power_max_w": 0.00027813931026695135,
+          "steps": [
+            {
+              "settling_s": 3.2850000000002494e-08,
+              "overshoot_fraction": 0.10450756421285973,
+              "late_error_max_v": 0.00015169461077091384,
+              "late_ripple_v": 8.215214797324677e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 2.3650000000001777e-08,
+              "overshoot_fraction": 0.07989139674958066,
+              "late_error_max_v": 0.00015148585661783898,
+              "late_ripple_v": 5.139615255611574e-08,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 3.285000000000247e-08,
+              "overshoot_fraction": 0.10454957410810001,
+              "late_error_max_v": 0.0001516802767909109,
+              "late_ripple_v": 7.95568859679463e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 2.3650000000002094e-08,
+              "overshoot_fraction": 0.07989307481899593,
+              "late_error_max_v": 0.00015148529996256155,
+              "late_ripple_v": 5.151952786608405e-08,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "tt",
+          "temp": 27,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.384
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0001530466524108931,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002773915860260171,
+          "dc_total_positive_power_max_w": 0.00027813931026695135,
+          "steps": [
+            {
+              "settling_s": 5.105000000000378e-08,
+              "overshoot_fraction": 0.1754632660577996,
+              "late_error_max_v": 0.000151722052603942,
+              "late_ripple_v": 8.712051702275403e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 3.5350000000002656e-08,
+              "overshoot_fraction": 0.09646375377479365,
+              "late_error_max_v": 0.0001514869548782105,
+              "late_ripple_v": 5.1152105551288685e-08,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 5.1050000000003835e-08,
+              "overshoot_fraction": 0.17558125887169684,
+              "late_error_max_v": 0.00015170778813899943,
+              "late_ripple_v": 8.45379390934653e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 3.5350000000002973e-08,
+              "overshoot_fraction": 0.09646412837112686,
+              "late_error_max_v": 0.00015148640054096774,
+              "late_ripple_v": 5.127509150604226e-08,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "tt",
+          "temp": 27,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 1
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.731
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0007707294296088185,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002833496455011533,
+          "dc_total_positive_power_max_w": 0.0003001986333829041,
+          "steps": [
+            {
+              "settling_s": 5.435000000000408e-08,
+              "overshoot_fraction": 0.0006090749556264542,
+              "late_error_max_v": 0.00045609099638221906,
+              "late_ripple_v": 1.373009788085966e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 6.675000000000501e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0007672640032295175,
+              "late_ripple_v": 7.708948135398686e-07,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 5.435000000000408e-08,
+              "overshoot_fraction": 0.0006075100875313489,
+              "late_error_max_v": 0.00045586203324621266,
+              "late_ripple_v": 1.3316604290380951e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 6.675000000000491e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.000767255514366405,
+              "late_ripple_v": 7.727840261040342e-07,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "tt",
+          "temp": 27,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 3
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.518
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0007707294296088185,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002833496455011533,
+          "dc_total_positive_power_max_w": 0.0003001986333829041,
+          "steps": [
+            {
+              "settling_s": 6.6550000000005e-08,
+              "overshoot_fraction": 0.012516042797256492,
+              "late_error_max_v": 0.00045606690660227045,
+              "late_ripple_v": 1.368655381028816e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.45500000000041e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0007672438981117802,
+              "late_ripple_v": 7.753689698630772e-07,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 6.645000000000499e-08,
+              "overshoot_fraction": 0.012497843924778877,
+              "late_error_max_v": 0.0004558365467421943,
+              "late_ripple_v": 1.3270541749932363e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.455000000000399e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0007672353511540275,
+              "late_ripple_v": 7.772709566533642e-07,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "tt",
+          "temp": 27,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 4.126
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0007707294296088185,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002833496455011533,
+          "dc_total_positive_power_max_w": 0.0003001986333829041,
+          "steps": [
+            {
+              "settling_s": 7.38500000000056e-08,
+              "overshoot_fraction": 0.06588486237048026,
+              "late_error_max_v": 0.00045573335845716656,
+              "late_ripple_v": 1.308413646095019e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.3850000000004046e-08,
+              "overshoot_fraction": 0.01149531373416439,
+              "late_error_max_v": 0.0007672105591000067,
+              "late_ripple_v": 7.82788364517284e-07,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 7.385000000000555e-08,
+              "overshoot_fraction": 0.06607477065626145,
+              "late_error_max_v": 0.0004554982004532082,
+              "late_ripple_v": 1.2659460790764854e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.385000000000394e-08,
+              "overshoot_fraction": 0.01149199813484974,
+              "late_error_max_v": 0.0007672018385538881,
+              "late_ripple_v": 7.84728774572141e-07,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "overload",
+          "corner": "tt",
+          "temp": 27,
+          "gain": 4,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.19
+        },
+        "metrics": {
+          "recoveries": [
+            {
+              "settling_s": 8.655000000000661e-08,
+              "overshoot_fraction": 0.012474530061644007,
+              "late_error_max_v": 0.0006013459143140443,
+              "late_ripple_v": 8.857453697164175e-06,
+              "target_v": 0.65
+            },
+            {
+              "settling_s": 7.025000000000528e-08,
+              "overshoot_fraction": 0.052236443838594826,
+              "late_error_max_v": 0.0006369640065996274,
+              "late_ripple_v": 9.260704706415268e-07,
+              "target_v": 0.65
+            }
+          ]
+        },
+        "checks": {
+          "overload_recovery": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "tt",
+          "temp": 85,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 1
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 4.759
+        },
+        "metrics": {
+          "dc_error_max_v": 0.00017912218942262026,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002801531134406162,
+          "dc_total_positive_power_max_w": 0.00028090044525390866,
+          "steps": [
+            {
+              "settling_s": 2.215000000000169e-08,
+              "overshoot_fraction": 0.07231475327334368,
+              "late_error_max_v": 0.00017754204726605494,
+              "late_ripple_v": 1.3353435401874947e-07,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 1.755000000000132e-08,
+              "overshoot_fraction": 0.06942667304370023,
+              "late_error_max_v": 0.00017737411658569346,
+              "late_ripple_v": 9.765516673088115e-08,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 2.2150000000001664e-08,
+              "overshoot_fraction": 0.07232914911091014,
+              "late_error_max_v": 0.00017749830960700486,
+              "late_ripple_v": 1.2647836600265805e-07,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 1.755000000000206e-08,
+              "overshoot_fraction": 0.06942021502530722,
+              "late_error_max_v": 0.00017737162918363136,
+              "late_ripple_v": 9.813625934107506e-08,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "tt",
+          "temp": 85,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 3
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 5.034
+        },
+        "metrics": {
+          "dc_error_max_v": 0.00017912218942262026,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002801531134406162,
+          "dc_total_positive_power_max_w": 0.00028090044525390866,
+          "steps": [
+            {
+              "settling_s": 3.465000000000258e-08,
+              "overshoot_fraction": 0.10367958384880359,
+              "late_error_max_v": 0.00017755271639696701,
+              "late_ripple_v": 1.3525547704063e-07,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 2.5850000000001942e-08,
+              "overshoot_fraction": 0.08598192097576654,
+              "late_error_max_v": 0.00017737228300118701,
+              "late_ripple_v": 9.800980005358895e-08,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 3.46500000000026e-08,
+              "overshoot_fraction": 0.1037742644731665,
+              "late_error_max_v": 0.00017750881819589281,
+              "late_ripple_v": 1.2817346783933203e-07,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 2.5850000000002048e-08,
+              "overshoot_fraction": 0.08598297409418308,
+              "late_error_max_v": 0.00017736978635518597,
+              "late_ripple_v": 9.849241955350863e-08,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "tt",
+          "temp": 85,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 5.323
+        },
+        "metrics": {
+          "dc_error_max_v": 0.00017912218942262026,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002801531134406162,
+          "dc_total_positive_power_max_w": 0.00028090044525390866,
+          "steps": [
+            {
+              "settling_s": 5.5450000000004166e-08,
+              "overshoot_fraction": 0.18542678304737026,
+              "late_error_max_v": 0.00017757535611395703,
+              "late_ripple_v": 1.3890797800897303e-07,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 3.9050000000002934e-08,
+              "overshoot_fraction": 0.10557570638377144,
+              "late_error_max_v": 0.0001773720865839712,
+              "late_ripple_v": 9.804763578813436e-08,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 5.5450000000004166e-08,
+              "overshoot_fraction": 0.18567059609333986,
+              "late_error_max_v": 0.00017753141998611,
+              "late_ripple_v": 1.3181971003639603e-07,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 3.905000000000304e-08,
+              "overshoot_fraction": 0.10557817548202322,
+              "late_error_max_v": 0.00017736958803893366,
+              "late_ripple_v": 9.853090165989897e-08,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "tt",
+          "temp": 85,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 1
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 5.096
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0009125617760780136,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.00028562536547549337,
+          "dc_total_positive_power_max_w": 0.0003024695665155507,
+          "steps": [
+            {
+              "settling_s": 6.31500000000048e-08,
+              "overshoot_fraction": 0.0006875872801090367,
+              "late_error_max_v": 0.0005176690154611308,
+              "late_ripple_v": 2.018526821911948e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 7.945000000000597e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0009062253071884796,
+              "late_ripple_v": 1.2274139522538974e-06,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 6.305000000000474e-08,
+              "overshoot_fraction": 0.0006847667356665866,
+              "late_error_max_v": 0.0005170794212561169,
+              "late_ripple_v": 1.923767984912672e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 7.935000000000607e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0009061935275397892,
+              "late_ripple_v": 1.2335739243973798e-06,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "tt",
+          "temp": 85,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 3
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 4.402
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0009125617760780136,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.00028562536547549337,
+          "dc_total_positive_power_max_w": 0.0003024695665155507,
+          "steps": [
+            {
+              "settling_s": 6.71500000000051e-08,
+              "overshoot_fraction": 0.0051255159070801035,
+              "late_error_max_v": 0.0005175905788121771,
+              "late_ripple_v": 2.0059125760418794e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 6.695000000000503e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0009061867741396723,
+              "late_ripple_v": 1.234883242662299e-06,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 6.695000000000503e-08,
+              "overshoot_fraction": 0.005086433115008838,
+              "late_error_max_v": 0.0005169971421681296,
+              "late_ripple_v": 1.9105367639049575e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 6.695000000000492e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0009061547877449727,
+              "late_ripple_v": 1.2410832896936341e-06,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "tt",
+          "temp": 85,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 4.435
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0009125617760780136,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.00028562536547549337,
+          "dc_total_positive_power_max_w": 0.0003024695665155507,
+          "steps": [
+            {
+              "settling_s": 8.015000000000597e-08,
+              "overshoot_fraction": 0.06256793601030015,
+              "late_error_max_v": 0.0005168096250911525,
+              "late_ripple_v": 1.8803881058904182e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.685000000000427e-08,
+              "overshoot_fraction": 0.009621502888058494,
+              "late_error_max_v": 0.0009061063503735811,
+              "late_ripple_v": 1.2504723871931134e-06,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 8.015000000000602e-08,
+              "overshoot_fraction": 0.06290145617055516,
+              "late_error_max_v": 0.0005161992048652309,
+              "late_ripple_v": 1.7822827000912866e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.685000000000501e-08,
+              "overshoot_fraction": 0.009612527646592138,
+              "late_error_max_v": 0.0009060734477873145,
+              "late_ripple_v": 1.2568504954013626e-06,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "overload",
+          "corner": "tt",
+          "temp": 85,
+          "gain": 4,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 4.074
+        },
+        "metrics": {
+          "recoveries": [
+            {
+              "settling_s": 8.995000000000681e-08,
+              "overshoot_fraction": 0.010030265236719904,
+              "late_error_max_v": 0.0006880898299298499,
+              "late_ripple_v": 1.1861549997438381e-05,
+              "target_v": 0.65
+            },
+            {
+              "settling_s": 7.545000000000567e-08,
+              "overshoot_fraction": 0.04975018955613375,
+              "late_error_max_v": 0.0007431011354880335,
+              "late_ripple_v": 1.1783105251517156e-06,
+              "target_v": 0.65
+            }
+          ]
+        },
+        "checks": {
+          "overload_recovery": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ss",
+          "temp": -20,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 1
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 4.56
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0001434547490554161,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002698562311148275,
+          "dc_total_positive_power_max_w": 0.0002706041312773657,
+          "steps": [
+            {
+              "settling_s": 2.3850000000001792e-08,
+              "overshoot_fraction": 0.08097631718415671,
+              "late_error_max_v": 0.00014234493525600023,
+              "late_ripple_v": 2.3607555910132305e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 1.785000000000134e-08,
+              "overshoot_fraction": 0.06798214325387296,
+              "late_error_max_v": 0.0001400187318816304,
+              "late_ripple_v": 6.425986298630448e-09,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 2.3850000000001792e-08,
+              "overshoot_fraction": 0.08097321749225653,
+              "late_error_max_v": 0.00014234570484106257,
+              "late_ripple_v": 2.3774229029882576e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 1.7850000000002082e-08,
+              "overshoot_fraction": 0.06798226448673116,
+              "late_error_max_v": 0.00014001875053948343,
+              "late_ripple_v": 6.4297782653710556e-09,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ss",
+          "temp": -20,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 3
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 5.643
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0001434547490554161,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002698562311148275,
+          "dc_total_positive_power_max_w": 0.0002706041312773657,
+          "steps": [
+            {
+              "settling_s": 3.4050000000002585e-08,
+              "overshoot_fraction": 0.1028196710797502,
+              "late_error_max_v": 0.00014235160338404995,
+              "late_ripple_v": 2.5051382079865903e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 2.2850000000001717e-08,
+              "overshoot_fraction": 0.07882701055224334,
+              "late_error_max_v": 0.00014001914723460462,
+              "late_ripple_v": 6.5161497309063066e-09,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 3.405000000000256e-08,
+              "overshoot_fraction": 0.10281575717259034,
+              "late_error_max_v": 0.00014235238380910786,
+              "late_ripple_v": 2.5220486143950893e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 2.2850000000002034e-08,
+              "overshoot_fraction": 0.07882707703205832,
+              "late_error_max_v": 0.00014001916622941035,
+              "late_ripple_v": 6.520305184665176e-09,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ss",
+          "temp": -20,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 5.139
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0001434547490554161,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002698562311148275,
+          "dc_total_positive_power_max_w": 0.0002706041312773657,
+          "steps": [
+            {
+              "settling_s": 4.965000000000368e-08,
+              "overshoot_fraction": 0.15299817396407325,
+              "late_error_max_v": 0.00014237492098301274,
+              "late_ripple_v": 3.01002429647923e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 3.345000000000251e-08,
+              "overshoot_fraction": 0.09392119252828234,
+              "late_error_max_v": 0.00014002130014401093,
+              "late_ripple_v": 6.984157918665801e-09,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 4.965000000000373e-08,
+              "overshoot_fraction": 0.15298730437661648,
+              "late_error_max_v": 0.0001423757561740402,
+              "late_ripple_v": 3.02810561070288e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 3.345000000000304e-08,
+              "overshoot_fraction": 0.09392110857683914,
+              "late_error_max_v": 0.00014002132044343973,
+              "late_ripple_v": 6.988524314799349e-09,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ss",
+          "temp": -20,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 1
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 5.156
+        },
+        "metrics": {
+          "dc_error_max_v": 0.00067284632381448,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.00027645899269644755,
+          "dc_total_positive_power_max_w": 0.0002933112841330188,
+          "steps": [
+            {
+              "settling_s": 5.8950000000004376e-08,
+              "overshoot_fraction": 0.003536510221557599,
+              "late_error_max_v": 0.00044600516542026014,
+              "late_ripple_v": 7.40051865122382e-07,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 6.405000000000481e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.000672101406293979,
+              "late_ripple_v": 2.0736483069550005e-07,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 5.895000000000443e-08,
+              "overshoot_fraction": 0.0035300086240777637,
+              "late_error_max_v": 0.00044598029536224715,
+              "late_ripple_v": 7.346739161473437e-07,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 6.405000000000492e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0006721009267101064,
+              "late_ripple_v": 2.074983997957247e-07,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ss",
+          "temp": -20,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 3
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 5.063
+        },
+        "metrics": {
+          "dc_error_max_v": 0.00067284632381448,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.00027645899269644755,
+          "dc_total_positive_power_max_w": 0.0002933112841330188,
+          "steps": [
+            {
+              "settling_s": 6.775000000000509e-08,
+              "overshoot_fraction": 0.020571481487246527,
+              "late_error_max_v": 0.00044599739031525587,
+              "late_ripple_v": 7.383694020646203e-07,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.405000000000406e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0006720934926485733,
+              "late_ripple_v": 2.0956748458811347e-07,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 6.765000000000508e-08,
+              "overshoot_fraction": 0.02057109735175894,
+              "late_error_max_v": 0.0004459722528242782,
+              "late_ripple_v": 7.329334101857654e-07,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.4050000000003955e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0006720930081806076,
+              "late_ripple_v": 2.097025307290501e-07,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ss",
+          "temp": -20,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 4.828
+        },
+        "metrics": {
+          "dc_error_max_v": 0.00067284632381448,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.00027645899269644755,
+          "dc_total_positive_power_max_w": 0.0002933112841330188,
+          "steps": [
+            {
+              "settling_s": 7.135000000000536e-08,
+              "overshoot_fraction": 0.06289149302281778,
+              "late_error_max_v": 0.0004458937961351328,
+              "late_ripple_v": 7.159659469735402e-07,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.1450000000003865e-08,
+              "overshoot_fraction": 0.00918285054378125,
+              "late_error_max_v": 0.0006720837251059097,
+              "late_ripple_v": 2.1228745100687618e-07,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 7.135000000000536e-08,
+              "overshoot_fraction": 0.06291919566475264,
+              "late_error_max_v": 0.0004458681979551127,
+              "late_ripple_v": 7.104303738625362e-07,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.145000000000397e-08,
+              "overshoot_fraction": 0.00918255629840964,
+              "late_error_max_v": 0.0006720832314143221,
+              "late_ripple_v": 2.1242445741309623e-07,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "overload",
+          "corner": "ss",
+          "temp": -20,
+          "gain": 4,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.646
+        },
+        "metrics": {
+          "recoveries": [
+            {
+              "settling_s": 8.84500000000067e-08,
+              "overshoot_fraction": 0.016938681409973677,
+              "late_error_max_v": 0.0005722266897021377,
+              "late_ripple_v": 6.502163928168159e-06,
+              "target_v": 0.65
+            },
+            {
+              "settling_s": 6.625000000000498e-08,
+              "overshoot_fraction": 0.053578649788323385,
+              "late_error_max_v": 0.0005935285614275809,
+              "late_ripple_v": 5.769511601805277e-07,
+              "target_v": 0.65
+            }
+          ]
+        },
+        "checks": {
+          "overload_recovery": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ss",
+          "temp": 27,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 1
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 4.337
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0001588469843186724,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002729535607394695,
+          "dc_total_positive_power_max_w": 0.0002737012000015194,
+          "steps": [
+            {
+              "settling_s": 2.3450000000001788e-08,
+              "overshoot_fraction": 0.07935788288292665,
+              "late_error_max_v": 0.0001568924214789824,
+              "late_ripple_v": 5.844400607912803e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 1.875000000000141e-08,
+              "overshoot_fraction": 0.07027490779198434,
+              "late_error_max_v": 0.00015726863027210047,
+              "late_ripple_v": 2.6773530836798898e-08,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 2.3450000000001762e-08,
+              "overshoot_fraction": 0.07935845276517693,
+              "late_error_max_v": 0.00015688636456201444,
+              "late_ripple_v": 5.7295647115651605e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 1.8750000000001938e-08,
+              "overshoot_fraction": 0.07027588714328624,
+              "late_error_max_v": 0.0001572684300867877,
+              "late_ripple_v": 2.682038091617045e-08,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ss",
+          "temp": 27,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 3
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.163
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0001588469843186724,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002729535607394695,
+          "dc_total_positive_power_max_w": 0.0002737012000015194,
+          "steps": [
+            {
+              "settling_s": 3.485000000000259e-08,
+              "overshoot_fraction": 0.10361139283820689,
+              "late_error_max_v": 0.00015690099951104486,
+              "late_ripple_v": 6.007034913935172e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 2.4450000000001837e-08,
+              "overshoot_fraction": 0.08303933374443978,
+              "late_error_max_v": 0.00015726844068475465,
+              "late_ripple_v": 2.6817996934269672e-08,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 3.485000000000262e-08,
+              "overshoot_fraction": 0.10362960135460969,
+              "late_error_max_v": 0.00015689493666593002,
+              "late_ripple_v": 5.892087595604778e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 2.4450000000001943e-08,
+              "overshoot_fraction": 0.08303975917818654,
+              "late_error_max_v": 0.0001572682404208381,
+              "late_ripple_v": 2.6864965030348742e-08,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ss",
+          "temp": 27,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 4.359
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0001588469843186724,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002729535607394695,
+          "dc_total_positive_power_max_w": 0.0002737012000015194,
+          "steps": [
+            {
+              "settling_s": 5.2450000000003993e-08,
+              "overshoot_fraction": 0.16412777706180656,
+              "late_error_max_v": 0.00015692881478091003,
+              "late_ripple_v": 6.534391494561476e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 3.635000000000273e-08,
+              "overshoot_fraction": 0.09940691012431074,
+              "late_error_max_v": 0.00015727004634358277,
+              "late_ripple_v": 2.6440657108217636e-08,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 5.245000000000394e-08,
+              "overshoot_fraction": 0.1641738975285367,
+              "late_error_max_v": 0.00015692280603696318,
+              "late_ripple_v": 6.42046120713502e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 3.635000000000305e-08,
+              "overshoot_fraction": 0.09940749034270815,
+              "late_error_max_v": 0.00015726984787756138,
+              "late_ripple_v": 2.6487262827501468e-08,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ss",
+          "temp": 27,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 1
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.377
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0007821498656935266,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.00027898914766786296,
+          "dc_total_positive_power_max_w": 0.0002958377501098959,
+          "steps": [
+            {
+              "settling_s": 5.285000000000397e-08,
+              "overshoot_fraction": 0.0006444736021715692,
+              "late_error_max_v": 0.00048670464633526755,
+              "late_ripple_v": 1.1737577501058638e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 6.965000000000523e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0007798377874275175,
+              "late_ripple_v": 5.445985971075373e-07,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 5.285000000000397e-08,
+              "overshoot_fraction": 0.0006434846823152874,
+              "late_error_max_v": 0.0004865756118210829,
+              "late_ripple_v": 1.1493463969447504e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 6.965000000000597e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0007798336604966094,
+              "late_ripple_v": 5.455709566892786e-07,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ss",
+          "temp": 27,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 3
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 4.369
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0007821498656935266,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.00027898914766786296,
+          "dc_total_positive_power_max_w": 0.0002958377501098959,
+          "steps": [
+            {
+              "settling_s": 6.965000000000518e-08,
+              "overshoot_fraction": 0.014486952871358986,
+              "late_error_max_v": 0.0004866803788732277,
+              "late_ripple_v": 1.1691639509869844e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.7950000000004354e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0007798205406959746,
+              "late_ripple_v": 5.48662035249059e-07,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 6.955000000000523e-08,
+              "overshoot_fraction": 0.014478209216713948,
+              "late_error_max_v": 0.0004865503510391722,
+              "late_ripple_v": 1.1445648109287276e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.7950000000005095e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0007798163835774918,
+              "late_ripple_v": 5.496417566641654e-07,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ss",
+          "temp": 27,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.312
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0007821498656935266,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.00027898914766786296,
+          "dc_total_positive_power_max_w": 0.0002958377501098959,
+          "steps": [
+            {
+              "settling_s": 7.51500000000057e-08,
+              "overshoot_fraction": 0.06144789472254776,
+              "late_error_max_v": 0.0004864256969452363,
+              "late_ripple_v": 1.120978120106031e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.45500000000041e-08,
+              "overshoot_fraction": 0.010512285412463513,
+              "late_error_max_v": 0.0007797948761936735,
+              "late_ripple_v": 5.547088552937396e-07,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 7.515000000000565e-08,
+              "overshoot_fraction": 0.06154827497944022,
+              "late_error_max_v": 0.0004862931703590867,
+              "late_ripple_v": 1.0959061358395417e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.455000000000399e-08,
+              "overshoot_fraction": 0.010510627049011257,
+              "late_error_max_v": 0.0007797906392352227,
+              "late_ripple_v": 5.557072077500003e-07,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "overload",
+          "corner": "ss",
+          "temp": 27,
+          "gain": 4,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.214
+        },
+        "metrics": {
+          "recoveries": [
+            {
+              "settling_s": 9.095000000000689e-08,
+              "overshoot_fraction": 0.01431874073086159,
+              "late_error_max_v": 0.0006269080857197462,
+              "late_ripple_v": 8.992910328076142e-06,
+              "target_v": 0.65
+            },
+            {
+              "settling_s": 7.025000000000528e-08,
+              "overshoot_fraction": 0.050624172670358014,
+              "late_error_max_v": 0.0006614487118502543,
+              "late_ripple_v": 8.47723315211546e-07,
+              "target_v": 0.65
+            }
+          ]
+        },
+        "checks": {
+          "overload_recovery": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ss",
+          "temp": 85,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 1
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.291
+        },
+        "metrics": {
+          "dc_error_max_v": 0.00018339262567768078,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.00027617403496925375,
+          "dc_total_positive_power_max_w": 0.0002769212894473924,
+          "steps": [
+            {
+              "settling_s": 2.335000000000178e-08,
+              "overshoot_fraction": 0.07509424146558011,
+              "late_error_max_v": 0.00018042334477197386,
+              "late_ripple_v": 1.101602900011045e-07,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 1.8050000000001356e-08,
+              "overshoot_fraction": 0.0727968008693706,
+              "late_error_max_v": 0.00018267085654399828,
+              "late_ripple_v": 7.382407074540964e-08,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 2.3250000000001747e-08,
+              "overshoot_fraction": 0.07512028843862964,
+              "late_error_max_v": 0.00018039540370207163,
+              "late_ripple_v": 1.054688669732684e-07,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 1.8050000000002097e-08,
+              "overshoot_fraction": 0.07279286531495231,
+              "late_error_max_v": 0.00018266944240663552,
+              "late_ripple_v": 7.4110921621795e-08,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ss",
+          "temp": 85,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 3
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 4.082
+        },
+        "metrics": {
+          "dc_error_max_v": 0.00018339262567768078,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.00027617403496925375,
+          "dc_total_positive_power_max_w": 0.0002769212894473924,
+          "steps": [
+            {
+              "settling_s": 3.635000000000268e-08,
+              "overshoot_fraction": 0.10363139998161999,
+              "late_error_max_v": 0.00018043421133495663,
+              "late_ripple_v": 1.1198495886155513e-07,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 2.6550000000001995e-08,
+              "overshoot_fraction": 0.08856804323865336,
+              "late_error_max_v": 0.00018266953203105452,
+              "late_ripple_v": 7.409260460722322e-08,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 3.635000000000273e-08,
+              "overshoot_fraction": 0.10368376553869646,
+              "late_error_max_v": 0.00018040616920100838,
+              "late_ripple_v": 1.0727664401244397e-07,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 2.65500000000021e-08,
+              "overshoot_fraction": 0.08856831003434854,
+              "late_error_max_v": 0.00018266811280764905,
+              "late_ripple_v": 7.438034654860814e-08,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ss",
+          "temp": 85,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 4.004
+        },
+        "metrics": {
+          "dc_error_max_v": 0.00018339262567768078,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.00027617403496925375,
+          "dc_total_positive_power_max_w": 0.0002769212894473924,
+          "steps": [
+            {
+              "settling_s": 5.6750000000004264e-08,
+              "overshoot_fraction": 0.17624310669980342,
+              "late_error_max_v": 0.00018046155991102708,
+              "late_ripple_v": 1.1657676712850673e-07,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 3.9950000000003e-08,
+              "overshoot_fraction": 0.1076526353827171,
+              "late_error_max_v": 0.00018267025394413938,
+              "late_ripple_v": 7.39462489018905e-08,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 5.6750000000004264e-08,
+              "overshoot_fraction": 0.1763982595734766,
+              "late_error_max_v": 0.00018043356264008104,
+              "late_ripple_v": 1.1187602311224509e-07,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 3.995000000000311e-08,
+              "overshoot_fraction": 0.10765389454974071,
+              "late_error_max_v": 0.00018266883703155212,
+              "late_ripple_v": 7.423365544489968e-08,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ss",
+          "temp": 85,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 1
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.817
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0009286038065369762,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002817025387674782,
+          "dc_total_positive_power_max_w": 0.0002985461983890076,
+          "steps": [
+            {
+              "settling_s": 6.345000000000477e-08,
+              "overshoot_fraction": 0.0007216778126190039,
+              "late_error_max_v": 0.0005470726941021464,
+              "late_ripple_v": 1.8208654439799687e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 8.285000000000622e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0009236461604714141,
+              "late_ripple_v": 1.007605652525445e-06,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 6.335000000000476e-08,
+              "overshoot_fraction": 0.0007195980318353002,
+              "late_error_max_v": 0.0005466624017651522,
+              "late_ripple_v": 1.7522093840316444e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 8.285000000000697e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0009236265457081005,
+              "late_ripple_v": 1.0115943914756897e-06,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ss",
+          "temp": 85,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 3
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.765
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0009286038065369762,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002817025387674782,
+          "dc_total_positive_power_max_w": 0.0002985461983890076,
+          "steps": [
+            {
+              "settling_s": 7.12500000000054e-08,
+              "overshoot_fraction": 0.007039689689053998,
+              "late_error_max_v": 0.0005469992762672238,
+              "late_ripple_v": 1.808573825146098e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 6.985000000000525e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0009236114242369142,
+              "late_ripple_v": 1.0146697240198677e-06,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 7.115000000000535e-08,
+              "overshoot_fraction": 0.0070117285476126185,
+              "late_error_max_v": 0.0005465859510112026,
+              "late_ripple_v": 1.7394102560519542e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 6.985000000000599e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0009235916643499098,
+              "late_ripple_v": 1.0186879537132931e-06,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ss",
+          "temp": 85,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.802
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0009286038065369762,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002817025387674782,
+          "dc_total_positive_power_max_w": 0.0002985461983890076,
+          "steps": [
+            {
+              "settling_s": 8.11500000000061e-08,
+              "overshoot_fraction": 0.05881008965062025,
+              "late_error_max_v": 0.0005463744749820698,
+              "late_ripple_v": 1.7040141908619688e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.7850000000004346e-08,
+              "overshoot_fraction": 0.009624810916001142,
+              "late_error_max_v": 0.0009235470802583245,
+              "late_ripple_v": 1.0277545856030024e-06,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 8.105000000000609e-08,
+              "overshoot_fraction": 0.059024945511343976,
+              "late_error_max_v": 0.0005459507320322299,
+              "late_ripple_v": 1.6331062171470734e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.785000000000509e-08,
+              "overshoot_fraction": 0.009619071253521365,
+              "late_error_max_v": 0.0009235268225619153,
+              "late_ripple_v": 1.0318742290071903e-06,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "overload",
+          "corner": "ss",
+          "temp": 85,
+          "gain": 4,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 2.656
+        },
+        "metrics": {
+          "recoveries": [
+            {
+              "settling_s": 9.44500000000072e-08,
+              "overshoot_fraction": 0.01161781700944331,
+              "late_error_max_v": 0.000709605105531308,
+              "late_ripple_v": 1.2296865295691184e-05,
+              "target_v": 0.65
+            },
+            {
+              "settling_s": 7.555000000000568e-08,
+              "overshoot_fraction": 0.04820660838083557,
+              "late_error_max_v": 0.0007642626651122031,
+              "late_ripple_v": 1.153317088942174e-06,
+              "target_v": 0.65
+            }
+          ]
+        },
+        "checks": {
+          "overload_recovery": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ff",
+          "temp": -20,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 1
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.997
+        },
+        "metrics": {
+          "dc_error_max_v": 0.00013093248006224023,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002798055544852213,
+          "dc_total_positive_power_max_w": 0.00028055361948711136,
+          "steps": [
+            {
+              "settling_s": 2.0650000000001578e-08,
+              "overshoot_fraction": 0.08177511625339676,
+              "late_error_max_v": 0.00013014484461804088,
+              "late_ripple_v": 6.317716105819215e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 1.7350000000001303e-08,
+              "overshoot_fraction": 0.0615215395298559,
+              "late_error_max_v": 0.0001288376634539512,
+              "late_ripple_v": 3.898989386907914e-08,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 2.065000000000155e-08,
+              "overshoot_fraction": 0.08179619407661023,
+              "late_error_max_v": 0.00013013661631688933,
+              "late_ripple_v": 6.158803178557548e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 1.7350000000002045e-08,
+              "overshoot_fraction": 0.0615234958143862,
+              "late_error_max_v": 0.00012883742158065203,
+              "late_ripple_v": 3.904798950848942e-08,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ff",
+          "temp": -20,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 3
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.836
+        },
+        "metrics": {
+          "dc_error_max_v": 0.00013093248006224023,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002798055544852213,
+          "dc_total_positive_power_max_w": 0.00028055361948711136,
+          "steps": [
+            {
+              "settling_s": 2.9950000000002277e-08,
+              "overshoot_fraction": 0.10634252078315364,
+              "late_error_max_v": 0.00013015171974806172,
+              "late_ripple_v": 6.450501510713025e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 2.1350000000001604e-08,
+              "overshoot_fraction": 0.07298867256001632,
+              "late_error_max_v": 0.00012883745315928063,
+              "late_ripple_v": 3.904039724833552e-08,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 2.995000000000225e-08,
+              "overshoot_fraction": 0.10636005262406006,
+              "late_error_max_v": 0.00013014348931905673,
+              "late_ripple_v": 6.291547505199446e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 2.135000000000192e-08,
+              "overshoot_fraction": 0.07298982095933824,
+              "late_error_max_v": 0.0001288372035314067,
+              "late_ripple_v": 3.9100431004079894e-08,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ff",
+          "temp": -20,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 4.577
+        },
+        "metrics": {
+          "dc_error_max_v": 0.00013093248006224023,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002798055544852213,
+          "dc_total_positive_power_max_w": 0.00028055361948711136,
+          "steps": [
+            {
+              "settling_s": 4.645000000000349e-08,
+              "overshoot_fraction": 0.17917411418929327,
+              "late_error_max_v": 0.00013017708327289768,
+              "late_ripple_v": 6.94032900039332e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 3.145000000000236e-08,
+              "overshoot_fraction": 0.08788664917682264,
+              "late_error_max_v": 0.00012883847561229178,
+              "late_ripple_v": 3.8794560563992775e-08,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 4.645000000000349e-08,
+              "overshoot_fraction": 0.17926550761913662,
+              "late_error_max_v": 0.00013016890075490117,
+              "late_ripple_v": 6.782301098517962e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 3.1450000000003104e-08,
+              "overshoot_fraction": 0.08788710505917821,
+              "late_error_max_v": 0.00012883822757348007,
+              "late_ripple_v": 3.885425670091536e-08,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ff",
+          "temp": -20,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 1
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.609
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0006634374083910877,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.000286167711865079,
+          "dc_total_positive_power_max_w": 0.0003030203208525458,
+          "steps": [
+            {
+              "settling_s": 4.45500000000034e-08,
+              "overshoot_fraction": 0.000523038377407692,
+              "late_error_max_v": 0.00038442209051425813,
+              "late_ripple_v": 1.1006915801026196e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.8250000000004376e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0006608385035650199,
+              "late_ripple_v": 6.255246794983904e-07,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 4.455000000000335e-08,
+              "overshoot_fraction": 0.0005216901268240149,
+              "late_error_max_v": 0.0003842816581560715,
+              "late_ripple_v": 1.0736252769039112e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.8250000000004906e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0006608344329225857,
+              "late_ripple_v": 6.265047740039442e-07,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ff",
+          "temp": -20,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 3
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.762
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0006634374083910877,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.000286167711865079,
+          "dc_total_positive_power_max_w": 0.0003030203208525458,
+          "steps": [
+            {
+              "settling_s": 6.195000000000471e-08,
+              "overshoot_fraction": 0.016979455671913838,
+              "late_error_max_v": 0.00038441763313512567,
+              "late_ripple_v": 1.0998299069253648e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 4.615000000000347e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0006608259461001187,
+              "late_ripple_v": 6.285482649914798e-07,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 6.185000000000465e-08,
+              "overshoot_fraction": 0.016969074753621364,
+              "late_error_max_v": 0.000384276488555102,
+              "late_ripple_v": 1.0726260128990361e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 4.6150000000003997e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0006608218542805133,
+              "late_ripple_v": 6.295331604899701e-07,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ff",
+          "temp": -20,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.83
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0006634374083910877,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.000286167711865079,
+          "dc_total_positive_power_max_w": 0.0003030203208525458,
+          "steps": [
+            {
+              "settling_s": 6.875000000000517e-08,
+              "overshoot_fraction": 0.07395302627281027,
+              "late_error_max_v": 0.0003842061163010779,
+              "late_ripple_v": 1.0590594288206745e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.005000000000376e-08,
+              "overshoot_fraction": 0.01247433174326976,
+              "late_error_max_v": 0.0006608064504355915,
+              "late_ripple_v": 6.332416314092093e-07,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 6.865000000000516e-08,
+              "overshoot_fraction": 0.07414218025458137,
+              "late_error_max_v": 0.00038406220152920056,
+              "late_ripple_v": 1.0313223099966962e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.005000000000408e-08,
+              "overshoot_fraction": 0.012472130252375247,
+              "late_error_max_v": 0.0006608022770980271,
+              "late_ripple_v": 6.342463198527604e-07,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "overload",
+          "corner": "ff",
+          "temp": -20,
+          "gain": 4,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.978
+        },
+        "metrics": {
+          "recoveries": [
+            {
+              "settling_s": 7.965000000000598e-08,
+              "overshoot_fraction": 0.012544931990219554,
+              "late_error_max_v": 0.0005203356818429539,
+              "late_ripple_v": 6.620896308429103e-06,
+              "target_v": 0.65
+            },
+            {
+              "settling_s": 6.605000000000496e-08,
+              "overshoot_fraction": 0.05738521586941714,
+              "late_error_max_v": 0.0005445329348174877,
+              "late_ripple_v": 7.993248557491839e-07,
+              "target_v": 0.65
+            }
+          ]
+        },
+        "checks": {
+          "overload_recovery": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ff",
+          "temp": 27,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 1
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 4.701
+        },
+        "metrics": {
+          "dc_error_max_v": 0.00014976193057336662,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002817888836683366,
+          "dc_total_positive_power_max_w": 0.00028253666843179815,
+          "steps": [
+            {
+              "settling_s": 2.0750000000001585e-08,
+              "overshoot_fraction": 0.07638177778436302,
+              "late_error_max_v": 0.00014894440688095756,
+              "late_ripple_v": 9.872623385476231e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 1.7750000000001334e-08,
+              "overshoot_fraction": 0.06313948231249865,
+              "late_error_max_v": 0.0001473443414757858,
+              "late_ripple_v": 7.051810424485438e-08,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 2.075000000000156e-08,
+              "overshoot_fraction": 0.07638520938525979,
+              "late_error_max_v": 0.00014891971465891274,
+              "late_ripple_v": 9.448094395736462e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 1.7750000000002075e-08,
+              "overshoot_fraction": 0.06313898893681205,
+              "late_error_max_v": 0.000147343205271655,
+              "late_ripple_v": 7.075514241172698e-08,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ff",
+          "temp": 27,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 3
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 4.442
+        },
+        "metrics": {
+          "dc_error_max_v": 0.00014976193057336662,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002817888836683366,
+          "dc_total_positive_power_max_w": 0.00028253666843179815,
+          "steps": [
+            {
+              "settling_s": 3.105000000000228e-08,
+              "overshoot_fraction": 0.10479255611855659,
+              "late_error_max_v": 0.000148952881170894,
+              "late_ripple_v": 1.0018326190852633e-07,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 2.2950000000001724e-08,
+              "overshoot_fraction": 0.07692515684431041,
+              "late_error_max_v": 0.0001473434077902125,
+              "late_ripple_v": 7.071288121718311e-08,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 3.105000000000233e-08,
+              "overshoot_fraction": 0.1048394370569398,
+              "late_error_max_v": 0.00014892810702393788,
+              "late_ripple_v": 9.592376204459185e-08,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 2.2950000000002042e-08,
+              "overshoot_fraction": 0.07692575804865152,
+              "late_error_max_v": 0.00014734226779555826,
+              "late_ripple_v": 7.095061749229359e-08,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ff",
+          "temp": 27,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 4.433
+        },
+        "metrics": {
+          "dc_error_max_v": 0.00014976193057336662,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002817888836683366,
+          "dc_total_positive_power_max_w": 0.00028253666843179815,
+          "steps": [
+            {
+              "settling_s": 4.975000000000379e-08,
+              "overshoot_fraction": 0.18551971840148634,
+              "late_error_max_v": 0.00014897736402397221,
+              "late_ripple_v": 1.0439252196015048e-07,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 3.435000000000258e-08,
+              "overshoot_fraction": 0.09376019362275943,
+              "late_error_max_v": 0.000147343905909314,
+              "late_ripple_v": 7.06090412805338e-08,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 4.965000000000373e-08,
+              "overshoot_fraction": 0.18570753912228694,
+              "late_error_max_v": 0.00014895262992209446,
+              "late_ripple_v": 1.0014016216253196e-07,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 3.435000000000311e-08,
+              "overshoot_fraction": 0.09376060027306546,
+              "late_error_max_v": 0.00014734276773886723,
+              "late_ripple_v": 7.084632902554233e-08,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ff",
+          "temp": 27,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 1
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 5.404
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0007639699853891901,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.00028763940028771884,
+          "dc_total_positive_power_max_w": 0.00030448861630071196,
+          "steps": [
+            {
+              "settling_s": 5.4950000000004075e-08,
+              "overshoot_fraction": 0.0005778522382476893,
+              "late_error_max_v": 0.00043007099190428555,
+              "late_ripple_v": 1.5280637080117287e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 6.52500000000049e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0007594005060789222,
+              "late_ripple_v": 9.543918000343155e-07,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 5.495000000000413e-08,
+              "overshoot_fraction": 0.0005756735590076169,
+              "late_error_max_v": 0.00042971652495826795,
+              "late_ripple_v": 1.46729504701959e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 6.525000000000501e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0007593848821855764,
+              "late_ripple_v": 9.576564185542757e-07,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ff",
+          "temp": 27,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 3
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 4.81
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0007639699853891901,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.00028763940028771884,
+          "dc_total_positive_power_max_w": 0.00030448861630071196,
+          "steps": [
+            {
+              "settling_s": 6.345000000000477e-08,
+              "overshoot_fraction": 0.010258037260602594,
+              "late_error_max_v": 0.00043004341646124544,
+              "late_ripple_v": 1.5233311130291582e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.395000000000405e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0007593775629647914,
+              "late_ripple_v": 9.591857955126848e-07,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 6.325000000000475e-08,
+              "overshoot_fraction": 0.01022918870118267,
+              "late_error_max_v": 0.0004296870486790727,
+              "late_ripple_v": 1.4622375488215766e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.395000000000395e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0007593618563839777,
+              "late_ripple_v": 9.624677175801288e-07,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ff",
+          "temp": 27,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 5.208
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0007639699853891901,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.00028763940028771884,
+          "dc_total_positive_power_max_w": 0.00030448861630071196,
+          "steps": [
+            {
+              "settling_s": 7.295000000000548e-08,
+              "overshoot_fraction": 0.07071816337588772,
+              "late_error_max_v": 0.00042958980357221677,
+              "late_ripple_v": 1.4455596011320182e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.2650000000003956e-08,
+              "overshoot_fraction": 0.010949321707443388,
+              "late_error_max_v": 0.0007593333637924138,
+              "late_ripple_v": 9.684216721872474e-07,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 7.285000000000547e-08,
+              "overshoot_fraction": 0.07103296936580518,
+              "late_error_max_v": 0.00042922452403026945,
+              "late_ripple_v": 1.3829395981712622e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.265000000000406e-08,
+              "overshoot_fraction": 0.010943546517307239,
+              "late_error_max_v": 0.0007593172669608239,
+              "late_ripple_v": 9.71785029946215e-07,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "overload",
+          "corner": "ff",
+          "temp": 27,
+          "gain": 4,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.695
+        },
+        "metrics": {
+          "recoveries": [
+            {
+              "settling_s": 8.235000000000619e-08,
+              "overshoot_fraction": 0.010534090811667896,
+              "late_error_max_v": 0.0005835462498521293,
+              "late_ripple_v": 8.648646758979694e-06,
+              "target_v": 0.65
+            },
+            {
+              "settling_s": 7.015000000000527e-08,
+              "overshoot_fraction": 0.05469564185634945,
+              "late_error_max_v": 0.0006202296141547547,
+              "late_ripple_v": 9.82577736952095e-07,
+              "target_v": 0.65
+            }
+          ]
+        },
+        "checks": {
+          "overload_recovery": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ff",
+          "temp": 85,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 1
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 4.341
+        },
+        "metrics": {
+          "dc_error_max_v": 0.00017848897064698388,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002843891302055035,
+          "dc_total_positive_power_max_w": 0.000285136507348057,
+          "steps": [
+            {
+              "settling_s": 2.105000000000158e-08,
+              "overshoot_fraction": 0.0683526603663198,
+              "late_error_max_v": 0.00017799495797699016,
+              "late_ripple_v": 1.5400355302119806e-07,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 1.6850000000001266e-08,
+              "overshoot_fraction": 0.06593451040900365,
+              "late_error_max_v": 0.0001742215564544125,
+              "late_ripple_v": 1.1661506937876709e-07,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 2.105000000000158e-08,
+              "overshoot_fraction": 0.06836712354806317,
+              "late_error_max_v": 0.00017793210535899107,
+              "late_ripple_v": 1.4430299399847968e-07,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 1.6850000000002007e-08,
+              "overshoot_fraction": 0.06592905987410023,
+              "late_error_max_v": 0.00017421753414936791,
+              "late_ripple_v": 1.1735283789171547e-07,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ff",
+          "temp": 85,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 3
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.952
+        },
+        "metrics": {
+          "dc_error_max_v": 0.00017848897064698388,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002843891302055035,
+          "dc_total_positive_power_max_w": 0.000285136507348057,
+          "steps": [
+            {
+              "settling_s": 3.2950000000002475e-08,
+              "overshoot_fraction": 0.10343182140100991,
+              "late_error_max_v": 0.00017800512749710506,
+              "late_ripple_v": 1.555729471913736e-07,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 2.5050000000001882e-08,
+              "overshoot_fraction": 0.08337505149455525,
+              "late_error_max_v": 0.00017421916831505957,
+              "late_ripple_v": 1.1705323155197789e-07,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 3.285000000000247e-08,
+              "overshoot_fraction": 0.10355385425741362,
+              "late_error_max_v": 0.00017794203479404302,
+              "late_ripple_v": 1.4583542995438847e-07,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 2.5050000000001988e-08,
+              "overshoot_fraction": 0.08338005212911502,
+              "late_error_max_v": 0.00017421513067517047,
+              "late_ripple_v": 1.1779398778610783e-07,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ff",
+          "temp": 85,
+          "gain": 1,
+          "lo": 0.7,
+          "hi": 1.0,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.911
+        },
+        "metrics": {
+          "dc_error_max_v": 0.00017848897064698388,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.0002843891302055035,
+          "dc_total_positive_power_max_w": 0.000285136507348057,
+          "steps": [
+            {
+              "settling_s": 5.4250000000004076e-08,
+              "overshoot_fraction": 0.19414251780809352,
+              "late_error_max_v": 0.00017801972015796252,
+              "late_ripple_v": 1.5782497797545147e-07,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 3.805000000000286e-08,
+              "overshoot_fraction": 0.1038084421826546,
+              "late_error_max_v": 0.00017421774132597712,
+              "late_ripple_v": 1.1731497007172464e-07,
+              "target_v": 0.7
+            },
+            {
+              "settling_s": 5.4250000000004076e-08,
+              "overshoot_fraction": 0.19445994389741666,
+              "late_error_max_v": 0.00017795640160400694,
+              "late_ripple_v": 1.4805259196393195e-07,
+              "target_v": 1.0
+            },
+            {
+              "settling_s": 3.8050000000002965e-08,
+              "overshoot_fraction": 0.10381081359946974,
+              "late_error_max_v": 0.0001742136895015456,
+              "late_ripple_v": 1.1805858191049623e-07,
+              "target_v": 0.7
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ff",
+          "temp": 85,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 1
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.977
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0009063012270090209,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.00028979234428809226,
+          "dc_total_positive_power_max_w": 0.0003066367566216807,
+          "steps": [
+            {
+              "settling_s": 6.285000000000467e-08,
+              "overshoot_fraction": 0.0006577589016465436,
+              "late_error_max_v": 0.0004928058697191151,
+              "late_ripple_v": 2.1700112979861075e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 7.765000000000583e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0008986924107404204,
+              "late_ripple_v": 1.3981818176023175e-06,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 6.275000000000471e-08,
+              "overshoot_fraction": 0.0006541887836328254,
+              "late_error_max_v": 0.0004920101716392455,
+              "late_ripple_v": 2.0477265760820984e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 7.765000000000594e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0008986434059427006,
+              "late_ripple_v": 1.407192251723366e-06,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ff",
+          "temp": 85,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 3
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 4.24
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0009063012270090209,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.00028979234428809226,
+          "dc_total_positive_power_max_w": 0.0003066367566216807,
+          "steps": [
+            {
+              "settling_s": 6.215000000000467e-08,
+              "overshoot_fraction": 0.003185306314142656,
+              "late_error_max_v": 0.0004927182252272289,
+              "late_ripple_v": 2.156532006969414e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 6.605000000000496e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0008986499613664045,
+              "late_ripple_v": 1.4059884054784533e-06,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 6.185000000000465e-08,
+              "overshoot_fraction": 0.0031373199126227833,
+              "late_error_max_v": 0.0004919176550450821,
+              "late_ripple_v": 2.0334998738213983e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 6.605000000000507e-08,
+              "overshoot_fraction": 0.0,
+              "late_error_max_v": 0.0008986006837445881,
+              "late_ripple_v": 1.4150493214959425e-06,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "tracking",
+          "corner": "ff",
+          "temp": 85,
+          "gain": 4,
+          "lo": 0.625,
+          "hi": 0.825,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 4.06
+        },
+        "metrics": {
+          "dc_error_max_v": 0.0009063012270090209,
+          "dc_input_current_max_a": 0.0,
+          "dc_vdd_power_max_w": 0.00028979234428809226,
+          "dc_total_positive_power_max_w": 0.0003066367566216807,
+          "steps": [
+            {
+              "settling_s": 7.955000000000598e-08,
+              "overshoot_fraction": 0.06690118311324657,
+              "late_error_max_v": 0.000491713347206213,
+              "late_ripple_v": 2.002089130037632e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.535000000000416e-08,
+              "overshoot_fraction": 0.00855719287559162,
+              "late_error_max_v": 0.0008985461221788227,
+              "late_ripple_v": 1.4250837619966816e-06,
+              "target_v": 0.25
+            },
+            {
+              "settling_s": 7.945000000000597e-08,
+              "overshoot_fraction": 0.06737596649429885,
+              "late_error_max_v": 0.0004908855438472415,
+              "late_ripple_v": 1.874874633100987e-06,
+              "target_v": 1.0499999999999998
+            },
+            {
+              "settling_s": 5.535000000000405e-08,
+              "overshoot_fraction": 0.00854442194864226,
+              "late_error_max_v": 0.0008984951373958161,
+              "late_ripple_v": 1.4344590451020878e-06,
+              "target_v": 0.25
+            }
+          ]
+        },
+        "checks": {
+          "application_range_and_loading": true,
+          "application_power": true,
+          "application_tracking": true,
+          "application_stability": true
+        }
+      },
+      {
+        "case": {
+          "kind": "overload",
+          "corner": "ff",
+          "temp": 85,
+          "gain": 4,
+          "cl_pf": 6
+        },
+        "source_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+        "execution": {
+          "exit_code": 0,
+          "stdout": "******\n** ngspice-46 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2025, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Jul 23 12:10:16 UTC 2026\n******\n\nBatch mode\n\nComments and warnings go to log-file: native.log\n\n",
+          "stderr": "",
+          "wall_seconds": 3.359
+        },
+        "metrics": {
+          "recoveries": [
+            {
+              "settling_s": 8.545000000000647e-08,
+              "overshoot_fraction": 0.008273822263949904,
+              "late_error_max_v": 0.0006763372392015743,
+              "late_ripple_v": 1.134763071342082e-05,
+              "target_v": 0.65
+            },
+            {
+              "settling_s": 7.535000000000566e-08,
+              "overshoot_fraction": 0.05180610637321914,
+              "late_error_max_v": 0.000731549166497869,
+              "late_ripple_v": 1.1837687590166013e-06,
+              "target_v": 0.65
+            }
+          ]
+        },
+        "checks": {
+          "overload_recovery": true
+        }
+      }
+    ],
+    "simulation_complete": true,
+    "native_run_count": 65,
+    "frozen_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7",
+    "contract_sha256": "a65bda7dff42ccd80b74d134cc6a9586a6468d37c530405d9375327abbb61346"
+  },
+  "frozen_sha256": "9577e0caa13f4375c9f25daa0323e2c27f04527b2a356426e58a3d1ed8b97dd7"
+}

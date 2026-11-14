@@ -1,0 +1,81 @@
+{
+  "version": "a2-opamp-application-porting-v1",
+  "source": {
+    "task": "T3__opamp_2stg__hard_1_gain_ugf",
+    "commit": "5dc16f1c01858664f1912a84abfc06fd4c69f6de",
+    "original_eight_checks_unchanged": true,
+    "original_outcome": "P/F/D/I",
+    "source_tsmc_model_available": false
+  },
+  "interface": ".subckt dut iref inp inn out",
+  "application_conditions": {
+    "vdd_v": 1.2,
+    "iref_a": 2e-05,
+    "corners": [
+      "tt",
+      "ss",
+      "ff"
+    ],
+    "temperatures_c": [
+      -20,
+      27,
+      85
+    ],
+    "gains": [
+      1,
+      4
+    ],
+    "load_capacitances_pf": [
+      1,
+      3,
+      6
+    ],
+    "sensor_resistance_ohm": 10000,
+    "interconnect_resistance_ohm": 20,
+    "load_resistance_to_reference_ohm": 50000,
+    "application_reference_v": 0.75,
+    "gain1_input_range_v": [
+      0.7,
+      1.0
+    ],
+    "gain4_input_range_v": [
+      0.625,
+      0.825
+    ],
+    "gain4_output_range_v": [
+      0.25,
+      1.05
+    ],
+    "overload_inputs_v": [
+      0.5,
+      0.95
+    ],
+    "overload_return_input_v": 0.725
+  },
+  "application_limits": {
+    "dc_error_v": 0.001,
+    "input_current_a": 1e-09,
+    "vdd_power_w": 0.0002964,
+    "total_positive_power_w": 0.00032,
+    "settling_s": 1.2e-07,
+    "overshoot_fraction": 0.25,
+    "late_ripple_v": 0.0002,
+    "overload_recovery_s": 1.2e-07
+  },
+  "numerics": {
+    "method": "gear",
+    "maxord": 2,
+    "maximum_timestep_s": 1e-10,
+    "reltol": 0.0001,
+    "original_numerics_unchanged": true,
+    "native_threads": 1
+  },
+  "signoff": {
+    "original_native_invocations": 2,
+    "tracking_cases": 54,
+    "overload_cases": 9,
+    "total_native_invocations": 65,
+    "full_pass": "original P AND all five application groups pass AND simulations complete",
+    "spec_score": "100 * min(original checks passed / 8, application groups passed / 5)"
+  }
+}
