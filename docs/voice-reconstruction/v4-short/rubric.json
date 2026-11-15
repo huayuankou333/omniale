@@ -1,0 +1,128 @@
+{
+  "version": "voice-omni-v4-short",
+  "date": "2026-11-15",
+  "status": "production_pilot_perceptual_scoring_pending",
+  "task": "30-second singing voice replacement with matching original footage",
+  "duration_seconds": 30,
+  "converted_voice_count": 1,
+  "fresh_inference_queries": 0,
+  "score_weights": {
+    "A_sound": 0.8,
+    "X_audiovisual": 0.1,
+    "V_video_usability": 0.1
+  },
+  "sound_points": {
+    "audible_target_identity": 30,
+    "independent_identity_feature": 5,
+    "naturalness": 30,
+    "artifact_freedom": 20,
+    "content": 10,
+    "performance_preservation": 5
+  },
+  "perceptual_rating_to_fraction": {
+    "0": 0,
+    "1": 0,
+    "2": 0.25,
+    "3": 0.65,
+    "4": 1
+  },
+  "sound_windows_seconds": [
+    [
+      0,
+      6
+    ],
+    [
+      6,
+      12
+    ],
+    [
+      12,
+      18
+    ],
+    [
+      18,
+      24
+    ],
+    [
+      24,
+      30
+    ]
+  ],
+  "source_selection": {
+    "min_audible_singing_seconds_per_window": 3,
+    "min_total_audible_singing_seconds": 20,
+    "auditory_confirmation_required": true
+  },
+  "sound_aggregation": {
+    "window_mean_weight": 0.75,
+    "worst_window_weight": 0.25,
+    "apply_full_clip_caps_after_aggregation": true
+  },
+  "sound_caps": {
+    "no_change": 0,
+    "identity_below_2": 19,
+    "identity_below_3": 59,
+    "naturalness_below_2": 39,
+    "naturalness_below_3": 59,
+    "artifact_freedom_below_2": 39,
+    "artifact_freedom_below_3": 59,
+    "content_below_2": 29,
+    "content_below_3": 59,
+    "any_window_identity_naturalness_or_artifact_below_3": 59,
+    "obvious_mechanical_defect_active_fraction_at_least_0_20_or_contiguous_seconds_at_least_1": 59,
+    "severe_mechanical_defect_active_fraction_at_least_0_40_or_contiguous_seconds_at_least_3": 39,
+    "unconverted_active_fraction_at_least_0_20": 19
+  },
+  "uncertain_core_judgment": {
+    "status": "pending_review",
+    "allow_confirmed_A_above_59": false,
+    "do_not_report_bound_as_observed_score": true
+  },
+  "total_caps": [
+    {
+      "A_less_than": 60,
+      "maximum_total": 59
+    },
+    {
+      "A_less_than": 80,
+      "maximum_total": 79
+    }
+  ],
+  "X_points": {
+    "actual_performance_binding": 30,
+    "phoneme_or_action_anchor_sync": 50,
+    "visible_valid_singing": 20
+  },
+  "X_sync": {
+    "min_anchors": 10,
+    "full_score_error_ms": 40,
+    "zero_score_error_ms": 160,
+    "mean_weight": 0.5,
+    "worst_20_percent_weight": 0.5
+  },
+  "V_points": {
+    "valid_coverage": 40,
+    "framing": 40,
+    "continuity": 20
+  },
+  "acceptance": {
+    "S_min": 80,
+    "A_min": 80,
+    "X_min": 80,
+    "V_min": 70,
+    "engineering_gate_required": true
+  },
+  "engineering_points": 0,
+  "perceptual_judge_protocol": "PROTOCOL.zh-CN.md section 6; no unvalidated Qwen identity scoring",
+  "independent_identity_encoder": "WeSpeaker VoxCeleb ResNet34 ONNX",
+  "calibration_status": "objective_controls_pass; automatic_identity_and_auxiliary_encoder_unqualified",
+  "model_test_status": "ready_for_frozen_run",
+  "independent_encoder_calibration": {
+    "separation": 0.01937618851661682,
+    "required_separation": 0.03,
+    "passed": false,
+    "points_pending": 5
+  },
+  "unqualified_automatic_judge": "Qwen same-person different-song and file-order qualification failed; preserve all auxiliary judgments, do not grade identity using them",
+  "perceptual_fallback": "A/S null pending two qualified independent blind listeners; objective no-op can directly establish A=0"
+}
