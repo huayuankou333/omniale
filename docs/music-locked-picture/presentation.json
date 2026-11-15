@@ -1,0 +1,124 @@
+{
+  "case": "music-locked-picture-v2-online",
+  "model": "gpt-6.1-sol",
+  "date": "2026-11-16",
+  "score_display": 25,
+  "estimated_total": 25,
+  "status": "user_listening_informed_preliminary_estimate",
+  "dimension_scores": {
+    "narrative": 5,
+    "musical_editing": 10,
+    "short_version": 4,
+    "technical": 6
+  },
+  "weights": {
+    "narrative": 35,
+    "musical_editing": 40,
+    "short_version": 15,
+    "technical": 10
+  },
+  "basis": [
+    "用户试听本次成片后认为配乐未有效体现情节与情绪，要求按较低内容质量估分。",
+    "工程读取确认长版6个、短版5个音频项；这些制作操作不直接证明音画适配成功。",
+    "技术6分来自响度、真峰值、声道及成片与WAV一致性的独立实测。"
+  ],
+  "technical_audible_artifact_item": {
+    "maximum": 4,
+    "awarded": 0,
+    "status": "not_independently_judged_no_credit_awarded",
+    "full_credit_total_ceiling_if_other_dimensions_unchanged": 29
+  },
+  "limitations": [
+    "未完成经基线标定的双评审盲听。",
+    "19/90内容分为维度级初估，没有伪造逐时间点听审或细项系数。",
+    "可闻瑕疵4分未判，当前不授分；这不代表已证实存在瑕疵。",
+    "Qwen数值未用于本展示分；原始评测总分仍为null。",
+    "剪辑次数、下载次数、工程齐全不直接奖励内容分。"
+  ],
+  "qwen_numeric_scores_used": false,
+  "expert_panel_score": false,
+  "engineering_gate_pass": true,
+  "engineering_gate_content_bonus": 0,
+  "original_result_modified": false,
+  "original_result_overall_score": null,
+  "original_result_sha256": "216ed19eddbe3594f6450fd94eb5859936ebe3128fa030730f1ca1b43548322b",
+  "subcriteria_coefficients": null,
+  "subcriteria_status": "not_available_for_dimension_level_estimate",
+  "page": "https://huayuankou333.github.io/omniale/music-locked-picture/",
+  "run": {
+    "model": "gpt-6.1-sol",
+    "step": 51,
+    "successful_calls": 51,
+    "input_tokens": 4130333,
+    "output_tokens": 49029,
+    "active_seconds": 3104.249522924423,
+    "termination": "model_finished",
+    "started_at": 1794753129.7428584,
+    "ended_at": 1794757327.7495022
+  },
+  "network": {
+    "requests": 10,
+    "request_limit": 60,
+    "bytes_received": 14283811,
+    "byte_limit": 536870912,
+    "successful_downloads": 2,
+    "failed_http_or_tool_requests": 0,
+    "cache_policy": "exact URL, this run only; failures and redirect hops charged"
+  },
+  "actual_modalities": {
+    "native_audio": false,
+    "native_video": false,
+    "actual_images": true,
+    "audio_analysis_tools": true
+  },
+  "source_music": [
+    {
+      "title": "Childhood",
+      "author": "Scott Buckley",
+      "license": "CC BY 4.0",
+      "page_url": "https://www.scottbuckley.com.au/library/childhood/",
+      "evidence_request": "http-004",
+      "page_sha256": "566effc1b104ab3af07cdebb447d890489900592b0e1b64cec1948c91362cdee",
+      "download_id": "asset-7bc1a9bf1d57",
+      "original_sha256": "7bc1a9bf1d57d1eb96dcfd9ead5d31371d378fa6c238fe7f59700cd6e5936460",
+      "package_original": "project/sources/sb_childhood.mp3",
+      "review_conclusion": "Individual author page explicitly identifies this work as CC Attribution 4.0 and supplies its download; attribution and changes retained."
+    },
+    {
+      "title": "Felicity",
+      "author": "Scott Buckley",
+      "license": "CC BY 4.0",
+      "page_url": "https://www.scottbuckley.com.au/library/felicity/",
+      "evidence_request": "http-005",
+      "page_sha256": "262cf4333c25e704f99d8ba1d8ad5d38d31c04d178f81a96349bf074c692f757",
+      "download_id": "asset-054dcaafd606",
+      "original_sha256": "054dcaafd60653b9b562941c478f762ace27d7620e11f1b83f95271756aedb4a",
+      "package_original": "project/sources/sb_felicity.mp3",
+      "review_conclusion": "Individual author page explicitly identifies this work as CC Attribution 4.0 and supplies its download; attribution and changes retained."
+    }
+  ],
+  "original_result": "files/result.json",
+  "score_source": "files/display-score-v2.json",
+  "versions": {
+    "long": {
+      "label": "长版",
+      "seconds": 80,
+      "final": "media/long.mp4",
+      "input": "media/long-lock.mp4",
+      "baseline": "media/baseline-long.mp4",
+      "wav": "media/long-music.wav",
+      "poster": "media/long-poster.jpg",
+      "description": "80秒连续故事画面。音乐需要支持情绪发展、转折和结尾。"
+    },
+    "short": {
+      "label": "短版",
+      "seconds": 20,
+      "final": "media/short.mp4",
+      "input": "media/short-lock.mp4",
+      "baseline": "media/baseline-short.mp4",
+      "wav": "media/short-music.wav",
+      "poster": "media/short-poster.jpg",
+      "description": "20秒独立宣传短片。镜头来自长版并重排，需要重新组织音乐发展与收束。"
+    }
+  }
+}

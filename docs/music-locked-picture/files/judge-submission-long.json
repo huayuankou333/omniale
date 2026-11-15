@@ -1,0 +1,125 @@
+{
+  "label": "submission-long",
+  "route": "explicit-audio-plus-silent-video",
+  "fingerprint": "c36a808bfc5210ce9dade1dcdd7d029dc3fc7bb786e4c7a38b2d7e8735dc85db",
+  "model": "qwen3.8-omni-flash",
+  "usage": {
+    "completion_tokens": 946,
+    "completion_tokens_details": {
+      "text_tokens": 946
+    },
+    "prompt_tokens": 31251,
+    "prompt_tokens_details": {
+      "audio_tokens": 562,
+      "cached_tokens": 0,
+      "text_tokens": 1887,
+      "video_tokens": 28802
+    },
+    "total_tokens": 32197
+  },
+  "seconds": 15.75668215751648,
+  "prompt": "You are an anonymous auxiliary reviewer of a music-to-locked-picture commission, not a calibrated expert panel. Watch AND listen to the entire single submitted film. Evaluate whether the music actually supports the visible narrative, meaningful visual events, emotional pacing, complete musical phrasing, coherent transitions and ending. Do not infer quality from successful encoding or from the number of video cuts. One continuous music cue can be excellent; extra cuts do not automatically earn points. No original soundtrack is available or treated as an answer. No source timeline or creator explanation is given. Do not invent edits, fades or effects; describe an audible effect rather than claiming an unverified production operation. This video is sampled at 4 fps; no frame-accurate beat claims. If evidence is insufficient return null, not a confident guess.\nUse 0..1 quality coefficients in steps of 0.05: 0 missing/failed; .25 most critical places fail; .5 basically usable with clear problems; .75 professional overall with local flaws; 1 outstanding with no material problem. High scores require audible and visible evidence, not an assumed base score.\nReturn ONLY JSON: {\"heard_audio\":boolean,\"observations\":string,\"coefficients\":{\"narrative_arc\":number|null,\"event_relationship\":number|null,\"emotional_control\":number|null,\"structure_phrasing\":number|null,\"edit_transparency\":number|null,\"material_coherence\":number|null,\"musical_ending\":number|null,\"artifact_freedom\":number|null},\"evidence\":{\"narrative_arc\":[{\"time_seconds\":number,\"observation\":string}],\"event_relationship\":[],\"emotional_control\":[],\"structure_phrasing\":[],\"edit_transparency\":[],\"material_coherence\":[],\"musical_ending\":[],\"artifact_freedom\":[]},\"limitations\":[string]}. Include concrete observations for every scored category. Loudness, peak, matching mix, file format and native-project reproducibility are measured independently: do not score them.\nThe full original rubric follows for interpretation; use only the eight requested coefficients for this film.\n# 评测方案：锁定画面的配乐重剪与短版适配（联网选材版；试行，尚待标定）\n\n## 计分与门槛\n\n满分 100：叙事适配 35、音乐结构与剪辑 40、短版适配 15、技术品质 10。每项以 0–1 的质量系数乘以对应分值。系数锚点：0＝缺失或完全失败；0.25＝多数关键处失效；0.5＝基本可用但有明显问题；0.75＝整体专业且只有局部瑕疵；1＝该项在两版均表现突出且没有实质问题。可用 0.05 为步长，由评审给依据；分数为各项乘积之和，保留一位小数。\n\n音乐相关每项除短版适配之外，先分别审看长版、短版，再按长版 60%、短版 40% 合成系数；评价短版适配时要与长版联合审看。没有音乐的版本该版本所有音乐系数均为 0。直接拷贝锁画的无声文件得到内容分 0；完整成片只铺单曲而无剪辑不自动判 0，但必须依实际的两版叙事、结构、转场和短版适配独立评分，不能因为成功播放而给默认基础分。\n\n在计分前检查：文件齐全可解码；画面与指定锁画帧序、帧数和内容一致；无不允许的外部音频；立体声音乐及交付清单满足要求；REAPER 工程在新目录离线打开、素材无缺失并能重渲染两版，渲染结果与交付 WAV 对齐且在正常浮点/编码容差下相符。门槛不通过记 `INVALID`，不报告有效总分；允许额外记录诊断性分项，但不可视为通过成绩。路径迁移验证时保留原工程目录结构，避免人为破坏合法相对引用。\n\n## 逐项规则\n\n| 项目 | 分值 | 审查依据，给分时记录具体时间点 |\n|---|---:|---|\n| 故事弧线与情绪方向 | 12 | 起始氛围、情绪发展与结尾是否符合所见情节；重大转折处音乐是否支持而不是颠倒或提前泄露情绪。 |\n| 画面事件与音乐细节 | 12 | 镜头动作、视线、剪接或戏剧动作与音乐重音、进入、退出的关系是否有意义；过度逐帧打点、错位或忽视重要事件均扣分。 |\n| 情绪控制与留白 | 11 | 关键情感时刻的强弱、疏密和留白是否合适，是否长期压迫或过早达到高潮。 |\n| 整体结构与乐句完整 | 12 | 起承转合、能量曲线、开头结尾与乐句是否自然完整，不依赖原片配乐作为答案。 |\n| 音乐编辑透明度 | 12 | 乐句拼接、跨段过渡、节拍与音色连续性；听觉可辨的断裂、跳拍、混响尾巴突变、拉伸伪影按严重程度扣分。 |\n| 素材选择与音乐统一性 | 10 | 所选音乐与影像语境是否匹配；多曲或多段之间配器、调性、音色与动态的衔接是否自然。只用一首本身不扣分。 |\n| 结尾和音乐收束 | 6 | 结尾是否有适合镜头的结束感，尾音及静默是否经过安排；生硬截断或无意义淡出扣分。 |\n| 两版共同身份 | 5 | 两版是否呈现可辨认、合理的共同主题或音色语言，而非机械复用。 |\n| 短版独立叙事与重构 | 10 | 短版是否针对重排画面重建节奏与高潮、独立成形，并与长版区别处理；只截取长版且不适配镜头会失分。 |\n| 混音与技术 | 10 | 响度及真峰值 3 分、无明显削波/爆音/编辑噪声 4 分、声道与交付音频一致 3 分；每个子项分别按上述质量锚点打分，按长短版 60/40 合成。 |\n\n技术指标：积分响度 −16 ±2 LUFS、真峰值 ≤−1 dBTP 为达标；不达标的响度/峰值子项分别按偏差严重程度扣分。响度与真峰值各占该 3 分的一半。WAV 和 MP4 音频一致性应容忍 AAC 编码误差，比较对齐后波形及听感，不用逐样本哈希。输出时长、不可修改画面和可重新渲染属于门槛，不重复计入质量分。\n\n## 实施和标定\n\n先制作至少一个无需编辑的单曲直铺基线和一个常规剪辑基线，再组织至少两位独立有音乐剪辑经验的评审盲评完整视频，先按此表独立记录时间点与扣分理由，讨论分歧后再形成最终结果。明确记录材料选择、每个分项的两版系数、证据与分歧，不能依据与原片配乐相似度打分。Qwen 等模型可提出候选时间点、辅助整理意见或排查瑕疵，未经人工盲听校准不得独立定分或冒充人工评审。作品顺序和文件名应盲化。每次记录运行环境、使用的工具、访问到的原始模态及抽帧/转写方式。\n\n当前只是评分草案：素材尚需完成专家听审、基线难度和评审一致性标定；在此之前不得称其为经过校准的正式分数，也不得承诺当前模型一定不能完成。\n\n\n## 联网选材版的来源门槛与预算核验\n\n本版允许参试者在 60 次实际外部 HTTP 请求内自主搜索、读取许可页和下载音乐，不提供固定三曲。分值、质量锚点和长短版 60/40 汇总均保持原规则。\n\n音源门槛改为：实际使用音乐可追溯至本轮联网工具保存的原始下载，source-manifest.json 与工程引用对应，许可页面支持 CC0 / 公共领域 / 允许改编再发布的 CC BY，并完成署名；原片原声、原配乐仍不得使用。必须核验文件身份和许可，不把下载成功或搜索摘要当作合法授权。合法解码、重采样或预处理可凭来源链核验，单一指纹不匹配不自动判违规。\n\n统计独立 HTTP 日志：失败、重定向各跳、重试均计数；运行内精确 URL 缓存不重复记实际请求。网络预算越界或绕过记为协议违规；未越界不会获得内容加分。旧版与新版的素材可得性不同，成绩仅用于有条件的前后观察，不能称严格同条件的模型能力提升。\n\nTRANSPORT: Each named film is supplied as a silent visual stream followed by its explicit audio stream. Both start at t=0. Use the explicit audio, never infer sounds from visible actions.",
+  "media": [
+    {
+      "name": "long",
+      "input_sha256": "5b8a1a6610a432f922cf796047ea4a439a6ea80b094950be36ff63dcf0f522a7",
+      "video_sha256": "ddf345ec67aac2ec2be20f7cbc13d3b0a9e1873baf0167f2cb32d18da801405a",
+      "audio_sha256": "e81e5a1eda54e17470c05918b3691d150dcd72660293a25e04e79d6a23b904be"
+    }
+  ],
+  "response_text": "{\n  \"heard_audio\": true,\n  \"observations\": \"The audio consists of a gentle piano melody accompanied by soft strings. The music establishes a tender and somewhat melancholic tone that aligns well with the visual narrative of the girl discovering and caring for the injured creature. However, there is a distinct mismatch during the final sequence (from approximately 1:13 onwards), where the visuals shift to a fast-paced action scene involving running and jumping across rooftops. The calm, slow-tempo music continues without any change in energy or rhythm, failing to support the sudden increase in visual pacing and tension.\",\n  \"coefficients\": {\n    \"narrative_arc\": 0.5,\n    \"event_relationship\": 0.4,\n    \"emotional_control\": 0.6,\n    \"structure_phrasing\": 0.7,\n    \"edit_transparency\": 0.8,\n    \"material_coherence\": 0.5,\n    \"musical_ending\": 0.3,\n    \"artifact_freedom\": 0.9\n  },\n  \"evidence\": {\n    \"narrative_arc\": [\n      {\n        \"time_seconds\": 0,\n        \"observation\": \"Music starts gently as the girl explores the ruins.\"\n      },\n      {\n        \"time_seconds\": 73,\n        \"observation\": \"Visuals switch to high-energy action (running/jumping), but the music remains slow and calm, breaking the narrative arc's momentum.\"\n      }\n    ],\n    \"event_relationship\": [\n      {\n        \"time_seconds\": 20,\n        \"observation\": \"Soft musical phrasing accompanies the delicate interaction between the girl and the creature.\"\n      },\n      {\n        \"time_seconds\": 76,\n        \"observation\": \"Rapid visual cuts and physical exertion occur while the background music maintains a steady, unchanging tempo, creating a disconnect.\"\n      }\n    ],\n    \"emotional_control\": [\n      {\n        \"time_seconds\": 30,\n        \"observation\": \"Tender emotion is supported by the string arrangement swelling slightly.\"\n      },\n      {\n        \"time_seconds\": 74,\n        \"observation\": \"Urgency in the visuals is not matched by the audio; the lack of dynamic shift dampens the intended excitement or tension of the chase.\"\n      }\n    ],\n    \"structure_phrasing\": [\n      {\n        \"time_seconds\": 0,\n        \"observation\": \"Clear introduction of the main theme.\"\n      },\n      {\n        \"time_seconds\": 45,\n        \"observation\": \"A transitional phrase occurs as the scene shifts to night/sleeping, fitting the lullaby-like quality.\"\n      }\n    ],\n    \"edit_transparency\": [\n      {\n        \"time_seconds\": 15,\n        \"observation\": \"No audible hard cuts or glitches; the track plays continuously.\"\n      },\n      {\n        \"time_seconds\": 60,\n        \"observation\": \"Smooth transition in instrumentation from solo piano to fuller orchestration.\"\n      }\n    ],\n    \"material_coherence\": [\n      {\n        \"time_seconds\": 0,\n        \"observation\": \"Single continuous cue used throughout.\"\n      },\n      {\n        \"time_seconds\": 73,\n        \"observation\": \"The choice of a pastoral/tender piece clashes with the acrobatic/action genre of the final shots.\"\n      }\n    ],\n    \"musical_ending\": [\n      {\n        \"time_seconds\": 79,\n        \"observation\": \"The video ends abruptly mid-action while the music is still in the middle of a phrase, providing no sense of resolution or closure for either the visual or auditory experience.\"\n      }\n    ],\n    \"artifact_freedom\": [\n      {\n        \"time_seconds\": 0,\n        \"observation\": \"Audio is clean with no noticeable distortion, clipping, or compression artifacts.\"\n      }\n    ]\n  },\n  \"limitations\": [\n    \"Sampled at 4 fps, so precise synchronization of beats to specific frames (like footfalls) cannot be verified accurately.\",\n    \"Only one version of the film was provided; comparison between long and short versions required by the rubric could not be performed.\"\n  ]\n}",
+  "judgment": {
+    "heard_audio": true,
+    "observations": "The audio consists of a gentle piano melody accompanied by soft strings. The music establishes a tender and somewhat melancholic tone that aligns well with the visual narrative of the girl discovering and caring for the injured creature. However, there is a distinct mismatch during the final sequence (from approximately 1:13 onwards), where the visuals shift to a fast-paced action scene involving running and jumping across rooftops. The calm, slow-tempo music continues without any change in energy or rhythm, failing to support the sudden increase in visual pacing and tension.",
+    "coefficients": {
+      "narrative_arc": 0.5,
+      "event_relationship": 0.4,
+      "emotional_control": 0.6,
+      "structure_phrasing": 0.7,
+      "edit_transparency": 0.8,
+      "material_coherence": 0.5,
+      "musical_ending": 0.3,
+      "artifact_freedom": 0.9
+    },
+    "evidence": {
+      "narrative_arc": [
+        {
+          "time_seconds": 0,
+          "observation": "Music starts gently as the girl explores the ruins."
+        },
+        {
+          "time_seconds": 73,
+          "observation": "Visuals switch to high-energy action (running/jumping), but the music remains slow and calm, breaking the narrative arc's momentum."
+        }
+      ],
+      "event_relationship": [
+        {
+          "time_seconds": 20,
+          "observation": "Soft musical phrasing accompanies the delicate interaction between the girl and the creature."
+        },
+        {
+          "time_seconds": 76,
+          "observation": "Rapid visual cuts and physical exertion occur while the background music maintains a steady, unchanging tempo, creating a disconnect."
+        }
+      ],
+      "emotional_control": [
+        {
+          "time_seconds": 30,
+          "observation": "Tender emotion is supported by the string arrangement swelling slightly."
+        },
+        {
+          "time_seconds": 74,
+          "observation": "Urgency in the visuals is not matched by the audio; the lack of dynamic shift dampens the intended excitement or tension of the chase."
+        }
+      ],
+      "structure_phrasing": [
+        {
+          "time_seconds": 0,
+          "observation": "Clear introduction of the main theme."
+        },
+        {
+          "time_seconds": 45,
+          "observation": "A transitional phrase occurs as the scene shifts to night/sleeping, fitting the lullaby-like quality."
+        }
+      ],
+      "edit_transparency": [
+        {
+          "time_seconds": 15,
+          "observation": "No audible hard cuts or glitches; the track plays continuously."
+        },
+        {
+          "time_seconds": 60,
+          "observation": "Smooth transition in instrumentation from solo piano to fuller orchestration."
+        }
+      ],
+      "material_coherence": [
+        {
+          "time_seconds": 0,
+          "observation": "Single continuous cue used throughout."
+        },
+        {
+          "time_seconds": 73,
+          "observation": "The choice of a pastoral/tender piece clashes with the acrobatic/action genre of the final shots."
+        }
+      ],
+      "musical_ending": [
+        {
+          "time_seconds": 79,
+          "observation": "The video ends abruptly mid-action while the music is still in the middle of a phrase, providing no sense of resolution or closure for either the visual or auditory experience."
+        }
+      ],
+      "artifact_freedom": [
+        {
+          "time_seconds": 0,
+          "observation": "Audio is clean with no noticeable distortion, clipping, or compression artifacts."
+        }
+      ]
+    },
+    "limitations": [
+      "Sampled at 4 fps, so precise synchronization of beats to specific frames (like footfalls) cannot be verified accurately.",
+      "Only one version of the film was provided; comparison between long and short versions required by the rubric could not be performed."
+    ]
+  },
+  "transport_errors": [],
+  "formal_score": null
+}

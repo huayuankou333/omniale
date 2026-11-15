@@ -1,0 +1,39 @@
+{
+  "route": "explicit-input-audio-plus-silent-video",
+  "registered_at_unix": 1794753895.8554118,
+  "reason": "Original embedded-video-audio route failed factual controls; it is retained and will not be used for numerical review.",
+  "original_qualification": "../qualification-v2.json",
+  "official_documentation": "https://www.alibabacloud.com/help/en/model-studio/qwen-omni",
+  "controls": {
+    "E31": {
+      "music": true,
+      "duration": 20,
+      "silence": []
+    },
+    "J62": {
+      "music": true,
+      "duration": 20,
+      "silence": [
+        [
+          6,
+          11
+        ]
+      ]
+    },
+    "N48": {
+      "music": false,
+      "duration": 20,
+      "silence": [
+        [
+          0,
+          20
+        ]
+      ]
+    }
+  },
+  "qualification": "all presence/duration correct; gap boundaries within 1.5 s; clean no >=2s invented silence; all-silent covers 17s",
+  "requests": "Three factual controls once each; at most three submission judgments only after pass; transport failures count in shared 12-request cap.",
+  "formal_score": null,
+  "expert_calibrated": false,
+  "limits": "Passing gross facts does not calibrate artistic taste. Lossy MP3 listening proxies cannot certify fine artifacts or stereo quality. No exact beat/frame claims."
+}

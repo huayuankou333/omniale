@@ -1,0 +1,54 @@
+{
+  "label": "submission-joint",
+  "route": "explicit-audio-plus-silent-video",
+  "fingerprint": "5fc49923ebfd9f8c4fba0f05cc4ab13c94b38bfabf380a03dcd6a43269a241d9",
+  "model": "qwen3.8-omni-flash",
+  "usage": {
+    "completion_tokens": 238,
+    "completion_tokens_details": {
+      "text_tokens": 238
+    },
+    "prompt_tokens": 37007,
+    "prompt_tokens_details": {
+      "audio_tokens": 704,
+      "cached_tokens": 0,
+      "text_tokens": 299,
+      "video_tokens": 36004
+    },
+    "total_tokens": 37245
+  },
+  "seconds": 9.178382635116577,
+  "prompt": "Watch and listen to these two anonymous versions of the same music-editing commission: an 80-second narrative long film and a 20-second short film with reordered pictures. Both must retain fixed picture. Judge only shared musical identity and the short version as an independent, self-contained adaptation to its new narrative order, pacing and ending. Do not assume how many music edits were made. A self-contained continuous cue can work; merely trimming an existing mix is not itself proof of failure. Do not use an original soundtrack or a creator explanation. Require specific audible/visible support for high scores. This is an auxiliary uncalibrated review.\nReturn ONLY JSON: {\"heard_audio\":boolean,\"shared_identity\":{\"value\":number|null,\"evidence\":string},\"short_reconstruction\":{\"value\":number|null,\"evidence\":string},\"limitations\":[string]}. Values 0..1 in .05 steps: 0 failed, .25 most key points fail, .5 usable with clear problems, .75 professional with local flaws, 1 outstanding without material problems.\nTRANSPORT: Each named film is supplied as a silent visual stream followed by its explicit audio stream. Both start at t=0. Use the explicit audio, never infer sounds from visible actions.",
+  "media": [
+    {
+      "name": "long",
+      "input_sha256": "5b8a1a6610a432f922cf796047ea4a439a6ea80b094950be36ff63dcf0f522a7",
+      "video_sha256": "ddf345ec67aac2ec2be20f7cbc13d3b0a9e1873baf0167f2cb32d18da801405a",
+      "audio_sha256": "e81e5a1eda54e17470c05918b3691d150dcd72660293a25e04e79d6a23b904be"
+    },
+    {
+      "name": "short",
+      "input_sha256": "c5dd821adf6077670513144773a09ea98e5919eae3614136ca4d9fb305108bad",
+      "video_sha256": "a6db9798fbdb4f8628938c48fa157c71bee2495f9a2fa6bd8d56a3d613e6ad70",
+      "audio_sha256": "92d1dbf60b2994797d6adcbe892ad5880b4184a8f1ddfe3f02e5e40e3827de69"
+    }
+  ],
+  "response_text": "{\"heard_audio\":true,\"shared_identity\":{\"value\":1.0,\"evidence\":\"The short film uses the exact same piano melody, string accompaniment, and final orchestral swell as the long film. The distinct arpeggiated piano motif heard at 0:05 in the long film is clearly present at 0:03 in the short film, confirming identical musical source.\"},\"short_reconstruction\":{\"value\":0.75,\"evidence\":\"The short version successfully creates a self-contained narrative arc (discovery -> healing -> escape) using reordered clips. However, the pacing feels slightly rushed due to the heavy compression of time. Additionally, there are minor audio-visual sync issues; for instance, during the fast-paced chase sequence starting around 0:14, the driving rhythm of the music occasionally lags behind the rapid on-screen action, creating slight dissonance between the auditory tension and visual speed.\"},\"limitations\":[\"This review relies solely on the provided anonymous video/audio streams without access to original project files or creator intent.\",\"Assessment of 'professional' quality is subjective based on standard editing practices for this type of fan-made content.\"]}",
+  "judgment": {
+    "heard_audio": true,
+    "shared_identity": {
+      "value": 1.0,
+      "evidence": "The short film uses the exact same piano melody, string accompaniment, and final orchestral swell as the long film. The distinct arpeggiated piano motif heard at 0:05 in the long film is clearly present at 0:03 in the short film, confirming identical musical source."
+    },
+    "short_reconstruction": {
+      "value": 0.75,
+      "evidence": "The short version successfully creates a self-contained narrative arc (discovery -> healing -> escape) using reordered clips. However, the pacing feels slightly rushed due to the heavy compression of time. Additionally, there are minor audio-visual sync issues; for instance, during the fast-paced chase sequence starting around 0:14, the driving rhythm of the music occasionally lags behind the rapid on-screen action, creating slight dissonance between the auditory tension and visual speed."
+    },
+    "limitations": [
+      "This review relies solely on the provided anonymous video/audio streams without access to original project files or creator intent.",
+      "Assessment of 'professional' quality is subjective based on standard editing practices for this type of fan-made content."
+    ]
+  },
+  "transport_errors": [],
+  "formal_score": null
+}

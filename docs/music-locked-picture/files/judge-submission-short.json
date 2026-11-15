@@ -1,0 +1,104 @@
+{
+  "label": "submission-short",
+  "route": "explicit-audio-plus-silent-video",
+  "fingerprint": "78c80e0d56a2774b86cea5d9f2e5deeff77c4a821dbee2dfb4f1b5b0b1e5c366",
+  "model": "qwen3.8-omni-flash",
+  "usage": {
+    "completion_tokens": 470,
+    "completion_tokens_details": {
+      "text_tokens": 470
+    },
+    "prompt_tokens": 9231,
+    "prompt_tokens_details": {
+      "audio_tokens": 142,
+      "cached_tokens": 0,
+      "text_tokens": 1887,
+      "video_tokens": 7202
+    },
+    "total_tokens": 9701
+  },
+  "seconds": 9.065301895141602,
+  "prompt": "You are an anonymous auxiliary reviewer of a music-to-locked-picture commission, not a calibrated expert panel. Watch AND listen to the entire single submitted film. Evaluate whether the music actually supports the visible narrative, meaningful visual events, emotional pacing, complete musical phrasing, coherent transitions and ending. Do not infer quality from successful encoding or from the number of video cuts. One continuous music cue can be excellent; extra cuts do not automatically earn points. No original soundtrack is available or treated as an answer. No source timeline or creator explanation is given. Do not invent edits, fades or effects; describe an audible effect rather than claiming an unverified production operation. This video is sampled at 4 fps; no frame-accurate beat claims. If evidence is insufficient return null, not a confident guess.\nUse 0..1 quality coefficients in steps of 0.05: 0 missing/failed; .25 most critical places fail; .5 basically usable with clear problems; .75 professional overall with local flaws; 1 outstanding with no material problem. High scores require audible and visible evidence, not an assumed base score.\nReturn ONLY JSON: {\"heard_audio\":boolean,\"observations\":string,\"coefficients\":{\"narrative_arc\":number|null,\"event_relationship\":number|null,\"emotional_control\":number|null,\"structure_phrasing\":number|null,\"edit_transparency\":number|null,\"material_coherence\":number|null,\"musical_ending\":number|null,\"artifact_freedom\":number|null},\"evidence\":{\"narrative_arc\":[{\"time_seconds\":number,\"observation\":string}],\"event_relationship\":[],\"emotional_control\":[],\"structure_phrasing\":[],\"edit_transparency\":[],\"material_coherence\":[],\"musical_ending\":[],\"artifact_freedom\":[]},\"limitations\":[string]}. Include concrete observations for every scored category. Loudness, peak, matching mix, file format and native-project reproducibility are measured independently: do not score them.\nThe full original rubric follows for interpretation; use only the eight requested coefficients for this film.\n# 评测方案：锁定画面的配乐重剪与短版适配（联网选材版；试行，尚待标定）\n\n## 计分与门槛\n\n满分 100：叙事适配 35、音乐结构与剪辑 40、短版适配 15、技术品质 10。每项以 0–1 的质量系数乘以对应分值。系数锚点：0＝缺失或完全失败；0.25＝多数关键处失效；0.5＝基本可用但有明显问题；0.75＝整体专业且只有局部瑕疵；1＝该项在两版均表现突出且没有实质问题。可用 0.05 为步长，由评审给依据；分数为各项乘积之和，保留一位小数。\n\n音乐相关每项除短版适配之外，先分别审看长版、短版，再按长版 60%、短版 40% 合成系数；评价短版适配时要与长版联合审看。没有音乐的版本该版本所有音乐系数均为 0。直接拷贝锁画的无声文件得到内容分 0；完整成片只铺单曲而无剪辑不自动判 0，但必须依实际的两版叙事、结构、转场和短版适配独立评分，不能因为成功播放而给默认基础分。\n\n在计分前检查：文件齐全可解码；画面与指定锁画帧序、帧数和内容一致；无不允许的外部音频；立体声音乐及交付清单满足要求；REAPER 工程在新目录离线打开、素材无缺失并能重渲染两版，渲染结果与交付 WAV 对齐且在正常浮点/编码容差下相符。门槛不通过记 `INVALID`，不报告有效总分；允许额外记录诊断性分项，但不可视为通过成绩。路径迁移验证时保留原工程目录结构，避免人为破坏合法相对引用。\n\n## 逐项规则\n\n| 项目 | 分值 | 审查依据，给分时记录具体时间点 |\n|---|---:|---|\n| 故事弧线与情绪方向 | 12 | 起始氛围、情绪发展与结尾是否符合所见情节；重大转折处音乐是否支持而不是颠倒或提前泄露情绪。 |\n| 画面事件与音乐细节 | 12 | 镜头动作、视线、剪接或戏剧动作与音乐重音、进入、退出的关系是否有意义；过度逐帧打点、错位或忽视重要事件均扣分。 |\n| 情绪控制与留白 | 11 | 关键情感时刻的强弱、疏密和留白是否合适，是否长期压迫或过早达到高潮。 |\n| 整体结构与乐句完整 | 12 | 起承转合、能量曲线、开头结尾与乐句是否自然完整，不依赖原片配乐作为答案。 |\n| 音乐编辑透明度 | 12 | 乐句拼接、跨段过渡、节拍与音色连续性；听觉可辨的断裂、跳拍、混响尾巴突变、拉伸伪影按严重程度扣分。 |\n| 素材选择与音乐统一性 | 10 | 所选音乐与影像语境是否匹配；多曲或多段之间配器、调性、音色与动态的衔接是否自然。只用一首本身不扣分。 |\n| 结尾和音乐收束 | 6 | 结尾是否有适合镜头的结束感，尾音及静默是否经过安排；生硬截断或无意义淡出扣分。 |\n| 两版共同身份 | 5 | 两版是否呈现可辨认、合理的共同主题或音色语言，而非机械复用。 |\n| 短版独立叙事与重构 | 10 | 短版是否针对重排画面重建节奏与高潮、独立成形，并与长版区别处理；只截取长版且不适配镜头会失分。 |\n| 混音与技术 | 10 | 响度及真峰值 3 分、无明显削波/爆音/编辑噪声 4 分、声道与交付音频一致 3 分；每个子项分别按上述质量锚点打分，按长短版 60/40 合成。 |\n\n技术指标：积分响度 −16 ±2 LUFS、真峰值 ≤−1 dBTP 为达标；不达标的响度/峰值子项分别按偏差严重程度扣分。响度与真峰值各占该 3 分的一半。WAV 和 MP4 音频一致性应容忍 AAC 编码误差，比较对齐后波形及听感，不用逐样本哈希。输出时长、不可修改画面和可重新渲染属于门槛，不重复计入质量分。\n\n## 实施和标定\n\n先制作至少一个无需编辑的单曲直铺基线和一个常规剪辑基线，再组织至少两位独立有音乐剪辑经验的评审盲评完整视频，先按此表独立记录时间点与扣分理由，讨论分歧后再形成最终结果。明确记录材料选择、每个分项的两版系数、证据与分歧，不能依据与原片配乐相似度打分。Qwen 等模型可提出候选时间点、辅助整理意见或排查瑕疵，未经人工盲听校准不得独立定分或冒充人工评审。作品顺序和文件名应盲化。每次记录运行环境、使用的工具、访问到的原始模态及抽帧/转写方式。\n\n当前只是评分草案：素材尚需完成专家听审、基线难度和评审一致性标定；在此之前不得称其为经过校准的正式分数，也不得承诺当前模型一定不能完成。\n\n\n## 联网选材版的来源门槛与预算核验\n\n本版允许参试者在 60 次实际外部 HTTP 请求内自主搜索、读取许可页和下载音乐，不提供固定三曲。分值、质量锚点和长短版 60/40 汇总均保持原规则。\n\n音源门槛改为：实际使用音乐可追溯至本轮联网工具保存的原始下载，source-manifest.json 与工程引用对应，许可页面支持 CC0 / 公共领域 / 允许改编再发布的 CC BY，并完成署名；原片原声、原配乐仍不得使用。必须核验文件身份和许可，不把下载成功或搜索摘要当作合法授权。合法解码、重采样或预处理可凭来源链核验，单一指纹不匹配不自动判违规。\n\n统计独立 HTTP 日志：失败、重定向各跳、重试均计数；运行内精确 URL 缓存不重复记实际请求。网络预算越界或绕过记为协议违规；未越界不会获得内容加分。旧版与新版的素材可得性不同，成绩仅用于有条件的前后观察，不能称严格同条件的模型能力提升。\n\nTRANSPORT: Each named film is supplied as a silent visual stream followed by its explicit audio stream. Both start at t=0. Use the explicit audio, never infer sounds from visible actions.",
+  "media": [
+    {
+      "name": "short",
+      "input_sha256": "c5dd821adf6077670513144773a09ea98e5919eae3614136ca4d9fb305108bad",
+      "video_sha256": "a6db9798fbdb4f8628938c48fa157c71bee2495f9a2fa6bd8d56a3d613e6ad70",
+      "audio_sha256": "92d1dbf60b2994797d6adcbe892ad5880b4184a8f1ddfe3f02e5e40e3827de69"
+    }
+  ],
+  "response_text": "{\"heard_audio\":true,\"observations\":\"The audio consists of a gentle, melancholic piano melody that plays continuously throughout the clip. The music establishes a somber tone initially but fails to adapt to the sudden shift in visual pacing and action during the final chase sequence.\",\"coefficients\":{\"narrative_arc\":0.5,\"event_relationship\":0.25,\"emotional_control\":0.5,\"structure_phrasing\":0.75,\"edit_transparency\":1,\"material_coherence\":0.5,\"musical_ending\":null,\"artifact_freedom\":1},\"evidence\":{\"narrative_arc\":[{\"time_seconds\":0,\"observation\":\"The slow, mournful piano effectively supports the initial dark scene and the quiet moment of tending to the injured creature.\"},{\"time_seconds\":15,\"observation\":\"The music completely fails to support the narrative arc when the scene abruptly shifts to a fast-paced, high-stakes chase through the ruins.\"}],\"event_relationship\":[{\"time_seconds\":15,\"observation\":\"There is no synchronization between the musical accents and the rapid physical actions, such as the girl jumping over obstacles or running down stairs.\"},{\"time_seconds\":18,\"observation\":\"The continuous, unchanging tempo ignores the dramatic visual cuts and the urgency of the escape.\"}],\"emotional_control\":[{\"time_seconds\":10,\"observation\":\"The delicate instrumentation matches the intimate, sad mood of the character caring for the wounded animal.\"},{\"time_seconds\":16,\"observation\":\"The lack of dynamic build-up or rhythmic change creates an emotional disconnect during the tense pursuit.\"}],\"structure_phrasing\":[{\"time_seconds\":0,\"observation\":\"The piece has a clear melodic phrase structure with natural breathing room between notes, maintaining coherence despite the visual changes.\"}],\"edit_transparency\":[{\"time_seconds\":0,\"observation\":\"The track appears to be a single, continuous cue laid under the footage without any audible splices, jumps, or artificial fades.\"}],\"material_coherence\":[{\"time_seconds\":5,\"observation\":\"While the solo piano fits the fantasy aesthetic generally, its static nature clashes with the diverse environments shown (dark interior vs. bright exterior ruins).\"}],\"musical_ending\":[],\"artifact_freedom\":[{\"time_seconds\":0,\"observation\":\"No clipping, distortion, or digital artifacts are audible in the playback.\"}]}}",
+  "judgment": {
+    "heard_audio": true,
+    "observations": "The audio consists of a gentle, melancholic piano melody that plays continuously throughout the clip. The music establishes a somber tone initially but fails to adapt to the sudden shift in visual pacing and action during the final chase sequence.",
+    "coefficients": {
+      "narrative_arc": 0.5,
+      "event_relationship": 0.25,
+      "emotional_control": 0.5,
+      "structure_phrasing": 0.75,
+      "edit_transparency": 1,
+      "material_coherence": 0.5,
+      "musical_ending": null,
+      "artifact_freedom": 1
+    },
+    "evidence": {
+      "narrative_arc": [
+        {
+          "time_seconds": 0,
+          "observation": "The slow, mournful piano effectively supports the initial dark scene and the quiet moment of tending to the injured creature."
+        },
+        {
+          "time_seconds": 15,
+          "observation": "The music completely fails to support the narrative arc when the scene abruptly shifts to a fast-paced, high-stakes chase through the ruins."
+        }
+      ],
+      "event_relationship": [
+        {
+          "time_seconds": 15,
+          "observation": "There is no synchronization between the musical accents and the rapid physical actions, such as the girl jumping over obstacles or running down stairs."
+        },
+        {
+          "time_seconds": 18,
+          "observation": "The continuous, unchanging tempo ignores the dramatic visual cuts and the urgency of the escape."
+        }
+      ],
+      "emotional_control": [
+        {
+          "time_seconds": 10,
+          "observation": "The delicate instrumentation matches the intimate, sad mood of the character caring for the wounded animal."
+        },
+        {
+          "time_seconds": 16,
+          "observation": "The lack of dynamic build-up or rhythmic change creates an emotional disconnect during the tense pursuit."
+        }
+      ],
+      "structure_phrasing": [
+        {
+          "time_seconds": 0,
+          "observation": "The piece has a clear melodic phrase structure with natural breathing room between notes, maintaining coherence despite the visual changes."
+        }
+      ],
+      "edit_transparency": [
+        {
+          "time_seconds": 0,
+          "observation": "The track appears to be a single, continuous cue laid under the footage without any audible splices, jumps, or artificial fades."
+        }
+      ],
+      "material_coherence": [
+        {
+          "time_seconds": 5,
+          "observation": "While the solo piano fits the fantasy aesthetic generally, its static nature clashes with the diverse environments shown (dark interior vs. bright exterior ruins)."
+        }
+      ],
+      "musical_ending": [],
+      "artifact_freedom": [
+        {
+          "time_seconds": 0,
+          "observation": "No clipping, distortion, or digital artifacts are audible in the playback."
+        }
+      ]
+    }
+  },
+  "transport_errors": [],
+  "formal_score": null
+}

@@ -1,0 +1,57 @@
+{
+  "purpose": "Verify full-file decoding and observed processing lineage; nonmatches need separate review, not automatic infringement judgment.",
+  "project_wavs": [
+    {
+      "path": "project/media/Childhood-48k.wav",
+      "sample_rate": 48000,
+      "frames": 6579802,
+      "subtype": "PCM_24",
+      "comparisons": [
+        {
+          "download_id": "asset-7bc1a9bf1d57",
+          "filename": "sb_childhood.mp3",
+          "relative_rms_error": 0.0,
+          "decoded_match": true
+        }
+      ]
+    },
+    {
+      "path": "project/media/Felicity-48k.wav",
+      "sample_rate": 48000,
+      "frames": 10108500,
+      "subtype": "PCM_24",
+      "comparisons": [
+        {
+          "download_id": "asset-054dcaafd606",
+          "filename": "sb_felicity.mp3",
+          "relative_rms_error": 0.0,
+          "decoded_match": true
+        }
+      ]
+    },
+    {
+      "path": "project/media/Felicity-E-48k.wav",
+      "sample_rate": 48000,
+      "frames": 10108500,
+      "subtype": "PCM_24",
+      "comparisons": [
+        {
+          "download_id": "asset-054dcaafd606",
+          "filename": "sb_felicity.mp3",
+          "relative_rms_error": 1.2689259052276611,
+          "decoded_match": false
+        }
+      ]
+    }
+  ],
+  "observed_transformations": [
+    {
+      "source": "project/media/Felicity-48k.wav",
+      "target": "project/media/Felicity-E-48k.wav",
+      "filter": "rubberband=pitch=1.189207115:transients=mixed:detector=compound:phase=laminar:window=long:smoothing=on:formant=shifted:pitchq=quality,highpass=f=48,equalizer=f=280:t=q:w=0.8:g=-1.0,treble=g=-1.5:f=6000",
+      "source_decode_lineage_verified": true,
+      "relative_rms_error": 0.0,
+      "transformation_reproduced": true
+    }
+  ]
+}
