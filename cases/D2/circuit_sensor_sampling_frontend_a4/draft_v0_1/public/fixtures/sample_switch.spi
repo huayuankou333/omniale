@@ -1,0 +1,7 @@
+* A4 fixed switch abstraction: resistive SW + two fixed feedthrough capacitors.
+.subckt sle_sample_switch a b clk vss params: supply=1.8
+.model sle_sw SW(Ron=50 Roff=1e12 Vt={supply/2} Vh=0)
+Smain a b clk vss sle_sw
+Cfeed_a clk a 2f
+Cfeed_b clk b 2f
+.ends sle_sample_switch

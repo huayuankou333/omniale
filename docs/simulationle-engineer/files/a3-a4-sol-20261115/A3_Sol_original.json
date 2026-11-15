@@ -1,0 +1,48 @@
+{
+  "checks": [
+    {
+      "name": "dc_regulation",
+      "status": "passed",
+      "message": "worst |vout-1.0V| over the 0-20mA DC sweep = 15.57mV at ff/1.8V/+85C/vmax_v (max 30mV)"
+    },
+    {
+      "name": "quiescent_current",
+      "status": "passed",
+      "message": "worst no-load VIN current = 76.34uA at sf/1.8V/+85C (max 100uA; ideal VREF current is free)"
+    },
+    {
+      "name": "psr_1khz",
+      "status": "passed",
+      "message": "1kHz 1.5V: worst 49.54dB at sf/27C/1.5V (min 30dB); 1.8V: worst 56.04dB at sf/27C/1.8V (min 35dB)"
+    },
+    {
+      "name": "psr_100khz",
+      "status": "passed",
+      "message": "100kHz: worst 23.46dB at fs/27C/1.5V (min 20dB)"
+    },
+    {
+      "name": "psr_1mhz",
+      "status": "failed",
+      "message": "1MHz: worst 4.769dB at fs/27C/1.5V (min 10dB)"
+    },
+    {
+      "name": "load_step_excursion",
+      "status": "blocked",
+      "message": "blocked: PSR gate failed"
+    },
+    {
+      "name": "load_step_recovery",
+      "status": "blocked",
+      "message": "blocked: PSR gate failed"
+    },
+    {
+      "name": "startup",
+      "status": "blocked",
+      "message": "blocked: PSR gate failed"
+    }
+  ],
+  "exit_code": 0,
+  "wall_seconds": 13.064,
+  "frozen_sha256": "b6618b82b04ddb3c898c058d41bea2bbd2056497a789ffc8fbb3f28c07b6ccbf",
+  "native_processes": null
+}

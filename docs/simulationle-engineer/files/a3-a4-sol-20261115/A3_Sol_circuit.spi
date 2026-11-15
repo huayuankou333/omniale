@@ -1,0 +1,20 @@
+.subckt capless_ldo vin vout vss vref
+Rb vin nb 330k
+Xbn nb nb vss vss sky130_fd_pr__nfet_01v8 l=2 w=4
+Xbp pb nb vss vss sky130_fd_pr__nfet_01v8 l=2 w=4
+Xbd pb pb vin vin sky130_fd_pr__pfet_01v8 l=4 w=24
+Xtail tail pb vin vin sky130_fd_pr__pfet_01v8 l=4 w=96
+Xir nd vref tail vin sky130_fd_pr__pfet_01v8_lvt l=1 w=10 m=8
+Xif ea fb tail vin sky130_fd_pr__pfet_01v8_lvt l=1 w=10 m=8
+Xnl nd nd vss vss sky130_fd_pr__nfet_01v8 l=4 w=24
+Xnr ea nd vss vss sky130_fd_pr__nfet_01v8 l=4 w=24
+Xdrv pg ea vss vss sky130_fd_pr__nfet_01v8 l=4 w=120
+Xpull pg pb vin vin sky130_fd_pr__pfet_01v8 l=4 w=240
+Xpass vout pg vin vin sky130_fd_pr__pfet_01v8 l=0.15 w=10 m=300
+Rtop vout fb 30k
+Rbot fb vss 20k
+Cout vout vss 900p
+Rea ea nd 100k
+Cfast pg cf 60p
+Rf cf vout 2k
+.ends capless_ldo

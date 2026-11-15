@@ -1,0 +1,20 @@
+{
+  "id": "doc-heading-parser-v3",
+  "reason": "TASK requires four named sections, not exactly level-2 Markdown headings; the old evaluator incorrectly rejected level-1 headings.",
+  "changed_evaluator_files": [
+    "verifier.py",
+    "EXECUTOR_REPAIR.md"
+  ],
+  "document_rule": "Accept ATX headings levels 1 through 6 with the same four exact section names.",
+  "electrical_contract_changed": false,
+  "thresholds_or_score_changed": false,
+  "model_rerun": false,
+  "submission_edit": false,
+  "applies_to": [
+    "A3",
+    "A4"
+  ],
+  "original_evaluator_seal_sha256": "75998e1f5fd10b25b1ced14a1f93bbaa9a2ddbc853ab9486669f7bc95b5d2a74",
+  "document_parser_negative_controls_passed": true,
+  "validation_inheritance": "Native execution, original reference regressions, gateway and numerical measurement tests are byte-identical to the sealed v2 evaluator; only the document parser is corrected."
+}

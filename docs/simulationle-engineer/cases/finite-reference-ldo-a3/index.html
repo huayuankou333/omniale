@@ -1,0 +1,31 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>A3 · 有限驱动参考下的 LDO 联合设计</title><style>body{max-width:960px;margin:48px auto;padding:0 24px;font:17px/1.7 system-ui;color:#20332e;background:#f6f7f2}h1{font-size:38px;line-height:1.25}a{color:#216457}table{border-collapse:collapse;width:100%}td,th{padding:12px;text-align:left;border-bottom:1px solid #ccd6cd}.result{padding:24px;background:#e4ede1;border-radius:16px}small{color:#59665c}code{overflow-wrap:anywhere}</style></head><body>
+<a href="../../">← SimulationLE 案例档案</a><p>D2 · 工程改编 · 合同 v0.1 · 已验收</p><h1>有限驱动参考下的 LDO 联合设计</h1><p>保留原题8项验收，加入固定有限驱动参考下的稳压跟踪、参考端完整性、PSR、联合瞬态启动及总功耗5组。交付晶体管级 circuit.spi 和 DESIGN.md。</p>
+<div class="result"><strong>GPT-6.1-Sol · 50 / 100 · task success 0</strong><p>原题4/8；新增4/5组。新增78/78个平台产生有效测量，每题一次有效会话。</p></div>
+<p>原题1 MHz PSR为4.769 dB，低于10 dB门槛；后续3项被原门控阻塞。有限参考平台最差PSR为4.6813 dB，其他4个新增组通过。本次主要瓶颈仍来自原题高频PSR，尚未显示新增参考约束构成独立失败瓶颈。</p><h2>计分与版本</h2><p>100 × min(原题通过比例, 新增通过组比例)。用户已验收本case；合同仍为v0.1，合法参考解通过两层全部矩阵的可行性证明待完成。</p>
+<p>最终证据为result_docfix_v3.json与final_evaluation_docfix_v3/。v3仅修正题面未限定的Markdown标题层级；没有改动冻结交付、电气指标或评分，也没有追加模型调用。旧误判和分数为null的基础设施会话单独保存。</p>
+<h2>源码与完整证据</h2><p><a href="https://github.com/huayuankou333/omniale/tree/main/cases/D2/circuit_finite_reference_ldo_a3">浏览题目草案、运行前执行器与最终验收器</a></p><ul><li><a href="../../files/a3-a4-sol-20261115/A3_A4_delivery.json">A3_A4_delivery.json</a></li>
+<li><a href="../../files/a3-a4-sol-20261115/A3_A4_infrastructure_invalid_attempts.json">A3_A4_infrastructure_invalid_attempts.json</a></li>
+<li><a href="../../files/a3-a4-sol-20261115/A3_A4_publication_scan.json">A3_A4_publication_scan.json</a></li>
+<li><a href="../../files/a3-a4-sol-20261115/A3_A4_Sol_bundle_manifest.json">A3_A4_Sol_bundle_manifest.json</a></li>
+<li><a href="../../files/a3-a4-sol-20261115/A3_A4_Sol_delivery_verification.json">A3_A4_Sol_delivery_verification.json</a></li>
+<li><a href="../../files/a3-a4-sol-20261115/A3_A4_Sol_results.json">A3_A4_Sol_results.json</a></li>
+<li><a href="../../files/a3-a4-sol-20261115/A3_A4_Sol_trace_audit.json">A3_A4_Sol_trace_audit.json</a></li>
+<li><a href="../../files/a3-a4-sol-20261115/A3_A4_Sol_交付导读.md">A3_A4_Sol_交付导读.md</a></li>
+<li><a href="../../files/a3-a4-sol-20261115/A3_A4_Sol_实测报告_20261115.md">A3_A4_Sol_实测报告_20261115.md</a></li>
+<li><a href="../../files/a3-a4-sol-20261115/A3_A4_Sol_评测交付_20261115.zip">A3_A4_Sol_评测交付_20261115.zip</a></li>
+<li><a href="../../files/a3-a4-sol-20261115/A3_A4_static_validation.json">A3_A4_static_validation.json</a></li>
+<li><a href="../../files/a3-a4-sol-20261115/A3_A4_构建说明.md">A3_A4_构建说明.md</a></li>
+<li><a href="../../files/a3-a4-sol-20261115/A3_case_draft_v0.1_20261115.zip">A3_case_draft_v0.1_20261115.zip</a></li>
+<li><a href="../../files/a3-a4-sol-20261115/A3_evaluation_runtime_sealed.zip">A3_evaluation_runtime_sealed.zip</a></li>
+<li><a href="../../files/a3-a4-sol-20261115/A3_pre_model_executor_v2_sealed.zip">A3_pre_model_executor_v2_sealed.zip</a></li>
+<li><a href="../../files/a3-a4-sol-20261115/A3_Sol_application_summary.json">A3_Sol_application_summary.json</a></li>
+<li><a href="../../files/a3-a4-sol-20261115/A3_Sol_circuit.spi">A3_Sol_circuit.spi</a></li>
+<li><a href="../../files/a3-a4-sol-20261115/A3_Sol_DESIGN.md">A3_Sol_DESIGN.md</a></li>
+<li><a href="../../files/a3-a4-sol-20261115/A3_Sol_documentation_parser_amendment.json">A3_Sol_documentation_parser_amendment.json</a></li>
+<li><a href="../../files/a3-a4-sol-20261115/A3_Sol_evidence.zip">A3_Sol_evidence.zip</a></li>
+<li><a href="../../files/a3-a4-sol-20261115/A3_Sol_infrastructure_invalid_attempt.zip">A3_Sol_infrastructure_invalid_attempt.zip</a></li>
+<li><a href="../../files/a3-a4-sol-20261115/A3_Sol_original.json">A3_Sol_original.json</a></li>
+<li><a href="../../files/a3-a4-sol-20261115/A3_Sol_protocol.json">A3_Sol_protocol.json</a></li>
+<li><a href="../../files/a3-a4-sol-20261115/A3_Sol_result.json">A3_Sol_result.json</a></li>
+<li><a href="../../files/a3-a4-sol-20261115/A3_Sol_submission.zip">A3_Sol_submission.zip</a></li></ul>
+<p><small>每题预算2小时、48回复、120工具、160次开发仿真、131072输出token；2 CPU/4 GiB，medium。报告列出实际用量及额外无效尝试。研究者包含参考与验收代码，按白名单提供模型输入。原许可随包保留。</small></p></body></html>

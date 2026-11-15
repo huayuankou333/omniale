@@ -1,0 +1,141 @@
+{
+  "case": "A3",
+  "version": "a3-draft-v0.1",
+  "status": "unvalidated_draft",
+  "source_commit": "972f7cd7c95381134387b250edf18f3bd23bdd25",
+  "original_checks": [
+    "dc_regulation",
+    "quiescent_current",
+    "psr_1khz",
+    "psr_100khz",
+    "psr_1mhz",
+    "load_step_excursion",
+    "load_step_recovery",
+    "startup"
+  ],
+  "original_checker_and_numerics_unchanged": true,
+  "same_frozen_circuit_for_both_layers": true,
+  "corners": [
+    "tt",
+    "ff",
+    "ss",
+    "fs",
+    "sf"
+  ],
+  "numerics": {
+    "reltol": 0.0001,
+    "abstol": 1e-12,
+    "vntol": 1e-07,
+    "method": "gear",
+    "maxord": 2
+  },
+  "required_files": [
+    "circuit.spi",
+    "DESIGN.md"
+  ],
+  "required_design_sections": [
+    "Architecture",
+    "Parameters",
+    "Validation",
+    "Limitations"
+  ],
+  "score_formula": "100 * min(original_passed / original_total, added_passed / added_total)",
+  "task_success": "valid_submission and complete_valid_measurements and all_original and all_added",
+  "top": ".subckt capless_ldo vin vout vss vref",
+  "supplies_v": [
+    1.5,
+    1.8
+  ],
+  "temperatures_c": [
+    -40,
+    27,
+    85
+  ],
+  "reference": {
+    "nominal_v": 0.4,
+    "trim_v": [
+      0.39,
+      0.41
+    ],
+    "rout_ohm": 10000,
+    "command_tau_s": 5e-06,
+    "cout_f": 2e-11,
+    "net_current_limit_a": 2e-05,
+    "base_iq_a": 8e-06,
+    "zero_load_source_and_sink_current_a": 1e-05,
+    "estimated_zero_load_total_current_a": 1.8e-05,
+    "enable_voltage_v": 1.2,
+    "headroom_transition_v": 0.05
+  },
+  "load": {
+    "dc_start_a": 0,
+    "dc_stop_a": 0.02,
+    "dc_step_a": 0.0001,
+    "low_a": 0.0005,
+    "high_a": 0.02,
+    "rise_start_s": 2e-05,
+    "rise_end_s": 2.1e-05,
+    "fall_start_s": 6e-05,
+    "fall_end_s": 6.1e-05,
+    "stop_s": 0.0001
+  },
+  "startup_points": [
+    [
+      "tt",
+      1.8,
+      27
+    ],
+    [
+      "sf",
+      1.5,
+      -40
+    ],
+    [
+      "fs",
+      1.8,
+      85
+    ],
+    [
+      "ss",
+      1.5,
+      85
+    ]
+  ],
+  "limits": {
+    "dc_output_error_v": 0.03,
+    "reference_dc_error_v": 0.002,
+    "reference_dc_current_abs_a": 2e-07,
+    "reference_step_error_v": 0.01,
+    "reference_step_current_abs_a": 1e-05,
+    "step_excursion_v": 0.15,
+    "step_recovery_v": 0.03,
+    "startup_peak_v": 1.05,
+    "startup_tail_error_v": 0.02,
+    "dc_overhead_current_a": 0.0001,
+    "step_average_overhead_current_a": 0.00015,
+    "psr_1khz_db": {
+      "1.5": 30,
+      "1.8": 35
+    },
+    "psr_100khz_db": 20,
+    "psr_1mhz_db": 10
+  },
+  "added_groups": [
+    "finite_dc_tracking",
+    "reference_integrity",
+    "finite_reference_psr",
+    "coupled_transient_startup",
+    "total_supply_power"
+  ],
+  "added_runs": {
+    "dc": 34,
+    "psr": 10,
+    "step": 30,
+    "startup": 4,
+    "total": 78
+  },
+  "original_full_path_processes": 20,
+  "capacitor_budget_entire_dut_f": 1e-09,
+  "step_max_step_s": 5e-09,
+  "startup_max_step_s": 5e-08
+}

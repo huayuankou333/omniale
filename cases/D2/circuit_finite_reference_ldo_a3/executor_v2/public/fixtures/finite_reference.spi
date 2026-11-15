@@ -1,0 +1,11 @@
+* A3 fixed research macro-model; do not edit. Not a transistor reference design.
+.subckt sle_finite_reference vin vss vref params: vset=0.4
+Bcmd cmd vss V={vset*min(max(v(vin,vss)/1.2,0),1)}
+Rcmd cmd state 1meg
+Cstate state vss 5p
+Bup vin vref I={min(max(v(vin,vss)/1.2,0),1)*10u*(1+tanh((v(state,vss)-v(vref,vss))/0.2))*min(max(v(vin,vref)/0.05,0),1)}
+Bdown vref vss I={min(max(v(vin,vss)/1.2,0),1)*10u*(1-tanh((v(state,vss)-v(vref,vss))/0.2))}
+Bbase vin vss I={8u*min(max(v(vin,vss)/1.2,0),1)}
+Cout vref vss 20p
+Rbleed vref vss 1t
+.ends sle_finite_reference

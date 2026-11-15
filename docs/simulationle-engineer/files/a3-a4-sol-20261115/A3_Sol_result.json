@@ -1,0 +1,54 @@
+{
+  "case": "A3",
+  "contract_version": "a3-draft-v0.1",
+  "task_success": 0,
+  "validated_waveforms_by_this_aggregator": false,
+  "status": "failed",
+  "submission_sha256": "b6618b82b04ddb3c898c058d41bea2bbd2056497a789ffc8fbb3f28c07b6ccbf",
+  "original_passed": 4,
+  "original_total": 8,
+  "added_passed": 4,
+  "added_total": 5,
+  "complete_added_evidence": true,
+  "score": 50.0,
+  "reward": {
+    "reward": 0,
+    "spec_score": 50.0
+  },
+  "contract_sha256": "b562bdb3a622a5a44c622a8901a56aed820b785058b8a424847d889d5d15197f",
+  "frozen_sha256": "b6618b82b04ddb3c898c058d41bea2bbd2056497a789ffc8fbb3f28c07b6ccbf",
+  "stop_reason": "finish",
+  "requested_model": "gpt-6.1-sol",
+  "reported_model": "gpt-6.1-sol",
+  "tool_calls": 24,
+  "responses": 24,
+  "designs_used": 17,
+  "native_runs": 160,
+  "explicit_finish": true,
+  "finish_summary": "Delivered /app/circuit.spi and /app/DESIGN.md. Final netlist passes allowed-device checker and uses 960 pF total ideal capacitance. Final design tested in one full FF/1.8V/85C DC sweep, 23 application load-step cases, and all four application startup cases. Final measured DC range in the corrected hot-FF case: 1.001256–1.015567 V, maximum total overhead 94.0921 uA. Across 23 final step cases: maximum excursion error 118.925 mV, recovery error 2.381 mV, reference deviation 32.067 uV, reference current 11.076 nA, average supply overhead 94.6843 uA. Final startup maximum peak 1.003813 V and maximum tail error 2.3804 mV. Immediately preceding revision, differing only in divider resistance, was tested across all 34 application DC sweeps and 10 PSR cases: PSR minima 49.540/23.506/4.908 dB at 1k/100k/1MHz. 1MHz rejection failed and remains unresolved; full final matrices and formal original acceptance were not run. Reference isolation uses the MOS-gate differential front end, not a separate voltage-follower buffer. Documentation explicitly identifies untested cases, prior failures, the hot-no-load correction, and limitations. All 160 native development calls used; no formal acceptance or score claimed.",
+  "output_tokens": 16416,
+  "agent_wall_seconds": 1927.686,
+  "documentation_parser_amendment": {
+    "id": "doc-heading-parser-v3",
+    "reason": "TASK requires four named sections, not exactly level-2 Markdown headings; the old evaluator incorrectly rejected level-1 headings.",
+    "changed_evaluator_files": [
+      "verifier.py",
+      "EXECUTOR_REPAIR.md"
+    ],
+    "document_rule": "Accept ATX headings levels 1 through 6 with the same four exact section names.",
+    "electrical_contract_changed": false,
+    "thresholds_or_score_changed": false,
+    "model_rerun": false,
+    "submission_edit": false,
+    "applies_to": [
+      "A3",
+      "A4"
+    ],
+    "original_evaluator_seal_sha256": "93cd501cbcddffc43ed835fe73682c8d29344f7c5b51121a2bfe3e7d5f48aab4",
+    "document_parser_negative_controls_passed": true,
+    "validation_inheritance": "Native execution, original reference regressions, gateway and numerical measurement tests are byte-identical to the sealed v2 evaluator; only the document parser is corrected."
+  },
+  "prior_result_preserved": "/home/adminweihunj/SimulationLE/case/D2/a3_a4_sol_20261115/runtime_v2/A3/runs_sol/20261115T100045Z/gpt-6.1-sol/result.json",
+  "evaluation_runtime": "/home/adminweihunj/SimulationLE/case/D2/a3_a4_sol_20261115/runtime_v3/A3",
+  "independent_evaluation_seconds": 93.102
+}

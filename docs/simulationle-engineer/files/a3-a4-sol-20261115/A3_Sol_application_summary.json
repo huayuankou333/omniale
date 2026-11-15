@@ -1,0 +1,3312 @@
+{
+  "groups": [
+    {
+      "name": "finite_dc_tracking",
+      "status": "passed",
+      "complete": true,
+      "required_cases": 34,
+      "failed_case_ids": []
+    },
+    {
+      "name": "reference_integrity",
+      "status": "passed",
+      "complete": true,
+      "required_cases": 68,
+      "failed_case_ids": []
+    },
+    {
+      "name": "finite_reference_psr",
+      "status": "failed",
+      "complete": true,
+      "required_cases": 10,
+      "failed_case_ids": [
+        "psr_tt_1p5V_+27C_ref0p4",
+        "psr_tt_1p8V_+27C_ref0p4",
+        "psr_ff_1p5V_+27C_ref0p4",
+        "psr_ff_1p8V_+27C_ref0p4",
+        "psr_ss_1p5V_+27C_ref0p4",
+        "psr_ss_1p8V_+27C_ref0p4",
+        "psr_fs_1p5V_+27C_ref0p4",
+        "psr_fs_1p8V_+27C_ref0p4",
+        "psr_sf_1p5V_+27C_ref0p4",
+        "psr_sf_1p8V_+27C_ref0p4"
+      ]
+    },
+    {
+      "name": "coupled_transient_startup",
+      "status": "passed",
+      "complete": true,
+      "required_cases": 34,
+      "failed_case_ids": []
+    },
+    {
+      "name": "total_supply_power",
+      "status": "passed",
+      "complete": true,
+      "required_cases": 64,
+      "failed_case_ids": []
+    }
+  ],
+  "cases": [
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "tt",
+        "supply_v": 1.5,
+        "temperature_c": -40,
+        "vset_v": 0.4,
+        "id": "dc_tt_1p5V_-40C_ref0p4",
+        "deck": "dc_tt_1p5V_-40C_ref0p4/bench.cir",
+        "wave": "dc_tt_1p5V_-40C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.152,
+        "docker_exec_wall_seconds": 1.276
+      },
+      "metrics": {
+        "output_error_v": 0.0006923417546020882,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -3.837473116318629e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "tt",
+        "supply_v": 1.5,
+        "temperature_c": -40,
+        "vset_v": 0.4,
+        "id": "step_tt_1p5V_-40C_ref0p4",
+        "deck": "step_tt_1p5V_-40C_ref0p4/bench.cir",
+        "wave": "step_tt_1p5V_-40C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.767,
+        "docker_exec_wall_seconds": 2.897
+      },
+      "metrics": {
+        "step_excursion_v": 0.06344831770925996,
+        "step_recovery_v": 0.0002808083072840528,
+        "reference_error_v": 1.128142543144195e-05,
+        "reference_current_a": 4.309269666363108e-09,
+        "average_supply_power_w": 0.012561601730615256,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.012675000000000002
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "tt",
+        "supply_v": 1.5,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "dc_tt_1p5V_+27C_ref0p4",
+        "deck": "dc_tt_1p5V_+27C_ref0p4/bench.cir",
+        "wave": "dc_tt_1p5V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.124,
+        "docker_exec_wall_seconds": 1.242
+      },
+      "metrics": {
+        "output_error_v": 0.0014821544719709756,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -3.430704056839318e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "tt",
+        "supply_v": 1.5,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "step_tt_1p5V_+27C_ref0p4",
+        "deck": "step_tt_1p5V_+27C_ref0p4/bench.cir",
+        "wave": "step_tt_1p5V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 3.139,
+        "docker_exec_wall_seconds": 3.27
+      },
+      "metrics": {
+        "step_excursion_v": 0.08804272084180509,
+        "step_recovery_v": 0.0008978185219949975,
+        "reference_error_v": 2.076806285061794e-05,
+        "reference_current_a": 7.124407445935343e-09,
+        "average_supply_power_w": 0.012565656972220453,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.012675000000000002
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "tt",
+        "supply_v": 1.5,
+        "temperature_c": 85,
+        "vset_v": 0.4,
+        "id": "dc_tt_1p5V_+85C_ref0p4",
+        "deck": "dc_tt_1p5V_+85C_ref0p4/bench.cir",
+        "wave": "dc_tt_1p5V_+85C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.247,
+        "docker_exec_wall_seconds": 1.382
+      },
+      "metrics": {
+        "output_error_v": 0.002497188650955051,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -3.133004617210389e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "tt",
+        "supply_v": 1.5,
+        "temperature_c": 85,
+        "vset_v": 0.4,
+        "id": "step_tt_1p5V_+85C_ref0p4",
+        "deck": "step_tt_1p5V_+85C_ref0p4/bench.cir",
+        "wave": "step_tt_1p5V_+85C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.759,
+        "docker_exec_wall_seconds": 2.903
+      },
+      "metrics": {
+        "step_excursion_v": 0.11034128110809704,
+        "step_recovery_v": 0.0014965923015830551,
+        "reference_error_v": 3.166416684324824e-05,
+        "reference_current_a": 1.012878868538597e-08,
+        "average_supply_power_w": 0.012568609733072868,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.012675000000000002
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "tt",
+        "supply_v": 1.8,
+        "temperature_c": -40,
+        "vset_v": 0.4,
+        "id": "dc_tt_1p8V_-40C_ref0p4",
+        "deck": "dc_tt_1p8V_-40C_ref0p4/bench.cir",
+        "wave": "dc_tt_1p8V_-40C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.142,
+        "docker_exec_wall_seconds": 1.271
+      },
+      "metrics": {
+        "output_error_v": 0.0010344119440959254,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -1.9853010980862285e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "tt",
+        "supply_v": 1.8,
+        "temperature_c": -40,
+        "vset_v": 0.4,
+        "id": "step_tt_1p8V_-40C_ref0p4",
+        "deck": "step_tt_1p8V_-40C_ref0p4/bench.cir",
+        "wave": "step_tt_1p8V_-40C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.768,
+        "docker_exec_wall_seconds": 2.982
+      },
+      "metrics": {
+        "step_excursion_v": 0.04461403114818996,
+        "step_recovery_v": 0.0007494466722990367,
+        "reference_error_v": 1.056581447189675e-05,
+        "reference_current_a": 5.159237349838808e-09,
+        "average_supply_power_w": 0.015100094613756491,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.015210000000000001
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "tt",
+        "supply_v": 1.8,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "dc_tt_1p8V_+27C_ref0p4",
+        "deck": "dc_tt_1p8V_+27C_ref0p4/bench.cir",
+        "wave": "dc_tt_1p8V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.24,
+        "docker_exec_wall_seconds": 1.449
+      },
+      "metrics": {
+        "output_error_v": 0.0016904935335129156,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -1.529202553720438e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "tt",
+        "supply_v": 1.8,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "step_tt_1p8V_+27C_ref0p4",
+        "deck": "step_tt_1p8V_+27C_ref0p4/bench.cir",
+        "wave": "step_tt_1p8V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.859,
+        "docker_exec_wall_seconds": 3.065
+      },
+      "metrics": {
+        "step_excursion_v": 0.06445706263567597,
+        "step_recovery_v": 0.0012501533515469898,
+        "reference_error_v": 1.9707881661723547e-05,
+        "reference_current_a": 8.075078815686365e-09,
+        "average_supply_power_w": 0.01510462783873203,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.015210000000000001
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "tt",
+        "supply_v": 1.8,
+        "temperature_c": 85,
+        "vset_v": 0.4,
+        "id": "dc_tt_1p8V_+85C_ref0p4",
+        "deck": "dc_tt_1p8V_+85C_ref0p4/bench.cir",
+        "wave": "dc_tt_1p8V_+85C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.329,
+        "docker_exec_wall_seconds": 1.481
+      },
+      "metrics": {
+        "output_error_v": 0.0029305328063069513,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -1.1944310394675084e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "tt",
+        "supply_v": 1.8,
+        "temperature_c": 85,
+        "vset_v": 0.4,
+        "id": "step_tt_1p8V_+85C_ref0p4",
+        "deck": "step_tt_1p8V_+85C_ref0p4/bench.cir",
+        "wave": "step_tt_1p8V_+85C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.928,
+        "docker_exec_wall_seconds": 3.121
+      },
+      "metrics": {
+        "step_excursion_v": 0.08279612644533696,
+        "step_recovery_v": 0.0017515974930910616,
+        "reference_error_v": 2.9957235329836074e-05,
+        "reference_current_a": 1.113131966028885e-08,
+        "average_supply_power_w": 0.015107921226366727,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.015210000000000001
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "ff",
+        "supply_v": 1.5,
+        "temperature_c": -40,
+        "vset_v": 0.4,
+        "id": "dc_ff_1p5V_-40C_ref0p4",
+        "deck": "dc_ff_1p5V_-40C_ref0p4/bench.cir",
+        "wave": "dc_ff_1p5V_-40C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.31,
+        "docker_exec_wall_seconds": 1.474
+      },
+      "metrics": {
+        "output_error_v": 0.0008084179317449092,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -3.7282852280853124e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "ff",
+        "supply_v": 1.5,
+        "temperature_c": -40,
+        "vset_v": 0.4,
+        "id": "step_ff_1p5V_-40C_ref0p4",
+        "deck": "step_ff_1p5V_-40C_ref0p4/bench.cir",
+        "wave": "step_ff_1p5V_-40C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 3.033,
+        "docker_exec_wall_seconds": 3.235
+      },
+      "metrics": {
+        "step_excursion_v": 0.06173575359765704,
+        "step_recovery_v": 0.0003984188964649693,
+        "reference_error_v": 1.183139065213945e-05,
+        "reference_current_a": 4.580434398958333e-09,
+        "average_supply_power_w": 0.012562689502459763,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.012675000000000002
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "ff",
+        "supply_v": 1.5,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "dc_ff_1p5V_+27C_ref0p4",
+        "deck": "dc_ff_1p5V_+27C_ref0p4/bench.cir",
+        "wave": "dc_ff_1p5V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.141,
+        "docker_exec_wall_seconds": 1.291
+      },
+      "metrics": {
+        "output_error_v": 0.0016740359103470936,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -3.321885442806455e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "ff",
+        "supply_v": 1.5,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "step_ff_1p5V_+27C_ref0p4",
+        "deck": "step_ff_1p5V_+27C_ref0p4/bench.cir",
+        "wave": "step_ff_1p5V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 3.027,
+        "docker_exec_wall_seconds": 3.301
+      },
+      "metrics": {
+        "step_excursion_v": 0.08654647642241597,
+        "step_recovery_v": 0.0010459391889519054,
+        "reference_error_v": 2.1460935331618636e-05,
+        "reference_current_a": 7.443358780463011e-09,
+        "average_supply_power_w": 0.012566736018333052,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.012675000000000002
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "ff",
+        "supply_v": 1.5,
+        "temperature_c": 85,
+        "vset_v": 0.4,
+        "id": "dc_ff_1p5V_+85C_ref0p4",
+        "deck": "dc_ff_1p5V_+85C_ref0p4/bench.cir",
+        "wave": "dc_ff_1p5V_+85C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.184,
+        "docker_exec_wall_seconds": 1.391
+      },
+      "metrics": {
+        "output_error_v": 0.005303449099689939,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -3.024441554488888e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "ff",
+        "supply_v": 1.5,
+        "temperature_c": 85,
+        "vset_v": 0.4,
+        "id": "step_ff_1p5V_+85C_ref0p4",
+        "deck": "step_ff_1p5V_+85C_ref0p4/bench.cir",
+        "wave": "step_ff_1p5V_+85C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.807,
+        "docker_exec_wall_seconds": 2.925
+      },
+      "metrics": {
+        "step_excursion_v": 0.10962783282133892,
+        "step_recovery_v": 0.0017339130732278996,
+        "reference_error_v": 3.206694056073767e-05,
+        "reference_current_a": 1.034335090580735e-08,
+        "average_supply_power_w": 0.0125696695688055,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.012675000000000002
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "ff",
+        "supply_v": 1.8,
+        "temperature_c": -40,
+        "vset_v": 0.4,
+        "id": "dc_ff_1p8V_-40C_ref0p4",
+        "deck": "dc_ff_1p8V_-40C_ref0p4/bench.cir",
+        "wave": "dc_ff_1p8V_-40C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.331,
+        "docker_exec_wall_seconds": 1.499
+      },
+      "metrics": {
+        "output_error_v": 0.0011368450264670482,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -1.8525536109884055e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "ff",
+        "supply_v": 1.8,
+        "temperature_c": -40,
+        "vset_v": 0.4,
+        "id": "step_ff_1p8V_-40C_ref0p4",
+        "deck": "step_ff_1p8V_-40C_ref0p4/bench.cir",
+        "wave": "step_ff_1p8V_-40C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.997,
+        "docker_exec_wall_seconds": 3.197
+      },
+      "metrics": {
+        "step_excursion_v": 0.04397633593579098,
+        "step_recovery_v": 0.000846937003472048,
+        "reference_error_v": 1.112144613063526e-05,
+        "reference_current_a": 5.223945589039741e-09,
+        "average_supply_power_w": 0.01510141367685015,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.015210000000000001
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "ff",
+        "supply_v": 1.8,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "dc_ff_1p8V_+27C_ref0p4",
+        "deck": "dc_ff_1p8V_+27C_ref0p4/bench.cir",
+        "wave": "dc_ff_1p8V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.233,
+        "docker_exec_wall_seconds": 1.398
+      },
+      "metrics": {
+        "output_error_v": 0.0019138391927719933,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -1.3971868267681486e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "ff",
+        "supply_v": 1.8,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "step_ff_1p8V_+27C_ref0p4",
+        "deck": "step_ff_1p8V_+27C_ref0p4/bench.cir",
+        "wave": "step_ff_1p8V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.791,
+        "docker_exec_wall_seconds": 2.93
+      },
+      "metrics": {
+        "step_excursion_v": 0.063991269888098,
+        "step_recovery_v": 0.001388288679897931,
+        "reference_error_v": 2.048232410101214e-05,
+        "reference_current_a": 8.00473280195002e-09,
+        "average_supply_power_w": 0.01510592624702795,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.015210000000000001
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "ff",
+        "supply_v": 1.8,
+        "temperature_c": 85,
+        "vset_v": 0.4,
+        "id": "dc_ff_1p8V_+85C_ref0p4",
+        "deck": "dc_ff_1p8V_+85C_ref0p4/bench.cir",
+        "wave": "dc_ff_1p8V_+85C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.063,
+        "docker_exec_wall_seconds": 1.206
+      },
+      "metrics": {
+        "output_error_v": 0.015567035676256946,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -1.0634243181921466e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "ff",
+        "supply_v": 1.8,
+        "temperature_c": 85,
+        "vset_v": 0.4,
+        "id": "step_ff_1p8V_+85C_ref0p4",
+        "deck": "step_ff_1p8V_+85C_ref0p4/bench.cir",
+        "wave": "step_ff_1p8V_+85C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.477,
+        "docker_exec_wall_seconds": 2.577
+      },
+      "metrics": {
+        "step_excursion_v": 0.08303308337579707,
+        "step_recovery_v": 0.0020019397001509454,
+        "reference_error_v": 3.050847760632802e-05,
+        "reference_current_a": 1.081401027752671e-08,
+        "average_supply_power_w": 0.015109152663416276,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.015210000000000001
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "ss",
+        "supply_v": 1.5,
+        "temperature_c": -40,
+        "vset_v": 0.4,
+        "id": "dc_ss_1p5V_-40C_ref0p4",
+        "deck": "dc_ss_1p5V_-40C_ref0p4/bench.cir",
+        "wave": "dc_ss_1p5V_-40C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 0.867,
+        "docker_exec_wall_seconds": 0.96
+      },
+      "metrics": {
+        "output_error_v": 0.0006063433682279573,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -3.9474036276167246e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "ss",
+        "supply_v": 1.5,
+        "temperature_c": -40,
+        "vset_v": 0.4,
+        "id": "step_ss_1p5V_-40C_ref0p4",
+        "deck": "step_ss_1p5V_-40C_ref0p4/bench.cir",
+        "wave": "step_ss_1p5V_-40C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.647,
+        "docker_exec_wall_seconds": 2.762
+      },
+      "metrics": {
+        "step_excursion_v": 0.06541540807020696,
+        "step_recovery_v": 0.0003826675220175435,
+        "reference_error_v": 1.0752584159334777e-05,
+        "reference_current_a": 4.06504927028678e-09,
+        "average_supply_power_w": 0.012560505460896142,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.012675000000000002
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "ss",
+        "supply_v": 1.5,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "dc_ss_1p5V_+27C_ref0p4",
+        "deck": "dc_ss_1p5V_+27C_ref0p4/bench.cir",
+        "wave": "dc_ss_1p5V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.213,
+        "docker_exec_wall_seconds": 1.361
+      },
+      "metrics": {
+        "output_error_v": 0.0013596656065451018,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -3.540174712557409e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "ss",
+        "supply_v": 1.5,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "step_ss_1p5V_+27C_ref0p4",
+        "deck": "step_ss_1p5V_+27C_ref0p4/bench.cir",
+        "wave": "step_ss_1p5V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 3.097,
+        "docker_exec_wall_seconds": 3.255
+      },
+      "metrics": {
+        "step_excursion_v": 0.089882251840387,
+        "step_recovery_v": 0.0007921448476890802,
+        "reference_error_v": 2.00174472211323e-05,
+        "reference_current_a": 6.800477838839192e-09,
+        "average_supply_power_w": 0.012564568196937204,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.012675000000000002
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "ss",
+        "supply_v": 1.5,
+        "temperature_c": 85,
+        "vset_v": 0.4,
+        "id": "dc_ss_1p5V_+85C_ref0p4",
+        "deck": "dc_ss_1p5V_+85C_ref0p4/bench.cir",
+        "wave": "dc_ss_1p5V_+85C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.203,
+        "docker_exec_wall_seconds": 1.369
+      },
+      "metrics": {
+        "output_error_v": 0.0021113271021639957,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -3.2423130227013375e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "ss",
+        "supply_v": 1.5,
+        "temperature_c": 85,
+        "vset_v": 0.4,
+        "id": "step_ss_1p5V_+85C_ref0p4",
+        "deck": "step_ss_1p5V_+85C_ref0p4/bench.cir",
+        "wave": "step_ss_1p5V_+85C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.996,
+        "docker_exec_wall_seconds": 3.214
+      },
+      "metrics": {
+        "step_excursion_v": 0.1117041111513899,
+        "step_recovery_v": 0.0013490634500439302,
+        "reference_error_v": 3.083884787963287e-05,
+        "reference_current_a": 9.790978312395476e-09,
+        "average_supply_power_w": 0.01256753002843406,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.012675000000000002
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "ss",
+        "supply_v": 1.8,
+        "temperature_c": -40,
+        "vset_v": 0.4,
+        "id": "dc_ss_1p8V_-40C_ref0p4",
+        "deck": "dc_ss_1p8V_-40C_ref0p4/bench.cir",
+        "wave": "dc_ss_1p8V_-40C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.262,
+        "docker_exec_wall_seconds": 1.456
+      },
+      "metrics": {
+        "output_error_v": 0.0009746437662410123,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -2.1190798286607748e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "ss",
+        "supply_v": 1.8,
+        "temperature_c": -40,
+        "vset_v": 0.4,
+        "id": "step_ss_1p8V_-40C_ref0p4",
+        "deck": "step_ss_1p8V_-40C_ref0p4/bench.cir",
+        "wave": "step_ss_1p8V_-40C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.906,
+        "docker_exec_wall_seconds": 3.099
+      },
+      "metrics": {
+        "step_excursion_v": 0.045647989706693926,
+        "step_recovery_v": 0.0006898351012050163,
+        "reference_error_v": 1.0117519453844981e-05,
+        "reference_current_a": 4.985977946486697e-09,
+        "average_supply_power_w": 0.01509876178848091,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.015210000000000001
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "ss",
+        "supply_v": 1.8,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "dc_ss_1p8V_+27C_ref0p4",
+        "deck": "dc_ss_1p8V_+27C_ref0p4/bench.cir",
+        "wave": "dc_ss_1p8V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.225,
+        "docker_exec_wall_seconds": 1.348
+      },
+      "metrics": {
+        "output_error_v": 0.0015809831461071067,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -1.6625535679430647e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "ss",
+        "supply_v": 1.8,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "step_ss_1p8V_+27C_ref0p4",
+        "deck": "step_ss_1p8V_+27C_ref0p4/bench.cir",
+        "wave": "step_ss_1p8V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.984,
+        "docker_exec_wall_seconds": 3.097
+      },
+      "metrics": {
+        "step_excursion_v": 0.06543778857107596,
+        "step_recovery_v": 0.0011666093678590617,
+        "reference_error_v": 1.8983080723122825e-05,
+        "reference_current_a": 7.940081540609017e-09,
+        "average_supply_power_w": 0.015103305753399007,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.015210000000000001
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "ss",
+        "supply_v": 1.8,
+        "temperature_c": 85,
+        "vset_v": 0.4,
+        "id": "dc_ss_1p8V_+85C_ref0p4",
+        "deck": "dc_ss_1p8V_+85C_ref0p4/bench.cir",
+        "wave": "dc_ss_1p8V_+85C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.271,
+        "docker_exec_wall_seconds": 1.443
+      },
+      "metrics": {
+        "output_error_v": 0.0022496320263629688,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -1.3272476908042508e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "ss",
+        "supply_v": 1.8,
+        "temperature_c": 85,
+        "vset_v": 0.4,
+        "id": "step_ss_1p8V_+85C_ref0p4",
+        "deck": "step_ss_1p8V_+85C_ref0p4/bench.cir",
+        "wave": "step_ss_1p8V_+85C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.806,
+        "docker_exec_wall_seconds": 3.057
+      },
+      "metrics": {
+        "step_excursion_v": 0.08338498070012301,
+        "step_recovery_v": 0.0016194940520350976,
+        "reference_error_v": 2.9113030510619087e-05,
+        "reference_current_a": 1.107570888041892e-08,
+        "average_supply_power_w": 0.015106622999398439,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.015210000000000001
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "fs",
+        "supply_v": 1.5,
+        "temperature_c": -40,
+        "vset_v": 0.4,
+        "id": "dc_fs_1p5V_-40C_ref0p4",
+        "deck": "dc_fs_1p5V_-40C_ref0p4/bench.cir",
+        "wave": "dc_fs_1p5V_-40C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.237,
+        "docker_exec_wall_seconds": 1.466
+      },
+      "metrics": {
+        "output_error_v": 0.0010721854260280494,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -4.024317850282594e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "fs",
+        "supply_v": 1.5,
+        "temperature_c": -40,
+        "vset_v": 0.4,
+        "id": "step_fs_1p5V_-40C_ref0p4",
+        "deck": "step_fs_1p5V_-40C_ref0p4/bench.cir",
+        "wave": "step_fs_1p5V_-40C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.775,
+        "docker_exec_wall_seconds": 2.922
+      },
+      "metrics": {
+        "step_excursion_v": 0.06654703734588607,
+        "step_recovery_v": 0.0006480251827540862,
+        "reference_error_v": 1.3174151243799948e-05,
+        "reference_current_a": 4.988898304452566e-09,
+        "average_supply_power_w": 0.01255973231059291,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.012675000000000002
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "fs",
+        "supply_v": 1.5,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "dc_fs_1p5V_+27C_ref0p4",
+        "deck": "dc_fs_1p5V_+27C_ref0p4/bench.cir",
+        "wave": "dc_fs_1p5V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.229,
+        "docker_exec_wall_seconds": 1.395
+      },
+      "metrics": {
+        "output_error_v": 0.0020347889711689326,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -3.6221101845528014e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "fs",
+        "supply_v": 1.5,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "step_fs_1p5V_+27C_ref0p4",
+        "deck": "step_fs_1p5V_+27C_ref0p4/bench.cir",
+        "wave": "step_fs_1p5V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.818,
+        "docker_exec_wall_seconds": 2.943
+      },
+      "metrics": {
+        "step_excursion_v": 0.09301459889747199,
+        "step_recovery_v": 0.0013739906769381083,
+        "reference_error_v": 2.3189732722139755e-05,
+        "reference_current_a": 7.91295316554183e-09,
+        "average_supply_power_w": 0.01256374003649384,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.012675000000000002
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "fs",
+        "supply_v": 1.5,
+        "temperature_c": 85,
+        "vset_v": 0.4,
+        "id": "dc_fs_1p5V_+85C_ref0p4",
+        "deck": "dc_fs_1p5V_+85C_ref0p4/bench.cir",
+        "wave": "dc_fs_1p5V_+85C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.061,
+        "docker_exec_wall_seconds": 1.215
+      },
+      "metrics": {
+        "output_error_v": 0.004754952487378006,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -3.325903493989896e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "fs",
+        "supply_v": 1.5,
+        "temperature_c": 85,
+        "vset_v": 0.4,
+        "id": "step_fs_1p5V_+85C_ref0p4",
+        "deck": "step_fs_1p5V_+85C_ref0p4/bench.cir",
+        "wave": "step_fs_1p5V_+85C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.727,
+        "docker_exec_wall_seconds": 2.881
+      },
+      "metrics": {
+        "step_excursion_v": 0.1189248125827751,
+        "step_recovery_v": 0.002325333180166922,
+        "reference_error_v": 3.1798690462547796e-05,
+        "reference_current_a": 1.034002211110219e-08,
+        "average_supply_power_w": 0.012566669969209777,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.012675000000000002
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "fs",
+        "supply_v": 1.8,
+        "temperature_c": -40,
+        "vset_v": 0.4,
+        "id": "dc_fs_1p8V_-40C_ref0p4",
+        "deck": "dc_fs_1p8V_-40C_ref0p4/bench.cir",
+        "wave": "dc_fs_1p8V_-40C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.17,
+        "docker_exec_wall_seconds": 1.292
+      },
+      "metrics": {
+        "output_error_v": 0.001307913105510039,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -2.2351462262967803e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "fs",
+        "supply_v": 1.8,
+        "temperature_c": -40,
+        "vset_v": 0.4,
+        "id": "step_fs_1p8V_-40C_ref0p4",
+        "deck": "step_fs_1p8V_-40C_ref0p4/bench.cir",
+        "wave": "step_fs_1p8V_-40C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.546,
+        "docker_exec_wall_seconds": 2.67
+      },
+      "metrics": {
+        "step_excursion_v": 0.04652404489859707,
+        "step_recovery_v": 0.001012559778960087,
+        "reference_error_v": 1.2453626249742111e-05,
+        "reference_current_a": 5.82562281531071e-09,
+        "average_supply_power_w": 0.015097592796721935,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.015210000000000001
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "fs",
+        "supply_v": 1.8,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "dc_fs_1p8V_+27C_ref0p4",
+        "deck": "dc_fs_1p8V_+27C_ref0p4/bench.cir",
+        "wave": "dc_fs_1p8V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.16,
+        "docker_exec_wall_seconds": 1.284
+      },
+      "metrics": {
+        "output_error_v": 0.0021245710908810445,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -1.778454916024491e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "fs",
+        "supply_v": 1.8,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "step_fs_1p8V_+27C_ref0p4",
+        "deck": "step_fs_1p8V_+27C_ref0p4/bench.cir",
+        "wave": "step_fs_1p8V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.316,
+        "docker_exec_wall_seconds": 2.429
+      },
+      "metrics": {
+        "step_excursion_v": 0.06761443585002902,
+        "step_recovery_v": 0.0016132405466720012,
+        "reference_error_v": 2.2287030361500815e-05,
+        "reference_current_a": 8.651424967046073e-09,
+        "average_supply_power_w": 0.015102126097965188,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.015210000000000001
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "fs",
+        "supply_v": 1.8,
+        "temperature_c": 85,
+        "vset_v": 0.4,
+        "id": "dc_fs_1p8V_+85C_ref0p4",
+        "deck": "dc_fs_1p8V_+85C_ref0p4/bench.cir",
+        "wave": "dc_fs_1p8V_+85C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.096,
+        "docker_exec_wall_seconds": 1.219
+      },
+      "metrics": {
+        "output_error_v": 0.007678326387686951,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -1.4430842235312047e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "fs",
+        "supply_v": 1.8,
+        "temperature_c": 85,
+        "vset_v": 0.4,
+        "id": "step_fs_1p8V_+85C_ref0p4",
+        "deck": "step_fs_1p8V_+85C_ref0p4/bench.cir",
+        "wave": "step_fs_1p8V_+85C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.57,
+        "docker_exec_wall_seconds": 2.679
+      },
+      "metrics": {
+        "step_excursion_v": 0.08833457059864691,
+        "step_recovery_v": 0.0023808678599519517,
+        "reference_error_v": 3.172133958290191e-05,
+        "reference_current_a": 1.104026822046356e-08,
+        "average_supply_power_w": 0.015105401883446423,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.015210000000000001
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "sf",
+        "supply_v": 1.5,
+        "temperature_c": -40,
+        "vset_v": 0.4,
+        "id": "dc_sf_1p5V_-40C_ref0p4",
+        "deck": "dc_sf_1p5V_-40C_ref0p4/bench.cir",
+        "wave": "dc_sf_1p5V_-40C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.167,
+        "docker_exec_wall_seconds": 1.268
+      },
+      "metrics": {
+        "output_error_v": 0.0006480496356617849,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -3.6565447788253214e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "sf",
+        "supply_v": 1.5,
+        "temperature_c": -40,
+        "vset_v": 0.4,
+        "id": "step_sf_1p5V_-40C_ref0p4",
+        "deck": "step_sf_1p5V_-40C_ref0p4/bench.cir",
+        "wave": "step_sf_1p5V_-40C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.384,
+        "docker_exec_wall_seconds": 2.505
+      },
+      "metrics": {
+        "step_excursion_v": 0.06103646008902208,
+        "step_recovery_v": 0.0006480496420200321,
+        "reference_error_v": 9.93955231459731e-06,
+        "reference_current_a": 3.825346030824489e-09,
+        "average_supply_power_w": 0.012563412044750654,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.012675000000000002
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "sf",
+        "supply_v": 1.5,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "dc_sf_1p5V_+27C_ref0p4",
+        "deck": "dc_sf_1p5V_+27C_ref0p4/bench.cir",
+        "wave": "dc_sf_1p5V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.08,
+        "docker_exec_wall_seconds": 1.207
+      },
+      "metrics": {
+        "output_error_v": 0.0010511628144320717,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -3.2415551342833415e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "sf",
+        "supply_v": 1.5,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "step_sf_1p5V_+27C_ref0p4",
+        "deck": "step_sf_1p5V_+27C_ref0p4/bench.cir",
+        "wave": "step_sf_1p5V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.854,
+        "docker_exec_wall_seconds": 2.96
+      },
+      "metrics": {
+        "step_excursion_v": 0.08450907985629197,
+        "step_recovery_v": 0.0004964964906231106,
+        "reference_error_v": 1.8708844713999362e-05,
+        "reference_current_a": 6.48078750820763e-09,
+        "average_supply_power_w": 0.012567550905448959,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.012675000000000002
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "sf",
+        "supply_v": 1.5,
+        "temperature_c": 85,
+        "vset_v": 0.4,
+        "id": "dc_sf_1p5V_+85C_ref0p4",
+        "deck": "dc_sf_1p5V_+85C_ref0p4/bench.cir",
+        "wave": "dc_sf_1p5V_+85C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.137,
+        "docker_exec_wall_seconds": 1.246
+      },
+      "metrics": {
+        "output_error_v": 0.0018068983738519506,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -2.940799297464214e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "sf",
+        "supply_v": 1.5,
+        "temperature_c": 85,
+        "vset_v": 0.4,
+        "id": "step_sf_1p5V_+85C_ref0p4",
+        "deck": "step_sf_1p5V_+85C_ref0p4/bench.cir",
+        "wave": "step_sf_1p5V_+85C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.633,
+        "docker_exec_wall_seconds": 2.727
+      },
+      "metrics": {
+        "step_excursion_v": 0.10570613318642397,
+        "step_recovery_v": 0.0010418302499579646,
+        "reference_error_v": 2.9186089063215626e-05,
+        "reference_current_a": 9.416845996555734e-09,
+        "average_supply_power_w": 0.01257053922014104,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.012675000000000002
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "sf",
+        "supply_v": 1.8,
+        "temperature_c": -40,
+        "vset_v": 0.4,
+        "id": "dc_sf_1p8V_-40C_ref0p4",
+        "deck": "dc_sf_1p8V_-40C_ref0p4/bench.cir",
+        "wave": "dc_sf_1p8V_-40C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.151,
+        "docker_exec_wall_seconds": 1.263
+      },
+      "metrics": {
+        "output_error_v": 0.0007841380447559665,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -1.7359541669044465e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "sf",
+        "supply_v": 1.8,
+        "temperature_c": -40,
+        "vset_v": 0.4,
+        "id": "step_sf_1p8V_-40C_ref0p4",
+        "deck": "step_sf_1p8V_-40C_ref0p4/bench.cir",
+        "wave": "step_sf_1p8V_-40C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.548,
+        "docker_exec_wall_seconds": 2.675
+      },
+      "metrics": {
+        "step_excursion_v": 0.04313941348570505,
+        "step_recovery_v": 0.0005033788483630453,
+        "reference_error_v": 9.31311960394865e-06,
+        "reference_current_a": 4.674324251881939e-09,
+        "average_supply_power_w": 0.015102590769677652,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.015210000000000001
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "sf",
+        "supply_v": 1.8,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "dc_sf_1p8V_+27C_ref0p4",
+        "deck": "dc_sf_1p8V_+27C_ref0p4/bench.cir",
+        "wave": "dc_sf_1p8V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.037,
+        "docker_exec_wall_seconds": 1.141
+      },
+      "metrics": {
+        "output_error_v": 0.0013702865537079667,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -1.2800961609396588e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "sf",
+        "supply_v": 1.8,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "step_sf_1p8V_+27C_ref0p4",
+        "deck": "step_sf_1p8V_+27C_ref0p4/bench.cir",
+        "wave": "step_sf_1p8V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.708,
+        "docker_exec_wall_seconds": 2.839
+      },
+      "metrics": {
+        "step_excursion_v": 0.06222070308294203,
+        "step_recovery_v": 0.0009592222026149066,
+        "reference_error_v": 1.7763351309929565e-05,
+        "reference_current_a": 7.501850855361897e-09,
+        "average_supply_power_w": 0.01510712572292388,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.015210000000000001
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "sf",
+        "supply_v": 1.8,
+        "temperature_c": 85,
+        "vset_v": 0.4,
+        "id": "dc_sf_1p8V_+85C_ref0p4",
+        "deck": "dc_sf_1p8V_+85C_ref0p4/bench.cir",
+        "wave": "dc_sf_1p8V_+85C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 0.998,
+        "docker_exec_wall_seconds": 1.098
+      },
+      "metrics": {
+        "output_error_v": 0.0020766565451340036,
+        "reference_error_v": 3.999999997894577e-09,
+        "reference_current_a": 6.776263578034403e-21,
+        "worst_supply_excess_w": -9.45375996252995e-06
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "step",
+        "corner": "sf",
+        "supply_v": 1.8,
+        "temperature_c": 85,
+        "vset_v": 0.4,
+        "id": "step_sf_1p8V_+85C_ref0p4",
+        "deck": "step_sf_1p8V_+85C_ref0p4/bench.cir",
+        "wave": "step_sf_1p8V_+85C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 2.376,
+        "docker_exec_wall_seconds": 2.462
+      },
+      "metrics": {
+        "step_excursion_v": 0.07969457605122798,
+        "step_recovery_v": 0.0014003315178630071,
+        "reference_error_v": 2.754607080412974e-05,
+        "reference_current_a": 1.065584434405131e-08,
+        "average_supply_power_w": 0.01511043175089714,
+        "average_load_a": 0.0083,
+        "power_limit_w": 0.015210000000000001
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "psr",
+        "corner": "tt",
+        "supply_v": 1.5,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "psr_tt_1p5V_+27C_ref0p4",
+        "deck": "psr_tt_1p5V_+27C_ref0p4/bench.cir",
+        "wave": "psr_tt_1p5V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "frequency_hz",
+        "vector_encoding": "real_imag_pairs",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.075,
+        "docker_exec_wall_seconds": 1.175
+      },
+      "metrics": {
+        "psr_1000_db": 51.14459308435953,
+        "psr_100000_db": 24.158201082840698,
+        "psr_1000000_db": 5.184824641612749
+      },
+      "checks": {
+        "finite_reference_psr": false
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "psr",
+        "corner": "tt",
+        "supply_v": 1.8,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "psr_tt_1p8V_+27C_ref0p4",
+        "deck": "psr_tt_1p8V_+27C_ref0p4/bench.cir",
+        "wave": "psr_tt_1p8V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "frequency_hz",
+        "vector_encoding": "real_imag_pairs",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.148,
+        "docker_exec_wall_seconds": 1.251
+      },
+      "metrics": {
+        "psr_1000_db": 57.41349458741397,
+        "psr_100000_db": 28.7317471944257,
+        "psr_1000000_db": 9.24985782650271
+      },
+      "checks": {
+        "finite_reference_psr": false
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "psr",
+        "corner": "ff",
+        "supply_v": 1.5,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "psr_ff_1p5V_+27C_ref0p4",
+        "deck": "psr_ff_1p5V_+27C_ref0p4/bench.cir",
+        "wave": "psr_ff_1p5V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "frequency_hz",
+        "vector_encoding": "real_imag_pairs",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 0.874,
+        "docker_exec_wall_seconds": 0.974
+      },
+      "metrics": {
+        "psr_1000_db": 51.623697707329484,
+        "psr_100000_db": 23.873864070438437,
+        "psr_1000000_db": 5.034854507612048
+      },
+      "checks": {
+        "finite_reference_psr": false
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "psr",
+        "corner": "ff",
+        "supply_v": 1.8,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "psr_ff_1p8V_+27C_ref0p4",
+        "deck": "psr_ff_1p8V_+27C_ref0p4/bench.cir",
+        "wave": "psr_ff_1p8V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "frequency_hz",
+        "vector_encoding": "real_imag_pairs",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 0.914,
+        "docker_exec_wall_seconds": 1.021
+      },
+      "metrics": {
+        "psr_1000_db": 57.59068351985067,
+        "psr_100000_db": 28.370728620479916,
+        "psr_1000000_db": 8.963708794615005
+      },
+      "checks": {
+        "finite_reference_psr": false
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "psr",
+        "corner": "ss",
+        "supply_v": 1.5,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "psr_ss_1p5V_+27C_ref0p4",
+        "deck": "psr_ss_1p5V_+27C_ref0p4/bench.cir",
+        "wave": "psr_ss_1p5V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "frequency_hz",
+        "vector_encoding": "real_imag_pairs",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.169,
+        "docker_exec_wall_seconds": 1.269
+      },
+      "metrics": {
+        "psr_1000_db": 50.443943084079244,
+        "psr_100000_db": 24.23159083713228,
+        "psr_1000000_db": 5.194599260096892
+      },
+      "checks": {
+        "finite_reference_psr": false
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "psr",
+        "corner": "ss",
+        "supply_v": 1.8,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "psr_ss_1p8V_+27C_ref0p4",
+        "deck": "psr_ss_1p8V_+27C_ref0p4/bench.cir",
+        "wave": "psr_ss_1p8V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "frequency_hz",
+        "vector_encoding": "real_imag_pairs",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.199,
+        "docker_exec_wall_seconds": 1.293
+      },
+      "metrics": {
+        "psr_1000_db": 57.089627226878996,
+        "psr_100000_db": 28.890671268427717,
+        "psr_1000000_db": 9.363309129841843
+      },
+      "checks": {
+        "finite_reference_psr": false
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "psr",
+        "corner": "fs",
+        "supply_v": 1.5,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "psr_fs_1p5V_+27C_ref0p4",
+        "deck": "psr_fs_1p5V_+27C_ref0p4/bench.cir",
+        "wave": "psr_fs_1p5V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "frequency_hz",
+        "vector_encoding": "real_imag_pairs",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.204,
+        "docker_exec_wall_seconds": 1.301
+      },
+      "metrics": {
+        "psr_1000_db": 52.434857534657425,
+        "psr_100000_db": 23.22528279918522,
+        "psr_1000000_db": 4.68127498450335
+      },
+      "checks": {
+        "finite_reference_psr": false
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "psr",
+        "corner": "fs",
+        "supply_v": 1.8,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "psr_fs_1p8V_+27C_ref0p4",
+        "deck": "psr_fs_1p8V_+27C_ref0p4/bench.cir",
+        "wave": "psr_fs_1p8V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "frequency_hz",
+        "vector_encoding": "real_imag_pairs",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.021,
+        "docker_exec_wall_seconds": 1.117
+      },
+      "metrics": {
+        "psr_1000_db": 58.92664649078672,
+        "psr_100000_db": 28.01461227140117,
+        "psr_1000000_db": 8.717384368127219
+      },
+      "checks": {
+        "finite_reference_psr": false
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "psr",
+        "corner": "sf",
+        "supply_v": 1.5,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "psr_sf_1p5V_+27C_ref0p4",
+        "deck": "psr_sf_1p5V_+27C_ref0p4/bench.cir",
+        "wave": "psr_sf_1p5V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "frequency_hz",
+        "vector_encoding": "real_imag_pairs",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 0.74,
+        "docker_exec_wall_seconds": 0.832
+      },
+      "metrics": {
+        "psr_1000_db": 49.52868176985696,
+        "psr_100000_db": 24.643339277366,
+        "psr_1000000_db": 5.539277901062178
+      },
+      "checks": {
+        "finite_reference_psr": false
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "psr",
+        "corner": "sf",
+        "supply_v": 1.8,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "psr_sf_1p8V_+27C_ref0p4",
+        "deck": "psr_sf_1p8V_+27C_ref0p4/bench.cir",
+        "wave": "psr_sf_1p8V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "frequency_hz",
+        "vector_encoding": "real_imag_pairs",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 0.811,
+        "docker_exec_wall_seconds": 0.911
+      },
+      "metrics": {
+        "psr_1000_db": 56.01641358169737,
+        "psr_100000_db": 29.111107317867035,
+        "psr_1000000_db": 9.593927675074212
+      },
+      "checks": {
+        "finite_reference_psr": false
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "tt",
+        "supply_v": 1.5,
+        "temperature_c": 27,
+        "vset_v": 0.39,
+        "trim": true,
+        "id": "dc_tt_1p5V_+27C_ref0p39",
+        "deck": "dc_tt_1p5V_+27C_ref0p39/bench.cir",
+        "wave": "dc_tt_1p5V_+27C_ref0p39/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 0.9750000000000001
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 0.834,
+        "docker_exec_wall_seconds": 0.925
+      },
+      "metrics": {
+        "output_error_v": 0.0015004055162983754,
+        "reference_error_v": 3.8999999896205395e-09,
+        "reference_current_a": 0.0,
+        "worst_supply_excess_w": -3.5056025473021585e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "tt",
+        "supply_v": 1.5,
+        "temperature_c": 27,
+        "vset_v": 0.41,
+        "trim": true,
+        "id": "dc_tt_1p5V_+27C_ref0p41",
+        "deck": "dc_tt_1p5V_+27C_ref0p41/bench.cir",
+        "wave": "dc_tt_1p5V_+27C_ref0p41/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.025
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 0.86,
+        "docker_exec_wall_seconds": 0.952
+      },
+      "metrics": {
+        "output_error_v": 0.0014641105058590398,
+        "reference_error_v": 4.0999999506574625e-09,
+        "reference_current_a": 0.0,
+        "worst_supply_excess_w": -3.355808550564027e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "tt",
+        "supply_v": 1.8,
+        "temperature_c": 27,
+        "vset_v": 0.39,
+        "trim": true,
+        "id": "dc_tt_1p8V_+27C_ref0p39",
+        "deck": "dc_tt_1p8V_+27C_ref0p39/bench.cir",
+        "wave": "dc_tt_1p8V_+27C_ref0p39/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 0.9750000000000001
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.12,
+        "docker_exec_wall_seconds": 1.238
+      },
+      "metrics": {
+        "output_error_v": 0.0017039906542613004,
+        "reference_error_v": 3.8999999896205395e-09,
+        "reference_current_a": 0.0,
+        "worst_supply_excess_w": -1.6191481090450932e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "dc",
+        "corner": "tt",
+        "supply_v": 1.8,
+        "temperature_c": 27,
+        "vset_v": 0.41,
+        "trim": true,
+        "id": "dc_tt_1p8V_+27C_ref0p41",
+        "deck": "dc_tt_1p8V_+27C_ref0p41/bench.cir",
+        "wave": "dc_tt_1p8V_+27C_ref0p41/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "load_current_a",
+        "vector_encoding": "real",
+        "target_output_v": 1.025
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 0.871,
+        "docker_exec_wall_seconds": 0.963
+      },
+      "metrics": {
+        "output_error_v": 0.001677282672638114,
+        "reference_error_v": 4.0999999506574625e-09,
+        "reference_current_a": 0.0,
+        "worst_supply_excess_w": -1.4392587883826913e-05
+      },
+      "checks": {
+        "finite_dc_tracking": true,
+        "reference_integrity": true,
+        "total_supply_power": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "startup",
+        "corner": "tt",
+        "supply_v": 1.8,
+        "temperature_c": 27,
+        "vset_v": 0.4,
+        "id": "startup_tt_1p8V_+27C_ref0p4",
+        "deck": "startup_tt_1p8V_+27C_ref0p4/bench.cir",
+        "wave": "startup_tt_1p8V_+27C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.26,
+        "docker_exec_wall_seconds": 1.366
+      },
+      "metrics": {
+        "peak_v": 1.002220490663021,
+        "tail_error_v": 0.0012500082582569405,
+        "reference_tail_error_v": 4.000074327326075e-09,
+        "startup_positive_energy_j": 3.573380860026459e-07
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "startup",
+        "corner": "sf",
+        "supply_v": 1.5,
+        "temperature_c": -40,
+        "vset_v": 0.4,
+        "id": "startup_sf_1p5V_-40C_ref0p4",
+        "deck": "startup_sf_1p5V_-40C_ref0p4/bench.cir",
+        "wave": "startup_sf_1p5V_-40C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.748,
+        "docker_exec_wall_seconds": 1.835
+      },
+      "metrics": {
+        "peak_v": 0.9999078864233873,
+        "tail_error_v": 9.211358320404539e-05,
+        "reference_tail_error_v": 4.000974135331959e-09,
+        "startup_positive_energy_j": 2.7893217013330356e-07
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "startup",
+        "corner": "fs",
+        "supply_v": 1.8,
+        "temperature_c": 85,
+        "vset_v": 0.4,
+        "id": "startup_fs_1p8V_+85C_ref0p4",
+        "deck": "startup_fs_1p8V_+85C_ref0p4/bench.cir",
+        "wave": "startup_fs_1p8V_+85C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.457,
+        "docker_exec_wall_seconds": 1.557
+      },
+      "metrics": {
+        "peak_v": 1.003812671985209,
+        "tail_error_v": 0.002380340739895903,
+        "reference_tail_error_v": 4.000074271814924e-09,
+        "startup_positive_energy_j": 3.606467533599478e-07
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true
+      },
+      "complete": true
+    },
+    {
+      "case": {
+        "kind": "startup",
+        "corner": "ss",
+        "supply_v": 1.5,
+        "temperature_c": 85,
+        "vset_v": 0.4,
+        "id": "startup_ss_1p5V_+85C_ref0p4",
+        "deck": "startup_ss_1p5V_+85C_ref0p4/bench.cir",
+        "wave": "startup_ss_1p5V_+85C_ref0p4/wave.dat",
+        "vectors": [
+          "v(vout)",
+          "v(vref)",
+          "i(vrefs)",
+          "v(vin)",
+          "i(vdut)",
+          "v(vinref)",
+          "i(vrefrail)"
+        ],
+        "scale": "time_s",
+        "vector_encoding": "real",
+        "target_output_v": 1.0
+      },
+      "execution": {
+        "exit_code": 0,
+        "wall_seconds": 1.795,
+        "docker_exec_wall_seconds": 1.899
+      },
+      "metrics": {
+        "peak_v": 1.001815986536889,
+        "tail_error_v": 0.001348790592720972,
+        "reference_tail_error_v": 4.000973830020627e-09,
+        "startup_positive_energy_j": 2.8857876822716157e-07
+      },
+      "checks": {
+        "coupled_transient_startup": true,
+        "reference_integrity": true
+      },
+      "complete": true
+    }
+  ],
+  "required_runs": 78,
+  "complete_runs": 78
+}

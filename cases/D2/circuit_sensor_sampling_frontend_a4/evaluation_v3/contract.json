@@ -1,0 +1,198 @@
+{
+  "case": "A4",
+  "version": "a4-draft-v0.1",
+  "status": "unvalidated_draft",
+  "source_commit": "972f7cd7c95381134387b250edf18f3bd23bdd25",
+  "original_checks": [
+    "pvt_phase_margin",
+    "pvt_output_common_mode",
+    "pvt_power",
+    "pvt_static_accuracy",
+    "pvt_dynamic_accuracy",
+    "pvt_rise_settling",
+    "pvt_fall_settling",
+    "pvt_output_range",
+    "pvt_output_noise",
+    "mc_cmrr",
+    "mc_psrr_plus",
+    "mc_psrr_minus",
+    "cmfb_peak_deviation",
+    "cmfb_residual_20ns",
+    "cmfb_residual_100ns"
+  ],
+  "original_checker_and_numerics_unchanged": true,
+  "same_frozen_circuit_for_both_layers": true,
+  "corners": [
+    "tt",
+    "ff",
+    "ss",
+    "fs",
+    "sf"
+  ],
+  "numerics": {
+    "reltol": 0.0001,
+    "abstol": 1e-12,
+    "vntol": 1e-07,
+    "method": "gear",
+    "maxord": 2
+  },
+  "required_files": [
+    "circuit.spi",
+    "DESIGN.md"
+  ],
+  "required_design_sections": [
+    "Architecture",
+    "Parameters",
+    "Validation",
+    "Limitations"
+  ],
+  "score_formula": "100 * min(original_passed / original_total, added_passed / added_total)",
+  "task_success": "valid_submission and complete_valid_measurements and all_original and all_added",
+  "top": ".subckt sampling_feedback_ota vss iref vdd vinn vinp vocm voutn voutp",
+  "interface_top": ".subckt sensor_interface vss vdd sensn sensp vocm drvn drvp",
+  "supplies_v": [
+    1.8,
+    1.98
+  ],
+  "temperatures_c": [
+    -25,
+    27,
+    85
+  ],
+  "representative_points": [
+    [
+      "tt",
+      1.8,
+      27
+    ],
+    [
+      "ss",
+      1.8,
+      85
+    ],
+    [
+      "ff",
+      1.98,
+      -25
+    ]
+  ],
+  "sensor": {
+    "symmetric_rs_pairs_ohm": [
+      [
+        5000,
+        5000
+      ],
+      [
+        20000,
+        20000
+      ]
+    ],
+    "asymmetric_rs_pairs_ohm": [
+      [
+        16000,
+        24000
+      ],
+      [
+        24000,
+        16000
+      ]
+    ],
+    "pad_capacitance_f": 2e-13,
+    "common_mode_fraction_vdd": 0.5
+  },
+  "sampling": {
+    "cs_f": 1e-12,
+    "cf_f": 1.25e-13,
+    "cl_f": 2.5e-13,
+    "switch_ron_ohm": 50,
+    "switch_roff_ohm": 1000000000000.0,
+    "clock_to_each_terminal_f": 2e-15,
+    "clock_edge_s": 1e-10,
+    "period_s": 1e-07,
+    "command_update_start_s": 5e-09,
+    "command_edge_s": 1e-09,
+    "reset_on_start_s": 0,
+    "reset_off_start_s": 4.4e-08,
+    "track_on_start_s": 1e-09,
+    "track_off_start_s": 4.5e-08,
+    "transfer_on_start_s": 4.6e-08,
+    "transfer_off_start_s": 9.9e-08,
+    "aperture_marker_s": 4.51e-08,
+    "transfer_marker_s": 4.61e-08,
+    "settling_deadline_s": 5.61e-08,
+    "read_time_s": 8e-08,
+    "hold_window_s": [
+      9e-08,
+      9.8e-08
+    ],
+    "disturbance_windows_s": [
+      [
+        0,
+        2e-09
+      ],
+      [
+        4.39e-08,
+        4.71e-08
+      ],
+      [
+        9.89e-08,
+        1e-07
+      ]
+    ],
+    "acquisition_tail_s": 4.4e-08,
+    "gain": -8,
+    "warmup_cycles": 2,
+    "preamble_cycles": 8,
+    "probe_sequence_v": [
+      0,
+      0.1125,
+      0,
+      -0.1125,
+      0.05625,
+      -0.05625,
+      0,
+      0,
+      0.1125,
+      -0.1125,
+      0.1125,
+      -0.1125,
+      0,
+      0.05625,
+      0,
+      0
+    ],
+    "history_levels_v": {
+      "positive_history": 0.1125,
+      "negative_history": -0.1125
+    }
+  },
+  "iref_a": 5e-05,
+  "limits": {
+    "sample_error_v": 0.009,
+    "settling_error_v": 0.009,
+    "settling_s": 1e-08,
+    "common_mode_error_v": 0.025,
+    "sensor_peak_disturbance_v": 0.001,
+    "sensor_charge_abs_c": 5e-15,
+    "sensor_tail_disturbance_v": 0.00025,
+    "history_error_v": 0.001,
+    "acquire_phase_noise_vrms": 0.00025,
+    "system_average_positive_power_w": 0.01
+  },
+  "added_groups": [
+    "sample_accuracy",
+    "transfer_settling",
+    "sensor_disturbance",
+    "history_independence",
+    "acquisition_phase_noise",
+    "system_positive_power"
+  ],
+  "added_runs": {
+    "transient": 132,
+    "noise": 66,
+    "total": 198
+  },
+  "original_full_path_processes": 143,
+  "transient_max_step_s": 2e-11,
+  "sampled_noise_claim": false
+}

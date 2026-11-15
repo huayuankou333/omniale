@@ -1,0 +1,122 @@
+* Two-stage fully differential OTA with continuous common-mode feedback
+.subckt sampling_feedback_ota vss iref vdd vinn vinp vocm voutn voutp
+XBN iref iref vss vss sky130_fd_pr__nfet_01v8 w=10 l=1 nf=1
+XBC pb iref vss vss sky130_fd_pr__nfet_01v8 w=10 l=1 nf=1
+XBP pb pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XT_0 tail pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XT_1 tail pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XT_2 tail pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XT_3 tail pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XT_4 tail pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XT_5 tail pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XT_6 tail pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XT_7 tail pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XT_8 tail pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XT_9 tail pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XT_10 tail pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XT_11 tail pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XT_12 tail pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XT_13 tail pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XT_14 tail pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XT_15 tail pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XT_16 tail pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XT_17 tail pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XT_18 tail pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XT_19 tail pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XI1 ap vinp tail vdd sky130_fd_pr__pfet_01v8_lvt w=100 l=0.5 nf=10
+XI2 bp vinn tail vdd sky130_fd_pr__pfet_01v8_lvt w=100 l=0.5 nf=10
+XL1 an cm vss vss sky130_fd_pr__nfet_01v8 w=100 l=1 nf=5
+XL2 bn cm vss vss sky130_fd_pr__nfet_01v8 w=100 l=1 nf=5
+XO1a voutp a vss vss sky130_fd_pr__nfet_01v8 w=160 l=0.6 nf=16
+XO1b voutp a vss vss sky130_fd_pr__nfet_01v8 w=160 l=0.6 nf=16
+XO2a voutn b vss vss sky130_fd_pr__nfet_01v8 w=160 l=0.6 nf=16
+XO2b voutn b vss vss sky130_fd_pr__nfet_01v8 w=160 l=0.6 nf=16
+XP1_0 voutp pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP1_1 voutp pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP1_2 voutp pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP1_3 voutp pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP1_4 voutp pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP1_5 voutp pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP1_6 voutp pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP1_7 voutp pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP1_8 voutp pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP1_9 voutp pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP1_10 voutp pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP1_11 voutp pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP1_12 voutp pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP1_13 voutp pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP2_0 voutn pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP2_1 voutn pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP2_2 voutn pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP2_3 voutn pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP2_4 voutn pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP2_5 voutn pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP2_6 voutn pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP2_7 voutn pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP2_8 voutn pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP2_9 voutn pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP2_10 voutn pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP2_11 voutn pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP2_12 voutn pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP2_13 voutn pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+RC1 a ac 100
+CC1 ac voutp 0.48p
+RC2 b bc 100
+CC2 bc voutn 0.48p
+RS1 voutp sense 50k
+RS2 voutn sense 50k
+XCT ct pb vdd vdd sky130_fd_pr__pfet_01v8 w=200 l=1 nf=20
+XC1 cm sense ct vdd sky130_fd_pr__pfet_01v8_lvt w=10 l=0.35 nf=1
+XC2 cd vocm ct vdd sky130_fd_pr__pfet_01v8_lvt w=10 l=0.35 nf=1
+XCL1 cm cd vss vss sky130_fd_pr__nfet_01v8 w=5 l=1 nf=1
+XCL2 cd cd vss vss sky130_fd_pr__nfet_01v8 w=5 l=1 nf=1
+CCM cm vss 0.05p
+RCM cm nr 50
+XNR nr nr vss vss sky130_fd_pr__nfet_01v8 w=100 l=1 nf=10
+RPN vdd pc 70k
+RPS pc vss 30k
+RNN vdd nc 36k
+RNS nc vss 64k
+XPC1 a pc ap vdd sky130_fd_pr__pfet_01v8_lvt w=200 l=0.35 nf=20
+XPC2 b pc bp vdd sky130_fd_pr__pfet_01v8_lvt w=200 l=0.35 nf=20
+XNC1 a nc an vss sky130_fd_pr__nfet_01v8 w=100 l=0.3 nf=10
+XNC2 b nc bn vss sky130_fd_pr__nfet_01v8 w=100 l=0.3 nf=10
+XPR0 nr pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XPR1 nr pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XPR2 nr pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XPR3 nr pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XPR4 nr pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XPR5 nr pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XPR6 nr pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XPR7 nr pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XPR8 nr pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XPR9 nr pb vdd vdd sky130_fd_pr__pfet_01v8 w=65 l=1 nf=5
+.ends sampling_feedback_ota
+
+.subckt sensor_interface vss vdd sensn sensp vocm drvn drvp
+RB vdd bias 24k
+XBN bias bias vss vss sky130_fd_pr__nfet_01v8 w=10 l=1 nf=1
+XBC pb bias vss vss sky130_fd_pr__nfet_01v8 w=10 l=1 nf=1
+XBP pb pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XBUF1 vss vdd pb sensn drvn sensor_buffer
+XBUF2 vss vdd pb sensp drvp sensor_buffer
+.ends sensor_interface
+.subckt sensor_buffer vss vdd pb inp out
+XT_0 tail pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XT_1 tail pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XT_2 tail pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XT_3 tail pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XI1 a inp tail vdd sky130_fd_pr__pfet_01v8_lvt w=8 l=0.35 nf=1
+XI2 b out tail vdd sky130_fd_pr__pfet_01v8_lvt w=8 l=0.35 nf=1
+XL1 a b vss vss sky130_fd_pr__nfet_01v8 w=12 l=0.5 nf=1
+XL2 b b vss vss sky130_fd_pr__nfet_01v8 w=12 l=0.5 nf=1
+XO out a vss vss sky130_fd_pr__nfet_01v8 w=80 l=0.3 nf=8
+XP_0 out pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP_1 out pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP_2 out pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP_3 out pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP_4 out pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+XP_5 out pb vdd vdd sky130_fd_pr__pfet_01v8 w=100 l=1 nf=10
+RC a c 200
+CC c out 0.3p
+.ends sensor_buffer
