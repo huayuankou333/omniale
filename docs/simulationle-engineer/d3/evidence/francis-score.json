@@ -1,0 +1,449 @@
+{
+  "case_id": "Francis-99-D3",
+  "run_id": "gpt61sol_20261115_01",
+  "generated_at_utc": "2026-11-15T16:49:03.616691+00:00",
+  "review_type": "post_hoc_reference_free_engineering_evidence_review",
+  "requested_model": "gpt-6.1-sol",
+  "requested_reasoning_effort": "xhigh",
+  "resolved_model_independently_verified": false,
+  "trial_limits": {
+    "wall_time_s": 7200,
+    "cpu_limit": 4,
+    "memory_GiB": 32
+  },
+  "score": 39,
+  "max_score": 100,
+  "rubric_id": "F99-D3-posthoc-engineering-v1",
+  "rubric_pre_registered": false,
+  "reference_solution": null,
+  "expert_final_score": null,
+  "engineering_acceptance": "not_demonstrated",
+  "acceptance_basis": "任务核心门槛未满足，不以任意60分线或参考解距离决定验收。",
+  "categories": [
+    {
+      "id": "A",
+      "name": "原始数据与实验审计",
+      "max_points": 10,
+      "awarded_points": 9,
+      "items": [
+        {
+          "id": "A1",
+          "name": "来源、许可和原始数据完整性",
+          "max_points": 2,
+          "awarded_points": 2,
+          "reason": "原始三个数据压缩包与来源哈希一致，来源和许可有记录。",
+          "evidence": [
+            "evidence/PROVENANCE.json",
+            "independent_check_results.json#raw_archive_provenance"
+          ]
+        },
+        {
+          "id": "A2",
+          "name": "采样、量纲、坐标和缺测审计",
+          "max_points": 2,
+          "awarded_points": 2,
+          "reason": "正确采用5 kHz与40 Hz，恢复mm坐标，保留319号速度缺测。",
+          "evidence": [
+            "evidence/experimental_summary.json",
+            "independent_check_results.json#raw_piv_audit"
+          ]
+        },
+        {
+          "id": "A3",
+          "name": "压力及PIV统计和频谱处理",
+          "max_points": 3,
+          "awarded_points": 3,
+          "reason": "独立重算压力统计与PIV均值一致，保留统计表与PSD。",
+          "evidence": [
+            "scripts/analyze_experiment.py",
+            "independent_check_results.json#raw_experimental_pressure"
+          ]
+        },
+        {
+          "id": "A4",
+          "name": "实验不确定性与压力参考",
+          "max_points": 3,
+          "awarded_points": 2,
+          "reason": "识别DT通道非可靠绝压、记录有限样本区间；未建立完整仪器/系统/覆盖概率不确定性预算。",
+          "evidence": [
+            "report.md",
+            "evidence/workshop.txt",
+            "evidence/experimental_summary.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "name": "几何、边界与接口建模",
+      "max_points": 15,
+      "awarded_points": 9,
+      "items": [
+        {
+          "id": "B1",
+          "name": "坐标、转向和扇区整周口径",
+          "max_points": 3,
+          "awarded_points": 3,
+          "reason": "有明确方向、15/28叶道倍率与实际入口通量审计。",
+          "evidence": [
+            "evidence/inlet_BEP.json",
+            "evidence/inlet_PL.json",
+            "report.md"
+          ]
+        },
+        {
+          "id": "B2",
+          "name": "实际网格恢复与质量检查",
+          "max_points": 3,
+          "awarded_points": 3,
+          "reason": "已恢复实际组件及组装网格，checkMesh记录和几何运动审计存在。",
+          "evidence": [
+            "logs/checkMesh_BEP.log",
+            "logs/checkMesh_PL.log",
+            "evidence/motion_audit.json"
+          ]
+        },
+        {
+          "id": "B3",
+          "name": "水力边界与系统设定",
+          "max_points": 4,
+          "awarded_points": 2,
+          "reason": "稳态边界有定义；入口旋流、引水系统等仍为假设，只有尺度敏感性，未实现闭合瞬态系统。",
+          "evidence": [
+            "scripts/configure_steady.py",
+            "evidence/hydraulic_assumption_sensitivity.json",
+            "report.md"
+          ]
+        },
+        {
+          "id": "B4",
+          "name": "接口、湍流与壁面模型实现",
+          "max_points": 5,
+          "awarded_points": 1,
+          "reason": "实际组件近似存在，但单向映射无下游压力反馈、角动量/动能未强制守恒，完整转静模型未建成。",
+          "evidence": [
+            "scripts/component_chain.py",
+            "evidence/chain_transfer_audit.json",
+            "evidence/yplus_summary.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "name": "稳态实验验证",
+      "max_points": 15,
+      "awarded_points": 5,
+      "items": [
+        {
+          "id": "C1",
+          "name": "测量与计算的工况/测点匹配",
+          "max_points": 3,
+          "awarded_points": 3,
+          "reason": "恢复实验工况、水力力矩与测量截面差异，按正确PIV点位和速度方向比较，排除无效VL2取点。",
+          "evidence": [
+            "report.md",
+            "evidence/chain_probe_ids_BEP.json",
+            "evidence/piv_comparison_BEP.csv"
+          ]
+        },
+        {
+          "id": "C2",
+          "name": "定量空间分布对照",
+          "max_points": 4,
+          "awarded_points": 2,
+          "reason": "74点、148分量/工况已对照，RMSE独立重算一致；未形成数值可信度和实验不确定度支持的接受结论。",
+          "evidence": [
+            "evidence/chain_PIV_comparison_BEP.csv",
+            "evidence/chain_PIV_comparison_PL.csv",
+            "independent_check_results.json#PIV_comparison"
+          ]
+        },
+        {
+          "id": "C3",
+          "name": "可信耦合性能基线",
+          "max_points": 5,
+          "awarded_points": 0,
+          "reason": "全机混合平面恢复失败；分区500步力矩偏差很大，BEP延长1500步后幅值仍低约19.6%，不能作为已验证基线。",
+          "evidence": [
+            "evidence/steady_history_BEP.csv",
+            "evidence/steady_history_PL.csv",
+            "independent_check_results.json#torque"
+          ]
+        },
+        {
+          "id": "C4",
+          "name": "有不确定度的验证接受判据",
+          "max_points": 3,
+          "awarded_points": 0,
+          "reason": "没有完成与数值误差、模型误差及实验不确定度结合的验收；缺少可信稳态压力脉动验证。",
+          "evidence": [
+            "report.md",
+            "metrics.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "name": "数值可信度",
+      "max_points": 10,
+      "awarded_points": 3,
+      "items": [
+        {
+          "id": "D1",
+          "name": "迭代、守恒与工程量收敛",
+          "max_points": 3,
+          "awarded_points": 2,
+          "reason": "有原始残差、质量及力矩漂移检查，并做BEP转轮迭代延长；全机收敛未闭合。",
+          "evidence": [
+            "logs/steady_BEP_correctBC.log",
+            "evidence/runner_iteration_sensitivity_BEP.csv",
+            "independent_check_results.json#native_flux_crosscheck"
+          ]
+        },
+        {
+          "id": "D2",
+          "name": "空间离散误差/网格收敛",
+          "max_points": 3,
+          "awarded_points": 0,
+          "reason": "没有网格收敛或空间误差估计；refined目录只是增加迭代。",
+          "evidence": [
+            "report.md",
+            "scripts/refine_runner.sh"
+          ]
+        },
+        {
+          "id": "D3",
+          "name": "目标瞬态的时间与采样收敛",
+          "max_points": 2,
+          "awarded_points": 0,
+          "reason": "微秒组件对比仅覆盖0.0001 s，不能确定10 s压力目标的时间/采样误差。",
+          "evidence": [
+            "evidence/component_temporal_sensitivity.json",
+            "independent_check_results.json#ALE"
+          ]
+        },
+        {
+          "id": "D4",
+          "name": "近壁与物理模型敏感性",
+          "max_points": 2,
+          "awarded_points": 1,
+          "reason": "实际y+有审计；壁面模型、湍流和入口假设敏感性未闭合。",
+          "evidence": [
+            "evidence/yplus_patch_statistics.csv",
+            "evidence/yplus_summary.json",
+            "report.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E",
+      "name": "真实全机瞬态",
+      "max_points": 20,
+      "awarded_points": 2,
+      "items": [
+        {
+          "id": "E1",
+          "name": "真实导叶运动的流体计算",
+          "max_points": 5,
+          "awarded_points": 2,
+          "reason": "执行了单导叶ALE短测并保留失败尝试；拟合枢轴、非严格Hermite运动和极短时窗不满足完整要求。",
+          "evidence": [
+            "logs/GV1912_dt1e5.log",
+            "logs/GV1912_dt5e6.log",
+            "evidence/guide_shape_registration.json"
+          ]
+        },
+        {
+          "id": "E2",
+          "name": "转静作用与非轴对称尾水管耦合",
+          "max_points": 7,
+          "awarded_points": 0,
+          "reason": "未构建并运行完整全机动导叶/转轮/尾水管耦合瞬态。",
+          "evidence": [
+            "metrics.json#turbine_transient",
+            "report.md"
+          ]
+        },
+        {
+          "id": "E3",
+          "name": "同条件基准/候选完整0—10 s",
+          "max_points": 5,
+          "awarded_points": 0,
+          "reason": "两条全机瞬态均未完成，无共同可信BEP初场比较证据。",
+          "evidence": [
+            "metrics.json#turbine_transient"
+          ]
+        },
+        {
+          "id": "E4",
+          "name": "真实压力/力矩序列与频段证据",
+          "max_points": 3,
+          "awarded_points": 0,
+          "reason": "没有全机DT5/DT6至少1 kHz完整序列；已有稳态实验及迭代序列不能代替。",
+          "evidence": [
+            "metrics.json#turbine_transient",
+            "report.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "F",
+      "name": "轨迹优化与水力约束",
+      "max_points": 20,
+      "awarded_points": 4,
+      "items": [
+        {
+          "id": "F1",
+          "name": "基准和候选的运动学可行性",
+          "max_points": 4,
+          "awarded_points": 4,
+          "reason": "独立解析Hermite极值检查通过，基准与冻结smoothstep一致。",
+          "evidence": [
+            "baseline_trajectory.csv",
+            "trajectory.csv",
+            "independent_check_results.json#trajectory"
+          ]
+        },
+        {
+          "id": "F2",
+          "name": "真实J目标的候选设计与改善",
+          "max_points": 7,
+          "awarded_points": 0,
+          "reason": "候选按执行器峰速设计，未计算真实全机J；17.35%仅为速度峰值降低。",
+          "evidence": [
+            "metrics.json#turbine_transient",
+            "report.md"
+          ]
+        },
+        {
+          "id": "F3",
+          "name": "输出能量至少为基准98%",
+          "max_points": 3,
+          "awarded_points": 0,
+          "reason": "无可比较的真实力矩时间序列，能量比未验证。",
+          "evidence": [
+            "metrics.json#constraints"
+          ]
+        },
+        {
+          "id": "F4",
+          "name": "最低绝压与峰值绝对力矩约束",
+          "max_points": 4,
+          "awarded_points": 0,
+          "reason": "局部绝压参考与两条瞬态缺失，两个约束均未验证。",
+          "evidence": [
+            "metrics.json#constraints"
+          ]
+        },
+        {
+          "id": "F5",
+          "name": "相同最终水力工况",
+          "max_points": 2,
+          "awarded_points": 0,
+          "reason": "10 s角度终点满足不等于最终流量/水头/流场满足，后者未验证。",
+          "evidence": [
+            "metrics.json#constraints"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G",
+      "name": "交付、复现与证据",
+      "max_points": 10,
+      "awarded_points": 7,
+      "items": [
+        {
+          "id": "G1",
+          "name": "可编辑工程、源码、环境和命令",
+          "max_points": 3,
+          "awarded_points": 3,
+          "reason": "结构齐全，有实际场、源码、字典、运行命令与资源记录。",
+          "evidence": [
+            "run.sh",
+            "evidence/environment.txt",
+            "evidence/delivery_manifest.json"
+          ]
+        },
+        {
+          "id": "G2",
+          "name": "原始记录、完整性和失败披露",
+          "max_points": 3,
+          "awarded_points": 3,
+          "reason": "清单2771条目核查无差异，失败与未计算量明确留档；本次核查未发现用虚构J填空的证据。",
+          "evidence": [
+            "server_independent_audit.json",
+            "metrics.json",
+            "report.md"
+          ]
+        },
+        {
+          "id": "G3",
+          "name": "轻量工具可执行性",
+          "max_points": 1,
+          "awarded_points": 1,
+          "reason": "25个Python文件语法通过、全部提交shell脚本语法通过，指标工具解析信号检查通过。",
+          "evidence": [
+            "independent_check_results.json#python_syntax",
+            "independent_check_results.json#delivered_postprocessor_check",
+            "server_independent_audit.json#shell_syntax"
+          ]
+        },
+        {
+          "id": "G4",
+          "name": "干净环境端到端复跑",
+          "max_points": 3,
+          "awarded_points": 0,
+          "reason": "未独立完成干净全流程复跑；实际驱动有EOF异常且总体退出码缺失。",
+          "evidence": [
+            "scripts/reproduce.sh",
+            "logs/run_component_chain_driver3.log",
+            "evidence/component_chain_driver_note.json"
+          ]
+        }
+      ]
+    }
+  ],
+  "gates": [
+    {
+      "id": "kinematics",
+      "name": "轨迹运动学",
+      "status": "demonstrated"
+    },
+    {
+      "id": "steady_baseline",
+      "name": "可信、实验约束的共同稳态基线",
+      "status": "not_established"
+    },
+    {
+      "id": "full_transient",
+      "name": "两条完整10 s真实全机瞬态",
+      "status": "not_completed"
+    },
+    {
+      "id": "J_improvement",
+      "name": "真实DT5/DT6压力J改善",
+      "status": "unverified"
+    },
+    {
+      "id": "hydraulic_constraints",
+      "name": "能量/最低绝压/峰值力矩/终态约束",
+      "status": "unverified"
+    },
+    {
+      "id": "numerical_verification",
+      "name": "目标量空间/时间/采样误差受控",
+      "status": "not_established"
+    }
+  ],
+  "limitations": [
+    "只代表该次两小时资源受限试验及其交付，不概括模型普遍能力或题目固有难度。",
+    "评审采用原始文件、日志与独立后处理；没有独立重求CFD。",
+    "分数权重事后制定；需要专家复核与更多模型/重复试验校准。",
+    "未验证的水力约束暂不计分，不等于已证明候选真实违反这些约束。"
+  ]
+}

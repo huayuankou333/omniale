@@ -1,0 +1,40 @@
+{
+  "case_id": "NIST_AMBench_D3_v1",
+  "evaluation_id": "ambench_gpt61sol_20261116_01",
+  "evaluated_at": "2026-11-16",
+  "evaluator": {
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "wall_limit_s": 7200,
+    "actual_wall_time_s": 5210,
+    "cli_exit_code": 0
+  },
+  "reference_solution": null,
+  "expert_annotation_status": "pending",
+  "scoring_basis": "候选提交相对于冻结题目中预注册工程标准的证据审查；不是 NIST 官方评分，也不是专家最终标注。",
+  "pass_threshold": 80,
+  "total_score": 67,
+  "decision": "未通过工程放行门槛",
+  "categories": [
+    {"name":"数据与计量","score":9,"max_score":10,"rationale":"完成官方资产清单、HDF5 分块读取、XYPT 命令解析、截面表审计、温标与测量定义说明，并保留了可复核的中间数组。缺少更完整的跨来源不确定度传播，因此扣 1 分。","evidence":["raw_thermography_audit.json","input_index.json","measured_single_track.csv","measured_pad_ptam.csv","report.md"]},
+    {"name":"物理模型与校准","score":11,"max_score":20,"rationale":"实现了三维瞬态焓法、温变热物性、潜热、移动 Gaussian 热源和边界换热/辐射，并锁定了全局校准参数。单道能量残差约 0.33–0.40，模型没有流动、蒸发和高温自由表面处理，且出现 4000 K 表面裁剪迹象，不能作为放行级熔池模型。","evidence":["thermal_model.py","material_properties.json","calibration_lock.json","calibration_history.csv","track_results.json","report.md"]},
+    {"name":"外部验证","score":8,"max_score":15,"rationale":"覆盖 7 个单道工况并给出几何和热学量，与公开测量和 PTAM 进行比较。精化单道深度约 30–54 μm，明显低于公开测量约 103–227 μm；pad 能量残差约 0.44–0.57，留出验证未达到预注册门槛。","evidence":["track_results.json","design_results.json","measured_single_track.csv","measured_pad_ptam.csv","report.md"]},
+    {"name":"数值 V&V","score":8,"max_score":15,"rationale":"提供了三等级空间/时间精化、独立重放日志、退出码和自检。关键深度、pad J 和能量指标随精化变化超过 5%，因此只能证明执行过 V&V，不能证明数值收敛或离散误差已受控。","evidence":["convergence_results.json","replay_track0.log","replay_exitcode.txt","selfcheck.log","report.md"]},
+    {"name":"工艺设计","score":11,"max_score":20,"rationale":"保留原始命令并插入 120 个 0.2 ms 停顿，格式校验通过，总时长比例约 1.0047，标称入射能量保持。候选设计的最坏 J 仅从约 0.8092 降至约 0.8037，改善约 0.67%，低于 10% 目标；另有 pad 基准/变体 J 约 0.878–0.888，不能支撑自动放行。","evidence":["design_results.json","scenario_results.json","final_power_balanced.csv","run_all.sh","report.md"]},
+    {"name":"鲁棒性与风险","score":10,"max_score":10,"rationale":"完成 9 场景成对压力测试，覆盖功率、速度、光斑和热边界扰动；报告主动识别高温裁剪、能量不闭合和模型缺项，并明确拒绝当前设计自动放行，给出复验路径。","evidence":["scenario_results.json","limitations.md","report.md"]},
+    {"name":"交付复现","score":10,"max_score":10,"rationale":"提交包含运行入口、参数锁、结果、原始输入索引、独立重放、自检、运行日志、SHA256 和完整归档，CLI 正常退出，具备第三方复核条件。","evidence":["run_all.sh","runtime_status.json","output_sha256.txt","input_index.json","replay_exitcode.txt","review__submission_complete.tar.gz"]}
+  ],
+  "key_failures": [
+    "单道精化几何深度明显偏低，未达到留出几何验证要求。",
+    "单道与 pad 能量残差过大，能量闭合未达工程标准。",
+    "关键精化结果变化超过 5%，数值收敛未通过。",
+    "出现 4000 K 表面温度裁剪迹象，限制了高温预测可信度。",
+    "最终扫描设计的最坏目标函数改善约 0.67%，未达到 10% 设计目标。"
+  ],
+  "recommended_next_actions": [
+    "修复焓法离散中的能量守恒和边界通量核算，并增加逐时间步能量平衡审计。",
+    "引入含流动、蒸发/反冲压力和自由表面处理的局部高保真模型，至少用于校准集与设计候选复核。",
+    "将空间、时间和热像采样精度纳入统一不确定度预算，重新执行留出工况验证。",
+    "在自动放行前完成中央 pad、odd/even 轨迹及单道中心的在线热像重复试验。"
+  ]
+}

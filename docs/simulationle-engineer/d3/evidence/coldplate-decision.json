@@ -1,0 +1,152 @@
+{
+  "decision": "unresolved",
+  "candidate_release": "reject_current_release_request",
+  "evidence_status": "partial",
+  "constraints": [
+    {
+      "id": "independent_experiment",
+      "bound": {
+        "parameters": {
+          "thermal": "3D conservative finite-volume conjugate diffusion/enthalpy; no thermal fit",
+          "flow": "laminar incompressible Navier-Stokes with mean-temperature viscosity",
+          "manifold_loss_K": 0.5690615233822574,
+          "slot_depth_m": 0.00254,
+          "slot_conductivity_W_mK": 0.026,
+          "thermocouple_z_m": 0.003175,
+          "water_model": "NIST frozen table",
+          "calibration_parameter_count": 1
+        },
+        "locked_temperature_RMSE_K": 4.592115850719393,
+        "locked_temperature_max_abs_error_K": 6.439123164848866,
+        "locked_pressure_each_pass": [
+          false,
+          false,
+          true
+        ],
+        "acceptance_pass": false,
+        "numerical_error_bound_K": null
+      },
+      "status": "failed",
+      "evidence": "validation.json"
+    },
+    {
+      "id": "nominal_clean_80C",
+      "bound": 370.92047640669387,
+      "status": "computed_exceedance",
+      "evidence": "steady_runs.json"
+    },
+    {
+      "id": "continuous_robust_90C",
+      "bound": null,
+      "status": "unresolved",
+      "evidence": "uncertainty.json"
+    },
+    {
+      "id": "module_spread_25K",
+      "bound": 56.93851526817542,
+      "status": "computed_model_exceedance",
+      "evidence": "steady_runs.json"
+    },
+    {
+      "id": "water_local_95C_and_outlet60C",
+      "bound": {
+        "observed_by_geometry": {
+          "baseline": {
+            "observed_local_max_K": 371.2442754245616,
+            "observed_outlet_max_K": 323.4999249680636,
+            "observed_minimum_absolute_pressure_Pa": 195969.13799519304,
+            "observed_transient_checkpoint_max_K": 369.8839579774605,
+            "domain_upper_bound_K": null
+          },
+          "design": {
+            "observed_local_max_K": 366.269366057941,
+            "observed_outlet_max_K": 323.3724398210574,
+            "observed_minimum_absolute_pressure_Pa": 198181.15120463475,
+            "observed_transient_checkpoint_max_K": 362.9845271011139,
+            "domain_upper_bound_K": null
+          }
+        },
+        "acceptance_geometry": "design",
+        "domain_upper_bound_K": null
+      },
+      "status": "sampled_design_checks_only_no_domain_bound",
+      "evidence": "steady_runs.json"
+    },
+    {
+      "id": "transient_95C",
+      "bound": {
+        "observed_peaks_by_geometry_K": {
+          "baseline": 402.7424483087436,
+          "design": 396.3433232669234
+        },
+        "acceptance_geometry": "design",
+        "upper_bound_K": null
+      },
+      "status": "computed_design_model_exceedance_no_certified_bound",
+      "evidence": "transient_runs.json"
+    },
+    {
+      "id": "conservative_J_improvement_3K",
+      "bound": null,
+      "status": "unresolved",
+      "evidence": "raw/paired_screening.csv"
+    },
+    {
+      "id": "manufacturing",
+      "bound": null,
+      "status": "CAD_geometry_checks_available_process_qualification_incomplete",
+      "evidence": "design.json"
+    },
+    {
+      "id": "spatial_and_temporal_numerics",
+      "bound": null,
+      "status": "see_actual_refinement_results",
+      "evidence": "convergence.json"
+    },
+    {
+      "id": "local_temperature_dependent_viscosity",
+      "bound": null,
+      "status": "not_implemented_spatially_mean_model_used",
+      "evidence": "models/METHOD.md"
+    }
+  ],
+  "worst_case_temperature_bounds_K": {
+    "baseline": {
+      "lower_K": null,
+      "upper_K": null,
+      "observed_3D_max_K": 404.61754771870005,
+      "observed_3D_case": "baseline_refinement_m1",
+      "reason": "No certified numerical/model-form bound over full common continuous domain"
+    },
+    "design": {
+      "lower_K": null,
+      "upper_K": null,
+      "observed_3D_max_K": 400.87018575337845,
+      "observed_3D_case": "design_hotspot_L2_S04_X140_B100_plus",
+      "reason": "No certified numerical/model-form bound over full common continuous domain"
+    }
+  },
+  "paired_improvement_lower_K": null,
+  "remaining_risks": [
+    "Locked independent validation failed",
+    "Momentum uses mean rather than local viscosity",
+    "Wall/transition and partial-gap model forms not bounded",
+    "Full continuous-domain temperature guarantee absent",
+    "Any failed or incomplete case retained",
+    "Manufacturing bond/leakage/process life not qualified"
+  ],
+  "coverage": {
+    "required_steady": 84,
+    "records_present": 84,
+    "numerically_reviewed": 84,
+    "invalid": 0,
+    "unresolved": 0,
+    "all_actual_steady_records": 184,
+    "screening_points_per_geometry": {
+      "baseline": 11520,
+      "design": 11520
+    },
+    "transient_replays_completed": 4
+  },
+  "scope": "No proof that entire admissible design space is infeasible. Current candidate and modeling evidence do not support customer acceptance. No self-assigned engineering score."
+}

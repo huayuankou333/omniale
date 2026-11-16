@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f5f1">
+  <meta name="description" content="四个现实工业工程 D3 仿真案例：题目、工程难点、输入素材、预期交付、模型实际结果与专业软件环境。">
+  <title>D3 工程仿真案例库 · SLE-E</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="data.js" defer></script>
+  <script src="app.js" defer></script>
+<link rel="stylesheet" href="integration.css"></head>
+<body>
+  <a class="skip-link" href="#case-detail">跳至案例内容</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="D3 案例库首页"><span class="brand-mark">E<span>↗</span></span><span>SLE-E <i>/</i> <b>D3 CASEBOOK</b></span></a>
+    <nav aria-label="页面导航"><a href="../">项目主页</a><a href="../related-work/">我们复现的相关工作</a><a href="#case-library">案例索引 <span>04</span></a><a href="#method">展示说明</a><button class="text-button" id="print-button">导出当前案例 <span>↗</span></button></nav>
+  </header>
+
+  <main id="top"><div class="project-context wrap"><a href="../">SimulationLE/Engineer</a><span>/</span><b>D3 · 改编与原创题目</b></div>
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy"><p class="eyebrow"><span class="live-dot"></span> ENGINEERING AGENT BENCHMARK · D3</p>
+        <h1 id="hero-title">让仿真面对<br><span>真实的工程难题。</span></h1>
+        <p class="hero-description">从水轮机到氢燃烧器，从激光熔池到液冷系统。<br class="desktop-break">沿着题目、素材与计算证据，查看 agent 完成了什么。</p>
+        <a class="primary-link" href="#case-library">浏览保留案例 <span>↓</span></a>
+      </div>
+      <div class="hero-diagram" aria-label="四个案例涉及的耦合工程领域示意">
+        <div class="diagram-top"><span>COUPLED PHYSICS / OPEN ENGINEERING</span><span>REV. 2026.11</span></div>
+        <div id="domain-diagram" class="domain-diagram"></div>
+        <div class="diagram-bottom"><span>实验 → 建模 → 验证 → 设计决策</span><span>领域示意 / 非计算结果</span></div>
+      </div>
+    </section>
+    <section class="overview-stats wrap" aria-label="案例库统计">
+      <div><strong>04</strong><span>保留工程案例</span></div><div><strong>04</strong><span>已启动模型测试</span></div><div><strong>2 <small>h</small></strong><span>单次测试上限</span></div><div><strong class="text-stat">待专家标注</strong><span>四个案例参考解均留空</span></div>
+    </section>
+
+    <section class="case-library wrap" id="case-library" aria-labelledby="library-title">
+      <div class="section-top"><div><p class="eyebrow">THE COLLECTION</p><h2 id="library-title">四个领域，一条工程证据链。</h2></div><label class="search-box"><span aria-hidden="true">⌕</span><input id="case-search" type="search" placeholder="搜索案例、领域或软件" aria-label="搜索案例、领域或软件"><kbd>/</kbd></label></div>
+      <div class="filter-row" role="group" aria-label="按测试状态筛选"><button class="filter active" data-filter="all" aria-pressed="true">全部案例 <span>4</span></button><button class="filter" data-filter="tested" aria-pressed="false">已启动测试 <span>4</span></button><button class="filter" data-filter="pending" aria-pressed="false">等待测试 <span>0</span></button><span id="filter-count" class="filter-count" aria-live="polite">显示 4 个案例</span></div>
+      <div id="case-grid" class="case-grid"></div><p id="no-results" hidden>没有匹配的案例，请尝试其他关键词。</p>
+    </section>
+
+    <section class="detail-shell wrap" id="case-detail" aria-label="当前案例详情">
+      <aside class="detail-sidebar"><p class="eyebrow">CASE EXPLORER</p><div id="selected-case-label"></div><nav id="section-nav" aria-label="案例章节"></nav><div class="sidebar-foot"><span class="live-dot"></span> 来源可追溯<br><small>2026.11.16 · 保留版本</small></div></aside>
+      <article id="case-content" aria-live="polite"></article>
+    </section>
+
+    <section class="method wrap" id="method"><div><p class="eyebrow">READ THE EVIDENCE</p><h2>读懂结果，也看见边界。</h2></div><div class="method-copy"><p>这四题使用公开实验或基准资产作为验证材料，并新增工程目标、设计变量、鲁棒工况或验收要求，归入我们的改编与原创题目。原数据与论文的来源在各案例素材及冻结题面中逐项保留。</p><p>页面根据已保留的冻结题目、模型原始交付和独立审查记录制作。图表由提交数据重绘，原图注明来源；示意图与题目输入单独标识。</p><p>本项目的阈值是自设工程验收要求，不是数据发布机构的官方工业标准。参考解与专家最终评级均待补；暂定评分采用的细则不同，不能直接作为跨案例排行榜。</p><p>本页测试请求模型为 <code>gpt-6.1-sol / xhigh</code>，资源上限为 2 小时、4 CPU、32 GiB。该设置描述单次实验；运行正常退出、文件存在或图像生成均不等于物理验证通过。</p><a href="evidence/provenance.json" download>下载本页证据来源与 SHA-256 清单 ↗</a></div></section>
+  </main>
+  <footer class="wrap"><span class="footer-brand">SLE-E <i>/</i> D3 CASEBOOK</span><span>现实工程任务 · 可追溯仿真交付</span><span>更新于 2026.11.16</span></footer>
+
+  <dialog id="document-dialog" aria-labelledby="document-title"><div class="dialog-head"><div><p class="eyebrow">ARCHIVED DOCUMENT</p><h2 id="document-title"></h2></div><button class="icon-button" id="close-document" aria-label="关闭文档">×</button></div><div id="document-body" class="document-body"></div><div class="dialog-foot"><span>此处为保留文档原文；发布时点说明以案例状态为准。</span><a id="document-download" download>下载原始 Markdown ↓</a></div></dialog>
+  <dialog id="image-dialog" aria-labelledby="image-title"><div class="dialog-head"><h2 id="image-title"></h2><button class="icon-button" id="close-image" aria-label="关闭图片">×</button></div><img id="large-image" alt=""><p id="large-image-caption"></p></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <noscript><div class="wrap">本网页需启用 JavaScript 展示案例。<a href="documents/francis-task.md">Francis 题目</a> · <a href="documents/ambench-task.md">AM-Bench 题目</a> · <a href="documents/ahead-task.md">AHEAD 题目</a> · <a href="documents/coldplate-task.md">冷板题目</a></div></noscript>
+</body>
+</html>
