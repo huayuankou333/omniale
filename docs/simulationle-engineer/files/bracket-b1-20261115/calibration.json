@@ -1,0 +1,67 @@
+{
+  "ready": true,
+  "revision": "v1-20261115",
+  "time": "2026-11-15T04:34:58.861336+00:00",
+  "model_calls_at_freeze": 0,
+  "reference_score": 100,
+  "reference_full_pass": true,
+  "reference_result_sha256": "725f974399cb0808ada835c022b9bfac1ddf326eb9bbe08ae4b56bfd5b1ddb9d",
+  "reference_submission": {
+    "build.py": "35f860a591fe79d5c063a7ee03b409ce2871215b01012bb4d7038aef7f0ff6a0",
+    "parameters.json": "6149502c8d2c179b219a0790296fc6be0290585ca1b989872d200fb08a49ae91",
+    "engineering_report.json": "9540cfdd2a7031fd91b843c293a792126c66cf748bfc2d95c71369bb6ebf3a26",
+    "B1-02-cross-optical/bracket.step": "d4e21967e5c80ab41dc3b71baa7f77cb37426cb93bd8aa5c4a2bde1954345c8c",
+    "B1-02-cross-optical/design.FCStd": "636a87957d8d4c6897c35419db240c669dbd13e53ef4dd45c3159bac1f4e54bf",
+    "B1-01-offset-open/bracket.step": "82f22726ae9da04f92e7ca8bf26b64a3b2f6ceb1124c985b70756050cd188a85",
+    "B1-01-offset-open/design.FCStd": "1d25bd4b9a405367dad38990651f88f8ae5fde1b39fb4c40993d1dac561284b1"
+  },
+  "instances": {
+    "B1-01-offset-open": {
+      "mass_g": 144.38503836633885,
+      "worst": {
+        "interface_translation_mm": 0.08926945709460204,
+        "interface_rotation_deg": 0.09545977383918595,
+        "interface_warp_mm": 0.005516767602182335,
+        "bulk_peak_vm_mpa": 47.13068712330865,
+        "interface_p99_vm_mpa": 17.89281629417767
+      },
+      "all_checks_passed": true
+    },
+    "B1-02-cross-optical": {
+      "mass_g": 164.2330456506257,
+      "worst": {
+        "interface_translation_mm": 0.09627882849208692,
+        "interface_rotation_deg": 0.09707668345918348,
+        "interface_warp_mm": 0.004647276776534253,
+        "bulk_peak_vm_mpa": 45.46181411120234,
+        "interface_p99_vm_mpa": 18.879079454830375
+      },
+      "all_checks_passed": true
+    }
+  },
+  "negative_controls": [
+    "baseline",
+    "overweight",
+    "blocked",
+    "thin",
+    "fcstd_mismatch"
+  ],
+  "native_runtime_checks": true,
+  "gateway_checks": true,
+  "physical_thresholds_preserved": true,
+  "numerical_changes": {
+    "meshes_mm": [
+      2.5,
+      2.0
+    ],
+    "mesh_threads": 1,
+    "random_seed": 1,
+    "memory_gib": 8,
+    "backbone": "0.75mm sampled erosion proxy, radius1.5mm, tessellation0.12mm",
+    "stress_convergence": "delta <= max(8% fine stress,5MPa)"
+  },
+  "limitations": [
+    "One complete feasible construction with obstacle-dependent sections; not a proof of a unique or broad feasible design space.",
+    "Mechanical difficulty is unverified until the single Sol trial."
+  ]
+}

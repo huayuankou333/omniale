@@ -1,0 +1,66 @@
+{
+  "batch": "full001",
+  "observed_native_source_versions": {
+    "269f6cd051ff7aa5fe1d6b4e9bb5d77d5871c8790e45d6475845638343b67c4d": 24,
+    "bbf777fae71db81a8aed9400280550f9c32119b4d7747b9493c77b05459baa61": 8,
+    "a8c2a08c378bd287914c6484aa66d1d135ad2536d3808bb8c071db7202f4b241": 3,
+    "7b7096c4820d51f55eb980d15f6264b897e4e5f15a5c006dbb7d42a0fb12db1d": 5
+  },
+  "reported_submission_sha256": "269f6cd051ff7aa5fe1d6b4e9bb5d77d5871c8790e45d6475845638343b67c4d",
+  "reported_completed_scenarios": 40,
+  "source_examples": {
+    "269f6cd051ff7aa5fe1d6b4e9bb5d77d5871c8790e45d6475845638343b67c4d": {
+      "request": "request_051",
+      "deck": "/app/experiments/full001/ff_1p98_m10__high_impedance__descending__skewed/fixture.cir"
+    },
+    "bbf777fae71db81a8aed9400280550f9c32119b4d7747b9493c77b05459baa61": {
+      "request": "request_080",
+      "deck": "/app/experiments/full001/sf_1p62_m10__high_impedance__descending__skewed/fixture.cir"
+    },
+    "a8c2a08c378bd287914c6484aa66d1d135ad2536d3808bb8c071db7202f4b241": {
+      "request": "request_086",
+      "deck": "/app/experiments/full001/fs_1p98_125__mixed_impedance__descending__aligned/fixture.cir"
+    },
+    "7b7096c4820d51f55eb980d15f6264b897e4e5f15a5c006dbb7d42a0fb12db1d": {
+      "request": "request_094",
+      "deck": "/app/experiments/full001/fs_1p98_125__high_impedance__descending__skewed/fixture.cir"
+    }
+  },
+  "mixed_native_versions": true,
+  "source_hash_mislabel_observed": true,
+  "cause": "Agent changed circuit.spi while its public run_added.py sweep was still running. The tool copied a frozen netlist but generated decks that included the mutable /app/circuit.spi and stamped rows with the initial hash.",
+  "final_score_source": "Independent acceptance reruns the one final stopped-container netlist; no development batch values enter final scoring.",
+  "difficulty_qualification_limitation": "Mislabelled development feedback can affect search; retain independent electrical score but do not use a failed trial alone to certify difficulty until the development tool is repaired and retested.",
+  "all_full_batches": {
+    "full001": {
+      "actual_source_versions": {
+        "269f6cd051ff7aa5fe1d6b4e9bb5d77d5871c8790e45d6475845638343b67c4d": 24,
+        "bbf777fae71db81a8aed9400280550f9c32119b4d7747b9493c77b05459baa61": 8,
+        "a8c2a08c378bd287914c6484aa66d1d135ad2536d3808bb8c071db7202f4b241": 3,
+        "7b7096c4820d51f55eb980d15f6264b897e4e5f15a5c006dbb7d42a0fb12db1d": 5
+      },
+      "reported_submission_sha256": "269f6cd051ff7aa5fe1d6b4e9bb5d77d5871c8790e45d6475845638343b67c4d",
+      "reported_completed_scenarios": 40,
+      "mixed_native_versions": true,
+      "source_hash_mislabel_observed": true
+    },
+    "full002": {
+      "actual_source_versions": {
+        "7b7096c4820d51f55eb980d15f6264b897e4e5f15a5c006dbb7d42a0fb12db1d": 1
+      },
+      "reported_submission_sha256": null,
+      "reported_completed_scenarios": 0,
+      "mixed_native_versions": false,
+      "source_hash_mislabel_observed": false
+    },
+    "full003": {
+      "actual_source_versions": {
+        "70d9f21f46713a6281289cdd6161f6de4671f0a7a22ecf2aa6c838aa5ce2cc3e": 9
+      },
+      "reported_submission_sha256": "70d9f21f46713a6281289cdd6161f6de4671f0a7a22ecf2aa6c838aa5ce2cc3e",
+      "reported_completed_scenarios": 8,
+      "mixed_native_versions": false,
+      "source_hash_mislabel_observed": false
+    }
+  }
+}

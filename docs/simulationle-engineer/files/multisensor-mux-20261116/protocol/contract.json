@@ -1,0 +1,343 @@
+{
+  "case": "D2-II-01",
+  "version": "d2-ii-01-multisensor-mux-eval-v0.2",
+  "date": "2026-11-16",
+  "status": "sealed_for_one_model_trial",
+  "domain": "D2",
+  "kind": "adaptation",
+  "original": {
+    "repo": "https://github.com/Arcadia-1/analog-design-bench",
+    "commit": "972f7cd7c95381134387b250edf18f3bd23bdd25",
+    "task": "sky130-analog-input-mux-8to1-pvt",
+    "native_check_count": 5,
+    "vcm_ratios": [
+      0,
+      0.5,
+      1
+    ],
+    "select_codes": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "source_resistance_ohm": 50,
+    "output_load_f": 1e-12,
+    "selected_gain_db": [
+      -0.001,
+      0.001
+    ],
+    "crosstalk_frequencies_hz": [
+      0.001,
+      1000000
+    ],
+    "bandwidth_min_hz": 5000000.0,
+    "dc_current_max_a": 5e-06,
+    "checks": [
+      "pvt_selected_gain",
+      "pvt_crosstalk_dc",
+      "pvt_crosstalk_1mhz",
+      "pvt_selected_bandwidth",
+      "pvt_supply_current"
+    ],
+    "nominal_gate_and_retry_policy": "unchanged upstream tests/verify.py; MAX_WORKERS=4, container limited to 2 CPU",
+    "unselected_gain_max_db": -80
+  },
+  "interface": {
+    "name": "input_mux_8to1",
+    "pins": [
+      "AVDD",
+      "AVSS",
+      "S\\<2\\>",
+      "S\\<1\\>",
+      "S\\<0\\>",
+      "VIN\\<7\\>",
+      "VIN\\<6\\>",
+      "VIN\\<5\\>",
+      "VIN\\<4\\>",
+      "VIN\\<3\\>",
+      "VIN\\<2\\>",
+      "VIN\\<1\\>",
+      "VIN\\<0\\>",
+      "VO"
+    ]
+  },
+  "pvt_rows": [
+    {
+      "id": "tt_1p80_40",
+      "corner": "tt",
+      "vdd_v": 1.8,
+      "temp_c": 40
+    },
+    {
+      "id": "ss_1p62_125",
+      "corner": "ss",
+      "vdd_v": 1.62,
+      "temp_c": 125
+    },
+    {
+      "id": "ff_1p98_m10",
+      "corner": "ff",
+      "vdd_v": 1.98,
+      "temp_c": -10
+    },
+    {
+      "id": "sf_1p62_m10",
+      "corner": "sf",
+      "vdd_v": 1.62,
+      "temp_c": -10
+    },
+    {
+      "id": "fs_1p98_125",
+      "corner": "fs",
+      "vdd_v": 1.98,
+      "temp_c": 125
+    }
+  ],
+  "sensor_profiles": [
+    {
+      "id": "mixed_impedance",
+      "voltage_ratios": [
+        0.08,
+        0.92,
+        0.2,
+        0.8,
+        0.35,
+        0.65,
+        0.45,
+        0.55
+      ],
+      "r_ohm": [
+        1000,
+        2200,
+        4700,
+        1000,
+        2200,
+        4700,
+        1000,
+        4700
+      ],
+      "c_pin_f": [
+        5e-12,
+        5e-12,
+        5e-12,
+        5e-12,
+        5e-12,
+        5e-12,
+        5e-12,
+        5e-12
+      ],
+      "precharge_ratio": 0.1
+    },
+    {
+      "id": "high_impedance",
+      "voltage_ratios": [
+        0.92,
+        0.08,
+        0.8,
+        0.2,
+        0.65,
+        0.35,
+        0.55,
+        0.45
+      ],
+      "r_ohm": [
+        4700,
+        10000,
+        6800,
+        10000,
+        4700,
+        6800,
+        10000,
+        4700
+      ],
+      "c_pin_f": [
+        5e-12,
+        5e-12,
+        5e-12,
+        5e-12,
+        5e-12,
+        5e-12,
+        5e-12,
+        5e-12
+      ],
+      "precharge_ratio": 0.9
+    }
+  ],
+  "scan_orders": {
+    "ascending": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "descending": [
+      7,
+      6,
+      5,
+      4,
+      3,
+      2,
+      1,
+      0
+    ]
+  },
+  "select_timing_profiles": [
+    {
+      "id": "aligned",
+      "skew_s_by_s0_s1_s2": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "skewed",
+      "skew_s_by_s0_s1_s2": [
+        0,
+        2e-09,
+        4e-09
+      ]
+    }
+  ],
+  "timing": {
+    "warmup_s": 2e-06,
+    "period_s": 1e-06,
+    "repetitions": 3,
+    "discard_repetitions": 1,
+    "select_edge_s": 4e-09,
+    "fixture_edge_s": 2e-09,
+    "reset_rise_start_s": 5e-09,
+    "reset_fall_start_s": 4e-08,
+    "acquire_rise_start_s": 8e-08,
+    "acquire_fall_start_s": 6.8e-07,
+    "settling_window_s": [
+      6e-07,
+      6.7e-07
+    ],
+    "sample_time_s": 7.1e-07,
+    "hold_window_s": [
+      7e-07,
+      9.5e-07
+    ],
+    "sensor_disturbance_window_s": [
+      0,
+      7e-07
+    ],
+    "sensor_recovery_window_s": [
+      6.5e-07,
+      6.7e-07
+    ],
+    "aggressor_rise_start_s": 7.6e-07,
+    "aggressor_fall_start_s": 8.1e-07,
+    "aggressor_measure_window_s": [
+      7.75e-07,
+      8.1e-07
+    ]
+  },
+  "fixture": {
+    "avdd_series_r_ohm": 50,
+    "select_series_r_ohm": 50,
+    "vo_shunt_c_f": 1e-12,
+    "sample_cap_f": 2e-12,
+    "sample_leak_r_ohm": 1000000000000.0,
+    "sample_switch_ron_ohm": 50,
+    "sample_switch_roff_ohm": 1000000000000.0,
+    "reset_switch_ron_ohm": 50,
+    "reset_switch_roff_ohm": 1000000000000.0,
+    "precharge_series_r_ohm": 50,
+    "switch_threshold_vdd_ratio": 0.5,
+    "switch_hysteresis_v": 0.01,
+    "acquisition_feedthrough_c_f": 1e-15,
+    "aggressor": "all unselected independent sensor sources pulse to (1 - base_ratio)*VDD, selected stays constant",
+    "scope": "fixed ideal sampler switches plus explicit linear feedthrough; not full MOS sampler charge injection or ADC/noise model"
+  },
+  "numerics": {
+    "model_path": "/opt/sky130/continuous/sky130.lib.spice",
+    "print_step_s": 5e-10,
+    "max_step_s": 5e-10,
+    "max_accepted_sample_gap_s": 5.5e-10,
+    "reltol": 0.0001,
+    "vntol_v": 1e-07,
+    "abstol_a": 1e-13,
+    "gmin_s": 1e-12,
+    "initial_condition": "ordinary operating point, no uic, no forced output/hold initial condition",
+    "convergence_check": "repeat reference with max_step_s/2 and compare all margins before sealing",
+    "linear_solver": "klu",
+    "original_linear_solver": "unchanged pinned upstream SPARSE backend with mandatory single-thread initialization"
+  },
+  "added_groups": [
+    {
+      "id": "sample_accuracy",
+      "metrics": {
+        "sample_error_v": 0.002,
+        "hold_error_v": 0.0025
+      }
+    },
+    {
+      "id": "settling_and_history",
+      "metrics": {
+        "settling_error_v": 0.001,
+        "history_difference_v": 0.0005
+      }
+    },
+    {
+      "id": "sensor_integrity",
+      "metrics": {
+        "off_sensor_peak_error_v": 0.025,
+        "off_sensor_recovery_error_v": 0.0005
+      }
+    },
+    {
+      "id": "off_channel_rejection",
+      "metrics": {
+        "aggressor_output_error_v": 0.003
+      }
+    },
+    {
+      "id": "energy_and_peak",
+      "metrics": {
+        "positive_input_power_w": 0.00015,
+        "avdd_peak_abs_current_a": 0.005
+      }
+    }
+  ],
+  "limits_status": "all engineering limits unchanged from v0.1; complete reference validated before inference",
+  "power_definition": "sum over 15 independent sources of integral(max(-v_source*i_source,0)) / scored duration; all source signed energies also reported; no cancellation or self-report",
+  "score_definition": "100*min(original_passed/5,added_groups_passed/5); all required cases for a group must pass",
+  "submission": {
+    "required_files": [
+      "circuit.spi"
+    ],
+    "optional_files": [
+      "DESIGN.md"
+    ],
+    "netlist_max_bytes": 1048576,
+    "documentation_affects_score": false,
+    "final_selection": "final disk circuit.spi only, never evaluator-selected historical best",
+    "model_reported_metrics_are_evidence": false
+  },
+  "coverage": {
+    "added_transient_jobs": 40,
+    "slots_per_job": 24,
+    "scored_slots_per_job": 16,
+    "scored_samples_total": 640,
+    "history_pairs": 20,
+    "history_scalar_comparisons": 320
+  },
+  "qualification": {
+    "reference_full_pass": true,
+    "negative_controls_verified": true,
+    "numerics_verified": true,
+    "runtime_verified": true,
+    "model_trial_started": false
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "scoring_version": "b1-group-convergence-v2-20261115",
+  "model": "deepseek-v4.1-flash-1017",
+  "score": 60,
+  "full_pass": false,
+  "task_success": 0,
+  "status": "failed",
+  "groups": {
+    "geometry_interfaces": {
+      "passed": true,
+      "points": 20
+    },
+    "space_access": {
+      "passed": true,
+      "points": 20
+    },
+    "mass_backbone": {
+      "passed": true,
+      "points": 20
+    },
+    "alignment": {
+      "passed": false,
+      "points": 0
+    },
+    "strength": {
+      "passed": false,
+      "points": 0
+    }
+  },
+  "instances": {
+    "B1-01-offset-open": {
+      "geometry_interfaces": {
+        "passed": true,
+        "reasons": [],
+        "checked_constraints": 20
+      },
+      "space_access": {
+        "passed": true,
+        "reasons": [],
+        "checked_constraints": 10
+      },
+      "mass_backbone": {
+        "passed": true,
+        "reasons": [],
+        "checked_constraints": 2
+      },
+      "alignment": {
+        "passed": false,
+        "reasons": [
+          "LC2_forward_diagonal@2.5:interface_translation_mm",
+          "LC2_forward_diagonal@2.5:interface_rotation_deg",
+          "LC4_cross_positive@2.5:interface_translation_mm",
+          "LC5_cross_negative@2.5:interface_translation_mm",
+          "LC2_forward_diagonal@2.0:interface_translation_mm",
+          "LC2_forward_diagonal@2.0:interface_rotation_deg",
+          "LC4_cross_positive@2.0:interface_translation_mm",
+          "LC5_cross_negative@2.0:interface_translation_mm"
+        ],
+        "checked_constraints": 48
+      },
+      "strength": {
+        "passed": false,
+        "reasons": [
+          "LC2_forward_diagonal: convergence failed for bulk_peak_vm_mpa",
+          "LC5_cross_negative: convergence failed for bulk_peak_vm_mpa"
+        ],
+        "checked_constraints": 24
+      }
+    },
+    "B1-02-cross-optical": {
+      "geometry_interfaces": {
+        "passed": true,
+        "reasons": [],
+        "checked_constraints": 20
+      },
+      "space_access": {
+        "passed": true,
+        "reasons": [],
+        "checked_constraints": 12
+      },
+      "mass_backbone": {
+        "passed": true,
+        "reasons": [],
+        "checked_constraints": 2
+      },
+      "alignment": {
+        "passed": false,
+        "reasons": [
+          "LC2_forward_diagonal@2.5:interface_translation_mm",
+          "LC2_forward_diagonal@2.5:interface_rotation_deg",
+          "LC3_reverse_diagonal@2.5:interface_translation_mm",
+          "LC4_cross_positive@2.5:interface_translation_mm",
+          "LC5_cross_negative@2.5:interface_translation_mm",
+          "LC2_forward_diagonal@2.0:interface_translation_mm",
+          "LC2_forward_diagonal@2.0:interface_rotation_deg",
+          "LC3_reverse_diagonal@2.0:interface_translation_mm",
+          "LC4_cross_positive@2.0:interface_translation_mm",
+          "LC5_cross_negative@2.0:interface_translation_mm"
+        ],
+        "checked_constraints": 48
+      },
+      "strength": {
+        "passed": false,
+        "reasons": [
+          "LC2_forward_diagonal: convergence failed for bulk_peak_vm_mpa",
+          "LC3_reverse_diagonal: convergence failed for bulk_peak_vm_mpa",
+          "LC4_cross_positive: convergence failed for bulk_peak_vm_mpa",
+          "LC5_cross_negative: convergence failed for bulk_peak_vm_mpa"
+        ],
+        "checked_constraints": 24
+      }
+    }
+  },
+  "unresolved_evaluation_errors": [],
+  "source_result_sha256": "909bddd04f3d81b5c799aebc90498663aaad2e47389596c2cc7f443fb846fd48",
+  "original_score": null,
+  "original_status": "indeterminate",
+  "interpretation": "Each group requires both instances to pass its physical and applicable convergence checks. Strength convergence failure earns zero strength points; it does not prove physical overstress."
+}

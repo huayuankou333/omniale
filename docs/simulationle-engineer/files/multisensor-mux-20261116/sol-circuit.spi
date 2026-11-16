@@ -1,0 +1,52 @@
+* Eight isolated T transmission-gate branches with inertial one-hot decoding.
+.subckt inv A Y VP VN
+xn Y A VN VN sky130_fd_pr__nfet_01v8 w=1 l=0.15
+xp Y A VP VP sky130_fd_pr__pfet_01v8 w=2 l=0.15
+.ends inv
+.subckt nand3 A B C Y VP VN
+xp1 Y A VP VP sky130_fd_pr__pfet_01v8 w=1 l=0.15
+xp2 Y B VP VP sky130_fd_pr__pfet_01v8 w=1 l=0.15
+xp3 Y C VP VP sky130_fd_pr__pfet_01v8 w=1 l=0.15
+xn1 Y A n1 VN sky130_fd_pr__nfet_01v8 w=1.5 l=0.15
+xn2 n1 B n2 VN sky130_fd_pr__nfet_01v8 w=1.5 l=0.15
+xn3 n2 C VN VN sky130_fd_pr__nfet_01v8 w=1.5 l=0.15
+.ends nand3
+.subckt branch A Y D VP VN
+* Inertial enable: slow assertion, fast removal.
+xdp q D VP VP sky130_fd_pr__pfet_01v8 w=0.42 l=2
+xdn q D VN VN sky130_fd_pr__nfet_01v8 w=2 l=0.15
+xbn qb q VN VN sky130_fd_pr__nfet_01v8 w=4 l=0.15
+xbp qb q VP VP sky130_fd_pr__pfet_01v8 w=8 nf=2 l=0.15
+xbuf qb e VP VN inv
+x1n A e mid VN sky130_fd_pr__nfet_01v8_lvt w=36 nf=6 l=0.15
+x1p A qb mid VP sky130_fd_pr__pfet_01v8 w=24 nf=4 l=0.5
+x2n mid e Y VN sky130_fd_pr__nfet_01v8_lvt w=36 nf=6 l=0.15
+x2p mid qb Y VP sky130_fd_pr__pfet_01v8 w=24 nf=4 l=0.5
+xsdn sd D VN VN sky130_fd_pr__nfet_01v8 w=0.42 l=1
+xsdp sd D VP VP sky130_fd_pr__pfet_01v8 w=2 l=0.15
+xsg sd sg VP VN inv
+xsh mid sg VN VN sky130_fd_pr__nfet_01v8 w=1.2 l=1
+.ends branch
+.subckt input_mux_8to1 AVDD AVSS S\<2\> S\<1\> S\<0\> VIN\<7\> VIN\<6\> VIN\<5\> VIN\<4\> VIN\<3\> VIN\<2\> VIN\<1\> VIN\<0\> VO
+xi0 S\<0\> b0 AVDD AVSS inv
+xi1 S\<1\> b1 AVDD AVSS inv
+xi2 S\<2\> b2 AVDD AVSS inv
+xd0 b0 b1 b2 d0 AVDD AVSS nand3
+xt0 VIN\<0\> BUS d0 AVDD AVSS branch
+xd1 S\<0\> b1 b2 d1 AVDD AVSS nand3
+xt1 VIN\<1\> BUS d1 AVDD AVSS branch
+xd2 b0 S\<1\> b2 d2 AVDD AVSS nand3
+xt2 VIN\<2\> BUS d2 AVDD AVSS branch
+xd3 S\<0\> S\<1\> b2 d3 AVDD AVSS nand3
+xt3 VIN\<3\> BUS d3 AVDD AVSS branch
+xd4 b0 b1 S\<2\> d4 AVDD AVSS nand3
+xt4 VIN\<4\> BUS d4 AVDD AVSS branch
+xd5 S\<0\> b1 S\<2\> d5 AVDD AVSS nand3
+xt5 VIN\<5\> BUS d5 AVDD AVSS branch
+xd6 b0 S\<1\> S\<2\> d6 AVDD AVSS nand3
+xt6 VIN\<6\> BUS d6 AVDD AVSS branch
+xd7 S\<0\> S\<1\> S\<2\> d7 AVDD AVSS nand3
+xt7 VIN\<7\> BUS d7 AVDD AVSS branch
+xoutn BUS AVDD VO AVSS sky130_fd_pr__nfet_01v8_lvt w=3 l=0.15
+xoutp BUS AVSS VO AVDD sky130_fd_pr__pfet_01v8_lvt w=7 l=0.35
+.ends input_mux_8to1

@@ -1,0 +1,107 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="在固定孔位、光路与维护空间中设计轻量支架，交付可重建 CAD，并通过独立网格与六工况验收。"><title>受空间和接口约束的轻量支架 · SimulationLE/Engineer</title><link rel="icon" href="../../assets/favicon.svg"><link rel="stylesheet" href="../../assets/style.css"><link rel="stylesheet" href="../../assets/retained-d2.css"></head><body><a class="skip" href="#main">跳转到内容</a><header class="topbar"><div class="nav-shell"><a class="brand" href="../../"><img src="../../assets/favicon.svg" alt="" width="30" height="30"><span>SimulationLE<span class="brand-slash">/</span>Engineer</span></a><span class="nav-note">D2 / RETAINED CASES</span></div></header><main class="retained-page" id="main"><a class="back-link" href="../../#cases">← 返回改编与原创题目</a><section class="retained-hero"><div class="eyebrow">D2 · 原创机械任务 B1 · 双模型实测</div><h1>受空间和接口约束的轻量支架</h1><p class="lead">在固定孔位、光路与维护空间中设计轻量支架，交付可重建 CAD，并通过独立网格与六工况验收。</p><nav class="detail-jump" aria-label="案例章节"><a href="#brief">题目与交付</a><a href="#results">实测与失败</a><a href="#protocol">评分与预算</a><a href="#files">题面与证据</a></nav></section><div class="retained-result"><div class="retained-stat"><span>GPT-6.1 Sol · v2</span><b>60 <small>/100</small></b><p>task success = 0 · 一次逻辑试验</p></div><div class="retained-stat"><span>DeepSeek V4.1 Flash 1017 · v2</span><b>60 <small>/100</small></b><p>task success = 0 · 一次逻辑试验</p></div><div class="retained-stat"><span>每模型独立力学验收</span><b>24 <small>次求解</small></b><p>2 实例 × 2 档网格 × 6 工况</p></div></div>
+<aside class="evidence-note"><strong>评分修订须与成绩一同阅读。</strong>v2 在看到 Sol 结果后、DeepSeek 正式测试前确定。原始 v1 自动结果仍是 <code>score=null / status=indeterminate</code>；60 分写在独立 v2 文件中。强度因网格收敛失败不得分，不表示已经证明应力超过材料强度。</aside>
+<section id="brief" class="retained-section"><div class="eyebrow">THE TASK / B1</div><h2>轻量化，也要守住安装精度。</h2><p>为检测模块设计一个参数化单体支架，同一建模入口生成“偏置安装”与“跨光路安装”两个实例。底座与模块接口固定，模型可以调整承载路径、筋板、截面和开孔。光路、线束、螺钉工具通道及模块维护空间必须保持空。</p><figure class="retained-figure"><img src="../../assets/retained-d2/bracket-b1.svg" alt="B1 两实例的固定安装环座、偏心载荷与禁入空间示意；非模型 CAD 或有限元结果"><figcaption>题目空间约束示意。最终模型 CAD 可下载；此图不展示实际应力或变形。</figcaption></figure><p>交付 <code>build.py</code>、<code>parameters.json</code>、工程报告，以及每实例的 STEP 与 FCStd。独立验收从源码重建并检查三种交付的一致性，再重新划分 2.5 / 2.0 mm 网格，分别施加六组偏心力与力矩。采用固定材料的线弹性静力模型。</p><div class="table-scroll"><table class="retained-table"><thead><tr><th>工程约束</th><th>冻结要求</th></tr></thead><tbody><tr><td>质量</td><td>B1-01 ≤ 145 g；B1-02 ≤ 165 g</td></tr><tr><td>安装面</td><td>平移 ≤ 0.15 mm；转角 ≤ 0.10°；局部翘曲 ≤ 0.035 mm</td></tr><tr><td>强度与数值</td><td>主体峰值 ≤ 120 MPa；接口加权 p99 ≤ 180 MPa；两档网格均须通过相应阈值及收敛检查</td></tr></tbody></table></div><details><summary>展开受测模型收到的冻结题面</summary><pre># B1：受空间和接口约束的轻量支架
+
+**当前状态：已完成双实例可行参考校准与独立重建验收，作为本次单次 Sol 测试的冻结题面。**
+
+为检测模块设计一个铝合金等效材料的单体安装支架。底座、模块孔位和安装面固定。你可以改变连梁路径、筋板布置、截面、开孔及局部厚度。设计必须同时满足接口、可装配空间、质量、刚度和强度要求。
+
+提交一个参数化 Python 建模入口与参数文件，为两个实例分别生成 CAD。不得移动接口、改材料、改载荷或将支承扩大到其他区域。研究者将独立从交付 STEP 重新划分网格、施加载荷并求解；自填的仿真结果不作为分数。
+
+## 两个实例
+
+坐标使用右手系，长度 mm，载荷 N，力矩 N·mm，应力 MPa，质量 g。每个实例的 JSON 是数值合同；以下文字解释其含义。
+
+| 参数 | B1-01 偏置安装 | B1-02 跨障碍安装 |
+|---|---|---|
+| 总包络 | X −70…82，Y −42…42，Z 0…82 | 相同 |
+| 底座孔中心 | X=−56/−24，Y=−24/+24 的四种组合 | 相同 |
+| 底座安装面 | Z=0；每孔半径 2.75，必须保留外半径 7.5、高度 6 的完整环座 | 相同 |
+| 模块孔中心 | X=38/66，Y=−18/+18 | X=42/70，Y=−18/+18 |
+| 模块安装面 | Z=70 | Z=76 |
+| 模块环座 | 孔半径 2.25，外半径 6.5，从安装面向下延伸 6 | 相同 |
+| 模块等效载荷点 | (62,0,105) | (68,0,111) |
+| 质量上限 | 145 g | 165 g |
+| 中央障碍 | 无 | 光路 X −8…64、Y −13…13、Z 18…57；线束 X 2…24、Y 18…42、Z 22…34 |
+
+底座螺钉工具通道是每孔上方 Z=6…82、半径 5.5 的圆柱。模块螺钉从下方操作，B1-01 的通道 Z=48…64，B1-02 为 Z=54…70，半径 4.5。模块沿 +Z 移出，其 footprint 向上扫掠区域必须无支架材料。所有禁入区已经包含所要求净空，不另外暗加距离。
+
+材料为本题固定的各向同性铝材代理：E=69,000 MPa，ν=0.33，密度=0.00270 g/mm³。它不是某种实际产品的完整材料认证卡。
+
+## 静力工况与性能
+
+六个工况都必须通过。下表的力施加于模块等效载荷点；自由力矩叠加于该力产生的偏心力矩。
+
+| 工况 | 力 (Fx,Fy,Fz) N | 自由力矩 (Mx,My,Mz) N·mm |
+|---|---|---|
+| LC1 | (0,0,−180) | (0,0,0) |
+| LC2 | (120,60,−120) | (0,0,800) |
+| LC3 | (−120,−60,−120) | (0,0,−800) |
+| LC4 | (0,140,−80) | (600,0,0) |
+| LC5 | (0,−140,−80) | (−600,0,0) |
+| LC6 | (80,0,60) | (0,1000,0) |
+
+每个实例、每个工况均要求：
+
+- 模块安装面拟合平移范数 ≤0.15 mm，转角范数 ≤0.10°，拟合后的最大局部翘曲 ≤0.035 mm。
+- 全结构最大位移 ≤1.0 mm，以保持本题小变形分析范围。
+- 主体区域的最大积分点 von Mises 应力 ≤120 MPa；接口邻域的体积加权 99 分位应力 ≤180 MPa。
+- 各实例质量分别满足上表限制。
+
+首版只考察线弹性静力响应。支承为规定环座底面的等效固定连接；不含接触、摩擦、螺栓预紧、屈曲、疲劳、热载荷或模态要求。不能把通过本题解释成这些性能已经验证。
+
+## 几何和制造代理规则
+
+交付必须为一个有效、连通的三维实体。八个环座必须完整，孔和工具通道保持空。几何布尔检查的缺失/交叠容限为 0.02 mm³，名义坐标容限 0.01 mm；不能利用该数值容限连接分离部件。
+
+为避免靠极薄连接实现名义连通，使用公开的**直径 3 mm 骨架采样代理**：先以 0.12 mm 容差三角化 CAD，在固定 0.75 mm 网格上沿 Z 射线填充，以半径 1.5 mm 的球形离散模板腐蚀，再取六邻接连通分量。至少一个分量必须同时到达八个环座的内缩核心（孔半径增加 1.5、外径减小 1.5、顶底面各内移 1.5 mm）。格点各轴从包络最小坐标减两格再加半格开始，具体实现见公开 backbone.py。
+
+这是离散几何代理，存在采样误差，不是连续壁厚或制造工艺证明。射线奇偶校验失败、数值异常均属于测量问题；有效测量下没有贯通分量才判骨架不合格。
+
+## 公开的测量规则
+
+1. 从 STEP 独立生成 C3D10 二次四面体网格，目标尺寸 2.5 mm 和 2 mm。网格生成固定单线程、随机种子 1；CalculiX 求解使用两个线程。Gmsh 的中边节点按几何位置重排为 CalculiX 顺序。
+2. 只固定四个底座环座在 Z=0 的表面节点；模块加载节点只取规定顶面环域。每个环至少需要六个节点，支承和加载节点不能重合。
+3. 顶面三角形使用正面积集总权重：三个角节点各 1/12、三个中边节点各 1/4。只计位于安装面上的三角形，再按环域选节点。按面积加权最小范数解分配节点力，精确满足合力与合力矩。令安装面孔组中心为 o，则 M=(载荷点−o)×F+自由力矩。
+4. 以相同面积权重拟合 u(r)=t+θ×(r−o)。平移为 |t|，转角为 |θ|，翘曲为所有加载节点相对该拟合的最大残差。该拟合不把模块面强制刚化。
+5. 支承环中心取环座厚度中点，半径 11 mm 的球域为底座接口邻域；模块环座相同定义，半径 10 mm。按四面体角节点质心判断所属区域。其余为主体，主体体积至少占 25%。接口区域应力分位按单元体积/四个积分点加权，主体取最大积分点应力；全局峰值同时报告。
+6. 网格体积相对 CAD 体积误差 ≤2%。支反力合力误差 ≤0.5%、力矩误差 ≤1%；分母分别取 max(|F|,1 N)、max(|M|,10 N·mm)。缺少节点/积分点、NaN、求解失败等均单列为执行或测量问题。
+7. 两个网格上的所有性能阈值均应通过。平移、转角、翘曲相对变化 ≤8%，分母采用细网格值与下限的较大者，下限分别为 0.01 mm、0.01°、0.005 mm。两项区域应力采用绝对差 ≤max(8%×细网格应力，5 MPa)，等价的分母下限为 62.5 MPa。这是低应力工况的数值容差，120/180 MPa 强度上限在两档网格上均须满足。不收敛标为 indeterminate，待细化诊断，不作为强模型能力失败证据。
+
+## 交付
+
+```
+submission/
+  build.py
+  parameters.json
+  engineering_report.json
+  B1-01-offset-open/
+    bracket.step
+    design.FCStd
+  B1-02-cross-optical/
+    bracket.step
+    design.FCStd
+```
+
+`build.py` 必须自行读取同目录 `parameters.json`，接收环境变量 `B1_INSTANCE`（实例 JSON）、`B1_PUBLIC`（公开工具目录）与 `B1_OUTPUT`（新输出目录）。通过真实 FreeCAD Python 环境运行。为使独立重建能直接复制全部源文件，第一版要求自写建模逻辑包含在 `build.py` 中；可导入公开 `cad_common.py` 和镜像内的标准 CAD/Python 库，不接受未申报的额外源文件。
+
+参数化源脚本是重建依据；FCStd 是保存形状与参数的原生快照，不要求单 Body PartDesign 历史树。FCStd 归档最多含八个 BRep，其中恰有一个非空有效单体；允许 FreeCAD 自动生成的空 SuppressedShape。工程报告按示例格式简要解释承载路径和两实例的参数变化；自填测量不影响验收。单个提交文件不超过 20 MB，STEP 不超过 2,500 个面。
+
+验收端先冻结提交，再在隔离容器里重新运行源码，将重建 STEP 与提交 STEP 比较；从 FCStd 归档中只读取 BRep，避免执行提交文档中的 Python 对象。几何相差体积不得超过 0.02 mm³。之后在另一个干净容器中从冻结 STEP 独立复算。所有源文件、实例、网格及输出均记录哈希和状态。
+
+## 评分和预算状态
+
+五组分别为：几何与接口、空间与可操作性、质量与骨架、安装精度、强度，每组 20 分。只有两个实例都通过某组，该组才得分；FullPass 要求五组全部通过且执行、完整性和数值状态有效。不把两个实例平均后掩盖失败。
+
+执行或数值无效时总分为 null，保留已得到的分项诊断；不能冒称 0 分物理失败。正式 FullPass 与语义组得分是不同指标。
+
+正式开发预算：7200 秒（含 API 等待）、48 次回复、120 次工具、累计 131072 个提供方报告的输出 token、每次最多 32768；medium reasoning。每个容器限制 2 CPU、8 GiB，不设三个候选或重置次数上限。
+
+`analyze_design` 对一个实例执行公开几何检查及两档网格、每档六工况；可选择仅几何诊断。每次请求预留 12 个求解额度，几何诊断也一样；自行构造的 CalculiX 输入通过 `solve_deck` 求解，每次预留 1 个额度。共用上限 1920 个额度，且最多 160 次整体验证请求；额度不退还。两个托管工具异步运行，同时最多一个活动作业。底层实际 CAD、网格、求解尝试另外记账。编辑、构建、轮询均计入工具次数和开发时间。
+
+只测试一次 gpt-6.1-sol。提交采用停止时磁盘上最后一版，独立验收位于开发预算之外。参考校准、环境检查与模型开发分别统计；不据此推断货币费用或账户余额。
+
+</pre></details></section>
+<section id="results" class="retained-section"><div class="eyebrow">INDEPENDENT RESULTS</div><h2>前三组通过，精度与强度验收未通过。</h2><div class="table-scroll"><table class="retained-table"><thead><tr><th>验收组</th><th>满分</th><th>Sol</th><th>DeepSeek</th></tr></thead><tbody><tr><td>几何与接口</td><td>20</td><td class="pass-text">20</td><td class="pass-text">20</td></tr><tr><td>空间与操作性</td><td>20</td><td class="pass-text">20</td><td class="pass-text">20</td></tr><tr><td>质量与骨架</td><td>20</td><td class="pass-text">20</td><td class="pass-text">20</td></tr><tr><td>安装精度</td><td>20</td><td class="fail-text">0</td><td class="fail-text">0</td></tr><tr><td>强度验收</td><td>20</td><td class="fail-text">0</td><td class="fail-text">0</td></tr><tr><td>合计 / 任务成功</td><td>100</td><td><strong>60 / 0</strong></td><td><strong>60 / 0</strong></td></tr></tbody></table></div><p>Sol 的 B1-02 最大安装面转角为 <strong>0.124870°</strong>，超过 0.10°，且该指标已收敛。该实例 LC2 主体应力两档网格差为 <strong>8.798425 MPa</strong>，超过允许的 5 MPa，因此强度验收组为 0 分。</p><p>DeepSeek 两个实例均有平移与转角超限；最大平移 <strong>0.366318 mm</strong>、最大转角 <strong>0.123728°</strong>，对应指标已收敛。另有六项主体应力收敛检查失败。报告文本仍为初始占位内容；既定五组规则未单独评分报告，因此没有另加扣分。</p><p>两模型的应力原始数值低于相应物理上限，强度组扣分依据是数值收敛验收。相同分数不代表失败范围或总体能力相等。</p></section>
+<section id="protocol" class="retained-section"><div class="eyebrow">SCORING / PROTOCOL</div><h2>每一组，都要求两个实例通过。</h2><p>五组各 20 分；任一实例未通过某组，该组得 0 分。五组全通过才算任务成功。无法归属的环境、测量或完整性错误单独处理。保留 v1 冻结测量器、原始结果与 v2 评分来源。</p><p>每模型开发预算为 7200 秒（含 API 等待）、48 次回复、120 次工具、131072 累计输出 token，2 CPU / 8 GiB，medium。托管分析与共享求解积分的细则见原协议和审计。最终 24 次独立求解另计。DeepSeek 实际开发 1077.630 秒、28 次回复、25 次工具，因输出 token 达上限停止。每模型仅一次逻辑试验。</p></section>
+<section id="files" class="retained-section"><div class="eyebrow">TASK / FROZEN ARTIFACTS / AUDIT</div><h2>题面、交付与可追溯证据。</h2><p class="retained-footnote">研究者题目包含参考与验收代码，准备新测试时按协议提供公开白名单。原始报告保持导出字节，其中本地文件路径请以此处网页入口为准。</p><div class="file-links"><a class="file-link" href="../../files/bracket-b1-20261115/TASK.md"><span>冻结题面 · 已校准 v1</span><small>9.1 KB ↗</small></a><a class="file-link" href="../../files/bracket-b1-20261115/SCORING-v2.md"><span>评分规则 v2 · 修订时间说明</span><small>2.1 KB ↗</small></a><a class="file-link" href="../../files/bracket-b1-20261115/sol-submission.zip"><span>Sol 最终源码与双实例 CAD</span><small>264.2 KB ↗</small></a><a class="file-link" href="../../files/bracket-b1-20261115/deepseek-submission.zip"><span>DeepSeek 最终源码与双实例 CAD</span><small>92.9 KB ↗</small></a><a class="file-link" href="../../files/bracket-b1-20261115/sol-score-v2.json"><span>Sol · v2 60 分记录</span><small>2.5 KB ↗</small></a><a class="file-link" href="../../files/bracket-b1-20261115/deepseek-score-v2.json"><span>DeepSeek · v2 60 分记录</span><small>3.8 KB ↗</small></a><a class="file-link" href="../../files/bracket-b1-20261115/sol-result-original-v1.json"><span>Sol · 原始 v1 空分数结果</span><small>100.7 KB ↗</small></a><a class="file-link" href="../../files/bracket-b1-20261115/deepseek-result-original-v1.json"><span>DeepSeek · 原始 v1 空分数结果</span><small>100.5 KB ↗</small></a><a class="file-link" href="../../files/bracket-b1-20261115/sol-evidence.zip"><span>Sol · 冻结提交与完整运行证据</span><small>1.44 MB ↗</small></a><a class="file-link" href="../../files/bracket-b1-20261115/deepseek-evidence.zip"><span>DeepSeek · 冻结提交与完整运行证据</span><small>547.9 KB ↗</small></a><a class="file-link" href="../../files/bracket-b1-20261115/case-v1-calibrated.zip"><span>研究者题目包 · 含参考及验收代码</span><small>4.28 MB ↗</small></a><a class="file-link" href="../../files/bracket-b1-20261115/calibration-evidence.zip"><span>双实例参考校准证据</span><small>638.2 KB ↗</small></a><a class="file-link" href="../../files/bracket-b1-20261115/REPORT-original.md"><span>两模型原始实测报告</span><small>7.0 KB ↗</small></a><a class="file-link" href="../../files/bracket-b1-20261115/comparison-v2.json"><span>两模型分组对比</span><small>7.7 KB ↗</small></a><a class="file-link" href="../../files/bracket-b1-20261115/sol-trace-audit.json"><span>Sol · 轨迹与预算审计</span><small>1.65 MB ↗</small></a><a class="file-link" href="../../files/bracket-b1-20261115/deepseek-trace-audit.json"><span>DeepSeek · 轨迹与预算审计</span><small>20.9 KB ↗</small></a><a class="file-link" href="../../files/bracket-b1-20261115/README.md"><span>公开证据范围说明</span><small>0.8 KB ↗</small></a><a class="file-link" href="../../files/bracket-b1-20261115/seal.json"><span>原题与工具封印</span><small>10.1 KB ↗</small></a></div></section><p class="retained-footnote">展示接入于 2026-11-16。此页面使用既有冻结产物；网页制作没有追加模型或原生仿真调用。各题分数不合并排名。</p></main></body></html>

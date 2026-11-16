@@ -8,7 +8,9 @@
     "sampling-feedback-ota": "20261106T133144Z",
     "task07": "6 valid independent developments / 2026-11-08–09",
     "right-angle-gearbox": "20261109T143444Z",
-    "task07-a1": "A1-v2-restored / one valid Sol development / native eight-episode evaluation"
+    "task07-a1": "A1-v2-restored / one valid Sol development / native eight-episode evaluation",
+    "spatial-bracket-b1": "frozen 2026-11-15; Sol and DeepSeek one trial each; scoring-v2",
+    "multisensor-mux-ii01": "frozen Sol trial / reacceptance 20261116T112320Z; fairness qualification withheld"
   },
   "updated": "2026-11-16",
   "note": "D2 新增 deepseek-v4.1-flash-1017：2026-11-08 独立 Docker 轨迹、三版电路及原预算。原 GPT 记录于 2026-11-06，保留原样；网页增加第三模型的电路、逐项检查、工具轨迹与失败证据。 新增直角齿轮箱公开约束复测，附模型交付、原版录像及 Sol 仿真网格一致性审计；未重评或覆盖旧轮。",
@@ -1805,8 +1807,8 @@
     },
     {
       "path": "data/case-origins.json",
-      "bytes": 5258,
-      "sha256": "34853c2cf9bce4ad35062caea7804a1256ce17b745be78f311bfaaa8fc300401"
+      "bytes": 5919,
+      "sha256": "7240eb44311cb668db1c4e721535f53f83efb38a035e2560eb4229a6842256ff"
     },
     {
       "path": "data/d2-docker/beta-multiplier.json",
@@ -5315,13 +5317,533 @@
     },
     {
       "path": "index.html",
-      "bytes": 17156,
-      "sha256": "ac34ec0dab2377f3a1cd1b5dba83d8380f71bec195a81c0b35e23ec884f3f4db"
+      "bytes": 19913,
+      "sha256": "9d55f708d5684bbb7a435a2d3382950224a8ad8d6484d71065901b2a51f097b1"
     },
     {
       "path": "related-work/index.html",
       "bytes": 19701,
       "sha256": "6b4ff6d1f8357bcd954f8f3fa92cd1ebaa3c51ce86ee0e1121115acaed75f9c2"
+    },
+    {
+      "path": "assets/mux-case.js",
+      "bytes": 3121,
+      "sha256": "7f1825d9b18bbe93f3083af8c694be2f7a68102244807c62eb5a637071542e8d"
+    },
+    {
+      "path": "assets/retained-d2.css",
+      "bytes": 4932,
+      "sha256": "3113954ac4a07f528509867d6a3e7a538429ba5642392075429fe257071150a4"
+    },
+    {
+      "path": "assets/retained-d2/bracket-b1.svg",
+      "bytes": 3017,
+      "sha256": "26827a87b1c34136d61a12f2a1e02881d0db16317cd15efd8af75b113394e007"
+    },
+    {
+      "path": "assets/retained-d2/multisensor-mux.svg",
+      "bytes": 1317,
+      "sha256": "350655f6eee63dac7fe3892e0fd99bd1ba5a16cb8b6e95489f1bf8d8104a4e6a"
+    },
+    {
+      "path": "cases/multisensor-mux-ii01/index.html",
+      "bytes": 22925,
+      "sha256": "a38feb7f502521ee3d80f2b602e502a4b75e7af01f778a0696bd9db1f5b399d3"
+    },
+    {
+      "path": "cases/spatial-bracket-b1/index.html",
+      "bytes": 18940,
+      "sha256": "e3511f1bc0c22eb39d27f69ba03d9314218cfac0b9bea838194106a1cbb177ba"
+    },
+    {
+      "path": "data/multisensor-mux-ii01.json",
+      "bytes": 28798,
+      "sha256": "9e881b7c7e04f37f07a2ee8312960281aaf4d6c0f96136242e849d79dfe5d39c"
+    },
+    {
+      "path": "data/retained-d2-publication.json",
+      "bytes": 30631,
+      "sha256": "5fbd0784714d5b58e1a70aa5d1f1fd53ce02168f8eecd50f5f9fdb6e92e4c3fb"
+    },
+    {
+      "path": "data/retained-d2-site-check.json",
+      "bytes": 902,
+      "sha256": "a9ac7872630eb9e140dc5ea8981cfda87838341b3920ed0e002492fd43539960"
+    },
+    {
+      "path": "files/bracket-b1-20261115/README.md",
+      "bytes": 789,
+      "sha256": "51025954b9c321377c981d8cea53a0b10de6a6dbd41155a0bfe3deb46ed86bd6"
+    },
+    {
+      "path": "files/bracket-b1-20261115/REPORT-original.md",
+      "bytes": 6998,
+      "sha256": "2578fb1c9165a051d62580a20722ec38588f80cd661e42b537582ebcc0768520"
+    },
+    {
+      "path": "files/bracket-b1-20261115/SCORING-v2.md",
+      "bytes": 2074,
+      "sha256": "616886e8bc706874dc8ed44c2717eb60f7c5408819058d3b70e2605f545ca840"
+    },
+    {
+      "path": "files/bracket-b1-20261115/TASK.md",
+      "bytes": 9132,
+      "sha256": "9683f52d59e828114b1f117f24825a2c394bf15d08f2f9c0c651ca43cff579e2"
+    },
+    {
+      "path": "files/bracket-b1-20261115/calibration-evidence.zip",
+      "bytes": 638230,
+      "sha256": "656498600a0a49bd122b1343db7fe0eef935ef9e32624d7cd66d3d4a868d221b"
+    },
+    {
+      "path": "files/bracket-b1-20261115/calibration.json",
+      "bytes": 2536,
+      "sha256": "142dd9f2172e11a228355c1de2d86aa5b65546a84328f93a1da05f6f65e008bf"
+    },
+    {
+      "path": "files/bracket-b1-20261115/case-v1-calibrated.zip",
+      "bytes": 4278918,
+      "sha256": "48a02ef6a7d16833fa2c83b44cf7b9407aff3cf79ab00cbc2564a0518af0b26c"
+    },
+    {
+      "path": "files/bracket-b1-20261115/comparison-v2.json",
+      "bytes": 7686,
+      "sha256": "72efd1e6863d289f0f92a05a2fb4552c58ba415cf0f2dea03638ce5204bf7f9d"
+    },
+    {
+      "path": "files/bracket-b1-20261115/deepseek-budget-note.json",
+      "bytes": 592,
+      "sha256": "81737a9565fea960b2758233ef653643afcbba857ab35e2c0e99e90557f08c4a"
+    },
+    {
+      "path": "files/bracket-b1-20261115/deepseek-evidence.zip",
+      "bytes": 547913,
+      "sha256": "def06d4be572d5a40883afa32eff58392234ad35c5e1f04042776cd1eae1d421"
+    },
+    {
+      "path": "files/bracket-b1-20261115/deepseek-local-verification.json",
+      "bytes": 782,
+      "sha256": "ad51b7b8be02f7220f175b63eefb2aceb844022949f1e035a2c3899da23ac1a3"
+    },
+    {
+      "path": "files/bracket-b1-20261115/deepseek-protocol.json",
+      "bytes": 12206,
+      "sha256": "d26231c3f742f92a3a075a1f483a6002c62852e403026714f93c0b3b6fd9195a"
+    },
+    {
+      "path": "files/bracket-b1-20261115/deepseek-result-original-v1.json",
+      "bytes": 100450,
+      "sha256": "909bddd04f3d81b5c799aebc90498663aaad2e47389596c2cc7f443fb846fd48"
+    },
+    {
+      "path": "files/bracket-b1-20261115/deepseek-score-v2.json",
+      "bytes": 3773,
+      "sha256": "6538ad51d97b94aa5e5fa573812c5866881ee7eda3d13c0c1b75be7039eb6167"
+    },
+    {
+      "path": "files/bracket-b1-20261115/deepseek-submission.zip",
+      "bytes": 92864,
+      "sha256": "e9dc29ff33758a6fbb6ecf6c176b3f368866d5521a9ea96c417affd3dccae807"
+    },
+    {
+      "path": "files/bracket-b1-20261115/deepseek-trace-audit.json",
+      "bytes": 20948,
+      "sha256": "163250cb199146d518304fd7be6f13e1216da9ed8f611ae612e6db27992aa2c5"
+    },
+    {
+      "path": "files/bracket-b1-20261115/publication-manifest.json",
+      "bytes": 3447,
+      "sha256": "edafa877b5b6abaebec2ea0eaada70f0af271b105686208f59c7e3c6e5ae7218"
+    },
+    {
+      "path": "files/bracket-b1-20261115/seal.json",
+      "bytes": 10146,
+      "sha256": "38b6efb2e02e0a99745182b4ae3655b00392c3392515ee81cb5f534e7c98c99b"
+    },
+    {
+      "path": "files/bracket-b1-20261115/sol-budget-note.json",
+      "bytes": 811,
+      "sha256": "25afbe074d741a86a9d4ac7d1988f47787f318ba421b335fb7afb46d3d9f6c61"
+    },
+    {
+      "path": "files/bracket-b1-20261115/sol-evidence.zip",
+      "bytes": 1444861,
+      "sha256": "afeae52f52a7846a2a7a073fee796a6c778249787c74e46ad9340209539771ce"
+    },
+    {
+      "path": "files/bracket-b1-20261115/sol-local-verification.json",
+      "bytes": 867,
+      "sha256": "f08219683391e8ab9c4fa01e77dd5d843175d2aa24f629c4483e0bd0154a39c2"
+    },
+    {
+      "path": "files/bracket-b1-20261115/sol-protocol.json",
+      "bytes": 901,
+      "sha256": "3441749e7e1c8ea44d821681f0fc0d08d80bae8e9b4f72b3a1c02216dc1bc524"
+    },
+    {
+      "path": "files/bracket-b1-20261115/sol-result-original-v1.json",
+      "bytes": 100660,
+      "sha256": "6bc38265dd54da063a7b55b72ef350a58c2c9117790215d30e9b460c3053d4c7"
+    },
+    {
+      "path": "files/bracket-b1-20261115/sol-score-v2.json",
+      "bytes": 2481,
+      "sha256": "ba539735b1b67e5d6426025b461afbc1a88c50c7f7ae4809a2c294e61eb03186"
+    },
+    {
+      "path": "files/bracket-b1-20261115/sol-submission.zip",
+      "bytes": 264189,
+      "sha256": "6371fdad4d2804f5174f066b35fa800dd5d67eb0c01532592eaf7121706a9f03"
+    },
+    {
+      "path": "files/bracket-b1-20261115/sol-trace-audit.json",
+      "bytes": 1645031,
+      "sha256": "62e4b29a936da6ec0463046ba61d1a639ed400a3c169b724d720e939718b3dfd"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/README.md",
+      "bytes": 1511,
+      "sha256": "0eaaf0471656f248fe5bc54da5579645871aaf9d9c0ce5ee11ddeba164d2b0b8"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/REPORT-original.md",
+      "bytes": 6421,
+      "sha256": "a971896ebda71dd06a322fc5cc04009c9767f614969ef0de77edd6b39e18b5c2"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/acceptance-result.json",
+      "bytes": 3503,
+      "sha256": "736423435a38b7500b9303ffbac1d6ae2b631588dd7e2387b3a6c577feb7e944"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/added-measurements.json",
+      "bytes": 734308,
+      "sha256": "a14cf7d73429a9ea22d4b95aae378f4f8bf97891dc294382e08e51762a1f04b3"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/added-summary.json",
+      "bytes": 49702,
+      "sha256": "5a85970eac441a1988518fb340b317e80f5d94d0109ae65bdfdf20c11e37d0c2"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/complete-package-local.json",
+      "bytes": 426,
+      "sha256": "71f3b6afbd1f424b78c861df1abbfc9e2d258cc9d3b475ba6619b303367d2ca3"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/development-version-audit.json",
+      "bytes": 3409,
+      "sha256": "f51a120051eb2d2aa63fcbfd01d7f7b77390380c89c3104fb278d94d2743e8c3"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/evaluator-result.json",
+      "bytes": 503,
+      "sha256": "318bce5a74a5c743ec7e042d6f5a83649c3d7fb64c608d0ce5aa7ad31fe3c509"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/execution.json",
+      "bytes": 250,
+      "sha256": "206492ab1545e832cfa10a7f052c5e8bd4537cb3509b56f651c39441f0ec867b"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/failures.json",
+      "bytes": 6969,
+      "sha256": "f5ff1189072dbbe09b8f35cb7b809215bb52ff578471a3598fd63782d6c0e824"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/licenses/LICENSE",
+      "bytes": 1698,
+      "sha256": "7d4a87942d5adc7c8a43fb0db75cfa5155f3cdcee8190179a293643c4366a562"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/licenses/LICENSES/Apache-2.0.txt",
+      "bytes": 10280,
+      "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/licenses/LICENSES/CC-BY-NC-4.0.txt",
+      "bytes": 17649,
+      "sha256": "cc97a2c4ff7723a1f25179dc7c18f676fa84191bbb36ea7d0061acaf3c102559"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/light-evidence.zip",
+      "bytes": 943817,
+      "sha256": "0835be44542cf458302d97e19301cf654361f0c28b098de390ca0320d43353a3"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/local-audit.json",
+      "bytes": 17648,
+      "sha256": "7806b0ea60f4b60e781e8b0b77b195c17f0aa8adba23df904b6690ec1f6fe0bd"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/original-ctrf.json",
+      "bytes": 1087,
+      "sha256": "06237922ee55d3d9188b67107987bdeac32997890495842f0a73f5681fdd00a4"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/original-package-credential-scan.json",
+      "bytes": 384,
+      "sha256": "7b1fa321b9364c91967615b36855b13f3c9b2f1c5ac0a5b348d99f2275b2eb8a"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/previous-no-score-result.json",
+      "bytes": 2681,
+      "sha256": "32a944ef708e8e4d95459f0e59275bd206a3fc42d28d7f14b1fa4e9096a641e5"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/protocol/AGENT_PROTOCOL.md",
+      "bytes": 5503,
+      "sha256": "5ac33ae59be025cc9bc34e470a415a097a43fb776aa566c9a532427a345f0752"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/protocol/NOTICE.md",
+      "bytes": 798,
+      "sha256": "8bc09f302577aefaec5fb85c920bf61ea78fdf5e70b336c8ad7a3174f8f7b8d0"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/protocol/ORIGINAL_TASK.md",
+      "bytes": 3945,
+      "sha256": "f907fb0936b717f2c5a90f4f3f14524c39e1bcc9e510a84e8ddef8ff52d091bc"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/protocol/PROVENANCE.json",
+      "bytes": 5091,
+      "sha256": "4b6651c5a561a18c73e637e2f70e37a33293f67081c7a32a8bec6a178dc74a0d"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/protocol/TASK.md",
+      "bytes": 11823,
+      "sha256": "632fd4813aab5aa022bde17fd6f87e23c067b2760f19121135bf7204b3c2bf68"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/protocol/budget.json",
+      "bytes": 1136,
+      "sha256": "7468b05be63d884eb63921ae2aae63b96f801aa65b088ad25a8170a8bd365f8e"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/protocol/contract.json",
+      "bytes": 7481,
+      "sha256": "4a2102b32a1eb2f473bfc3eea93308c2d45a8955f725378ce73b27c98ec86bc1"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/protocol/seal.json",
+      "bytes": 177094,
+      "sha256": "52788a8632346ee09df7fe7588929f394f870b2ecde78febd28337b1af4fb6cb"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/publication-manifest.json",
+      "bytes": 11097,
+      "sha256": "c7bce3ae173f74624f9dc737e5d1b2ed3e1b0b6cdb036f9eefc9bc0eea1ba128"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/ff_1p98_m10__high_impedance__ascending__aligned.json",
+      "bytes": 16335,
+      "sha256": "c5a882deac17880a360a47ef6e215e3c8f87f706c131fdfe2214c57e12f7b27c"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/ff_1p98_m10__high_impedance__ascending__skewed.json",
+      "bytes": 16327,
+      "sha256": "8a7eff73884111e780d0ca55046d28a76d63282a1b2f71538735f7cafc6cb342"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/ff_1p98_m10__high_impedance__descending__aligned.json",
+      "bytes": 16448,
+      "sha256": "475889a16b8f5cf6f30a7225935fcf70e4118b0d4c94444ad22b706d5c98c4bd"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/ff_1p98_m10__high_impedance__descending__skewed.json",
+      "bytes": 16501,
+      "sha256": "8bfddb44cc23fdce01c52ac1e296e4302348838c444ece744e446f8869a84d4a"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/ff_1p98_m10__mixed_impedance__ascending__aligned.json",
+      "bytes": 16624,
+      "sha256": "b2abe37d1dd7ad8d77cf6c7a0e21fbc10109eea17e278956f0acc2b916fed9dc"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/ff_1p98_m10__mixed_impedance__ascending__skewed.json",
+      "bytes": 16660,
+      "sha256": "e0e3fc29682914319f5baff0cbca790a3f0c91c18147447b2d6a80c4f30bac28"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/ff_1p98_m10__mixed_impedance__descending__aligned.json",
+      "bytes": 16654,
+      "sha256": "554a965374ad40e3ed396b37fdbf4ba0a80b9a0139c596a0c18c861195051105"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/ff_1p98_m10__mixed_impedance__descending__skewed.json",
+      "bytes": 16648,
+      "sha256": "cd978d0a9a8bca77b6e9ed87eb9f775bfbf6386aa50c3cce158c2bd8744ef2db"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/fs_1p98_125__high_impedance__ascending__aligned.json",
+      "bytes": 16283,
+      "sha256": "6b5ea5e80391bc512037afed8d20e607b4eabcf6ea50d69e0018a8986ffcce8b"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/fs_1p98_125__high_impedance__ascending__skewed.json",
+      "bytes": 16288,
+      "sha256": "f4ee235f09455fde00b9271f1b28ad24ae339dd50c3de8a96193190f34e87630"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/fs_1p98_125__high_impedance__descending__aligned.json",
+      "bytes": 16318,
+      "sha256": "30a7f3fc0b13b0666cbaecd3897e635d1bed1fc6113d14372c824a4492e12d58"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/fs_1p98_125__high_impedance__descending__skewed.json",
+      "bytes": 16314,
+      "sha256": "932e94703cd633263e9185c3d68f97fae7b50cc6f1f372a0ff5100a8649d087e"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/fs_1p98_125__mixed_impedance__ascending__aligned.json",
+      "bytes": 16628,
+      "sha256": "c4440b83d987914712720ebc47841bb587177dc48169af94a0f5d2b3988f4ff3"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/fs_1p98_125__mixed_impedance__ascending__skewed.json",
+      "bytes": 16634,
+      "sha256": "d522bf23cde709d01f09bb0f4e7593c1a169de621d45c68789eca65a229a65e6"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/fs_1p98_125__mixed_impedance__descending__aligned.json",
+      "bytes": 16662,
+      "sha256": "f0ba4a92133255a28f2e42741e88d95b0dd90321fb995014d49a0bf0ad2e8ed9"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/fs_1p98_125__mixed_impedance__descending__skewed.json",
+      "bytes": 16672,
+      "sha256": "9d81e487ddbc7b9efaaac99a1c62cba96371c00c989f50a104cf9d77cf9741bf"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/sf_1p62_m10__high_impedance__ascending__aligned.json",
+      "bytes": 16524,
+      "sha256": "9bdfb375e3e2862ac4804c30f4029f7b36ecd00f681bed2440f16d9b6b7a9878"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/sf_1p62_m10__high_impedance__ascending__skewed.json",
+      "bytes": 16527,
+      "sha256": "bec549aa6887f3b3f385260ef230af9e1933d945aa125d520d9e43cdfebb2102"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/sf_1p62_m10__high_impedance__descending__aligned.json",
+      "bytes": 16605,
+      "sha256": "6b66033c9bd94661648040bb2799d2257d14bd8bf99ae6742501176b07577551"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/sf_1p62_m10__high_impedance__descending__skewed.json",
+      "bytes": 16593,
+      "sha256": "ee9cffedf314bf7e366d5c1957e148b52ed1d26cf4abb639bed5861561a6fa3a"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/sf_1p62_m10__mixed_impedance__ascending__aligned.json",
+      "bytes": 16803,
+      "sha256": "75934bc2b00a1964d29c381eb8763abf60dababa7e15e455276c34e7c0072135"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/sf_1p62_m10__mixed_impedance__ascending__skewed.json",
+      "bytes": 16822,
+      "sha256": "f851600ce31bc04eaed5e3fdfc0b0676e190d93143f9448bdcb96d763123b5a7"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/sf_1p62_m10__mixed_impedance__descending__aligned.json",
+      "bytes": 16873,
+      "sha256": "2a80585beedd7027a21139d2e2bf9af0c73280ea4b3bd3d0bc215cbf353fbe5c"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/sf_1p62_m10__mixed_impedance__descending__skewed.json",
+      "bytes": 16856,
+      "sha256": "7fbaa6af03e820b2d6350882e68959b67d041135ac65b681173e623f7bb96c79"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/ss_1p62_125__high_impedance__ascending__aligned.json",
+      "bytes": 16473,
+      "sha256": "7bb84619ee64c2ffa6257b5975048d7295dfd58555d2e79c16e5077d05f0c314"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/ss_1p62_125__high_impedance__ascending__skewed.json",
+      "bytes": 16460,
+      "sha256": "763348612ef766aaaddbe5c7f82099dcd6bf1962f000cfd1dff7e6a1f61b4fca"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/ss_1p62_125__high_impedance__descending__aligned.json",
+      "bytes": 16545,
+      "sha256": "2203c7618e283b3ab2b81afebbb920dd21ca1a9c7360ae9cb19138af9fe7b12a"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/ss_1p62_125__high_impedance__descending__skewed.json",
+      "bytes": 16541,
+      "sha256": "9cbf0029e35fc34cc71bc4d0ebd192b16a66998376f6f29c130b682ca86d4d7c"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/ss_1p62_125__mixed_impedance__ascending__aligned.json",
+      "bytes": 16825,
+      "sha256": "cd5c52b3c98a2c3fbb3afe83b02da8a6ad3631fc426ee97dbf96f34239886260"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/ss_1p62_125__mixed_impedance__ascending__skewed.json",
+      "bytes": 16819,
+      "sha256": "ee7f7974a6c1f660c5526b9120ed9f443fc55d94a00cf4e9b148a2e3cb856aa0"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/ss_1p62_125__mixed_impedance__descending__aligned.json",
+      "bytes": 16837,
+      "sha256": "2f1967c81488f3794868974024de538d118672f7f7930a1e886df8c9ce15e662"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/ss_1p62_125__mixed_impedance__descending__skewed.json",
+      "bytes": 16845,
+      "sha256": "6645de1ff3925eba066a0e351cf20e0e3f6a4a9ffc5f692a6b48250d2523ba8f"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/tt_1p80_40__high_impedance__ascending__aligned.json",
+      "bytes": 16489,
+      "sha256": "5910c167475e7e43364a096359295cfb31c806c0beddcd2946b0d92f5a22f6b3"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/tt_1p80_40__high_impedance__ascending__skewed.json",
+      "bytes": 16484,
+      "sha256": "108db4120da8508e2b48cc9985308ffb0c612de34cbbbc7b4f96d9b621db48a3"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/tt_1p80_40__high_impedance__descending__aligned.json",
+      "bytes": 16604,
+      "sha256": "b6e99146001d92160dc0991487266afa9c3061b8f2efc04faabfcd2cc0283633"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/tt_1p80_40__high_impedance__descending__skewed.json",
+      "bytes": 16612,
+      "sha256": "fa450b7c7ccfca542e0b856295f2be105c80e885598c8c8ba065ab42792c7165"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/tt_1p80_40__mixed_impedance__ascending__aligned.json",
+      "bytes": 16773,
+      "sha256": "14bd3e177a26d402ec7759eeb4ee0a25b2ed3ce9a5568a74e365bf130db364b0"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/tt_1p80_40__mixed_impedance__ascending__skewed.json",
+      "bytes": 16813,
+      "sha256": "c5121fddd37875122ceeb302548c2da1503db5a458ec62c2ed2bded60bf72221"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/tt_1p80_40__mixed_impedance__descending__aligned.json",
+      "bytes": 16820,
+      "sha256": "ed36b526899d6b98afa364f1ea3ac60ea5f561aacea456944f96802019c19cb9"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/scenarios/tt_1p80_40__mixed_impedance__descending__skewed.json",
+      "bytes": 16821,
+      "sha256": "9ca7a21f3c28a54a8242d9df336118b4594ad0a9440f5815b20e8a76289418cd"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/server-evidence.json",
+      "bytes": 778,
+      "sha256": "c7f296e7588b39c51e3af83df951593a164bce23a1b726ab44cc3f5bc4276a4a"
+    },
+    {
+      "path": "files/multisensor-mux-20261116/sol-circuit.spi",
+      "bytes": 2223,
+      "sha256": "95619b1a7c26a18e6014c9e5e70342cf9b29bec1ef32cf94f78a121b2de6c238"
     }
   ],
   "history_source_runs": {
@@ -5390,5 +5912,6 @@
       }
     }
   },
-  "presentation_update": "新增四个 D3 改编与原创工程题目；上游原题复现单列 related-work/，保留全部原始成绩与证据。"
+  "presentation_update": "新增四个 D3 改编与原创工程题目；上游原题复现单列 related-work/，保留全部原始成绩与证据。",
+  "retained_d2_update": "2026-11-16: integrate B1 and MUX; preserve A2/A3/A4 and existing D3. B1 scoring revision and MUX developer-feedback defect disclosed."
 }
