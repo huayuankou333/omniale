@@ -1,0 +1,48 @@
+{
+  "as_of": "2026-11-16",
+  "model": "gpt-6.1-sol",
+  "task_version": "0.2.1",
+  "source_revision": "v452",
+  "status": "blocked_before_model_execution",
+  "model_calls_started": false,
+  "scientific_score": null,
+  "full_contract_pass": null,
+  "artifact_validity": null,
+  "development_budget_started": false,
+  "reference_policy": "intentionally_omitted",
+  "development_budget_seconds": 7200,
+  "model_decision_limit": 500,
+  "verifier_seeds": [
+    0,
+    731,
+    902
+  ],
+  "verifier_wall_seconds": 45000,
+  "blocked_component": "server kernel procfs superblock teardown / cgroup writeback workqueue",
+  "kernel_stack": "[<0>] flush_workqueue+0x133/0x3e0\n[<0>] cgroup_writeback_umount+0x2f/0x40\n[<0>] generic_shutdown_super+0x34/0x130\n[<0>] kill_anon_super+0x18/0x30\n[<0>] proc_kill_sb+0x38/0x70\n[<0>] deactivate_locked_super+0x3b/0xb0\n[<0>] deactivate_super+0x44/0x50\n[<0>] cleanup_mnt+0x150/0x1d0\n[<0>] __cleanup_mnt+0x12/0x20\n[<0>] task_work_run+0x6a/0xb0\n[<0>] exit_to_user_mode_loop+0x157/0x160\n[<0>] syscall_exit_to_user_mode+0x5d/0x80\n[<0>] do_syscall_64+0x63/0xb0\n[<0>] entry_SYSCALL_64_after_hwframe+0x6c/0xd6\n",
+  "scientific_images": [
+    {
+      "name": "simulationle-o5-native:construction-v1",
+      "expected_id": "sha256:986a56dc2b58c1af63a8a3ee508ff8ffe9bceb4b65bc1ba260935ed3c88fcf7e",
+      "actual_id": "sha256:986a56dc2b58c1af63a8a3ee508ff8ffe9bceb4b65bc1ba260935ed3c88fcf7e",
+      "unchanged": true
+    },
+    {
+      "name": "simulationle-o5-verifier:nominal-v2",
+      "expected_id": "sha256:294333fbedbfa1b1f31074791a0abd891b0a0b5dbce58d59122fd0200df1b393",
+      "actual_id": "sha256:294333fbedbfa1b1f31074791a0abd891b0a0b5dbce58d59122fd0200df1b393",
+      "unchanged": true
+    }
+  ],
+  "infrastructure_failure_is_model_score": false,
+  "historical_exploration": {
+    "date": "2026-11-15",
+    "task_state": "earlier_construction_snapshot",
+    "scored": false,
+    "scientific_score": null,
+    "model_turns": 22,
+    "tool_calls": 24,
+    "development_seconds": 1029.800534,
+    "finding": "Submitted scene had no articulated robot joints or actuators; synthetic state-machine tests do not establish physical assembly."
+  }
+}

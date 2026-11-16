@@ -1,0 +1,220 @@
+{
+  "schema_version": 2,
+  "empirical_calibration": false,
+  "scope": "Declared benchmark assumptions; no physical insertion or wire test data are available.",
+  "software": {
+    "mujoco": "3.5.0",
+    "integrator": "implicitfast",
+    "timestep_s": 0.002,
+    "solver_iterations": 100,
+    "solver_tolerance": 1e-10,
+    "minimum_constraint_time_constant_s": 0.004
+  },
+  "housing": {
+    "source": "Amphenol STEP",
+    "assumed_density_kg_m3": 1200,
+    "mating_surface": "All original source triangles, including cavities; partitioned seal/latch vertex motion",
+    "flex_contact_radius_m": 5e-06,
+    "mating_sliding_friction": 0.15,
+    "support_proxy": "Eleven source cross-section convex hulls, only for fingers/supports/cables; never a cavity-filling mating hull"
+  },
+  "seal": {
+    "model": "Eight massive independent radial/axial folding slides",
+    "sector_mass_kg": 5e-05,
+    "stiffness_N_m": 800,
+    "damping_Ns_m": 1.2,
+    "travel_m": [
+      -0.0018,
+      0.0001
+    ]
+  },
+  "latch": {
+    "model": "Massive passive spring hinge carrying source latch vertices",
+    "mass_kg": 0.0002,
+    "stiffness_Nm_rad": 0.02,
+    "damping_Nms_rad": 0.001,
+    "release_tools": "Six 6-N bounded mechanical plungers, 9-mm stroke"
+  },
+  "mass_accounting": "Seal/latch masses and inertias are partitioned from the assumed source solid; finger accessory mass is added to original pad inertia.",
+  "cable": {
+    "segments_per_branch": 11,
+    "trunk_radius_m": 0.003,
+    "branch_radius_m": 0.002,
+    "bend_joint_damping_Nms_rad": 3e-05,
+    "sliding_friction": 0.5,
+    "termination": "Permanent endpoint plus a second material point 15 mm along the lead-out axis. These two connect constraints model the designed crimp/grommet bending attachment, leave axial twisting free, and never attach a gripper or socket.",
+    "junction": "A free 3-g massive equivalent splice envelope of 16-mm diameter inside an authored physical retaining cage. Two keeper rails form a 7-mm cable slot. No world attachment constraint is used. The splice geometry and mass are authored nominal assumptions.",
+    "nominal_loading_shape": "Smooth loading arches with 20-mm straight terminal lead-outs. Segment cut lengths and nominal masses are in work_order.json. The bent initial shape is a joint configuration, not the straight spring rest shape. Manufacturing and constitutive parameters are nominal assumptions.",
+    "assumed_bending_rigidity_Nm2": {
+      "trunk": 0.0003,
+      "branch": 0.0001
+    },
+    "spring_discretization": "Interior ball stiffness EI / mean adjacent segment length. Junction-root ball has zero spring stiffness. Straight identity quaternions define qpos_spring; bent loading state is a separate initial keyframe.",
+    "line_mass_basis": {
+      "conductors_per_trunk": 6,
+      "conductors_per_branch": 2,
+      "conductor_cross_section_m2": 8.23e-07,
+      "assumed_copper_density_kg_m3": 8960,
+      "assumed_insulated_wire_radius_m": 0.001,
+      "assumed_insulation_density_kg_m3": 1200,
+      "measured": false
+    },
+    "junction_contact": {
+      "solref": [
+        0.004,
+        1
+      ],
+      "solimp": [
+        0.99,
+        0.999,
+        0.0001
+      ],
+      "empirically_measured": false
+    }
+  },
+  "sensors": {
+    "depth_standard_deviation_m": 1e-05,
+    "wrist_force_standard_deviation_N": 0.03,
+    "wrist_torque_standard_deviation_Nm": 0.001,
+    "pose_truth_exposed": false
+  },
+  "hardware_validation": "not_performed",
+  "needed_for_transfer": [
+    "Serial-specific robot/base/TCP calibration",
+    "Measured gripper gap/force and pad behavior",
+    "Revision-matched insertion, release and retention curves",
+    "Wire/bundle bending, torsion, friction and termination tests",
+    "Fixture and sensor calibration and pilot assembly trials"
+  ],
+  "robot_servo": {
+    "joint_order": [
+      "shoulder_pan",
+      "shoulder_lift",
+      "elbow",
+      "wrist_1",
+      "wrist_2",
+      "wrist_3"
+    ],
+    "kp_Nm_rad": [
+      4000,
+      4000,
+      4000,
+      1500,
+      1500,
+      1500
+    ],
+    "kv_Nms_rad": [
+      160,
+      160,
+      160,
+      60,
+      60,
+      60
+    ],
+    "maximum_torque_Nm": [
+      150,
+      150,
+      150,
+      28,
+      28,
+      28
+    ],
+    "joint_damping_Nms_rad": 1,
+    "joint_armature_kg_m2": 0.05,
+    "gravity_compensation": "Nominal arm links and gripper base, not measured vendor firmware"
+  },
+  "finger_accessory": {
+    "size_m": [
+      0.003,
+      0.004,
+      0.002
+    ],
+    "pad_local_center_m": [
+      0.001,
+      -0.0086,
+      0.0259
+    ],
+    "mass_each_kg": 6.5e-05,
+    "sliding_friction": 0.4
+  },
+  "cover": {
+    "mass_kg": 1,
+    "counterbalanced": true,
+    "kp_N_m": 2000,
+    "kv_Ns_m": 100,
+    "maximum_actuator_force_N": 40,
+    "setpoint_slew_m_s": 0.06,
+    "travel_m": 0.5
+  },
+  "release_plunger": {
+    "kp_N_m": 1000,
+    "kv_Ns_m": 10,
+    "maximum_actuator_force_N": 6,
+    "stroke_m": 0.009
+  },
+  "monitoring": {
+    "period_s": 0.02,
+    "lift_evidence": "At least 100 ms of bilateral pad contact above 10 mm of lift",
+    "inspection": "Geometry, support, route and force checks at the stated physical sampling period"
+  },
+  "routing_retainer": {
+    "counterbalanced": true,
+    "moving_mass_kg": {
+      "normal": 0.06,
+      "long_branch_capture": 0.15
+    },
+    "kp_N_m": 2000,
+    "kv_Ns_m": {
+      "normal": 25,
+      "long_branch_capture": 5
+    },
+    "joint_damping_Ns_m": {
+      "normal": 10,
+      "long_branch_capture": 5
+    },
+    "maximum_actuator_force_N": {
+      "normal": 3,
+      "long_branch_capture": 0.6
+    },
+    "travel_m": {
+      "normal": 0.475,
+      "long_branch_capture": 0.2,
+      "alternate": 0.38
+    },
+    "setpoint_slew_m_s": 0.06,
+    "carriage_travel_m": 0.8,
+    "carriage_setpoint_slew_m_s": 0.1,
+    "carriage_maximum_actuator_force_N": 30,
+    "closed_lower_face_z_m": {
+      "trunk": 0.781,
+      "branch": 0.775
+    },
+    "contact_only": true,
+    "cable_attachment": false,
+    "empirically_measured": false
+  },
+  "splice_fixture": {
+    "nominal_sphere_radius_m": 0.008,
+    "nominal_axis_clearance_m": 0.00015,
+    "keeper_slot_width_m": 0.007,
+    "contact_only": true,
+    "world_attachment": false,
+    "description": "Close-fitting authored cage with a nominal 0.15-mm side/floor/keeper clearance; the free massive splice is located through physical contact only.",
+    "empirically_measured": false
+  },
+  "bend_former": {
+    "counterbalanced": true,
+    "assumed_mass_kg": 0.1,
+    "kp_N_m": 2000,
+    "kv_Ns_m": 15,
+    "joint_damping_Ns_m": 5,
+    "actuator_force_limit_N": 3,
+    "advance_travel_m": 0.1453409783921933,
+    "route_shift_travel_m": 0.036,
+    "normal_route_shift_m": 0.0,
+    "setpoint_slew_m_s": 0.05,
+    "contact_only": true,
+    "cable_attachment": false,
+    "empirically_measured": false
+  }
+}

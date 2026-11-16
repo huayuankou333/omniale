@@ -1,0 +1,310 @@
+{
+  "case_id": "O5",
+  "title": "双臂汽车线束装配与选择性返修",
+  "origin": "original",
+  "version": "0.2.1",
+  "source_revision": "v452",
+  "contract": "o5-nominal-contact-v2",
+  "evaluation_available": true,
+  "reference_policy": "intentionally_omitted",
+  "reference_required_for_evaluation": false,
+  "model_result": {
+    "as_of": "2026-11-16",
+    "model": "gpt-6.1-sol",
+    "task_version": "0.2.1",
+    "source_revision": "v452",
+    "status": "blocked_before_model_execution",
+    "model_calls_started": false,
+    "scientific_score": null,
+    "full_contract_pass": null,
+    "artifact_validity": null,
+    "development_budget_started": false,
+    "reference_policy": "intentionally_omitted",
+    "development_budget_seconds": 7200,
+    "model_decision_limit": 500,
+    "verifier_seeds": [
+      0,
+      731,
+      902
+    ],
+    "verifier_wall_seconds": 45000,
+    "blocked_component": "server kernel procfs superblock teardown / cgroup writeback workqueue",
+    "kernel_stack": "[<0>] flush_workqueue+0x133/0x3e0\n[<0>] cgroup_writeback_umount+0x2f/0x40\n[<0>] generic_shutdown_super+0x34/0x130\n[<0>] kill_anon_super+0x18/0x30\n[<0>] proc_kill_sb+0x38/0x70\n[<0>] deactivate_locked_super+0x3b/0xb0\n[<0>] deactivate_super+0x44/0x50\n[<0>] cleanup_mnt+0x150/0x1d0\n[<0>] __cleanup_mnt+0x12/0x20\n[<0>] task_work_run+0x6a/0xb0\n[<0>] exit_to_user_mode_loop+0x157/0x160\n[<0>] syscall_exit_to_user_mode+0x5d/0x80\n[<0>] do_syscall_64+0x63/0xb0\n[<0>] entry_SYSCALL_64_after_hwframe+0x6c/0xd6\n",
+    "scientific_images": [
+      {
+        "name": "simulationle-o5-native:construction-v1",
+        "expected_id": "sha256:986a56dc2b58c1af63a8a3ee508ff8ffe9bceb4b65bc1ba260935ed3c88fcf7e",
+        "actual_id": "sha256:986a56dc2b58c1af63a8a3ee508ff8ffe9bceb4b65bc1ba260935ed3c88fcf7e",
+        "unchanged": true
+      },
+      {
+        "name": "simulationle-o5-verifier:nominal-v2",
+        "expected_id": "sha256:294333fbedbfa1b1f31074791a0abd891b0a0b5dbce58d59122fd0200df1b393",
+        "actual_id": "sha256:294333fbedbfa1b1f31074791a0abd891b0a0b5dbce58d59122fd0200df1b393",
+        "unchanged": true
+      }
+    ],
+    "infrastructure_failure_is_model_score": false,
+    "historical_exploration": {
+      "date": "2026-11-15",
+      "task_state": "earlier_construction_snapshot",
+      "scored": false,
+      "scientific_score": null,
+      "model_turns": 22,
+      "tool_calls": 24,
+      "development_seconds": 1029.800534,
+      "finding": "Submitted scene had no articulated robot joints or actuators; synthetic state-machine tests do not establish physical assembly."
+    }
+  },
+  "scoring": {
+    "released_assembly": 50,
+    "retention": 10,
+    "routing": 10,
+    "cover": 10,
+    "rework": 10,
+    "deployment": 10
+  },
+  "acceptance": {
+    "schema_version": 2,
+    "contract": "o5-nominal-contact-v2",
+    "scope": "Nominal native simulation acceptance; author qualification is reported separately.",
+    "supplier_certified_tolerances": false,
+    "per_part": {
+      "lateral_m": 0.0005,
+      "axial_m": 0.0003,
+      "orientation_rad": 0.017453292519943295,
+      "witness_m": 0.001,
+      "linear_guard_m": 0.00012,
+      "angular_guard_rad": 0.001,
+      "phases": [
+        "released",
+        "retention",
+        "cover",
+        "rework"
+      ],
+      "minimum_release_hold_s": 5,
+      "all_eight_required_for_full_pass": true,
+      "maximum_recovered_latch_deflection_rad": 0.035,
+      "measurement_period_s": 0.02
+    },
+    "retention": {
+      "force_N": 0.5,
+      "direction_world": [
+        0,
+        0,
+        1
+      ],
+      "loaded_s": 1,
+      "after_load_s": 1,
+      "basis": "Declared nominal test load, not a supplier retention rating"
+    },
+    "routing": {
+      "minimum_bend_radius_m": 0.015,
+      "maximum_trunk_tension_N": 20,
+      "maximum_branch_tension_N": 8,
+      "maximum_termination_error_m": 0.0003,
+      "portal_geometry": "work_order.json"
+    },
+    "limits": {
+      "mating_force_N": 100,
+      "fixture_collision_force_N": 20,
+      "aggregate_cover_retainer_cable_force_N": 2,
+      "force_limit_duration_s": 0.08,
+      "gripper_support_during_inspection": false,
+      "junction_keeper": {
+        "maximum_xy_center_deviation_m": 0.012,
+        "world_z_center_range_m": [
+          0.697,
+          0.731
+        ],
+        "nominal_xy_centers_m": {
+          "left": [
+            -0.245,
+            0.285
+          ],
+          "right": [
+            0.245,
+            0.285
+          ]
+        },
+        "escape_invalidates_physical_run": true
+      }
+    },
+    "budget": {
+      "development_wall_seconds": 7200,
+      "model_decision_turns": 500,
+      "commissioning_resets": 12,
+      "commissioning_simulation_seconds": 7200,
+      "replay_episode_simulation_seconds": 600,
+      "replay_episode_wall_seconds": 14400,
+      "replay_responses": 24000,
+      "camera_acquisitions_per_episode": 160,
+      "verifier_wall_seconds": 45000,
+      "controller_response_wall_seconds": 60,
+      "controller_cpu_seconds": 600,
+      "controller_address_space_bytes": 3221225472
+    },
+    "points": {
+      "released_assembly": 50,
+      "retention": 10,
+      "routing": 10,
+      "cover": 10,
+      "rework": 10,
+      "deployment": 10
+    },
+    "evidence": {
+      "candidate_logs_authoritative": false,
+      "teleport_or_state_write": false,
+      "grasp_weld": false,
+      "part_collision_disabled": false,
+      "empirical_hardware_validation": false
+    }
+  },
+  "software": {
+    "python": "3.12.15",
+    "mujoco": "3.5.0",
+    "numpy": "2.5.1",
+    "scipy": "1.18.0",
+    "cadquery": "2.6.1",
+    "cadquery-ocp": "7.8.1.1.post1",
+    "trimesh": "4.9.0",
+    "xacro": "2.1.1",
+    "pycollada": "0.9.3",
+    "coacd": "1.0.14"
+  },
+  "source_images": [
+    {
+      "name": "simulationle-o5-native:construction-v1",
+      "id": "sha256:986a56dc2b58c1af63a8a3ee508ff8ffe9bceb4b65bc1ba260935ed3c88fcf7e"
+    },
+    {
+      "name": "simulationle-o5-verifier:nominal-v2",
+      "id": "sha256:294333fbedbfa1b1f31074791a0abd891b0a0b5dbce58d59122fd0200df1b393"
+    }
+  ],
+  "media": [
+    {
+      "seed": 0,
+      "score": 0.0,
+      "full_pass": false,
+      "simulation_seconds": 0.002,
+      "controller_error": null,
+      "video": {
+        "file": "control-0.mp4",
+        "bytes": 19193,
+        "sha256": "66b7f8ad6a82310f3f00932d90c91c16e836c4951c946bd24ea53cd91d4bccd8",
+        "frames": 1,
+        "fps": 10,
+        "simulated_sample_seconds": 0.4,
+        "source": "This independent verifier replay trace; no candidate log or animation",
+        "scientific_score_source": false,
+        "duration_seconds": 0.1
+      }
+    },
+    {
+      "seed": 731,
+      "score": 0.0,
+      "full_pass": false,
+      "simulation_seconds": 0.002,
+      "controller_error": null,
+      "video": {
+        "file": "control-731.mp4",
+        "bytes": 19265,
+        "sha256": "456d0d0f1e6cffa4b2e98f3a22b3be8d21dbce5b24da7ce6673056146f64843d",
+        "frames": 1,
+        "fps": 10,
+        "simulated_sample_seconds": 0.4,
+        "source": "This independent verifier replay trace; no candidate log or animation",
+        "scientific_score_source": false,
+        "duration_seconds": 0.1
+      }
+    },
+    {
+      "seed": 902,
+      "score": 0.0,
+      "full_pass": false,
+      "simulation_seconds": 0.002,
+      "controller_error": null,
+      "video": {
+        "file": "control-902.mp4",
+        "bytes": 19259,
+        "sha256": "fee87ad81655791f58070dbef360d6b3683c30aac521099cce87813ac99f975b",
+        "frames": 1,
+        "fps": 10,
+        "simulated_sample_seconds": 0.4,
+        "source": "This independent verifier replay trace; no candidate log or animation",
+        "scientific_score_source": false,
+        "duration_seconds": 0.1
+      }
+    }
+  ],
+  "qualification": {
+    "source_revision": "v452",
+    "task_version": "0.2.1",
+    "reference_policy": "intentionally_omitted",
+    "reference_required_for_evaluation": false,
+    "source_files": 47,
+    "public_files": 104,
+    "source_sha256": {
+      "README.md": "87d9c34c8f413c3879410125aa1e0b36fe8e658001702d4635a3bed0c553075f",
+      "SOURCE_POLICY.md": "7029e7507f07aa0e28d53118c39f85bb082f7546f6a52616d24d714f95e292cf",
+      "asset-sources.json": "af61e7102c5877f8b4d10a4c9f1e7c4949db3c48650a1ae6b7298796de472bbf",
+      "assets.json": "235bcc4560535445608336ae380f6740dc4fe856e1d8d13b1e5e820ce3c6fd66",
+      "authoring/Dockerfile.native": "42f1359cc69d2f16bfe25c7c43e0a2198bc797fa09ee098cc50a9452b79a30b0",
+      "authoring/Dockerfile.verifier-runtime": "71c0531e110fec30068d45e7fe136cacf56d4d0342eb756a6748185fb6a0234a",
+      "authoring/README.md": "90d04d14669c463afdcbe04c4aa610ba6d2d8b70a2f3addebb4abfe43b747198",
+      "authoring/acquire.py": "f8ce12b74ca763b7c038289d9c8ad82cc61246c97ca798696870c6314ed26ee5",
+      "authoring/build_rigid_flex.py": "2fd98528e647db88e1b2b94ec13376b5e097b1ac18e8286f0841da08962a6fb3",
+      "authoring/build_robot.py": "c59a5ff953cc4dc4f300ee43a9420d9066d30662b5b0713a05501e5b091abce3",
+      "authoring/build_scene_preview.py": "d5050d992af755451bd7345a47e2a0bd521d5a2f3991fce95f977426440501b4",
+      "authoring/check_cavity_collision.py": "26fd5bcd3b68640e3fb05e06db8fd35886e3773cc354f3dce0da66da2a3520c5",
+      "authoring/check_release.py": "43acfeb1e98acf94f35fda423d36aee2736fa1934c53752940aa13e3c1d595f8",
+      "authoring/compose_robot.py": "2498b2246877cafc9496ad60692ef500672b9f415216e332a70aa07959f4b03a",
+      "authoring/evaluate_submission.py": "e0065e1b202359a9a1208c64f82dc7d1e66ab695d8154dc755c2faee00cee068",
+      "authoring/inspect_cad.py": "bee11ad77feae4bcac50f225ef7cd04403eab878529293c50d2acd3139d62832",
+      "authoring/make_job.py": "f83269e17bbc48bd2f96d9ea57f0998e47bf521950b8f9629268903c1acb27e4",
+      "authoring/measure_surface_error.py": "cebb414ccb7ca2cdf4cf1ccc0bb3eb1a92ebd416de18af9f09d6f271aad22bfd",
+      "authoring/prepare.py": "e94e91e1c92d344e9fcbf05be64cacbb02beaa40c087e68dea92f3b56d98a1bf",
+      "authoring/prepare_execution.py": "6c0296d2bd24a901d61bc6545f5525ab415e7ff3f1e807f2c87101d827b1c3e1",
+      "authoring/qualification-plan.json": "bf2df2ecc9126ae5bc705e743db16185b5ad9b3ab479e2657f1f701d12192d9c",
+      "authoring/test_evaluation_boundary.py": "b24331d48c3e878c4be16696716ae51d6cb83e49666b5552d02f973475adc814",
+      "environment/Dockerfile": "91a0c1337f8831e3a0cfc9e856d1094d31ce862aebc038a14a25e9abcd5a7852",
+      "environment/docker-compose.yaml": "239beadc4a3ecf104f8ae4dbb8c289abf5e0a9933aafb271c94a95a207e242a5",
+      "environment/freeze_submission.py": "660678eac178910fc4f6f9c86384b06a519e861ae391ed7e5402c05ddb89b29d",
+      "environment/public/INTERFACE.md": "ca4860cf358b5246751242da7b4c1ac04157fd374cb66422473d7a80e2967dd4",
+      "environment/public/SCORING.md": "f47b7198951bf8670670696a41a5b56512669b62f9e6bdef3136f56afeeca78e",
+      "environment/public/SUBMISSION.md": "507a4c124574ca6dca4075a9376c280e5c2ff4a9746124ae0127ece594063284",
+      "environment/public/acceptance.json": "6c9415242452a97a4732e9b10d12908115b3e6a9cb5564fc65aaa7a0a5c029e6",
+      "environment/public/nominal_physics.json": "c177db885c28baf61afdfdc80e0ccb1ef07ea32a67a196e5a0def2bf5876e607",
+      "environment/public/work_order.json": "19464dc0f3dd89fdfc2824f79f24c4d62e9cc0b4143e2112878fb86535b39c26",
+      "environment/runtime/cell_v2.py": "53fe9223e3f62b72c70c99f0331918651ba5fb53e48de5b9bde453c0e6ba133d",
+      "environment/runtime/native_v2.py": "bf4230aeb5a567052307017ee611e431a64cbf04959036b7d58f6e95f336fd0e",
+      "environment/runtime/service_v2.py": "44bb2fd64ff228b8ec35097a1fc7f4e81f58e2d80c309c1530e35aa5162115cc",
+      "instruction.md": "9cbdab1dd48d92d796aae3460bc0968f77de9da28e8381e860286b695db0d907",
+      "solution/README.md": "179225e2ec832e1fb390d7570a31c44a54ebb6fa86be0cdcce53edc064b675e7",
+      "solution/solve.sh": "6816cd737dd93fbea2fd2c0271de587701b0a6edd0096d28e9e21e1205b8404d",
+      "source.json": "20b3c99bb74df07a0f738b2c34a3708050f29998dae8fc5e68af36a023cc9b8d",
+      "task.toml": "c3a9f66ae3f46eedf1466965a5764803222579d089069f484af610215bef30a5",
+      "tests/README.md": "1e316fee546af7d859239e709a281060a357001c622fb6fae746b02a5dda0205",
+      "tests/evaluate_v2.py": "ab7402b0ba6b1d7d7411d547eba436f0ce3a38ab9d5eb109f7feda534b0ed5cf",
+      "tests/geometry_metrics.py": "9ac3a85df2e6f42c5d500139b1ca4ccee5743f09148af41683257b1f62a5ba2d",
+      "tests/isolation_v2.py": "a267112d773be2d22459db00787e1a9104b14fd402947f00aed00b8b612be351",
+      "tests/native_probe_v2.py": "5d297ad538aae7fe4b2347ff65972b825657c8ef229909e957016d3f27f5a0f0",
+      "tests/render_video_v2.py": "9ac533d4bbe9cc9b8a78597988828193f13d134c97aaabd55f84c42a2c88cca3",
+      "tests/test.sh": "915b43255d7ec71369f840b1f23cfcad2688663c6d09787ce804a5bd1f0753d4",
+      "tests/test_geometry_metrics.py": "31cec5b8dc537586a11581dbbe9b262e542b4391f618896a5f16f9fc6ce7ce4d"
+    },
+    "repository_checks": {
+      "node_tests": 31,
+      "python_tests": 27,
+      "static_files": 312,
+      "passed": true
+    },
+    "preparation_without_reference_passed": true,
+    "runtime_and_verifier_unchanged": true,
+    "complete_task_feasibility": "not_verified",
+    "complete_cell_numerical_convergence": "not_verified",
+    "hardware_validation": "not_performed",
+    "model_calls_during_preparation": 0
+  }
+}

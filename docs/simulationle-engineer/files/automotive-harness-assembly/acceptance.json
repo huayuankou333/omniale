@@ -1,0 +1,96 @@
+{
+  "schema_version": 2,
+  "contract": "o5-nominal-contact-v2",
+  "scope": "Nominal native simulation acceptance; author qualification is reported separately.",
+  "supplier_certified_tolerances": false,
+  "per_part": {
+    "lateral_m": 0.0005,
+    "axial_m": 0.0003,
+    "orientation_rad": 0.017453292519943295,
+    "witness_m": 0.001,
+    "linear_guard_m": 0.00012,
+    "angular_guard_rad": 0.001,
+    "phases": [
+      "released",
+      "retention",
+      "cover",
+      "rework"
+    ],
+    "minimum_release_hold_s": 5,
+    "all_eight_required_for_full_pass": true,
+    "maximum_recovered_latch_deflection_rad": 0.035,
+    "measurement_period_s": 0.02
+  },
+  "retention": {
+    "force_N": 0.5,
+    "direction_world": [
+      0,
+      0,
+      1
+    ],
+    "loaded_s": 1,
+    "after_load_s": 1,
+    "basis": "Declared nominal test load, not a supplier retention rating"
+  },
+  "routing": {
+    "minimum_bend_radius_m": 0.015,
+    "maximum_trunk_tension_N": 20,
+    "maximum_branch_tension_N": 8,
+    "maximum_termination_error_m": 0.0003,
+    "portal_geometry": "work_order.json"
+  },
+  "limits": {
+    "mating_force_N": 100,
+    "fixture_collision_force_N": 20,
+    "aggregate_cover_retainer_cable_force_N": 2,
+    "force_limit_duration_s": 0.08,
+    "gripper_support_during_inspection": false,
+    "junction_keeper": {
+      "maximum_xy_center_deviation_m": 0.012,
+      "world_z_center_range_m": [
+        0.697,
+        0.731
+      ],
+      "nominal_xy_centers_m": {
+        "left": [
+          -0.245,
+          0.285
+        ],
+        "right": [
+          0.245,
+          0.285
+        ]
+      },
+      "escape_invalidates_physical_run": true
+    }
+  },
+  "budget": {
+    "development_wall_seconds": 7200,
+    "model_decision_turns": 500,
+    "commissioning_resets": 12,
+    "commissioning_simulation_seconds": 7200,
+    "replay_episode_simulation_seconds": 600,
+    "replay_episode_wall_seconds": 14400,
+    "replay_responses": 24000,
+    "camera_acquisitions_per_episode": 160,
+    "verifier_wall_seconds": 45000,
+    "controller_response_wall_seconds": 60,
+    "controller_cpu_seconds": 600,
+    "controller_address_space_bytes": 3221225472
+  },
+  "points": {
+    "released_assembly": 50,
+    "retention": 10,
+    "routing": 10,
+    "cover": 10,
+    "rework": 10,
+    "deployment": 10
+  },
+  "evidence": {
+    "candidate_logs_authoritative": false,
+    "teleport_or_state_write": false,
+    "grasp_weld": false,
+    "part_collision_disabled": false,
+    "empirical_hardware_validation": false
+  }
+}
