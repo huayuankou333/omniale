@@ -1,0 +1,52 @@
+{
+  "case_id": "O5",
+  "status": "nominal_simulation_contract",
+  "origin": "original_assembly_contract_using_traceable_component_assets",
+  "task_family": "automotive_branched_harness_assembly",
+  "robot": {
+    "model": "Universal Robots UR5e",
+    "repository": "UniversalRobots/Universal_Robots_ROS2_Description",
+    "revision": "0eb1a861f7772fceb38510d90fa2f98ec668070c",
+    "nominal_manufacturer_description": true,
+    "serial_number_calibration_available": false
+  },
+  "gripper": {
+    "model": "Robotiq 2F-85",
+    "repository": "google-deepmind/mujoco_menagerie",
+    "revision": "370c43965323c0944b433b202aac5058b5f907a9",
+    "path": "robotiq_2f85",
+    "simulation_derivative": true
+  },
+  "connectors": {
+    "manufacturer": "Amphenol",
+    "models": [
+      "AT04-2P",
+      "AT06-2S",
+      "AT04-6P",
+      "AT06-6S"
+    ],
+    "source_domain": "www.amphenol-industrial.de",
+    "native_format": "STEP",
+    "drawing_dimensions": "reference nominal dimensions",
+    "measured_batch_tolerances_available": false,
+    "measured_contact_force_curves_available": false
+  },
+  "fixture_reference": {
+    "repository": "analogdevicesinc/ag-industrial-dexterity-benchmarks",
+    "revision": "5f5a04c185c354b25aa26a430432a22bfa04daf5",
+    "path": "automotive-cable-harness",
+    "production_vehicle_part": false,
+    "role": "Acquired background reference; its panel is not deployed"
+  },
+  "hardware_validation": false,
+  "deployed_fixture": {
+    "design": "SLE authored assembly fixture",
+    "drawing": "fixture/FIXTURE_DRAWING.json",
+    "fixed_solids": "fixture/FIXED_FIXTURE.step",
+    "cover": "fixture/SERVICE_COVER.step",
+    "finger_accessory": "fixture/FINGER_PUSH_LIP.step",
+    "production_vehicle_part": false,
+    "manufacturing_and_installation_tolerances": "Declared nominal design; not measured"
+  },
+  "physical_characterization": "Nominal simulation assumptions; no matching insertion, latch, wire or hardware measurements available"
+}

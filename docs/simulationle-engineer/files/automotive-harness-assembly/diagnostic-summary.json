@@ -1,0 +1,898 @@
+{
+  "label": "format_corrected_native_gate_bypassed_physical_diagnostic",
+  "original_trial": "sol-evaluation-v452-r3",
+  "original_recorded_score": 0,
+  "original_failure": "inspection_conditions dictionary rejected before physical replay",
+  "normalization": "Move inspection_conditions object details to inspection_details; declare the four phase names as list[str].",
+  "controller_modified": false,
+  "native_model_modified": false,
+  "paid_model_calls": false,
+  "development_time_added_s": 0,
+  "author_reference": "intentionally_omitted",
+  "original_collection_warning": "The original main freeze hook exceeded 60 seconds. All 62 collected files match the verifier checkpoint and their preserved mtimes precede the deadline; prompt termination of every candidate process was not independently proven.",
+  "original_native_precheck": {
+    "status": "invalid_submission",
+    "error": "Native robot FK does not match the supplied hardware: 1.9082941745017844e-10 m / 1.5707963271712209 rad"
+  },
+  "physical_summary": {
+    "diagnostic_physical_score": 0.0,
+    "maximum_physical_score": 100,
+    "native_delivery_passed": false,
+    "ArtifactValidity": 0,
+    "PhysicalContractPass": 0,
+    "EmpiricalHardwareValidation": 0,
+    "hardware_validation": "not_performed"
+  },
+  "episodes": [
+    {
+      "seed": 0,
+      "score": 0.0,
+      "controller_error": null,
+      "controller_exception_traceback": "Traceback (most recent call last):\n  File \"/tmp/o5-worker-f22nw7c7/submission/controller.py\", line 152, in main\n    try:c.run()\n        ^^^^^^^\n  File \"/tmp/o5-worker-f22nw7c7/submission/controller.py\", line 139, in run\n    pp=[self.parts[a+'_'+str(i)] for a in ARMS];self.pick(pp);self.insert(pp)\n                                                              ^^^^^^^^^^^^^^^\n  File \"/tmp/o5-worker-f22nw7c7/submission/controller.py\", line 91, in insert\n    pose=self.measure(p,(np.array(p['target_origin_m'])+[0,0,.048],np.array(p['rotation'])),'mate');self.graspfit(p,pose)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/o5-worker-f22nw7c7/submission/controller.py\", line 68, in measure\n    raise RuntimeError('Cannot measure '+p['id']+' '+stage)\nRuntimeError: Cannot measure left_1 mate\n",
+      "simulation_seconds": 70.00000000001826,
+      "wall_seconds": 2016.635942670051,
+      "io_calls": 676,
+      "full_pass": false,
+      "components": {
+        "assembly_points": 0.0,
+        "retention_points": 0.0,
+        "routing_points": 0,
+        "cover_points": 0,
+        "rework_points": 0,
+        "deployment_points": 0
+      },
+      "checkpoint_counts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "phase_pass": {
+        "released": false,
+        "retention": false,
+        "cover": false,
+        "rework": false
+      },
+      "grasp_evidence": {
+        "left_0": {
+          "left": true,
+          "right": false,
+          "moved": true,
+          "verified_lift": true
+        },
+        "left_1": {
+          "left": true,
+          "right": false,
+          "moved": true,
+          "verified_lift": true
+        },
+        "left_2": {
+          "left": false,
+          "right": false,
+          "moved": false,
+          "verified_lift": false
+        },
+        "left_3": {
+          "left": false,
+          "right": false,
+          "moved": true,
+          "verified_lift": false
+        },
+        "right_0": {
+          "left": false,
+          "right": true,
+          "moved": true,
+          "verified_lift": true
+        },
+        "right_1": {
+          "left": false,
+          "right": true,
+          "moved": true,
+          "verified_lift": true
+        },
+        "right_2": {
+          "left": false,
+          "right": false,
+          "moved": false,
+          "verified_lift": false
+        },
+        "right_3": {
+          "left": false,
+          "right": false,
+          "moved": true,
+          "verified_lift": false
+        }
+      },
+      "verified_lifts": [
+        "left_0",
+        "left_1",
+        "right_0",
+        "right_1"
+      ],
+      "final_geometry_pass": [
+        "right_0"
+      ],
+      "peak_mating_force_N": {
+        "left_0": 48.27240597658689,
+        "left_1": 0.0,
+        "left_2": 0.0,
+        "left_3": 0.0,
+        "right_0": 86.67802068812274,
+        "right_1": 0.0,
+        "right_2": 0.0,
+        "right_3": 0.0
+      },
+      "violations": [],
+      "final_metrology": [
+        {
+          "id": "left_0",
+          "lateral_m": 0.00032081653288007614,
+          "axial_m": 0.0001734746909788365,
+          "orientation_rad": 0.017420631971279636,
+          "witness_m": 0.00043314070782931685,
+          "latch_deflection_rad": 0.007174433258209063,
+          "checks": {
+            "lateral": true,
+            "axial": true,
+            "orientation": false,
+            "witness": true,
+            "latch_recovered": true
+          },
+          "geometry_pass": false,
+          "linear_uncertainty_m": 0.00012,
+          "angular_uncertainty_rad": 0.001,
+          "lateral_mm": 0.3208165328800761,
+          "axial_mm": 0.1734746909788365,
+          "orientation_deg": 0.9981286884049906,
+          "witness_mm": 0.43314070782931685
+        },
+        {
+          "id": "left_1",
+          "lateral_m": 0.05355416341861618,
+          "axial_m": 0.05941423032707571,
+          "orientation_rad": 1.2680407638815012,
+          "witness_m": 0.0835060103154592,
+          "latch_deflection_rad": -0.002394449571557735,
+          "checks": {
+            "lateral": false,
+            "axial": false,
+            "orientation": false,
+            "witness": false,
+            "latch_recovered": true
+          },
+          "geometry_pass": false,
+          "linear_uncertainty_m": 0.00012,
+          "angular_uncertainty_rad": 0.001,
+          "lateral_mm": 53.55416341861618,
+          "axial_mm": 59.414230327075714,
+          "orientation_deg": 72.65338402095497,
+          "witness_mm": 83.5060103154592
+        },
+        {
+          "id": "left_2",
+          "lateral_m": 0.16521770422350202,
+          "axial_m": 0.0082463816918531,
+          "orientation_rad": 0.04931431665351188,
+          "witness_m": 0.16543374030124183,
+          "latch_deflection_rad": -0.017949406649402522,
+          "checks": {
+            "lateral": false,
+            "axial": false,
+            "orientation": false,
+            "witness": false,
+            "latch_recovered": true
+          },
+          "geometry_pass": false,
+          "linear_uncertainty_m": 0.00012,
+          "angular_uncertainty_rad": 0.001,
+          "lateral_mm": 165.217704223502,
+          "axial_mm": 8.246381691853099,
+          "orientation_deg": 2.8255022138179404,
+          "witness_mm": 165.43374030124184
+        },
+        {
+          "id": "left_3",
+          "lateral_m": 0.1650711039277728,
+          "axial_m": 0.010819751844478698,
+          "orientation_rad": 0.4569682562736629,
+          "witness_m": 0.16546229920984643,
+          "latch_deflection_rad": -0.0003854794002592166,
+          "checks": {
+            "lateral": false,
+            "axial": false,
+            "orientation": false,
+            "witness": false,
+            "latch_recovered": true
+          },
+          "geometry_pass": false,
+          "linear_uncertainty_m": 0.00012,
+          "angular_uncertainty_rad": 0.001,
+          "lateral_mm": 165.0711039277728,
+          "axial_mm": 10.819751844478699,
+          "orientation_deg": 26.182352455933486,
+          "witness_mm": 165.46229920984644
+        },
+        {
+          "id": "right_0",
+          "lateral_m": 0.00017465256672853313,
+          "axial_m": 5.082044327664459e-05,
+          "orientation_rad": 0.004877648020208176,
+          "witness_m": 0.00017994728631696993,
+          "latch_deflection_rad": 0.006790198225594646,
+          "checks": {
+            "lateral": true,
+            "axial": true,
+            "orientation": true,
+            "witness": true,
+            "latch_recovered": true
+          },
+          "geometry_pass": true,
+          "linear_uncertainty_m": 0.00012,
+          "angular_uncertainty_rad": 0.001,
+          "lateral_mm": 0.17465256672853313,
+          "axial_mm": 0.05082044327664459,
+          "orientation_deg": 0.27946864550827016,
+          "witness_mm": 0.17994728631696993
+        },
+        {
+          "id": "right_1",
+          "lateral_m": 0.052040281407543805,
+          "axial_m": 0.07336998142499285,
+          "orientation_rad": 1.5359383602308503,
+          "witness_m": 0.09327625905302962,
+          "latch_deflection_rad": -0.0021300888286006295,
+          "checks": {
+            "lateral": false,
+            "axial": false,
+            "orientation": false,
+            "witness": false,
+            "latch_recovered": true
+          },
+          "geometry_pass": false,
+          "linear_uncertainty_m": 0.00012,
+          "angular_uncertainty_rad": 0.001,
+          "lateral_mm": 52.0402814075438,
+          "axial_mm": 73.36998142499284,
+          "orientation_deg": 88.00278563347202,
+          "witness_mm": 93.27625905302962
+        },
+        {
+          "id": "right_2",
+          "lateral_m": 0.16521380017884577,
+          "axial_m": 0.00824563878938811,
+          "orientation_rad": 0.04870964423805171,
+          "witness_m": 0.16542947494408325,
+          "latch_deflection_rad": -0.01800213098045294,
+          "checks": {
+            "lateral": false,
+            "axial": false,
+            "orientation": false,
+            "witness": false,
+            "latch_recovered": true
+          },
+          "geometry_pass": false,
+          "linear_uncertainty_m": 0.00012,
+          "angular_uncertainty_rad": 0.001,
+          "lateral_mm": 165.21380017884576,
+          "axial_mm": 8.24563878938811,
+          "orientation_deg": 2.7908570364240917,
+          "witness_mm": 165.42947494408324
+        },
+        {
+          "id": "right_3",
+          "lateral_m": 0.16507098300763595,
+          "axial_m": 0.010821627335084294,
+          "orientation_rad": 0.45703638499454835,
+          "witness_m": 0.165462492825179,
+          "latch_deflection_rad": -0.0003858642613504407,
+          "checks": {
+            "lateral": false,
+            "axial": false,
+            "orientation": false,
+            "witness": false,
+            "latch_recovered": true
+          },
+          "geometry_pass": false,
+          "linear_uncertainty_m": 0.00012,
+          "angular_uncertainty_rad": 0.001,
+          "lateral_mm": 165.07098300763596,
+          "axial_mm": 10.821627335084294,
+          "orientation_deg": 26.18625594410385,
+          "witness_mm": 165.462492825179
+        }
+      ],
+      "video": {
+        "file": "verification.mp4",
+        "bytes": 473172,
+        "sha256": "f35527dcc5bf1e2647e0b044df62bf2f90c88f302cc5fc6718fa97d32266ce2b",
+        "frames": 176,
+        "fps": 10,
+        "simulated_sample_seconds": 0.4,
+        "source": "This independent verifier replay trace; no candidate log or animation",
+        "scientific_score_source": false
+      }
+    },
+    {
+      "seed": 731,
+      "score": 0.0,
+      "controller_error": null,
+      "controller_exception_traceback": "Traceback (most recent call last):\n  File \"/tmp/o5-worker-_ghkz0vp/submission/controller.py\", line 152, in main\n    try:c.run()\n        ^^^^^^^\n  File \"/tmp/o5-worker-_ghkz0vp/submission/controller.py\", line 139, in run\n    pp=[self.parts[a+'_'+str(i)] for a in ARMS];self.pick(pp);self.insert(pp)\n                                                              ^^^^^^^^^^^^^^^\n  File \"/tmp/o5-worker-_ghkz0vp/submission/controller.py\", line 91, in insert\n    pose=self.measure(p,(np.array(p['target_origin_m'])+[0,0,.048],np.array(p['rotation'])),'mate');self.graspfit(p,pose)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/o5-worker-_ghkz0vp/submission/controller.py\", line 68, in measure\n    raise RuntimeError('Cannot measure '+p['id']+' '+stage)\nRuntimeError: Cannot measure left_1 mate\n",
+      "simulation_seconds": 57.50000000002431,
+      "wall_seconds": 1244.1143808593042,
+      "io_calls": 551,
+      "full_pass": false,
+      "components": {
+        "assembly_points": 0.0,
+        "retention_points": 0.0,
+        "routing_points": 0,
+        "cover_points": 0,
+        "rework_points": 0,
+        "deployment_points": 0
+      },
+      "checkpoint_counts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "phase_pass": {
+        "released": false,
+        "retention": false,
+        "cover": false,
+        "rework": false
+      },
+      "grasp_evidence": {
+        "left_0": {
+          "left": true,
+          "right": false,
+          "moved": true,
+          "verified_lift": true
+        },
+        "left_1": {
+          "left": true,
+          "right": false,
+          "moved": true,
+          "verified_lift": true
+        },
+        "left_2": {
+          "left": false,
+          "right": false,
+          "moved": false,
+          "verified_lift": false
+        },
+        "left_3": {
+          "left": false,
+          "right": false,
+          "moved": true,
+          "verified_lift": false
+        },
+        "right_0": {
+          "left": false,
+          "right": true,
+          "moved": true,
+          "verified_lift": true
+        },
+        "right_1": {
+          "left": false,
+          "right": true,
+          "moved": true,
+          "verified_lift": true
+        },
+        "right_2": {
+          "left": false,
+          "right": false,
+          "moved": false,
+          "verified_lift": false
+        },
+        "right_3": {
+          "left": false,
+          "right": false,
+          "moved": true,
+          "verified_lift": false
+        }
+      },
+      "verified_lifts": [
+        "left_0",
+        "left_1",
+        "right_0",
+        "right_1"
+      ],
+      "final_geometry_pass": [
+        "right_0"
+      ],
+      "peak_mating_force_N": {
+        "left_0": 44.07654089843473,
+        "left_1": 0.0,
+        "left_2": 0.0,
+        "left_3": 0.0,
+        "right_0": 134.97707488833433,
+        "right_1": 0.0,
+        "right_2": 0.0,
+        "right_3": 0.0
+      },
+      "violations": [],
+      "final_metrology": [
+        {
+          "id": "left_0",
+          "lateral_m": 0.0003206256400527804,
+          "axial_m": 0.00017383069948118113,
+          "orientation_rad": 0.017422807515041622,
+          "witness_m": 0.0004327334593543034,
+          "latch_deflection_rad": 0.00721092647859975,
+          "checks": {
+            "lateral": true,
+            "axial": true,
+            "orientation": false,
+            "witness": true,
+            "latch_recovered": true
+          },
+          "geometry_pass": false,
+          "linear_uncertainty_m": 0.00012,
+          "angular_uncertainty_rad": 0.001,
+          "lateral_mm": 0.32062564005278044,
+          "axial_mm": 0.17383069948118113,
+          "orientation_deg": 0.9982533378806986,
+          "witness_mm": 0.4327334593543034
+        },
+        {
+          "id": "left_1",
+          "lateral_m": 0.05297854175735372,
+          "axial_m": 0.05890278157320494,
+          "orientation_rad": 1.4188881346725586,
+          "witness_m": 0.08291920820398287,
+          "latch_deflection_rad": -0.0061939588323683455,
+          "checks": {
+            "lateral": false,
+            "axial": false,
+            "orientation": false,
+            "witness": false,
+            "latch_recovered": true
+          },
+          "geometry_pass": false,
+          "linear_uncertainty_m": 0.00012,
+          "angular_uncertainty_rad": 0.001,
+          "lateral_mm": 52.97854175735372,
+          "axial_mm": 58.90278157320494,
+          "orientation_deg": 81.29630171792758,
+          "witness_mm": 82.91920820398286
+        },
+        {
+          "id": "left_2",
+          "lateral_m": 0.16521780992212182,
+          "axial_m": 0.008247207915077714,
+          "orientation_rad": 0.049129357420570466,
+          "witness_m": 0.16543397366337317,
+          "latch_deflection_rad": -0.01804356979947424,
+          "checks": {
+            "lateral": false,
+            "axial": false,
+            "orientation": false,
+            "witness": false,
+            "latch_recovered": true
+          },
+          "geometry_pass": false,
+          "linear_uncertainty_m": 0.00012,
+          "angular_uncertainty_rad": 0.001,
+          "lateral_mm": 165.21780992212183,
+          "axial_mm": 8.247207915077714,
+          "orientation_deg": 2.8149048303884205,
+          "witness_mm": 165.43397366337317
+        },
+        {
+          "id": "left_3",
+          "lateral_m": 0.1650697707099267,
+          "axial_m": 0.010644220703092455,
+          "orientation_rad": 0.449252109343898,
+          "witness_m": 0.16544847125008075,
+          "latch_deflection_rad": -0.0003732247730878084,
+          "checks": {
+            "lateral": false,
+            "axial": false,
+            "orientation": false,
+            "witness": false,
+            "latch_recovered": true
+          },
+          "geometry_pass": false,
+          "linear_uncertainty_m": 0.00012,
+          "angular_uncertainty_rad": 0.001,
+          "lateral_mm": 165.0697707099267,
+          "axial_mm": 10.644220703092454,
+          "orientation_deg": 25.740249802755127,
+          "witness_mm": 165.44847125008076
+        },
+        {
+          "id": "right_0",
+          "lateral_m": 0.00023840705578433968,
+          "axial_m": 0.00013987748528887511,
+          "orientation_rad": 0.011251117092714185,
+          "witness_m": 0.00032135420206913864,
+          "latch_deflection_rad": 0.006794748439795309,
+          "checks": {
+            "lateral": true,
+            "axial": true,
+            "orientation": true,
+            "witness": true,
+            "latch_recovered": true
+          },
+          "geometry_pass": true,
+          "linear_uncertainty_m": 0.00012,
+          "angular_uncertainty_rad": 0.001,
+          "lateral_mm": 0.23840705578433968,
+          "axial_mm": 0.13987748528887511,
+          "orientation_deg": 0.6446415242200237,
+          "witness_mm": 0.3213542020691386
+        },
+        {
+          "id": "right_1",
+          "lateral_m": 0.05305129594229315,
+          "axial_m": 0.06766420486672031,
+          "orientation_rad": 1.3959039867857865,
+          "witness_m": 0.08878608145110294,
+          "latch_deflection_rad": -0.0013653458418241185,
+          "checks": {
+            "lateral": false,
+            "axial": false,
+            "orientation": false,
+            "witness": false,
+            "latch_recovered": true
+          },
+          "geometry_pass": false,
+          "linear_uncertainty_m": 0.00012,
+          "angular_uncertainty_rad": 0.001,
+          "lateral_mm": 53.05129594229315,
+          "axial_mm": 67.66420486672031,
+          "orientation_deg": 79.979407048311,
+          "witness_mm": 88.78608145110293
+        },
+        {
+          "id": "right_2",
+          "lateral_m": 0.16521634745263242,
+          "axial_m": 0.008244926208941461,
+          "orientation_rad": 0.04935227427771345,
+          "witness_m": 0.16543248868382623,
+          "latch_deflection_rad": -0.018000733384839724,
+          "checks": {
+            "lateral": false,
+            "axial": false,
+            "orientation": false,
+            "witness": false,
+            "latch_recovered": true
+          },
+          "geometry_pass": false,
+          "linear_uncertainty_m": 0.00012,
+          "angular_uncertainty_rad": 0.001,
+          "lateral_mm": 165.21634745263242,
+          "axial_mm": 8.244926208941461,
+          "orientation_deg": 2.827677025485034,
+          "witness_mm": 165.43248868382622
+        },
+        {
+          "id": "right_3",
+          "lateral_m": 0.16506980083290268,
+          "axial_m": 0.010645808663426903,
+          "orientation_rad": 0.44930360917629997,
+          "witness_m": 0.16544880946303978,
+          "latch_deflection_rad": -0.0003732314187215224,
+          "checks": {
+            "lateral": false,
+            "axial": false,
+            "orientation": false,
+            "witness": false,
+            "latch_recovered": true
+          },
+          "geometry_pass": false,
+          "linear_uncertainty_m": 0.00012,
+          "angular_uncertainty_rad": 0.001,
+          "lateral_mm": 165.06980083290267,
+          "axial_mm": 10.645808663426903,
+          "orientation_deg": 25.74320052579739,
+          "witness_mm": 165.44880946303977
+        }
+      ],
+      "video": {
+        "file": "verification.mp4",
+        "bytes": 431626,
+        "sha256": "6dc757c1bca05c9935d555fa7200614dcf3267dcae671c07ef59132e4c50b5a1",
+        "frames": 145,
+        "fps": 10,
+        "simulated_sample_seconds": 0.4,
+        "source": "This independent verifier replay trace; no candidate log or animation",
+        "scientific_score_source": false
+      }
+    },
+    {
+      "seed": 902,
+      "score": 0.0,
+      "controller_error": null,
+      "controller_exception_traceback": "Traceback (most recent call last):\n  File \"/tmp/o5-worker-t3zueyz6/submission/controller.py\", line 152, in main\n    try:c.run()\n        ^^^^^^^\n  File \"/tmp/o5-worker-t3zueyz6/submission/controller.py\", line 139, in run\n    pp=[self.parts[a+'_'+str(i)] for a in ARMS];self.pick(pp);self.insert(pp)\n                                                              ^^^^^^^^^^^^^^^\n  File \"/tmp/o5-worker-t3zueyz6/submission/controller.py\", line 91, in insert\n    pose=self.measure(p,(np.array(p['target_origin_m'])+[0,0,.048],np.array(p['rotation'])),'mate');self.graspfit(p,pose)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/o5-worker-t3zueyz6/submission/controller.py\", line 68, in measure\n    raise RuntimeError('Cannot measure '+p['id']+' '+stage)\nRuntimeError: Cannot measure left_1 mate\n",
+      "simulation_seconds": 81.89999999999053,
+      "wall_seconds": 2215.614129957743,
+      "io_calls": 796,
+      "full_pass": false,
+      "components": {
+        "assembly_points": 0.0,
+        "retention_points": 0.0,
+        "routing_points": 0.0,
+        "cover_points": 0.0,
+        "rework_points": 0.0,
+        "deployment_points": 0.0
+      },
+      "checkpoint_counts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "phase_pass": {
+        "released": false,
+        "retention": false,
+        "cover": false,
+        "rework": false
+      },
+      "grasp_evidence": {
+        "left_0": {
+          "left": true,
+          "right": false,
+          "moved": true,
+          "verified_lift": true
+        },
+        "left_1": {
+          "left": true,
+          "right": false,
+          "moved": true,
+          "verified_lift": true
+        },
+        "left_2": {
+          "left": false,
+          "right": false,
+          "moved": false,
+          "verified_lift": false
+        },
+        "left_3": {
+          "left": false,
+          "right": false,
+          "moved": true,
+          "verified_lift": false
+        },
+        "right_0": {
+          "left": false,
+          "right": true,
+          "moved": true,
+          "verified_lift": true
+        },
+        "right_1": {
+          "left": false,
+          "right": true,
+          "moved": true,
+          "verified_lift": true
+        },
+        "right_2": {
+          "left": false,
+          "right": false,
+          "moved": false,
+          "verified_lift": false
+        },
+        "right_3": {
+          "left": false,
+          "right": false,
+          "moved": true,
+          "verified_lift": false
+        }
+      },
+      "verified_lifts": [
+        "left_0",
+        "left_1",
+        "right_0",
+        "right_1"
+      ],
+      "final_geometry_pass": [],
+      "peak_mating_force_N": {
+        "left_0": 14.574269410374052,
+        "left_1": 0.0,
+        "left_2": 0.0,
+        "left_3": 0.0,
+        "right_0": 89.9797872961673,
+        "right_1": 0.0,
+        "right_2": 0.0,
+        "right_3": 0.0
+      },
+      "violations": [
+        {
+          "type": "fixture_collision",
+          "time_s": 50.18000000001536,
+          "force_N": 21.02293455904089
+        }
+      ],
+      "final_metrology": [
+        {
+          "id": "left_0",
+          "lateral_m": 0.0003386453768559607,
+          "axial_m": 0.00016968899358249523,
+          "orientation_rad": 0.018844163020844226,
+          "witness_m": 0.00043602406041546026,
+          "latch_deflection_rad": 0.0086745526711061,
+          "checks": {
+            "lateral": true,
+            "axial": true,
+            "orientation": false,
+            "witness": true,
+            "latch_recovered": true
+          },
+          "geometry_pass": false,
+          "linear_uncertainty_m": 0.00012,
+          "angular_uncertainty_rad": 0.001,
+          "lateral_mm": 0.3386453768559607,
+          "axial_mm": 0.16968899358249523,
+          "orientation_deg": 1.07969100955087,
+          "witness_mm": 0.43602406041546027
+        },
+        {
+          "id": "left_1",
+          "lateral_m": 0.05330769825498318,
+          "axial_m": 0.060069283774562554,
+          "orientation_rad": 1.3170635915216193,
+          "witness_m": 0.08396760325336657,
+          "latch_deflection_rad": -0.0028152485835633177,
+          "checks": {
+            "lateral": false,
+            "axial": false,
+            "orientation": false,
+            "witness": false,
+            "latch_recovered": true
+          },
+          "geometry_pass": false,
+          "linear_uncertainty_m": 0.00012,
+          "angular_uncertainty_rad": 0.001,
+          "lateral_mm": 53.30769825498318,
+          "axial_mm": 60.06928377456256,
+          "orientation_deg": 75.46218514453102,
+          "witness_mm": 83.96760325336656
+        },
+        {
+          "id": "left_2",
+          "lateral_m": 0.1652168554604138,
+          "axial_m": 0.00824472517564212,
+          "orientation_rad": 0.04949262449829564,
+          "witness_m": 0.16543281175555136,
+          "latch_deflection_rad": -0.01777764028885037,
+          "checks": {
+            "lateral": false,
+            "axial": false,
+            "orientation": false,
+            "witness": false,
+            "latch_recovered": true
+          },
+          "geometry_pass": false,
+          "linear_uncertainty_m": 0.00012,
+          "angular_uncertainty_rad": 0.001,
+          "lateral_mm": 165.2168554604138,
+          "axial_mm": 8.24472517564212,
+          "orientation_deg": 2.835718500778124,
+          "witness_mm": 165.43281175555137
+        },
+        {
+          "id": "left_3",
+          "lateral_m": 0.16507243723934367,
+          "axial_m": 0.01099568900563419,
+          "orientation_rad": 0.4650158278497602,
+          "witness_m": 0.1654763467367391,
+          "latch_deflection_rad": -0.00039835038803269073,
+          "checks": {
+            "lateral": false,
+            "axial": false,
+            "orientation": false,
+            "witness": false,
+            "latch_recovered": true
+          },
+          "geometry_pass": false,
+          "linear_uncertainty_m": 0.00012,
+          "angular_uncertainty_rad": 0.001,
+          "lateral_mm": 165.07243723934369,
+          "axial_mm": 10.99568900563419,
+          "orientation_deg": 26.643444342573307,
+          "witness_mm": 165.47634673673912
+        },
+        {
+          "id": "right_0",
+          "lateral_m": 0.0007653325841454557,
+          "axial_m": 0.009986675518322219,
+          "orientation_rad": 0.035863977852152465,
+          "witness_m": 0.01013220374330259,
+          "latch_deflection_rad": 0.2778839857395388,
+          "checks": {
+            "lateral": false,
+            "axial": false,
+            "orientation": false,
+            "witness": false,
+            "latch_recovered": false
+          },
+          "geometry_pass": false,
+          "linear_uncertainty_m": 0.00012,
+          "angular_uncertainty_rad": 0.001,
+          "lateral_mm": 0.7653325841454557,
+          "axial_mm": 9.986675518322219,
+          "orientation_deg": 2.054854567478995,
+          "witness_mm": 10.132203743302592
+        },
+        {
+          "id": "right_1",
+          "lateral_m": 0.04901931973087606,
+          "axial_m": 0.07173039715457197,
+          "orientation_rad": 1.752846882064686,
+          "witness_m": 0.09029999918740206,
+          "latch_deflection_rad": -0.020683198399578512,
+          "checks": {
+            "lateral": false,
+            "axial": false,
+            "orientation": false,
+            "witness": false,
+            "latch_recovered": true
+          },
+          "geometry_pass": false,
+          "linear_uncertainty_m": 0.00012,
+          "angular_uncertainty_rad": 0.001,
+          "lateral_mm": 49.01931973087606,
+          "axial_mm": 71.73039715457196,
+          "orientation_deg": 100.43072847497206,
+          "witness_mm": 90.29999918740205
+        },
+        {
+          "id": "right_2",
+          "lateral_m": 0.1652019178184006,
+          "axial_m": 0.008237633009459566,
+          "orientation_rad": 0.04764353656145738,
+          "witness_m": 0.1654168938848112,
+          "latch_deflection_rad": -0.0176069980044796,
+          "checks": {
+            "lateral": false,
+            "axial": false,
+            "orientation": false,
+            "witness": false,
+            "latch_recovered": true
+          },
+          "geometry_pass": false,
+          "linear_uncertainty_m": 0.00012,
+          "angular_uncertainty_rad": 0.001,
+          "lateral_mm": 165.2019178184006,
+          "axial_mm": 8.237633009459566,
+          "orientation_deg": 2.7297735660487383,
+          "witness_mm": 165.4168938848112
+        },
+        {
+          "id": "right_3",
+          "lateral_m": 0.16507221660322302,
+          "axial_m": 0.0109793618357924,
+          "orientation_rad": 0.46417707930763075,
+          "witness_m": 0.16547510924403547,
+          "latch_deflection_rad": -0.00039727685153438734,
+          "checks": {
+            "lateral": false,
+            "axial": false,
+            "orientation": false,
+            "witness": false,
+            "latch_recovered": true
+          },
+          "geometry_pass": false,
+          "linear_uncertainty_m": 0.00012,
+          "angular_uncertainty_rad": 0.001,
+          "lateral_mm": 165.072216603223,
+          "axial_mm": 10.9793618357924,
+          "orientation_deg": 26.595387591036538,
+          "witness_mm": 165.47510924403548
+        }
+      ],
+      "video": {
+        "file": "verification.mp4",
+        "bytes": 524283,
+        "sha256": "fc888b1548bdffe69968c4cca0100558bd70192a388297592c3e919ab4b7b41c",
+        "frames": 206,
+        "fps": 10,
+        "simulated_sample_seconds": 0.4,
+        "source": "This independent verifier replay trace; no candidate log or animation",
+        "scientific_score_source": false
+      }
+    }
+  ],
+  "isolation_transport": "Pinned verifier rootfs, isolated mount/PID/net/IPC/UTS namespaces and chroot, cgroup 4 CPU/8 GiB/128 tasks; OCI startup separately failed.",
+  "hardware_validation": "not_performed"
+}
