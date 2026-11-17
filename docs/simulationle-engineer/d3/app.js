@@ -9,6 +9,8 @@ let current=ids.includes(location.hash.slice(1).split('/')[0])?location.hash.sli
 let filter='all', query='', observer;
 const states={done:'已交付',partial:'部分完成',missing:'尚未完成',pending:'等待测试'};
 const testedCount=DATA.cases.filter(c=>c.statusType!=='pending').length;
+$('.overview-stats>div:first-child strong').textContent=String(DATA.cases.length).padStart(2,'0');
+$('.filter[data-filter="all"] span').textContent=DATA.cases.length;
 $('.overview-stats>div:nth-child(2) strong').textContent=String(testedCount).padStart(2,'0');
 $('.overview-stats>div:nth-child(2)>span').textContent='已启动模型测试';
 $('.filter[data-filter="tested"] span').textContent=testedCount;
@@ -22,12 +24,16 @@ const icon=(id)=>{
     shape=`<path d="M25 72l76-18 36 18-77 19zM25 72v6l35 19 77-19v-6M60 91v6"/><path d="M38 71l65-14m-55 20 65-15m-53 21 65-15" opacity=".4"/><path d="M62 6h26v13l-7 8H69l-7-8zM75 27v36"/><path d="M71 27l4 36 4-36" fill="currentColor" opacity=".14"/><path d="M71 64h8m-5-5 2 10m-7-7 12 6"/><path d="M104 15h34m-6-4 6 4-6 4M18 43h21m-6-4 6 4-6 4"/><circle cx="75" cy="64" r="8" opacity=".25"/>`;
   }else if(id==='ahead'){
     shape=`<path d="M51 92V52l7-9V13h44v30l7 9v40M58 32h44m-44 6h44M64 13v20m8-20v20m8-20v20m8-20v20m8-20v20"/><path d="M64 75c-14-18 16-21 13-39 20 18 30 30 13 42-8 7-18 4-26-3z"/><path d="M75 77c-4-10 6-12 7-23 11 14 9 20 2 23" opacity=".5"/><path d="M22 57h24m-6-4 6 4-6 4m74-4h24m-6-4 6 4-6 4M51 85H28m81 0h23"/><path d="M80 3v10M80 85v13" stroke-dasharray="2 4"/>`;
+  }else if(id==='oc6'){
+    shape=`<path d="M16 70q12-9 24 0t24 0t24 0t24 0t24 0M16 85q12-9 24 0t24 0t24 0t24 0t24 0" opacity=".4"/><path d="M47 56l34-23 33 23-33 22zM47 56v22m67-22v22M81 33v22"/><ellipse cx="47" cy="61" rx="11" ry="5"/><ellipse cx="114" cy="61" rx="11" ry="5"/><ellipse cx="81" cy="36" rx="11" ry="5"/><path d="M36 61V42q11-8 22 0v19m45 0V42q11-8 22 0v19M70 36V17q11-8 22 0v19M36 75h23m44 0h23M81 17V2"/>`;
+  }else if(id==='rotor67'){
+    shape=`<ellipse cx="81" cy="52" rx="35" ry="33"/><ellipse cx="81" cy="52" rx="12" ry="11"/>${Array.from({length:11},(_,i)=>`<path d="M80 39q-6-19 6-20l6 20" transform="rotate(${i*360/11} 81 52)"/>`).join('')}<path d="M7 52h30m-7-5 7 5-7 5m95-5h29m-7-5 7 5-7 5M45 10h72M45 94h72"/>`;
   }else{
     shape=`<rect x="22" y="14" width="116" height="72" rx="7"/><rect x="31" y="22" width="10" height="56" rx="4"/><rect x="119" y="22" width="10" height="56" rx="4"/>${Array.from({length:8},(_,i)=>`<path d="M41 ${28+i*6}h78"/>`).join('')}<path d="M80 25v50" stroke-dasharray="3 3" opacity=".5"/><circle cx="36" cy="49" r="4"/><circle cx="124" cy="49" r="4"/><path d="M1 49h29m-6-4 6 4-6 4m105-4h24m-6-4 6 4-6 4"/>${[56,78,100].map(x=>[36,60].map(y=>`<rect x="${x}" y="${y}" width="12" height="11" rx="1" fill="currentColor" opacity=".13" stroke="none"/>`).join('')).join('')}`;
   }
   return `<svg viewBox="0 0 160 100" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${shape}</svg>`;
 };
-$('#domain-diagram').innerHTML=DATA.cases.map((c,i)=>`<div class="domain-tile" style="color:${c.color}">${icon(c.id)}<div><strong>${['水力机械','激光制造','氢能燃烧','液冷热管理'][i]}</strong><small>${['HYDRODYNAMICS','PHASE CHANGE','REACTING FLOW','THERMAL SYSTEM'][i]}</small></div></div>`).join('');
+$('#domain-diagram').innerHTML=DATA.cases.map((c,i)=>`<div class="domain-tile" style="color:${c.color}">${icon(c.id)}<div><strong>${c.domainLabel||['水力机械','激光制造','氢能燃烧','液冷热管理'][i]}</strong><small>${c.domainEnglish||['HYDRODYNAMICS','PHASE CHANGE','REACTING FLOW','THERMAL SYSTEM'][i]}</small></div></div>`).join('');
 
 function matches(c){return (filter==='all'||(filter==='pending'?c.statusType==='pending':c.statusType!=='pending'))&&(!query||JSON.stringify([c.short,c.title,c.domain,c.tags,c.environment]).toLowerCase().includes(query));}
 function renderCards(){
@@ -62,6 +68,11 @@ function renderCase(){
   if(c.id==='coldplate'&&c.runSummary){
     $('.environment-footer').textContent=c.runSummary;
     $('#results .section-label h3').textContent='模型交付 · 可视化证据';
+  }
+  if(c.detailPage){
+    const link=document.createElement('a');link.href=c.detailPage;link.className='detail-page-link';link.textContent='打开独立展示页 · 题目 / 交付 / 验收缺口 ↗';$('.case-heading>div').append(link);
+    $('.environment-footer').textContent=c.runSummary;
+    $('#inputs .evidence-note').insertAdjacentHTML('afterend',`<div class="link-row"><a class="doc-button" href="${c.docs.sources}" download>来源与许可 ↓</a><a class="doc-button" href="${c.docs.protocol}" download>验证协议 ↓</a><a class="doc-button" href="files/${c.id}-task-and-contract.zip" download>题面与验收参数包 ↓</a></div>`);
   }
   renderVisuals(c);bindContent();observeSections();
 }
@@ -100,6 +111,7 @@ function trajectory(t,points){
 }
 function renderVisuals(c){
   const node=$('#case-visuals');
+  if(c.visuals){window.mountRecentEvidence(node,c);return;}
   if(c.id==='francis'){
     node.innerHTML=`<div class="chart-panel"><div class="chart-top"><div><h4>导叶关闭轨迹：合同基准与模型候选</h4><p>三次 Hermite 插值 · 可拖动时间查看角度</p></div><span class="state done">运动学核查通过</span></div><div class="chart-legend">${legend('合同 smoothstep 基准','#aeb8a4')}${legend('模型候选','#087b92')}</div><div class="chart-content" id="trajectory-chart"></div><div class="slider-row"><label for="trajectory-time">时间</label><input id="trajectory-time" type="range" min="0" max="10" step="0.05" value="5" aria-label="查看轨迹时间"><output id="trajectory-readout"></output></div>${caption('由模型提交的 trajectory.csv 重绘。候选降低峰值角速度约 17.35%；实际压力目标 J 和水力约束未验证。','evidence/francis-trajectory.csv')}</div>
       <div class="chart-panel"><div class="chart-top"><div><h4>尾水管 PIV：实验均值与分区 CFD 对照</h4><p>每个点是一项速度分量，虚线为预测 = 测量</p></div><label><span style="font-size:10px">工况 </span><select class="select" id="piv-operation" aria-label="选择 PIV 工况"><option>BEP</option><option>PL</option></select></label></div><div class="chart-legend">${legend('U 分量','#087b92')}${legend('V 分量','#c27c43')}</div><div class="chart-content" id="piv-chart"></div>${caption('源自 chain_PIV_comparison_BEP / PL.csv。每工况 74 点、148 分量；该单向分区模型缺少下游压力反馈，图中对照不代表可信全机基线。','evidence/francis-chain_PIV_comparison_BEP.csv')}</div>

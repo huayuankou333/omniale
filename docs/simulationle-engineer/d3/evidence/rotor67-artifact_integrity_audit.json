@@ -1,0 +1,83 @@
+{
+  "reviewed_at_utc": "2026-11-17T07:47:55.239016+00:00",
+  "artifact_count": 1198,
+  "missing_artifacts": [],
+  "hash_or_size_mismatches": [],
+  "all_listed_artifacts_match": true,
+  "total_files": 1222,
+  "total_bytes": 496639478,
+  "run_manifest_records": 1190,
+  "run_status_counts": {
+    "not_run": 1186,
+    "completed": 3,
+    "failed": 1
+  },
+  "validation_records": 78,
+  "validation_status_counts": {
+    "failed": 78
+  },
+  "decision": {
+    "decision": "unresolved",
+    "selected_design": "A",
+    "scope": "D3 engineering release remains unresolved",
+    "candidate_decisions": {
+      "A": "unresolved; frozen selected by geometry screen only",
+      "B": "unresolved; not selected",
+      "C": "reject delivered CAD under absolute <=3%mass/inertia change requirement; not design-space infeasibility"
+    },
+    "reasons": [
+      "PE/NS actual coarse 3D viscous compressible MRF runs are diagnostic; neither meets the complete validation protocol.",
+      "PE target flow mismatch, energy and angular-momentum closure failures; NS later FPE; unknown numerical/geometry/model U95.",
+      "All 660 fixed mission/corner/distorted CFD runs not_run; no complete map, full-annulus dynamic stability, distortion or paired continuous search.",
+      "A selected by geometry screening only; no aerodynamic efficiency gain or robust lower bound is established.",
+      "Reimported CAD differs from in-memory morph properties; C violates absolute mass/inertia change constraints as delivered. Exact thickness/root/tip/tool access constraints unresolved for A/B.",
+      "Structure uses actual baseline metal and A metal, baseline pressure snapshot with resultant correction, fixed support and linear elasticity; A loads are baseline-load sensitivity, not A CFD.",
+      "Cold inverse, deformed clearance, prestressed modes, forced response, fatigue and 396 aeroelastic campaigns not_run.",
+      "No finite U95 is assigned where unquantified. No accept, no proof that the design space is infeasible, no engineering score."
+    ],
+    "acceptance_gates_all_passed": false,
+    "design_space_infeasible_proven": false,
+    "physics_verified": false,
+    "engineering_score": null
+  },
+  "delivery_format_check": {
+    "schema_ok": true,
+    "errors": [],
+    "warnings": [
+      "File/hash coverage does not authenticate solver execution or physical adequacy. Expert review required."
+    ],
+    "fixed_run_records_present": 660,
+    "validation_arithmetic": [],
+    "engineering_score": null,
+    "physics_verified": false
+  },
+  "original_final_inventory": {
+    "utc": "2026-11-17T05:54:07.667259+00:00",
+    "decision": "unresolved",
+    "selected_design": "A",
+    "submission_sha256": "0b10131b846c045accda0ad15bd8fd39c8bd2b72d13ba419587ee44fc8e879c2",
+    "artifact_count": 1198,
+    "hash_mismatches": [],
+    "status_counts": {
+      "completed": 3,
+      "failed": 1,
+      "not_run": 1186
+    },
+    "schema_ok": true,
+    "physics_verified": false,
+    "engineering_score": null,
+    "process_snapshot": "    PID STAT     ELAPSED COMMAND\n      1 Ss         57:19 bwrap\n      2 Sl         57:19 python3\n    568 Ss         00:10 bash\n    587 S          00:01 python\n    588 R          00:00 ps\n",
+    "submission_bytes": 496638587,
+    "finished_critical_jobs": {
+      "structure_baseline_exit": "0",
+      "structure_A_exit": "0",
+      "NS_failed_stage3_exit": "136"
+    },
+    "note": "No CFD/FEM background process remains; not_run requirements are not claimed complete."
+  },
+  "executor_state": "MainPID=0\nResult=timeout\nActiveState=failed",
+  "executor_query_exit": 0,
+  "audit_scope": "File integrity and reported completion audit only. Solver not rerun, no engineering score or physical adequacy certification.",
+  "engineering_score": null,
+  "reference_solution": null
+}

@@ -1,0 +1,114 @@
+{
+  "total": 100,
+  "reference_required": false,
+  "expert_scoring_pending": true,
+  "criteria": [
+    {
+      "id": "A",
+      "name": "几何、数据与实验验证",
+      "points": 18,
+      "items": {
+        "几何单位/间隙/坐标与数据审计": 4,
+        "PE校准与公共NS锁定验证": 8,
+        "径向/局部流场与平均定义": 6
+      }
+    },
+    {
+      "id": "B",
+      "name": "多工况三维气动与机理",
+      "points": 20,
+      "items": {
+        "真实含叶隙可压缩黏性三维求解": 6,
+        "五转速地图/阻塞与损失机理": 7,
+        "三方案及配对工况性能": 7
+      }
+    },
+    {
+      "id": "C",
+      "name": "失速、畸变与非定常",
+      "points": 18,
+      "items": {
+        "全周失稳括区/扰动与时间尺度": 8,
+        "固定机匣畸变与全周响应": 6,
+        "失稳不确定度及模型交叉核验": 4
+      }
+    },
+    {
+      "id": "D",
+      "name": "可制造设计与鲁棒决策",
+      "points": 16,
+      "items": {
+        "三套不同设计及CAD/制造约束": 5,
+        "576角点与连续不利搜索": 6,
+        "保守收益与释放/拒绝证据": 5
+      }
+    },
+    {
+      "id": "E",
+      "name": "强度、间隙、振动与气弹",
+      "points": 14,
+      "items": {
+        "真实材料/压力映射/离心热应力": 5,
+        "冷态反求/变形间隙/模态": 4,
+        "动态疲劳代理与气弹稳定": 5
+      }
+    },
+    {
+      "id": "F",
+      "name": "数值与模型不确定度",
+      "points": 9,
+      "items": {
+        "网格/时间/域/周期域独立收敛": 4,
+        "质量能量转矩闭合及误差传播": 5
+      }
+    },
+    {
+      "id": "G",
+      "name": "可重放证据",
+      "points": 5,
+      "items": {
+        "原始求解证据/版本/哈希/重放": 3,
+        "报告可视化与结论边界": 2
+      }
+    }
+  ],
+  "caps": [
+    {
+      "id": "text_only",
+      "max_score": 10,
+      "trigger": "No actually executed numerical engineering model with nonempty original solver outputs."
+    },
+    {
+      "id": "no_executed_3D_compressible_viscous_rotor",
+      "max_score": 30,
+      "trigger": "No completed real 3D compressible viscous rotating blade-passage calculation including the physical tip gap, usable mesh/fields/residual/flux histories. A converged but experimentally inaccurate run does NOT trigger this cap; it loses validation points and may trigger the next cap."
+    },
+    {
+      "id": "no_qualified_public_NS_validation",
+      "max_score": 59,
+      "trigger": "The locked NS performance and radial validation gates in protocol are not all met with bounded numerical uncertainty."
+    },
+    {
+      "id": "no_full_annulus_unsteady_stall_evidence",
+      "max_score": 69,
+      "trigger": "No credible full-annulus multi-seed stable/unstable bracket at N100; steady nonconvergence or a one-passage transient is insufficient."
+    },
+    {
+      "id": "no_blade_load_structural_analysis",
+      "max_score": 79,
+      "trigger": "No actually executed structural analysis with centrifugal force plus mapped nonuniform aerodynamic blade loading."
+    }
+  ],
+  "cap_rule": "Score evidence item by item, then apply minimum triggered ceiling; no discretionary redefinition of trigger after seeing model. More than one failure does not multiply penalties.",
+  "evidence_gates": [
+    "NASA baseline validation",
+    "qualified 3D viscous compressor flow",
+    "full-annulus stability and distortion",
+    "robust paired comparison",
+    "metal geometry and structure",
+    "numerical/model uncertainty",
+    "replayable results"
+  ],
+  "acceptance": ">=80 plus all evidence gates for complete engineering assessment; candidate accept additionally requires all constraints. Evidence-rich reject may receive high score; unresolved is not proof of infeasible design space.",
+  "resource_protocol": "CPU/memory/wall errors belong to evaluation validity, not arbitrary physics score deductions. No strict equal-compute ranking if kernel limits were not demonstrated."
+}

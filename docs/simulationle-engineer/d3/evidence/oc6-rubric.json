@@ -1,0 +1,94 @@
+{
+  "total": 100,
+  "reference_required": false,
+  "expert_scoring_pending": true,
+  "criteria": [
+    {
+      "id": "A",
+      "name": "数据、尺度、坐标与公开锁定验证",
+      "points": 15,
+      "items": {
+        "来源与尺度审计": 4,
+        "波浪标定及归一化": 4,
+        "18项锁定幅值与不确定度": 7
+      }
+    },
+    {
+      "id": "B",
+      "name": "差频载荷机理与三维求解",
+      "points": 20,
+      "items": {
+        "5组实验构型真实VOF与压力载荷": 8,
+        "自由长波/反射分离": 5,
+        "全船体30组固定CFD及QTF适用域": 7
+      }
+    },
+    {
+      "id": "C",
+      "name": "浮体、系泊和尺度外推",
+      "points": 20,
+      "items": {
+        "质量静平衡恢复力": 5,
+        "辐射记忆与非线性动态系泊": 5,
+        "自由衰减和动态CFD交叉核验": 6,
+        "288组3h海况与可信统计": 4
+      }
+    },
+    {
+      "id": "D",
+      "name": "可制造改造、鲁棒性与决策",
+      "points": 20,
+      "items": {
+        "3套实质不同的候选与CAD": 4,
+        "768角点及连续不利搜索": 6,
+        "收益区间及拒绝/通过证据": 6,
+        "安装维护与风险关闭计划": 4
+      }
+    },
+    {
+      "id": "E",
+      "name": "改造结构强度与局部载荷",
+      "points": 10,
+      "items": {
+        "真实材料/净厚度/载荷传递FE": 5,
+        "屈服屈曲连接与疲劳代理": 5
+      }
+    },
+    {
+      "id": "F",
+      "name": "数值与模型不确定度",
+      "points": 10,
+      "items": {
+        "网格/时间/域/线段收敛": 5,
+        "质量动量闭合与不确定度传播": 5
+      }
+    },
+    {
+      "id": "G",
+      "name": "可重放交付",
+      "points": 5,
+      "items": {
+        "原始场/日志/版本/哈希/重跑": 3,
+        "报告和实测/推演边界": 2
+      }
+    }
+  ],
+  "caps": {
+    "text_only": 10,
+    "no_valid_3D_free_surface_solver": 30,
+    "no_independent_amplitude_validation": 59,
+    "no_dynamic_mooring_coupling": 59,
+    "no_structural_evidence": 79
+  },
+  "evidence_acceptance": "At least 80/100 AND all evidence gates passed means complete engineering assessment. Candidate release additionally requires all engineering constraints. A substantiated reject can receive high score; unresolved must not be called proven infeasible.",
+  "evidence_gates": [
+    "published validation",
+    "free-surface CFD",
+    "coupled moorings",
+    "numerical uncertainty",
+    "geometry and structure",
+    "robust comparison",
+    "replayable evidence"
+  ],
+  "score_note": "Installation, input CAD and copied published targets are not simulated results. Award partial credit for actually completed auditable work; no hidden reference or empty-file credit."
+}

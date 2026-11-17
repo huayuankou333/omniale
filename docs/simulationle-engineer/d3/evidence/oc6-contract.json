@@ -1,0 +1,80 @@
+{
+  "case_id": "SLE_E_D3_OC6_v1",
+  "schema_version": "1.0",
+  "title": "OC6：半潜式平台差频波浪载荷与减载改造",
+  "task_type": "adapted experimental anchor + original engineering design",
+  "reference_solution": null,
+  "expert_annotation_status": "pending",
+  "validation_mode": "published amplitude tables; no raw experimental time histories; all targets public",
+  "counts": {
+    "experimental_wave_cases": 5,
+    "experimental_observables": 30,
+    "calibration_observables": 12,
+    "locked_public_validation_observables": 18,
+    "fixed_full_hull_CFD_pairs": 15,
+    "fixed_full_hull_CFD_runs": 30,
+    "nominal_coupled_runs": 288,
+    "robust_coupled_runs": 768
+  },
+  "required_cases": [
+    "inputs/required_nominal_runs.csv",
+    "inputs/required_robust_runs.csv",
+    "inputs/required_fixed_cfd_runs.csv"
+  ],
+  "experimental_validation": {
+    "model_scale": 50,
+    "U_num_relative_cap_diff": 0.15,
+    "U_num_relative_cap_primary": 0.1,
+    "absolute_relative_error_cap_diff": 0.25,
+    "absolute_relative_error_cap_primary": 0.15,
+    "interval_rule": "abs(pred-target) <= sqrt(U_exp_published^2 + U_num_95^2); report all 30; all 18 locked public observables must pass both interval and relative limits",
+    "calibration_rule": "B1/B4 only. Freeze solver/model parameters and commit/hash before evaluating B2/B3/B5; public procedural holdout, not secret or blinded data.",
+    "complex_phase_reference_available": false
+  },
+  "numerical_quality": {
+    "wave_amplitude_error_max": 0.05,
+    "primary_reflection_coefficient_max": 0.05,
+    "LF_spurious_free_wave_relative_to_a1a2_over_L_max": 0.2,
+    "mass_imbalance_relative_mean_abs_inlet_flux_max": 0.005,
+    "force_integration_vs_momentum_balance_rel_max": 0.05,
+    "spatial_levels": 3,
+    "temporal_levels": 3,
+    "refinement_ratio_min": 1.3,
+    "stable_block_amplitude_change_max": 0.03,
+    "note": "Limits are original benchmark acceptance rules. Conservation diagnostics must use signed storage/flux terms and exclude near-zero denominator pathologies."
+  },
+  "engineering_acceptance": {
+    "LF_band_Hz": [
+      0.005,
+      0.05
+    ],
+    "WF_band_Hz": [
+      0.05,
+      0.3
+    ],
+    "min_LF_horizontal_rms_reduction": 0.2,
+    "min_LF_pitch_rms_reduction": 0.2,
+    "min_worst_line_DEL_reduction": 0.1,
+    "max_WF_heave_rms_increase": 0.05,
+    "max_dynamic_line_peak_increase": 0.05,
+    "absolute_horizontal_offset_sample_p99_max_m": 20,
+    "absolute_pitch_sample_max_deg": 8,
+    "absolute_line_tension_sample_max_N": 4500000,
+    "paired_ratio_rule": "For every nominal sea-heading-thrust group, one-sided 95% upper confidence bound from paired seeds satisfies ratios 0.80/0.80/0.90/1.05/1.05. See EVALUATION_PROTOCOL for estimators.",
+    "robust_rule": "Each U-corner group and continuous adverse search must satisfy the same limits with conservative sampling/model/numerical uncertainty. Three seeds is minimum; add seeds if intervals inconclusive.",
+    "fatigue_metric": "rainflow tension range, m=3, equivalent frequency 1 Hz; DEL is a comparative proxy, not chain service-life certification",
+    "valid_decisions": [
+      "accept",
+      "reject",
+      "unresolved"
+    ],
+    "feasibility_known": false
+  },
+  "automatic_checker_scope": "structure, coverage, hashes, basic arithmetic only; physics_verified always false; no automatic engineering score",
+  "future_model_test": {
+    "started": false,
+    "default_wall_limit_s": 7200,
+    "note": "Past user preference retained for future evaluations; not started by construction; runtime limit does not reduce requirements."
+  },
+  "threshold_origin": "Original client acceptance targets; not IEC/DNV/ISO/ASME certification claims"
+}
