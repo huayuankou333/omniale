@@ -1,0 +1,84 @@
+{
+  "pass": true,
+  "reviewer": "Codex inspection of retained author-origin evidence plus independently executed Docker decode/DSP checks; not a human artistic review",
+  "checks": {
+    "author_faq_offers_all_music_under_cc_by_4": true,
+    "canonical_cc_deed_allows_adaptation": true,
+    "music_identity_count": true,
+    "picture_credit": true,
+    "Sergio's Magic Dustbin: author_catalog_identity": true,
+    "Sergio's Magic Dustbin: original_copy_and_hash": true,
+    "Sergio's Magic Dustbin: attribution_and_changes": true,
+    "Evening: author_catalog_identity": true,
+    "Evening: original_copy_and_hash": true,
+    "Evening: attribution_and_changes": true,
+    "DSP project/media/Sergio_EQ.wav": true,
+    "DSP project/media/Sergio_Cave.wav": true,
+    "DSP project/media/Evening_EQ.wav": true,
+    "all_native_music_references_trace_to_verified_downloads": true
+  },
+  "music": [
+    {
+      "title": "Sergio's Magic Dustbin",
+      "isrc": "USUAN2300012",
+      "download_id": "asset-c7732bf0e41a",
+      "sha256": "c7732bf0e41a419208359132d3f105f2e542157f7e5eeb52d26b722015c6140f",
+      "catalog_request": "http-014",
+      "license_faq_request": "http-009",
+      "license": "CC BY 4.0"
+    },
+    {
+      "title": "Evening",
+      "isrc": "USUAN2300002",
+      "download_id": "asset-45e91c3a804b",
+      "sha256": "45e91c3a804bab0a27f54323a34b3a404cfb172ccace169518384afdb51c311a",
+      "catalog_request": "http-014",
+      "license_faq_request": "http-009",
+      "license": "CC BY 4.0"
+    }
+  ],
+  "verified_audio_paths": [
+    "project/media/Evening_EQ.wav",
+    "project/media/Evening_decoded.wav",
+    "project/media/Sergio_Cave.wav",
+    "project/media/Sergio_EQ.wav",
+    "project/media/Sergio_decoded.wav",
+    "project/originals/Evening.mp3",
+    "project/originals/Sergios_Magic_Dustbin.mp3"
+  ],
+  "native_audio_references": [
+    "project/media/Evening_EQ.wav",
+    "project/media/Sergio_Cave.wav",
+    "project/media/Sergio_EQ.wav"
+  ],
+  "independent_transform_reproduction": [
+    {
+      "source": "project/media/Sergio_decoded.wav",
+      "target": "project/media/Sergio_EQ.wav",
+      "filter": "highpass=f=32:p=2,highshelf=f=6500:g=-1.2",
+      "relative_rms_error": 0.0,
+      "pass": true
+    },
+    {
+      "source": "project/media/Sergio_EQ.wav",
+      "target": "project/media/Sergio_Cave.wav",
+      "filter": "lowpass=f=1900:p=2,stereotools=mlev=1:slev=0.7",
+      "relative_rms_error": 0.0,
+      "pass": true
+    },
+    {
+      "source": "project/media/Evening_decoded.wav",
+      "target": "project/media/Evening_EQ.wav",
+      "filter": "highpass=f=38:p=2",
+      "relative_rms_error": 0.0,
+      "pass": true
+    }
+  ],
+  "evidence_request_ids": [
+    "http-009",
+    "http-014",
+    "http-017",
+    "http-020"
+  ],
+  "notes": "Author catalog identifies these recordings; FAQ explicitly applies Attribution4.0 to all his music; original files, changes and credits retained. Gate only, no content points."
+}

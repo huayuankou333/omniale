@@ -1,0 +1,38 @@
+{
+  "pass": true,
+  "native_direct_comparison_pass": false,
+  "documented_pipeline": "REAPER native project render followed by the submitted offline master.sh with explicit arguments from its usage comment",
+  "results": {
+    "long": {
+      "command": [
+        "sh",
+        "/submission/project/master.sh",
+        "/native/render-0/project-0.wav",
+        "/out/long-independent-printed.wav",
+        "128",
+        "127.65"
+      ],
+      "exit_code": 0,
+      "submitted_script_sha256": "5f516f3d038d3007df80121118de539bc1b56daf4c0b80293b6c30bf9be2f4fc",
+      "relative_rms_error": 0.004895867826103145,
+      "duration_error_seconds": 0.0,
+      "passed": true
+    },
+    "short": {
+      "command": [
+        "sh",
+        "/submission/project/master.sh",
+        "/native/render-1/project-1.wav",
+        "/out/short-independent-printed.wav",
+        "32",
+        "31.65"
+      ],
+      "exit_code": 0,
+      "submitted_script_sha256": "5f516f3d038d3007df80121118de539bc1b56daf4c0b80293b6c30bf9be2f4fc",
+      "relative_rms_error": 0.007663007241096023,
+      "duration_error_seconds": 0.0,
+      "passed": true
+    }
+  },
+  "policy": "Task requires reproducible final WAV and self-contained editable native project. Documented deterministic final print step is tested rather than silently ignored. No project edits or repairs applied."
+}

@@ -1,0 +1,45 @@
+{
+  "label": "control-Q14",
+  "model": "qwen3.5-omni-plus-2026-03-15",
+  "fingerprint": "da2c14afa770db305cd1be015db5ecfbdafa1d8510c1ecef976ae66781978200",
+  "media": [
+    {
+      "name": "Q14",
+      "input_sha256": "9cd625c2cb0b986a8bcdc957e03de6978c5d2afb71fc01de5a857a9a6542aef1",
+      "video_sha256": "ff4abc0698bd9e68ae164b9340be851bd2ecc5b0991b1c492ac7d015dc9790a9",
+      "audio_sha256": "ae69f93c2f3b279322149a763123e4a9e266c9c8da1a492503b3a77d3ded6042"
+    }
+  ],
+  "prompt": "Listen to the explicit audio and observe the synchronized silent picture. Report only gross audio facts. silent_ranges means near-total absence of sound lasting at least 2 seconds, not gaps between notes. If you cannot hear the explicit audio say so. Return ONLY JSON: {\"heard_audio\":boolean,\"music_present\":boolean,\"duration_seconds\":number,\"silent_ranges\":[{\"start\":number,\"end\":number}],\"audible_description\":string,\"uncertainty\":string}. All-zero audio may have heard_audio=false. Do not judge artistic quality.\nEach named film has a silent visual stream immediately followed by its synchronized explicit audio; both start at t=0. Listen to that audio. Never infer audio from visible actions. Video sampled at 4 fps; do not claim frame-accurate sync.",
+  "judgment": {
+    "heard_audio": true,
+    "music_present": true,
+    "duration_seconds": 20.0,
+    "silent_ranges": [
+      {
+        "start": 9.5,
+        "end": 14.5
+      }
+    ],
+    "audible_description": "An instrumental music track with a steady beat and a prominent bassline plays for the first 9.5 seconds. The audio then becomes silent for approximately 5 seconds. The same music track resumes at 14.5 seconds and continues until the end of the clip.",
+    "uncertainty": "none"
+  },
+  "response_text": "```json\n{\n  \"heard_audio\": true,\n  \"music_present\": true,\n  \"duration_seconds\": 20.0,\n  \"silent_ranges\": [\n    {\n      \"start\": 9.5,\n      \"end\": 14.5\n    }\n  ],\n  \"audible_description\": \"An instrumental music track with a steady beat and a prominent bassline plays for the first 9.5 seconds. The audio then becomes silent for approximately 5 seconds. The same music track resumes at 14.5 seconds and continues until the end of the clip.\",\n  \"uncertainty\": \"none\"\n}\n```",
+  "seconds": 4.116751432418823,
+  "usage": {
+    "prompt_tokens": 9125,
+    "completion_tokens": 145,
+    "total_tokens": 9270,
+    "completion_tokens_details": {
+      "text_tokens": 145
+    },
+    "prompt_tokens_details": {
+      "video_tokens": 8802,
+      "audio_tokens": 142,
+      "text_tokens": 181
+    }
+  },
+  "transport_errors": [],
+  "formal_score": null,
+  "expert_calibrated": false
+}

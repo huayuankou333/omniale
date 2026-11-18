@@ -1,0 +1,25 @@
+{
+  "registered_at": 1794988299.8836007,
+  "model": "gpt-4o-audio-preview",
+  "route": "Native audio input only; no image/video input is claimed. Fixed visual-event descriptions are text context, not model-created production notes.",
+  "status": "automated_auxiliary_diagnostic_not_human_expert",
+  "previous_failures_preserved": [
+    "evaluation/judge/qualification.json",
+    "evaluation/independent-review-20261118/qualification.json"
+  ],
+  "route_change_reason": "Long-form audiovisual judges mislocalized known silence. Segment files fix boundaries externally; audio-only independent model avoids this localization dependency.",
+  "rubric_sha256": "53769a78308da71beec8b1855150e5bcc98d28c7c48b25ef1adb5e15c3fa3e48",
+  "events_sha256": "3f41d58fd66f65a151f9d899288015d3b4d6d90cdfc7b0216172b43fd0898f55",
+  "controls": "Three 5s music samples from the preregistered controls: intact music, all zero, intact music from after gap. Presence and plausible non-speech description must be correct. No duration inferred for silence.",
+  "request_cap": 30,
+  "retries": "Transport failures at most2; no content resampling or changed answers. Stop if control fails.",
+  "labels": {
+    "P62": "sol",
+    "R17": "deepseek",
+    "B49": "sol straight lay",
+    "K83": "deepseek straight lay"
+  },
+  "score_scope": "Original 35/40/15/10 weighted rubric. Audio-only judgment of music against described visual events; does not independently observe visual acting or precise sync. Full expert/formal score remains null.",
+  "baseline": "Frozen first-download straight lay; same audio-only criteria and event descriptions as candidates.",
+  "formal_score": null
+}

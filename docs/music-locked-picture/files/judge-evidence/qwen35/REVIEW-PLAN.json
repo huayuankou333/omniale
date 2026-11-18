@@ -1,0 +1,55 @@
+{
+  "registered_at": 1794987809.9076889,
+  "evaluator": "qwen3.5-omni-plus-2026-03-15",
+  "route": "explicit stereo audio plus synchronized silent 4fps picture, full duration",
+  "purpose": "Automated auxiliary diagnostic scores, never a human expert/formal score.",
+  "previous_failed_evaluator": "qwen3.8-omni-flash",
+  "previous_qualification": "evaluation/judge/qualification.json",
+  "previous_failure_preserved": true,
+  "reason_for_distinct_evaluator": "User requested evaluation; independently available pinned model, not another draw from failed evaluator.",
+  "rubric_sha256": "53769a78308da71beec8b1855150e5bcc98d28c7c48b25ef1adb5e15c3fa3e48",
+  "events_sha256": "3f41d58fd66f65a151f9d899288015d3b4d6d90cdfc7b0216172b43fd0898f55",
+  "unchanged_rubric": true,
+  "control_ids": [
+    "C71",
+    "Q14",
+    "S09"
+  ],
+  "expected": {
+    "C71": {
+      "music": true,
+      "silence": []
+    },
+    "Q14": {
+      "music": true,
+      "silence": [
+        [
+          6,
+          11
+        ]
+      ]
+    },
+    "S09": {
+      "music": false,
+      "silence": [
+        [
+          0,
+          20
+        ]
+      ]
+    }
+  },
+  "qualification": "All presence and duration checks correct, gap boundaries within1.5s, no invented >=2s gap in C71, >=17s silence coverage for S09; same rule as original.",
+  "failure_policy": "No content resampling. If any control fails, no artistic numerical scores from this evaluator. Transport failures max2 attempts.",
+  "request_cap": 26,
+  "blind_labels": {
+    "P62": "sol",
+    "R17": "deepseek",
+    "B49": "sol straight lay",
+    "K83": "deepseek straight lay"
+  },
+  "baseline": "Previously frozen first-download continuous comparison; no deliberate bad selection.",
+  "scoring": "Original 35/40/15/10 rubric, long60% short40%; objective technical6 points, subjective artifact4. Native/source gates separately.",
+  "formal_score": null,
+  "expert_panel_score": false
+}

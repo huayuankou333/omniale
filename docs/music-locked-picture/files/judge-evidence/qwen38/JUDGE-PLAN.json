@@ -1,0 +1,46 @@
+{
+  "registered_at": 1794973881.8610733,
+  "rubric_frozen": "/data1/adminweihunj/omniale_hyk/omniale_D6/music-locked-picture-v3-action-20261118/TEST-FROZEN.json",
+  "route": "explicit_audio_plus_silent_video",
+  "model": "qwen3.8-omni-flash",
+  "control_ids": [
+    "C71",
+    "Q14",
+    "S09"
+  ],
+  "expected": {
+    "C71": {
+      "music": true,
+      "silence": []
+    },
+    "Q14": {
+      "music": true,
+      "silence": [
+        [
+          6,
+          11
+        ]
+      ]
+    },
+    "S09": {
+      "music": false,
+      "silence": [
+        [
+          0,
+          20
+        ]
+      ]
+    }
+  },
+  "qualification": "all presence/duration decisions correct; gap boundaries within1.5s; no invented >=2s silence in clean music; all-silent covers >=17s",
+  "baseline_rule": "First successful full music download per candidate, source starts0, continuous or loop only if source shorter, loudness normalized, hard endpoint. Same blind per-film prompt as candidates.",
+  "response_policy": "One judgment per film/control; retry only transport failures, at most2; invalid content not resampled",
+  "request_cap": 26,
+  "formal_human_score": null,
+  "label_map": {
+    "P62": "sol",
+    "R17": "deepseek",
+    "B49": "sol_straight_lay",
+    "K83": "deepseek_straight_lay"
+  }
+}

@@ -1,52 +1,23 @@
-'use strict';
 (() => {
-  const data = JSON.parse(document.getElementById('case-data').textContent);
-  const player = document.getElementById('film-player');
-  const names = {final:'SOL / ', input:'INPUT / ', baseline:'BASELINE / '};
-  const descriptions = {final:'Sol 制作的音乐', input:'无音轨 · 只有画面', baseline:'Childhood 连续直铺 · 仅响度规范化'};
-  let version = 'long', mode = 'final', revision = 0;
-  const versions = [...document.querySelectorAll('[data-version]')];
-  const modes = [...document.querySelectorAll('[data-mode]')];
-  const allMedia = [...document.querySelectorAll('video,audio')];
-  allMedia.forEach(media => media.addEventListener('play', () => allMedia.forEach(other => { if(other !== media) other.pause(); })));
-  function labels() {
-    const item = data.versions[version];
-    versions.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.version===version)));
-    modes.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===mode)));
-    const caption = item.label + ({final:'成片',input:'无声锁画',baseline:'直铺对照'}[mode]);
-    document.getElementById('film-label').textContent=names[mode]+caption;
-    document.getElementById('film-spec').textContent=item.seconds+' s · 1280 × 546 · 24 fps';
-    document.getElementById('version-description').textContent=item.description;
-    document.getElementById('audio-status').textContent=descriptions[mode];
-    player.setAttribute('aria-label',item.seconds+'秒'+caption);
-    document.getElementById('film-download').href=item.final;
-    document.getElementById('music-download').href=item.wav;
-  }
-  async function select(nextVersion,nextMode,position,autoPlay=false) {
-    const current=++revision;
-    player.pause(); version=nextVersion;mode=nextMode;
-    const item=data.versions[version];labels();
-    player.preload='metadata';player.poster=item.poster;
-    const ready=new Promise(resolve=>{
-      const controller=new AbortController();
-      const timer=setTimeout(()=>{controller.abort();resolve(false)},20000);
-      const finish=success=>{clearTimeout(timer);controller.abort();resolve(success)};
-      player.addEventListener('loadedmetadata',()=>finish(true),{once:true,signal:controller.signal});
-      player.addEventListener('error',()=>finish(false),{once:true,signal:controller.signal});
-    });
-    player.src=item[mode];player.load();
-    try{
-      if(!await ready)throw Error('media load');
-      if(current!==revision)return;
-      player.currentTime=Math.min(Math.max(0,position),Math.max(0,player.duration-.05));
-      if(autoPlay)await player.play();
-    }catch(error){if(current===revision)document.getElementById('audio-status').textContent='请重试播放器，或下载原文件播放';}
-  }
-  versions.forEach(b=>b.addEventListener('click',()=>{if(b.dataset.version!==version)select(b.dataset.version,mode,0)}));
-  modes.forEach(b=>b.addEventListener('click',()=>{if(b.dataset.mode!==mode)select(version,b.dataset.mode,player.currentTime||0,!player.paused)}));
-  document.querySelectorAll('[data-seek]').forEach(b=>b.addEventListener('click',()=>{
-    const [v,t]=b.dataset.seek.split(':');select(v,'final',Number(t),true);
-    document.getElementById('watch').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
-  }));
-  labels();
+ 'use strict';
+ const data=JSON.parse(document.getElementById('case-data').textContent),player=document.getElementById('film-player');
+ let version='long',mode='sol',loadSequence=0;
+ const names={sol:'6.1 Sol',deepseek:'dpsk 4.1 Flash',input:'无声画面','sol-baseline':'Sol直铺对照','deepseek-baseline':'dpsk直铺对照'};
+ function source(){return 'media/'+(mode==='input'?version+'-silent':mode.includes('baseline')?mode.replace('-baseline','')+'-baseline-'+version:mode+'-'+version)+'.mp4'}
+ function events(){const host=document.getElementById('event-chips');host.replaceChildren();data.events[version].forEach(([start,end,label])=>{const b=document.createElement('button');b.type='button';b.textContent=start+'s · '+label;b.addEventListener('click',()=>{player.currentTime=start;player.scrollIntoView({block:'center',behavior:'smooth'})});host.append(b)})}
+ function change(nextVersion,nextMode,seek){const oldTime=player.currentTime||0,playing=!player.paused,same=version===nextVersion,sequence=++loadSequence;version=nextVersion;mode=nextMode;player.pause();player.poster='media/'+version+'-poster.jpg';player.src=source();const ready=()=>{if(sequence!==loadSequence)return;player.currentTime=Math.min(seek??(same?oldTime:0),Math.max(0,data.versions[version]-.1));if(playing)player.play().catch(()=>{})};player.addEventListener('loadedmetadata',ready,{once:true});player.load();document.querySelectorAll('[data-version]').forEach(b=>{const active=b.dataset.version===version;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});document.querySelectorAll('[data-mode]').forEach(b=>{const active=b.dataset.mode===mode;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});document.getElementById('play-status').textContent=(version==='long'?'长版':'短版')+' · '+names[mode]+' · '+data.versions[version]+'秒';events()}
+ document.querySelectorAll('[data-version]').forEach(b=>b.addEventListener('click',()=>change(b.dataset.version,mode)));
+ document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>change(version,b.dataset.mode)));
+ events();
+ const standard=[['narrative_arc','故事与关系弧线',12],['emotional_control','喜剧时机、动态与留白',11],['structure_phrasing','音乐结构与乐句',12],['edit_transparency','拼接、处理与过渡',12],['material_coherence','选材与音乐语言统一',10],['musical_ending','结尾与释放',6],['artifact_freedom','无明显音频瑕疵',4]],joint=[['shared_identity','两版共同身份',5],['short_reconstruction','短版独立结构',10]];
+ const fields=[];for(const v of ['long','short']){standard.forEach(([k,label,w])=>fields.push({key:v+'.'+k,label,weight:w,version:v}));data.events[v].forEach(([start,end,label],i)=>fields.push({key:v+'.event.'+i,label,version:v,start,end,event:true}))}joint.forEach(([k,label,w])=>fields.push({key:'joint.'+k,label,weight:w,version:'joint'}));
+ const storeKey='omniale-music-v3-personal-review-v1';let state={sol:{},deepseek:{}};try{const saved=JSON.parse(localStorage.getItem(storeKey)||'null');if(saved?.case===data.case)state=saved.reviews}catch{}
+ const selectModel=document.getElementById('review-model'),host=document.getElementById('review-fields');
+ function eligible(row){return row&&row.q!==''&&Number.isFinite(Number(row.q))&&Number(row.q)>=0&&Number(row.q)<=1&&String(row.evidence||'').trim().length>0}
+ function calculate(){const record=state[selectModel.value]||{},completed=fields.filter(f=>eligible(record[f.key])).length;document.getElementById('review-progress').textContent=completed+' / '+fields.length+' 项证据';let total=null;if(completed===fields.length){total=6;standard.forEach(([k,label,w])=>total+=w*(.6*Number(record['long.'+k].q)+.4*Number(record['short.'+k].q)));for(const v of ['long','short']){const q=data.events[v].reduce((s,e,i)=>s+Number(record[v+'.event.'+i].q),0)/data.events[v].length;total+=12*(v==='long'?.6:.4)*q}joint.forEach(([k,label,w])=>total+=w*Number(record['joint.'+k].q));total=Math.round(total*10)/10}document.getElementById('personal-score').textContent=total===null?'未完成':total.toFixed(1)+' / 100';return {total,completed,required:fields.length}}
+ function persist(){try{localStorage.setItem(storeKey,JSON.stringify({case:data.case,reviews:state}));document.getElementById('review-save-status').textContent='已保存在本浏览器。个人填写不会上传，不会自动改写网页公开结果。'}catch{document.getElementById('review-save-status').textContent='浏览器存储不可用，请导出JSON保留个人填写。'}calculate()}
+ function block(title,items){const container=document.createElement('div');container.className='review-block';const heading=document.createElement('h3');heading.textContent=title;container.append(heading);items.forEach(f=>{const row=document.createElement('div');row.className='review-row';row.dataset.reviewKey=f.key;const label=document.createElement('div');label.className='review-label';if(f.event){const jump=document.createElement('button');jump.type='button';jump.textContent=f.start+'–'+f.end+'秒 · '+f.label;jump.addEventListener('click',()=>{change(f.version,selectModel.value,f.start);player.scrollIntoView({block:'center',behavior:'smooth'})});label.append(jump)}else{label.textContent=f.label;const small=document.createElement('small');small.textContent=f.weight+'分 · '+(f.version==='joint'?'联合判断':'该版系数');label.append(small)}const q=document.createElement('select');q.setAttribute('aria-label',title+' '+f.label+' 系数');q.dataset.field=f.key;const blank=document.createElement('option');blank.value='';blank.textContent='待评';q.append(blank);for(let i=0;i<=20;i++){const opt=document.createElement('option');opt.value=(i/20).toFixed(2);opt.textContent=(i/20).toFixed(2);q.append(opt)}const evidence=document.createElement('textarea');evidence.setAttribute('aria-label',title+' '+f.label+' 听审依据');evidence.placeholder='记录听到的特征、时间位置与作用或问题';const record=state[selectModel.value]?.[f.key]||{};q.value=record.q??'';evidence.value=record.evidence||'';const update=()=>{state[selectModel.value]??={};state[selectModel.value][f.key]={q:q.value,evidence:evidence.value};persist()};q.addEventListener('change',update);evidence.addEventListener('input',update);row.append(label,q,evidence);container.append(row)});return container}
+ function render(){host.replaceChildren();for(const v of ['long','short']){host.append(block((v==='long'?'长版128秒':'短版32秒')+' · 作品判断',fields.filter(f=>f.version===v&&!f.event)));host.append(block((v==='long'?'长版14组':'短版5组')+' · 动作响应',fields.filter(f=>f.version===v&&f.event)))}host.append(block('两版联合判断',fields.filter(f=>f.version==='joint')));calculate()}
+ selectModel.addEventListener('change',render);render();
+ document.getElementById('export-review').addEventListener('click',()=>{const result=calculate(),payload={case:data.case,model:selectModel.value,review_type:'personal_browser_listening_review',exported_at:new Date().toISOString(),public_result_modified:false,overall_score:result.total,status:result.total===null?'incomplete':'complete_personal_review',progress:result,measured_technical_points:6,weights:data.weights,fields:state[selectModel.value],formula:'ordinary weights*(.6*q_long+.4*q_short), event group means weighted long60/short40, joint weights*q, plus measured technical6; round once to1decimal'};const url=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='music-v3-'+selectModel.value+'-personal-review.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)});
 })();

@@ -1,0 +1,277 @@
+{
+  "case": "music-locked-picture-v3-action",
+  "date": "2026-11-18",
+  "assessed_at_utc": "2026-11-18T07:55:21.176058+00:00",
+  "weights": {
+    "narrative": 35,
+    "musical_editing": 40,
+    "short_version": 15,
+    "technical": 10
+  },
+  "status": "objective_evaluation_complete_perceptual_evaluation_blocked",
+  "models": {
+    "sol": {
+      "model": "gpt-6.1-sol",
+      "overall_score": null,
+      "formal_score": null,
+      "perceptual_score": null,
+      "status": "perceptual_review_unavailable",
+      "gate_status": "PASS",
+      "gate_checks": {
+        "media": true,
+        "native": true,
+        "editable_arrangement": true,
+        "budget_integrity": true,
+        "source_license_lineage": true
+      },
+      "measured_points": 6.0,
+      "measured_maximum": 6,
+      "unassessed_maximum": 94,
+      "measured_point_details": {
+        "integrated_loudness": 1.5,
+        "true_peak": 1.5,
+        "delivery_mix_consistency": 3.0
+      },
+      "versions": {
+        "long": {
+          "lufs": -16.61,
+          "true_peak_dbtp": -1.77,
+          "checks": {
+            "integrated_loudness": true,
+            "true_peak": true,
+            "delivery_mix_consistency": true
+          }
+        },
+        "short": {
+          "lufs": -16.95,
+          "true_peak_dbtp": -1.42,
+          "checks": {
+            "integrated_loudness": true,
+            "true_peak": true,
+            "delivery_mix_consistency": true
+          }
+        }
+      },
+      "native_reproduction": {
+        "direct_project_comparison_pass": true,
+        "documented_full_pipeline_pass": null,
+        "method": "Native project render without external postprocessing"
+      },
+      "dimension_scores": {
+        "narrative": null,
+        "musical_editing": null,
+        "short_version": null,
+        "technical": null
+      },
+      "technical_measured_component": 6.0,
+      "technical_audible_artifact_component": null,
+      "run": {
+        "successful_calls": 74,
+        "active_seconds": 3803.79252243042,
+        "output_tokens": 71535,
+        "external_http_requests": 20,
+        "project_items": [
+          {
+            "project": "project/long.RPP",
+            "audio_item_count": 22
+          },
+          {
+            "project": "project/short.RPP",
+            "audio_item_count": 9
+          }
+        ]
+      },
+      "original_package": {
+        "filename": "sol-original-delivery.zip",
+        "bytes": 387681618,
+        "sha256": "45bb6ddb1d14629d9a12c51a512f92eea7f92203c6ffa61352fa9050daa73bd9"
+      }
+    },
+    "deepseek": {
+      "model": "deepseek-v4.1-flash-1017",
+      "overall_score": null,
+      "formal_score": null,
+      "perceptual_score": null,
+      "status": "perceptual_review_unavailable",
+      "gate_status": "PASS",
+      "gate_checks": {
+        "media": true,
+        "native": true,
+        "editable_arrangement": true,
+        "budget_integrity": true,
+        "source_license_lineage": true
+      },
+      "measured_points": 6.0,
+      "measured_maximum": 6,
+      "unassessed_maximum": 94,
+      "measured_point_details": {
+        "integrated_loudness": 1.5,
+        "true_peak": 1.5,
+        "delivery_mix_consistency": 3.0
+      },
+      "versions": {
+        "long": {
+          "lufs": -16.72,
+          "true_peak_dbtp": -1.19,
+          "checks": {
+            "integrated_loudness": true,
+            "true_peak": true,
+            "delivery_mix_consistency": true
+          }
+        },
+        "short": {
+          "lufs": -16.73,
+          "true_peak_dbtp": -1.18,
+          "checks": {
+            "integrated_loudness": true,
+            "true_peak": true,
+            "delivery_mix_consistency": true
+          }
+        }
+      },
+      "native_reproduction": {
+        "direct_project_comparison_pass": false,
+        "documented_full_pipeline_pass": true,
+        "method": "REAPER native project render followed by the submitted offline master.sh with explicit arguments from its usage comment"
+      },
+      "dimension_scores": {
+        "narrative": null,
+        "musical_editing": null,
+        "short_version": null,
+        "technical": null
+      },
+      "technical_measured_component": 6.0,
+      "technical_audible_artifact_component": null,
+      "run": {
+        "successful_calls": 117,
+        "active_seconds": 6101.091375827789,
+        "output_tokens": 123512,
+        "external_http_requests": 16,
+        "project_items": [
+          {
+            "project": "project/long.rpp",
+            "audio_item_count": 62
+          },
+          {
+            "project": "project/short.rpp",
+            "audio_item_count": 27
+          }
+        ]
+      },
+      "original_package": {
+        "filename": "deepseek-original-delivery.zip",
+        "bytes": 449406449,
+        "sha256": "8255f4ebcb287dce25999039a2e9365e522fece121081487abd600b0e61372cc"
+      }
+    }
+  },
+  "judge_qualification": {
+    "qwen38_full_audiovisual": {
+      "minimal_audio_control_pass": false,
+      "problems": [
+        "Q14: missing timed silence"
+      ],
+      "records": {
+        "C71": {
+          "heard_audio": true,
+          "music_present": true,
+          "duration_seconds": 20.0,
+          "silent_ranges": [],
+          "audible_description": "A continuous instrumental music track plays throughout the entire duration.",
+          "uncertainty": "none"
+        },
+        "Q14": {
+          "heard_audio": true,
+          "music_present": true,
+          "duration_seconds": 19.84,
+          "silent_ranges": [
+            {
+              "start": 6.0,
+              "end": 7.5
+            },
+            {
+              "start": 13.0,
+              "end": 14.5
+            }
+          ],
+          "audible_description": "An instrumental music track with a steady beat plays throughout the video.",
+          "uncertainty": "none"
+        },
+        "S09": {
+          "heard_audio": false,
+          "music_present": false,
+          "duration_seconds": 20.0,
+          "silent_ranges": [
+            {
+              "start": 0.0,
+              "end": 20.0
+            }
+          ],
+          "audible_description": "",
+          "uncertainty": ""
+        }
+      },
+      "formal_score_allowed": false,
+      "expert_calibrated": false,
+      "limits": "Controls test audio transport and coarse recognition, not taste or precise audiovisual timing."
+    },
+    "qwen35_full_audiovisual": {
+      "minimal_audio_control_pass": false,
+      "problems": [
+        "S09: duration",
+        "Q14: missing timed silence",
+        "S09: missing full silence"
+      ],
+      "records": {
+        "C71": {
+          "heard_audio": true,
+          "music_present": true,
+          "duration_seconds": 19.6,
+          "silent_ranges": [],
+          "audible_description": "The audio consists of a continuous piece of instrumental music with a steady, mid-tempo beat and an electronic feel.",
+          "uncertainty": "none"
+        },
+        "Q14": {
+          "heard_audio": true,
+          "music_present": true,
+          "duration_seconds": 20.0,
+          "silent_ranges": [
+            {
+              "start": 9.5,
+              "end": 14.5
+            }
+          ],
+          "audible_description": "An instrumental music track with a steady beat and a prominent bassline plays for the first 9.5 seconds. The audio then becomes silent for approximately 5 seconds. The same music track resumes at 14.5 seconds and continues until the end of the clip.",
+          "uncertainty": "none"
+        },
+        "S09": {
+          "heard_audio": false,
+          "music_present": false,
+          "duration_seconds": 0,
+          "silent_ranges": [],
+          "audible_description": "",
+          "uncertainty": "No audio was provided to listen to."
+        }
+      },
+      "formal_score_allowed": false,
+      "expert_calibrated": false,
+      "limits": "Controls test audio transport and coarse recognition, not taste or precise audiovisual timing."
+    },
+    "independent_audio_route": {
+      "model": "gpt-4o-audio-preview",
+      "status": "transport_unavailable",
+      "evidence": {
+        "fingerprint": "fcccd583d518e624a55390d89b8e43d956e474ffbe61f33dbc1633280b844b04",
+        "transport_failure": [
+          "400 Client Error: Bad Request for url: https://api-temporary.nju-link.com/v1/chat/completions",
+          "429 Client Error: Too Many Requests for url: https://api-temporary.nju-link.com/v1/chat/completions"
+        ]
+      }
+    }
+  },
+  "interpretation": "Measured6/6 is only the objective subset of the technical dimension, NOT6/100, an overall lower bound estimate or an artistic quality score. Remaining94 points unassessed, NOT zero.",
+  "protocol_preserved": true,
+  "previous_v2_score_applies": false,
+  "no_human_listening_claimed": true,
+  "retry_policy": "Failed content controls not resampled. Independent audio API transport failed twice with429, no submission judgment produced."
+}

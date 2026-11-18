@@ -1,0 +1,41 @@
+{
+  "label": "control-C71",
+  "model": "qwen3.8-omni-flash",
+  "fingerprint": "953a805e8411d853f975650f95edddb8556a400a10ad35325124f0185cacd942",
+  "media": [
+    {
+      "name": "C71",
+      "input_sha256": "6cf09888cf9ce6126dcdb866b384229ec9108716e83ea9562cfd18d1f9dfb14a",
+      "video_sha256": "ff4abc0698bd9e68ae164b9340be851bd2ecc5b0991b1c492ac7d015dc9790a9",
+      "audio_sha256": "0279956c8ad2def879f0b5fdb7479c9cb64c9fdea22b1eab7b7e2c29b7f7dfe7"
+    }
+  ],
+  "prompt": "Listen to the explicit audio and observe the synchronized silent picture. Report only gross audio facts. silent_ranges means near-total absence of sound lasting at least 2 seconds, not gaps between notes. If you cannot hear the explicit audio say so. Return ONLY JSON: {\"heard_audio\":boolean,\"music_present\":boolean,\"duration_seconds\":number,\"silent_ranges\":[{\"start\":number,\"end\":number}],\"audible_description\":string,\"uncertainty\":string}. All-zero audio may have heard_audio=false. Do not judge artistic quality.\nEach named film has a silent visual stream immediately followed by its synchronized explicit audio; both start at t=0. Listen to that audio. Never infer audio from visible actions. Video sampled at 4 fps; do not claim frame-accurate sync.",
+  "judgment": {
+    "heard_audio": true,
+    "music_present": true,
+    "duration_seconds": 20.0,
+    "silent_ranges": [],
+    "audible_description": "A continuous instrumental music track plays throughout the entire duration.",
+    "uncertainty": "none"
+  },
+  "response_text": "{\"heard_audio\": true, \"music_present\": true, \"duration_seconds\": 20.0, \"silent_ranges\": [], \"audible_description\": \"A continuous instrumental music track plays throughout the entire duration.\", \"uncertainty\": \"none\"}",
+  "seconds": 3.338512659072876,
+  "usage": {
+    "completion_tokens": 52,
+    "completion_tokens_details": {
+      "text_tokens": 52
+    },
+    "prompt_tokens": 9125,
+    "prompt_tokens_details": {
+      "audio_tokens": 142,
+      "cached_tokens": 0,
+      "text_tokens": 181,
+      "video_tokens": 8802
+    },
+    "total_tokens": 9177
+  },
+  "transport_errors": [],
+  "formal_score": null,
+  "expert_calibrated": false
+}
