@@ -1,0 +1,99 @@
+{
+  "model": "deepseek",
+  "evaluator": "qwen3.8-omni-flash",
+  "status": "insufficient_auxiliary_evidence",
+  "content_score": null,
+  "content_score_unrounded": null,
+  "content_maximum": 90,
+  "auxiliary_total": null,
+  "auxiliary_total_unrounded": null,
+  "maximum": 100,
+  "formal_score": null,
+  "expert_calibrated": false,
+  "minimal_audio_control_pass": false,
+  "prior_qualification": "../judge-evidence/qwen38/qualification.json",
+  "dimension_scores": null,
+  "points": {
+    "narrative_arc": 3.0,
+    "emotional_control": 2.75,
+    "structure_phrasing": 3.0,
+    "edit_transparency": 3.0,
+    "material_coherence": 2.5,
+    "musical_ending": 3.3,
+    "artifact_freedom": 4.0,
+    "shared_identity": 3.75,
+    "short_reconstruction": 7.5
+  },
+  "coefficients": {
+    "short": {
+      "narrative_arc": 0.25,
+      "emotional_control": 0.25,
+      "structure_phrasing": 0.25,
+      "edit_transparency": 0.25,
+      "material_coherence": 0.25,
+      "musical_ending": 0.25,
+      "artifact_freedom": 1,
+      "event_relationship": 0.25
+    },
+    "long": {
+      "narrative_arc": 0.25,
+      "emotional_control": 0.25,
+      "structure_phrasing": 0.25,
+      "edit_transparency": 0.25,
+      "material_coherence": 0.25,
+      "musical_ending": 0.75,
+      "artifact_freedom": 1,
+      "event_relationship": null
+    }
+  },
+  "joint": {
+    "heard_audio": true,
+    "shared_identity": {
+      "q": 0.75,
+      "evidence": "The short version reuses the exact musical cues from the corresponding section of the long film (t=63-94). The fast-paced orchestral track with prominent strings and brass during the mine cart ride matches perfectly between t=0-8 in the short and t=63-71 in the long. As they fly off the cliff, the music transitions to a soaring, adventurous theme that aligns exactly with the long version's t=72-84. Finally, the upbeat, rhythmic electronic track accompanying the penguin sliding away is identical in phrasing and pacing to the long version at t=94-96."
+    },
+    "short_reconstruction": {
+      "q": 0.75,
+      "evidence": "The short successfully extracts a self-contained sequence featuring an entry (riding in the mine cart), development (the chaotic flight through the air), and ending (crashing into the snow and the penguin departing). The audio supports this narrative arc well, matching the high energy of the chase and the comedic timing of the crash. However, it lacks the broader context of the full story, making it feel like an isolated action set-piece rather than a complete standalone narrative."
+    },
+    "limitations": [
+      "Video sampled at 4 fps; do not claim frame-accurate sync.",
+      "Audio analysis relies on listening to the provided tracks alongside the visual streams."
+    ]
+  },
+  "objective_technical_points": 6.0,
+  "problems": [
+    "long: invalid/missing event coefficients/evidence"
+  ],
+  "raw_responses": [
+    "R17-short.json",
+    "R17-long.json",
+    "R17-joint.json"
+  ],
+  "limitations": [
+    "Qwen3.8 failed a prior known-silence localization control. User requested continued auxiliary use; these numbers are not calibrated evidence of exact audio timing or human expert quality.",
+    "Explicit MP3 stereo audio and synchronized silent 4fps picture; no frame-exact sync claims.",
+    "Original soundtrack, model identity, expected scores and creator descriptions not provided to judge.",
+    "No content resampling or manual coefficient changes. Gates read separately."
+  ],
+  "available_content_subtotal": 28.8,
+  "available_content_maximum": 78,
+  "unassessed_content_maximum": 12,
+  "missing_content_items": [
+    "event_relationship"
+  ],
+  "partial_dimension_scores": {
+    "narrative": 5.75,
+    "musical_editing": 11.8,
+    "short_version": 11.25,
+    "technical": 10.0
+  },
+  "partial_dimension_maxima": {
+    "narrative": 23,
+    "musical_editing": 40,
+    "short_version": 15,
+    "technical": 10
+  },
+  "response_consistency_warning": "Single-version and joint judgments contain incompatible descriptions. In particular, joint reviewers describe the short as matching long-version cues and fitting pacing, whereas single-short reviewers describe abrupt mismatched cues. Raw text retained; no manual coefficient adjustment.",
+  "missing_item_explanation": "Long action-response review returned13 groups for14 required. Index alignment and complete evidence cannot be validated, so the entire12-point action-response category remains unscored. Missing is not zero; no extrapolation or content resampling."
+}

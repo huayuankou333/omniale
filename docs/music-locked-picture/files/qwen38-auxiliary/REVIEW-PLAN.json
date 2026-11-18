@@ -1,0 +1,29 @@
+{
+  "registered_at": 1795000674.8034072,
+  "evaluator": "qwen3.8-omni-flash",
+  "purpose": "User explicitly requested Qwen3.8 content scoring after failed qualification. These are uncalibrated automated auxiliary scores, not human/formal scores.",
+  "user_instruction": "先使用qwen3.8评测内容分，并且在网页中展示原片配音",
+  "prior_qualification": "evaluation/judge/qualification.json",
+  "prior_control_pass": false,
+  "prior_failure_preserved": true,
+  "no_control_resampling": true,
+  "no_claim_of_qualification_pass": true,
+  "route": "complete explicit stereo MP3 audio plus synchronized silent 4fps video",
+  "blind_labels": {
+    "P62": "sol",
+    "R17": "deepseek"
+  },
+  "source_score_supplied_to_judge": false,
+  "creator_notes_supplied_to_judge": false,
+  "expected_score_supplied_to_judge": false,
+  "rubric_sha256": "53769a78308da71beec8b1855150e5bcc98d28c7c48b25ef1adb5e15c3fa3e48",
+  "events_sha256": "3f41d58fd66f65a151f9d899288015d3b4d6d90cdfc7b0216172b43fd0898f55",
+  "content_maximum": 90,
+  "subjective_artifact_maximum": 4,
+  "objective_maximum": 6,
+  "formula": "Frozen weights: narrative35, musical_editing40, short_version15, mix10. Ordinary coefficients long60%/short40%; event groups equal mean within each version then60/40. Joint5+10. No default score. Round only final displayed sums.",
+  "requests_expected": 6,
+  "request_cap": 12,
+  "retry_policy": "At most two attempts for transport failures only; invalid/missing content retained and not resampled.",
+  "formal_score": null
+}

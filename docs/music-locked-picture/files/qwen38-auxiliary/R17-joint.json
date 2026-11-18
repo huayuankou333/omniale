@@ -1,0 +1,54 @@
+{
+  "label": "R17-joint",
+  "model": "qwen3.8-omni-flash",
+  "fingerprint": "c9c66fe26ca09da648c14284ab9b14307d5f157d772a63fbe61c612f56436cda",
+  "media": [
+    {
+      "name": "R17-long",
+      "input_sha256": "03aabeeb842676a674a7e60ffb95b66a4e655c2ff7924d45c93dd6157a830815",
+      "video_sha256": "b25da02418965dc301ef10682d1b23b8f33b85e75941e033c392ef9e23dcd421",
+      "audio_sha256": "7db878d7bcfdd57447c37651b75ddd4916769099abcbe21263c84fe2bd7f18e7"
+    },
+    {
+      "name": "R17-short",
+      "input_sha256": "a48dbb4ca2dbf7ec41d8ae80f830d87612bd450645b1f01a228ebfe2984ccf92",
+      "video_sha256": "ce302b8e04fb13ada3b8ed035bc2646a54b9c494302dab6005d298a86bbcd222",
+      "audio_sha256": "52d22703869529ff0917f67b058160ce8adf379cc172b6712848e2007e65d806"
+    }
+  ],
+  "prompt": "Watch AND listen to both anonymous versions of one action-comedy commission. Judge the audible results. The short must have an independently complete entry, development and ending while sharing a suitable musical identity with the long version. Common source music alone is not successful adaptation. A reused cue can succeed if its actual phrasing and pacing fit. No original soundtrack or creator notes are provided. Do not invent operations, instruments or synchronized accents. Use coefficients in .05 increments: 0 absent/failed, .25 most key points fail, .5 basically usable with clear problems, .75 professional overall with local flaws, 1 outstanding without material problems. Give concrete audible evidence including relevant times and shortcomings. Return ONLY JSON: {\"heard_audio\":boolean,\"shared_identity\":{\"q\":number|null,\"evidence\":string},\"short_reconstruction\":{\"q\":number|null,\"evidence\":string},\"limitations\":[string]}. If audio evidence is unavailable return null rather than a guessed score.\nEach named film has a silent visual stream immediately followed by its synchronized explicit audio; both start at t=0. Listen to that audio. Never infer audio from visible actions. Video sampled at 4 fps; do not claim frame-accurate sync.",
+  "judgment": {
+    "heard_audio": true,
+    "shared_identity": {
+      "q": 0.75,
+      "evidence": "The short version reuses the exact musical cues from the corresponding section of the long film (t=63-94). The fast-paced orchestral track with prominent strings and brass during the mine cart ride matches perfectly between t=0-8 in the short and t=63-71 in the long. As they fly off the cliff, the music transitions to a soaring, adventurous theme that aligns exactly with the long version's t=72-84. Finally, the upbeat, rhythmic electronic track accompanying the penguin sliding away is identical in phrasing and pacing to the long version at t=94-96."
+    },
+    "short_reconstruction": {
+      "q": 0.75,
+      "evidence": "The short successfully extracts a self-contained sequence featuring an entry (riding in the mine cart), development (the chaotic flight through the air), and ending (crashing into the snow and the penguin departing). The audio supports this narrative arc well, matching the high energy of the chase and the comedic timing of the crash. However, it lacks the broader context of the full story, making it feel like an isolated action set-piece rather than a complete standalone narrative."
+    },
+    "limitations": [
+      "Video sampled at 4 fps; do not claim frame-accurate sync.",
+      "Audio analysis relies on listening to the provided tracks alongside the visual streams."
+    ]
+  },
+  "response_text": "{\"heard_audio\":true,\"shared_identity\":{\"q\":0.75,\"evidence\":\"The short version reuses the exact musical cues from the corresponding section of the long film (t=63-94). The fast-paced orchestral track with prominent strings and brass during the mine cart ride matches perfectly between t=0-8 in the short and t=63-71 in the long. As they fly off the cliff, the music transitions to a soaring, adventurous theme that aligns exactly with the long version's t=72-84. Finally, the upbeat, rhythmic electronic track accompanying the penguin sliding away is identical in phrasing and pacing to the long version at t=94-96.\"},\"short_reconstruction\":{\"q\":0.75,\"evidence\":\"The short successfully extracts a self-contained sequence featuring an entry (riding in the mine cart), development (the chaotic flight through the air), and ending (crashing into the snow and the penguin departing). The audio supports this narrative arc well, matching the high energy of the chase and the comedic timing of the crash. However, it lacks the broader context of the full story, making it feel like an isolated action set-piece rather than a complete standalone narrative.\"},\"limitations\":[\"Video sampled at 4 fps; do not claim frame-accurate sync.\",\"Audio analysis relies on listening to the provided tracks alongside the visual streams.\"]}",
+  "seconds": 15.586631774902344,
+  "usage": {
+    "completion_tokens": 294,
+    "completion_tokens_details": {
+      "text_tokens": 294
+    },
+    "prompt_tokens": 71810,
+    "prompt_tokens_details": {
+      "audio_tokens": 1124,
+      "cached_tokens": 0,
+      "text_tokens": 282,
+      "video_tokens": 70404
+    },
+    "total_tokens": 72104
+  },
+  "transport_errors": [],
+  "formal_score": null,
+  "expert_calibrated": false
+}

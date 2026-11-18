@@ -1,0 +1,100 @@
+{
+  "model": "sol",
+  "evaluator": "qwen3.8-omni-flash",
+  "status": "user_requested_uncalibrated_auxiliary_score",
+  "content_score": 57.3,
+  "content_score_unrounded": 57.264285714285705,
+  "content_maximum": 90,
+  "auxiliary_total": 67.1,
+  "auxiliary_total_unrounded": 67.10428571428571,
+  "maximum": 100,
+  "formal_score": null,
+  "expert_calibrated": false,
+  "minimal_audio_control_pass": false,
+  "prior_qualification": "../judge-evidence/qwen38/qualification.json",
+  "dimension_scores": {
+    "narrative": 23.39428571428571,
+    "musical_editing": 25.119999999999997,
+    "short_version": 8.75,
+    "technical": 9.84
+  },
+  "points": {
+    "narrative_arc": 8.04,
+    "event_relationship": 8.314285714285713,
+    "emotional_control": 7.04,
+    "structure_phrasing": 7.559999999999999,
+    "edit_transparency": 7.08,
+    "material_coherence": 6.4,
+    "musical_ending": 4.08,
+    "artifact_freedom": 3.84,
+    "shared_identity": 3.75,
+    "short_reconstruction": 5.0
+  },
+  "coefficients": {
+    "short": {
+      "narrative_arc": 0.25,
+      "emotional_control": 0.1,
+      "structure_phrasing": 0.15,
+      "edit_transparency": 0.05,
+      "material_coherence": 0.1,
+      "musical_ending": 0.2,
+      "artifact_freedom": 0.9,
+      "event_relationship": 0.35
+    },
+    "long": {
+      "narrative_arc": 0.95,
+      "emotional_control": 1.0,
+      "structure_phrasing": 0.95,
+      "edit_transparency": 0.95,
+      "material_coherence": 1.0,
+      "musical_ending": 1.0,
+      "artifact_freedom": 1.0,
+      "event_relationship": 0.9214285714285714
+    }
+  },
+  "joint": {
+    "heard_audio": true,
+    "shared_identity": {
+      "q": 0.75,
+      "evidence": "The short version reuses the exact same musical cues as the corresponding section of the long version, maintaining a consistent comedic and action-oriented identity. For example, the fast-paced orchestral chase music heard from 1:00 to 1:12 in the long version is identically present from 0:06 to 0:18 in the short version. Similarly, the gentle acoustic guitar melody starting at 1:34 in the long version matches perfectly with the segment beginning at 0:29 in the short version."
+    },
+    "short_reconstruction": {
+      "q": 0.5,
+      "evidence": "While the short version successfully retains the core action sequence (the mine cart ride) and its resolution (falling into the snow), it lacks an independently complete narrative arc because it omits any introduction or setup. It begins abruptly mid-action without establishing why the characters are fleeing or what they are protecting, which was clearly established in the first minute of the long version. The pacing of the reused audio fits the visuals well, but the structural omission prevents it from being a fully self-contained story."
+    },
+    "limitations": [
+      "No original soundtrack or creator notes were provided for reference.",
+      "Video sampling rate is limited to 4 fps, preventing frame-accurate synchronization analysis."
+    ]
+  },
+  "objective_technical_points": 6.0,
+  "problems": [],
+  "raw_responses": [
+    "P62-short.json",
+    "P62-long.json",
+    "P62-joint.json"
+  ],
+  "limitations": [
+    "Qwen3.8 failed a prior known-silence localization control. User requested continued auxiliary use; these numbers are not calibrated evidence of exact audio timing or human expert quality.",
+    "Explicit MP3 stereo audio and synchronized silent 4fps picture; no frame-exact sync claims.",
+    "Original soundtrack, model identity, expected scores and creator descriptions not provided to judge.",
+    "No content resampling or manual coefficient changes. Gates read separately."
+  ],
+  "available_content_subtotal": 57.264285714285705,
+  "available_content_maximum": 90,
+  "unassessed_content_maximum": 0,
+  "missing_content_items": [],
+  "partial_dimension_scores": {
+    "narrative": 23.39428571428571,
+    "musical_editing": 25.119999999999997,
+    "short_version": 8.75,
+    "technical": 9.84
+  },
+  "partial_dimension_maxima": {
+    "narrative": 35,
+    "musical_editing": 40,
+    "short_version": 15,
+    "technical": 10
+  },
+  "response_consistency_warning": "Single-version and joint judgments contain incompatible descriptions. In particular, joint reviewers describe the short as matching long-version cues and fitting pacing, whereas single-short reviewers describe abrupt mismatched cues. Raw text retained; no manual coefficient adjustment."
+}

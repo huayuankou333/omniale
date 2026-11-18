@@ -1,0 +1,164 @@
+{
+  "label": "R17-short",
+  "model": "qwen3.8-omni-flash",
+  "fingerprint": "d33c4aa3ddda57375619a05ae2386d97dec40aa5ff3313b897c6007fd2c1c5ad",
+  "media": [
+    {
+      "name": "R17-short",
+      "input_sha256": "a48dbb4ca2dbf7ec41d8ae80f830d87612bd450645b1f01a228ebfe2984ccf92",
+      "video_sha256": "ce302b8e04fb13ada3b8ed035bc2646a54b9c494302dab6005d298a86bbcd222",
+      "audio_sha256": "52d22703869529ff0917f67b058160ce8adf379cc172b6712848e2007e65d806"
+    }
+  ],
+  "prompt": "You are a blind auxiliary reviewer of music editing for action comedy. Watch the complete film and listen to its explicit audio. Review the ACTUAL music, not imagined production operations or the original score. No creator notes or source score are provided. There is no default content score for playable files. Generic comedy style alone does not establish action response, structural adaptation or emotional fit. Look especially for meaningful anticipation, pauses, danger, release and changes in character relationship. However a continuous cue can succeed if its real phrasing and pacing fit. More edits or more loudness peaks do not imply better quality. Do not invent cuts, instruments, musical changes or timing. For high scores cite both successful moments and possible failures; if evidence is unavailable use null.\nUse coefficients in increments of .05: 0 missing/failed, .25 most important points fail, .5 basically usable with clear problems, .75 professional overall with local problems, 1 outstanding without material problems. Independently review each visual event group below: q evaluates meaningful musical support, not whether an accent exists on an exact frame. q=0 if absent/mismatched; .25 generic incidental support; .5 clear but imperfect response; .75 strong effective response; 1 exceptionally apt. Must describe the actual audible feature or explicitly note absence. The group q values will be averaged mechanically for the event category. These windows are approximate visual references, not reference musical edits.\nReturn ONLY JSON: {\"heard_audio\":boolean,\"overall_observation\":string,\"coefficients\":{\"narrative_arc\":number|null,\"emotional_control\":number|null,\"structure_phrasing\":number|null,\"edit_transparency\":number|null,\"material_coherence\":number|null,\"musical_ending\":number|null,\"artifact_freedom\":number|null},\"evidence\":{\"narrative_arc\":[{\"time_seconds\":number,\"audible_feature\":string,\"visual_relation\":string}],\"emotional_control\":[],\"structure_phrasing\":[],\"edit_transparency\":[],\"material_coherence\":[],\"musical_ending\":[],\"artifact_freedom\":[]},\"event_groups\":[{\"group_index\":integer,\"q\":number|null,\"time_seconds\":number,\"audible_feature\":string,\"relation_or_failure\":string}],\"limitations\":[string]}. Provide all event groups, indexed 0 through N-1. No loudness/format/native-project points; those are independently measured. Numeric coefficients must have concrete evidence.\nVisual event groups in target-film seconds:\n[[0, 8, \"矿车、果实争抢及冲出\"], [8, 14, \"空中追逐和角色接近\"], [14, 22, \"舌头争抢、慢动作/停顿与危险\"], [22, 26, \"下坠与雪地落地\"], [26, 32, \"落地反应、企鹅离开及安静尾声\"]]\nFull rubric:\n# 动作喜剧配乐 v3 评分规则\n\n100 分由叙事与动作响应 35、音乐结构与剪辑 40、短版重构 15、混音技术 10 组成。除两项短版联合评价外，分别评价长短版，同项按长版 60%、短版 40% 汇总。作品从 0 分积累证据，不因交付齐全、使用专业软件或写出详细说明而获得内容分。\n\n质量系数 q 在 0–1 间、以 0.05 为步长：0 缺失或失效；0.25 多数关键处失效，只偶有有效配合；0.5 基本成立但存在明显缺陷；0.75 整体达到专业可用水平，仅局部问题；1 出色且无实质问题。每项分数 = 分值 × (0.6 × q长 + 0.4 × q短)。短版联合两项分别直接乘其系数。相加并四舍五入至一位小数。没有音乐的版本，各音乐系数为 0。\n\n| 项目 | 分值 | 取证与高分条件 |\n|---|---:|---|\n| 故事与关系弧线 | 12 | 音乐体现竞争、升级和人物关系改变。高分要有起始、推进、转折和收束的实际证据；统一欢快/紧张基调不能替代完整故事。 |\n| 动作群与音乐响应 | 12 | 依冻结的隐藏视觉事件组逐组评价，组内判断响应是否有意义，不按镜头数或峰值数量计算。重音、悬停、节奏或音色变化、延迟释放均可；无需逐帧同步。每组 q 按相同锚点给分，等权平均后形成该版本系数。音乐持续推进若与动作节奏适合也可得分。若多数事件无相关音乐变化或有明显情绪错位，应给 0–0.25，而非默认 0.5。 |\n| 喜剧时机、动态与留白 | 11 | 等待、惊讶、危险和落地反应有相应张弛，避免一路满强度和过早泄露转折。高分须覆盖至少三种不同功能，且长版后段情绪转换自然。 |\n| 音乐结构与乐句 | 12 | 能量组织、句长和段落围绕本片构建；有适合画面节奏的完整音乐形态。一个自洽的原曲不等于针对本片的自洽结构。主要叙事阶段若都沿用无关的原曲进展，该项通常不超过 0.25。 |\n| 拼接、处理与过渡 | 12 | 实际听觉中的节拍、调性、尾音和空间衔接自然，无突跳和明显拉伸伪影。没有切口不能自动视为满分；仍要证明其进入、退出和段落转换有效。剪多少刀本身不加分。 |\n| 选材与音乐语言统一 | 10 | 配器、速度、音色和乐段适合本片的动作及情绪；转换有共同音乐语言。风格大致相似仅是部分证据。单曲/多曲不设数量要求。 |\n| 结尾与释放 | 6 | 最后一个情节和音乐的停顿、句尾或尾韵形成有意义的结束；随意淡出、生硬截断或错位高潮扣分。 |\n| 两版共同身份 | 5 | 联合审看，两版有可辨识且合适的主题、配器或音色语言；机械复用不因相同而拿高分。 |\n| 短版独立结构 | 10 | 32 秒中开头可进入、追逐有发展、落地与人物反应有结束；处理了新起止点，不只是把长版音轨截出来。是否重建依成片证据，不能仅凭工程剪辑次数推断。 |\n| 无明显音频瑕疵 | 4 | 实际音频无爆音、削波、编辑噪声和明显失真；由真实听觉证据判断，不能仅凭峰值推断。 |\n| 积分响度 | 1.5 | 每版在 −18 至 −14 LUFS 得 1，否则该版此项 0；长短按 60/40。 |\n| 真峰值 | 1.5 | 每版 ≤−1 dBTP 得 1，否则该版此项 0；长短按 60/40。 |\n| 交付混音一致性 | 3 | 对齐后 MP4/AAC 与 WAV 相关系数 ≥.99、相对 RMS 误差 ≤.10、时长差 ≤.05 秒；每版通过为 1，否则为 0，按 60/40。AAC 容差保留。 |\n\n## 门槛\n\n完整可解码；锁画逐帧相符且无增减帧；48k24bit 立体声 WAV；可编辑的 REAPER 工程和全部素材、相对引用、迁移后离线重渲染能复现 WAV（相对 RMS 误差 ≤.025，时长差 ≤一帧）；音乐来源、许可及本轮下载链可核验；不使用原片音轨、生成音乐、拟音或外部助手模型；预算合规。\n\n门槛不通过，状态为 INVALID，总分不作为有效成绩。可记录“作品诊断分”，但须标明与门槛状态不同。工程和合法下载不加内容分。缺少处理链先人工/脚本核查，不能仅凭未命中整文件指纹就认定违规。\n\n## 评审实施\n\n视觉事件表在测试前冻结、主办方保管，不交给参试模型；它列出可见事件及时间窗，不包含原片音乐或唯一答案。评分必须说明听到什么、在何时支持/失配什么，不把创作说明当成实际效果。\n\nQwen 可用显式音频输入和同步无声画面进行盲化辅助审查；先通过音乐有无、静音区间、情绪反差等已知控制。控制失败则停止相应数值评价，保留失败记录，不重复抽样直到通过。自动辅助分不等于人工专家分；正式艺术分须有音乐剪辑经验的独立听审，未获得时保持空值。单曲直铺基线与参试作品盲化比较，基线无需为了抬高模型而故意挑差曲。禁止在见到模型结果后修改规则或动作锚点。\n\nEach named film has a silent visual stream immediately followed by its synchronized explicit audio; both start at t=0. Listen to that audio. Never infer audio from visible actions. Video sampled at 4 fps; do not claim frame-accurate sync.",
+  "judgment": {
+    "heard_audio": true,
+    "overall_observation": "The audio track consists of three distinct, unrelated musical segments that fail to support the visual narrative. A fast-paced orchestral chase cue plays during the initial mine cart scene but abruptly cuts out before the aerial sequence begins. This is followed by a slow, ambient synthesizer pad that persists through the mid-air struggle and fall, completely mismatching the high-stakes action. Finally, an upbeat electronic dance track starts just as the characters land in the snow, creating a jarring tonal shift that ignores the physical impact and subsequent quiet resolution.",
+    "coefficients": {
+      "narrative_arc": 0.25,
+      "emotional_control": 0.25,
+      "structure_phrasing": 0.25,
+      "edit_transparency": 0.25,
+      "material_coherence": 0.25,
+      "musical_ending": 0.25,
+      "artifact_freedom": 1
+    },
+    "evidence": {
+      "narrative_arc": [
+        {
+          "time_seconds": 8,
+          "audible_feature": "Abrupt silence replacing the fast orchestral chase music",
+          "visual_relation": "Fails to bridge the transition from ground-level chaos to the sustained aerial pursuit"
+        },
+        {
+          "time_seconds": 22,
+          "audible_feature": "Slow ambient synth pad continuing unchanged",
+          "visual_relation": "Ignores the critical moment of falling and impact with the ground"
+        }
+      ],
+      "emotional_control": [
+        {
+          "time_seconds": 14,
+          "audible_feature": "Static, low-energy ambient drone",
+          "visual_relation": "Undermines the tension of the tongue-grabbing struggle and impending danger"
+        },
+        {
+          "time_seconds": 26,
+          "audible_feature": "Upbeat electronic dance beat starting immediately after landing",
+          "visual_relation": "Clashes with the physical exhaustion and sudden quiet of the post-crash aftermath"
+        }
+      ],
+      "structure_phrasing": [
+        {
+          "time_seconds": 8,
+          "audible_feature": "Hard cut to silence mid-phrase",
+          "visual_relation": "Destroys musical continuity right as the main action set-piece begins"
+        },
+        {
+          "time_seconds": 26,
+          "audible_feature": "Sudden introduction of a new rhythmic genre",
+          "visual_relation": "Prevents any cohesive build-up or release across the short film's arc"
+        }
+      ],
+      "edit_transparency": [
+        {
+          "time_seconds": 8,
+          "audible_feature": "Noticeable hard edit removing all sound instantly",
+          "visual_relation": "Draws attention to the lack of scoring rather than supporting the picture"
+        },
+        {
+          "time_seconds": 26,
+          "audible_feature": "Jarring genre switch without crossfade or preparation",
+          "visual_relation": "Highlights poor editorial choices over intentional comedic timing"
+        }
+      ],
+      "material_coherence": [
+        {
+          "time_seconds": 0,
+          "audible_feature": "Orchestral cartoon chase style",
+          "visual_relation": "Matches initial frantic energy but lacks thematic connection to later scenes"
+        },
+        {
+          "time_seconds": 14,
+          "audible_feature": "Ambient sci-fi/suspense textures",
+          "visual_relation": "Contradicts the established acoustic palette and fails to unify the piece"
+        }
+      ],
+      "musical_ending": [
+        {
+          "time_seconds": 32,
+          "audible_feature": "Electronic track fading out arbitrarily",
+          "visual_relation": "Provides no meaningful cadence or emotional closure for the penguin's departure"
+        }
+      ],
+      "artifact_freedom": [
+        {
+          "time_seconds": 0,
+          "audible_feature": "Clean digital playback",
+          "visual_relation": "No clipping, distortion, or noise detected despite poor artistic integration"
+        }
+      ]
+    },
+    "event_groups": [
+      {
+        "group_index": 0,
+        "q": 0.75,
+        "time_seconds": 4,
+        "audible_feature": "Fast-paced orchestral strings and brass stabs",
+        "relation_or_failure": "Effectively matches the chaotic speed and slapstick nature of the mine cart ride and fruit scramble."
+      },
+      {
+        "group_index": 1,
+        "q": 0,
+        "time_seconds": 11,
+        "audible_feature": "Complete silence following abrupt cutoff at 8s",
+        "relation_or_failure": "Total absence of music during the crucial aerial approach phase removes all momentum and tension."
+      },
+      {
+        "group_index": 2,
+        "q": 0.25,
+        "time_seconds": 18,
+        "audible_feature": "Low-volume, static ambient synthesizer pad",
+        "relation_or_failure": "Generic background texture fails to respond to the specific danger of the tongue grab or the dramatic pause before the fall."
+      },
+      {
+        "group_index": 3,
+        "q": 0,
+        "time_seconds": 24,
+        "audible_feature": "Unchanging ambient drone persisting through impact",
+        "relation_or_failure": "Completely misses the kinetic energy of the tumble and crash; no accent, swell, or change occurs at the moment of collision."
+      },
+      {
+        "group_index": 4,
+        "q": 0.25,
+        "time_seconds": 29,
+        "audible_feature": "Upbeat electronic dance/pop track starting abruptly",
+        "relation_or_failure": "Tonal mismatch; high-energy club music clashes with the dazed, quiet reaction shots and the gentle exit of the penguin."
+      }
+    ],
+    "limitations": [
+      "Audio analysis relies on spectral description and temporal alignment with provided frames; precise instrument identification may vary.",
+      "Visual event timestamps are approximate based on 4fps sampling; exact frame-sync cannot be guaranteed.",
+      "Evaluation focuses strictly on the audible output relative to the described visual actions, ignoring potential intent behind the editing choices."
+    ]
+  },
+  "response_text": "{\"heard_audio\":true,\"overall_observation\":\"The audio track consists of three distinct, unrelated musical segments that fail to support the visual narrative. A fast-paced orchestral chase cue plays during the initial mine cart scene but abruptly cuts out before the aerial sequence begins. This is followed by a slow, ambient synthesizer pad that persists through the mid-air struggle and fall, completely mismatching the high-stakes action. Finally, an upbeat electronic dance track starts just as the characters land in the snow, creating a jarring tonal shift that ignores the physical impact and subsequent quiet resolution.\",\"coefficients\":{\"narrative_arc\":0.25,\"emotional_control\":0.25,\"structure_phrasing\":0.25,\"edit_transparency\":0.25,\"material_coherence\":0.25,\"musical_ending\":0.25,\"artifact_freedom\":1},\"evidence\":{\"narrative_arc\":[{\"time_seconds\":8,\"audible_feature\":\"Abrupt silence replacing the fast orchestral chase music\",\"visual_relation\":\"Fails to bridge the transition from ground-level chaos to the sustained aerial pursuit\"},{\"time_seconds\":22,\"audible_feature\":\"Slow ambient synth pad continuing unchanged\",\"visual_relation\":\"Ignores the critical moment of falling and impact with the ground\"}],\"emotional_control\":[{\"time_seconds\":14,\"audible_feature\":\"Static, low-energy ambient drone\",\"visual_relation\":\"Undermines the tension of the tongue-grabbing struggle and impending danger\"},{\"time_seconds\":26,\"audible_feature\":\"Upbeat electronic dance beat starting immediately after landing\",\"visual_relation\":\"Clashes with the physical exhaustion and sudden quiet of the post-crash aftermath\"}],\"structure_phrasing\":[{\"time_seconds\":8,\"audible_feature\":\"Hard cut to silence mid-phrase\",\"visual_relation\":\"Destroys musical continuity right as the main action set-piece begins\"},{\"time_seconds\":26,\"audible_feature\":\"Sudden introduction of a new rhythmic genre\",\"visual_relation\":\"Prevents any cohesive build-up or release across the short film's arc\"}],\"edit_transparency\":[{\"time_seconds\":8,\"audible_feature\":\"Noticeable hard edit removing all sound instantly\",\"visual_relation\":\"Draws attention to the lack of scoring rather than supporting the picture\"},{\"time_seconds\":26,\"audible_feature\":\"Jarring genre switch without crossfade or preparation\",\"visual_relation\":\"Highlights poor editorial choices over intentional comedic timing\"}],\"material_coherence\":[{\"time_seconds\":0,\"audible_feature\":\"Orchestral cartoon chase style\",\"visual_relation\":\"Matches initial frantic energy but lacks thematic connection to later scenes\"},{\"time_seconds\":14,\"audible_feature\":\"Ambient sci-fi/suspense textures\",\"visual_relation\":\"Contradicts the established acoustic palette and fails to unify the piece\"}],\"musical_ending\":[{\"time_seconds\":32,\"audible_feature\":\"Electronic track fading out arbitrarily\",\"visual_relation\":\"Provides no meaningful cadence or emotional closure for the penguin's departure\"}],\"artifact_freedom\":[{\"time_seconds\":0,\"audible_feature\":\"Clean digital playback\",\"visual_relation\":\"No clipping, distortion, or noise detected despite poor artistic integration\"}]},\"event_groups\":[{\"group_index\":0,\"q\":0.75,\"time_seconds\":4,\"audible_feature\":\"Fast-paced orchestral strings and brass stabs\",\"relation_or_failure\":\"Effectively matches the chaotic speed and slapstick nature of the mine cart ride and fruit scramble.\"},{\"group_index\":1,\"q\":0,\"time_seconds\":11,\"audible_feature\":\"Complete silence following abrupt cutoff at 8s\",\"relation_or_failure\":\"Total absence of music during the crucial aerial approach phase removes all momentum and tension.\"},{\"group_index\":2,\"q\":0.25,\"time_seconds\":18,\"audible_feature\":\"Low-volume, static ambient synthesizer pad\",\"relation_or_failure\":\"Generic background texture fails to respond to the specific danger of the tongue grab or the dramatic pause before the fall.\"},{\"group_index\":3,\"q\":0,\"time_seconds\":24,\"audible_feature\":\"Unchanging ambient drone persisting through impact\",\"relation_or_failure\":\"Completely misses the kinetic energy of the tumble and crash; no accent, swell, or change occurs at the moment of collision.\"},{\"group_index\":4,\"q\":0.25,\"time_seconds\":29,\"audible_feature\":\"Upbeat electronic dance/pop track starting abruptly\",\"relation_or_failure\":\"Tonal mismatch; high-energy club music clashes with the dazed, quiet reaction shots and the gentle exit of the penguin.\"}],\"limitations\":[\"Audio analysis relies on spectral description and temporal alignment with provided frames; precise instrument identification may vary.\",\"Visual event timestamps are approximate based on 4fps sampling; exact frame-sync cannot be guaranteed.\",\"Evaluation focuses strictly on the audible output relative to the described visual actions, ignoring potential intent behind the editing choices.\"]}",
+  "seconds": 18.631849765777588,
+  "usage": {
+    "completion_tokens": 991,
+    "completion_tokens_details": {
+      "text_tokens": 991
+    },
+    "prompt_tokens": 16316,
+    "prompt_tokens_details": {
+      "audio_tokens": 226,
+      "cached_tokens": 0,
+      "text_tokens": 2008,
+      "video_tokens": 14082
+    },
+    "total_tokens": 17307
+  },
+  "transport_errors": [],
+  "formal_score": null,
+  "expert_calibrated": false
+}
