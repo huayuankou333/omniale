@@ -1,0 +1,104 @@
+{
+  "created_at": 1795092424.7013557,
+  "model": "gpt-6.2-astra",
+  "endpoint": "https://api-temporary.nju-link.com/v1/responses",
+  "run_id": "astra62-music-v3-action",
+  "gate_status": "VALID",
+  "gates": {
+    "media_and_picture": true,
+    "budget_and_frozen_case": true,
+    "editable_native_project": true,
+    "offline_render_reproduction": true,
+    "licensed_music_and_processing_lineage": true,
+    "frozen_extension_controls": true,
+    "transport_recovery_integrity": true
+  },
+  "formal_score": null,
+  "auxiliary_total": 39.5,
+  "content_score": 29.9,
+  "content_maximum": 90,
+  "available_content_subtotal": 29.89142857142857,
+  "available_content_maximum": 90,
+  "dimension_scores": {
+    "narrative": 10.241428571428571,
+    "musical_editing": 10.9,
+    "short_version": 8.75,
+    "technical": 9.6
+  },
+  "rubric_points": {
+    "narrative_arc": 3.0,
+    "event_relationship": 4.491428571428572,
+    "emotional_control": 2.75,
+    "structure_phrasing": 3.0,
+    "edit_transparency": 3.0,
+    "material_coherence": 2.5,
+    "musical_ending": 2.4000000000000004,
+    "artifact_freedom": 3.6,
+    "shared_identity": 3.75,
+    "short_reconstruction": 5.0
+  },
+  "objective_technical_points": 6.0,
+  "auxiliary_status": "user_requested_uncalibrated_auxiliary_score",
+  "auxiliary_problems": [],
+  "judge_model": "qwen3.8-omni-flash",
+  "judge_calibrated": false,
+  "judge_prior_audio_control_pass": false,
+  "budget": {
+    "active_seconds": 3288.663969039917,
+    "successful_calls": 62,
+    "input_tokens": 4899691,
+    "output_tokens": 49209,
+    "external_http_requests": 22,
+    "network_bytes": 9741580,
+    "termination": "model_finished"
+  },
+  "time_breakdown": {
+    "successful_api_seconds": 2333.8705081939697,
+    "network_tool_seconds": 804.5833430290222,
+    "shell_seconds": 147.5137002468109,
+    "image_seconds": 2.6962692737579346,
+    "other_tool_seconds": 0.00014829635620117188
+  },
+  "native_audio_video_input": false,
+  "original_soundtrack_supplied_to_tested_model": false,
+  "original_soundtrack_supplied_to_judge": false,
+  "candidate_submission_modified_by_evaluator": false,
+  "limitations": [
+    "Qwen3.8 failed a prior known-silence localization control. User requested continued auxiliary use; these numbers are not calibrated evidence of exact audio timing or human expert quality.",
+    "Explicit MP3 stereo audio and synchronized silent 4fps picture; no frame-exact sync claims.",
+    "Original soundtrack, model identity, expected scores and creator descriptions not provided to judge.",
+    "No content resampling or manual coefficient changes. Gates read separately."
+  ],
+  "interface_attempts": {
+    "total": 66,
+    "failed": 4,
+    "failed_seconds_excluded_from_active_budget": 514.0040118694305,
+    "failed_statuses": [
+      502,
+      502,
+      502,
+      502
+    ]
+  },
+  "transport_recovery": {
+    "at_checkpoint": 28,
+    "transport": "Responses SSE",
+    "checks": {
+      "original_runner": true,
+      "new_runner": true,
+      "new_pipeline": true,
+      "original_protocol": true,
+      "effective_protocol": true,
+      "original_freeze": true
+    },
+    "scope": "Only Responses HTTP streaming; same model, endpoint, high reasoning, tools, history, budget, candidate files and scoring. No content retry after a successful response.",
+    "canceled_inflight_attempt": {
+      "request_started": 1795089139.222836,
+      "canceled_at": 1795089187.9228299,
+      "successful_response_received": false
+    }
+  },
+  "engineering_eligible_auxiliary_total": 39.5,
+  "auxiliary_content_reliability": "failed_factual_spot_check",
+  "reliable_artistic_total": null
+}

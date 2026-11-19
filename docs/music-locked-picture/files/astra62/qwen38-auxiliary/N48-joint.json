@@ -1,0 +1,54 @@
+{
+  "label": "N48-joint",
+  "model": "qwen3.8-omni-flash",
+  "fingerprint": "9dba90eb68d9a686e196a7430afba0efc383a8c89b1040d7ee1cc9d5597027fe",
+  "media": [
+    {
+      "name": "N48-long",
+      "input_sha256": "03dd57df5ab44e9f3499c5e7bf44c934ad23766106c7b95539fb194ea6479803",
+      "video_sha256": "b25da02418965dc301ef10682d1b23b8f33b85e75941e033c392ef9e23dcd421",
+      "audio_sha256": "ad76ef47d790866e7024f4e804dcdc6c4f0fff722ac6619d5b9d89386b2f0072"
+    },
+    {
+      "name": "N48-short",
+      "input_sha256": "c3d111901276667e6aacceda6b676703f0d1f8049eb39853ebbcb063a13102d3",
+      "video_sha256": "ce302b8e04fb13ada3b8ed035bc2646a54b9c494302dab6005d298a86bbcd222",
+      "audio_sha256": "501226e8d755b4d17a797fbbd01e5ddc0089ccc78642211d475bd60162576288"
+    }
+  ],
+  "prompt": "Watch AND listen to both anonymous versions of one action-comedy commission. Judge the audible results. The short must have an independently complete entry, development and ending while sharing a suitable musical identity with the long version. Common source music alone is not successful adaptation. A reused cue can succeed if its actual phrasing and pacing fit. No original soundtrack or creator notes are provided. Do not invent operations, instruments or synchronized accents. Use coefficients in .05 increments: 0 absent/failed, .25 most key points fail, .5 basically usable with clear problems, .75 professional overall with local flaws, 1 outstanding without material problems. Give concrete audible evidence including relevant times and shortcomings. Return ONLY JSON: {\"heard_audio\":boolean,\"shared_identity\":{\"q\":number|null,\"evidence\":string},\"short_reconstruction\":{\"q\":number|null,\"evidence\":string},\"limitations\":[string]}. If audio evidence is unavailable return null rather than a guessed score.\nEach named film has a silent visual stream immediately followed by its synchronized explicit audio; both start at t=0. Listen to that audio. Never infer audio from visible actions. Video sampled at 4 fps; do not claim frame-accurate sync.",
+  "judgment": {
+    "heard_audio": true,
+    "shared_identity": {
+      "q": 0.75,
+      "evidence": "Both versions share a distinct musical identity, utilizing the same fast-paced orchestral cues for action (e.g., long 0:23-0:48, short 0:06-0:19) and identical gentle acoustic guitar melodies for emotional beats (long 1:18-1:33, short 0:24-0:29)."
+    },
+    "short_reconstruction": {
+      "q": 0.5,
+      "evidence": "The short version successfully adapts the music to fit its compressed pacing, but it fails as an independently complete narrative because it lacks an ending. It abruptly cuts off at 0:31 during the penguin's slide, leaving the story unresolved."
+    },
+    "limitations": [
+      "No original soundtrack or creator notes were provided.",
+      "Video was sampled at 4 fps, so frame-accurate synchronization cannot be guaranteed."
+    ]
+  },
+  "response_text": "{\"heard_audio\":true,\"shared_identity\":{\"q\":0.75,\"evidence\":\"Both versions share a distinct musical identity, utilizing the same fast-paced orchestral cues for action (e.g., long 0:23-0:48, short 0:06-0:19) and identical gentle acoustic guitar melodies for emotional beats (long 1:18-1:33, short 0:24-0:29).\"},\"short_reconstruction\":{\"q\":0.5,\"evidence\":\"The short version successfully adapts the music to fit its compressed pacing, but it fails as an independently complete narrative because it lacks an ending. It abruptly cuts off at 0:31 during the penguin's slide, leaving the story unresolved.\"},\"limitations\":[\"No original soundtrack or creator notes were provided.\",\"Video was sampled at 4 fps, so frame-accurate synchronization cannot be guaranteed.\"]}",
+  "seconds": 14.270467519760132,
+  "usage": {
+    "completion_tokens": 195,
+    "completion_tokens_details": {
+      "text_tokens": 195
+    },
+    "prompt_tokens": 71810,
+    "prompt_tokens_details": {
+      "audio_tokens": 1124,
+      "cached_tokens": 0,
+      "text_tokens": 282,
+      "video_tokens": 70404
+    },
+    "total_tokens": 72005
+  },
+  "transport_errors": [],
+  "formal_score": null,
+  "expert_calibrated": false
+}

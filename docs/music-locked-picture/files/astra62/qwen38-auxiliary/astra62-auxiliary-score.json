@@ -1,0 +1,88 @@
+{
+  "model": "astra62",
+  "evaluator": "qwen3.8-omni-flash",
+  "status": "user_requested_uncalibrated_auxiliary_score",
+  "content_score": 29.9,
+  "content_score_unrounded": 29.89142857142857,
+  "content_maximum": 90,
+  "auxiliary_total": 39.5,
+  "auxiliary_total_unrounded": 39.49142857142857,
+  "maximum": 100,
+  "formal_score": null,
+  "expert_calibrated": false,
+  "minimal_audio_control_pass": false,
+  "prior_qualification": "../judge-evidence/qwen38/qualification.json",
+  "dimension_scores": {
+    "narrative": 10.241428571428571,
+    "musical_editing": 10.9,
+    "short_version": 8.75,
+    "technical": 9.6
+  },
+  "points": {
+    "narrative_arc": 3.0,
+    "event_relationship": 4.491428571428572,
+    "emotional_control": 2.75,
+    "structure_phrasing": 3.0,
+    "edit_transparency": 3.0,
+    "material_coherence": 2.5,
+    "musical_ending": 2.4000000000000004,
+    "artifact_freedom": 3.6,
+    "shared_identity": 3.75,
+    "short_reconstruction": 5.0
+  },
+  "coefficients": {
+    "short": {
+      "narrative_arc": 0.25,
+      "emotional_control": 0.25,
+      "structure_phrasing": 0.25,
+      "edit_transparency": 0.25,
+      "material_coherence": 0.25,
+      "musical_ending": 0.25,
+      "artifact_freedom": 0.75,
+      "event_relationship": 0.4
+    },
+    "long": {
+      "narrative_arc": 0.25,
+      "emotional_control": 0.25,
+      "structure_phrasing": 0.25,
+      "edit_transparency": 0.25,
+      "material_coherence": 0.25,
+      "musical_ending": 0.5,
+      "artifact_freedom": 1,
+      "event_relationship": 0.35714285714285715
+    }
+  },
+  "joint": {
+    "heard_audio": true,
+    "shared_identity": {
+      "q": 0.75,
+      "evidence": "Both versions share a distinct musical identity, utilizing the same fast-paced orchestral cues for action (e.g., long 0:23-0:48, short 0:06-0:19) and identical gentle acoustic guitar melodies for emotional beats (long 1:18-1:33, short 0:24-0:29)."
+    },
+    "short_reconstruction": {
+      "q": 0.5,
+      "evidence": "The short version successfully adapts the music to fit its compressed pacing, but it fails as an independently complete narrative because it lacks an ending. It abruptly cuts off at 0:31 during the penguin's slide, leaving the story unresolved."
+    },
+    "limitations": [
+      "No original soundtrack or creator notes were provided.",
+      "Video was sampled at 4 fps, so frame-accurate synchronization cannot be guaranteed."
+    ]
+  },
+  "objective_technical_points": 6.0,
+  "problems": [],
+  "raw_responses": [
+    "N48-short.json",
+    "N48-long.json",
+    "N48-joint.json"
+  ],
+  "limitations": [
+    "Qwen3.8 failed a prior known-silence localization control. User requested continued auxiliary use; these numbers are not calibrated evidence of exact audio timing or human expert quality.",
+    "Explicit MP3 stereo audio and synchronized silent 4fps picture; no frame-exact sync claims.",
+    "Original soundtrack, model identity, expected scores and creator descriptions not provided to judge.",
+    "No content resampling or manual coefficient changes. Gates read separately."
+  ],
+  "available_content_subtotal": 29.89142857142857,
+  "available_content_maximum": 90,
+  "unassessed_content_maximum": 0,
+  "missing_content_items": [],
+  "comparison_limitation": "Same Qwen3.8 route as prior two submissions. Prior control failure and contradictory single/joint judgments remain material; this is not a calibrated professional score."
+}
