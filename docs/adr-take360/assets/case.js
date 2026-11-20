@@ -24,15 +24,17 @@ function chooseShot(sid,{scroll=false,move=true}={}){
 }
 function $$(s){return [...document.querySelectorAll(s)]}
 function scoreTable(){
- $('#score-table').innerHTML='<div class="table-wrap"><table><thead><tr><th>模型</th><th>内容 / 60</th><th>同步 / 30</th><th>听感混音 / 10</th><th>工程门槛</th><th>总分 / 100</th></tr></thead><tbody>'+data.models.map(m=>`<tr><td class="model-name">${esc(m.model)}</td><td>${fmt(m.category_scores.identity_content_performance)}</td><td>${fmt(m.category_scores.audiovisual_sync)}</td><td>${fmt(m.category_scores.quality)}</td><td>5/5 通过 · 上限 ${m.engineering_cap}</td><td class="total">${fmt(m.total)}</td></tr>`).join('')+'</tbody></table></div>';
- $('#gate-table').innerHTML='<div class="table-wrap"><table><thead><tr><th>门槛</th><th>检查</th><th>失败上限</th>'+data.models.map(m=>`<th>${esc(names[m.slug])}</th>`).join('')+'</tr></thead><tbody>'+data.models[0].gates.map((g,i)=>`<tr><td>${g.id}</td><td>${esc(g.name)}</td><td>${g.cap_on_failure}</td>${data.models.map(m=>`<td class="${m.gates[i].passed?'status-pass':'status-fail'}">${m.gates[i].passed?'通过':'未通过'}</td>`).join('')}</tr>`).join('')+'</tbody></table></div>';
+ const row=m=>`<tr><td class="model-name">${esc(m.model)}<br><small>${esc(m.condition)}</small></td><td>${fmt(m.category_scores.identity_content_performance)}</td><td>${fmt(m.category_scores.audiovisual_sync)}</td><td>${fmt(m.category_scores.quality)}</td><td>${m.gates.filter(g=>g.passed).length}/5 通过 · 上限 ${m.engineering_cap}</td><td class="total">${fmt(m.total)}</td></tr>`;
+ const table=rows=>'<div class="table-wrap"><table><thead><tr><th>模型 / 条件</th><th>内容 / 60</th><th>同步 / 30</th><th>听感混音 / 10</th><th>工程门槛</th><th>总分 / 100</th></tr></thead><tbody>'+rows.map(row).join('')+'</tbody></table></div>';
+ $('#score-table').innerHTML='<h3>本轮：候选标签辅助版</h3>'+table(data.models.filter(m=>m.slug==='sol'))+'<details><summary>其他模型历史结果 · 候选表演标签未提供，尚未重测</summary><p>与本轮 Sol 的辅助信息不同；保留交付与证据供查阅，不作同条件排名。</p>'+table(data.models.filter(m=>m.slug!=='sol'))+'</details>';
+ $('#gate-table').innerHTML='<div class="table-wrap"><table><thead><tr><th>门槛</th><th>检查</th><th>失败上限</th>'+data.models.map(m=>`<th>${esc(names[m.slug])}<br><small>${esc(m.condition)}</small></th>`).join('')+'</tr></thead><tbody>'+data.models[0].gates.map((g,i)=>`<tr><td>${g.id}</td><td>${esc(g.name)}</td><td>${g.cap_on_failure}</td>${data.models.map(m=>`<td class="${m.gates[i].passed?'status-pass':'status-fail'}">${m.gates[i].passed?'通过':'未通过'}</td>`).join('')}</tr>`).join('')+'</tbody></table></div>';
 }
 function renderPlayer(){
- const m=model(),stage=$('#delivery-stage').value,oldTime=$('#delivery').currentTime||0;
+ const m=model(),stage=$('#delivery-stage').value,oldTime=$('#delivery').currentTime||0; const assetRelease=active==='sol'?'https://github.com/huayuankou333/omniale/releases/download/take360-label-assisted-sol-20261120/':release;
  $('#delivery').pause();$('#reference').pause();
  $('#delivery').src=`media/${active}-${stage}.mp4`;
- $('#delivery-title').textContent=`${names[active]} · ${stage}${stage==='v2'?' 最终成片':' 返修前成片（不计本页分数）'}`;
- $('#delivery-links').innerHTML=`<a href="${release}${active}-v2-original.mp4">原始 v2 MP4 ↓</a><a href="${release}${active}-portable-v2.zip">完整 v2 工程与媒体 ↓</a><a href="records/${active}-v2-audio_plan.json">实际音频计划</a><a href="records/${active}-v2-edit_log.json">逐句日志</a>`;
+ $('#delivery-title').textContent=`${names[active]} · ${m.condition} · ${stage}${stage==='v2'?' 最终成片':' 返修前成片（不计本页分数）'}`;
+ $('#delivery-links').innerHTML=`<a href="${assetRelease}${active}-v2-original.mp4">原始 v2 MP4 ↓</a><a href="${assetRelease}${active}-portable-v2.zip">完整 v2 工程与媒体 ↓</a><a href="records/${active}-v2-audio_plan.json">实际音频计划</a><a href="records/${active}-v2-edit_log.json">逐句日志</a>`;
  const s=m.statistics;
  $('#run-stats').innerHTML=`<span><b>${s.api_turns}</b> 回合</span><span><b>${s.tool_calls}</b> 次工具</span><span><b>${s.frames}</b> 帧</span><span><b>${s.audio_calls}</b> 次外部听觉</span><span><b>${s.renders}</b> 次 REAPER 尝试</span><span>有效编辑 <b>${fmt(s.active_minutes,1)}</b> 分钟</span><span><b>主动完成</b> · model_finish</span><span>工具报错 <b>${s.tool_errors}</b> 次</span>`;
  seek(oldTime);setHearing('output');
@@ -40,8 +42,8 @@ function renderPlayer(){
 function setHearing(which){$('#delivery').muted=which!=='output';$('#reference').muted=which!=='reference';$('#hear-output').classList.toggle('active',which==='output');$('#hear-reference').classList.toggle('active',which==='reference')}
 function selectedRubrics(){const f=$('#rubric-filter').value;return model().rubrics.filter(r=>f==='all'||r.id.startsWith(f))}
 function renderRubrics(){
- const rows=selectedRubrics();$('#rubric-count').textContent=`${rows.length} / 20 项 · ${names[active]} · 最终 v2`;
- $('#rubric-comparison').innerHTML='<table><thead><tr><th>Rubric</th><th>镜头 / 维度</th><th>满分</th>'+data.models.map(m=>`<th>${esc(names[m.slug])}</th>`).join('')+'</tr></thead><tbody>'+rows.map(r=>`<tr><td>${r.id}</td><td>${esc(r.shots?.join(' · ')||catTitle.Q)}</td><td>${fmt(r.weight)}</td>${data.models.map(m=>`<td>${fmt(m.rubrics.find(x=>x.id===r.id).score_unrounded)}</td>`).join('')}</tr>`).join('')+'</tbody></table>';
+ const rows=selectedRubrics();$('#rubric-count').textContent=`${rows.length} / 20 项 · ${names[active]} · ${model().condition} · 最终 v2`;
+ $('#rubric-comparison').innerHTML='<table><thead><tr><th>Rubric</th><th>镜头 / 维度</th><th>满分</th>'+data.models.map(m=>`<th>${esc(names[m.slug])}<br><small>${esc(m.condition)}</small></th>`).join('')+'</tr></thead><tbody>'+rows.map(r=>`<tr><td>${r.id}</td><td>${esc(r.shots?.join(' · ')||catTitle.Q)}</td><td>${fmt(r.weight)}</td>${data.models.map(m=>`<td>${fmt(m.rubrics.find(x=>x.id===r.id).score_unrounded)}</td>`).join('')}</tr>`).join('')+'</tbody></table>';
  $('#rubric-list').innerHTML=rows.map(r=>{
   const label=r.shots?.join(' · ')|| (r.id==='Q01'?'24 镜头匿名听感':'LUFS / 真峰值 / 数字削波');
   return `<details id="rubric-${r.id}"><summary>${r.id} · ${esc(label)}<span class="score">${fmt(r.score_unrounded)} / ${fmt(r.weight)}</span></summary><p>${esc(r.rule)}</p>${(r.shots||[]).map(sid=>`<button data-seek-shot="${sid}">${sid} · 定位 ${time(data.targets.find(s=>s.id===sid).start)}</button>`).join(' ')}<pre>${esc(JSON.stringify(r.evidence,null,2))}</pre></details>`;
@@ -52,7 +54,7 @@ function renderShot(){
  const used=[...new Map(src.used.map(u=>[u.candidate,u])).values()];
  const sourceRows=used.map(u=>`<tr><td data-label="候选">${esc(u.candidate)}</td><td data-label="来源演员">${esc(u.actor_role)} / 演员 ${String(u.actor).padStart(2,'0')}</td><td data-label="来源表演标签">${esc(u.emotion_name)}<br>${esc(u.intensity_name)}</td><td data-label="放置轨道">角色轨 ${esc(u.role_track)}</td><td data-label="原候选试听 / MP3"><audio controls preload="none" src="media/candidates/${u.candidate}.mp3" aria-label="实际使用候选 ${u.candidate}"></audio></td></tr>`).join('');
  const valid=t.valid;
- $('#shot-detail').innerHTML=`<h3>${shot} · ${names[active]} 最终 v2 <span class="badge ${e.content_points<2.5?'warn':''}">内容 ${fmt(e.content_points)} / 2.50 · 同步 ${fmt(e.sync_points)} / 1.25</span></h3><p><b>评后核对目标：</b>角色 ${s.role}（演员 ${String(s.actor).padStart(2,'0')}） · ${esc(s.emotion)} · ${esc(s.intensity_v2)}${s.revised?`。返修前为 ${esc(s.intensity_v1)}，此处按返修要求判分`:''}。<br><b>台词：</b>${esc(s.statement)}</p><div class="controls"><button data-seek-shot="${shot}">定位成片 ${time(s.start)}</button><button data-calibration="${s.role}">听目标角色 ${s.role} 校准声</button></div><div class="evidence-facts"><div><b>身份活动来源占比</b>${fmt(src.actor*100,1)}% · ${src.actor>=.98?'身份正确':'未达 98% 门槛'}</div><div><b>正确句子来源占比</b>${fmt(src.statement*100,1)}%</div><div><b>正确来源发声保留覆盖</b>${fmt(src.retained_source_speech_coverage*100,1)}%<br><small>错演员或错句时可为 0，不等于完全无声。</small></div><div><b>起点误差 / 声学代理</b>${valid?ms(t.onset_error_s):'无有效匹配'}</div><div><b>终点误差 / 声学代理</b>${valid?ms(t.end_error_s):'无有效匹配'}</div><div><b>句内绝对误差中位数</b>${valid?ms(t.internal_median_abs_error_s).replace('+',''):'无有效匹配'}</div></div><h3 class="subheading">成片实际使用的真实录音</h3><div class="table-wrap"><table><thead><tr><th>候选</th><th>来源演员</th><th>来源表演标签</th><th>放置轨道</th><th>原候选试听 / MP3</th></tr></thead><tbody>${sourceRows}</tbody></table></div><p class="caption">来源标签为评后追溯，不是提供给模型的提示。候选试听是未编辑录音；成片中的实际裁切、伸缩与增益见执行计划和下方证据。</p><h3 class="subheading">Qwen 对实际成片音轨的匿名听评</h3><p><b>转写：</b>${esc(a.transcript)}<br>词句可懂/符合目标 ${a.intelligibility} · 接缝 ${a.seam_quality} · 自然度 ${a.naturalness}（各 0／0.5／1）</p><p>${esc(a.evidence)}</p><details><summary>完整来源、时间锚点与听评原始证据</summary><pre>${esc(JSON.stringify(e,null,2))}</pre></details>`;
+ $('#shot-detail').innerHTML=`<h3>${shot} · ${names[active]} 最终 v2 <span class="badge ${e.content_points<2.5?'warn':''}">内容 ${fmt(e.content_points)} / 2.50 · 同步 ${fmt(e.sync_points)} / 1.25</span></h3><p><b>评后核对目标：</b>角色 ${s.role}（演员 ${String(s.actor).padStart(2,'0')}） · ${esc(s.emotion)} · ${esc(s.intensity_v2)}${s.revised?`。返修前为 ${esc(s.intensity_v1)}，此处按返修要求判分`:''}。<br><b>台词：</b>${esc(s.statement)}</p><div class="controls"><button data-seek-shot="${shot}">定位成片 ${time(s.start)}</button><button data-calibration="${s.role}">听目标角色 ${s.role} 校准声</button></div><div class="evidence-facts"><div><b>身份活动来源占比</b>${fmt(src.actor*100,1)}% · ${src.actor>=.98?'身份正确':'未达 98% 门槛'}</div><div><b>正确句子来源占比</b>${fmt(src.statement*100,1)}%</div><div><b>正确来源发声保留覆盖</b>${fmt(src.retained_source_speech_coverage*100,1)}%<br><small>错演员或错句时可为 0，不等于完全无声。</small></div><div><b>起点误差 / 声学代理</b>${valid?ms(t.onset_error_s):'无有效匹配'}</div><div><b>终点误差 / 声学代理</b>${valid?ms(t.end_error_s):'无有效匹配'}</div><div><b>句内绝对误差中位数</b>${valid?ms(t.internal_median_abs_error_s).replace('+',''):'无有效匹配'}</div></div><h3 class="subheading">成片实际使用的真实录音</h3><div class="table-wrap"><table><thead><tr><th>候选</th><th>来源演员</th><th>来源表演标签</th><th>放置轨道</th><th>原候选试听 / MP3</th></tr></thead><tbody>${sourceRows}</tbody></table></div><p class="caption">${active==='sol'?'本轮已向模型提供候选台词、情绪、强度、声组及校准名册；上方目标镜头答案仅评后公开。':'历史运行未提供候选表演标签；本区为评后追溯。'}候选试听是未编辑录音；成片中的实际裁切、伸缩与增益见执行计划和下方证据。</p><h3 class="subheading">Qwen 对实际成片音轨的匿名听评</h3><p><b>转写：</b>${esc(a.transcript)}<br>词句可懂/符合目标 ${a.intelligibility} · 接缝 ${a.seam_quality} · 自然度 ${a.naturalness}（各 0／0.5／1）</p><p>${esc(a.evidence)}</p><details><summary>完整来源、时间锚点与听评原始证据</summary><pre>${esc(JSON.stringify(e,null,2))}</pre></details>`;
 }
 function renderShots(){
  $('#shot-grid').innerHTML=data.targets.map(s=>{const e=model().shot_evidence[s.id];return `<button data-shot="${s.id}" class="${s.id===shot?'active':''}" aria-label="${s.id} 内容 ${fmt(e.content_points)}分"><img src="media/shots/${s.id}.jpg" alt="${s.id} 真实输入画面" loading="lazy"><span>${s.id} · C ${fmt(e.content_points)}<br>T ${fmt(e.sync_points)}${s.revised?' · 返修':''}</span></button>`}).join('');renderShot();
@@ -73,7 +75,7 @@ async function focusTrace(step){
  const el=$(`#trace-${step}`);if(el){el.open=true;el.classList.add('trace-focus');el.scrollIntoView({behavior:'smooth',block:'center'})}
 }
 function example(sid,text){return `<li><button data-seek-shot="${sid}">${sid} · ${time(data.targets.find(s=>s.id===sid).start)}</button> ${text}</li>`}
-function renderAnalysis(){
+function renderHistoricalAnalysis(){
  const m=model(),e=m.shot_evidence,st=m.statistics;
  let specific='',process='';
  if(active==='sol'){
@@ -89,6 +91,16 @@ function renderAnalysis(){
  const quality=m.rubrics.find(r=>r.id==='Q02').evidence;
  $('#analysis-content').innerHTML=`<div class="analysis-grid"><article class="card"><h3>${names[active]} · 内容链</h3><p>演员身份正确 <b>${m.correct_actor_shots.length}/24</b>；内容满分 <b>${m.full_content_shots.length}/24</b>。身份正确镜头：${m.correct_actor_shots.join('、')}。内容得分 <b>${fmt(m.category_scores.identity_content_performance)}/60</b>。</p><ul>${specific}</ul></article><article class="card"><h3>执行策略与观察边界</h3><p>${process}</p><p>声音质量 ${fmt(m.category_scores.quality)}/10，不能补偿人物与表演错误。实际整体响度 ${fmt(quality.integrated_lufs)} LUFS，真峰值 ${fmt(quality.true_peak_dbtp)} dBTP；数字削波检查${quality.checks[2]?'通过':'未通过'}。响度目标${quality.checks[0]?'通过':'未通过'}，真峰值目标${quality.checks[1]?'通过':'未通过'}。</p><p>工程重放与原混音差异为 ${fmt(m.technical.replay_rms_difference_dbfs,1)} dBFS，成片音轨与混音匹配核查通过。这支持“软件链完成”，不支持“感知内容已经正确”。</p><div class="links"><a href="records/${active}-technical.json">技术测量</a><a href="records/${active}-trajectory.json">实际轨迹</a></div></article></div>`;
 }
+function renderAnalysis(){
+ if(active!=='sol'){renderHistoricalAnalysis();return}
+ const m=model(),ev=m.shot_evidence,st=m.statistics,quality=m.rubrics.find(r=>r.id==='Q02').evidence;
+ const wrong=data.targets.filter(s=>ev[s.id].source.actor<.98).map(s=>s.id),wrongEmotion=data.targets.filter(s=>ev[s.id].source.actor>=.98&&ev[s.id].source.emotion<.98).map(s=>s.id);
+ const median=a=>{a.sort((x,y)=>x-y);const i=Math.floor(a.length/2);return a.length%2?a[i]:(a[i-1]+a[i])/2};
+ const err=k=>Math.round(1000*median(Object.values(ev).map(e=>e.timing?.[k]).filter(Number.isFinite).map(Math.abs)));
+ const samples=[['S01','演员和台词正确，但候选表演情绪与目标不同。'],[wrong[0],'词句正确，实际录音来自另一名演员；角色名册已给出，目标画面角色仍未判对。'],[m.full_content_shots[0],'人物、完整词句、情绪和强度均符合；内容满分仍不保证同步满分。']];
+ $('#analysis-content').innerHTML=`<div class="analysis-grid"><article class="card"><h3>内容：候选标签不能替代目标画面理解</h3><p>24/24句词句正确，16/24句演员正确，只有6/24句完整满足人物、情绪与强度。演员错配：<b>${wrong.join('、')}</b>。演员正确但情绪错误：${wrongEmotion.join('、')}。</p><ul>${samples.map(([id,text])=>example(id,`${text} 内容 ${fmt(ev[id].content_points)}/2.5，同步 ${fmt(ev[id].sync_points)}/1.25。`)).join('')}</ul></article><article class="card"><h3>同步与混音要分别看</h3><p>同步 ${fmt(m.category_scores.audiovisual_sync)}/30。句首绝对偏差中位数 ${err('onset_error_s')}ms，句尾 ${err('end_error_s')}ms；逐句内部锚点绝对误差中位数的中位数 ${err('internal_median_abs_error_s')}ms。以上为声学代理，尚非直接测得的嘴唇误差。</p><p>听感混音10/10来自接缝、伸缩自然度和电平检查。整体 ${quality.integrated_lufs} LUFS、真峰值 ${quality.true_peak_dbtp}dBTP、无数字削波；这一分数不表示人物、情绪或同步正确。</p></article><article class="card"><h3>工程：可重放，但角色隔离失败</h3><p>工程重放与混音差异 ${fmt(m.technical.replay_rms_difference_dbfs,2)}dBFS；成片1280×720、30fps、2745帧符合锁画要求。8条角色分轨长度和求和正确，但部分分轨在其他角色窗口中有声音，G04未通过。</p><p>门控上限85；原始总分40.29低于上限，本轮没有额外门控扣分。20个非返修镜头的PCM保持不变。<a href="records/sol-technical.json">查看技术检查</a>。</p></article><article class="card"><h3>轨迹与输入有效性</h3><p>${st.api_turns}轮、600次取帧、23次听觉调用、4次REAPER渲染，模型主动完成。600帧有384个独立文件/时间点、216次重复；唯一工具报错为文本工具不允许读取.rpp。</p><p>只保留最近24张图像像素，可能影响跨镜头记忆。运行前及独立事后传输诊断通过，仍不能确认每次历史请求的接收情况。模型自报早期只见路径也不能单独证明传输失败。<a href="files/VALIDITY-NOTES.zh-CN.md">完整边界与诊断证据</a>。</p></article></div>`;
+}
+
 async function selectModel(slug){
  const id=++requestId;active=slug;
  $$('#model-tabs button').forEach(b=>{b.classList.toggle('active',b.dataset.model===slug);b.setAttribute('aria-selected',String(b.dataset.model===slug))});
@@ -106,7 +118,7 @@ function candidateOptions(){
 }
 function chooseCandidate(cid){
  currentCandidate=cid;$('#candidate-select').value=cid;$('#candidate-audio').pause();$('#candidate-audio').src=`media/candidates/${cid}.mp3`;
- const c=data.candidates.find(x=>x.id===cid);$('#candidate-info').textContent=`${c.id} · 匿名组 ${c.voice_group} · 原件 ${fmt(c.duration_s)} 秒 · 原 WAV SHA256 ${c.sha256}`;
+ const c=data.candidates.find(x=>x.id===cid);$('#candidate-info').textContent=`${c.id} · ${c.voice_group} · ${c.transcript} · ${c.emotion} / ${c.intensity} · ${fmt(c.duration_s)} 秒 · WAV SHA256 ${c.sha256}`;
 }
 function calibration(role){$('#calibration-title').textContent=`角色 ${role} · 中性有声校准片`;const v=$('#calibration-video');v.preload='metadata';v.src=`media/calibration/role_${role}.mp4`;v.load();$('#calibration-dialog').showModal()}
 function bind(){
@@ -134,9 +146,9 @@ function bind(){
 }
 function fail(error){console.error(error);const p=document.createElement('p');p.className='error';p.textContent=`页面数据未能完整加载：${error.message}。可刷新，或下载 results.json 人工核查。`;$('main').prepend(p)}
 (async()=>{
- data=await json('results.json');
- $('#model-tabs').innerHTML=data.models.map(m=>`<button role="tab" aria-selected="false" data-model="${m.slug}">${names[m.slug]}</button>`).join('');
- for(const s of ['#evidence-model','#trace-model'])$(s).innerHTML=data.models.map(m=>`<option value="${m.slug}">${names[m.slug]}</option>`).join('');
+ data=await json('results.json?v=20261120');
+ $('#model-tabs').innerHTML=data.models.map(m=>`<button role="tab" aria-selected="false" data-model="${m.slug}">${names[m.slug]} · ${m.slug==='sol'?'标签辅助版':'历史'}</button>`).join('');
+ for(const s of ['#evidence-model','#trace-model'])$(s).innerHTML=data.models.map(m=>`<option value="${m.slug}">${names[m.slug]} · ${m.slug==='sol'?'标签辅助版':'历史'}</option>`).join('');
  $('#shot-select').innerHTML=data.targets.map(s=>`<option value="${s.id}">${s.id} · ${time(s.start)}</option>`).join('');
  $('#calibration-grid').innerHTML=[...'ABCDEFGH'].map(r=>`<button data-calibration="${r}"><img src="media/calibration/role_${r}.jpg" alt="角色 ${r} 的中性校准画面" loading="lazy"><span>角色 ${r} · 查看有声校准</span></button>`).join('');
  $('#voice-filter').innerHTML+=[...data.voice_groups].map(g=>`<option value="${g.id}">${g.id} · 30 条</option>`).join('');

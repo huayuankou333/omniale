@@ -1,0 +1,186 @@
+{
+  "version": "scene-sync-anchor-graded-v2-20261120",
+  "scope": "Retrospective evaluation of the existing single Sol delivery only. No new generation or manual audio edits.",
+  "category_weights": {
+    "U": 40,
+    "T": 30,
+    "C": 20,
+    "M": 10
+  },
+  "items": 12,
+  "points_per_item": 2.5,
+  "anchors_per_item": 4,
+  "aggregation": "Equal anchor weights within each item; retain partial credit. Sum items; engineering cap unchanged.",
+  "visible_speaker_audio_early_bands_frames": [
+    [
+      2,
+      1
+    ],
+    [
+      4,
+      0.75
+    ],
+    [
+      6,
+      0.5
+    ],
+    [
+      9,
+      0.25
+    ]
+  ],
+  "visible_speaker_audio_late_bands_frames": [
+    [
+      3,
+      1
+    ],
+    [
+      5,
+      0.75
+    ],
+    [
+      7,
+      0.5
+    ],
+    [
+      10,
+      0.25
+    ]
+  ],
+  "context_only_bands_ms": [
+    [
+      250,
+      1
+    ],
+    [
+      500,
+      0.75
+    ],
+    [
+      1000,
+      0.5
+    ],
+    [
+      1500,
+      0.25
+    ]
+  ],
+  "outside_bands_score": 0,
+  "strict_auxiliary": "All four reliable anchors within +/-2 frames, independently of graded score.",
+  "source_mapping_maximum": "Diagnostic only; does not zero a correctly timed utterance because another contextual candidate contains a short duplicate source interval.",
+  "content_gate": "No whole-utterance completeness gate. Actual absent target audio at an anchor receives zero. Inconclusive matching is pending with score bounds, not assumed failure.",
+  "timing_evidence": "Stable normalized acoustic matching on actual exported MP4 against original authorized dialogue reference; not a certified phoneme/viseme metric.",
+  "visual_applicability": "Assistant inspection of contextual source frames and exact anchor frames; not human-certified labels or measured lip motion.",
+  "threshold_status": "Prospective human calibration pending. These are explicit pilot thresholds, not thresholds claimed by a paper or universal production standards.",
+  "development_set_notice": "The previous Sol result was reviewed before this protocol was designed. This is a development-set retrospective sensitivity test.",
+  "visibility": {
+    "T01": {
+      "anchor_modes": [
+        "context",
+        "context",
+        "context",
+        "context"
+      ],
+      "reason": "Robot/character shot; no reliably readable human lip articulation."
+    },
+    "T02": {
+      "anchor_modes": [
+        "visible",
+        "visible",
+        "visible",
+        "visible"
+      ],
+      "reason": "Young male speaker close-up."
+    },
+    "T03": {
+      "anchor_modes": [
+        "visible",
+        "visible",
+        "visible",
+        "visible"
+      ],
+      "reason": "Male speaker remains visible at all four selected anchors; later reaction cut not treated as speaking mouth."
+    },
+    "T04": {
+      "anchor_modes": [
+        "context",
+        "context",
+        "context",
+        "context"
+      ],
+      "reason": "Female reaction/over-shoulder projection while male line continues; no speaker lip anchors."
+    },
+    "T05": {
+      "anchor_modes": [
+        "visible",
+        "visible",
+        "visible",
+        "visible"
+      ],
+      "reason": "Male speaker close-up."
+    },
+    "T06": {
+      "anchor_modes": [
+        "visible",
+        "visible",
+        "context",
+        "context"
+      ],
+      "reason": "Female close-up switches to a distant two-shot; later lip detail insufficient at review resolution."
+    },
+    "T07": {
+      "anchor_modes": [
+        "context",
+        "visible",
+        "visible",
+        "visible"
+      ],
+      "reason": "Begins over shoulder; changes to male face for the remaining anchors."
+    },
+    "T08": {
+      "anchor_modes": [
+        "visible",
+        "visible",
+        "context",
+        "context"
+      ],
+      "reason": "Male line continues across a female reaction shot."
+    },
+    "T09": {
+      "anchor_modes": [
+        "visible",
+        "visible",
+        "visible",
+        "visible"
+      ],
+      "reason": "Female face is visible at the selected anchors after the brief prior shot."
+    },
+    "T10": {
+      "anchor_modes": [
+        "visible",
+        "visible",
+        "visible",
+        "visible"
+      ],
+      "reason": "Female close-up at selected anchors; later cuts to male reaction."
+    },
+    "T11": {
+      "anchor_modes": [
+        "visible",
+        "visible",
+        "visible",
+        "visible"
+      ],
+      "reason": "Exact-anchor frames retain the female speaker/holographic face at all four anchors; the male reaction occurs after the last anchor."
+    },
+    "T12": {
+      "anchor_modes": [
+        "context",
+        "context",
+        "context",
+        "context"
+      ],
+      "reason": "Male mouth obstructed by robot hand; assess phrase location, not visible lip motion."
+    }
+  }
+}
