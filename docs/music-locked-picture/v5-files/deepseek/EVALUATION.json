@@ -1,0 +1,56 @@
+{
+  "case": "music-locked-picture-v5-music-reedit-20261120",
+  "model": "deepseek-v4.1-flash-1017",
+  "run_id": "deepseek-music-v5-reedit",
+  "evaluated_at": 1795241277.0884595,
+  "gates": {
+    "locked_picture": false,
+    "wav_mp4_consistency": false,
+    "native_portable_edit": false,
+    "source_lineage": false,
+    "credits": false,
+    "budget_offline": true
+  },
+  "gate_status": "FAILED",
+  "formal_total": null,
+  "content_listening_assessed": false,
+  "reason": "Output-token budget exhausted before required deliverables. Audible intermediate WAVs exist, so absence of final MP4 is not evidence of silence. Original gates fail; only separate intermediate-music diagnosis is possible.",
+  "budget": {
+    "successful_calls": 122,
+    "output_tokens": 131072,
+    "active_seconds": 4398.054993867874,
+    "input_tokens": 15650120,
+    "termination": "budget_exhausted",
+    "external_http_requests": 0,
+    "network_bytes": 0,
+    "prefix_active_budget_valid": true,
+    "network_mode": "none",
+    "image_matches_frozen": true,
+    "candidate_mount_readonly": true,
+    "allowed_mounts_only": true,
+    "unsafe_submission_symlinks": [],
+    "integrity": {
+      "candidate": true,
+      "runtime": true,
+      "build_manifest": true,
+      "submission_snapshot": true
+    },
+    "inspection": "Only stopped production container settings; evaluation has its own offline container.",
+    "pass": true
+  },
+  "check_exit_codes": {
+    "media": 0,
+    "native": 0,
+    "score": 0
+  },
+  "missing_required_files": [
+    "long.mp4",
+    "short.mp4",
+    "long-music.wav",
+    "short-music.wav",
+    "assembly.json",
+    "edit-notes.md",
+    "CREDITS.txt"
+  ],
+  "diagnostic_preview_is_organizer_generated": true
+}

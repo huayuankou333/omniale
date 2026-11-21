@@ -1,0 +1,292 @@
+{
+  "case": "music-locked-picture-v5-music-reedit-20261120",
+  "updated": "2026-11-21",
+  "versions": {
+    "long": 72,
+    "short": 24
+  },
+  "weights": {
+    "A": 35,
+    "B": 25,
+    "C": 20,
+    "D": 10,
+    "E": 10
+  },
+  "formal_total": null,
+  "candidate_native_audio_video_input": false,
+  "original_mix_provided_to_candidates": false,
+  "original_mix_scoring_target": false,
+  "models": {
+    "sol": {
+      "label": "GPT-6.1 Sol",
+      "evaluation": {
+        "case": "music-locked-picture-v5-music-reedit-20261120",
+        "model": "gpt-6.1-sol",
+        "run_id": "sol-music-v5-reedit",
+        "evaluated_at": 1795234110.6424086,
+        "gates": {
+          "locked_picture": true,
+          "wav_mp4_consistency": true,
+          "native_portable_edit": true,
+          "source_lineage": true,
+          "credits": true,
+          "budget_offline": true
+        },
+        "gate_status": "PASS",
+        "formal_total": null,
+        "content_listening_assessed": false,
+        "reason": "Frozen rubric requires independent audiovisual listening and human adjudication. Unassessed subjective criteria remain null.",
+        "budget": {
+          "successful_calls": 55,
+          "output_tokens": 54865,
+          "active_seconds": 2704.619549512863,
+          "input_tokens": 6492719,
+          "termination": "model_finished",
+          "external_http_requests": 0,
+          "network_bytes": 0,
+          "prefix_active_budget_valid": true,
+          "network_mode": "none",
+          "image_matches_frozen": true,
+          "candidate_mount_readonly": true,
+          "allowed_mounts_only": true,
+          "unsafe_submission_symlinks": [],
+          "integrity": {
+            "candidate": true,
+            "runtime": true,
+            "build_manifest": true,
+            "submission_snapshot": true
+          },
+          "inspection": "Only stopped production container settings; evaluation has its own offline container.",
+          "pass": true
+        },
+        "check_exit_codes": {
+          "media": 0,
+          "native": 0,
+          "score": 0
+        }
+      },
+      "auxiliary": {
+        "status": "auxiliary_evidence_requires_human_verification",
+        "model": "qwen3.8-omni-flash",
+        "independent_requests_same_model": true,
+        "human_reviewers": 0,
+        "formal_score": null,
+        "auxiliary_reviews": [
+          {
+            "label": "review-R74",
+            "status": "valid_auxiliary_evidence",
+            "problems": [],
+            "structure_recovery": {
+              "method": "Parse each uniquely named original JSON field using JSONDecoder.raw_decode; reconstruct only malformed outer object nesting.",
+              "original_response_sha256": "55db5e823effd6a3f4227cf68bd4df12cb4a9744fbde2bb9b305b86ebc869da8",
+              "original_file_sha256": "98df78d8c137f9c17ef50f9bafc05ef1311f6957b21200b6d964978ac27ab688",
+              "new_model_calls": 0,
+              "grades_or_listening_text_changed": false,
+              "original_preserved": true
+            },
+            "assessed_subtotal": 56.65,
+            "assessed_maximum": 98,
+            "unassessed": [
+              "E5"
+            ],
+            "dimensions": {
+              "A": 22.65,
+              "B": 12.25,
+              "C": 12.0,
+              "D": 4.0,
+              "E": 5.75
+            },
+            "capped_dimensions": {
+              "A": 22.65,
+              "B": 12.25,
+              "C": 12.0,
+              "D": 4.0,
+              "E": 5.75
+            },
+            "caps": [],
+            "eligible": true,
+            "formal_total": null
+          },
+          {
+            "label": "review-K29",
+            "status": "valid_auxiliary_evidence",
+            "problems": [],
+            "structure_recovery": null,
+            "assessed_subtotal": 57.2625,
+            "assessed_maximum": 98,
+            "unassessed": [
+              "E5"
+            ],
+            "dimensions": {
+              "A": 22.5125,
+              "B": 14.0,
+              "C": 10.0,
+              "D": 5.0,
+              "E": 5.75
+            },
+            "capped_dimensions": {
+              "A": 22.5125,
+              "B": 14.0,
+              "C": 10.0,
+              "D": 5.0,
+              "E": 5.75
+            },
+            "caps": [],
+            "eligible": true,
+            "formal_total": null
+          }
+        ],
+        "disagreements_over_one_grade": [],
+        "limitations": [
+          "Two separate requests to the same model do not constitute two independent human experts.",
+          "Explicit 320kbps MP3 plus 4fps silent video; no frame-exact timing claims.",
+          "Coarse audio controls passed but had approximately one-second timing uncertainty.",
+          "E5 stereo/mono compatibility remains unassessed because judge did not receive a mono fold.",
+          "Formal total remains null pending human verification; an assessed subtotal out of 98 is not a final score out of 100."
+        ],
+        "finalized_at": 1795234208.1985228
+      },
+      "preview_type": "submitted_final"
+    },
+    "deepseek": {
+      "label": "dpsk4.1flash",
+      "evaluation": {
+        "case": "music-locked-picture-v5-music-reedit-20261120",
+        "model": "deepseek-v4.1-flash-1017",
+        "run_id": "deepseek-music-v5-reedit",
+        "evaluated_at": 1795241277.0884595,
+        "gates": {
+          "locked_picture": false,
+          "wav_mp4_consistency": false,
+          "native_portable_edit": false,
+          "source_lineage": false,
+          "credits": false,
+          "budget_offline": true
+        },
+        "gate_status": "FAILED",
+        "formal_total": null,
+        "content_listening_assessed": false,
+        "reason": "Output-token budget exhausted before required deliverables. Audible intermediate WAVs exist, so absence of final MP4 is not evidence of silence. Original gates fail; only separate intermediate-music diagnosis is possible.",
+        "budget": {
+          "successful_calls": 122,
+          "output_tokens": 131072,
+          "active_seconds": 4398.054993867874,
+          "input_tokens": 15650120,
+          "termination": "budget_exhausted",
+          "external_http_requests": 0,
+          "network_bytes": 0,
+          "prefix_active_budget_valid": true,
+          "network_mode": "none",
+          "image_matches_frozen": true,
+          "candidate_mount_readonly": true,
+          "allowed_mounts_only": true,
+          "unsafe_submission_symlinks": [],
+          "integrity": {
+            "candidate": true,
+            "runtime": true,
+            "build_manifest": true,
+            "submission_snapshot": true
+          },
+          "inspection": "Only stopped production container settings; evaluation has its own offline container.",
+          "pass": true
+        },
+        "check_exit_codes": {
+          "media": 0,
+          "native": 0,
+          "score": 0
+        },
+        "missing_required_files": [
+          "long.mp4",
+          "short.mp4",
+          "long-music.wav",
+          "short-music.wav",
+          "assembly.json",
+          "edit-notes.md",
+          "CREDITS.txt"
+        ],
+        "diagnostic_preview_is_organizer_generated": true
+      },
+      "auxiliary": {
+        "status": "auxiliary_evidence_requires_human_verification",
+        "model": "qwen3.8-omni-flash",
+        "independent_requests_same_model": true,
+        "human_reviewers": 0,
+        "formal_score": null,
+        "auxiliary_reviews": [
+          {
+            "label": "review-R74",
+            "status": "valid_auxiliary_evidence",
+            "problems": [],
+            "structure_recovery": null,
+            "assessed_subtotal": 58.0625,
+            "assessed_maximum": 95,
+            "unassessed": [
+              "E3",
+              "E5"
+            ],
+            "dimensions": {
+              "A": 22.3125,
+              "B": 14.0,
+              "C": 12.0,
+              "D": 5.5,
+              "E": 4.25
+            },
+            "capped_dimensions": {
+              "A": 22.3125,
+              "B": 14.0,
+              "C": 12.0,
+              "D": 5.5,
+              "E": 4.25
+            },
+            "caps": [],
+            "eligible": false,
+            "formal_total": null
+          },
+          {
+            "label": "review-K29",
+            "status": "valid_auxiliary_evidence",
+            "problems": [],
+            "structure_recovery": null,
+            "assessed_subtotal": 58.9125,
+            "assessed_maximum": 95,
+            "unassessed": [
+              "E3",
+              "E5"
+            ],
+            "dimensions": {
+              "A": 22.6625,
+              "B": 15.0,
+              "C": 12.0,
+              "D": 5.0,
+              "E": 4.25
+            },
+            "capped_dimensions": {
+              "A": 22.6625,
+              "B": 15.0,
+              "C": 12.0,
+              "D": 5.0,
+              "E": 4.25
+            },
+            "caps": [],
+            "eligible": false,
+            "formal_total": null
+          }
+        ],
+        "disagreements_over_one_grade": [],
+        "limitations": [
+          "Two separate requests to the same model do not constitute two independent human experts.",
+          "Explicit 320kbps MP3 plus 4fps silent video; no frame-exact timing claims.",
+          "Coarse audio controls passed but had approximately one-second timing uncertainty.",
+          "E5 stereo/mono compatibility remains unassessed because judge did not receive a mono fold.",
+          "Actual assessed maximum is 95 in each review: E3 (3 points) and E5 (2 points) remain unassessed. No percentage normalization or inferred missing grades.",
+          "The original required-delivery gates failed; human listening alone cannot turn this incomplete submission into a compliant delivery.",
+          "Reviewers disagreed about some local instrumentation, notably orchestral versus guitar-led texture near the dark-fantasy transition. Similar subtotals do not validate those details; replay is required."
+        ],
+        "finalized_at": 1795241446.6686823,
+        "scope": "Unchanged intermediate WAVs synchronized with locked pictures by organizer. Candidate did not deliver required MP4s; original submission is ineligible.",
+        "submission_eligible": false
+      },
+      "preview_type": "organizer_mux_of_unchanged_intermediate_wav"
+    }
+  }
+}
