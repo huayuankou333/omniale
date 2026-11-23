@@ -1,3 +1,9 @@
+## 案例总览与专家音乐变体（2026-11-23）
+
+- [统一案例入口](https://huayuankou333.github.io/omniale/)：20个既有与新增展示，按保留任务、其他展示和历史版本组织。
+- [专家音乐研习 hard-v2](https://huayuankou333.github.io/omniale/expert-music/)：用户确认保留；12道MuSP原生S&P题＋8道HumMusQA官方High题。GPT-6.2 Sol一次生成，知识分45/100。原件格式入口拒绝，分数使用公开的无损文本兼容副本；原始网站功能未通过，播放缺陷保留。网页试听仅转码5个钢琴WAV并改写媒体路径，原件在Release。
+- 所有旧子页与原始交付不覆盖；CREMA-D探索题未列入本次保留集合。题目保留不等于模型产物或所有judge结果通过验收。
+
 # OmniALE · D1 Review Desk v4
 
 公开展示：https://huayuankou333.github.io/omniale/review/

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#17251f"><title>聆谱 · 音乐分析研习室</title><link rel="stylesheet" href="style.css"><script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#study">跳到研习区</a>
+<header class="mast"><div class="shell top"><a class="brand" href="#top" aria-label="聆谱首页"><span class="brandmark" aria-hidden="true">≋</span> 聆谱 <small> / 音乐分析研习室</small></a><a href="#sources">来源与方法 ↗</a></div></header>
+<main id="top">
+<section class="hero"><div class="shell hero-grid">
+<div><div class="eyebrow">LISTENING LAB <span></span> VOL. 01</div><h1>从耳朵到<span>谱面。</span></h1><p>同一份谱，可以有多种演奏。用 13 份原始录音，学习从发音、力度、节拍和和声中找出可反复验证的线索。</p><a class="hero-link" href="#study">进入研习 <span aria-hidden="true">↓</span></a></div>
+<div class="hero-art" aria-hidden="true"><svg viewBox="0 0 485 275" fill="none"><path d="M17 57H468M17 97H468M17 137H468M17 177H468M17 217H468" stroke="#a5bfa7" stroke-opacity=".28"/><circle cx="315" cy="137" r="115" stroke="#9db69e" stroke-opacity=".34"/><circle cx="315" cy="137" r="85" stroke="#9db69e" stroke-opacity=".24"/><circle cx="315" cy="137" r="52" stroke="#9db69e" stroke-opacity=".22"/><rect x="132" y="67" width="207" height="128" rx="8" fill="#e4ab71" fill-opacity=".08" stroke="#e4ab71" stroke-opacity=".75" stroke-dasharray="4 5"/><path d="M23 137h30l7-10 7 18 7-17 7 11 7-3h18l7-24 7 49 7-60 7 78 7-53 7 22 7-8h14l7-20 7 45 7-74 7 98 7-66 7 42 7-29 7 9h14l7-11 7 26 7-39 7 44 7-47 7 41 7-15 7 2h18l7-31 7 54 7-45 7 39 7-26 7 18 7-10h14l7-9 7 21 7-27 7 32 7-24 7 11h30" stroke="#f0b477" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="132" cy="67" r="4" fill="#f0b477"/><circle cx="339" cy="195" r="4" fill="#f0b477"/></svg><div><span>01 / ATTACK</span><span>02 / RESONANCE</span><span>03 / RELEASE</span></div></div>
+</div></section>
+<section class="shell study" id="study" tabindex="-1">
+<div class="study-head"><div><div class="eyebrow green">THE WORKBOOK</div><h2>研习题册</h2><p>先听，再揭晓。对照两个窗口时，尽量保持播放音量不变。</p></div><div class="progress"><strong id="count">0 / 20</strong><span>已揭晓</span><progress id="progress" max="20" value="0" aria-label="已揭晓题数"></progress></div></div>
+<div class="filters" aria-label="筛选题目"><button type="button" data-mode="all" aria-pressed="true">全部 <span>20</span></button><button type="button" data-mode="piano" aria-pressed="false">钢琴 · 音频 × 谱面 <span>12</span></button><button type="button" data-mode="audio" aria-pressed="false">风格 · 音频选择 <span>8</span></button></div>
+<div class="workbench"><nav class="rail" aria-label="选题导航" id="nav"></nav><div id="cards" aria-live="off"></div></div>
+<noscript><p>此研习站需要浏览器启用 JavaScript，且应通过本地 HTTP 服务访问。</p></noscript><div id="load-status" role="status">正在加载本地题册…</div>
+</section>
+<section id="sources" class="sources"><div class="shell source-grid"><div><div class="eyebrow green">EDITORIAL NOTES</div><h2>来源与方法</h2></div><div><p>Q01–12 为 MuSP-Bench 的钢琴演奏题；Q13–20 为 HumMusQA 的官方音频片段题。英文是来源原题，中文供辅助理解。参考解读来自本次对原始媒体的聆听与分析，不是发布方答案键。</p><p>钢琴录音以完整文件起点为 0；风格录音以官方截段起点为 0。框选的是原谱位置，不是从录音分离出的声部。所有回放共用一个原速播放器。</p><div class="source-links"><a href="data/SOURCES_AND_LICENSES.md">来源及轨道许可</a><a href="data/SOURCE_NOTICES.md">作者与版本声明</a><a href="data/LICENSE.MuSP.md">MuSP 许可</a><a href="data/evidence.json">证据 JSON</a></div></div></div></section>
+</main>
+<footer class="deck" id="deck" aria-label="共用录音播放器"><div class="shell deck-inner"><div class="now"><span class="live-dot" aria-hidden="true"></span><div><strong id="now-title">尚未选择录音</strong><span id="now-range" aria-live="polite">选择任意题卡的回放按钮</span></div></div><div class="transport"><button id="toggle" disabled aria-label="播放">▶</button><div class="seekbox"><input id="seek" type="range" min="0" max="100" step="0.01" value="0" disabled aria-label="播放位置"><span id="clock">0:00.0 / —</span></div><button id="replay" disabled aria-label="从当前窗口起点重听" title="从当前窗口起点重听">↻</button></div><audio id="audio" preload="none" playsinline></audio></div></footer>
+<dialog id="score-dialog" aria-labelledby="score-heading"><div class="dialog-head"><div><div class="eyebrow green">SCORE VIEWER</div><h2 id="score-heading">原谱</h2></div><button id="close-score" aria-label="关闭谱面">✕</button></div><div class="score-tools" id="score-tools"></div><p class="score-note" id="score-note"></p><div class="score-scroll" id="score-scroll"><div class="score-sheet" id="score-sheet"><img id="page-image" alt="原始乐谱页"><div id="boxes" aria-hidden="true"></div></div></div></dialog>
+</body></html>
