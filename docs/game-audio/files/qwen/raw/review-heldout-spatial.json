@@ -1,0 +1,73 @@
+{
+  "requested_model": "qwen3.8-omni-flash",
+  "actual_model": "qwen3.8-omni-flash",
+  "prompt": "Review the ACTUAL embedded SOUND and picture of this labeled A/B video for a user-requested preliminary game-audio score. The first 42 seconds are REFERENCE; the following 42 seconds labeled X are the submission. All observation times below are LOCAL to each version, so X local t appears at global t+42. This is ONE audible video, not silent frames. If you cannot actually process its audio, say so and return null grades instead of simulating hearing.\nREFERENCE shows behavior and object categories, not a compulsory recording or perfect full-mark answer. Different appropriate sound design can earn full marks. X has one fixed monitoring gain adjustment shared across all scenes, no dynamics remixed. Do not require reference loudness matching. No tested model identity, source code or desired score is supplied.\nFor EVERY observation ID return q in [0,.25,.5,.75,1], with one concise Chinese description of an ACTUALLY HEARD feature in X and the specific requirement it meets or fails. 1 all observable applicable conditions met; .75 core works with local defects; .5 material defects/roughly half key relationships work; .25 most key relationships wrong; 0 absent/wrong causality/unusable. Use null if genuinely unassessable. Do not grade architecture, documentation, file count or mere safe peaks. Silence cannot earn stability points. Do not invent extra aesthetic constraints, sounds, timing precision, or clicks. Evaluate each window independently; no assumed overall quality.\nThis preliminary review cannot certify +/-67ms onset/100ms release/150ms pause using 4fps picture. C1/C5 q is a coarse audible-behavior estimate, with exact tolerance UNVERIFIED. Do not penalize uncertainty as a performance defect. Do not claim precise numerical panning or filtering by ear.\nOutput a compact VALID JSON object only, no reasoning, no markdown, no unescaped quotes. Use these exact keys:\n{\"heard_audio\":{\"REFERENCE\":boolean,\"X\":boolean},\"full_versions_reviewed\":boolean,\"overall_audible_observation\":string,\"windows\":[{\"id\":string,\"q\":number|null,\"audible_evidence\":string,\"limitation\":string}],\"limitations\":[string]}\nFrozen scoring criteria:\n# Relay Workshop v2：声音验收草案\n\n总分 100，20 条各 5 分。全部分数来自提交工程实际发出的声音；工程与文档不占分。正式模型测试前，须冻结参考素材、验收场景、窗口和本规则；本次构建不等于已经证明题目能难住模型。\n\n## 计算方法\n\n每条使用事先登记的多个观察窗口，覆盖独立与并发、正常与中断、重复与静默；同一条内窗口等权。窗口先检查参考清楚、规则可观察、工程运行正常；不满足者退出分母，修复题包后统一重评，不以环境或金标问题判模型错误。\n\n每窗质量 q 取 0、0.25、0.5、0.75、1：\n\n- 1：该条的全部适用条件满足，误差在公开容差内。\n- 0.75：核心判断和功能正确，少量局部声音瑕疵，仍可直接使用。\n- 0.5：约一半关键关系成立，或有明显但非全面的错误。\n- 0.25：只残留粗略线索，多数关键关系不成立。\n- 0：所需声音缺失、对象或因果错误，或该条实际无法使用。\n\n条目分 = 5 × 适用窗口 q 的平均值；总分为 20 条之和。报告必须保留逐窗证据与判定。不能先决定总分，再拆成分项。空工程的所有声音条目均为 0，不能靠静音没有爆音取得稳定性分。\n\n## A．音画关系和信息反馈：30 分\n\n| 条目 | 满分条件 |\n|---|---|\n| A1 接触归属 | 玩家与自主单元各自发出接触反馈，停走互不替代，空中没有不应出现的接触声。 |\n| A2 表面与强度 | 两种表面及轻重接触的可听区别成立，实际换面或改变强度才改变相应反馈；不强求参考的原录音。 |\n| A3 工具阶段 | 参考中可辨的进入、持续、可用阶段有正确对应和连续演化，不把所有状态做成同一种按键音。 |\n| A4 工具结果 | 不足条件松开、空中中断、有效释放、过热等公开示范结果可听地区分，并归属正确。 |\n| A5 两台设备 | 通过音画判断保留两台设备各自的运转特点及开停、故障/恢复反馈，运行速度与声音关联方向正确。 |\n| A6 操作结果 | 命中/无效操作、门的锁止/运动/端点、恢复供电/完成目标的反馈只在真实结果出现，不因相关按键被按下便假成功。 |\n\n## B．声音设计与资产质量：30 分\n\n| 条目 | 满分条件 |\n|---|---|\n| B1 接触质感 | 接触声有适合可见对象的瞬态与主体，地面质感可辨，无明显人声、配乐、错误物体或其他事件串入。 |\n| B2 运转质感 | 两台设备保持参考支持的不同机械性格；稳定段听得出运转而非警报或普通提示音，变速段仍保持同一设备身份。 |\n| B3 工具声层 | 可辨的主体、持续变化及释放/退场构成完整，不是换一个短电子提示代替整段工具活动；声层数量不限。 |\n| B4 提示可辨性 | 需要区分的结果在同一播放增益下有稳定听觉区别，提示与所示强度、正负结果及设备规模相容；不要求唯一旋律或音色。 |\n| B5 重复变化 | 同类接触在至少 12 次连续观察中避免可听的机械复读；允许调制、组合、程序生成或多样本，单纯改变文件名不算变化。变化不能破坏对象身份、接触时刻或左右归属。 |\n| B6 资产连续性 | 循环、裁切、移调与声层接合无可听点击、周期性空洞、意外起音重复或严重伸缩失真；允许风格化合成质感。 |\n\n## C．交互过渡和空间行为：25 分\n\n| 条目 | 满分条件 |\n|---|---|\n| C1 时序和进出 | 离散事件主要起音 ±67 ms；普通持续声退出 100 ms 内进入退场，必要自然尾音最长 500 ms；实际减速设备跟随转速。短按不遗漏、长按不产生洞。 |\n| C2 中断和重入 | 连续启动、早取消、过热后重试、门反向均正确衔接；旧声不粘住、无多份循环叠加、已发生的一次性提示不重播。 |\n| C3 独立和持久 | 两台设备各自保持进程；操作工具、另一设备或门不重置无关声源。停止操作后的声音状态仍正确。 |\n| C4 空间和隔离 | 同源近远对照，远处主体低至少 4 dB；左右对象方向正确，声音不依赖固定屏幕位置。隔离门关闭后，其后设备的 1.5–8 kHz/0.15–0.8 kHz 能量比相对开门低至少 4 dB，主体至少低 3 dB；门外设备同状态校准后变化不超过 2 dB。存在遮蔽时以独立对照测量，不把整段混音频谱当分轨。 |\n| C5 暂停和操作重排 | 按题面暂停/恢复时限处理，连续状态恢复而不假触发一次性声；新起点、顺序与时长仍按相同因果工作，不用录像时间表。 |\n\n## D．混音与持续可用性：15 分\n\n| 条目 | 满分条件 |\n|---|---|\n| D1 信息层级 | 同一统一监听增益下，关键操作结果和工具反馈清楚，次要运行声不持续遮蔽；独立设备、工具、接触和环境有可辨层次。 |\n| D2 并发和恢复 | 公开示范的关键反馈出现时有相应前景让位或等效的抗遮蔽处理，反馈后连续背景平滑恢复；不能仅把所有声音永久压低。 |\n| D3 持续运行 | 在有充分有效声音的连续回放中，无累积循环、异常静音、削波、增益漂移或刺耳点击；正常重复后仍可操作、可辨反馈。不能仅以峰值合规替代听觉可用性。 |\n\n\nFixed observations:\n[{\"id\": \"C2-3\", \"replay\": \"heldout-spatial\", \"start_seconds\": 23.8, \"end_seconds\": 25.8, \"purpose\": \"door reversal\", \"criterion\": \"C2\", \"condition\": \"Abort/reentry/reversal continuity and single voices\"}, {\"id\": \"C3-3\", \"replay\": \"heldout-spatial\", \"start_seconds\": 16, \"end_seconds\": 22.5, \"purpose\": \"door/movement without source reset\", \"criterion\": \"C3\", \"condition\": \"Persistent independent sources\"}, {\"id\": \"C4-2\", \"replay\": \"heldout-spatial\", \"start_seconds\": 18, \"end_seconds\": 23, \"purpose\": \"camera relative position and closure\", \"criterion\": \"C4\", \"condition\": \"Published direction/distance/door paired thresholds\"}, {\"id\": \"C4-3\", \"replay\": \"heldout-spatial\", \"start_seconds\": 30, \"end_seconds\": 37.8, \"purpose\": \"other movement and opening\", \"criterion\": \"C4\", \"condition\": \"Published direction/distance/door paired thresholds\"}, {\"id\": \"D3-5\", \"replay\": \"heldout-spatial\", \"start_seconds\": 0, \"end_seconds\": 42, \"purpose\": \"continuous movement and states\", \"criterion\": \"D3\", \"condition\": \"Nontrivial continuous output stable without accumulation/clipping/clicks\"}]",
+  "video_sha256": "c64f6f8c5f700af435c76ee9a6b1ae8f9781dd824f3cf58d4ba961381f07066f",
+  "native_embedded_audio": true,
+  "use_multichannel": true,
+  "judgment": {
+    "heard_audio": {
+      "REFERENCE": true,
+      "X": true
+    },
+    "full_versions_reviewed": true,
+    "overall_audible_observation": "X全程有可听声音，包含脚步、设备运转、工具充能/释放和门动作等反馈；与REF相比整体更像同一套素材的连续回放，但在门反向、持续独立声源、空间随镜头变化以及长段连续运行中的细节衔接上存在可闻缺陷。",
+    "windows": [
+      {
+        "id": "C2-3",
+        "q": 0.5,
+        "audible_evidence": "在本地约24秒到25秒的门反向过程中，能听到门体运动声从一侧方向转到另一侧，且旧的运动声没有完全拖尾粘住；但反向衔接处有一次明显的突兀切换感，像是前一段未自然收束后直接接入新方向，缺少平滑的重入过渡。",
+        "limitation": "只能粗判起音与退场是否连贯，无法核验±67ms、100ms或500ms级精度。"
+      },
+      {
+        "id": "C3-3",
+        "q": 0.5,
+        "audible_evidence": "本地16秒到22.5秒期间，两台设备的底层运转声都持续存在，玩家移动和门的开合没有把其中一台的运行声整个抹掉；但当门开始动作时，附近设备声会被压得更闷、更薄，恢复后又重新抬起，说明相关操作对无关声源的独立性保持得不够干净。",
+        "limitation": "不能据此精确判断哪一路被重置，只能确认存在明显受牵连的音色与响度变化。"
+      },
+      {
+        "id": "C4-2",
+        "q": 0.25,
+        "audible_evidence": "本地18秒到23秒这段里，角色靠近左侧设备时接触声确实变近，右侧设备声相对更远；但关门后的隔离效果很弱，门闭合瞬间只有很短的一下遮挡变化，随后两侧机械声仍较清楚地穿过来，没有形成稳定的“关后更闷、主体更低”的持续对照。",
+        "limitation": "无法用耳验证1.5–8kHz/0.15–0.8kHz能量比、至少4dB或3dB这类数值阈值，只能评价遮蔽是否听得出来且是否持久。"
+      },
+      {
+        "id": "C4-3",
+        "q": 0.5,
+        "audible_evidence": "本地30秒到37.8秒中，开门后远处设备声会比关门时更亮一些，左右位置也能跟着画面大致对应；不过距离层次不够鲜明，近处脚步与远处机器有时贴得太满，开放状态下前后景分离不足，导致“其他移动+开门”的空间关系只是部分成立。",
+        "limitation": "不能声称具体panning角度或精确衰减量，只能描述远近与左右方向是否大体可辨。"
+      },
+      {
+        "id": "D3-5",
+        "q": 0.5,
+        "audible_evidence": "整段42秒都有持续有效的声音输出，没有长时间空白，也没有明显刺耳爆音；但反复走动、充电、释放和门动作叠加时，若干接缝处能听到轻微点击感和循环痕迹，尤其设备底噪与脚步交替时会有不自然的重复轮廓，说明连续运行并非完全平滑稳定。",
+        "limitation": "无法排除所有微小削波或累积效应，只能依据可听到的点击、重复和不平顺来评分。"
+      }
+    ],
+    "limitations": [
+      "本审查基于实际听到的X音频与同步画面，但不能验证毫秒级时序、分贝级频谱差值或精确滤波参数。",
+      "空间条目只按可听的方向、远近和门开关遮蔽趋势评估，不以数值阈值作硬性判定。",
+      "连续运行条目只评价是否有可闻的点击、循环堆积、异常静音或明显不稳定，不等同于完整技术检测。"
+    ]
+  },
+  "response_text": "{\"heard_audio\":{\"REFERENCE\":true,\"X\":true},\"full_versions_reviewed\":true,\"overall_audible_observation\":\"X全程有可听声音，包含脚步、设备运转、工具充能/释放和门动作等反馈；与REF相比整体更像同一套素材的连续回放，但在门反向、持续独立声源、空间随镜头变化以及长段连续运行中的细节衔接上存在可闻缺陷。\",\"windows\":[{\"id\":\"C2-3\",\"q\":0.5,\"audible_evidence\":\"在本地约24秒到25秒的门反向过程中，能听到门体运动声从一侧方向转到另一侧，且旧的运动声没有完全拖尾粘住；但反向衔接处有一次明显的突兀切换感，像是前一段未自然收束后直接接入新方向，缺少平滑的重入过渡。\",\"limitation\":\"只能粗判起音与退场是否连贯，无法核验±67ms、100ms或500ms级精度。\"},{\"id\":\"C3-3\",\"q\":0.5,\"audible_evidence\":\"本地16秒到22.5秒期间，两台设备的底层运转声都持续存在，玩家移动和门的开合没有把其中一台的运行声整个抹掉；但当门开始动作时，附近设备声会被压得更闷、更薄，恢复后又重新抬起，说明相关操作对无关声源的独立性保持得不够干净。\",\"limitation\":\"不能据此精确判断哪一路被重置，只能确认存在明显受牵连的音色与响度变化。\"},{\"id\":\"C4-2\",\"q\":0.25,\"audible_evidence\":\"本地18秒到23秒这段里，角色靠近左侧设备时接触声确实变近，右侧设备声相对更远；但关门后的隔离效果很弱，门闭合瞬间只有很短的一下遮挡变化，随后两侧机械声仍较清楚地穿过来，没有形成稳定的“关后更闷、主体更低”的持续对照。\",\"limitation\":\"无法用耳验证1.5–8kHz/0.15–0.8kHz能量比、至少4dB或3dB这类数值阈值，只能评价遮蔽是否听得出来且是否持久。\"},{\"id\":\"C4-3\",\"q\":0.5,\"audible_evidence\":\"本地30秒到37.8秒中，开门后远处设备声会比关门时更亮一些，左右位置也能跟着画面大致对应；不过距离层次不够鲜明，近处脚步与远处机器有时贴得太满，开放状态下前后景分离不足，导致“其他移动+开门”的空间关系只是部分成立。\",\"limitation\":\"不能声称具体panning角度或精确衰减量，只能描述远近与左右方向是否大体可辨。\"},{\"id\":\"D3-5\",\"q\":0.5,\"audible_evidence\":\"整段42秒都有持续有效的声音输出，没有长时间空白，也没有明显刺耳爆音；但反复走动、充电、释放和门动作叠加时，若干接缝处能听到轻微点击感和循环痕迹，尤其设备底噪与脚步交替时会有不自然的重复轮廓，说明连续运行并非完全平滑稳定。\",\"limitation\":\"无法排除所有微小削波或累积效应，只能依据可听到的点击、重复和不平顺来评分。\"}],\"limitations\":[\"本审查基于实际听到的X音频与同步画面，但不能验证毫秒级时序、分贝级频谱差值或精确滤波参数。\",\"空间条目只按可听的方向、远近和门开关遮蔽趋势评估，不以数值阈值作硬性判定。\",\"连续运行条目只评价是否有可闻的点击、循环堆积、异常静音或明显不稳定，不等同于完整技术检测。\"]}",
+  "usage": {
+    "completion_tokens": 778,
+    "completion_tokens_details": {
+      "text_tokens": 778
+    },
+    "prompt_tokens": 43113,
+    "prompt_tokens_details": {
+      "audio_tokens": 590,
+      "cached_tokens": 0,
+      "text_tokens": 2201,
+      "video_tokens": 40322
+    },
+    "total_tokens": 43891
+  },
+  "finish_reasons": [
+    "stop"
+  ],
+  "elapsed_seconds": 19.85440731048584,
+  "formal_score": null
+}

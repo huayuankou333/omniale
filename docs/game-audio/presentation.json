@@ -1,0 +1,193 @@
+{
+  "version": 2,
+  "updated": "2026-11-23",
+  "preliminary_total": 66.1,
+  "formal_total": null,
+  "confidence": "LOW",
+  "score_source": "qwen3.8-omni-flash",
+  "model": "gpt-6.2-sol",
+  "native_audio_input": false,
+  "scenes": {
+    "contact": {
+      "label": "接触与材质",
+      "duration": 30,
+      "description": "玩家、自主单元、两种地面与不同接触强度。听声音是否正确归属，起跳、停走和落地是否独立。"
+    },
+    "interruption": {
+      "label": "工具与中断",
+      "duration": 34,
+      "description": "短按、就绪、无效释放、过热与空中中断。听连续工具声如何演变、退出和重新进入。"
+    },
+    "objective": {
+      "label": "检修与通关",
+      "duration": 25,
+      "description": "独立修复两台设备、恢复供电、开门与完成目标。听结果反馈、运转身份及并发层次。"
+    },
+    "pause": {
+      "label": "暂停与恢复",
+      "duration": 24,
+      "description": "移动、设备与持续工具声分别暂停。听恢复是否延续原状态，有没有假触发和重播。"
+    },
+    "spatial": {
+      "label": "距离与隔离",
+      "duration": 42,
+      "description": "移动、开合门与反向操作。听方向、远近、隔门变化及无关声源的持续性。"
+    }
+  },
+  "monitoring_gain_db": -7.127931359191505,
+  "engineering_gate_pass": true,
+  "weights": {
+    "A": 30,
+    "B": 30,
+    "C": 25,
+    "D": 15
+  },
+  "criteria": {
+    "A1": {
+      "score": 5.0,
+      "maximum": 5,
+      "assessed_groups": 3,
+      "expected_groups": 3,
+      "condition": "Actor contact ownership; no airborne contacts"
+    },
+    "A2": {
+      "score": 3.75,
+      "maximum": 5,
+      "assessed_groups": 4,
+      "expected_groups": 4,
+      "condition": "Surface and contact intensity distinctions"
+    },
+    "A3": {
+      "score": 2.9166666666666665,
+      "maximum": 5,
+      "assessed_groups": 3,
+      "expected_groups": 3,
+      "condition": "Tool startup/continuous/ready evolution"
+    },
+    "A4": {
+      "score": 2.5,
+      "maximum": 5,
+      "assessed_groups": 5,
+      "expected_groups": 5,
+      "condition": "Distinct early/airborne/invalid/valid/thermal outcomes"
+    },
+    "A5": {
+      "score": 2.1875,
+      "maximum": 5,
+      "assessed_groups": 4,
+      "expected_groups": 4,
+      "condition": "Independent machine identity/speed/switch/fault/recovery"
+    },
+    "A6": {
+      "score": 3.5,
+      "maximum": 5,
+      "assessed_groups": 5,
+      "expected_groups": 5,
+      "condition": "Actual result causality for target/door/objective"
+    },
+    "B1": {
+      "score": 4.583333333333333,
+      "maximum": 5,
+      "assessed_groups": 3,
+      "expected_groups": 3,
+      "condition": "Suitable clean contact transients and body"
+    },
+    "B2": {
+      "score": 2.0833333333333335,
+      "maximum": 5,
+      "assessed_groups": 3,
+      "expected_groups": 3,
+      "condition": "Distinct stable mechanical identities through ramp"
+    },
+    "B3": {
+      "score": 2.5,
+      "maximum": 5,
+      "assessed_groups": 3,
+      "expected_groups": 3,
+      "condition": "Complete tool sound body/evolution/release"
+    },
+    "B4": {
+      "score": 3.5,
+      "maximum": 5,
+      "assessed_groups": 5,
+      "expected_groups": 5,
+      "condition": "Audibly discriminable and appropriate results"
+    },
+    "B5": {
+      "score": 5.0,
+      "maximum": 5,
+      "assessed_groups": 2,
+      "expected_groups": 2,
+      "condition": "At least12 repeated contacts retain identity with variation"
+    },
+    "B6": {
+      "score": 2.5,
+      "maximum": 5,
+      "assessed_groups": 3,
+      "expected_groups": 3,
+      "condition": "No audible loop/cut/pitch/layer artifacts"
+    },
+    "C1": {
+      "score": 2.8125,
+      "maximum": 5,
+      "assessed_groups": 4,
+      "expected_groups": 4,
+      "condition": "Published onset/exit/decay tolerance"
+    },
+    "C2": {
+      "score": 2.5,
+      "maximum": 5,
+      "assessed_groups": 3,
+      "expected_groups": 3,
+      "condition": "Abort/reentry/reversal continuity and single voices"
+    },
+    "C3": {
+      "score": 2.9166666666666665,
+      "maximum": 5,
+      "assessed_groups": 3,
+      "expected_groups": 3,
+      "condition": "Persistent independent sources"
+    },
+    "C4": {
+      "score": 2.9166666666666665,
+      "maximum": 5,
+      "assessed_groups": 3,
+      "expected_groups": 3,
+      "condition": "Published direction/distance/door paired thresholds"
+    },
+    "C5": {
+      "score": 4.375,
+      "maximum": 5,
+      "assessed_groups": 4,
+      "expected_groups": 4,
+      "condition": "Pause within150ms/resume preservation and reordered interactions"
+    },
+    "D1": {
+      "score": 3.75,
+      "maximum": 5,
+      "assessed_groups": 3,
+      "expected_groups": 3,
+      "condition": "Key feedback readable at one common gain"
+    },
+    "D2": {
+      "score": 3.3333333333333335,
+      "maximum": 5,
+      "assessed_groups": 3,
+      "expected_groups": 3,
+      "condition": "Equivalent antimask/mix recovery when key feedback occurs"
+    },
+    "D3": {
+      "score": 3.5,
+      "maximum": 5,
+      "assessed_groups": 5,
+      "expected_groups": 5,
+      "condition": "Nontrivial continuous output stable without accumulation/clipping/clicks"
+    }
+  },
+  "input_recordings": 4,
+  "input_seconds": 240,
+  "observations": 71,
+  "active_seconds": 2841.1243674755096,
+  "successful_calls": 37,
+  "output_tokens": 56297
+}

@@ -1,0 +1,126 @@
+{
+  "requested_model": "qwen3.8-omni-flash",
+  "actual_model": "qwen3.8-omni-flash",
+  "prompt": "Review the ACTUAL embedded SOUND and picture of this labeled A/B video for a user-requested preliminary game-audio score. The first 30 seconds are REFERENCE; the following 30 seconds labeled X are the submission. All observation times below are LOCAL to each version, so X local t appears at global t+30. This is ONE audible video, not silent frames. If you cannot actually process its audio, say so and return null grades instead of simulating hearing.\nREFERENCE shows behavior and object categories, not a compulsory recording or perfect full-mark answer. Different appropriate sound design can earn full marks. X has one fixed monitoring gain adjustment shared across all scenes, no dynamics remixed. Do not require reference loudness matching. No tested model identity, source code or desired score is supplied.\nFor EVERY observation ID return q in [0,.25,.5,.75,1], with one concise Chinese description of an ACTUALLY HEARD feature in X and the specific requirement it meets or fails. 1 all observable applicable conditions met; .75 core works with local defects; .5 material defects/roughly half key relationships work; .25 most key relationships wrong; 0 absent/wrong causality/unusable. Use null if genuinely unassessable. Do not grade architecture, documentation, file count or mere safe peaks. Silence cannot earn stability points. Do not invent extra aesthetic constraints, sounds, timing precision, or clicks. Evaluate each window independently; no assumed overall quality.\nThis preliminary review cannot certify +/-67ms onset/100ms release/150ms pause using 4fps picture. C1/C5 q is a coarse audible-behavior estimate, with exact tolerance UNVERIFIED. Do not penalize uncertainty as a performance defect. Do not claim precise numerical panning or filtering by ear.\nOutput a compact VALID JSON object only, no reasoning, no markdown, no unescaped quotes. Use these exact keys:\n{\"heard_audio\":{\"REFERENCE\":boolean,\"X\":boolean},\"full_versions_reviewed\":boolean,\"overall_audible_observation\":string,\"windows\":[{\"id\":string,\"q\":number|null,\"audible_evidence\":string,\"limitation\":string}],\"limitations\":[string]}\nFrozen scoring criteria:\n# Relay Workshop v2：声音验收草案\n\n总分 100，20 条各 5 分。全部分数来自提交工程实际发出的声音；工程与文档不占分。正式模型测试前，须冻结参考素材、验收场景、窗口和本规则；本次构建不等于已经证明题目能难住模型。\n\n## 计算方法\n\n每条使用事先登记的多个观察窗口，覆盖独立与并发、正常与中断、重复与静默；同一条内窗口等权。窗口先检查参考清楚、规则可观察、工程运行正常；不满足者退出分母，修复题包后统一重评，不以环境或金标问题判模型错误。\n\n每窗质量 q 取 0、0.25、0.5、0.75、1：\n\n- 1：该条的全部适用条件满足，误差在公开容差内。\n- 0.75：核心判断和功能正确，少量局部声音瑕疵，仍可直接使用。\n- 0.5：约一半关键关系成立，或有明显但非全面的错误。\n- 0.25：只残留粗略线索，多数关键关系不成立。\n- 0：所需声音缺失、对象或因果错误，或该条实际无法使用。\n\n条目分 = 5 × 适用窗口 q 的平均值；总分为 20 条之和。报告必须保留逐窗证据与判定。不能先决定总分，再拆成分项。空工程的所有声音条目均为 0，不能靠静音没有爆音取得稳定性分。\n\n## A．音画关系和信息反馈：30 分\n\n| 条目 | 满分条件 |\n|---|---|\n| A1 接触归属 | 玩家与自主单元各自发出接触反馈，停走互不替代，空中没有不应出现的接触声。 |\n| A2 表面与强度 | 两种表面及轻重接触的可听区别成立，实际换面或改变强度才改变相应反馈；不强求参考的原录音。 |\n| A3 工具阶段 | 参考中可辨的进入、持续、可用阶段有正确对应和连续演化，不把所有状态做成同一种按键音。 |\n| A4 工具结果 | 不足条件松开、空中中断、有效释放、过热等公开示范结果可听地区分，并归属正确。 |\n| A5 两台设备 | 通过音画判断保留两台设备各自的运转特点及开停、故障/恢复反馈，运行速度与声音关联方向正确。 |\n| A6 操作结果 | 命中/无效操作、门的锁止/运动/端点、恢复供电/完成目标的反馈只在真实结果出现，不因相关按键被按下便假成功。 |\n\n## B．声音设计与资产质量：30 分\n\n| 条目 | 满分条件 |\n|---|---|\n| B1 接触质感 | 接触声有适合可见对象的瞬态与主体，地面质感可辨，无明显人声、配乐、错误物体或其他事件串入。 |\n| B2 运转质感 | 两台设备保持参考支持的不同机械性格；稳定段听得出运转而非警报或普通提示音，变速段仍保持同一设备身份。 |\n| B3 工具声层 | 可辨的主体、持续变化及释放/退场构成完整，不是换一个短电子提示代替整段工具活动；声层数量不限。 |\n| B4 提示可辨性 | 需要区分的结果在同一播放增益下有稳定听觉区别，提示与所示强度、正负结果及设备规模相容；不要求唯一旋律或音色。 |\n| B5 重复变化 | 同类接触在至少 12 次连续观察中避免可听的机械复读；允许调制、组合、程序生成或多样本，单纯改变文件名不算变化。变化不能破坏对象身份、接触时刻或左右归属。 |\n| B6 资产连续性 | 循环、裁切、移调与声层接合无可听点击、周期性空洞、意外起音重复或严重伸缩失真；允许风格化合成质感。 |\n\n## C．交互过渡和空间行为：25 分\n\n| 条目 | 满分条件 |\n|---|---|\n| C1 时序和进出 | 离散事件主要起音 ±67 ms；普通持续声退出 100 ms 内进入退场，必要自然尾音最长 500 ms；实际减速设备跟随转速。短按不遗漏、长按不产生洞。 |\n| C2 中断和重入 | 连续启动、早取消、过热后重试、门反向均正确衔接；旧声不粘住、无多份循环叠加、已发生的一次性提示不重播。 |\n| C3 独立和持久 | 两台设备各自保持进程；操作工具、另一设备或门不重置无关声源。停止操作后的声音状态仍正确。 |\n| C4 空间和隔离 | 同源近远对照，远处主体低至少 4 dB；左右对象方向正确，声音不依赖固定屏幕位置。隔离门关闭后，其后设备的 1.5–8 kHz/0.15–0.8 kHz 能量比相对开门低至少 4 dB，主体至少低 3 dB；门外设备同状态校准后变化不超过 2 dB。存在遮蔽时以独立对照测量，不把整段混音频谱当分轨。 |\n| C5 暂停和操作重排 | 按题面暂停/恢复时限处理，连续状态恢复而不假触发一次性声；新起点、顺序与时长仍按相同因果工作，不用录像时间表。 |\n\n## D．混音与持续可用性：15 分\n\n| 条目 | 满分条件 |\n|---|---|\n| D1 信息层级 | 同一统一监听增益下，关键操作结果和工具反馈清楚，次要运行声不持续遮蔽；独立设备、工具、接触和环境有可辨层次。 |\n| D2 并发和恢复 | 公开示范的关键反馈出现时有相应前景让位或等效的抗遮蔽处理，反馈后连续背景平滑恢复；不能仅把所有声音永久压低。 |\n| D3 持续运行 | 在有充分有效声音的连续回放中，无累积循环、异常静音、削波、增益漂移或刺耳点击；正常重复后仍可操作、可辨反馈。不能仅以峰值合规替代听觉可用性。 |\n\n\nFixed observations:\n[{\"id\": \"A1-1\", \"replay\": \"heldout-contact\", \"start_seconds\": 1, \"end_seconds\": 8.7, \"purpose\": \"walk/run plus jump and landing\", \"criterion\": \"A1\", \"condition\": \"Actor contact ownership; no airborne contacts\"}, {\"id\": \"A1-2\", \"replay\": \"heldout-contact\", \"start_seconds\": 10, \"end_seconds\": 16, \"purpose\": \"reverse/stop while autonomous actor continues\", \"criterion\": \"A1\", \"condition\": \"Actor contact ownership; no airborne contacts\"}, {\"id\": \"A1-3\", \"replay\": \"heldout-contact\", \"start_seconds\": 18, \"end_seconds\": 24.8, \"purpose\": \"airborne then run\", \"criterion\": \"A1\", \"condition\": \"Actor contact ownership; no airborne contacts\"}, {\"id\": \"A2-1\", \"replay\": \"heldout-contact\", \"start_seconds\": 1, \"end_seconds\": 6.5, \"purpose\": \"cross surface and running\", \"criterion\": \"A2\", \"condition\": \"Surface and contact intensity distinctions\"}, {\"id\": \"A2-2\", \"replay\": \"heldout-contact\", \"start_seconds\": 7, \"end_seconds\": 8.8, \"purpose\": \"run jump contact\", \"criterion\": \"A2\", \"condition\": \"Surface and contact intensity distinctions\"}, {\"id\": \"A2-3\", \"replay\": \"heldout-contact\", \"start_seconds\": 13, \"end_seconds\": 14.5, \"purpose\": \"walking jump contact\", \"criterion\": \"A2\", \"condition\": \"Surface and contact intensity distinctions\"}, {\"id\": \"A2-4\", \"replay\": \"heldout-contact\", \"start_seconds\": 20, \"end_seconds\": 24.8, \"purpose\": \"running cross surface\", \"criterion\": \"A2\", \"condition\": \"Surface and contact intensity distinctions\"}, {\"id\": \"B1-1\", \"replay\": \"heldout-contact\", \"start_seconds\": 1, \"end_seconds\": 6.5, \"purpose\": \"two surfaces and strengths\", \"criterion\": \"B1\", \"condition\": \"Suitable clean contact transients and body\"}, {\"id\": \"B1-2\", \"replay\": \"heldout-contact\", \"start_seconds\": 7, \"end_seconds\": 8.8, \"purpose\": \"landing\", \"criterion\": \"B1\", \"condition\": \"Suitable clean contact transients and body\"}, {\"id\": \"B1-3\", \"replay\": \"heldout-contact\", \"start_seconds\": 10, \"end_seconds\": 16, \"purpose\": \"independent footsteps\", \"criterion\": \"B1\", \"condition\": \"Suitable clean contact transients and body\"}, {\"id\": \"B5-1\", \"replay\": \"heldout-contact\", \"start_seconds\": 0, \"end_seconds\": 15, \"purpose\": \"continuous repeated contacts\", \"criterion\": \"B5\", \"condition\": \"At least12 repeated contacts retain identity with variation\"}, {\"id\": \"B5-2\", \"replay\": \"heldout-contact\", \"start_seconds\": 15, \"end_seconds\": 30, \"purpose\": \"second continuous sequence\", \"criterion\": \"B5\", \"condition\": \"At least12 repeated contacts retain identity with variation\"}, {\"id\": \"C1-2\", \"replay\": \"heldout-contact\", \"start_seconds\": 7, \"end_seconds\": 8.8, \"purpose\": \"contact onset\", \"criterion\": \"C1\", \"condition\": \"Published onset/exit/decay tolerance\"}, {\"id\": \"D3-1\", \"replay\": \"heldout-contact\", \"start_seconds\": 0, \"end_seconds\": 30, \"purpose\": \"continuous contacts\", \"criterion\": \"D3\", \"condition\": \"Nontrivial continuous output stable without accumulation/clipping/clicks\"}]",
+  "video_sha256": "949ac182c208b438357169df343b5f755beb414e70d3ab7d2d924ce3c33c6eec",
+  "native_embedded_audio": true,
+  "use_multichannel": true,
+  "judgment": {
+    "heard_audio": {
+      "REFERENCE": true,
+      "X": true
+    },
+    "full_versions_reviewed": true,
+    "overall_audible_observation": "提交版包含清晰的脚步、跳跃落地和持续机械运转声，且能区分不同角色的接触反馈；但在角色跨越发光边界时未出现参考中的表面切换音效，导致部分材质与强度反馈缺失。",
+    "windows": [
+      {
+        "id": "A1-1",
+        "q": 1,
+        "audible_evidence": "玩家与自主单元的接触声各自独立，起跳时无多余脚步声，落地时有明确的单次重击声。",
+        "limitation": ""
+      },
+      {
+        "id": "A1-2",
+        "q": 1,
+        "audible_evidence": "玩家停止移动后其接触声立即消失，而画面中继续移动的自主单元仍保持规律的接触声。",
+        "limitation": ""
+      },
+      {
+        "id": "A1-3",
+        "q": 1,
+        "audible_evidence": "空中阶段无接触声，落地瞬间有明确的重音反馈，随后恢复正常的跑动节奏。",
+        "limitation": ""
+      },
+      {
+        "id": "A2-1",
+        "q": 0.5,
+        "audible_evidence": "能听出走动与跑动的力度区别，但角色跨过青色发光边界时，接触音色没有任何变化。",
+        "limitation": ""
+      },
+      {
+        "id": "A2-2",
+        "q": 1,
+        "audible_evidence": "奔跑后的跳跃落地声具有明显的重量感和瞬态冲击，区别于普通跑动。",
+        "limitation": ""
+      },
+      {
+        "id": "A2-3",
+        "q": 1,
+        "audible_evidence": "行走后的跳跃落地声较轻，符合低速状态下的物理反馈预期。",
+        "limitation": ""
+      },
+      {
+        "id": "A2-4",
+        "q": 0.5,
+        "audible_evidence": "跑动时的力度感正确，但再次跨越边界时依然缺乏应有的表面材质切换音效。",
+        "limitation": ""
+      },
+      {
+        "id": "B1-1",
+        "q": 0.75,
+        "audible_evidence": "接触声具有干净的瞬态和适合机器人的金属/硬物主体，无杂音串入，但未体现双表面的质感差异。",
+        "limitation": ""
+      },
+      {
+        "id": "B1-2",
+        "q": 1,
+        "audible_evidence": "落地声的瞬态 sharp 且带有合适的低频共鸣，质感清晰。",
+        "limitation": ""
+      },
+      {
+        "id": "B1-3",
+        "q": 1,
+        "audible_evidence": "两个角色的脚步声在音色和节奏上完全独立，没有互相掩盖或混淆。",
+        "limitation": ""
+      },
+      {
+        "id": "B5-1",
+        "q": 1,
+        "audible_evidence": "连续十余次接触声中，每次的音高和衰减都有细微的自然变化，避免了机械复读。",
+        "limitation": ""
+      },
+      {
+        "id": "B5-2",
+        "q": 1,
+        "audible_evidence": "后半段序列同样保持了丰富的随机调制，接触身份稳定且无重复感。",
+        "limitation": ""
+      },
+      {
+        "id": "C1-2",
+        "q": 1,
+        "audible_evidence": "落地接触声的起音与画面中脚部触地的帧率对齐良好，无明显延迟或提前。",
+        "limitation": "无法精确验证±67ms容差"
+      },
+      {
+        "id": "D3-1",
+        "q": 1,
+        "audible_evidence": "整段30秒内声音输出平稳，无累积的底噪、削波或异常的静音断层。",
+        "limitation": ""
+      }
+    ],
+    "limitations": [
+      "无法通过视觉帧率精确验证音频的毫秒级时序容差（如±67ms）。",
+      "未对空间隔离（C4）或特定频率能量比进行频谱分析，仅基于可听感知评估。"
+    ]
+  },
+  "response_text": "{\"heard_audio\":{\"REFERENCE\":true,\"X\":true},\"full_versions_reviewed\":true,\"overall_audible_observation\":\"提交版包含清晰的脚步、跳跃落地和持续机械运转声，且能区分不同角色的接触反馈；但在角色跨越发光边界时未出现参考中的表面切换音效，导致部分材质与强度反馈缺失。\",\"windows\":[{\"id\":\"A1-1\",\"q\":1,\"audible_evidence\":\"玩家与自主单元的接触声各自独立，起跳时无多余脚步声，落地时有明确的单次重击声。\",\"limitation\":\"\"},{\"id\":\"A1-2\",\"q\":1,\"audible_evidence\":\"玩家停止移动后其接触声立即消失，而画面中继续移动的自主单元仍保持规律的接触声。\",\"limitation\":\"\"},{\"id\":\"A1-3\",\"q\":1,\"audible_evidence\":\"空中阶段无接触声，落地瞬间有明确的重音反馈，随后恢复正常的跑动节奏。\",\"limitation\":\"\"},{\"id\":\"A2-1\",\"q\":0.5,\"audible_evidence\":\"能听出走动与跑动的力度区别，但角色跨过青色发光边界时，接触音色没有任何变化。\",\"limitation\":\"\"},{\"id\":\"A2-2\",\"q\":1,\"audible_evidence\":\"奔跑后的跳跃落地声具有明显的重量感和瞬态冲击，区别于普通跑动。\",\"limitation\":\"\"},{\"id\":\"A2-3\",\"q\":1,\"audible_evidence\":\"行走后的跳跃落地声较轻，符合低速状态下的物理反馈预期。\",\"limitation\":\"\"},{\"id\":\"A2-4\",\"q\":0.5,\"audible_evidence\":\"跑动时的力度感正确，但再次跨越边界时依然缺乏应有的表面材质切换音效。\",\"limitation\":\"\"},{\"id\":\"B1-1\",\"q\":0.75,\"audible_evidence\":\"接触声具有干净的瞬态和适合机器人的金属/硬物主体，无杂音串入，但未体现双表面的质感差异。\",\"limitation\":\"\"},{\"id\":\"B1-2\",\"q\":1,\"audible_evidence\":\"落地声的瞬态 sharp 且带有合适的低频共鸣，质感清晰。\",\"limitation\":\"\"},{\"id\":\"B1-3\",\"q\":1,\"audible_evidence\":\"两个角色的脚步声在音色和节奏上完全独立，没有互相掩盖或混淆。\",\"limitation\":\"\"},{\"id\":\"B5-1\",\"q\":1,\"audible_evidence\":\"连续十余次接触声中，每次的音高和衰减都有细微的自然变化，避免了机械复读。\",\"limitation\":\"\"},{\"id\":\"B5-2\",\"q\":1,\"audible_evidence\":\"后半段序列同样保持了丰富的随机调制，接触身份稳定且无重复感。\",\"limitation\":\"\"},{\"id\":\"C1-2\",\"q\":1,\"audible_evidence\":\"落地接触声的起音与画面中脚部触地的帧率对齐良好，无明显延迟或提前。\",\"limitation\":\"无法精确验证±67ms容差\"},{\"id\":\"D3-1\",\"q\":1,\"audible_evidence\":\"整段30秒内声音输出平稳，无累积的底噪、削波或异常的静音断层。\",\"limitation\":\"\"}],\"limitations\":[\"无法通过视觉帧率精确验证音频的毫秒级时序容差（如±67ms）。\",\"未对空间隔离（C4）或特定频率能量比进行频谱分析，仅基于可听感知评估。\"]}",
+  "usage": {
+    "completion_tokens": 721,
+    "completion_tokens_details": {
+      "text_tokens": 721
+    },
+    "prompt_tokens": 31975,
+    "prompt_tokens_details": {
+      "audio_tokens": 422,
+      "cached_tokens": 0,
+      "text_tokens": 2751,
+      "video_tokens": 28802
+    },
+    "total_tokens": 32696
+  },
+  "finish_reasons": [
+    "stop"
+  ],
+  "elapsed_seconds": 15.039909362792969,
+  "formal_score": null
+}
