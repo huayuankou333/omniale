@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A-Q1 · 视听事件复核</title><style>
+:root{--bg:#0e1420;--card:#192333;--line:#303f52;--muted:#a6b5c7;--text:#e9f0f8;--impact:#ffc16a;--friction:#84dbc9}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px system-ui,sans-serif}
+main{max-width:1140px;margin:auto;padding:32px 22px 48px}h1{margin:.2em 0 .48em;font-size:clamp(24px,4vw,36px)}h2{margin:0 0 12px}
+header .kicker{color:var(--friction);font-size:13px;letter-spacing:.16em}header p,.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns: minmax(270px,.7fr) minmax(320px,1.3fr);gap:18px;margin:23px 0}
+.panel,.event{background:var(--card);border:1px solid var(--line);border-radius:13px;overflow:hidden}
+.panel img,.panel video{width:100%;display:block;background:#080c14;aspect-ratio:854/480;object-fit:contain}.panel .body{padding:13px 16px}.panel h2{font-size:17px}
+button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:2px solid var(--friction);outline-offset:2px}
+.controls,.filters{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.controls button,.filters button{background:#253248;color:var(--text);border:1px solid #415570;border-radius:7px;padding:6px 11px}
+.controls button:disabled{opacity:.45;cursor:default}.filters button[aria-pressed=true]{background:#315450;color:#e6fffa}
+.events{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin:12px 0}.event[hidden]{display:none}
+.pick{position:relative;display:block;width:100%;border:0;padding:0;background:#111827}.pick img{width:100%;aspect-ratio:854/480;object-fit:cover;display:block}
+.play-icon{position:absolute;bottom:8px;right:9px;border-radius:7px;background:#08111eea;color:white;padding:6px 10px}
+.evtext{display:grid;padding:11px 13px 3px;gap:5px}.event.impact .badge{color:var(--impact)}.event.friction .badge{color:var(--friction)}
+.confidence,.file{font-size:13px;color:var(--muted)}.file{display:inline-block;margin:6px 13px 12px;color:#bcdafc}.event.active{border-color:#61cdb7}#status{font-variant-numeric:tabular-nums}
+@media(max-width:730px){.grid{grid-template-columns:1fr}main{padding:23px 13px}}
+</style></head>
+<body><main><header><div class="kicker">A/V REVIEW · 本地复核</div><h1>A-Q1 · 器具声事件</h1>
+<p>64.12 秒 · 29 条事件 · 自动判断，供复核</p></header>
+<section class="grid"><div class="panel"><img src="target.png" alt="带框和点的目标器具参考帧"><div class="body"><h2>指定器具</h2>
+<div>手中倾斜的小号金属锅本体</div><div class="muted">指示帧 36.00 s · 标记不代表有声</div></div></div>
+<div class="panel"><video id="player" playsinline preload="none" controls poster="review/evt-A-Q1-82cea0c-001.jpg"></video><div class="body">
+<h2 id="status" aria-live="polite">请选择一个事件</h2>
+<div class="controls"><button disabled id="context">从上下文开始</button><button disabled id="jump">跳至声事件起点</button><span class="muted" id="clock"></span></div></div></div></section>
+<section><h2>事件列表</h2><div class="filters"><button data-filter="all" aria-pressed="true">全部 29</button>
+<button data-filter="impact" aria-pressed="false">碰撞 21</button><button data-filter="friction" aria-pressed="false">摩擦 8</button>
+<a class="file" href="events.json">事件 JSON</a><a class="file" href="triggers.jsonl">触发日志</a></div>
+<div class="events"><article class="event impact" data-class="impact"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-001.mp4" data-poster="review/evt-A-Q1-82cea0c-001.jpg" data-start="0.005" data-end="0.530" data-offset="0.005"
+    aria-label="播放碰撞 0.01 – 0.53 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-001.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">碰撞 · impact</span><strong>0.01 – 0.53 s</strong>
+    <span class="confidence">置信度 0.74</span></div><a class="file" href="review/evt-A-Q1-82cea0c-001.mp4">打开 MP4</a></article><article class="event impact" data-class="impact"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-002.mp4" data-poster="review/evt-A-Q1-82cea0c-002.jpg" data-start="1.115" data-end="1.375" data-offset="1.000"
+    aria-label="播放碰撞 1.11 – 1.38 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-002.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">碰撞 · impact</span><strong>1.11 – 1.38 s</strong>
+    <span class="confidence">置信度 0.77</span></div><a class="file" href="review/evt-A-Q1-82cea0c-002.mp4">打开 MP4</a></article><article class="event impact" data-class="impact"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-003.mp4" data-poster="review/evt-A-Q1-82cea0c-003.jpg" data-start="2.180" data-end="4.105" data-offset="1.000"
+    aria-label="播放碰撞 2.18 – 4.11 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-003.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">碰撞 · impact</span><strong>2.18 – 4.11 s</strong>
+    <span class="confidence">置信度 0.81</span></div><a class="file" href="review/evt-A-Q1-82cea0c-003.mp4">打开 MP4</a></article><article class="event impact" data-class="impact"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-004.mp4" data-poster="review/evt-A-Q1-82cea0c-004.jpg" data-start="5.555" data-end="6.800" data-offset="1.000"
+    aria-label="播放碰撞 5.55 – 6.80 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-004.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">碰撞 · impact</span><strong>5.55 – 6.80 s</strong>
+    <span class="confidence">置信度 0.91</span></div><a class="file" href="review/evt-A-Q1-82cea0c-004.mp4">打开 MP4</a></article><article class="event impact" data-class="impact"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-005.mp4" data-poster="review/evt-A-Q1-82cea0c-005.jpg" data-start="7.235" data-end="10.885" data-offset="1.000"
+    aria-label="播放碰撞 7.24 – 10.88 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-005.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">碰撞 · impact</span><strong>7.24 – 10.88 s</strong>
+    <span class="confidence">置信度 0.90</span></div><a class="file" href="review/evt-A-Q1-82cea0c-005.mp4">打开 MP4</a></article><article class="event impact" data-class="impact"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-006.mp4" data-poster="review/evt-A-Q1-82cea0c-006.jpg" data-start="12.255" data-end="12.640" data-offset="1.000"
+    aria-label="播放碰撞 12.26 – 12.64 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-006.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">碰撞 · impact</span><strong>12.26 – 12.64 s</strong>
+    <span class="confidence">置信度 0.76</span></div><a class="file" href="review/evt-A-Q1-82cea0c-006.mp4">打开 MP4</a></article><article class="event friction" data-class="friction"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-007.mp4" data-poster="review/evt-A-Q1-82cea0c-007.jpg" data-start="13.458" data-end="14.435" data-offset="1.000"
+    aria-label="播放摩擦 13.46 – 14.44 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-007.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">摩擦 · friction</span><strong>13.46 – 14.44 s</strong>
+    <span class="confidence">置信度 0.74</span></div><a class="file" href="review/evt-A-Q1-82cea0c-007.mp4">打开 MP4</a></article><article class="event impact" data-class="impact"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-008.mp4" data-poster="review/evt-A-Q1-82cea0c-008.jpg" data-start="17.000" data-end="17.270" data-offset="1.000"
+    aria-label="播放碰撞 17.00 – 17.27 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-008.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">碰撞 · impact</span><strong>17.00 – 17.27 s</strong>
+    <span class="confidence">置信度 0.85</span></div><a class="file" href="review/evt-A-Q1-82cea0c-008.mp4">打开 MP4</a></article><article class="event impact" data-class="impact"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-009.mp4" data-poster="review/evt-A-Q1-82cea0c-009.jpg" data-start="17.725" data-end="17.910" data-offset="1.000"
+    aria-label="播放碰撞 17.73 – 17.91 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-009.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">碰撞 · impact</span><strong>17.73 – 17.91 s</strong>
+    <span class="confidence">置信度 0.76</span></div><a class="file" href="review/evt-A-Q1-82cea0c-009.mp4">打开 MP4</a></article><article class="event impact" data-class="impact"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-010.mp4" data-poster="review/evt-A-Q1-82cea0c-010.jpg" data-start="18.385" data-end="18.540" data-offset="1.000"
+    aria-label="播放碰撞 18.39 – 18.54 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-010.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">碰撞 · impact</span><strong>18.39 – 18.54 s</strong>
+    <span class="confidence">置信度 0.76</span></div><a class="file" href="review/evt-A-Q1-82cea0c-010.mp4">打开 MP4</a></article><article class="event impact" data-class="impact"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-011.mp4" data-poster="review/evt-A-Q1-82cea0c-011.jpg" data-start="19.245" data-end="20.725" data-offset="1.000"
+    aria-label="播放碰撞 19.25 – 20.73 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-011.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">碰撞 · impact</span><strong>19.25 – 20.73 s</strong>
+    <span class="confidence">置信度 0.81</span></div><a class="file" href="review/evt-A-Q1-82cea0c-011.mp4">打开 MP4</a></article><article class="event impact" data-class="impact"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-012.mp4" data-poster="review/evt-A-Q1-82cea0c-012.jpg" data-start="21.250" data-end="24.870" data-offset="1.000"
+    aria-label="播放碰撞 21.25 – 24.87 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-012.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">碰撞 · impact</span><strong>21.25 – 24.87 s</strong>
+    <span class="confidence">置信度 0.84</span></div><a class="file" href="review/evt-A-Q1-82cea0c-012.mp4">打开 MP4</a></article><article class="event friction" data-class="friction"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-013.mp4" data-poster="review/evt-A-Q1-82cea0c-013.jpg" data-start="27.503" data-end="27.875" data-offset="1.000"
+    aria-label="播放摩擦 27.50 – 27.88 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-013.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">摩擦 · friction</span><strong>27.50 – 27.88 s</strong>
+    <span class="confidence">置信度 0.76</span></div><a class="file" href="review/evt-A-Q1-82cea0c-013.mp4">打开 MP4</a></article><article class="event impact" data-class="impact"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-014.mp4" data-poster="review/evt-A-Q1-82cea0c-014.jpg" data-start="27.975" data-end="29.935" data-offset="1.000"
+    aria-label="播放碰撞 27.98 – 29.93 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-014.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">碰撞 · impact</span><strong>27.98 – 29.93 s</strong>
+    <span class="confidence">置信度 0.85</span></div><a class="file" href="review/evt-A-Q1-82cea0c-014.mp4">打开 MP4</a></article><article class="event friction" data-class="friction"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-015.mp4" data-poster="review/evt-A-Q1-82cea0c-015.jpg" data-start="30.098" data-end="30.355" data-offset="1.000"
+    aria-label="播放摩擦 30.10 – 30.36 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-015.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">摩擦 · friction</span><strong>30.10 – 30.36 s</strong>
+    <span class="confidence">置信度 0.67</span></div><a class="file" href="review/evt-A-Q1-82cea0c-015.mp4">打开 MP4</a></article><article class="event impact" data-class="impact"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-016.mp4" data-poster="review/evt-A-Q1-82cea0c-016.jpg" data-start="30.500" data-end="30.890" data-offset="1.000"
+    aria-label="播放碰撞 30.50 – 30.89 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-016.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">碰撞 · impact</span><strong>30.50 – 30.89 s</strong>
+    <span class="confidence">置信度 0.74</span></div><a class="file" href="review/evt-A-Q1-82cea0c-016.mp4">打开 MP4</a></article><article class="event impact" data-class="impact"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-017.mp4" data-poster="review/evt-A-Q1-82cea0c-017.jpg" data-start="32.775" data-end="33.090" data-offset="1.000"
+    aria-label="播放碰撞 32.77 – 33.09 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-017.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">碰撞 · impact</span><strong>32.77 – 33.09 s</strong>
+    <span class="confidence">置信度 0.82</span></div><a class="file" href="review/evt-A-Q1-82cea0c-017.mp4">打开 MP4</a></article><article class="event friction" data-class="friction"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-018.mp4" data-poster="review/evt-A-Q1-82cea0c-018.jpg" data-start="34.203" data-end="34.990" data-offset="1.000"
+    aria-label="播放摩擦 34.20 – 34.99 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-018.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">摩擦 · friction</span><strong>34.20 – 34.99 s</strong>
+    <span class="confidence">置信度 0.74</span></div><a class="file" href="review/evt-A-Q1-82cea0c-018.mp4">打开 MP4</a></article><article class="event friction" data-class="friction"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-019.mp4" data-poster="review/evt-A-Q1-82cea0c-019.jpg" data-start="35.413" data-end="36.045" data-offset="1.000"
+    aria-label="播放摩擦 35.41 – 36.05 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-019.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">摩擦 · friction</span><strong>35.41 – 36.05 s</strong>
+    <span class="confidence">置信度 0.79</span></div><a class="file" href="review/evt-A-Q1-82cea0c-019.mp4">打开 MP4</a></article><article class="event impact" data-class="impact"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-020.mp4" data-poster="review/evt-A-Q1-82cea0c-020.jpg" data-start="39.050" data-end="39.140" data-offset="1.000"
+    aria-label="播放碰撞 39.05 – 39.14 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-020.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">碰撞 · impact</span><strong>39.05 – 39.14 s</strong>
+    <span class="confidence">置信度 0.70</span></div><a class="file" href="review/evt-A-Q1-82cea0c-020.mp4">打开 MP4</a></article><article class="event impact" data-class="impact"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-021.mp4" data-poster="review/evt-A-Q1-82cea0c-021.jpg" data-start="41.855" data-end="48.735" data-offset="1.000"
+    aria-label="播放碰撞 41.85 – 48.73 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-021.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">碰撞 · impact</span><strong>41.85 – 48.73 s</strong>
+    <span class="confidence">置信度 0.90</span></div><a class="file" href="review/evt-A-Q1-82cea0c-021.mp4">打开 MP4</a></article><article class="event impact" data-class="impact"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-022.mp4" data-poster="review/evt-A-Q1-82cea0c-022.jpg" data-start="50.555" data-end="50.915" data-offset="1.000"
+    aria-label="播放碰撞 50.55 – 50.91 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-022.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">碰撞 · impact</span><strong>50.55 – 50.91 s</strong>
+    <span class="confidence">置信度 0.83</span></div><a class="file" href="review/evt-A-Q1-82cea0c-022.mp4">打开 MP4</a></article><article class="event friction" data-class="friction"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-023.mp4" data-poster="review/evt-A-Q1-82cea0c-023.jpg" data-start="52.068" data-end="52.995" data-offset="1.000"
+    aria-label="播放摩擦 52.07 – 52.99 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-023.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">摩擦 · friction</span><strong>52.07 – 52.99 s</strong>
+    <span class="confidence">置信度 0.79</span></div><a class="file" href="review/evt-A-Q1-82cea0c-023.mp4">打开 MP4</a></article><article class="event friction" data-class="friction"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-024.mp4" data-poster="review/evt-A-Q1-82cea0c-024.jpg" data-start="53.423" data-end="53.830" data-offset="1.000"
+    aria-label="播放摩擦 53.42 – 53.83 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-024.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">摩擦 · friction</span><strong>53.42 – 53.83 s</strong>
+    <span class="confidence">置信度 0.71</span></div><a class="file" href="review/evt-A-Q1-82cea0c-024.mp4">打开 MP4</a></article><article class="event impact" data-class="impact"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-025.mp4" data-poster="review/evt-A-Q1-82cea0c-025.jpg" data-start="54.545" data-end="54.740" data-offset="1.000"
+    aria-label="播放碰撞 54.55 – 54.74 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-025.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">碰撞 · impact</span><strong>54.55 – 54.74 s</strong>
+    <span class="confidence">置信度 0.88</span></div><a class="file" href="review/evt-A-Q1-82cea0c-025.mp4">打开 MP4</a></article><article class="event impact" data-class="impact"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-026.mp4" data-poster="review/evt-A-Q1-82cea0c-026.jpg" data-start="56.155" data-end="56.385" data-offset="1.000"
+    aria-label="播放碰撞 56.16 – 56.38 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-026.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">碰撞 · impact</span><strong>56.16 – 56.38 s</strong>
+    <span class="confidence">置信度 0.89</span></div><a class="file" href="review/evt-A-Q1-82cea0c-026.mp4">打开 MP4</a></article><article class="event impact" data-class="impact"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-027.mp4" data-poster="review/evt-A-Q1-82cea0c-027.jpg" data-start="58.540" data-end="58.840" data-offset="1.000"
+    aria-label="播放碰撞 58.54 – 58.84 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-027.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">碰撞 · impact</span><strong>58.54 – 58.84 s</strong>
+    <span class="confidence">置信度 0.87</span></div><a class="file" href="review/evt-A-Q1-82cea0c-027.mp4">打开 MP4</a></article><article class="event friction" data-class="friction"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-028.mp4" data-poster="review/evt-A-Q1-82cea0c-028.jpg" data-start="58.860" data-end="59.490" data-offset="1.000"
+    aria-label="播放摩擦 58.86 – 59.49 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-028.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">摩擦 · friction</span><strong>58.86 – 59.49 s</strong>
+    <span class="confidence">置信度 0.67</span></div><a class="file" href="review/evt-A-Q1-82cea0c-028.mp4">打开 MP4</a></article><article class="event impact" data-class="impact"><button class="pick" type="button"
+    data-clip="review/evt-A-Q1-82cea0c-029.mp4" data-poster="review/evt-A-Q1-82cea0c-029.jpg" data-start="63.205" data-end="63.860" data-offset="1.000"
+    aria-label="播放碰撞 63.20 – 63.86 s"><img alt="" loading="lazy" src="review/evt-A-Q1-82cea0c-029.jpg"><span class="play-icon">▶</span></button>
+    <div class="evtext"><span class="badge">碰撞 · impact</span><strong>63.20 – 63.86 s</strong>
+    <span class="confidence">置信度 0.72</span></div><a class="file" href="review/evt-A-Q1-82cea0c-029.mp4">打开 MP4</a></article></div></section>
+<footer class="muted">时间相对于原录像起点；复核片段默认包含前后各 1 秒，录像首尾处截短。</footer>
+</main><script>
+const v=document.getElementById('player'),status=document.getElementById('status'),jump=document.getElementById('jump'),ctx=document.getElementById('context'),clock=document.getElementById('clock');
+const cards=[...document.querySelectorAll('article.event')],filters=[...document.querySelectorAll('[data-filter]')];
+let selected=null;
+function seek(t,play=true){if(!selected)return;v.currentTime=t;if(play)v.play().catch(()=>{});}
+function choose(el){selected=el.dataset;cards.forEach(c=>c.classList.toggle('active',c.contains(el)));v.poster=selected.poster;v.src=selected.clip;
+status.textContent=`声事件 ${Number(selected.start).toFixed(2)} – ${Number(selected.end).toFixed(2)} s`;jump.disabled=ctx.disabled=false;v.play().catch(()=>{});}
+document.querySelectorAll('button.pick').forEach(e=>e.addEventListener('click',()=>choose(e)));
+ctx.addEventListener('click',()=>seek(0));jump.addEventListener('click',()=>seek(Number(selected.offset)));
+v.addEventListener('timeupdate',()=>{if(selected)clock.textContent=`原录像 ${(v.currentTime+Number(selected.start)-Number(selected.offset)).toFixed(2)} s`;});
+filters.forEach(b=>b.addEventListener('click',()=>{filters.forEach(f=>f.setAttribute('aria-pressed',f===b));cards.forEach(c=>c.hidden=b.dataset.filter!=='all'&&c.dataset.class!==b.dataset.filter);}));
+</script></body></html>

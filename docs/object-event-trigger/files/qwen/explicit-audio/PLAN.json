@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-24",
+  "user_requested": true,
+  "purpose": "Post-hoc Qwen initial estimate, not an independently audited formal grade.",
+  "model": "qwen3.8-omni-flash",
+  "input": "Explicit 24kHz mono PCM WAV plus synchronized silent video at8fps, target marked still; same reference and scoring prompts.",
+  "labeling": "Eight blind per-target annotations, independent of Sol predictions. Two target IDs per scene are not revealed together.",
+  "scoring": "Existing 70F+20RN+10RB formula; model-generated reference remains audit pending; diagnostic_total only. No engineering points.",
+  "coverage": "Four development queries plus four unseen-query reruns; also report development and unseen separately. A-Q1 renamed rerun is not double-counted.",
+  "qualification": "Same native-video route: static identical visuals, silence, three bursts and five bursts; coarse counts/timing only. Not expert calibration or certification of object attribution and fine boundaries.",
+  "review": "Four scene-level candidate-aware evidence audits after blind labels; do not silently edit first-pass labels based on desired score.",
+  "request_limit": 20,
+  "no_score_based_retries": true,
+  "formal_total": null,
+  "frozen_formal_reference_modified": false,
+  "limitations": [
+    "Single automatic labeler may miss or hallucinate audible events.",
+    "8fps imagery and judge timing do not certify 80ms boundary accuracy.",
+    "No high-quality input-only reference or modality ablation established."
+  ],
+  "protocol": "uniform_explicit_audio_transport_replacement",
+  "reason": "Native embedded video: counts all correct but one onset differed by 0.7s, failing the predeclared 0.6s coarse control.",
+  "first_protocol_excluded_in_full": true,
+  "first_protocol_requests": 3,
+  "combined_request_limit": 20
+}

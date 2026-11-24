@@ -1,0 +1,39 @@
+{
+  "requested_model": "qwen3.8-omni-flash",
+  "prompt": "Listen to the actual sound embedded in this video. The picture is static and does not describe the sound. Return JSON only: {\"audio_available\":boolean,\"sound_present\":boolean,\"tone_burst_count\":integer|null,\"onset_seconds\":[number],\"heard_description\":string}. Entirely silent audio has zero bursts. If unable to hear, set audio_available false and count null. Do not infer from identifier or picture.",
+  "formal_total": null,
+  "http_status": 200,
+  "actual_model": "qwen3.8-omni-flash",
+  "response_text": "{\"audio_available\": true, \"sound_present\": true, \"tone_burst_count\": 5, \"onset_seconds\": [0.82, 3.14, 5.67, 8.09, 10.5], \"heard_description\": \"A sequence of five short, high-pitched electronic beeps.\"}",
+  "usage": {
+    "completion_tokens": 76,
+    "completion_tokens_details": {
+      "text_tokens": 76
+    },
+    "prompt_tokens": 10748,
+    "prompt_tokens_details": {
+      "audio_tokens": 86,
+      "cached_tokens": 0,
+      "text_tokens": 100,
+      "video_tokens": 10562
+    },
+    "total_tokens": 10824
+  },
+  "finish_reasons": [
+    "stop"
+  ],
+  "judgment": {
+    "audio_available": true,
+    "sound_present": true,
+    "tone_burst_count": 5,
+    "onset_seconds": [
+      0.82,
+      3.14,
+      5.67,
+      8.09,
+      10.5
+    ],
+    "heard_description": "A sequence of five short, high-pitched electronic beeps."
+  },
+  "seconds": 3.503
+}

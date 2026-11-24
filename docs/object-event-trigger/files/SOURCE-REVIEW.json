@@ -1,0 +1,51 @@
+{
+  "review_time_utc": "2026-11-23T19:27:38.650282+00:00",
+  "model_asset_hash_check": {
+    "exit_code": 0,
+    "stdout": "Bundled model assets and inference client match models.json\n",
+    "stderr": ""
+  },
+  "reviewed_sources": [
+    {
+      "path": "detect.py",
+      "sha256": "203426514140f96705086248743eef4e116bcdf30d190b3d6760c14a8c3f91d1"
+    },
+    {
+      "path": "src/fusion.py",
+      "sha256": "6babc7c4a94e757ecde4418566286d8b4a59c2b62dc1b5727751a81ea0a31d73"
+    },
+    {
+      "path": "src/prompts.py",
+      "sha256": "7bd8f9caad8916b3c87f03cf26871f0535e2dac7e4b86803a6dcad2465bf0324"
+    },
+    {
+      "path": "src/sound_models.py",
+      "sha256": "4c0a8ebf03f793f67afca83124dff5f3861d924d1179bb48e7536dd92511cabe"
+    },
+    {
+      "path": "src/verify_models.py",
+      "sha256": "8855998eb8cb06d51bb0bc4679760f223e0fb44c0a0d4378ef6aa416712ef8f2"
+    }
+  ],
+  "static_pattern_matches": [
+    {
+      "file": "DATA-SOURCES.md",
+      "line": 21,
+      "text": "EPIC-SOUNDS（Huh et al., TPAMI 2025）仅用于组织者侧声音候选检索，不提供其声音类别、时间标注或原动作说明。镜像动作裁切不等于本题事件切分；题目仍须从原始音频判断碰撞／摩擦。"
+    },
+    {
+      "file": "README.md",
+      "line": 30,
+      "text": "`results/A-Q1`、`results/A-Q2`、`results/B-Q1`、`results/B-Q2` 是从开发媒体独立运行得到的四个输出目录。用上述 HTTP 命令将 `/output` 换成相应目录即可复核。这些结果不是人工标注，也不参与任何后续推理。四组均使用题包 `tools/check_output.py` 通过输出契约检查，未做内容评分。原输入署名和许可见 `CREDITS.txt`；方法及局限见 `design-notes.md`。"
+    }
+  ],
+  "method": "Read entrypoint, fusion, prompts, audio-model code and asset verifier; inspect filesystem-access pattern matches in all src Python files; independent renamed-input and unseen-input reruns are recorded separately.",
+  "findings": [
+    "Entrypoint parses the current CLI media and target, reads the current waveform, and creates a temporary evidence directory.",
+    "Fusion excludes query IDs and filesystem paths from inference prompts; it uses a fixed 0.67 confidence threshold.",
+    "Audio-model code declares generic sound descriptions; packaged asset hashes are checked against models.json. This hash check alone does not independently validate the provenance or semantics of a self-declared model.",
+    "No answer-cache read or explicit scene-specific event table was found in the reviewed execution route.",
+    "This is a targeted code review, not proof that event attribution or timing is correct."
+  ],
+  "original_candidate_code_modified": false
+}

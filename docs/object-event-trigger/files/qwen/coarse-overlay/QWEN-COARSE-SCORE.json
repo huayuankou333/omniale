@@ -1,0 +1,1077 @@
+{
+  "score_type": "QWEN_COARSE_ORDINAL_AUXILIARY_ESTIMATE_NOT_STRICT_EVENT_SCORE",
+  "model": "qwen3.8-omni-flash",
+  "preliminary_total": null,
+  "formal_total": null,
+  "strict_event_formula_score": null,
+  "components": {
+    "event_estimate": 37.0,
+    "negative_estimate": 13.17708333333333,
+    "coarse_boundary_estimate": 6.160714285714285
+  },
+  "F_estimate": 0.5285714285714286,
+  "R_estimate": 0.8214285714285714,
+  "N_estimate": 0.8020833333333333,
+  "B_coarse_estimate": 0.75,
+  "formula": "70*F_estimate+20*R_estimate*N_estimate+10*R_estimate*B_coarse_estimate; coarse 0..4 estimates, NOT measured matching F/R/N/B.",
+  "negative_groups": {
+    "other_object_sound": [
+      1.0,
+      0.0,
+      1.0,
+      0.0,
+      0.5,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "silent_target_action": [
+      1.0,
+      0.75,
+      1.0
+    ]
+  },
+  "details": [
+    {
+      "query": "A-Q1",
+      "split": "development",
+      "cells": [
+        {
+          "class": "impact",
+          "prediction_count": 21,
+          "has_target_positives": true,
+          "P_estimate": 0.75,
+          "R_estimate": 1.0,
+          "F_estimate": 0.8571428571428571,
+          "evidence": {
+            "class": "impact",
+            "has_target_positives": true,
+            "precision_estimate_0_4": 3,
+            "recall_estimate_0_4": 4,
+            "audible_evidence": "在视频的大部分时间里，可以听到勺子刮擦和敲击小金属锅内壁的声音。这些声音表现为清脆的、带有金属质感的撞击声。",
+            "visual_evidence": "从视频开始到结束（约0秒至64秒），操作者持续用勺子在目标小金属锅内进行舀取动作，勺子与锅体发生多次可见的物理接触。例如，事件1 (IMPACT) 发生在视频开头，当时勺子首次接触锅底；事件21 (IMPACT) 发生在视频末尾，此时锅内食物已大部分被舀出，勺子仍在刮擦锅壁以收集剩余物。",
+            "clear_candidate_errors": [
+              {
+                "event_number": null,
+                "position_and_action": "整个视频中，每次勺子敲击或刮擦锅体时",
+                "type": "uncertain",
+                "audio_evidence": "音频中混合了勺子刮擦锅壁的摩擦声和偶尔更尖锐的敲击声。由于两种声音紧密相连且音色相似，难以精确区分每一次是纯粹的“impact”还是“friction”。",
+                "visual_evidence": "视觉上，勺子的运动轨迹既有贴着锅壁的滑动（倾向于产生friction），也有抬起后落下敲击的动作（倾向于产生impact）。"
+              }
+            ]
+          }
+        },
+        {
+          "class": "friction",
+          "prediction_count": 8,
+          "has_target_positives": true,
+          "P_estimate": 0.5,
+          "R_estimate": 0.5,
+          "F_estimate": 0.5,
+          "evidence": {
+            "class": "friction",
+            "has_target_positives": true,
+            "precision_estimate_0_4": 2,
+            "recall_estimate_0_4": 2,
+            "audible_evidence": "可以听到持续的、较为柔和的金属刮擦声，这是勺子在内壁上滑动的结果。这种声音与更短促、响亮的撞击声有明显区别。",
+            "visual_evidence": "当勺子紧贴着锅的内表面移动，试图将粘稠的绿色酱料刮下时，就发生了摩擦。例如，事件7 (FRICTION) 和事件19 (FRICTION) 都对应着勺子用力刮擦锅壁的动作。",
+            "clear_candidate_errors": [
+              {
+                "event_number": 7,
+                "position_and_action": "视频前段，约13-15秒处",
+                "type": "false_positive",
+                "audio_evidence": "此处的声音听起来更像是一次清晰的敲击（impact），而非连续的刮擦（friction）。",
+                "visual_evidence": "画面显示勺子似乎是点状地接触锅壁，而不是大面积地滑动。"
+              },
+              {
+                "event_number": 13,
+                "position_and_action": "视频中段，约27-28秒处",
+                "type": "false_positive",
+                "audio_evidence": "该时刻的声响特征更接近于一个孤立的撞击声。",
+                "visual_evidence": "视觉上是勺子快速地从锅中提起并轻碰边缘的动作。"
+              },
+              {
+                "event_number": 15,
+                "position_and_action": "视频中段，约30-31秒处",
+                "type": "false_positive",
+                "audio_evidence": "声音短促而响亮，符合撞击的特征。",
+                "visual_evidence": "动作是勺子向下按压并敲击锅底。"
+              },
+              {
+                "event_number": 18,
+                "position_and_action": "视频中后段，约34-35秒处",
+                "type": "false_positive",
+                "audio_evidence": "听到的是一声明显的“铛”声，是典型的金属撞击音。",
+                "visual_evidence": "勺子以一个角度切入并碰到了锅的边缘。"
+              },
+              {
+                "event_number": 23,
+                "position_and_action": "视频后段，约52-53秒处",
+                "type": "false_positive",
+                "audio_evidence": "这个声音虽然有些拖长，但起始部分是一个非常明确的撞击声。",
+                "visual_evidence": "勺子先是敲了一下锅，然后才开始有轻微的刮动。"
+              },
+              {
+                "event_number": 24,
+                "position_and_action": "视频后段，约53-54秒处",
+                "type": "false_positive",
+                "audio_evidence": "与事件23类似，这是一个由强撞击开始的复合声音。",
+                "visual_evidence": "同样是先敲击后刮动的组合动作。"
+              },
+              {
+                "event_number": 28,
+                "position_and_action": "视频结尾附近，约58-59秒处",
+                "type": "false_positive",
+                "audio_evidence": "这是一次干净的敲击声，没有后续的刮擦尾音。",
+                "visual_evidence": "勺子垂直地敲击了一下锅底。"
+              }
+            ]
+          }
+        }
+      ],
+      "judgment": {
+        "audio_available": true,
+        "visual_available": true,
+        "full_clip_reviewed": true,
+        "target_identity": "手中倾斜的小号金属锅本体",
+        "classes": [
+          {
+            "class": "impact",
+            "has_target_positives": true,
+            "precision_estimate_0_4": 3,
+            "recall_estimate_0_4": 4,
+            "audible_evidence": "在视频的大部分时间里，可以听到勺子刮擦和敲击小金属锅内壁的声音。这些声音表现为清脆的、带有金属质感的撞击声。",
+            "visual_evidence": "从视频开始到结束（约0秒至64秒），操作者持续用勺子在目标小金属锅内进行舀取动作，勺子与锅体发生多次可见的物理接触。例如，事件1 (IMPACT) 发生在视频开头，当时勺子首次接触锅底；事件21 (IMPACT) 发生在视频末尾，此时锅内食物已大部分被舀出，勺子仍在刮擦锅壁以收集剩余物。",
+            "clear_candidate_errors": [
+              {
+                "event_number": null,
+                "position_and_action": "整个视频中，每次勺子敲击或刮擦锅体时",
+                "type": "uncertain",
+                "audio_evidence": "音频中混合了勺子刮擦锅壁的摩擦声和偶尔更尖锐的敲击声。由于两种声音紧密相连且音色相似，难以精确区分每一次是纯粹的“impact”还是“friction”。",
+                "visual_evidence": "视觉上，勺子的运动轨迹既有贴着锅壁的滑动（倾向于产生friction），也有抬起后落下敲击的动作（倾向于产生impact）。"
+              }
+            ]
+          },
+          {
+            "class": "friction",
+            "has_target_positives": true,
+            "precision_estimate_0_4": 2,
+            "recall_estimate_0_4": 2,
+            "audible_evidence": "可以听到持续的、较为柔和的金属刮擦声，这是勺子在内壁上滑动的结果。这种声音与更短促、响亮的撞击声有明显区别。",
+            "visual_evidence": "当勺子紧贴着锅的内表面移动，试图将粘稠的绿色酱料刮下时，就发生了摩擦。例如，事件7 (FRICTION) 和事件19 (FRICTION) 都对应着勺子用力刮擦锅壁的动作。",
+            "clear_candidate_errors": [
+              {
+                "event_number": 7,
+                "position_and_action": "视频前段，约13-15秒处",
+                "type": "false_positive",
+                "audio_evidence": "此处的声音听起来更像是一次清晰的敲击（impact），而非连续的刮擦（friction）。",
+                "visual_evidence": "画面显示勺子似乎是点状地接触锅壁，而不是大面积地滑动。"
+              },
+              {
+                "event_number": 13,
+                "position_and_action": "视频中段，约27-28秒处",
+                "type": "false_positive",
+                "audio_evidence": "该时刻的声响特征更接近于一个孤立的撞击声。",
+                "visual_evidence": "视觉上是勺子快速地从锅中提起并轻碰边缘的动作。"
+              },
+              {
+                "event_number": 15,
+                "position_and_action": "视频中段，约30-31秒处",
+                "type": "false_positive",
+                "audio_evidence": "声音短促而响亮，符合撞击的特征。",
+                "visual_evidence": "动作是勺子向下按压并敲击锅底。"
+              },
+              {
+                "event_number": 18,
+                "position_and_action": "视频中后段，约34-35秒处",
+                "type": "false_positive",
+                "audio_evidence": "听到的是一声明显的“铛”声，是典型的金属撞击音。",
+                "visual_evidence": "勺子以一个角度切入并碰到了锅的边缘。"
+              },
+              {
+                "event_number": 23,
+                "position_and_action": "视频后段，约52-53秒处",
+                "type": "false_positive",
+                "audio_evidence": "这个声音虽然有些拖长，但起始部分是一个非常明确的撞击声。",
+                "visual_evidence": "勺子先是敲了一下锅，然后才开始有轻微的刮动。"
+              },
+              {
+                "event_number": 24,
+                "position_and_action": "视频后段，约53-54秒处",
+                "type": "false_positive",
+                "audio_evidence": "与事件23类似，这是一个由强撞击开始的复合声音。",
+                "visual_evidence": "同样是先敲击后刮动的组合动作。"
+              },
+              {
+                "event_number": 28,
+                "position_and_action": "视频结尾附近，约58-59秒处",
+                "type": "false_positive",
+                "audio_evidence": "这是一次干净的敲击声，没有后续的刮擦尾音。",
+                "visual_evidence": "勺子垂直地敲击了一下锅底。"
+              }
+            ]
+          }
+        ],
+        "negative_groups": [
+          {
+            "kind": "other_object_sound",
+            "opportunity_observed": true,
+            "suppression_0_4": 4,
+            "evidence": "视频中还有其他物体发出的声音，例如左侧炉灶上另一个锅里煎培根/香肠的滋滋声，以及搅拌棒放在碟子上的轻微碰撞声。检测器X没有将这些声音错误地标记为目标小金属锅的事件，表现出良好的抑制能力。"
+          },
+          {
+            "kind": "silent_target_action",
+            "opportunity_observed": true,
+            "suppression_0_4": 4,
+            "evidence": "存在目标锅静止不动的时刻，例如在视频最开始（0秒）和操作者调整握姿的瞬间。在这些没有声音产生的时段，检测器也没有发出任何错误的触发信号。"
+          }
+        ],
+        "coarse_boundary_0_4": 3,
+        "coarse_boundary_evidence": "对于绝大多数正确分类的事件（尤其是impact类），其时间边界与可听见的声音起止基本吻合。然而，在一些被误判为friction的事件中（如事件7, 13, 15等），它们实际上是短暂的impact，这表明模型在处理瞬时事件的边界时可能存在混淆，将本应结束的impact事件延长或错误归类，导致边界不清晰。",
+        "limitations": [
+          "根据指令，此评估不进行精确的时间戳判断，因此对+/-80ms内的边界准确性不做评价。",
+          "impact和friction的声音在某些情况下高度重叠，使得即使是人工复核也难以做到100%准确的分类，这影响了precision和recall评分的绝对性。"
+        ]
+      },
+      "coarse_boundary": 3
+    },
+    {
+      "query": "A-Q2",
+      "split": "development",
+      "cells": [
+        {
+          "class": "impact",
+          "prediction_count": 7,
+          "has_target_positives": false,
+          "P_estimate": 0.0,
+          "R_estimate": null,
+          "F_estimate": 0,
+          "evidence": {
+            "class": "impact",
+            "has_target_positives": false,
+            "precision_estimate_0_4": 0,
+            "recall_estimate_0_4": null,
+            "audible_evidence": "视频中有多次清晰的敲击声，但均来源于勺子刮擦或敲击上方的不锈钢容器，而非下方的目标黑色平底锅。",
+            "visual_evidence": "在所有IMPACT事件（如Event 1至7）发生时，画面显示操作者正用勺子在上方倾斜的不锈钢锅中进行刮取和敲击，目标黑色平底锅静止在下方且未受到任何物体的直接撞击。",
+            "clear_candidate_errors": [
+              {
+                "event_number": 1,
+                "position_and_action": "视频前段，用勺子敲击/刮擦上方不锈钢锅",
+                "type": "false_positive",
+                "audio_evidence": "金属敲击声",
+                "visual_evidence": "接触点在上方不锈钢锅"
+              },
+              {
+                "event_number": 2,
+                "position_and_action": "视频中段，用勺子敲击/刮擦上方不锈钢锅",
+                "type": "false_positive",
+                "audio_evidence": "金属敲击声",
+                "visual_evidence": "接触点在上方不锈钢锅"
+              }
+            ]
+          }
+        },
+        {
+          "class": "friction",
+          "prediction_count": 0,
+          "has_target_positives": false,
+          "P_estimate": null,
+          "R_estimate": null,
+          "F_estimate": null,
+          "evidence": {
+            "class": "friction",
+            "has_target_positives": false,
+            "precision_estimate_0_4": null,
+            "recall_estimate_0_4": null,
+            "audible_evidence": "无针对目标的摩擦声。",
+            "visual_evidence": "无相关动作。",
+            "clear_candidate_errors": []
+          }
+        }
+      ],
+      "judgment": {
+        "audio_available": true,
+        "visual_available": true,
+        "full_clip_reviewed": true,
+        "target_identity": "下方盛有食物的黑色平底锅本体",
+        "classes": [
+          {
+            "class": "impact",
+            "has_target_positives": false,
+            "precision_estimate_0_4": 0,
+            "recall_estimate_0_4": null,
+            "audible_evidence": "视频中有多次清晰的敲击声，但均来源于勺子刮擦或敲击上方的不锈钢容器，而非下方的目标黑色平底锅。",
+            "visual_evidence": "在所有IMPACT事件（如Event 1至7）发生时，画面显示操作者正用勺子在上方倾斜的不锈钢锅中进行刮取和敲击，目标黑色平底锅静止在下方且未受到任何物体的直接撞击。",
+            "clear_candidate_errors": [
+              {
+                "event_number": 1,
+                "position_and_action": "视频前段，用勺子敲击/刮擦上方不锈钢锅",
+                "type": "false_positive",
+                "audio_evidence": "金属敲击声",
+                "visual_evidence": "接触点在上方不锈钢锅"
+              },
+              {
+                "event_number": 2,
+                "position_and_action": "视频中段，用勺子敲击/刮擦上方不锈钢锅",
+                "type": "false_positive",
+                "audio_evidence": "金属敲击声",
+                "visual_evidence": "接触点在上方不锈钢锅"
+              }
+            ]
+          },
+          {
+            "class": "friction",
+            "has_target_positives": false,
+            "precision_estimate_0_4": null,
+            "recall_estimate_0_4": null,
+            "audible_evidence": "无针对目标的摩擦声。",
+            "visual_evidence": "无相关动作。",
+            "clear_candidate_errors": []
+          }
+        ],
+        "negative_groups": [
+          {
+            "kind": "other_object_sound",
+            "opportunity_observed": true,
+            "suppression_0_4": 0,
+            "evidence": "视频中充满了勺子与上方不锈钢锅的碰撞和刮擦声，这些声音被系统错误地标记为对下方黑色平底锅的冲击（IMPACT），未能有效抑制非目标对象的干扰。"
+          },
+          {
+            "kind": "silent_target_action",
+            "opportunity_observed": false,
+            "suppression_0_4": null,
+            "evidence": "目标平底锅全程静置，仅作为接收酱汁的容器，未发生移动、旋转等可能产生自身声响的动作。"
+          }
+        ],
+        "coarse_boundary_0_4": null,
+        "coarse_boundary_evidence": "由于所有预测均为错误的对象归因（False Positives），不存在正确的匹配片段来评估边界质量。",
+        "limitations": [
+          "本评估基于视觉证据判断声源归属，虽然视觉上明显是敲击上方容器，但理论上不能完全排除极微弱的传导震动声，不过对于常规检测而言应视为误报。"
+        ]
+      },
+      "coarse_boundary": null
+    },
+    {
+      "query": "B-Q1",
+      "split": "development",
+      "cells": [
+        {
+          "class": "impact",
+          "prediction_count": 8,
+          "has_target_positives": true,
+          "P_estimate": 0.75,
+          "R_estimate": 0.5,
+          "F_estimate": 0.6,
+          "evidence": {
+            "class": "impact",
+            "has_target_positives": true,
+            "precision_estimate_0_4": 3,
+            "recall_estimate_0_4": 2,
+            "audible_evidence": "在视频开头（约1-5秒）和结尾部分（约26-27秒），可以听到明显的金属撞击声，对应锅体与水槽或盆壁的接触。中间清洗过程中也有零星的碰撞声。",
+            "visual_evidence": "系统标记了8个Impact事件。Event 1 (1.7s), Event 2 (3.5s), Event 3 (4.7s) 对应初期将锅放入水中及初步刷洗时的磕碰；Event 9 (18.7s) 对应翻转锅体时；Event 11 (22.7s) 对应刷锅底时；Event 14 (25.7s) 和 Event 15 (26.7s) 对应最后阶段的动作。大部分标记与视觉上的硬物接触吻合。然而，在视频中段（如10-15秒左右）也存在锅具移动产生的轻微碰撞声，似乎未被完全覆盖或归类为摩擦。",
+            "clear_candidate_errors": [
+              {
+                "event_number": null,
+                "position_and_action": "视频前段至中段过渡期",
+                "type": "false_negative",
+                "audio_evidence": "存在间歇性的清脆敲击声",
+                "visual_evidence": "锅体被提起或调整角度时发生的非持续性接触"
+              }
+            ]
+          }
+        },
+        {
+          "class": "friction",
+          "prediction_count": 8,
+          "has_target_positives": true,
+          "P_estimate": 1.0,
+          "R_estimate": 0.75,
+          "F_estimate": 0.8571428571428571,
+          "evidence": {
+            "class": "friction",
+            "has_target_positives": true,
+            "precision_estimate_0_4": 4,
+            "recall_estimate_0_4": 3,
+            "audible_evidence": "全片贯穿着海绵擦拭锅体的沙沙声（湿摩擦）。特别是在Event 4 (5.0s), Event 5 (11.7s), Event 6 (13.7s), Event 8 (16.7s), Event 10 (20.7s), Event 12 (24.0s), Event 13 (25.7s), Event 16 (27.7s) 期间，这种声音非常清晰且连续。",
+            "visual_evidence": "系统标记的Friction事件几乎完美覆盖了所有使用海绵用力擦洗锅体内壁和外底的过程。例如Event 5对应清洗外底，Event 10对应再次清洗内部。这些时刻画面中都有明确的相对运动和对应的摩擦音效。",
+            "clear_candidate_errors": []
+          }
+        }
+      ],
+      "judgment": {
+        "audio_available": true,
+        "visual_available": true,
+        "full_clip_reviewed": true,
+        "target_identity": "手持的黑色锅体",
+        "classes": [
+          {
+            "class": "impact",
+            "has_target_positives": true,
+            "precision_estimate_0_4": 3,
+            "recall_estimate_0_4": 2,
+            "audible_evidence": "在视频开头（约1-5秒）和结尾部分（约26-27秒），可以听到明显的金属撞击声，对应锅体与水槽或盆壁的接触。中间清洗过程中也有零星的碰撞声。",
+            "visual_evidence": "系统标记了8个Impact事件。Event 1 (1.7s), Event 2 (3.5s), Event 3 (4.7s) 对应初期将锅放入水中及初步刷洗时的磕碰；Event 9 (18.7s) 对应翻转锅体时；Event 11 (22.7s) 对应刷锅底时；Event 14 (25.7s) 和 Event 15 (26.7s) 对应最后阶段的动作。大部分标记与视觉上的硬物接触吻合。然而，在视频中段（如10-15秒左右）也存在锅具移动产生的轻微碰撞声，似乎未被完全覆盖或归类为摩擦。",
+            "clear_candidate_errors": [
+              {
+                "event_number": null,
+                "position_and_action": "视频前段至中段过渡期",
+                "type": "false_negative",
+                "audio_evidence": "存在间歇性的清脆敲击声",
+                "visual_evidence": "锅体被提起或调整角度时发生的非持续性接触"
+              }
+            ]
+          },
+          {
+            "class": "friction",
+            "has_target_positives": true,
+            "precision_estimate_0_4": 4,
+            "recall_estimate_0_4": 3,
+            "audible_evidence": "全片贯穿着海绵擦拭锅体的沙沙声（湿摩擦）。特别是在Event 4 (5.0s), Event 5 (11.7s), Event 6 (13.7s), Event 8 (16.7s), Event 10 (20.7s), Event 12 (24.0s), Event 13 (25.7s), Event 16 (27.7s) 期间，这种声音非常清晰且连续。",
+            "visual_evidence": "系统标记的Friction事件几乎完美覆盖了所有使用海绵用力擦洗锅体内壁和外底的过程。例如Event 5对应清洗外底，Event 10对应再次清洗内部。这些时刻画面中都有明确的相对运动和对应的摩擦音效。",
+            "clear_candidate_errors": []
+          }
+        ],
+        "negative_groups": [
+          {
+            "kind": "other_object_sound",
+            "opportunity_observed": true,
+            "suppression_0_4": 4,
+            "evidence": "背景中有水流声、放置其他餐具的声音以及环境噪音。检测器没有将这些误报为目标物体的冲击或摩擦，表现良好。"
+          },
+          {
+            "kind": "silent_target_action",
+            "opportunity_observed": true,
+            "suppression_0_4": 3,
+            "evidence": "在某些时刻（如Event 1到Event 2之间，或者某些停顿间隙），手拿着锅但没有发生剧烈的物理交互（仅仅是悬停或极慢移动），此时不应有强信号。虽然大部分时间都在动，但在动作转换的瞬间，如果未产生明显声响而系统触发了，则属于此类错误。观察发现系统在纯动作但无显著声学特征的时刻触发较少，但在长序列摩擦中的微小停顿处理上略显模糊。"
+          }
+        ],
+        "coarse_boundary_0_4": 3,
+        "coarse_boundary_evidence": "对于连续的摩擦声（如Event 5, 6, 8等），起止点大致符合擦洗动作的开始和结束。但对于短促的Impact事件（如Event 1, 2, 3），边界划分较为密集，有时难以区分是单次还是多次快速连击，不过整体时序逻辑是正确的。Event 14和15紧邻，可能是一次复杂动作的两个阶段，边界尚可接受。",
+        "limitations": [
+          "无法提供精确的时间戳验证（+/-80ms级别）。",
+          "音频中水声较大，可能在某些瞬间掩盖了轻微的锅体自身震动声，导致归因困难。",
+          "Impact和Friction在快速刷洗过程中可能存在听觉上的混合，难以绝对剥离。"
+        ]
+      },
+      "coarse_boundary": 3
+    },
+    {
+      "query": "B-Q2",
+      "split": "development",
+      "cells": [
+        {
+          "class": "impact",
+          "prediction_count": 8,
+          "has_target_positives": false,
+          "P_estimate": 0.0,
+          "R_estimate": null,
+          "F_estimate": 0,
+          "evidence": {
+            "class": "impact",
+            "has_target_positives": false,
+            "precision_estimate_0_4": 0.0,
+            "recall_estimate_0_4": null,
+            "audible_evidence": "视频中可听到明显的敲击声（如事件1、3、6等），但声音来源是黑锅与金属水槽的碰撞，而非目标物体（白色洗涤盆）。",
+            "visual_evidence": "画面中黑锅多次撞击不锈钢水槽底部或边缘。虽然系统标注了8次IMPACT事件，但这些事件的物理接触点均不在黄色框选定的“白色洗涤盆”上。",
+            "clear_candidate_errors": [
+              {
+                "event_number": 1,
+                "position_and_action": "视频开头 (t≈0.7s)，黑锅放入水中并触碰金属槽底",
+                "type": "false_positive",
+                "audio_evidence": "沉闷的金属撞击声",
+                "visual_evidence": "黑锅直接接触的是不锈钢水槽，未接触白色盆体"
+              },
+              {
+                "event_number": 2,
+                "position_and_action": "视频前段 (t≈1.7s)，黑锅在清洗过程中晃动撞击",
+                "type": "false_positive",
+                "audio_evidence": "清脆的硬物碰撞声",
+                "visual_evidence": "接触对象为金属水槽壁"
+              },
+              {
+                "event_number": 3,
+                "position_and_action": "视频前段 (t≈4.5s)，黑锅被提起后落下",
+                "type": "false_positive",
+                "audio_evidence": "响亮的撞击声",
+                "visual_evidence": "黑锅落回金属水槽中"
+              },
+              {
+                "event_number": 4,
+                "position_and_action": "视频中段 (t≈16.0s)，黑锅倾斜刮擦/撞击",
+                "type": "false_positive",
+                "audio_evidence": "混合了摩擦和撞击的声音",
+                "visual_evidence": "主要接触面仍为金属水槽"
+              },
+              {
+                "event_number": 5,
+                "position_and_action": "视频中段 (t≈18.5s)，黑锅再次撞击",
+                "type": "false_positive",
+                "audio_evidence": "短促的敲击声",
+                "visual_evidence": "黑锅与金属槽底的碰撞"
+              },
+              {
+                "event_number": 6,
+                "position_and_action": "视频后段 (t≈22.5s)，用力刷洗时的撞击",
+                "type": "false_positive",
+                "audio_evidence": "较重的撞击声",
+                "visual_evidence": "动作发生在金属水槽内"
+              },
+              {
+                "event_number": 7,
+                "position_and_action": "视频末尾 (t≈24.5s)，翻转黑锅时的磕碰",
+                "type": "false_positive",
+                "audio_evidence": "连续的磕碰声",
+                "visual_evidence": "黑锅边缘碰到金属槽沿"
+              },
+              {
+                "event_number": 8,
+                "position_and_action": "视频末尾 (t≈25.5s)，最后的放置动作",
+                "type": "false_positive",
+                "audio_evidence": "收尾的撞击声",
+                "visual_evidence": "黑锅最终停留在金属水槽区域"
+              }
+            ]
+          }
+        },
+        {
+          "class": "friction",
+          "prediction_count": 1,
+          "has_target_positives": false,
+          "P_estimate": 0.0,
+          "R_estimate": null,
+          "F_estimate": 0,
+          "evidence": {
+            "class": "friction",
+            "has_target_positives": false,
+            "precision_estimate_0_4": 0.0,
+            "recall_estimate_0_4": null,
+            "audible_evidence": "存在持续的刷刷声（海绵擦拭声）和水流搅动声，但没有针对硬质塑料盆体的独特刮擦声。",
+            "visual_evidence": "唯一的FRICTION标记（事件9, t≈27.5s）对应的是手拿着海绵在黑锅内壁进行擦洗的动作。接触双方是“海绵+黑锅”，完全未涉及“白色洗涤盆”。",
+            "clear_candidate_errors": [
+              {
+                "event_number": 9,
+                "position_and_action": "视频末尾 (t≈27.5s)，手持海绵擦洗黑锅内部",
+                "type": "false_positive",
+                "audio_evidence": "湿润的多孔材料摩擦声",
+                "visual_evidence": "摩擦发生在黑锅内部，目标是外部白盆，二者无接触"
+              }
+            ]
+          }
+        }
+      ],
+      "judgment": {
+        "audio_available": true,
+        "visual_available": true,
+        "full_clip_reviewed": true,
+        "target_identity": "外侧白色矩形洗涤盆本体",
+        "classes": [
+          {
+            "class": "impact",
+            "has_target_positives": false,
+            "precision_estimate_0_4": 0.0,
+            "recall_estimate_0_4": null,
+            "audible_evidence": "视频中可听到明显的敲击声（如事件1、3、6等），但声音来源是黑锅与金属水槽的碰撞，而非目标物体（白色洗涤盆）。",
+            "visual_evidence": "画面中黑锅多次撞击不锈钢水槽底部或边缘。虽然系统标注了8次IMPACT事件，但这些事件的物理接触点均不在黄色框选定的“白色洗涤盆”上。",
+            "clear_candidate_errors": [
+              {
+                "event_number": 1,
+                "position_and_action": "视频开头 (t≈0.7s)，黑锅放入水中并触碰金属槽底",
+                "type": "false_positive",
+                "audio_evidence": "沉闷的金属撞击声",
+                "visual_evidence": "黑锅直接接触的是不锈钢水槽，未接触白色盆体"
+              },
+              {
+                "event_number": 2,
+                "position_and_action": "视频前段 (t≈1.7s)，黑锅在清洗过程中晃动撞击",
+                "type": "false_positive",
+                "audio_evidence": "清脆的硬物碰撞声",
+                "visual_evidence": "接触对象为金属水槽壁"
+              },
+              {
+                "event_number": 3,
+                "position_and_action": "视频前段 (t≈4.5s)，黑锅被提起后落下",
+                "type": "false_positive",
+                "audio_evidence": "响亮的撞击声",
+                "visual_evidence": "黑锅落回金属水槽中"
+              },
+              {
+                "event_number": 4,
+                "position_and_action": "视频中段 (t≈16.0s)，黑锅倾斜刮擦/撞击",
+                "type": "false_positive",
+                "audio_evidence": "混合了摩擦和撞击的声音",
+                "visual_evidence": "主要接触面仍为金属水槽"
+              },
+              {
+                "event_number": 5,
+                "position_and_action": "视频中段 (t≈18.5s)，黑锅再次撞击",
+                "type": "false_positive",
+                "audio_evidence": "短促的敲击声",
+                "visual_evidence": "黑锅与金属槽底的碰撞"
+              },
+              {
+                "event_number": 6,
+                "position_and_action": "视频后段 (t≈22.5s)，用力刷洗时的撞击",
+                "type": "false_positive",
+                "audio_evidence": "较重的撞击声",
+                "visual_evidence": "动作发生在金属水槽内"
+              },
+              {
+                "event_number": 7,
+                "position_and_action": "视频末尾 (t≈24.5s)，翻转黑锅时的磕碰",
+                "type": "false_positive",
+                "audio_evidence": "连续的磕碰声",
+                "visual_evidence": "黑锅边缘碰到金属槽沿"
+              },
+              {
+                "event_number": 8,
+                "position_and_action": "视频末尾 (t≈25.5s)，最后的放置动作",
+                "type": "false_positive",
+                "audio_evidence": "收尾的撞击声",
+                "visual_evidence": "黑锅最终停留在金属水槽区域"
+              }
+            ]
+          },
+          {
+            "class": "friction",
+            "has_target_positives": false,
+            "precision_estimate_0_4": 0.0,
+            "recall_estimate_0_4": null,
+            "audible_evidence": "存在持续的刷刷声（海绵擦拭声）和水流搅动声，但没有针对硬质塑料盆体的独特刮擦声。",
+            "visual_evidence": "唯一的FRICTION标记（事件9, t≈27.5s）对应的是手拿着海绵在黑锅内壁进行擦洗的动作。接触双方是“海绵+黑锅”，完全未涉及“白色洗涤盆”。",
+            "clear_candidate_errors": [
+              {
+                "event_number": 9,
+                "position_and_action": "视频末尾 (t≈27.5s)，手持海绵擦洗黑锅内部",
+                "type": "false_positive",
+                "audio_evidence": "湿润的多孔材料摩擦声",
+                "visual_evidence": "摩擦发生在黑锅内部，目标是外部白盆，二者无接触"
+              }
+            ]
+          }
+        ],
+        "negative_groups": [
+          {
+            "kind": "other_object_sound",
+            "opportunity_observed": true,
+            "suppression_0_4": 0.0,
+            "evidence": "整个视频充满了黑锅与金属水槽的碰撞声以及海绵擦洗锅具的摩擦声。检测器未能抑制这些非目标物体的声音，反而将它们全部错误地归类为目标物体（白盆）的事件（共9个误报）。"
+          },
+          {
+            "kind": "silent_target_action",
+            "opportunity_observed": false,
+            "suppression_0_4": null,
+            "evidence": "白色洗涤盆在整个过程中保持静止，没有任何移动或被操作的动作，因此不存在此类机会。"
+          }
+        ],
+        "coarse_boundary_0_4": null,
+        "coarse_boundary_evidence": "由于所有预测均为错误的对象归因（False Positives），评估时间边界的准确性没有意义。",
+        "limitations": [
+          "本评估基于视觉上的接触分析来推断音频源归属。",
+          "参考图像明确圈定了'外侧白色矩形洗涤盆'，排除了内部的'黑锅'。",
+          "检测器似乎混淆了容器内的物体（锅）与容器本身（盆），或者混淆了不同材质的水槽部分。"
+        ]
+      },
+      "coarse_boundary": null
+    },
+    {
+      "query": "H1-Q1",
+      "split": "unseen",
+      "cells": [
+        {
+          "class": "impact",
+          "prediction_count": 3,
+          "has_target_positives": false,
+          "P_estimate": 0.0,
+          "R_estimate": null,
+          "F_estimate": 0,
+          "evidence": {
+            "class": "impact",
+            "has_target_positives": false,
+            "precision_estimate_0_4": 0,
+            "recall_estimate_0_4": null,
+            "audible_evidence": "视频后半段存在明显的金属撞击声或硬物敲击水槽的声音，但视觉显示此时目标物体（锅底）正被海绵覆盖擦拭或被手握住，并未发生碰撞。声音源极可能是另一只手的手指敲击锅沿、或者背景中其他餐具的碰撞，而非目标本体的受击或主动撞击。",
+            "visual_evidence": "在IMPACT事件触发期间（如Event 4, 5, 6），画面主要展示戴黄色手套的手用绿色海绵用力擦洗锅内壁。虽然动作剧烈，但没有观察到锅体与其他物体（如水槽壁、水龙头）发生物理接触或碰撞的瞬间。",
+            "clear_candidate_errors": [
+              {
+                "event_number": 4,
+                "position_and_action": "视频中后段，手部快速用力擦洗锅底时",
+                "type": "false_positive",
+                "audio_evidence": "伴随擦洗动作出现的沉闷撞击声，更像是手腕/手掌拍打锅底的肉声，或者是海绵挤压水的声音，不符合典型的固体间Impact定义；且即便视为撞击，也是工具与目标的互动，非目标参与的外部碰撞。",
+                "visual_evidence": "仅见海绵在锅内运动，无外部碰撞。"
+              },
+              {
+                "event_number": 5,
+                "position_and_action": "同上，持续擦洗过程中",
+                "type": "false_positive",
+                "audio_evidence": "持续的摩擦噪音中夹杂的峰值，归因于Impact缺乏明确的视觉碰撞支持。",
+                "visual_evidence": "无明显碰撞动作。"
+              },
+              {
+                "event_number": 6,
+                "position_and_action": "视频末尾，清洗结束阶段",
+                "type": "false_positive",
+                "audio_evidence": "可能有放置物品的声音，但在该时刻画面仍聚焦于锅内擦洗，未见锅体移动产生撞击。",
+                "visual_evidence": "目标静止于水槽中，仅有内部清洁动作。"
+              }
+            ]
+          }
+        },
+        {
+          "class": "friction",
+          "prediction_count": 3,
+          "has_target_positives": true,
+          "P_estimate": 1.0,
+          "R_estimate": 1.0,
+          "F_estimate": 1.0,
+          "evidence": {
+            "class": "friction",
+            "has_target_positives": true,
+            "precision_estimate_0_4": 4,
+            "recall_estimate_0_4": 4,
+            "audible_evidence": "全片贯穿着清晰、连续的“沙沙”声，这是典型的海绵/百洁布在光滑表面（涂层锅底）上反复摩擦产生的声音。",
+            "visual_evidence": "从开始到结束，戴手套的手始终握着海绵在白色圆形器具（锅）的内表面进行圆周运动的擦洗。FRICTION事件标记准确覆盖了主要的擦洗过程。",
+            "clear_candidate_errors": []
+          }
+        }
+      ],
+      "judgment": {
+        "audio_available": true,
+        "visual_available": true,
+        "full_clip_reviewed": true,
+        "target_identity": "画面中的白色圆形器具本体（平底锅），不包括手套和海绵",
+        "classes": [
+          {
+            "class": "impact",
+            "has_target_positives": false,
+            "precision_estimate_0_4": 0,
+            "recall_estimate_0_4": null,
+            "audible_evidence": "视频后半段存在明显的金属撞击声或硬物敲击水槽的声音，但视觉显示此时目标物体（锅底）正被海绵覆盖擦拭或被手握住，并未发生碰撞。声音源极可能是另一只手的手指敲击锅沿、或者背景中其他餐具的碰撞，而非目标本体的受击或主动撞击。",
+            "visual_evidence": "在IMPACT事件触发期间（如Event 4, 5, 6），画面主要展示戴黄色手套的手用绿色海绵用力擦洗锅内壁。虽然动作剧烈，但没有观察到锅体与其他物体（如水槽壁、水龙头）发生物理接触或碰撞的瞬间。",
+            "clear_candidate_errors": [
+              {
+                "event_number": 4,
+                "position_and_action": "视频中后段，手部快速用力擦洗锅底时",
+                "type": "false_positive",
+                "audio_evidence": "伴随擦洗动作出现的沉闷撞击声，更像是手腕/手掌拍打锅底的肉声，或者是海绵挤压水的声音，不符合典型的固体间Impact定义；且即便视为撞击，也是工具与目标的互动，非目标参与的外部碰撞。",
+                "visual_evidence": "仅见海绵在锅内运动，无外部碰撞。"
+              },
+              {
+                "event_number": 5,
+                "position_and_action": "同上，持续擦洗过程中",
+                "type": "false_positive",
+                "audio_evidence": "持续的摩擦噪音中夹杂的峰值，归因于Impact缺乏明确的视觉碰撞支持。",
+                "visual_evidence": "无明显碰撞动作。"
+              },
+              {
+                "event_number": 6,
+                "position_and_action": "视频末尾，清洗结束阶段",
+                "type": "false_positive",
+                "audio_evidence": "可能有放置物品的声音，但在该时刻画面仍聚焦于锅内擦洗，未见锅体移动产生撞击。",
+                "visual_evidence": "目标静止于水槽中，仅有内部清洁动作。"
+              }
+            ]
+          },
+          {
+            "class": "friction",
+            "has_target_positives": true,
+            "precision_estimate_0_4": 4,
+            "recall_estimate_0_4": 4,
+            "audible_evidence": "全片贯穿着清晰、连续的“沙沙”声，这是典型的海绵/百洁布在光滑表面（涂层锅底）上反复摩擦产生的声音。",
+            "visual_evidence": "从开始到结束，戴手套的手始终握着海绵在白色圆形器具（锅）的内表面进行圆周运动的擦洗。FRICTION事件标记准确覆盖了主要的擦洗过程。",
+            "clear_candidate_errors": []
+          }
+        ],
+        "negative_groups": [
+          {
+            "kind": "other_object_sound",
+            "opportunity_observed": true,
+            "suppression_0_4": 2,
+            "evidence": "视频中存在的某些尖锐撞击声（可能被误判为Impact的部分）很可能来自操作者的手指敲击锅边或其他非目标物体的干扰，模型未能完全抑制这些非目标源的Impact预测。"
+          },
+          {
+            "kind": "silent_target_action",
+            "opportunity_observed": false,
+            "suppression_0_4": null,
+            "evidence": "目标在整个视频片段中都处于被积极擦洗的状态，伴随着持续的摩擦声，不存在明显的“针对目标的静音动作”机会供测试。"
+          }
+        ],
+        "coarse_boundary_0_4": 3,
+        "coarse_boundary_evidence": "FRICTION事件的起止时间大致对应了可见的擦洗动作区间，边界处理尚可。但由于将部分擦洗时的重音误标为IMPACT，导致类别间的边界混淆。",
+        "limitations": [
+          "无法精确区分是海绵摩擦声还是手指拍打锅底的肉体撞击声，导致Impact类的判定存在较大不确定性。",
+          "基于粗粒度评估，未对毫秒级时间戳进行校验。"
+        ]
+      },
+      "coarse_boundary": 3
+    },
+    {
+      "query": "H1-Q2",
+      "split": "unseen",
+      "cells": [
+        {
+          "class": "impact",
+          "prediction_count": 0,
+          "has_target_positives": false,
+          "P_estimate": null,
+          "R_estimate": null,
+          "F_estimate": null,
+          "evidence": {
+            "class": "impact",
+            "has_target_positives": false,
+            "precision_estimate_0_4": null,
+            "recall_estimate_0_4": null,
+            "audible_evidence": "无。视频中可听到持续的摩擦声和偶尔的碰撞声（如盘子放入沥水架），但没有任何声音是由被洗器具直接撞击不锈钢水槽本体产生的。",
+            "visual_evidence": "全程为戴手套的手持海绵在盘子上擦拭，盘子悬于水槽上方或浸入水中，未观察到任何物体与水槽壁发生物理接触或敲击动作。"
+          }
+        },
+        {
+          "class": "friction",
+          "prediction_count": 0,
+          "has_target_positives": false,
+          "P_estimate": null,
+          "R_estimate": null,
+          "F_estimate": null,
+          "evidence": {
+            "class": "friction",
+            "has_target_positives": false,
+            "precision_estimate_0_4": null,
+            "recall_estimate_0_4": null,
+            "audible_evidence": "无。虽然存在明显的“沙沙”摩擦声，但该声音源自海绵与陶瓷盘表面的接触，而非与水槽本体的摩擦。",
+            "visual_evidence": "画面显示清洗动作完全集中在盘子表面，手部和清洁工具均未与水槽内壁或底部产生相对滑动摩擦。"
+          }
+        }
+      ],
+      "judgment": {
+        "audio_available": true,
+        "visual_available": true,
+        "full_clip_reviewed": true,
+        "target_identity": "周围的不锈钢水槽本体，不包括水、泡沫或被洗器具",
+        "classes": [
+          {
+            "class": "impact",
+            "has_target_positives": false,
+            "precision_estimate_0_4": null,
+            "recall_estimate_0_4": null,
+            "audible_evidence": "无。视频中可听到持续的摩擦声和偶尔的碰撞声（如盘子放入沥水架），但没有任何声音是由被洗器具直接撞击不锈钢水槽本体产生的。",
+            "visual_evidence": "全程为戴手套的手持海绵在盘子上擦拭，盘子悬于水槽上方或浸入水中，未观察到任何物体与水槽壁发生物理接触或敲击动作。"
+          },
+          {
+            "class": "friction",
+            "has_target_positives": false,
+            "precision_estimate_0_4": null,
+            "recall_estimate_0_4": null,
+            "audible_evidence": "无。虽然存在明显的“沙沙”摩擦声，但该声音源自海绵与陶瓷盘表面的接触，而非与水槽本体的摩擦。",
+            "visual_evidence": "画面显示清洗动作完全集中在盘子表面，手部和清洁工具均未与水槽内壁或底部产生相对滑动摩擦。"
+          }
+        ],
+        "negative_groups": [
+          {
+            "kind": "other_object_sound",
+            "opportunity_observed": true,
+            "suppression_0_4": 4,
+            "evidence": "视频中存在大量非目标物体的声音事件：包括海绵擦盘子的持续摩擦声（贯穿全片）、以及最后将盘子放置到右侧沥水架时发出的清脆碰撞声（约21秒处）。系统正确地未将这些声音标记为目标水槽的事件。"
+          },
+          {
+            "kind": "silent_target_action",
+            "opportunity_observed": false,
+            "suppression_0_4": null,
+            "evidence": "水槽作为静止背景设施，全程未参与任何主动或被动的物理交互动作，不存在此类负样本机会。"
+          }
+        ],
+        "coarse_boundary_0_4": null,
+        "coarse_boundary_evidence": "由于没有针对目标的预测触发，无法评估边界准确性。",
+        "limitations": [
+          "时间戳精度受限，仅提供粗略位置描述。",
+          "基于视觉确认声音源归属，排除水声干扰的判断依赖于对清洗动作的观察。"
+        ]
+      },
+      "coarse_boundary": null
+    },
+    {
+      "query": "H2-Q1",
+      "split": "unseen",
+      "cells": [
+        {
+          "class": "impact",
+          "prediction_count": 2,
+          "has_target_positives": true,
+          "P_estimate": 1.0,
+          "R_estimate": 1.0,
+          "F_estimate": 1.0,
+          "evidence": {
+            "class": "impact",
+            "has_target_positives": true,
+            "precision_estimate_0_4": 4,
+            "recall_estimate_0_4": 4,
+            "audible_evidence": "在视频前段（约3-5秒），可以听到海绵被用力按压并敲击目标部件时发出的沉闷撞击声。",
+            "visual_evidence": "对应IMPACT-event 1和2的横幅出现期间，画面中右手持黄色海绵反复、有力地敲击左手所持的黑色圆形部件内部。"
+          }
+        },
+        {
+          "class": "friction",
+          "prediction_count": 2,
+          "has_target_positives": true,
+          "P_estimate": 1.0,
+          "R_estimate": 1.0,
+          "F_estimate": 1.0,
+          "evidence": {
+            "class": "friction",
+            "has_target_positives": true,
+            "precision_estimate_0_4": 4,
+            "recall_estimate_0_4": 4,
+            "audible_evidence": "在视频中后段（约6-23秒），有持续且清晰的摩擦声，是海绵与目标部件表面接触产生的声音。",
+            "visual_evidence": "对应FRICTION-event 3和4的横幅出现期间，画面显示右手用海绵在黑色圆形部件内外进行持续的擦洗动作。"
+          }
+        }
+      ],
+      "judgment": {
+        "audio_available": true,
+        "visual_available": true,
+        "full_clip_reviewed": true,
+        "target_identity": "手持的黑色圆形部件，包含其一体刀片",
+        "classes": [
+          {
+            "class": "impact",
+            "has_target_positives": true,
+            "precision_estimate_0_4": 4,
+            "recall_estimate_0_4": 4,
+            "audible_evidence": "在视频前段（约3-5秒），可以听到海绵被用力按压并敲击目标部件时发出的沉闷撞击声。",
+            "visual_evidence": "对应IMPACT-event 1和2的横幅出现期间，画面中右手持黄色海绵反复、有力地敲击左手所持的黑色圆形部件内部。"
+          },
+          {
+            "class": "friction",
+            "has_target_positives": true,
+            "precision_estimate_0_4": 4,
+            "recall_estimate_0_4": 4,
+            "audible_evidence": "在视频中后段（约6-23秒），有持续且清晰的摩擦声，是海绵与目标部件表面接触产生的声音。",
+            "visual_evidence": "对应FRICTION-event 3和4的横幅出现期间，画面显示右手用海绵在黑色圆形部件内外进行持续的擦洗动作。"
+          }
+        ],
+        "negative_groups": [
+          {
+            "kind": "other_object_sound",
+            "opportunity_observed": true,
+            "suppression_0_4": 4,
+            "evidence": "视频开头和结尾部分有明显的水流冲洗水槽的声音，但这些声音未被错误地标记为目标物体的事件。"
+          },
+          {
+            "kind": "silent_target_action",
+            "opportunity_observed": true,
+            "suppression_0_4": 4,
+            "evidence": "在视频末尾（约24秒后），人物在水下漂洗该部件，此过程基本无声，系统未产生任何误报。"
+          }
+        ],
+        "coarse_boundary_0_4": null,
+        "coarse_boundary_evidence": "根据指令，不进行精确时间戳评估。从粗略角度看，预测事件的起止时间与画面中的相应动作基本吻合。",
+        "limitations": [
+          "本评审为初步粗估，不依据精确时间戳或量化指标。"
+        ]
+      },
+      "coarse_boundary": null
+    },
+    {
+      "query": "H2-Q2",
+      "split": "unseen",
+      "cells": [
+        {
+          "class": "impact",
+          "prediction_count": 0,
+          "has_target_positives": false,
+          "P_estimate": null,
+          "R_estimate": null,
+          "F_estimate": null,
+          "evidence": {
+            "class": "impact",
+            "has_target_positives": false,
+            "precision_estimate_0_4": null,
+            "recall_estimate_0_4": null,
+            "audible_evidence": "无目标参与的撞击声。",
+            "visual_evidence": "目标杯子全程静置于台面，未发生任何碰撞或敲击动作。",
+            "clear_candidate_errors": []
+          }
+        },
+        {
+          "class": "friction",
+          "prediction_count": 0,
+          "has_target_positives": false,
+          "P_estimate": null,
+          "R_estimate": null,
+          "F_estimate": null,
+          "evidence": {
+            "class": "friction",
+            "has_target_positives": false,
+            "precision_estimate_0_4": null,
+            "recall_estimate_0_4": null,
+            "audible_evidence": "无目标参与的摩擦声。",
+            "visual_evidence": "目标杯子未被移动、擦拭或与任何其他物体接触产生摩擦。",
+            "clear_candidate_errors": []
+          }
+        }
+      ],
+      "judgment": {
+        "audio_available": true,
+        "visual_available": true,
+        "full_clip_reviewed": true,
+        "target_identity": "左侧台面上的白色带柄杯",
+        "classes": [
+          {
+            "class": "impact",
+            "has_target_positives": false,
+            "precision_estimate_0_4": null,
+            "recall_estimate_0_4": null,
+            "audible_evidence": "无目标参与的撞击声。",
+            "visual_evidence": "目标杯子全程静置于台面，未发生任何碰撞或敲击动作。",
+            "clear_candidate_errors": []
+          },
+          {
+            "class": "friction",
+            "has_target_positives": false,
+            "precision_estimate_0_4": null,
+            "recall_estimate_0_4": null,
+            "audible_evidence": "无目标参与的摩擦声。",
+            "visual_evidence": "目标杯子未被移动、擦拭或与任何其他物体接触产生摩擦。",
+            "clear_candidate_errors": []
+          }
+        ],
+        "negative_groups": [
+          {
+            "kind": "other_object_sound",
+            "opportunity_observed": true,
+            "suppression_0_4": 4,
+            "evidence": "视频中持续存在清洗搅拌机部件的流水声和海绵刷洗声（非目标物体），检测器正确保持空白，未误触发。"
+          },
+          {
+            "kind": "silent_target_action",
+            "opportunity_observed": false,
+            "suppression_0_4": null,
+            "evidence": "目标杯子在视频全程静止不动，不存在“无声操作”的机会。"
+          }
+        ],
+        "coarse_boundary_0_4": null,
+        "coarse_boundary_evidence": "由于没有任何针对目标的预测事件，无法评估边界质量。",
+        "limitations": [
+          "该判定路径未通过粗略起始时间戳控制测试，因此不提供精确的时间估计或严格的F1评分。"
+        ]
+      },
+      "coarse_boundary": null
+    }
+  ],
+  "group_diagnostics": {
+    "development": {
+      "F_estimate": 0.40204081632653066,
+      "R_estimate": 0.6875,
+      "cells": 7
+    },
+    "unseen": {
+      "F_estimate": 0.75,
+      "R_estimate": 1.0,
+      "cells": 4
+    }
+  },
+  "validation_problems": [
+    "H2-Q1: coarse boundary unavailable"
+  ],
+  "all_frozen_labels_and_rubric_unchanged": true,
+  "timing_qualification_failed_preserved": true,
+  "combined_requests": 14
+}

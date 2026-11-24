@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="为指定器具制作声事件触发器：从真实操作音视频识别目标的碰撞与摩擦。查看GPT-6.2 Sol的八个目标查询、原声复核、触发时间线与Qwen辅助初评。">
+  <meta name="theme-color" content="#193a35">
+  <title>器具声事件触发器 · OmniALE</title>
+  <link rel="stylesheet" href="case.css">
+  <script defer src="case-data.js"></script>
+  <script defer src="case.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#review">跳到视听复核</a>
+<header class="site-header shell">
+  <a class="brand" href="../" aria-label="返回 OmniALE 案例总览">omni<span>ale</span><sup>CASE STUDY</sup></a>
+  <nav aria-label="页面导航"><a href="#review">视听复核</a><a href="#brief">任务设计</a><a href="#results">模型表现</a><a href="#rubric">评分规则</a></nav>
+  <span class="edition">AUDIO × VIDEO / 2026.11</span>
+</header>
+<main id="top" class="shell">
+  <section class="hero">
+    <div class="hero-copy"><div class="eyebrow"><span class="live-dot"></span> AUDIOVISUAL OBJECT EVENT TRIGGER</div>
+      <h1>声音很多，<br>只记录<span>这一件。</span></h1>
+      <p class="lead">在真实操作录像中指定一件器具，让模型判断：哪些碰撞与摩擦属于它，声音何时开始，又在何时停止。</p>
+      <div class="tags"><span>真实同期音视频</span><span>同场景 · 双目标</span><span>未见录像重跑</span></div>
+      <a class="primary" href="#review">查看 Sol 的触发结果 <span aria-hidden="true">↗</span></a>
+      <p class="hero-caption">面向操作记录检索与事后复核的感知开发任务</p>
+    </div>
+    <figure class="hero-figure"><div class="frame-label"><span>INPUT / TARGET B–Q1</span><span>同步声音 + 指定器具</span></div><img src="preview/outputs/B-Q1/target-indicator.png" width="854" height="480" alt="第一视角洗锅场景，黄色框和指示点标出手持黑锅"><figcaption><span class="target-mark">↖</span><div><strong>手持的黑色锅体</strong><span>画面里还有洗涤盆、水声和其他接触声。</span></div><span class="figure-index">01 / 08</span></figcaption></figure>
+  </section>
+  <div class="overview-strip"><div><b>4</b><span>独立场景</span></div><div><b>8</b><span>目标查询</span></div><div><b>148.44<small>s</small></b><span>不同录像总时长</span></div><div><b>2</b><span>声音事件类别</span></div><a href="#results"><span>GPT-6.2 Sol · Qwen辅助初评</span><strong>≈56<small> / 100</small></strong></a></div>
+
+  <section id="review">
+    <div class="section-heading"><div><div class="eyebrow">01 / WATCH, LISTEN, VERIFY</div><h2>换一个目标，<br class="mobile-break">应当换一组触发。</h2></div><p>播放完整原声，检查误报与漏报。<br>彩色区间是模型预测，尚未经人工定真。</p></div>
+    <div class="scene-tabs" role="group" aria-label="选择场景">
+      <button type="button" data-scene="A" aria-pressed="false"><b>场景 A</b><span>开发 · 64.12s</span></button>
+      <button type="button" data-scene="B" class="active" aria-pressed="true"><b>场景 B</b><span>开发 · 30.32s</span></button>
+      <button type="button" data-scene="H1" aria-pressed="false"><b>场景 H1</b><span>未见验收 · 22.08s</span></button>
+      <button type="button" data-scene="H2" aria-pressed="false"><b>场景 H2</b><span>未见验收 · 31.92s</span></button>
+    </div>
+    <div class="review-workbench">
+      <div class="monitor">
+        <div class="monitor-label"><span id="scene-label">场景 B · 开发原交付</span><span>原画面 / 原混合录音</span></div>
+        <div class="video-wrap"><video id="source-player" src="preview/media/B.mp4" controls playsinline preload="metadata" aria-label="完整原始同期音视频"></video><div id="live-trigger" class="live-trigger" aria-hidden="true"><i></i><span>当前无预测触发</span></div></div>
+        <div class="timeline-heading"><span>MODEL TRIGGERS</span><span id="source-clock">0.00 / 30.32 s</span></div>
+        <div class="timeline"><div class="track-label impact-label">碰撞</div><div id="impact-track" class="track" aria-label="碰撞预测时间线"></div><div class="track-label friction-label">摩擦</div><div id="friction-track" class="track" aria-label="摩擦预测时间线"></div><div></div><div id="timeline-ticks" class="timeline-ticks"></div></div>
+        <p class="monitor-caption">点击色条定位至预测前 1 秒。切换同场景目标保留播放位置。</p>
+      </div>
+      <aside class="target-panel"><div class="eyebrow">SPECIFIED OBJECT</div><div class="target-tabs" role="group" aria-label="选择指定器具"><button type="button" data-target="Q1" aria-pressed="true">目标 01</button><button type="button" data-target="Q2" aria-pressed="false">目标 02</button></div><img id="target-image" src="preview/outputs/B-Q1/target-indicator.png" width="854" height="480" alt="B-Q1 带框目标指示帧"><h3 id="target-name">手持的黑色锅体</h3><p id="target-reference">指示帧 9.00s；标记本身不代表此刻有声音。</p><div class="prediction-counts"><div><strong id="impact-count">8</strong><span><i class="impact-dot"></i>碰撞预测</span></div><div><strong id="friction-count">8</strong><span><i class="friction-dot"></i>摩擦预测</span></div></div><a id="raw-review" href="preview/outputs/B-Q1/index.html">打开实际交付复核页 ↗</a><a id="raw-events" href="preview/outputs/B-Q1/events.json">事件 JSON ↗</a><a id="raw-triggers" href="preview/outputs/B-Q1/triggers.jsonl">触发日志 JSONL ↗</a></aside>
+    </div>
+    <div class="event-review"><div class="event-list-panel"><div class="list-heading"><h3>逐条复核</h3><span id="event-total">16 条预测</span></div><div class="event-filters" role="group" aria-label="事件类别筛选"><button type="button" data-filter="all" aria-pressed="true">全部</button><button type="button" data-filter="impact" aria-pressed="false">碰撞</button><button type="button" data-filter="friction" aria-pressed="false">摩擦</button></div><div id="event-list" class="event-list" aria-label="预测事件列表"></div><div id="empty-state" class="empty-state" hidden><span>∅</span><h4>没有预测事件</h4><p>请播放完整录像判断是否漏检。<br>空输出本身不代表正确。</p></div></div><div class="clip-panel"><div class="list-heading"><h3 id="clip-title">事件上下文</h3><span>同期原声</span></div><video id="clip-player" controls playsinline preload="none" aria-label="所选预测的原始上下文片段"></video><div id="clip-placeholder" class="clip-placeholder" hidden>此查询没有事件片段，可试听上方完整录像。</div><div class="clip-actions"><button type="button" id="jump-source">在完整录像中定位 ↗</button><a id="clip-file" href="preview/outputs/B-Q1/review/evt-B-Q1-339f4d1-001.mp4">打开片段 MP4 ↗</a></div><details id="model-evidence"><summary>查看模型的判断依据</summary><p id="evidence-text"></p><p class="small-note">模型自述，仅作复核线索；不是人工确认的声音归属。</p></details></div></div>
+    <div class="reel-panel"><div><div class="eyebrow">QUICK LISTEN / 35.81s</div><h3>11 段预测，快速听一轮。</h3><p>每个非空查询、每类的首个预测，带上下文，片间停顿 0.8 秒；未按正确率或置信度挑选。</p></div><div><audio id="reel-player" controls preload="none" src="listening/predicted-events-reel.mp3" aria-label="11段预测事件原声试听串"></audio><p id="reel-caption" aria-live="polite">试听的是模型截取的原录音，未做分离或声音合成。</p><a href="listening/index.html">完整试听目录与两组触发标记视频 ↗</a></div></div>
+    <noscript><p class="notice">启用 JavaScript 可切换场景、目标和时间线。也可直接打开 <a href="preview/index.html">全部查询复核页</a> 或 <a href="listening/index.html">原声试听目录</a>。</p></noscript>
+  </section>
+
+  <section id="brief"><div class="section-heading"><div><div class="eyebrow">02 / THE COMMISSION</div><h2>从“这里有声”，到“是它在响”。</h2></div><a href="files/TASK.zh-CN.md">完整题目 ↗</a></div><div class="brief-grid"><article><span class="step">01 / INPUT</span><h3>声音、画面和一张目标指示</h3><p>输入为同步的无声视频、混合录音，以及带框和点的器具参考帧。开发仅有 A/B 两段录像、四个目标；不提供事件标签、对象轨迹、转写或干净声轨。</p></article><article><span class="step">02 / REASONING</span><h3>既要可听，也要归属成立</h3><p>跟住移动、转动或短暂遮挡的器具，把实际可听的碰撞与摩擦归给正确目标。安静的动作不触发，邻近器具的相似声音也不能直接算到目标身上。</p></article><article><span class="step">03 / DELIVERY</span><h3>可换输入重新运行的程序</h3><p>交付检测代码、固定依赖、事件 JSON、触发 JSONL、原声复核片段和网页。代码封存后，更换录像、目标和路径重新运行；文件可播放是交付门槛。</p></article></div><div class="rule-callout"><strong>同一次直接接触，可以同时属于两个被查询器具。</strong><p>A 撞到 B 并产生声音，查询 A 或查询 B 均可成立；静止的器具也可能被撞响。仅仅在旁边、同时移动或只听到水声，则不构成目标的碰撞／摩擦。</p></div><div class="budget"><span>服务器 Docker · 8 CPU / 16 GiB</span><span>120 分钟有效工作</span><span>140 次成功调用</span><span>131,072 输出 tokens</span><span>联网 80 请求 / 2 GiB</span></div><p class="caption">同类声群停声达到 0.4 秒才拆分；两类确实同时可闻时允许重叠。完整录像共 148.44 秒，其中 94.44 秒用于开发，其余在代码封存后提供。</p></section>
+
+  <section id="results"><div class="section-heading"><div><div class="eyebrow">03 / MODEL RESULT</div><h2>程序能迁移，归属仍需复核。</h2></div><span>GPT-6.2 Sol · high · 2026-11-24</span></div><div class="result-grid"><article class="score-card"><div class="model-row"><h3>GPT-6.2 Sol</h3><span class="pill">Qwen 辅助初评</span></div><div class="score-number"><span>≈</span><strong>56</strong><small>/ 100</small></div><p>粗粒度点估计 55.8；正式内容总分待审核。</p><table><thead><tr><th>内容维度</th><th>辅助估计</th><th>权重</th></tr></thead><tbody><tr><td><i class="score-dot event-dot"></i>事件识别与目标归属</td><td>37.0</td><td>70</td></tr><tr><td><i class="score-dot negative-dot"></i>困难负例控制</td><td>13.2</td><td>20</td></tr><tr><td><i class="score-dot boundary-dot"></i>粗边界连续性</td><td>5.6</td><td>10</td></tr></tbody></table><div class="score-bar" aria-label="辅助估计构成：37.0、13.2、5.6，共55.8分"><i style="width:37%"></i><i style="width:13.1770833%"></i><i style="width:5.6473214%"></i></div><a href="files/qwen/coarse-overlay/QWEN-INITIAL-SUMMARY.zh-CN.md">评分计算、缺项处理与证据 ↗</a></article><div class="result-notes"><div class="check-grid"><div><b>6 / 6</b><span>独立重跑完成，输出契约通过</span></div><div><b>0</b><span>静音对照的预测事件</span></div><div><b>77.9 min</b><span>模型有效工作时间</span></div><div><b>117 / 140</b><span>成功调用，含 66 次同模型程序推理</span></div></div><div class="judge-notes"><div class="eyebrow">QWEN'S REVIEW / 待人工复核</div><h3>突出的问题是“归给谁”。</h3><p>Qwen 提出 A–Q2、B–Q2 可能有目标归属误报，B–Q1 可能漏掉碰撞，部分碰撞与摩擦也有混淆。自动评语本身仍有含混声音归因问题，不能直接作为真值。</p></div><p class="caption">开发 A–Q1 原交付预测 29 项，改名迁移重跑为 26 项。H1/H2 四个未见查询全部运行成功；这些结果证明可运行性，不提供内容加分。</p></div></div>
+    <details class="disclosure"><summary>初评分如何得出，哪些部分仍不能确认？</summary><div class="detail-grid"><article><h3>同权重的粗估计，不是实测 F1</h3><p>实际评审模型为 qwen3.8-omni-flash，观看八个目标的完整有声录像、目标指示和按真实预测区间点亮的标记，以 0—4 档估计正确比例、覆盖比例、负例抑制和明显边界问题。</p><p>它未通过预设时序定位核验，严格逐事件盲标没有执行。正式成绩仍须审核对象事件和困难负例，按冻结公式计算；页面约 56 分仅用于本轮辅助初评。</p></article><article><h3>55.8 的缺项中点与模型能力</h3><p>H2–Q1 边界评分缺失，原证据保留为空。将该项在 0—4 档变化，总分为 54.8—56.9；55.8 是明确未验证的中点。这只是缺项敏感性范围，不能覆盖其余 Qwen 判断错误，也不是置信区间。</p><p>Sol 本次采用通用 CLAP 编码、音频 DSP 与同一 Sol 的图像／文本推理；原生听音未验证。尚未建立人工认可的可解性参考或模态消融，不能据此认定题目难度已充分验证。</p></article></div><div class="evidence-links"><a href="files/qwen/coarse-overlay/QWEN-INITIAL-SUMMARY.json">最终初评汇总 JSON ↗</a><a href="files/qwen/coarse-overlay/QWEN-COARSE-REPORT.zh-CN.md">八查询原始评语与中间计算记录 ↗</a><a href="files/REPORT.zh-CN.md">Sol 测试与独立验收报告 ↗</a></div></details>
+    <details class="disclosure"><summary>查看八个查询的预测数量和独立验收结果</summary><div class="table-wrap"><table><thead><tr><th>查询</th><th>指定器具</th><th>数据阶段</th><th>碰撞预测</th><th>摩擦预测</th></tr></thead><tbody id="all-query-counts"></tbody></table></div><p class="small-note">以上是预测数，不是正确数。H1/H2 使用封存代码的独立重跑结果；A/B 使用原开发交付。开发 A–Q1 的改名重跑及静音控制不在八查询初评里重复计入。</p></details>
+  </section>
+
+  <section id="rubric"><div class="section-heading"><div><div class="eyebrow">04 / FROZEN CONTENT RUBRIC</div><h2>只给事件判断打分。</h2></div><a href="files/SCORING.zh-CN.md">完整匹配与计算规则 ↗</a></div><p class="section-intro">下面是题目的正式评分标准。工程作门槛，没有交付基础分；空输出和全场常开都不能靠负例或长静默得分。</p><div class="rubric-grid"><article><div class="weight">70<small>分</small></div><h3>识别事件，归对器具</h3><p>同查询、同类别做一对一匹配。误报、漏报、错误类别、重复预测和超差边界都会失分。按“查询 × 类别”单元等权平均 F1。</p><code>S_event = 70 × F</code></article><article><div class="weight">20<small>分</small></div><h3>相似声音，不乱触发</h3><p>检查其他器具同类声，以及目标安静动作两组困难负例。两组抑制率等权平均，并乘目标召回率，防止靠空输出拿分。</p><code>S_negative = 20 × R × N</code></article><article><div class="weight">10<small>分</small></div><h3>起止贴合真实声音</h3><p>只在匹配事件上评价边界：距审核允许范围 ≤0.08 秒得满质量，至 0.30 秒线性降为零，再乘目标召回率。</p><code>S_boundary = 10 × R × B</code></article></div><div class="formula"><span>正式总分</span><strong>70F + 20RN + 10RB</strong><p>起点匹配容差 0.30 秒；终点为 max(0.30 秒, 参考时长 ×20%)。归属或类别难以确认的区间先排除，不能当负例。完整事件正确、无误报漏报、负例不触发且边界达标，可得 100 分。</p></div></section>
+
+  <section id="files"><div class="section-heading"><div><div class="eyebrow">05 / MATERIALS & PROVENANCE</div><h2>题目、交付与证据。</h2></div><span>原始模型交付保持不变</span></div><div class="files-grid"><article><h3>任务与计分</h3><a href="files/TASK.zh-CN.md">题目文件 ↗</a><a href="files/SCORING.zh-CN.md">正式评分标准 ↗</a><a href="files/ANNOTATION-GUIDE.zh-CN.md">对象事件审核指南 ↗</a><a href="files/INPUT-MANIFEST.json">开发输入文件清单 ↗</a></article><article><h3>Sol 结果与试听</h3><a href="preview/index.html">八查询原始复核目录 ↗</a><a href="listening/index.html">完整人工试听目录 ↗</a><a href="files/REPORT.zh-CN.md">测试与验收报告 ↗</a><a href="https://github.com/huayuankou333/omniale/releases/download/specified-object-trigger-v1-20261124/sol62-object-trigger-v1-submission.zip">原始完整提交 ZIP · 77.5 MB ↓</a></article><article><h3>评分与来源</h3><a href="files/qwen/coarse-overlay/QWEN-INITIAL-SUMMARY.zh-CN.md">Qwen 辅助初评说明 ↗</a><a href="https://github.com/huayuankou333/omniale/releases/download/specified-object-trigger-v1-20261124/sol62-qwen-initial-evidence.zip">Qwen 评审原始记录 ZIP ↓</a><a href="files/DATA-SOURCES.md">数据来源与处理说明 ↗</a><a href="files/CREDITS.txt">署名与许可 ↗</a></article></div><div class="credits"><strong>EPIC-KITCHENS · CC BY-NC 4.0</strong><p>素材来自真实第一视角厨房操作记录的公开压缩节选，由 lightly-ai/epic-kitchens-100-clips 按动作区间裁切。页面播放的是同期原混合录音；组织者做视频重采样、音频解码和目标标记，没有注入声音、去噪或替换。公开副本并非完整长录像，PCM 交付也不代表源录音无损。</p><p>D. Damen et al., <em>Rescaling Egocentric Vision</em>, IJCV 2022. EPIC-SOUNDS 仅用于组织者侧候选检索；其标签未作为模型输入。全部模型测试、媒体处理和评估在服务器 Docker 中完成，本页整理既有交付用于预览。</p></div></section>
+</main>
+<footer class="shell"><a class="brand" href="#top">omni<span>ale</span></a><p>SPECIFIED OBJECT · AUDIBLE EVENT · REVIEWABLE EVIDENCE</p><a href="#review">返回视听复核 ↑</a></footer>
+</body>
+</html>
