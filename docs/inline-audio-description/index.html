@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="OmniALE 原时长口述影像：从纪实短片独立完成英语AD撰稿、配音与混音。试听GPT-6.2 Sol成片、35段口述，查看65.8分文稿覆盖初评及27项逐条对照。">
+  <meta name="theme-color" content="#173747">
+  <title>原时长口述影像 · OmniALE</title>
+  <link rel="stylesheet" href="case.css">
+  <script defer src="case-data.js"></script>
+  <script defer src="case.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#watch">跳到成片试听</a>
+<header class="shell site-header">
+  <a class="brand" href="../" aria-label="返回OmniALE案例汇总">omni<span>ale</span><sup>CASE STUDY</sup></a>
+  <nav aria-label="本页导航"><a href="#watch">成片试听</a><a href="#brief">任务委托</a><a href="#assessment">逐项评测</a><a href="#files">题目与资料</a></nav>
+  <span class="edition">AUDIO DESCRIPTION / 2026.11</span>
+</header>
+<main class="shell" id="top">
+  <section class="hero" aria-labelledby="title">
+    <div class="hero-copy">
+      <p class="eyebrow"><span></span> 译制、无障碍与发布适配 / MTG-AD</p>
+      <h1 id="title">让听众听见<br><em>画面里的故事。</em></h1>
+      <p class="lead">一支原本就有旁白与现场声的纪实短片。保持画面和时长，找出原声没有交代的视觉信息，把英语口述自然放进节目。</p>
+      <div class="tags"><span>音画联合理解</span><span>英语口述影像</span><span>REAPER → FFmpeg</span></div>
+      <a class="primary" href="#watch">试听 Sol 的完整交付 <span aria-hidden="true">↗</span></a>
+      <p class="hero-caption">原时长 · 原镜头顺序 · 原声保留 · 可编辑工程</p>
+    </div>
+    <figure class="hero-figure">
+      <div class="frame-top"><span>THE PICTURE HAS MORE TO SAY</span><span>00:01 / 03:57</span></div>
+      <a href="#watch" aria-label="前往成片试听"><img src="media/poster.jpg" width="960" height="540" alt="纪实短片开头：枯树后的雪山"></a>
+      <figcaption><span class="ad-mark">AD</span><div><strong>“Snow streaks a mountain ridge beyond bare trees.”</strong><p>模型新增口述 / ad-001</p></div></figcaption>
+    </figure>
+  </section>
+  <div class="stat-strip" aria-label="测试概况">
+    <div><strong>03:57<small>.5</small></strong><span>完整节目时长</span></div><div><strong>35<small>段</small></strong><span>模型新增口述</span></div><div><strong>213<small>词</small></strong><span>英语口述文稿</span></div><div><strong>60.7<small>分钟</small></strong><span>模型有效工作时间</span></div><a href="#assessment"><strong>65.8<small>/100</small></strong><span>文稿内容覆盖初评 →</span></a>
+  </div>
+
+  <section id="watch" aria-labelledby="watch-title">
+    <div class="section-heading"><div><p class="eyebrow">01 / WATCH & LISTEN</p><h2 id="watch-title">先听成片，再看它遗漏了什么。</h2></div><p>GPT-6.2 Sol / 完整交付的压缩预览<br>点击口述句或时间条，定位到对应位置。</p></div>
+    <div class="review-workbench">
+      <div class="monitor">
+        <div class="monitor-label"><span>MODEL OUTPUT / ORIGINAL PICTURE + ORIGINAL SOUND + AD</span><span>237.501 s</span></div>
+        <video id="result-video" controls playsinline preload="metadata" poster="media/poster.jpg" aria-label="Sol口述影像完整成片">
+          <source src="media/sol62-ad-preview.mp4" type="video/mp4">
+          <track id="ad-track" kind="captions" src="media/ad-captions.vtt" srclang="en" label="新增AD文稿">
+          当前浏览器无法播放视频，可<a href="media/sol62-ad-preview.mp4">下载成片预览</a>。
+        </video>
+        <div class="now-speaking"><span id="current-id">新增口述</span><p id="current-text" aria-live="off">播放视频，查看当前新增的口述。</p></div>
+        <div class="timeline-head"><span>AD CUE MAP <small>35段口述的安排区间</small></span><span id="time-display">00:00 / 03:57</span></div>
+        <div class="timeline" id="ad-timeline" aria-label="口述时间线"><i id="playhead" aria-hidden="true"></i></div>
+        <div class="ticks"><span>00:00</span><span>01:00</span><span>02:00</span><span>03:00</span><span>03:57</span></div>
+        <div class="monitor-actions"><button id="caption-toggle" type="button" aria-pressed="false">显示新增口述字幕</button><a href="media/sol62-ad-preview.mp4" download>下载预览 MP4 ↓</a></div>
+      </div>
+      <aside class="script-panel" aria-labelledby="script-title"><div class="script-panel-head"><p class="eyebrow">SUBMITTED SCRIPT</p><h3 id="script-title">35段实际提交文稿</h3><p>点击句子，从该处播放成片。</p></div><div class="cue-list" id="cue-list"></div><noscript><p>启用JavaScript可按句定位，也可<a href="files/ad_script.srt">查看SRT文稿</a>。</p></noscript></aside>
+    </div>
+    <div class="audio-row"><div><p class="eyebrow">ISOLATED DESCRIPTION</p><h3>单独听新增口述</h3><p>全长对齐的AD干声轨，无口述处保留静音。播放干声会暂停成片。</p></div><div><audio id="ad-audio" controls preload="metadata" src="media/sol62-ad-stem.mp3" aria-label="Sol新增口述干声"></audio><a href="media/sol62-ad-stem.mp3" download>下载干声 MP3 ↓</a></div></div>
+    <details class="source-disclosure"><summary>查看输入原片与来源 <span>Your “Good Old Days” are Happening Now · Joel</span></summary><div class="source-body"><div><p>模型获得的是带原旁白、现场对白与音乐的原始短片。原片没有新增AD；专业参考文稿、现成转写、视觉摘要和可用时间窗未提供给模型。</p><p>原片通过创作者的YouTube页面观看。本页不另行托管输入原片；本地原片及含原片的压缩包已按要求删除。</p><a href="https://www.youtube.com/watch?v=xtA741ReayA" target="_blank" rel="noopener noreferrer">打开创作者原片 ↗</a></div><div id="source-embed"><button id="load-source" type="button">加载 YouTube 原片播放器 ↗</button><p>仅点击后连接YouTube。外部播放器需要可用网络。</p></div></div></details>
+    <div class="moment-grid" aria-label="重点复核位置">
+      <button type="button" class="moment" data-seek="33.9"><img src="media/kitchen.jpg" width="960" height="540" loading="lazy" alt="厨房操作镜头"><span class="moment-meta">00:34 / 未覆盖</span><strong>搅拌器操作</strong><span>“蓝碗里的水花”没有交代搅拌动作。</span></button>
+      <button type="button" class="moment" data-seek="82.447"><img src="media/camera.jpg" width="960" height="540" loading="lazy" alt="餐厅与相机镜头"><span class="moment-meta">01:22 / 部分覆盖</span><strong>查看相机照片</strong><span>说了“检查相机”，没有明确看照片。</span></button>
+      <button type="button" class="moment" data-seek="153.901"><img src="media/editing.jpg" width="960" height="540" loading="lazy" alt="两人与笔记本电脑镜头"><span class="moment-meta">02:34 / 部分覆盖</span><strong>两人一起编辑</strong><span>交代了时间线与并坐，操作关系不完整。</span></button>
+      <button type="button" class="moment" data-seek="225.121"><img src="media/ending.jpg" width="960" height="540" loading="lazy" alt="片尾两人嬉闹镜头"><span class="moment-meta">03:45 / 关键动作遗漏</span><strong>嬉闹中的动作关系</strong><span>参考提到环头与抱起，候选文稿没有交代。</span></button>
+    </div>
+  </section>
+
+  <section id="brief" aria-labelledby="brief-title">
+    <div class="section-heading"><div><p class="eyebrow">02 / THE COMMISSION</p><h2 id="brief-title">一项完整的无障碍后期委托。</h2></div><a href="files/TASK.zh-CN.md">打开本轮题目存档 ↗</a></div>
+    <div class="brief-grid"><article><span class="step">INPUT / 原始节目</span><h3>听清已有的信息，<br>看懂未被说出的事。</h3><p>约4分钟的真实纪实短片，保留原声。需要自己辨认人物、动作、物体与镜头变化，选择真正有补充价值的视觉信息。</p></article><article><span class="step">EDIT / 插入与取舍</span><h3>有空隙，<br>也要判断是否该开口。</h3><p>英语AD要在自然间隙内播完，兼顾原旁白、现场对白与关键声音。实际语音长度需要检查，不能只按文稿字数估算。</p></article><article><span class="step">DELIVERY / 可交接成果</span><h3>从文稿、配音，<br>到成片与原生工程。</h3><p>交付完整MP4、独立AD干声、混音母带、JSON/SRT、分轨REAPER工程，以及可离线使用的同步复核页。</p></article></div>
+    <div class="constraint"><strong>画面与时长锁定</strong><p>原镜头顺序、播放速度、原声时间位置保持一致；允许在AD下对原声做适度、平滑的音量闪避。工程完整性是门槛。</p></div>
+    <div class="budget"><span>服务器Docker制作与评测</span><span>8 CPU / 16 GiB</span><span>120分钟有效时间</span><span>最多140次成功调用</span><span>累计输出131,072 tokens</span></div>
+  </section>
+
+  <section id="assessment" aria-labelledby="assessment-title">
+    <div class="section-heading"><div><p class="eyebrow">03 / CONTENT, WITH EVIDENCE</p><h2 id="assessment-title">逐条看覆盖，逐处看遗漏。</h2></div><p>专业参考：19个信息片段、27项事实<br>对应候选提交文稿逐项语义判读。</p></div>
+    <div class="assessment-grid"><article class="score-card"><div class="model-row"><h3>GPT-6.2 Sol</h3><span class="pill">文稿内容覆盖初评</span></div><div class="score-number"><strong>65.8</strong><span>/100</span></div><p>19个片段等权，片段内部事实等权。<br>同义改写、拆合句和稳定人物指代均可匹配。</p><div class="coverage-bar" aria-label="加权覆盖65.8%"><i></i></div><div class="coverage-counts"><span><b>15</b> 完整覆盖</span><span><b>6</b> 部分覆盖</span><span><b>6</b> 未覆盖</span></div><div class="formula"><code>R = Σ cᵢⱼ / (19 × nᵢ)</code><code>初分 = 100R = 65.789…</code></div><a href="files/TEXT-CONTENT-PRELIMINARY.zh-CN.md">完整判分理由与证据 ↗</a></article>
+      <div class="assessment-notes"><h3>主体叙事有覆盖，细部动作会丢失。</h3><p>雪山、家人备餐、唱片浏览、祈祷与用餐、栏杆与影子、收行李和结尾翻滚，都能在候选文稿找到语义对应。</p><p>主要遗漏集中在搅拌、车辆经过、布置餐桌、餐食拍照，以及片尾两个明确的接触动作。另有6项只交代了动作的一部分或缺少人物关系。</p><div class="scope-note"><strong>这个分数衡量什么？</strong><p>它衡量提交文稿对专业参考信息的覆盖程度。准确率P、实际播报核对、插入时机、对白保护、原声互补及听感未在本次初评中计分，整题正式总分仍未给出。</p></div><p class="small-note">逐项语义判读由评测助手完成，在服务器Docker中计算并留存。本轮未调用Qwen；参考事实表仍为待正式冻结版本。</p></div></div>
+    <div class="fact-toolbar"><div class="filter-group" role="group" aria-label="按事实覆盖筛选"><button type="button" data-filter="all" aria-pressed="true">全部 27</button><button type="button" data-filter="full" aria-pressed="false">完整 15</button><button type="button" data-filter="partial" aria-pressed="false">部分 6</button><button type="button" data-filter="missing" aria-pressed="false">遗漏 6</button></div><span id="fact-count" aria-live="polite">显示27项</span></div>
+    <div class="table-scroll"><table class="fact-table"><thead><tr><th scope="col">参考事件</th><th scope="col">参考事实</th><th scope="col">覆盖</th><th scope="col">候选文稿与判定</th></tr></thead><tbody id="fact-body"></tbody></table></div>
+    <p class="caption">时间按钮用于回放定位。专业参考起点尚未校准为精确事件边界，此表不据此计算时机得分；不同场景出现的相似句子不能相互补分。</p>
+  </section>
+
+  <section id="verification" aria-labelledby="verification-title">
+    <div class="section-heading"><div><p class="eyebrow">04 / DELIVERY VERIFICATION</p><h2 id="verification-title">交付能打开，也能重新渲染。</h2></div><p>独立技术核验 / 工程门槛<br>不转换为内容基础分。</p></div>
+    <div class="check-grid"><div><strong>5,698<small>帧</small></strong><p>原片与成片帧数一致，<br>逐帧显示时间戳一致。</p></div><div><strong>37<small>个引用</small></strong><p>迁移到新目录后全部找到，<br>REAPER工程独立重开。</p></div><div><strong>逐样本一致</strong><p>独立重渲染混音，<br>与封存交付混音一致。</p></div><div><strong>封存保持</strong><p>独立核验前后，<br>交付文件校验和一致。</p></div></div>
+    <details class="technical-disclosure"><summary>原评分维度与测试条件</summary><div class="technical-body"><div><h3>原计划100分</h3><table><tbody><tr><td>重要视觉信息覆盖与准确性</td><td>45</td></tr><tr><td>插入时机与原声保护</td><td>30</td></tr><tr><td>精炼与原声互补</td><td>15</td></tr><tr><td>实际播报与混音</td><td>10</td></tr></tbody></table><p>当前65.8是独立的覆盖初分，未按以上四维度合计。原A项还需核验全部断言的准确率P。</p></div><div><h3>模型实际使用的通路</h3><p>72次成功调用，累计输出67,633 tokens，有效用时60.66分钟，模型自行结束。原生音频接口接受请求，但没有通过真实语音探针。</p><p>候选已被告知这一限制，通过本地Whisper、VAD与DSP分析原声，图片经图像工具提供。因此本轮结果不证明模型原生音频理解能力。独立听审尚未完成。</p></div></div></details>
+  </section>
+
+  <section id="files" aria-labelledby="files-title"><div class="section-heading"><div><p class="eyebrow">05 / MATERIALS & PROVENANCE</p><h2 id="files-title">题目、文稿与评测记录。</h2></div><span>更新于2026年11月25日</span></div>
+    <div class="files-grid"><article><h3>任务与交付规范</h3><a href="files/TASK.zh-CN.md">本轮题目存档 ↗</a><a href="files/SCORING.zh-CN.md">原评分协议 ↗</a><a href="files/DELIVERY-SPEC.md">工程与交付规范 ↗</a></article><article><h3>模型交付预览</h3><a href="media/sol62-ad-preview.mp4" download>完整成片压缩预览 · MP4 ↓</a><a href="media/sol62-ad-stem.mp3" download>全长对齐AD干声 · MP3 ↓</a><a href="files/ad_script.json">口述JSON文稿 ↗</a><a href="files/ad_script.srt">口述SRT文稿 ↗</a><a href="files/editor-notes.md">模型编辑说明 ↗</a></article><article><h3>核验与评分</h3><a href="files/TEXT-CONTENT-PRELIMINARY.zh-CN.md">27项文稿语义判分表 ↗</a><a href="files/TEXT-CONTENT-PRELIMINARY.json">完整初评数据 · JSON ↗</a><a href="files/INDEPENDENT-VERIFICATION.zh-CN.md">独立技术核验记录 ↗</a><a href="files/SOURCE-AND-PROCESSING.zh-CN.md">来源、署名与预览处理 ↗</a><a href="files/CREDITS.txt">模型交付原始署名 ↗</a></article></div>
+    <div class="credits"><strong>MTG-AD / 专业口述参考 · CC BY 4.0</strong><p>专业文稿来自Google发布的Mind The Gap（MTG-AD）数据集。官方说明标注由视障与健视专业口述作者结对完成；本页将参考拆为事件与事实，展示候选文稿的语义对应。源视频为Joel的 <em>Your “Good Old Days” are Happening Now</em>（YouTube ID: xtA741ReayA）；原画面、声音及音乐权利归原权利人。标注许可不等同于原视频许可。</p><p>页面成片为AI生成的口述影像交付。新增声音由本地Piper的en_US-ljspeech-high音色生成，没有克隆原片人物。网页预览从模型封存成片转码为960像素H.264/AAC，AD干声转为MP3；压缩不代表原始交付码率。完整REAPER工程与原输入保存在服务器。</p><p><a href="https://huggingface.co/datasets/google/mind-the-gap-inline-ad" target="_blank" rel="noopener noreferrer">官方数据集 ↗</a><a href="https://github.com/google/mtg-ad" target="_blank" rel="noopener noreferrer">官方评测工作 ↗</a><a href="https://www.youtube.com/watch?v=xtA741ReayA" target="_blank" rel="noopener noreferrer">创作者原片 ↗</a></p></div>
+  </section>
+</main>
+<footer class="shell"><a class="brand" href="../">omni<span>ale</span></a><p>WATCH THE PICTURE · HEAR THE PROGRAM · MAKE ROOM FOR THE STORY</p><a href="#top">回到顶部 ↑</a></footer>
+</body>
+</html>
