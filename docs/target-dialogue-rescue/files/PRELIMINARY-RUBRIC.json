@@ -1,0 +1,28 @@
+{
+  "id": "PRELIMINARY-EXISTING-EVIDENCE-v1",
+  "status": "POSTHOC_USER_REQUESTED_PRELIMINARY_ESTIMATE",
+  "formal_total": null,
+  "engineering_gate": "Existing independently checked gate; contributes no points. Failure makes the preliminary score zero.",
+  "weights": {
+    "O": 60,
+    "P": 20,
+    "N": 10,
+    "B": 10
+  },
+  "unit_scale": "Existing published integer 0..4 C/S/F anchors. This pass codes existing Qwen descriptions; it is not a new listening review or expert adjudication.",
+  "unit_quality": "q=min(C,S,F)/4 for O/P; each group unit-weighted equally.",
+  "per_clip_formula": "R=.75*mean(C_O/4)+.25*mean(C_P/4); T=60*mean(q_O)+20*mean(q_P)+10*R*mean(S_N/4)+10*R*(B/4)",
+  "aggregation": "Compute the formula separately for each clip; average A/B/C equally. Original frozen scorer/plan/status remain unchanged.",
+  "unknown_policy": "Misread P pauses and absent B-N descriptions remain unknown, not measured failures. Report bounds 0..4; use 2 only as an explicitly unvalidated midpoint imputation for a preliminary point estimate.",
+  "C_O07_policy": "Existing low-confidence evidence reports no usable target. Point C=F=0; sensitivity upper C=F=2. Not independently confirmed deletion.",
+  "metric_use": "eSTOI/SI-SDRi are cross-check evidence for relative enhancement only; neither is multiplied by 100 or equated to C/S/F. No empirically uncalibrated metric thresholds added.",
+  "timing": "Same sample counts, unchanged video and source audit support the timeline; no independently certified lip-sync grade is claimed.",
+  "qualitative_B": "A=1 for frequent warbling/noise; B=4 from existing positive continuity report; C=1 for persistent artifacts and reported tail loss. B is a particularly uncertain positive estimate.",
+  "sensitivity": "Bounds vary missing ratings and C-O07 only. They are not statistical confidence intervals and exclude possible systematic Qwen errors.",
+  "no_new_model_or_audio_processing": true,
+  "requirements_not_assumed": [
+    "Feasible high-quality reference",
+    "Expert-adjudicated event set",
+    "Qualified fine-grained automated listening judge"
+  ]
+}
