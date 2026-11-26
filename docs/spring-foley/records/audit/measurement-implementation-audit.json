@@ -1,0 +1,45 @@
+{
+  "original_release_sha256": "70b4055fd4983bfd2335a0466d01e4e8ae56511da262ef60645e34390900e362",
+  "frozen_protocol_sha256": "2e98d6dce5f702f3d22bdc5789778f8e80adfc385c2515fb306ba6b3ade8091d",
+  "actual_protocol_sha256": "2e98d6dce5f702f3d22bdc5789778f8e80adfc385c2515fb306ba6b3ade8091d",
+  "protocol_unchanged": true,
+  "changes": {
+    "judge_spring.py": {
+      "release_sha256": "fe0fae6c9f7280554b200b9856bc0b56509164faae79908fa8384582f0ad9cc5",
+      "actual_sha256": "c665dcf1e8efe430ac24af0c00ebd8b5fa48f525a5e0e82bc673391bddac50e6",
+      "changed_after_freeze": true
+    },
+    "objective_spring.py": {
+      "release_sha256": "18b433493419dee0c61df9a5957f1ae8b0dd8a0542c8afe12b234f2bd9c30a67",
+      "actual_sha256": "f629288950fd5797972ae7aeff9a6b4fbae4593c9b7d8a237784b340c9814be5",
+      "changed_after_freeze": true
+    },
+    "spring_runner.py": {
+      "release_sha256": "88652e9e294ccb600a7d51f23ce1d7bb49cdd811b88573168eaec3aeb5e9b9b2",
+      "actual_sha256": "88652e9e294ccb600a7d51f23ce1d7bb49cdd811b88573168eaec3aeb5e9b9b2",
+      "changed_after_freeze": false
+    },
+    "agent_runner.py": {
+      "release_sha256": "a4b52160f68bffdc2194a8be8c0ad46d722941f8f785d0738ca426eb4bd0e483",
+      "actual_sha256": "5abca548d5aff0b562dccbed9baeaea3b1d9f5608563718d2e1c12419fd5632f",
+      "changed_after_freeze": true
+    },
+    "online_audio.py": {
+      "release_sha256": "fe3e17882c9d9956c5013efa4ddfca017148ad18155e81bca43bc9a27bc5eb07",
+      "actual_sha256": "fe3e17882c9d9956c5013efa4ddfca017148ad18155e81bca43bc9a27bc5eb07",
+      "changed_after_freeze": false
+    }
+  },
+  "notes": [
+    "The candidate input, event list, score weights, level definitions, revision and 200ms timing tolerance were frozen before generation.",
+    "The original direct audiovisual synchronization judge failed the predetermined +750ms negative controls. Its output was excluded from candidate scoring.",
+    "Protocol deviation: generation proceeded as a pilot with the original calibration explicitly marked false at release. The planned pre-freeze synchronization validation requirement was not satisfied; no fully validated synchronization total is claimed.",
+    "Independent visual localization and blind waveform-attack source classification were tested on the same reference/shift controls. The candidate outputs never determine calibration acceptance.",
+    "Objective aggregation was amended to preserve unknown timing scores as null and report score bounds instead of converting judge failure to model zeros.",
+    "Native MLT validation was completed to check that all five specified stem files actually feed the output graph and mix.wav is not double-counted. This implements the frozen handoff requirement without changing its cap.",
+    "Objective signal comparisons preserve both stereo channels rather than downmixing, so bus protection, stem sums and native replay cannot hide a channel swap or cancel an antiphase signal to silence.",
+    "At observed turn124 (committed checkpoint123) the image context cache was repaired from last3 batches to last48 distinct images, after repeated reopens of only33 unique images. The same checkpoint was resumed with original observations, decisions and spent budgets retained. This run therefore includes a disclosed runtime repair, not a pristine fixed-harness comparison.",
+    "The terminal tool hard timeout was extended from180s to600s after an otherwise-progressing native export was killed at frame3416/3600. The host supplied only the runtime fact and limit update; the model authored and executed subsequent renders. Task weights, event criteria and global budgets were unchanged.",
+    "Any later code differs from the original freeze is retained here with both hashes. The original release manifest is never overwritten."
+  ]
+}

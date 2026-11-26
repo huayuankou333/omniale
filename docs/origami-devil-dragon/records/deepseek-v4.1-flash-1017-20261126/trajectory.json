@@ -1,0 +1,1460 @@
+[
+  {
+    "tool": 1,
+    "action": "run",
+    "params": {
+      "command": "ls -la /input/input/ && echo '---' && cat /input/input/source_record.json && echo '---' && ls /input/input/resume_cards/ && echo '---' && cat /input/input/resume_cards/cards.json && echo '---' && cat /input/evidence.schema.json"
+    },
+    "error": null,
+    "at_unix": 1795672727.9730265
+  },
+  {
+    "tool": 2,
+    "action": "run",
+    "params": {
+      "command": "cat /input/RUBRIC.md; echo '---'; python3 -c \"from PIL import Image; import glob; [print(p, Image.open(p).size) for p in sorted(glob.glob('/input/input/resume_cards/*.png'))]\"; ls /opt/extra/fonts"
+    },
+    "error": null,
+    "at_unix": 1795672729.3825848
+  },
+  {
+    "tool": 3,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/input/input/resume_cards/RC01_01.png",
+        "/input/input/resume_cards/RC01_02.png",
+        "/input/input/resume_cards/RC02_01.png",
+        "/input/input/resume_cards/RC02_02.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795672730.7917264
+  },
+  {
+    "tool": 4,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/input/input/resume_cards/RC03_01.png",
+        "/input/input/resume_cards/RC03_02.png",
+        "/input/input/resume_cards/RC04_01.png",
+        "/input/input/resume_cards/RC04_02.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795672734.7655494
+  },
+  {
+    "tool": 5,
+    "action": "run",
+    "params": {
+      "command": "ffprobe -v error -show_entries stream=width,height,r_frame_rate,nb_frames,codec_name -of default=nw=1 /input/input/tutorial.mp4; mkdir -p /work/obs /work/output /work/tmp; df -h /work | tail -1"
+    },
+    "error": null,
+    "at_unix": 1795672742.6107528
+  },
+  {
+    "tool": 6,
+    "action": "run",
+    "params": {
+      "command": "cd /work && cat > sheet.py <<'EOF'\nimport sys, subprocess, os\nfrom PIL import Image, ImageDraw, ImageFont\ntimes = [float(x) for x in sys.argv[1].split(',')]\nout = sys.argv[2]\nos.makedirs('/work/obs', exist_ok=True)\nims=[]\nfor t in times:\n    p=f'/work/obs/t{int(t*1000):07d}.jpg'\n    if not os.path.exists(p):\n        subprocess.run(['ffmpeg','-v','error','-ss',str(t),'-i','/input/input/tutorial.mp4','-frames:v','1','-q:v','2',p],check=True)\n    im=Image.open(p).convert('RGB')\n    im.thumbnail((640,360))\n    d=ImageDraw.Draw(im)\n    d.rectangle([0,0,90,26],fill=(0,0,0))\n    d.text((4,4), f'{t:.1f}s', fill=(255,255,0))\n    ims.append(im)\ncols=4\nrows=(len(ims)+cols-1)//cols\nW,H=ims[0].size\nsheet=Image.new('RGB',(W*cols,H*rows),(255,255,255))\nfor i,im in enumerate(ims):\n    sheet.paste(im,((i%cols)*W,(i//cols)*H))\nsheet.save(out,quality=88)\nprint(out, sheet.size)\nEOF\npython3 sheet.py 0,15,30,45,60,90,120,150,180,210,240,270 /work/sheets/s01.jpg 2>&1 | tail -2"
+    },
+    "error": null,
+    "at_unix": 1795672751.1838038
+  },
+  {
+    "tool": 7,
+    "action": "run",
+    "params": {
+      "command": "mkdir -p /work/sheets && cd /work && python3 sheet.py 0,15,30,45,60,90,120,150,180,210,240,270 /work/sheets/s01.jpg"
+    },
+    "error": null,
+    "at_unix": 1795672754.4450173
+  },
+  {
+    "tool": 8,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/s01.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795672757.3944287
+  },
+  {
+    "tool": 9,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 sheet.py 300,330,360,390,420,450,480,510,540,570,600,630 /work/sheets/s02.jpg"
+    },
+    "error": null,
+    "at_unix": 1795672764.9409313
+  },
+  {
+    "tool": 10,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/s02.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795672767.5575573
+  },
+  {
+    "tool": 11,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 sheet.py 660,690,720,750,780,810,840,870,900,930,960,990 /work/sheets/s03.jpg && python3 sheet.py 1020,1050,1080,1110,1140,1155,1170,1190,1210,1230,1250,1270 /work/sheets/s04.jpg"
+    },
+    "error": null,
+    "at_unix": 1795672778.485582
+  },
+  {
+    "tool": 12,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/s03.jpg",
+        "/work/sheets/s04.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795672782.7825766
+  },
+  {
+    "tool": 13,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/obs/t0000040.jpg",
+        "/work/obs/t0000090.jpg",
+        "/work/obs/t0000120.jpg",
+        "/work/obs/t0000150.jpg"
+      ]
+    },
+    "error": "FileNotFoundError: [Errno 2] No such file or directory: '[private archive path]",
+    "at_unix": 1795672786.747962
+  },
+  {
+    "tool": 14,
+    "action": "run",
+    "params": {
+      "command": "ls /work/obs | head -30; ls /work/obs | wc -l"
+    },
+    "error": null,
+    "at_unix": 1795672789.8528461
+  },
+  {
+    "tool": 15,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/obs/t0000045.jpg",
+        "/work/obs/t0000090.jpg",
+        "/work/obs/t0000150.jpg",
+        "/work/obs/t0000210.jpg"
+      ]
+    },
+    "error": "FileNotFoundError: [Errno 2] No such file or directory: '[private archive path]",
+    "at_unix": 1795672793.1280422
+  },
+  {
+    "tool": 16,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 - <<'EOF'\nimport subprocess\nfor i in range(11):\n    t0=i*360\n    times=[t0+30*j for j in range(12)]\n    subprocess.run(['python3','sheet.py',','.join(map(str,times)),f'/work/sheets/a{i:02d}.jpg'],check=True)\nEOF"
+    },
+    "error": null,
+    "at_unix": 1795672840.8696702
+  },
+  {
+    "tool": 17,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 sheet.py 3600,3630,3660,3690,3720,3750,3780,3810,3840,3860,3880,3895 /work/sheets/a10.jpg && python3 - <<'EOF'\nimport os, glob\nfrom PIL import Image\nprint(len(glob.glob('/work/obs/*.jpg')))\nEOF"
+    },
+    "error": null,
+    "at_unix": 1795672845.4277945
+  },
+  {
+    "tool": 18,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/a00.jpg",
+        "/work/sheets/a01.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795672847.9647157
+  },
+  {
+    "tool": 19,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/a02.jpg",
+        "/work/sheets/a03.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795672850.7103486
+  },
+  {
+    "tool": 20,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/a04.jpg",
+        "/work/sheets/a05.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795672854.3397357
+  },
+  {
+    "tool": 21,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/a06.jpg",
+        "/work/sheets/a07.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795672859.1881897
+  },
+  {
+    "tool": 22,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/a08.jpg",
+        "/work/sheets/a09.jpg",
+        "/work/sheets/a10.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795672862.5953462
+  },
+  {
+    "tool": 23,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/input/input/resume_cards/RC01_01.png",
+        "/input/input/resume_cards/RC01_02.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795672866.5024796
+  },
+  {
+    "tool": 24,
+    "action": "run",
+    "params": {
+      "command": "python3 -c \"import cv2; print(cv2.__version__)\"; ls /work/obs | tail -5"
+    },
+    "error": null,
+    "at_unix": 1795672877.6855865
+  },
+  {
+    "tool": 25,
+    "action": "run",
+    "params": {
+      "command": "mkdir -p /work/lowres && cd /work && ffmpeg -v error -i /input/input/tutorial.mp4 -vf \"fps=1,scale=480:-1\" -q:v 4 /work/lowres/f%05d.jpg && ls /work/lowres | wc -l"
+    },
+    "error": null,
+    "at_unix": 1795673002.6907778
+  },
+  {
+    "tool": 26,
+    "action": "run",
+    "params": {
+      "command": "ls /work/lowres | wc -l; ls /work/lowres | tail -2"
+    },
+    "error": null,
+    "at_unix": 1795673011.3866832
+  },
+  {
+    "tool": 27,
+    "action": "run",
+    "params": {
+      "command": "cd /work && (ffmpeg -v error -ss 2400 -i /input/input/tutorial.mp4 -vf \"fps=1,scale=480:-1\" -q:v 4 -start_number 2401 /work/lowres/f%05d.jpg > /dev/null 2>&1 &) ; sleep 100; ls /work/lowres | wc -l"
+    },
+    "error": null,
+    "at_unix": 1795673115.6350818
+  },
+  {
+    "tool": 28,
+    "action": "run",
+    "params": {
+      "command": "cd /work && cat > sheet2.py <<'EOF'\nimport sys, os\nfrom PIL import Image, ImageDraw\ntimes=[float(x) for x in sys.argv[1].split(',')]\nout=sys.argv[2]\ncols=int(sys.argv[3]) if len(sys.argv)>3 else 3\nW=int(sys.argv[4]) if len(sys.argv)>4 else 860\nims=[]\nfor t in times:\n    p=f'/work/lowres/f{int(t)+1:05d}.jpg'\n    im=Image.open(p).convert('RGB')\n    im=im.resize((W,int(W*im.size[1]/im.size[0])))\n    d=ImageDraw.Draw(im)\n    d.rectangle([0,0,110,28],fill=(0,0,0)); d.text((5,6),f'{t:.0f}s',fill=(255,255,0))\n    ims.append(im)\nrows=(len(ims)+cols-1)//cols\nW,H=ims[0].size\ns=Image.new('RGB',(W*cols,H*rows),(255,255,255))\nfor i,im in enumerate(ims): s.paste(im,((i%cols)*W,(i//cols)*H))\ns.save(out,quality=90); print(out,s.size)\nEOF\npython3 sheet2.py 0,15,30,45,60,75,90,105,120 /work/sheets/b01.jpg 3 860"
+    },
+    "error": null,
+    "at_unix": 1795673121.567664
+  },
+  {
+    "tool": 29,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/b01.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673124.273015
+  },
+  {
+    "tool": 30,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 sheet2.py 135,150,165,180,195,210,225,240,255 /work/sheets/b02.jpg 3 860 && python3 sheet2.py 270,285,300,315,330,345,360,375,390 /work/sheets/b03.jpg 3 860"
+    },
+    "error": null,
+    "at_unix": 1795673129.1607723
+  },
+  {
+    "tool": 31,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/b02.jpg",
+        "/work/sheets/b03.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673133.2209437
+  },
+  {
+    "tool": 32,
+    "action": "run",
+    "params": {
+      "command": "cd /work && for r in \"405 420 435 450 465 480 495 510 525 b04\" \"540 555 570 585 600 615 630 645 660 b05\" \"675 690 705 720 735 750 765 780 795 b06\" \"810 825 840 855 870 885 900 915 930 b07\"; do set -- $r; python3 sheet2.py $1,$2,$3,$4,$5,$6,$7,$8,$9 /work/sheets/$10.jpg 3 620; done"
+    },
+    "error": null,
+    "at_unix": 1795673138.3003614
+  },
+  {
+    "tool": 33,
+    "action": "run",
+    "params": {
+      "command": "cd /work/sheets && mv 4050.jpg b04.jpg && mv 5400.jpg b05.jpg && mv 6750.jpg b06.jpg && mv 8100.jpg b07.jpg && ls b0*.jpg"
+    },
+    "error": null,
+    "at_unix": 1795673142.8413227
+  },
+  {
+    "tool": 34,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/b04.jpg",
+        "/work/sheets/b05.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673146.6601799
+  },
+  {
+    "tool": 35,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/b06.jpg",
+        "/work/sheets/b07.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673151.8175497
+  },
+  {
+    "tool": 36,
+    "action": "run",
+    "params": {
+      "command": "cd /work && cat > match.py <<'EOF'\nimport cv2, numpy as np, glob, json\ncards=json.load(open('/input/input/resume_cards/cards.json'))\nframes=sorted(glob.glob('/work/lowres/f*.jpg'))\nF=[cv2.imread(p,cv2.IMREAD_GRAYSCALE) for p in frames]\nH=F[0].shape[0]\nres={}\nfor c in cards['cards']:\n    outs=[]\n    for ip in c['images']:\n        im=cv2.imread('/input/input/resume_cards/'+ip.split('/')[-1],cv2.IMREAD_GRAYSCALE)\n        tr=c['transform']\n        if tr=='horizontal_mirror': im=cv2.flip(im,1)\n        elif tr=='rotate_180': im=cv2.rotate(im,cv2.ROTATE_180)\n        s=H/im.shape[0]\n        im=cv2.resize(im,(int(im.shape[1]*s),H))\n        scores=[]\n        for idx,f in enumerate(F):\n            if f.shape[0]!=im.shape[0] or f.shape[1]<im.shape[1]:\n                scores.append(-1); continue\n            r=cv2.matchTemplate(f,im,cv2.TM_CCOEFF_NORMED)\n            scores.append(float(r.max()))\n        order=np.argsort(scores)[::-1][:5]\n        outs.append({'img':ip,'top':[(int(i),round(scores[i],3)) for i in order], 'x':None})\n    res[c['card_id']]=outs\nprint(json.dumps(res,indent=1))\nEOF\npython3 match.py"
+    },
+    "error": null,
+    "at_unix": 1795673280.7460995
+  },
+  {
+    "tool": 37,
+    "action": "run",
+    "params": {
+      "command": "cd /work && cat > match2.py <<'EOF'\nimport cv2, numpy as np, glob, json\ncards=json.load(open('/input/input/resume_cards/cards.json'))\nframes=sorted(glob.glob('/work/lowres/f*.jpg'))\nF=[]\nfor p in frames:\n    im=cv2.imread(p,cv2.IMREAD_GRAYSCALE)\n    F.append(cv2.resize(im,(160,90)))\nres={}\nfor c in cards['cards']:\n    outs=[]\n    for ip in c['images']:\n        im=cv2.imread('/input/input/resume_cards/'+ip.split('/')[-1],cv2.IMREAD_GRAYSCALE)\n        tr=c['transform']\n        if tr=='horizontal_mirror': im=cv2.flip(im,1)\n        elif tr=='rotate_180': im=cv2.rotate(im,cv2.ROTATE_180)\n        # card covers left 1380/1920 of frame, 1080 high\n        im=im[:, :int(1380*160/1920)]\n        im=cv2.resize(im,(160,90))\n        scores=[float(cv2.matchTemplate(f,im,cv2.TM_CCOEFF_NORMED).max()) for f in F]\n        order=np.argsort(scores)[::-1][:6]\n        outs.append({'img':ip,'top':[(int(i),round(scores[i],3)) for i in order]})\n    res[c['card_id']]=outs\nprint(json.dumps(res))\nEOF\ntimeout 170 python3 match2.py"
+    },
+    "error": null,
+    "at_unix": 1795673321.5451522
+  },
+  {
+    "tool": 38,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/input/input/resume_cards/RC01_02.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673325.7189822
+  },
+  {
+    "tool": 39,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 sheet2.py 1149,1180,1210,1240,1270,1300,1330,1360,1390 /work/sheets/c01.jpg 3 620 && python3 sheet2.py 1420,1450,1480,1510,1540,1570,1600,1630,1660 /work/sheets/c02.jpg 3 620"
+    },
+    "error": null,
+    "at_unix": 1795673329.776348
+  },
+  {
+    "tool": 40,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/c01.jpg",
+        "/work/sheets/c02.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673333.0074804
+  },
+  {
+    "tool": 41,
+    "action": "run",
+    "params": {
+      "command": "cd /work && cat > match3.py <<'EOF'\nimport cv2, numpy as np, glob, json\ncards=json.load(open('/input/input/resume_cards/cards.json'))\nframes=sorted(glob.glob('/work/lowres/f*.jpg'))\nF=[]\nfor p in frames:\n    im=cv2.imread(p,0); im=cv2.resize(im,(320,180))\n    F.append(cv2.Canny(im,50,120).astype(np.float32))\nres={}\nfor c in cards['cards']:\n    outs=[]\n    for ip in c['images']:\n        im=cv2.imread('/input/input/resume_cards/'+ip.split('/')[-1],0)\n        tr=c['transform']\n        if tr=='horizontal_mirror': im=cv2.flip(im,1)\n        elif tr=='rotate_180': im=cv2.rotate(im,cv2.ROTATE_180)\n        im=im[:, :1380]\n        im=cv2.resize(im,(230,180))\n        e=cv2.Canny(im,50,120).astype(np.float32)\n        sc=[]\n        for f in F:\n            # try a few x offsets\n            best=-1\n            for dx in range(0,320-230+1,10):\n                r=cv2.matchTemplate(f[:,dx:dx+230],e,cv2.TM_CCOEFF_NORMED).max()\n                best=max(best,float(r))\n            sc.append(best)\n        order=np.argsort(sc)[::-1][:8]\n        outs.append({'img':ip,'top':[(int(i),round(sc[i],3)) for i in order]})\n    res[c['card_id']]=outs\nprint(json.dumps(res,indent=1))\nEOF\ntimeout 170 python3 match3.py"
+    },
+    "error": null,
+    "at_unix": 1795673462.2526577
+  },
+  {
+    "tool": 42,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/input/input/resume_cards/RC02_02.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673467.0329838
+  },
+  {
+    "tool": 43,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/input/input/resume_cards/RC01_01.png",
+        "/input/input/resume_cards/RC02_01.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673473.4522758
+  },
+  {
+    "tool": 44,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 sheet2.py 37,45,55,70,85,110,140,170,200 /work/sheets/d01.jpg 3 620 && python3 sheet2.py 230,260,290,320,350,380,410,440,470 /work/sheets/d02.jpg 3 620"
+    },
+    "error": null,
+    "at_unix": 1795673479.9052165
+  },
+  {
+    "tool": 45,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/d01.jpg",
+        "/work/sheets/d02.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673483.232516
+  },
+  {
+    "tool": 46,
+    "action": "run",
+    "params": {
+      "command": "which tesseract; python3 -c \"import pytesseract\" 2>&1 | tail -1"
+    },
+    "error": null,
+    "at_unix": 1795673489.7429614
+  },
+  {
+    "tool": 47,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/input/input/resume_cards/RC01_02.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673495.6274796
+  },
+  {
+    "tool": 48,
+    "action": "run",
+    "params": {
+      "command": "cd /work && cat > orb.py <<'EOF'\nimport cv2, numpy as np, glob, json\ncards=json.load(open('/input/input/resume_cards/cards.json'))\nidx=list(range(0,3899,4))\norb=cv2.ORB_create(1500)\nbf=cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)\nF=[]\nfor t in idx:\n    im=cv2.imread(f'/work/lowres/f{t+1:05d}.jpg',0)\n    im=cv2.resize(im,(640,360))\n    kp,des=orb.detectAndCompute(im,None)\n    F.append((t,kp,des))\nout={}\nfor c in cards['cards']:\n    o=[]\n    for ip in c['images']:\n        im=cv2.imread('/input/input/resume_cards/'+ip.split('/')[-1],0)\n        tr=c['transform']\n        if tr=='horizontal_mirror': im=cv2.flip(im,1)\n        elif tr=='rotate_180': im=cv2.rotate(im,cv2.ROTATE_180)\n        im=cv2.resize(im,(460,360))\n        kp,des=orb.detectAndCompute(im,None)\n        sc=[]\n        for t,k2,d2 in F:\n            if d2 is None: sc.append((t,0)); continue\n            m=bf.match(des,d2)\n            good=[x for x in m if x.distance<40]\n            sc.append((t,len(good)))\n        sc.sort(key=lambda x:-x[1])\n        o.append({'img':ip,'top':sc[:10]})\n    out[c['card_id']]=o\nprint(json.dumps(out))\nEOF\ntimeout 175 python3 orb.py"
+    },
+    "error": null,
+    "at_unix": 1795673534.7747576
+  },
+  {
+    "tool": 49,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 sheet2.py 1360,1364,1368,1372,2600,2604,2608,2612,2616 /work/sheets/e01.jpg 3 620"
+    },
+    "error": null,
+    "at_unix": 1795673542.0214221
+  },
+  {
+    "tool": 50,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/e01.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673545.8206236
+  },
+  {
+    "tool": 51,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 sheet2.py 2180,2190,2200,2220,2230,2240 /work/sheets/e02.jpg 3 620 && python3 sheet2.py 3000,3012,3030,3600,3620,3640 /work/sheets/e03.jpg 3 620"
+    },
+    "error": null,
+    "at_unix": 1795673553.941145
+  },
+  {
+    "tool": 52,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/e02.jpg",
+        "/work/sheets/e03.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673557.6400049
+  },
+  {
+    "tool": 53,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/input/input/resume_cards/RC01_01.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673562.6378813
+  },
+  {
+    "tool": 54,
+    "action": "run",
+    "params": {
+      "command": "cd /work && mkdir -p hi && for t in 1350 1358 1364 1366 1370 1372; do ffmpeg -v error -ss $t -i /input/input/tutorial.mp4 -frames:v 1 -q:v 2 /work/hi/h$t.jpg; done; ls /work/hi"
+    },
+    "error": null,
+    "at_unix": 1795673569.2049346
+  },
+  {
+    "tool": 55,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/hi/h1350.jpg",
+        "/work/hi/h1364.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673573.3128188
+  },
+  {
+    "tool": 56,
+    "action": "run",
+    "params": {
+      "command": "cd /work && cat > cmp.py <<'EOF'\nimport cv2, numpy as np, sys, json\ncard, t = sys.argv[1], float(sys.argv[2])\ncj=json.load(open('/input/input/resume_cards/cards.json'))\nc=[x for x in cj['cards'] if x['card_id']==card][0]\nims=[]\nfor ip in c['images']:\n    im=cv2.imread('/input/input/resume_cards/'+ip.split('/')[-1])\n    if c['transform']=='horizontal_mirror': im=cv2.flip(im,1)\n    elif c['transform']=='rotate_180': im=cv2.rotate(im,cv2.ROTATE_180)\n    ims.append(cv2.resize(im,(690,540)))\nfr=cv2.imread(f'/work/lowres/f{int(t)+1:05d}.jpg')\nfr=cv2.resize(fr,(960,540))\nout=np.hstack(ims+[fr])\ncv2.imwrite('/work/sheets/cmp.jpg',out)\nprint(out.shape)\nEOF\npython3 cmp.py RC02 2236"
+    },
+    "error": null,
+    "at_unix": 1795673580.5318274
+  },
+  {
+    "tool": 57,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/cmp.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673585.7170506
+  },
+  {
+    "tool": 58,
+    "action": "run",
+    "params": {
+      "command": "cd /work && cat > cmp2.py <<'EOF'\nimport cv2, numpy as np, sys, json\ncard, idx, t = sys.argv[1], int(sys.argv[2]), float(sys.argv[3])\ncj=json.load(open('/input/input/resume_cards/cards.json'))\nc=[x for x in cj['cards'] if x['card_id']==card][0]\nip=c['images'][idx]\nim=cv2.imread('/input/input/resume_cards/'+ip.split('/')[-1])\nif c['transform']=='horizontal_mirror': im=cv2.flip(im,1)\nelif c['transform']=='rotate_180': im=cv2.rotate(im,cv2.ROTATE_180)\nim=cv2.resize(im,(690,540))\nfr=cv2.imread(f'/work/lowres/f{int(t)+1:05d}.jpg')\nfr=cv2.resize(fr,(960,540))\ncv2.imwrite('/work/sheets/cmp.jpg',np.hstack([im,fr]))\nprint('ok')\nEOF\npython3 cmp2.py RC02 0 2188"
+    },
+    "error": null,
+    "at_unix": 1795673592.9454231
+  },
+  {
+    "tool": 59,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/cmp.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673596.6891532
+  },
+  {
+    "tool": 60,
+    "action": "run",
+    "params": {
+      "command": "cd /work && for t in 2188 2200 2214 2226 2236 2250 2266; do ffmpeg -v error -ss $t -i /input/input/tutorial.mp4 -frames:v 1 -q:v 2 /work/hi/m$t.jpg; done; ls /work/hi | wc -l"
+    },
+    "error": null,
+    "at_unix": 1795673606.481886
+  },
+  {
+    "tool": 61,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/hi/m2188.jpg",
+        "/work/hi/m2214.jpg",
+        "/work/hi/m2236.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673609.782832
+  },
+  {
+    "tool": 62,
+    "action": "run",
+    "params": {
+      "command": "cd /work && cat > cmp3.py <<'EOF'\nimport cv2, numpy as np, sys, json\ncard, idx, t = sys.argv[1], int(sys.argv[2]), float(sys.argv[3])\nW=int(sys.argv[4]) if len(sys.argv)>4 else 690\ncj=json.load(open('/input/input/resume_cards/cards.json'))\nc=[x for x in cj['cards'] if x['card_id']==card][0]\nip=c['images'][idx]\nim=cv2.imread('/input/input/resume_cards/'+ip.split('/')[-1])\nif c['transform']=='horizontal_mirror': im=cv2.flip(im,1)\nelif c['transform']=='rotate_180': im=cv2.rotate(im,cv2.ROTATE_180)\nim=cv2.resize(im,(W,int(W*im.shape[0]/im.shape[1])))\nfr=cv2.imread(f'/work/lowres/f{int(t)+1:05d}.jpg')\nfr=cv2.resize(fr,(W,int(W*fr.shape[0]/fr.shape[1])))\ncv2.imwrite('/work/sheets/cmp.jpg',np.hstack([im,fr]))\nprint('ok',card,idx,t)\nEOF\npython3 cmp3.py RC01 1 1364"
+    },
+    "error": null,
+    "at_unix": 1795673619.4806232
+  },
+  {
+    "tool": 63,
+    "action": "run",
+    "params": {
+      "command": "cd /work && cat > cmp3.py <<'EOF'\nimport cv2, numpy as np, sys, json\ncard, idx, t = sys.argv[1], int(sys.argv[2]), float(sys.argv[3])\nW=int(sys.argv[4]) if len(sys.argv)>4 else 700\ncj=json.load(open('/input/input/resume_cards/cards.json'))\nc=[x for x in cj['cards'] if x['card_id']==card][0]\nip=c['images'][idx]\nim=cv2.imread('/input/input/resume_cards/'+ip.split('/')[-1])\nif c['transform']=='horizontal_mirror': im=cv2.flip(im,1)\nelif c['transform']=='rotate_180': im=cv2.rotate(im,cv2.ROTATE_180)\nim=cv2.resize(im,(W,int(W*im.shape[0]/im.shape[1])))\nfr=cv2.imread(f'/work/lowres/f{int(t)+1:05d}.jpg')\nfr=cv2.resize(fr,(W,int(W*fr.shape[0]/fr.shape[1])))\nh=max(im.shape[0],fr.shape[0])\ndef pad(a):\n    if a.shape[0]==h: return a\n    return cv2.copyMakeBorder(a,0,h-a.shape[0],0,0,cv2.BORDER_CONSTANT,value=(255,255,255))\ncv2.imwrite('/work/sheets/cmp.jpg',np.hstack([pad(im),pad(fr)]))\nprint('ok',card,idx,t)\nEOF\npython3 cmp3.py RC01 1 1364 && python3 cmp3.py RC03 1 3012 && python3 cmp3.py RC04 1 3620"
+    },
+    "error": null,
+    "at_unix": 1795673625.8450012
+  },
+  {
+    "tool": 64,
+    "action": "parse_error",
+    "params": {
+      "paths": [
+        "/work/sheets/cmp.jpg"
+      ]
+    },
+    "error": "KeyError: 'action'",
+    "at_unix": 1795673629.3195195
+  },
+  {
+    "tool": 65,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/cmp.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673633.3219814
+  },
+  {
+    "tool": 66,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 cmp3.py RC03 1 3012 && cp /work/sheets/cmp.jpg /work/sheets/cmp_rc03.jpg && python3 cmp3.py RC01 1 1364 && cp /work/sheets/cmp.jpg /work/sheets/cmp_rc01.jpg"
+    },
+    "error": null,
+    "at_unix": 1795673637.9408944
+  },
+  {
+    "tool": 67,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/cmp_rc01.jpg",
+        "/work/sheets/cmp_rc03.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673641.3253624
+  },
+  {
+    "tool": 68,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 sheet2.py 37,50,65,80,95,110,125,140,155 /work/sheets/g01.jpg 3 620 && python3 sheet2.py 170,185,200,215,230,245,260,275,290 /work/sheets/g02.jpg 3 620"
+    },
+    "error": null,
+    "at_unix": 1795673648.8693206
+  },
+  {
+    "tool": 69,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/g01.jpg",
+        "/work/sheets/g02.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673652.77432
+  },
+  {
+    "tool": 70,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 sheet2.py 300,320,340,360,380,400 /work/sheets/h01.jpg 2 900 && python3 sheet2.py 420,440,460,480,500,520 /work/sheets/h02.jpg 2 900"
+    },
+    "error": null,
+    "at_unix": 1795673658.7494922
+  },
+  {
+    "tool": 71,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/h01.jpg",
+        "/work/sheets/h02.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673663.3170347
+  },
+  {
+    "tool": 72,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 cmp3.py RC01 0 2604 && cp /work/sheets/cmp.jpg /work/sheets/c1a.jpg && python3 cmp3.py RC01 1 2604 && cp /work/sheets/cmp.jpg /work/sheets/c1b.jpg"
+    },
+    "error": null,
+    "at_unix": 1795673670.3459218
+  },
+  {
+    "tool": 73,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/c1a.jpg",
+        "/work/sheets/c1b.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673675.8674529
+  },
+  {
+    "tool": 74,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 - <<'EOF'\nimport subprocess\nranges=[(1149,1875),(1875,2421),(2421,2905),(2905,3406),(3406,3899)]\nfor a,b in ranges:\n    step=15\n    ts=list(range(a,b,step))\n    for i in range(0,len(ts),12):\n        chunk=ts[i:i+12]\n        out=f'/work/sheets/r{a}_{chunk[0]}.jpg'\n        subprocess.run(['python3','sheet2.py',','.join(map(str,chunk)),out,'3','620'],check=True)\nEOF\nls /work/sheets/r*.jpg"
+    },
+    "error": null,
+    "at_unix": 1795673687.5991642
+  },
+  {
+    "tool": 75,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/r1149_1149.jpg",
+        "/work/sheets/r1149_1329.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673693.2392116
+  },
+  {
+    "tool": 76,
+    "action": "run",
+    "params": {
+      "command": "cd /work && cat > crop.py <<'EOF'\nimport subprocess, sys, os\nfrom PIL import Image\n# args: out, times csv\nout=sys.argv[1]; ts=[int(x) for x in sys.argv[2].split(',')]\nbox=(300,140,1560,1020)\nims=[]\nfor t in ts:\n    p=f'/work/hi/c{t}.jpg'\n    if not os.path.exists(p):\n        subprocess.run(['ffmpeg','-v','error','-ss',str(t),'-i','/input/input/tutorial.mp4','-frames:v','1','-q:v','2',p],check=True)\n    im=Image.open(p).convert('RGB').crop(box)\n    im=im.resize((500,int(500*im.size[1]/im.size[0])))\n    ims.append(im)\nfrom PIL import ImageDraw\nW,H=ims[0].size\ncols=min(len(ims),4); rows=(len(ims)+cols-1)//cols\ns=Image.new('RGB',(W*cols,H*rows),(255,255,255))\nfor i,im in enumerate(ims): s.paste(im,((i%cols)*W,(i//cols)*H))\ns.save(out,quality=90); print(out,s.size)\nEOF\npython3 crop.py /work/sheets/k1.jpg 1330,1344,1358,1372,1390,1408,1430,1450"
+    },
+    "error": null,
+    "at_unix": 1795673707.0306683
+  },
+  {
+    "tool": 77,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/k1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673712.74879
+  },
+  {
+    "tool": 78,
+    "action": "run",
+    "params": {
+      "command": "cd /work && cat > mask.py <<'EOF'\nimport cv2, numpy as np, json, glob\ncards=json.load(open('/input/input/resume_cards/cards.json'))\nfr=sorted(glob.glob('/work/lowres/f*.jpg'))\nFM=[]\nfor p in fr:\n    im=cv2.imread(p)\n    m=((im[:,:,2].astype(int)>90)&(im[:,:,2].astype(int)-im[:,:,1]>35)&(im[:,:,2].astype(int)-im[:,:,0]>35)).astype(np.uint8)*255\n    FM.append(cv2.resize(m,(240,135)))\nprint('frames',len(FM))\nout={}\nfor c in cards['cards']:\n    o=[]\n    for ip in c['images']:\n        im=cv2.imread('/input/input/resume_cards/'+ip.split('/')[-1])\n        if c['transform']=='horizontal_mirror': im=cv2.flip(im,1)\n        elif c['transform']=='rotate_180': im=cv2.rotate(im,cv2.ROTATE_180)\n        m=((im[:,:,2].astype(int)>90)&(im[:,:,2].astype(int)-im[:,:,1]>35)&(im[:,:,2].astype(int)-im[:,:,0]>35)).astype(np.uint8)*255\n        m=cv2.resize(m,(240,135))  # full card incl right strip (paper absent there)\n        sc=[]\n        for i,f in enumerate(FM):\n            inter=np.logical_and(f>0,m>0).sum(); uni=np.logical_or(f>0,m>0).sum()\n            sc.append(inter/max(uni,1))\n        order=np.argsort(sc)[::-1][:10]\n        o.append({'img':ip.split('/')[-1],'top':[(int(k),round(float(sc[k]),3)) for k in order]})\n    out[c['card_id']]=o\nprint(json.dumps(out))\nEOF\ntimeout 170 python3 mask.py"
+    },
+    "error": null,
+    "at_unix": 1795673737.7438262
+  },
+  {
+    "tool": 79,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 - <<'EOF'\nfrom PIL import Image\nim=Image.open('/input/input/resume_cards/RC01_01.png')\nim.crop((0,0,1380,1080)).resize((900,704)).save('/work/sheets/z_rc01a.jpg',quality=92)\nim2=Image.open('/input/input/resume_cards/RC01_02.png')\nim2.crop((0,0,1380,1080)).resize((900,704)).save('/work/sheets/z_rc01b.jpg',quality=92)\nprint('ok')\nEOF"
+    },
+    "error": null,
+    "at_unix": 1795673744.322858
+  },
+  {
+    "tool": 80,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/z_rc01a.jpg",
+        "/work/sheets/z_rc01b.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673748.181498
+  },
+  {
+    "tool": 81,
+    "action": "run",
+    "params": {
+      "command": "cd /work && cat > grid.py <<'EOF'\nimport cv2, numpy as np, sys, json, os, subprocess\ncard=sys.argv[1]; idx=int(sys.argv[2]); times=[int(x) for x in sys.argv[3].split(',')]; out=sys.argv[4]\ncj=json.load(open('/input/input/resume_cards/cards.json'))\nc=[x for x in cj['cards'] if x['card_id']==card][0]\nim=cv2.imread('/input/input/resume_cards/'+c['images'][idx].split('/')[-1])\nif c['transform']=='horizontal_mirror': im=cv2.flip(im,1)\nelif c['transform']=='rotate_180': im=cv2.rotate(im,cv2.ROTATE_180)\nim=cv2.resize(im,(552,432))\ncv2.putText(im,card, (8,24),0,0.8,(0,255,255),2)\nrows=[im]\nfor t in times:\n    p=f'/work/hi/c{t}.jpg'\n    if not os.path.exists(p):\n        subprocess.run(['ffmpeg','-v','error','-ss',str(t),'-i','/input/input/tutorial.mp4','-frames:v','1','-q:v','2',p],check=True)\n    f=cv2.imread(p)\n    f=f[:, :1380]\n    f=cv2.resize(f,(552,432))\n    cv2.putText(f,f'{t}s',(8,24),0,0.8,(0,255,255),2)\n    rows.append(f)\ncv2.imwrite(out,np.hstack(rows))\nprint(out)\nEOF\npython3 grid.py RC01 1 1214,1344,1364,1457 /work/sheets/G1.jpg"
+    },
+    "error": null,
+    "at_unix": 1795673767.2341785
+  },
+  {
+    "tool": 82,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/G1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673771.8185213
+  },
+  {
+    "tool": 83,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/r1149_1509.jpg",
+        "/work/sheets/r1149_1689.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673779.8125362
+  },
+  {
+    "tool": 84,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 sheet2.py 40,70,100,130,160,190,220,250,280,310,340,370 /work/sheets/n01.jpg 4 620 && python3 sheet2.py 400,430,460,490,520,550,580,610,640,670,700,730 /work/sheets/n02.jpg 4 620"
+    },
+    "error": null,
+    "at_unix": 1795673787.6417253
+  },
+  {
+    "tool": 85,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/n01.jpg",
+        "/work/sheets/n02.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673792.8030033
+  },
+  {
+    "tool": 86,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 sheet2.py 760,790,820,850,880,910,940,970,1000,1030,1060,1090 /work/sheets/n03.jpg 4 620 && python3 sheet2.py 1120,1145,1160,1180,1200,1220 /work/sheets/n04.jpg 3 800"
+    },
+    "error": null,
+    "at_unix": 1795673800.740153
+  },
+  {
+    "tool": 87,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/n03.jpg",
+        "/work/sheets/n04.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673808.150687
+  },
+  {
+    "tool": 88,
+    "action": "run",
+    "params": {
+      "command": "cd /work && cat > big.py <<'EOF'\nimport cv2, numpy as np, sys, json, os, subprocess\ncard=sys.argv[1]; idx=int(sys.argv[2]); times=[int(x) for x in sys.argv[3].split(',')]; out=sys.argv[4]\nW=int(sys.argv[5]) if len(sys.argv)>5 else 760\ncj=json.load(open('/input/input/resume_cards/cards.json'))\nc=[x for x in cj['cards'] if x['card_id']==card][0]\nim=cv2.imread('/input/input/resume_cards/'+c['images'][idx].split('/')[-1])\nif c['transform']=='horizontal_mirror': im=cv2.flip(im,1)\nelif c['transform']=='rotate_180': im=cv2.rotate(im,cv2.ROTATE_180)\nim=im[:,:1380]\nim=cv2.resize(im,(W,int(W*im.shape[0]/im.shape[1])))\ncv2.putText(im,card+' t?',(10,30),0,0.9,(0,255,255),2)\nrows=[im]\nfor t in times:\n    p=f'/work/hi/c{t}.jpg'\n    if not os.path.exists(p):\n        subprocess.run(['ffmpeg','-v','error','-ss',str(t),'-i','/input/input/tutorial.mp4','-frames:v','1','-q:v','2',p],check=True)\n    f=cv2.imread(p)[:,:1380]\n    f=cv2.resize(f,(W,int(W*f.shape[0]/f.shape[1])))\n    cv2.putText(f,f'{t}s',(10,30),0,0.9,(0,255,255),2)\n    if f.shape[0]!=im.shape[0]: f=cv2.resize(f,(W,im.shape[0]))\n    rows.append(f)\ncv2.imwrite(out,np.hstack(rows)); print(out)\nEOF\npython3 big.py RC01 1 1364,1400 /work/sheets/B1.jpg 640"
+    },
+    "error": null,
+    "at_unix": 1795673819.9958339
+  },
+  {
+    "tool": 89,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/B1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673824.1177669
+  },
+  {
+    "tool": 90,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/r1875_1875.jpg",
+        "/work/sheets/r1875_2055.jpg",
+        "/work/sheets/r1875_2235.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673832.6720092
+  },
+  {
+    "tool": 91,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/r2421_2421.jpg",
+        "/work/sheets/r2421_2601.jpg",
+        "/work/sheets/r2421_2781.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673847.4047744
+  },
+  {
+    "tool": 92,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/r2905_2905.jpg",
+        "/work/sheets/r2905_3085.jpg",
+        "/work/sheets/r2905_3265.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673853.5891936
+  },
+  {
+    "tool": 93,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/r3406_3406.jpg",
+        "/work/sheets/r3406_3586.jpg",
+        "/work/sheets/r3406_3766.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673859.394161
+  },
+  {
+    "tool": 94,
+    "action": "run",
+    "params": {
+      "command": "cd /work && cat > scan.py <<'EOF'\nimport cv2, numpy as np, sys, json, glob\ncard, idx, a, b = sys.argv[1], int(sys.argv[2]), int(sys.argv[3]), int(sys.argv[4])\ncj=json.load(open('/input/input/resume_cards/cards.json'))\nc=[x for x in cj['cards'] if x['card_id']==card][0]\nim=cv2.imread('/input/input/resume_cards/'+c['images'][idx].split('/')[-1])\nif c['transform']=='horizontal_mirror': im=cv2.flip(im,1)\nelif c['transform']=='rotate_180': im=cv2.rotate(im,cv2.ROTATE_180)\nim=cv2.cvtColor(im[:, :1380],cv2.COLOR_BGR2GRAY)\nim=cv2.resize(im,(460,360))\nres=[]\nfor t in range(a,b,1):\n    f=cv2.imread(f'/work/lowres/f{t+1:05d}.jpg',0)\n    f=cv2.resize(f,(640,360))\n    best=-1\n    for dx in range(0,181,20):\n        r=cv2.matchTemplate(f[:,dx:dx+460],im,cv2.TM_CCOEFF_NORMED).max()\n        best=max(best,float(r))\n    res.append((best,t))\nres.sort(reverse=True)\nprint(card,idx,[(t,round(s,3)) for s,t in res[:8]])\nEOF\npython3 scan.py RC01 1 1200 1500; python3 scan.py RC01 1 2500 2700"
+    },
+    "error": null,
+    "at_unix": 1795673896.4475193
+  },
+  {
+    "tool": 95,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 big.py RC01 1 1396,1457 /work/sheets/B2.jpg 700"
+    },
+    "error": null,
+    "at_unix": 1795673903.254089
+  },
+  {
+    "tool": 96,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/B2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673908.7350729
+  },
+  {
+    "tool": 97,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 big.py RC02 1 2188,2236,2288,2352 /work/sheets/B3.jpg 460"
+    },
+    "error": null,
+    "at_unix": 1795673918.8285425
+  },
+  {
+    "tool": 98,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/B3.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673924.1168585
+  },
+  {
+    "tool": 99,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 scan.py RC01 0 1100 1500"
+    },
+    "error": null,
+    "at_unix": 1795673950.6856172
+  },
+  {
+    "tool": 100,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/n01.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673961.8754992
+  },
+  {
+    "tool": 101,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 crop.py /work/sheets/k2.jpg 380,420,460,500,540,580,620,660"
+    },
+    "error": null,
+    "at_unix": 1795673974.4248056
+  },
+  {
+    "tool": 102,
+    "action": "parse_error",
+    "params": {
+      "paths": [
+        "/work/sheets/k2.jpg"
+      ]
+    },
+    "error": "KeyError: 'action'",
+    "at_unix": 1795673980.060011
+  },
+  {
+    "tool": 103,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/k2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795673986.2285173
+  },
+  {
+    "tool": 104,
+    "action": "run",
+    "params": {
+      "command": "cd /work && cat > s6.py <<'EOF'\nimport sys\nfrom PIL import Image, ImageDraw\nts=[int(x) for x in sys.argv[1].split(',')]\nout=sys.argv[2]; W=int(sys.argv[3]) if len(sys.argv)>3 else 850\nims=[]\nfor t in ts:\n    im=Image.open(f'/work/hi/c{t}.jpg').convert('RGB').crop((150,80,1700,1040))\n    im=im.resize((W,int(W*im.size[1]/im.size[0])))\n    d=ImageDraw.Draw(im); d.rectangle([0,0,100,30],fill=(0,0,0)); d.text((6,8),f'{t}s',fill=(255,255,0))\n    ims.append(im)\nW1,H1=ims[0].size; cols=2; rows=(len(ims)+1)//2\ns=Image.new('RGB',(W1*cols,H1*rows),(255,255,255))\nfor i,im in enumerate(ims): s.paste(im,((i%2)*W1,(i//2)*H1))\ns.save(out,quality=90); print(s.size)\nEOF\ncat > getf.py <<'EOF'\nimport subprocess,sys,os\nfor t in sys.argv[1].split(','):\n    p=f'/work/hi/c{t}.jpg'\n    if not os.path.exists(p):\n        subprocess.run(['ffmpeg','-v','error','-ss',t,'-i','/input/input/tutorial.mp4','-frames:v','1','-q:v','2',p],check=True)\nEOF\npython3 getf.py 600,650,700,760,820,880 && python3 s6.py 600,650,700,760,820,880 /work/sheets/S1.jpg"
+    },
+    "error": null,
+    "at_unix": 1795674002.9659772
+  },
+  {
+    "tool": 105,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/S1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795674008.0137038
+  },
+  {
+    "tool": 106,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 - <<'EOF'\nfrom PIL import Image\nfor c in ['RC01_02','RC02_02','RC03_02','RC04_02']:\n    im=Image.open(f'/input/input/resume_cards/{c}.png')\n    im.resize((1150,900)).save(f'/work/sheets/card_{c}.jpg',quality=93)\nprint('ok')\nEOF"
+    },
+    "error": null,
+    "at_unix": 1795674016.6944222
+  },
+  {
+    "tool": 107,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/card_RC01_02.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795674021.4712527
+  },
+  {
+    "tool": 108,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 - <<'EOF'\nfrom PIL import Image\nim=Image.open('/input/input/resume_cards/RC01_01.png')\nim.resize((1150,900)).save('/work/sheets/card_RC01_01.jpg',quality=93)\nEOF\npython3 getf.py 1300,1340,1380,1420,1450,1470 && python3 s6.py 1300,1340,1380,1420,1450,1470 /work/sheets/S2.jpg"
+    },
+    "error": null,
+    "at_unix": 1795674030.7845473
+  },
+  {
+    "tool": 109,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/S2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795674035.8679938
+  },
+  {
+    "tool": 110,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 getf.py 30,60,90,120,150,180 && python3 s6.py 30,60,90,120,150,180 /work/sheets/T1.jpg"
+    },
+    "error": null,
+    "at_unix": 1795674046.394144
+  },
+  {
+    "tool": 111,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/T1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795674051.9907985
+  },
+  {
+    "tool": 112,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/card_RC01_01.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795674065.107002
+  },
+  {
+    "tool": 113,
+    "action": "run",
+    "params": {
+      "command": "cd /work && cat > m4.py <<'EOF'\nimport sys\nfrom PIL import Image, ImageDraw\nts=[int(x) for x in sys.argv[1].split(',')]\nout=sys.argv[2]; W=int(sys.argv[3]) if len(sys.argv)>3 else 900\nbox=eval(sys.argv[4]) if len(sys.argv)>4 else (150,60,1750,1060)\nims=[]\nfor t in ts:\n    im=Image.open(f'/work/hi/c{t}.jpg').convert('RGB').crop(box)\n    im=im.resize((W,int(W*im.size[1]/im.size[0])))\n    d=ImageDraw.Draw(im); d.rectangle([0,0,110,34],fill=(0,0,0)); d.text((8,10),f'{t}s',fill=(255,255,0))\n    ims.append(im)\nw,h=ims[0].size; cols=2; rows=(len(ims)+1)//2\ns=Image.new('RGB',(w*cols,h*rows),(255,255,255))\nfor i,im in enumerate(ims): s.paste(im,((i%2)*w,(i//2)*h))\ns.save(out,quality=90); print(s.size)\nEOF\npython3 getf.py 200,400,700,900 && python3 m4.py 200,400,700,900 /work/sheets/M1.jpg 780"
+    },
+    "error": null,
+    "at_unix": 1795674081.9614615
+  },
+  {
+    "tool": 114,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/M1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795674087.126489
+  },
+  {
+    "tool": 115,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/card_RC02_02.jpg",
+        "/work/sheets/card_RC03_02.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795674095.242295
+  },
+  {
+    "tool": 116,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/card_RC04_02.jpg",
+        "/work/sheets/card_RC03_02.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795674106.1163979
+  },
+  {
+    "tool": 117,
+    "action": "run",
+    "params": {
+      "command": "mkdir -p /work/mid && cd /work && nohup ffmpeg -v error -i /input/input/tutorial.mp4 -vf \"fps=1,scale=960:-1\" -q:v 3 /work/mid/m%05d.jpg > /work/extract.log 2>&1 &\nsleep 2; echo started"
+    },
+    "error": null,
+    "at_unix": 1795674127.9231021
+  },
+  {
+    "tool": 118,
+    "action": "run",
+    "params": {
+      "command": "ls /work/mid | wc -l"
+    },
+    "error": null,
+    "at_unix": 1795674140.1319232
+  },
+  {
+    "tool": 119,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 - <<'EOF'\nimport subprocess\nfor t in [5,45,100,160,220,300,360,480,560]:\n    subprocess.run(['ffmpeg','-v','error','-ss',str(t),'-i','/input/input/tutorial.mp4','-frames:v','1','-q:v','2',f'/work/hi/v{t}.jpg'],check=True)\nprint('ok')\nEOF"
+    },
+    "error": null,
+    "at_unix": 1795674155.7238739
+  },
+  {
+    "tool": 120,
+    "action": "run",
+    "params": {
+      "command": "cd /work && cat > q.py <<'EOF'\nimport sys\nfrom PIL import Image, ImageDraw\nts=[int(x) for x in sys.argv[1].split(',')]\nout=sys.argv[2]; W=int(sys.argv[3]) if len(sys.argv)>3 else 780\nbox=(200,60,1720,1060)\nims=[]\nfor t in ts:\n    im=Image.open(f'/work/hi/c{t}.jpg').convert('RGB').crop(box)\n    im=im.resize((W,int(W*im.size[1]/im.size[0])))\n    d=ImageDraw.Draw(im); d.rectangle([0,0,120,36],fill=(0,0,0)); d.text((8,10),f'{t}s',fill=(255,255,0))\n    ims.append(im)\nw,h=ims[0].size; cols=2; rows=(len(ims)+1)//2\ns=Image.new('RGB',(w*cols,h*rows),(255,255,255))\nfor i,im in enumerate(ims): s.paste(im,((i%2)*w,(i//2)*h))\ns.save(out,quality=90); print(s.size)\nEOF\npython3 getf.py 60,120,180,240,300,360 && python3 q.py 60,120,180,240,300,360 /work/sheets/Q1.jpg"
+    },
+    "error": null,
+    "at_unix": 1795674173.2784655
+  },
+  {
+    "tool": 121,
+    "action": "parse_error",
+    "params": {
+      "paths": [
+        "/work/sheets/Q1.jpg"
+      ]
+    },
+    "error": "KeyError: 'action'",
+    "at_unix": 1795674179.0032804
+  },
+  {
+    "tool": 122,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/Q1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795674184.7582715
+  },
+  {
+    "tool": 123,
+    "action": "run",
+    "params": {
+      "command": "ls /work/mid | wc -l; cd /work && cat > g6.py <<'EOF'\nimport sys\nfrom PIL import Image, ImageDraw\nts=[int(x) for x in sys.argv[1].split(',')]\nout=sys.argv[2]; W=int(sys.argv[3]) if len(sys.argv)>3 else 620\nbox=(180,40,1760,1060)\nims=[]\nfor t in ts:\n    im=Image.open(f'/work/mid/m{t+1:05d}.jpg').convert('RGB').crop(box)\n    im=im.resize((W,int(W*im.size[1]/im.size[0])))\n    d=ImageDraw.Draw(im); d.rectangle([0,0,96,30],fill=(0,0,0)); d.text((6,8),f'{t}s',fill=(255,255,0))\n    ims.append(im)\nw,h=ims[0].size; cols=3; rows=(len(ims)+2)//3\ns=Image.new('RGB',(w*cols,h*rows),(255,255,255))\nfor i,im in enumerate(ims): s.paste(im,((i%3)*w,(i//3)*h))\ns.save(out,quality=89); print(s.size)\nEOF\necho ok"
+    },
+    "error": null,
+    "at_unix": 1795674194.7160912
+  },
+  {
+    "tool": 124,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 getf.py 420,480,540,600,660,720 && python3 q.py 420,480,540,600,660,720 /work/sheets/Q2.jpg 760"
+    },
+    "error": null,
+    "at_unix": 1795674208.0837166
+  },
+  {
+    "tool": 125,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/Q2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795674213.0850933
+  },
+  {
+    "tool": 126,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/r1875_1875.jpg",
+        "/work/sheets/r1875_2055.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795674228.355477
+  },
+  {
+    "tool": 127,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 getf.py 780,840,900,960,1020,1080 && python3 q.py 780,840,900,960,1020,1080 /work/sheets/Q3.jpg 700"
+    },
+    "error": null,
+    "at_unix": 1795674245.8332138
+  },
+  {
+    "tool": 128,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/Q3.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795674251.5342734
+  },
+  {
+    "tool": 129,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 getf.py 1100,1130,1150,1200,1250,1290 && python3 q.py 1100,1130,1150,1200,1250,1290 /work/sheets/Q4.jpg 700 && python3 big.py RC01 0 1454,1214 /work/sheets/B4.jpg 500"
+    },
+    "error": null,
+    "at_unix": 1795674267.4006946
+  },
+  {
+    "tool": 130,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/Q4.jpg",
+        "/work/sheets/B4.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795674273.1873214
+  },
+  {
+    "tool": 131,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 getf.py 20,40,60,80,100,120,140,160 && python3 q.py 20,40,60,80,100,120,140,160 /work/sheets/U1.jpg 620"
+    },
+    "error": null,
+    "at_unix": 1795674293.0436108
+  },
+  {
+    "tool": 132,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/U1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795674299.268261
+  },
+  {
+    "tool": 133,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 getf.py 1160,1200,1240,1280,1320,1360,1400,1440 && python3 q.py 1160,1200,1240,1280,1320,1360,1400,1440 /work/sheets/F1.jpg 560"
+    },
+    "error": null,
+    "at_unix": 1795674314.0195043
+  },
+  {
+    "tool": 134,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/F1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795674320.0020225
+  },
+  {
+    "tool": 135,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 getf.py 2500,2560,2620,2680,2740,2800,2900,2960 && python3 q.py 2500,2560,2620,2680,2740,2800,2900,2960 /work/sheets/V1.jpg 560"
+    },
+    "error": null,
+    "at_unix": 1795674333.9054468
+  },
+  {
+    "tool": 136,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/V1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795674339.062161
+  },
+  {
+    "tool": 137,
+    "action": "run",
+    "params": {
+      "command": "mkdir -p /work/fig /work/output && cd /work && cat > mkfig.py <<'PYEOF'\nimport os, subprocess, json\nfrom PIL import Image, ImageDraw, ImageFont\nFB='/opt/extra/fonts/NotoSansCJK-Bold.ttc'\nFR='/opt/extra/fonts/NotoSansCJK-Regular.ttc'\ndef ensure(t):\n    p=f'/work/hi/c{t}.jpg'\n    if not os.path.exists(p):\n        subprocess.run(['ffmpeg','-v','error','-ss',str(t),'-i','/input/input/tutorial.mp4','-frames:v','1','-q:v','2',p],check=True)\n    return p\n\ndef mark(im, marks, dash=False):\n    d=ImageDraw.Draw(im); W,H=im.size\n    fb=ImageFont.truetype(FB, int(H*0.048)); fr=ImageFont.truetype(FR, int(H*0.040))\n    for i,(fx,fy,label,tx,ty) in enumerate(marks):\n        cx,cy=fx*W,fy*H; txp,typ=tx*W,ty*H\n        r=max(28,int(H*0.075))\n        d.ellipse([cx-r,cy-r,cx+r,cy+r],outline=(255,215,0),width=max(4,int(H*0.008)))\n        d.line([cx,cy,txp,typ],fill=(255,215,0),width=max(3,int(H*0.006)))\n        tb=d.textbbox((0,0),label,font=fb); tw,th=tb[2]-tb[0],tb[3]-tb[1]\n        bx=txp if txp<W*0.55 else txp-tw-16\n        by=typ-th-16 if typ>H*0.25 else typ+12\n        d.rectangle([bx-8,by-8,bx+tw+8,by+th+14],fill=(255,215,0))\n        d.text((bx,by),label,font=fb,fill=(20,20,20))\n    return im\n\ndef fig(name, t, box, w, marks=(), card=None, transform=None, src_note=''):\n    if card:\n        im=Image.open(card).convert('RGB')\n        if transform=='horizontal_mirror': im=im.transpose(Image.FLIP_LEFT_RIGHT)\n        elif transform=='rotate_180': im=im.transpose(Image.ROTATE_180)\n        im=im.crop(box)\n    else:\n        im=Image.open(ensure(t)).convert('RGB').crop(box)\n    if marks: im=mark(im, marks)\n    im=im.resize((w, int(w*im.size[1]/im.size[0])), Image.LANCZOS)\n    p=f'/work/fig/{name}.jpg'; im.save(p, quality=91)\n    return p\n\nR='/input/input/resume_cards/'\nBIG=(200,60,1720,1060)\nF={}\nF['F01']=fig('F01',40,(430,140,1500,1010),900,[(0.50,0.42,'红面朝上',0.20,0.16)])\nF['F02']=fig('F02',70,(300,120,1620,1020),900,[(0.50,0.55,'对角线（斜边在下）',0.10,0.86)])\nF['F03']=fig('F03',120,(300,150,1620,1020),900,[(0.42,0.60,'翻开后可见对角折痕',0.10,0.88)])\nF['F04']=fig('F04',200,BIG,900)\nF['F05']=fig('F05',420,BIG,900)\nF['F06']=fig('F06',700,BIG,900)\nF['F07']=fig('F07',900,BIG,900)\nF['F08']=fig('F08',1100,BIG,900,[(0.52,0.42,'已翻下的窄三角（指瓣起点）',0.06,0.06)])\nF['F09']=fig('F09',1320,BIG,900,[(0.50,0.45,'指瓣尖端',0.06,0.07),(0.50,0.62,'中央折线',0.62,0.90)])\nF['F10']=fig('F10',1200,(380,300,1180,940),760,[(0.52,0.40,'手指捏住的运动层',0.05,0.06)])\nF['F11']=fig('F11',1680,BIG,900)\nF['F12']=fig('F12',2050,BIG,900,[(0.45,0.45,'臂/翼起始层',0.08,0.08)])\nF['F13']=fig('F13',2350,BIG,900,[(0.50,0.45,'尾部中央长瓣',0.08,0.84)])\nF['F14']=fig('F14',2620,BIG,900,[(0.55,0.45,'头部长瓣',0.06,0.06)])\nF['F15']=fig('F15',2680,BIG,900)\nF['F16']=fig('F16',2750,BIG,900,[(0.30,0.50,'已成的颈部/尾部方向',0.05,0.10)])\nF['F17']=fig('F17',2900,BIG,900,[(0.50,0.45,'颈部窄瓣',0.06,0.86)])\nF['F18']=fig('F18',3220,BIG,900,[(0.55,0.45,'头部侧面小层',0.06,0.06)])\nF['F19']=fig('F19',3520,BIG,900,[(0.40,0.55,'前肢/足层',0.05,0.10)])\nF['F20']=fig('F20',3760,BIG,900,[(0.55,0.40,'翼面纸层',0.06,0.06)])\nF['F21']=fig('F21',3880,BIG,900)\nF['D1']=fig('D1',1320,(520,380,1080,900),760,[(0.50,0.42,'窄瓣顶端（运动层）',0.04,0.05)])\nF['D2']=fig('D2',2620,(600,250,1300,850),760,[(0.52,0.35,'头瓣尖端',0.05,0.06)])\nF['D3']=fig('D3',3760,(700,300,1500,900),760,[(0.50,0.40,'翼面外缘层',0.05,0.06)])\nF['C1a']=fig('C1a',None,(0,0,1380,1080),900,card=R+'RC01_01.png')\nF['C1b']=fig('C1b',None,(0,0,1380,1080),900,[(0.50,0.42,'尖端折痕目标',0.06,0.08)],card=R+'RC01_02.png')\nF['C2a']=fig('C2a',None,(0,0,1380,1080),900,card=R+'RC02_01.png')\nF['C2b']=fig('C2b',None,(0,0,1380,1080),900,[(0.50,0.45,'照片上的目标层',0.06,0.08)],card=R+'RC02_02.png')\nF['C3a']=fig('C3a',None,(0,0,1380,1080),900,card=R+'RC03_01.png')\nF['C3b']=fig('C3b',None,(0,0,1380,1080),900,[(0.50,0.46,'照片上的目标层',0.06,0.08)],card=R+'RC03_02.png')\nF['C4a']=fig('C4a',None,(0,0,1380,1080),900,card=R+'RC04_01.png')\nF['C4b']=fig('C4b',None,(0,0,1380,1080),900,[(0.50,0.45,'翼面目标层',0.06,0.08)],card=R+'RC04_02.png')\nF['C2bF']=fig('C2bF',None,(0,0,1380,1080),600,card=R+'RC02_02.png',transform='horizontal_mirror')\nF['C3bF']=fig('C3bF',None,(0,0,1380,1080),600,card=R+'RC03_02.png',transform='rotate_180')\njson.dump(F,open('/work/fig/index.json','w'))\nprint('figs',len(F))\nPYEOF\npython3 mkfig.py"
+    },
+    "error": null,
+    "at_unix": 1795674392.8583596
+  },
+  {
+    "tool": 138,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/fig/F01.jpg",
+        "/work/fig/F02.jpg",
+        "/work/fig/F08.jpg",
+        "/work/fig/C1b.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795674398.5541987
+  },
+  {
+    "tool": 139,
+    "action": "run",
+    "params": {
+      "command": "cd /work && python3 getf.py 1457,2236,3012,3620 && cat > pair.py <<'EOF'\nimport cv2, numpy as np, sys, json\ncard=sys.argv[1]; idx=int(sys.argv[2]); t=int(sys.argv[3]); out=sys.argv[4]; W=int(sys.argv[5])\ncj=json.load(open('/input/input/resume_cards/cards.json'))\nc=[x for x in cj['cards'] if x['card_id']==card][0]\nim=cv2.imread('/input/input/resume_cards/'+c['images'][idx].split('/')[-1])\nif c['transform']=='horizontal_mirror': im=cv2.flip(im,1)\nelif c['transform']=='rotate_180': im=cv2.rotate(im,cv2.ROTATE_180)\nim=cv2.resize(im,(W,int(W*1080/1380)))\nf=cv2.imread(f'/work/hi/c{t}.jpg')[:,:1380]\nf=cv2.resize(f,(W,int(W*1080/1380)))\ncv2.putText(im,'CARD '+card, (10,30),0,0.8,(0,255,255),2)\ncv2.putText(f,f'VIDEO {t}s', (10,30),0,0.8,(0,255,255),2)\ncv2.imwrite(out,np.hstack([im,f])); print(out)\nEOF\npython3 pair.py RC01 1 1457 /work/sheets/P1.jpg 620 && python3 pair.py RC02 1 2236 /work/sheets/P2.jpg 620 && python3 pair.py RC03 1 3012 /work/sheets/P3.jpg 620 && python3 pair.py RC04 1 3620 /work/sheets/P4.jpg 620"
+    },
+    "error": null,
+    "at_unix": 1795674410.483754
+  },
+  {
+    "tool": 140,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/sheets/P3.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795674416.463991
+  }
+]

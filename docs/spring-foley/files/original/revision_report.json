@@ -1,0 +1,125 @@
+{
+  "version": 2,
+  "change": "AMB only. No foreground repairs, no new or moved clips, no new recordings, no picture changes.",
+  "timeline_seconds": 150,
+  "sample_rate": 48000,
+  "automation": {
+    "track": "AMB / folder bus",
+    "parameter": "Volume",
+    "interpolation": "Linear amplitude",
+    "points_time_s_db": [
+      [
+        0,
+        0
+      ],
+      [
+        29.5,
+        0
+      ],
+      [
+        30,
+        -4
+      ],
+      [
+        100,
+        -4
+      ],
+      [
+        100.5,
+        0
+      ],
+      [
+        150,
+        0
+      ]
+    ]
+  },
+  "comparisons": {
+    "amb_windows": [
+      {
+        "start_s": 5,
+        "end_s": 25,
+        "v1_dbfs_rms": -30.887435,
+        "v2_dbfs_rms": -30.887435,
+        "delta_db": 0.0,
+        "pcm_identical": true
+      },
+      {
+        "start_s": 35,
+        "end_s": 95,
+        "v1_dbfs_rms": -28.724816,
+        "v2_dbfs_rms": -32.724816,
+        "delta_db": -4.0,
+        "pcm_identical": false
+      },
+      {
+        "start_s": 110,
+        "end_s": 145,
+        "v1_dbfs_rms": -32.546635,
+        "v2_dbfs_rms": -32.546635,
+        "delta_db": 0.0,
+        "pcm_identical": true
+      }
+    ],
+    "foreground_stems": [
+      {
+        "bus": "FOLEY_HUMAN",
+        "pcm_identical": true,
+        "v1_dbfs_rms": -35.859355,
+        "v2_dbfs_rms": -35.859355,
+        "sample_frames": 7200000
+      },
+      {
+        "bus": "FOLEY_PROPS",
+        "pcm_identical": true,
+        "v1_dbfs_rms": -43.572923,
+        "v2_dbfs_rms": -43.572923,
+        "sample_frames": 7200000
+      },
+      {
+        "bus": "CREATURE",
+        "pcm_identical": true,
+        "v1_dbfs_rms": -28.350744,
+        "v2_dbfs_rms": -28.350744,
+        "sample_frames": 7200000
+      },
+      {
+        "bus": "SFX",
+        "pcm_identical": true,
+        "v1_dbfs_rms": -26.670032,
+        "v2_dbfs_rms": -26.670032,
+        "sample_frames": 7200000
+      }
+    ],
+    "stem_sum": {
+      "residual_peak_dbfs": -132.453,
+      "samples_per_channel": 7200000
+    }
+  },
+  "measurements": {
+    "v1_mix": {
+      "lufs_i": -20.8,
+      "true_peak_dbtp": -1.8,
+      "lra_lu": 9.8
+    },
+    "v2_mix": {
+      "lufs_i": -21.2,
+      "true_peak_dbtp": -1.7,
+      "lra_lu": 10.7
+    },
+    "v2_final_mp4_audio": {
+      "lufs_i": -21.2,
+      "true_peak_dbtp": -1.7,
+      "lra_lu": 10.7
+    }
+  },
+  "export": {
+    "engine": "REAPER 7.85; Shotcut/MLT avformat (five-stem additive conform).",
+    "fps": "24/1",
+    "width": 1920,
+    "height": 804,
+    "frames": 3600,
+    "duration_seconds": 150.0,
+    "audio": "AAC stereo 48000 Hz; end padding trimmed by MP4 presentation edit."
+  }
+}

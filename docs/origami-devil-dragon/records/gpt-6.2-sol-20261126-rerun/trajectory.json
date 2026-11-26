@@ -1,0 +1,2112 @@
+[
+  {
+    "tool": 1,
+    "action": "run",
+    "params": {
+      "command": "ls -lR /input; cat /input/input/source_record.json /input/input/resume_cards/cards.json /input/evidence.schema.json /input/RUBRIC.md; ls -R /opt/extra/fonts",
+      "timeout": 20
+    },
+    "error": null,
+    "at_unix": 1795624887.158754
+  },
+  {
+    "tool": 2,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/input/input/resume_cards/RC01_01.png",
+        "/input/input/resume_cards/RC01_02.png",
+        "/input/input/resume_cards/RC02_01.png",
+        "/input/input/resume_cards/RC02_02.png",
+        "/input/input/resume_cards/RC03_01.png",
+        "/input/input/resume_cards/RC03_02.png",
+        "/input/input/resume_cards/RC04_01.png",
+        "/input/input/resume_cards/RC04_02.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795624891.9149647
+  },
+  {
+    "tool": 3,
+    "action": "run",
+    "params": {
+      "command": "mkdir -p /work/{output,assets}; cd /work; ffmpeg -hide_banner -loglevel error -threads 4 -i /input/input/tutorial.mp4 -vf 'fps=2:start_time=0,crop=1380:1080:0:0,scale=46:36' -pix_fmt rgb24 -f rawvideo /work/small.raw & ffmpeg -hide_banner -loglevel error -threads 4 -i /input/input/tutorial.mp4 -vf 'fps=1:start_time=0,crop=540:1080:1380:0,scale=108:216' -pix_fmt rgb24 -f rawvideo /work/diags.raw & wait",
+      "timeout": 180
+    },
+    "error": null,
+    "at_unix": 1795625080.6704001
+  },
+  {
+    "tool": 4,
+    "action": "run",
+    "params": {
+      "command": "ls -lh /work/*.raw; ffprobe -v error -show_entries stream=codec_name,r_frame_rate -of compact /input/input/tutorial.mp4; ps aux | grep ffmpeg"
+    },
+    "error": null,
+    "at_unix": 1795625085.6547313
+  },
+  {
+    "tool": 5,
+    "action": "run",
+    "params": {
+      "command": "cd /work; cat > find.py <<'PY'\nimport os\nfrom PIL import Image\nimport numpy as np\nf=np.memmap('small.raw',mode='r',dtype='uint8',shape=(os.path.getsize('small.raw')//4968,36,46,3)); print(len(f))\nfrom glob import glob\nfor p in sorted(glob('/input/input/resume_cards/*.png')):\n i=Image.open(p).convert('RGB'); id=p.split('/')[-1];\n if id[3]=='2':i=i.transpose(Image.Transpose.FLIP_LEFT_RIGHT)\n if id[3]=='3':i=i.transpose(Image.Transpose.ROTATE_180)\n a=np.array(i.resize((46,36))).astype(np.float32); d=np.abs(f-a).mean(axis=(1,2,3)); print(id,[(j/2,round(float(d[j]),1)) for j in np.argsort(d)[:7]])\nfrom itertools import groupby\nraw=np.memmap('diags.raw',mode='r',dtype='uint8',shape=(os.path.getsize('diags.raw')//69984,216,108,3)); print('diag',len(raw)); delta=np.abs(raw[1:].astype('int16')-raw[:-1]).mean(axis=(1,2,3));\nfor lim in [0.4,1,2]:\n out=[]; last=0\n for j in np.where(delta>lim)[0]+1:\n  if j-last>=4:out.append((last,j));\n  last=j\n print(lim,len(out),out[:30]);\nPY\npython find.py",
+      "timeout": 20
+    },
+    "error": null,
+    "at_unix": 1795625098.5310774
+  },
+  {
+    "tool": 6,
+    "action": "run",
+    "params": {
+      "command": "cd /work; sed -i 's/Image.Transpose./Image./g' find.py; python find.py; ffmpeg -hide_banner -loglevel error -ss 2850 -threads 4 -i /input/input/tutorial.mp4 -vf 'fps=2:start_time=0,crop=1380:1080:0:0,scale=46:36' -pix_fmt rgb24 -f rawvideo /work/small2.raw & ffmpeg -hide_banner -loglevel error -ss 2900 -threads 4 -i /input/input/tutorial.mp4 -vf 'fps=1:start_time=0,crop=540:1080:1380:0,scale=108:216' -pix_fmt rgb24 -f rawvideo /work/diags2.raw & wait",
+      "timeout": 135
+    },
+    "error": null,
+    "at_unix": 1795625175.7187562
+  },
+  {
+    "tool": 7,
+    "action": "run",
+    "params": {
+      "command": "cd /work; sed -i '/from itertools/,$d' find.py; sed -i '/from glob/i f=np.concatenate((f[:5700],np.fromfile(\"small2.raw\",dtype=\"uint8\").reshape(-1,36,46,3)))' find.py; python find.py; cat > extract.py <<'PY'\nfrom PIL import Image,ImageDraw,ImageFont\nimport os, numpy as np, subprocess,sys,concurrent.futures\nos.chdir('/work')\nvideo='/input/input/tutorial.mp4'\ndef frame(t):\n p=f'/work/assets/{t:g}.jpg'\n if not os.path.exists(p):subprocess.run(['ffmpeg','-v','error','-ss',str(t),'-threads','2','-i',video,'-frames:v','1','-q:v','3','-threads','1','-y',p],check=True)\n return p\ndef montage(times,path,box=(1380,0,1920,1080),w=210,h=235,n=6):\n with concurrent.futures.ThreadPoolExecutor(5) as e: paths=list(e.map(frame,times))\n o=Image.new('RGB',(w*n,(h+20)*((len(times)+n-1)//n)),'#e8eef0'); d=ImageDraw.Draw(o)\n for k,(t,p) in enumerate(zip(times,paths)):\n  a=Image.open(p).crop(box); a.thumbnail((w-2,h)); x=k%n*w;y=k//n*(h+20); o.paste(a,(x+(w-a.width)//2,y));d.text((x+5,y+h+3),f'{t:g}  {int(t)//60:02}:{t%60:04.1f}',fill='black')\n o.save(path,quality=93)\nif __name__=='__main__':\n mode=sys.argv[1]; times=list(map(float,sys.argv[3:])); cfg={'d':((1380,0,1920,1080),210,340,7),'p':((0,0,1380,1080),294,230,6),'f':((0,0,1920,1080),435,245,4)}[mode]; montage(times,'/work/'+sys.argv[2]+'.jpg',*cfg)\nPY\npython extract.py d init 40 60 100 140 175 215 250 285 320 360 400 450 500 550 600 650 700 750 800 850 900 950 1000 1050 1100 1145",
+      "timeout": 50
+    },
+    "error": null,
+    "at_unix": 1795625204.8595738
+  },
+  {
+    "tool": 8,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/init.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795625209.0645044
+  },
+  {
+    "tool": 9,
+    "action": "run",
+    "params": {
+      "command": "cd /work; sed -i \"s/(1380,0,1920,1080),210,340,7/(1380,0,1920,720),190,245,8/\" extract.py; cat > many.sh <<'SH'\npython extract.py d A $(seq 47 9 345) &\npython extract.py d B $(seq 344 12 704) &\npython extract.py d C $(seq 705 12 1149) &\npython extract.py d D $(seq 1150 13 1565) &\npython extract.py d E $(seq 1874 12 2246) &\npython extract.py d F $(seq 2246 12 2678) &\npython extract.py d G $(seq 2678 11 3074) &\npython extract.py d H $(seq 3076 10 3406) &\npython extract.py d I $(seq 3406 10 3866) &\nwait\nSH\nbash many.sh",
+      "timeout": 175
+    },
+    "error": null,
+    "at_unix": 1795625247.4378304
+  },
+  {
+    "tool": 10,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/A.jpg",
+        "/work/B.jpg",
+        "/work/C.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795625252.2909908
+  },
+  {
+    "tool": 11,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/D.jpg",
+        "/work/E.jpg",
+        "/work/F.jpg",
+        "/work/G.jpg",
+        "/work/H.jpg",
+        "/work/I.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795625259.3053207
+  },
+  {
+    "tool": 12,
+    "action": "run",
+    "params": {
+      "command": "cd /work; python extract.py f A0 37 44 62 78 96 112 128 145 166 181 194 212 220 237 257 265 278 291 302 321 336 354 367 397 & python extract.py f B0 410 418 429 442 455 470 483 496 510 525 533 541 550 559 570 580 594 609 619 632 645 657 667 675 & python extract.py f C0 680 691 702 713 722 732 742 753 766 780 790 806 820 839 853 866 883 902 917 937 960 985 1007 1017 & wait",
+      "timeout": 80
+    },
+    "error": null,
+    "at_unix": 1795625278.0886722
+  },
+  {
+    "tool": 13,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/A0.jpg",
+        "/work/B0.jpg",
+        "/work/C0.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795625287.3492253
+  },
+  {
+    "tool": 14,
+    "action": "run",
+    "params": {
+      "command": "cd /work; python extract.py f R1 1454 1457.5 1459 1462 1466 1470 1475 1481 1485 1490 1496 1505 & python extract.py f R2 2189.5 2211 2225 2235 2238 2242 2246 2252 2258 2263 2268 2274 2280 2286 2294 2306 & python extract.py f R3 3057.5 3063 3073 3078 3082 3085 3089 3092 3096 3102 3106 3110 3116 3125 3135 3146 3156 3175 3200 3245 & python extract.py f R4 3600 3606 3613 3619 3620 3623 3626 3629 3633 3636 3641 3646 3650 3656 3665 3675 & wait; python - <<'PY'\nfrom PIL import Image\nfrom glob import glob\nfor p in sorted(glob('/input/input/resume_cards/*.png')):\n i=Image.open(p);print(p,i.size);i.thumbnail((650,510));i.save('/work/'+p.split('/')[-1])\nPY",
+      "timeout": 45
+    },
+    "error": null,
+    "at_unix": 1795625311.578354
+  },
+  {
+    "tool": 15,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/R1.jpg",
+        "/work/R2.jpg",
+        "/work/R3.jpg",
+        "/work/R4.jpg",
+        "/work/RC01_02.png",
+        "/work/RC02_02.png",
+        "/work/RC03_02.png",
+        "/work/RC04_02.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795625322.5414221
+  },
+  {
+    "tool": 16,
+    "action": "frames",
+    "params": {
+      "path": "/input/input/tutorial.mp4",
+      "times": [
+        16,
+        44,
+        78,
+        98,
+        112,
+        119,
+        139,
+        145,
+        166,
+        185,
+        197,
+        232
+      ],
+      "contact_sheet": false
+    },
+    "error": null,
+    "at_unix": 1795625347.673302
+  },
+  {
+    "tool": 17,
+    "action": "run",
+    "params": {
+      "command": "cd /work; cat > peek.py <<'PY'\nfrom extract import *\nkey=sys.argv[1]; times=list(map(float,sys.argv[2:])); box=(1300,0,1910,670) if key[0]!='z' else (0,0,1920,1080); montage(times,'/work/'+key+'.jpg',box,280 if key[0]!='z' else 430,307 if key[0]!='z' else 242,6 if key[0]!='z' else 4)\nPY\npython peek.py p01 52 220 243 259 274 289 302 312 331 351 364 376 401 416 469 535 546 556 567 582 611 623 655 722 737 747 757 766 777 795 & python peek.py p02 815 838 845 859 870 887 905 916 929 944 956 976 991 1009 1029 1040 1053 1070 1084 1100 1110 1120 1138 1147 & python extract.py f z2 1026 1036 1045 1053 1065 1077 1090 1100 1110 1120 1127 1138 1147 1158 1166 1175 1192 1205 1212 1230 1250 1258 1287 1315 & wait",
+      "timeout": 60
+    },
+    "error": null,
+    "at_unix": 1795625376.4403908
+  },
+  {
+    "tool": 18,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/p01.jpg",
+        "/work/p02.jpg",
+        "/work/z2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795625389.7654088
+  },
+  {
+    "tool": 19,
+    "action": "run",
+    "params": {
+      "command": "cd /work; python extract.py f edge1 148 154 165 170 176 185 196 203 216 221 225 232 240 247 258 269 275 283 296 302 312 323 341 349 & python extract.py f edge2 358 370 379 392 402 409 419 424 433 445 450 461 468 478 491 496 502 516 527 541 552 558 570 581 & python extract.py f edge3 585 590 598 605 615 621 629 639 652 661 669 678 690 704 716 725 730 740 752 763 778 782 798 808 & wait; ls /opt/extra/fonts; tail -25 /input/RUBRIC.md",
+      "timeout": 50
+    },
+    "error": null,
+    "at_unix": 1795625415.856298
+  },
+  {
+    "tool": 20,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/edge1.jpg",
+        "/work/edge2.jpg",
+        "/work/edge3.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795625428.6321912
+  },
+  {
+    "tool": 21,
+    "action": "run",
+    "params": {
+      "command": "cd /work; python peek.py pOffset 145 177 195 197 225 240 259 270 274 296 303 312 349 409 534 555 568 661; python extract.py f base2 811 823 832 844 851 858 865 875 884 890 895 902 908 914 923 931 939 949 962 977 989 999 1011 1022",
+      "timeout": 60
+    },
+    "error": null,
+    "at_unix": 1795625454.255456
+  },
+  {
+    "tool": 22,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/pOffset.jpg",
+        "/work/base2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795625466.278332
+  },
+  {
+    "tool": 23,
+    "action": "run",
+    "params": {
+      "command": "cd /work; python peek.py zFing 1159 1165 1170 1180 1191 1198 1213 1221 1237 1247 1253 1263 1271 1280 1289 1298 1307 1319 1328 1338 1349 1360 1370 1384 1396 1406 1418 1427 1437 1446 1454 1457.5 & python peek.py zRet 1457.5 1463 1468 1474 1479 1485 1493 1500 1510 1518 1525 1535 1546 1555 1565 1583 1601 1630 1852 1870 1878 1888 1898 1911 & wait",
+      "timeout": 75
+    },
+    "error": null,
+    "at_unix": 1795625493.832778
+  },
+  {
+    "tool": 24,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/zFing.jpg",
+        "/work/zRet.jpg",
+        "/work/RC01_02.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795625505.4033537
+  },
+  {
+    "tool": 25,
+    "action": "run",
+    "params": {
+      "command": "cd /work; python extract.py f init0 22 34 40 47 55 63 68 74 82 88 94 101 108 113 121 126 132 136 142 149; python peek.py pFing 1152 1166 1210 1244 1258 1278 1312 1327 1344 1361 1387 1405 1423 1440 1455 1466 1474 1482",
+      "timeout": 50
+    },
+    "error": null,
+    "at_unix": 1795625525.6357794
+  },
+  {
+    "tool": 26,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/init0.jpg",
+        "/work/pFing.jpg",
+        "/work/R2.jpg",
+        "/work/R3.jpg",
+        "/work/R4.jpg",
+        "/work/RC02_02.png",
+        "/work/RC03_02.png",
+        "/work/RC04_02.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795625537.2944157
+  },
+  {
+    "tool": 27,
+    "action": "run",
+    "params": {
+      "command": "cd /work; python extract.py f w1 1915 1922 1932 1942 1952 1962 1972 1982 1990 1999 2009 2019 2030 2040 2050 2061 2072 2082 2092 2102 2112 2123 2135 2145 2157 2168 2179 2194 2215 2234 & python extract.py f t1 2287 2297 2310 2320 2330 2340 2350 2362 2370 2381 2390 2402 2411 2420 2426 2434 2443 2453 2461 2470 2480 2491 2503 2515 2527 2537 2549 2561 2571 2582 2593 2604 2614 2625 2635 2646 2657 2668 & python extract.py f n1 2675 2685 2695 2705 2715 2725 2735 2745 2755 2765 2775 2784 2795 2805 2815 2825 2835 2845 2855 2865 2875 2885 2895 2905 2915 2925 2935 2945 2955 2965 2975 2985 2995 3005 3015 3025 3035 3045 3055 3065 & python extract.py f end1 3210 3230 3250 3260 3270 3280 3290 3300 3310 3320 3330 3340 3350 3360 3370 3380 3390 3400 3410 3420 3430 3440 3450 3460 3470 3480 3490 3500 3510 3520 3530 3540 3550 3560 3570 3580 3590 3600 3610 3620 & python extract.py f end2 3660 3670 3680 3690 3700 3710 3720 3730 3740 3750 3760 3770 3780 3790 3800 3810 3820 3830 3840 3850 3860 3870 3880 3890 & wait",
+      "timeout": 100
+    },
+    "error": null,
+    "at_unix": 1795625577.3873637
+  },
+  {
+    "tool": 28,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/w1.jpg",
+        "/work/t1.jpg",
+        "/work/n1.jpg",
+        "/work/end1.jpg",
+        "/work/end2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795625588.4462879
+  },
+  {
+    "tool": 29,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/assets/126.jpg",
+        "/work/assets/177.jpg",
+        "/work/assets/195.jpg",
+        "/work/assets/409.jpg",
+        "/work/assets/496.jpg",
+        "/work/assets/555.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795625612.755932
+  },
+  {
+    "tool": 30,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/edge1.jpg",
+        "/work/edge2.jpg",
+        "/work/edge3.jpg",
+        "/work/base2.jpg",
+        "/work/z2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795625631.7777624
+  },
+  {
+    "tool": 31,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/pOffset.jpg",
+        "/work/p01.jpg",
+        "/work/p02.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795625653.7172737
+  },
+  {
+    "tool": 32,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/init0.jpg",
+        "/work/zFing.jpg",
+        "/work/zRet.jpg",
+        "/work/R1.jpg",
+        "/work/RC01_02.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795625668.4512763
+  },
+  {
+    "tool": 33,
+    "action": "run",
+    "params": {
+      "command": "cd /work; python peek.py pGrid 90 97 106 115 126 185 193 200 233 239 265 269 278 303 310 318 332 338 346 358 365 409 418 433 450 466 575 598 637 669 685 706 726 738 744 757 779 789 798 804 812 821",
+      "timeout": 30
+    },
+    "error": null,
+    "at_unix": 1795625704.8006458
+  },
+  {
+    "tool": 34,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/pGrid.jpg",
+        "/work/R2.jpg",
+        "/work/R3.jpg",
+        "/work/R4.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795625719.0420105
+  },
+  {
+    "tool": 35,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/RC02_02.png",
+        "/work/RC03_02.png",
+        "/work/RC04_02.png",
+        "/work/w1.jpg",
+        "/work/t1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795625734.5394654
+  },
+  {
+    "tool": 36,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/assets/126.jpg",
+        "/work/assets/149.jpg",
+        "/work/assets/145.jpg",
+        "/work/assets/176.jpg",
+        "/work/assets/185.jpg",
+        "/work/assets/195.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795625760.6081703
+  },
+  {
+    "tool": 37,
+    "action": "run",
+    "params": {
+      "command": "cd /work; python extract.py f first 150 157 162 170 179 186 191 198 206 213 219 227 233 239 246 252 259 264 272 278 283 288 294 300 307 313 319 325 333 340 345 354 & python extract.py f band 362 371 378 386 397 406 415 421 428 443 453 460 473 482 497 511 523 532 542 551 561 572 580 586 593 600 606 613 625 636 651 665 & wait",
+      "timeout": 45
+    },
+    "error": null,
+    "at_unix": 1795625794.653562
+  },
+  {
+    "tool": 38,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/first.jpg",
+        "/work/band.jpg",
+        "/work/edge3.jpg",
+        "/work/base2.jpg",
+        "/work/z2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795625809.1163974
+  },
+  {
+    "tool": 39,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/init0.jpg",
+        "/work/assets/409.jpg",
+        "/work/assets/496.jpg",
+        "/work/assets/555.jpg",
+        "/work/assets/568.jpg",
+        "/work/assets/1053.jpg",
+        "/work/assets/1077.jpg",
+        "/work/assets/1110.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795625831.2087803
+  },
+  {
+    "tool": 40,
+    "action": "run",
+    "params": {
+      "command": "cd /work; cat > dx.py <<'PY'\nfrom extract import *\nkey=sys.argv[1]; times=list(map(float,sys.argv[2:])); montage(times,'/work/'+key+'.jpg',(1330,37,1878,650),315,338,5)\nPY\npython dx.py initGuide 195 200 221 239 265 269 278 303 310 330 356 364 415 469 555 568 576 624 667 726 738 747 757 766 782 795 815 845 870 890 916 929 956 976 991 1009 1029 1053 1084 1110 1147",
+      "timeout": 50
+    },
+    "error": null,
+    "at_unix": 1795625856.6595328
+  },
+  {
+    "tool": 41,
+    "action": "run",
+    "params": {
+      "command": "cd /work; python - <<'PY'\nfrom PIL import Image\np=Image.open('initGuide.jpg'); print(p.size)\nfor j in range(3):p.crop((0,j*1074,p.width,min(p.height,(j+1)*1074))).save('IG%d.jpg'%j)\nPY"
+    },
+    "error": null,
+    "at_unix": 1795625875.1108758
+  },
+  {
+    "tool": 42,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/IG0.jpg",
+        "/work/IG1.jpg",
+        "/work/IG2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795625889.208372
+  },
+  {
+    "tool": 43,
+    "action": "run",
+    "params": {
+      "command": "cd /work; python extract.py f cent1 216 222 225 228 230 233 235 237 239 241 247 252 259 262 264 266 268 270 272 276 287 292 298 304 307 310 315 322 330 336 344 348; python extract.py f redge 412 421 428 434 440 445 452 459 465 473 483 489 496 505 511 519 524 532 540 548 554 565 572 580 587 592 600 604 609 618 628 637 648 658 668 676 687 693 701 713",
+      "timeout": 45
+    },
+    "error": null,
+    "at_unix": 1795625920.117554
+  },
+  {
+    "tool": 44,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/cent1.jpg",
+        "/work/redge.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795625935.1129344
+  },
+  {
+    "tool": 45,
+    "action": "run",
+    "params": {
+      "command": "cd /work; python extract.py f precis1 75 79 84 91 98 104 112 119 124 128 132 138 140 146 151 153 155 159 161 163 165 169 172 174 177 182 185 188 192 195 199 205; python extract.py f precis2 1139 1145 1150 1154 1160 1165 1168 1172 1177 1182 1187 1193 1199 1203 1207 1212 1217 1222 1227 1233 1237 1242 1247 1252 1256 1260 1266 1272 1278 1284 1290 1296",
+      "timeout": 45
+    },
+    "error": null,
+    "at_unix": 1795625966.4885447
+  },
+  {
+    "tool": 46,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/precis1.jpg",
+        "/work/precis2.jpg",
+        "/work/zFing.jpg",
+        "/work/zRet.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795625980.6871498
+  },
+  {
+    "tool": 47,
+    "action": "run",
+    "params": {
+      "command": "cd /work; cat > tight.py <<'PY'\nfrom extract import *\nkey=sys.argv[1]; box=tuple(map(int,sys.argv[2].split(','))); times=list(map(float,sys.argv[3:])); montage(times,'/work/'+key+'.jpg',box,340,273,5)\nPY\npython tight.py fd1 1490,30,1885,345 1166 1217 1233 1244 1278 1312 1327 1344 1361 1387 1405 1423 1440 1455 1474; python tight.py cs1 1250,25,1895,550 146 155 174 185 195 222 241 272 298 310 350 365 415 498 554\npython tight.py cs2 1270,30,1895,580 717 726 738 755 766 795 815 845 870 890 916 929 956 976 991 1009 1029 1053 1084 1110",
+      "timeout": 30
+    },
+    "error": null,
+    "at_unix": 1795626009.7138386
+  },
+  {
+    "tool": 48,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/fd1.jpg",
+        "/work/cs1.jpg",
+        "/work/cs2.jpg",
+        "/work/R1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626023.4914172
+  },
+  {
+    "tool": 49,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/init0.jpg",
+        "/work/assets/126.jpg",
+        "/work/assets/177.jpg",
+        "/work/assets/409.jpg",
+        "/work/assets/1053.jpg",
+        "/work/assets/1110.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626042.0509968
+  },
+  {
+    "tool": 50,
+    "action": "run",
+    "params": {
+      "command": "cd /work; python extract.py f rim 347 350 353 356 360 364 368 372 376 380 384 388 392 396 400 404 408 412 416 421 426 432 439 447; python extract.py f crown 661 667 675 682 690 697 703 711 718 724 730 735 740 745 750 755 760 765 771 776 782 789 797 802 807 812; python extract.py f sbase 1017 1027 1036 1044 1054 1061 1068 1076 1084 1089 1094 1098 1103 1108 1113 1118 1124 1128 1133 1138 1143 1148",
+      "timeout": 50
+    },
+    "error": null,
+    "at_unix": 1795626074.3052354
+  },
+  {
+    "tool": 51,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/rim.jpg",
+        "/work/crown.jpg",
+        "/work/sbase.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626088.2022078
+  },
+  {
+    "tool": 52,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/cent1.jpg",
+        "/work/redge.jpg",
+        "/work/edge3.jpg",
+        "/work/base2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626122.8453808
+  },
+  {
+    "tool": 53,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/assets/193.jpg",
+        "/work/assets/200.jpg",
+        "/work/assets/233.jpg",
+        "/work/assets/239.jpg",
+        "/work/assets/265.jpg",
+        "/work/assets/310.jpg",
+        "/work/assets/541.jpg",
+        "/work/assets/555.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626148.6278846
+  },
+  {
+    "tool": 54,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/precis1.jpg",
+        "/work/cs1.jpg",
+        "/work/cs2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626177.1427135
+  },
+  {
+    "tool": 55,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/init0.jpg",
+        "/work/assets/126.jpg",
+        "/work/assets/44.jpg",
+        "/work/assets/40.jpg",
+        "/work/assets/568.jpg",
+        "/work/assets/573.jpg"
+      ]
+    },
+    "error": "FileNotFoundError: [Errno 2] No such file or directory: '[private archive path]",
+    "at_unix": 1795626197.9451754
+  },
+  {
+    "tool": 56,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/init0.jpg",
+        "/work/assets/126.jpg",
+        "/work/assets/44.jpg",
+        "/work/assets/40.jpg",
+        "/work/assets/568.jpg",
+        "/work/assets/572.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626214.3108683
+  },
+  {
+    "tool": 57,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/rim.jpg",
+        "/work/sbase.jpg",
+        "/work/fd1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626237.1155632
+  },
+  {
+    "tool": 58,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/cent1.jpg",
+        "/work/redge.jpg",
+        "/work/edge3.jpg",
+        "/work/crown.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626261.2164323
+  },
+  {
+    "tool": 59,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/zFing.jpg",
+        "/work/zRet.jpg",
+        "/work/R1.jpg",
+        "/work/RC01_02.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626291.214449
+  },
+  {
+    "tool": 60,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/precis1.jpg",
+        "/work/base2.jpg",
+        "/work/IG2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626319.7794514
+  },
+  {
+    "tool": 61,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/init0.jpg",
+        "/work/assets/126.jpg",
+        "/work/assets/177.jpg",
+        "/work/assets/193.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626341.3363643
+  },
+  {
+    "tool": 62,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/IG0.jpg",
+        "/work/IG1.jpg",
+        "/work/sbase.jpg",
+        "/work/fd1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626365.9627376
+  },
+  {
+    "tool": 63,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/cent1.jpg",
+        "/work/redge.jpg",
+        "/work/edge3.jpg",
+        "/work/crown.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626393.9755523
+  },
+  {
+    "tool": 64,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/zFing.jpg",
+        "/work/zRet.jpg",
+        "/work/R1.jpg",
+        "/work/RC01_02.png",
+        "/work/rim.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626409.562743
+  },
+  {
+    "tool": 65,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/precis1.jpg",
+        "/work/IG2.jpg",
+        "/work/base2.jpg",
+        "/work/w1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626438.966653
+  },
+  {
+    "tool": 66,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/init0.jpg",
+        "/work/assets/44.jpg",
+        "/work/assets/126.jpg",
+        "/work/assets/185.jpg",
+        "/work/assets/409.jpg",
+        "/work/assets/555.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626464.307864
+  },
+  {
+    "tool": 67,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/IG0.jpg",
+        "/work/IG1.jpg",
+        "/work/sbase.jpg",
+        "/work/fd1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626496.248185
+  },
+  {
+    "tool": 68,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/cent1.jpg",
+        "/work/redge.jpg",
+        "/work/edge3.jpg",
+        "/work/crown.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626514.3975887
+  },
+  {
+    "tool": 69,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/assets/155.jpg",
+        "/work/assets/162.jpg",
+        "/work/assets/174.jpg",
+        "/work/assets/193.jpg",
+        "/work/assets/241.jpg",
+        "/work/assets/272.jpg",
+        "/work/assets/310.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626541.6820986
+  },
+  {
+    "tool": 70,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/base2.jpg",
+        "/work/IG2.jpg",
+        "/work/edge2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626571.009793
+  },
+  {
+    "tool": 71,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/init0.jpg",
+        "/work/precis1.jpg",
+        "/work/rim.jpg",
+        "/work/zFing.jpg",
+        "/work/zRet.jpg",
+        "/work/R1.jpg",
+        "/work/RC01_02.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626589.8395953
+  },
+  {
+    "tool": 72,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/R2.jpg",
+        "/work/R3.jpg",
+        "/work/R4.jpg",
+        "/work/RC02_02.png",
+        "/work/RC03_02.png",
+        "/work/RC04_02.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626624.1190474
+  },
+  {
+    "tool": 73,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/cent1.jpg",
+        "/work/edge3.jpg",
+        "/work/crown.jpg",
+        "/work/sbase.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626650.7719722
+  },
+  {
+    "tool": 74,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/w1.jpg",
+        "/work/t1.jpg",
+        "/work/n1.jpg",
+        "/work/end1.jpg",
+        "/work/end2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626678.4932826
+  },
+  {
+    "tool": 75,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/IG0.jpg",
+        "/work/IG1.jpg",
+        "/work/IG2.jpg",
+        "/work/redge.jpg",
+        "/work/base2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626718.5059159
+  },
+  {
+    "tool": 76,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/init0.jpg",
+        "/work/precis1.jpg",
+        "/work/rim.jpg",
+        "/work/fd1.jpg",
+        "/work/zRet.jpg",
+        "/work/RC01_02.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626739.8220234
+  },
+  {
+    "tool": 77,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/assets/84.jpg",
+        "/work/assets/104.jpg",
+        "/work/assets/119.jpg",
+        "/work/assets/155.jpg",
+        "/work/assets/185.jpg",
+        "/work/assets/555.jpg",
+        "/work/assets/1084.jpg",
+        "/work/assets/1110.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626769.560547
+  },
+  {
+    "tool": 78,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/cent1.jpg",
+        "/work/crown.jpg",
+        "/work/sbase.jpg",
+        "/work/precis2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626803.1400278
+  },
+  {
+    "tool": 79,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/assets/200.jpg",
+        "/work/assets/241.jpg",
+        "/work/assets/272.jpg",
+        "/work/assets/310.jpg",
+        "/work/assets/568.jpg",
+        "/work/assets/576.jpg",
+        "/work/assets/667.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626833.2504473
+  },
+  {
+    "tool": 80,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/IG0.jpg",
+        "/work/IG1.jpg",
+        "/work/IG2.jpg",
+        "/work/redge.jpg",
+        "/work/base2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626865.8468654
+  },
+  {
+    "tool": 81,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/init0.jpg",
+        "/work/precis1.jpg",
+        "/work/rim.jpg",
+        "/work/edge3.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626890.22926
+  },
+  {
+    "tool": 82,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/assets/124.jpg",
+        "/work/assets/155.jpg",
+        "/work/assets/177.jpg",
+        "/work/assets/185.jpg",
+        "/work/assets/445.jpg",
+        "/work/assets/465.jpg",
+        "/work/assets/555.jpg",
+        "/work/assets/795.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626924.1798856
+  },
+  {
+    "tool": 83,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/cent1.jpg",
+        "/work/crown.jpg",
+        "/work/sbase.jpg",
+        "/work/zFing.jpg",
+        "/work/zRet.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626954.2212489
+  },
+  {
+    "tool": 84,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/fd1.jpg",
+        "/work/R1.jpg",
+        "/work/RC01_02.png",
+        "/work/w1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795626988.5172057
+  },
+  {
+    "tool": 85,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/R2.jpg",
+        "/work/R3.jpg",
+        "/work/R4.jpg",
+        "/work/RC02_02.png",
+        "/work/RC03_02.png",
+        "/work/RC04_02.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627013.18868
+  },
+  {
+    "tool": 86,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/precis1.jpg",
+        "/work/rim.jpg",
+        "/work/IG1.jpg",
+        "/work/base2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627036.1903458
+  },
+  {
+    "tool": 87,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/init0.jpg",
+        "/work/IG0.jpg",
+        "/work/redge.jpg",
+        "/work/IG2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627058.795535
+  },
+  {
+    "tool": 88,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/assets/119.jpg",
+        "/work/assets/126.jpg",
+        "/work/assets/136.jpg",
+        "/work/assets/155.jpg",
+        "/work/assets/174.jpg",
+        "/work/assets/185.jpg",
+        "/work/cent1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627087.5866473
+  },
+  {
+    "tool": 89,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/crown.jpg",
+        "/work/sbase.jpg",
+        "/work/fd1.jpg",
+        "/work/zRet.jpg",
+        "/work/RC01_02.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627116.4704216
+  },
+  {
+    "tool": 90,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/R1.jpg",
+        "/work/R2.jpg",
+        "/work/R3.jpg",
+        "/work/R4.jpg",
+        "/work/RC02_02.png",
+        "/work/RC03_02.png",
+        "/work/RC04_02.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627140.1765022
+  },
+  {
+    "tool": 91,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/edge3.jpg",
+        "/work/cs2.jpg",
+        "/work/base2.jpg",
+        "/work/precis2.jpg",
+        "/work/zFing.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627172.1377926
+  },
+  {
+    "tool": 92,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/w1.jpg",
+        "/work/t1.jpg",
+        "/work/n1.jpg",
+        "/work/end1.jpg",
+        "/work/end2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627198.7198272
+  },
+  {
+    "tool": 93,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/init0.jpg",
+        "/work/precis1.jpg",
+        "/work/IG0.jpg",
+        "/work/IG1.jpg",
+        "/work/redge.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627227.0437288
+  },
+  {
+    "tool": 94,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/assets/119.jpg",
+        "/work/cent1.jpg",
+        "/work/rim.jpg",
+        "/work/sbase.jpg",
+        "/work/zRet.jpg",
+        "/work/RC01_02.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627260.2804146
+  },
+  {
+    "tool": 95,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/fd1.jpg",
+        "/work/R1.jpg",
+        "/work/R2.jpg",
+        "/work/RC02_02.png",
+        "/work/R3.jpg",
+        "/work/RC03_02.png",
+        "/work/R4.jpg",
+        "/work/RC04_02.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627297.672399
+  },
+  {
+    "tool": 96,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/IG2.jpg",
+        "/work/base2.jpg",
+        "/work/crown.jpg",
+        "/work/precis2.jpg",
+        "/work/zFing.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627335.7659125
+  },
+  {
+    "tool": 97,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/w1.jpg",
+        "/work/t1.jpg",
+        "/work/n1.jpg",
+        "/work/end1.jpg",
+        "/work/end2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627374.099664
+  },
+  {
+    "tool": 98,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/init0.jpg",
+        "/work/precis1.jpg",
+        "/work/IG0.jpg",
+        "/work/IG1.jpg",
+        "/work/redge.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627402.41688
+  },
+  {
+    "tool": 99,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/cent1.jpg",
+        "/work/rim.jpg",
+        "/work/edge3.jpg",
+        "/work/sbase.jpg",
+        "/work/zRet.jpg",
+        "/work/RC01_02.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627430.6971855
+  },
+  {
+    "tool": 100,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/assets/126.jpg",
+        "/work/assets/177.jpg",
+        "/work/assets/185.jpg",
+        "/work/fd1.jpg",
+        "/work/R2.jpg",
+        "/work/R3.jpg",
+        "/work/R4.jpg",
+        "/work/RC02_02.png",
+        "/work/RC03_02.png",
+        "/work/RC04_02.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627470.4267354
+  },
+  {
+    "tool": 101,
+    "action": "run",
+    "params": {
+      "command": "cd /work; python extract.py f detail 196 211 222 231 241 256 265 272 293 299 311 335 819 840 858 876 895 912 932 945 963 985 1005 1024; python extract.py f bow 1148 1155 1161 1168 1174 1180 1188 1196 1204 1212 1219 1226 1233 1240 1246 1253 1261 1271 1283 1293 1306 1320 1333 1345 1361 1372 1387 1403 1421 1434 1446 1457.5; cat > split.py <<'PY'\nfrom PIL import Image\nimport sys\nfor p in sys.argv[1:]:\n a=Image.open(p+'.jpg');w,h=a.size;n=(h+1199)//1200; k=(h//n)//265*265\n if not k:k=h\n for i,y in enumerate(range(0,h,k)):\n  if y+120>=h:break\n  a.crop((0,y,w,h if h-y-k<120 else min(h,y+k))).save(f'{p}_{i}.jpg',quality=95)\n  if h-y-k<120:break\nPY\npython split.py detail bow",
+      "timeout": 38
+    },
+    "error": null,
+    "at_unix": 1795627516.3238952
+  },
+  {
+    "tool": 102,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/detail_0.jpg",
+        "/work/detail_1.jpg",
+        "/work/bow_0.jpg",
+        "/work/bow_1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627545.0302086
+  },
+  {
+    "tool": 103,
+    "action": "run",
+    "params": {
+      "command": "cd /work; python split.py w1 t1 n1 end1 end2; python extract.py f cuts 808 815 825 840 845 850 854 861 870 880 890 895 903 912 923 932 940 950 956 969 978 989 1000 1016; python split.py cuts; fc-scan /opt/extra/fonts/NotoSansCJK-Regular.ttc | grep -E 'family:|index:' | head -20; python - <<'PY'\nfrom fontTools.ttLib import TTCollection\nc=TTCollection('/opt/extra/fonts/NotoSansCJK-Regular.ttc');print([(f.sfntVersion,[(n.nameID,n.toUnicode()) for n in f['name'].names if n.nameID==1][:1]) for f in c.fonts]);\nPY",
+      "timeout": 35
+    },
+    "error": null,
+    "at_unix": 1795627591.9749463
+  },
+  {
+    "tool": 104,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/w1_0.jpg",
+        "/work/w1_1.jpg",
+        "/work/w1_2.jpg",
+        "/work/t1_0.jpg",
+        "/work/t1_1.jpg",
+        "/work/t1_2.jpg",
+        "/work/n1_0.jpg",
+        "/work/n1_1.jpg",
+        "/work/n1_2.jpg"
+      ]
+    },
+    "error": "FileNotFoundError: [Errno 2] No such file or directory: '[private archive path]",
+    "at_unix": 1795627621.7103815
+  },
+  {
+    "tool": 105,
+    "action": "run",
+    "params": {
+      "command": "cd /work; ls *_?.jpg"
+    },
+    "error": null,
+    "at_unix": 1795627651.1913943
+  },
+  {
+    "tool": 106,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/w1_0.jpg",
+        "/work/w1_1.jpg",
+        "/work/t1_0.jpg",
+        "/work/t1_1.jpg",
+        "/work/t1_2.jpg",
+        "/work/t1_3.jpg",
+        "/work/n1_0.jpg",
+        "/work/n1_1.jpg",
+        "/work/n1_2.jpg",
+        "/work/n1_3.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627682.1902933
+  },
+  {
+    "tool": 107,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/init0.jpg",
+        "/work/precis1.jpg",
+        "/work/IG0.jpg",
+        "/work/IG1.jpg",
+        "/work/redge.jpg",
+        "/work/cuts_0.jpg",
+        "/work/cuts_1.jpg",
+        "/work/end1_0.jpg",
+        "/work/end1_1.jpg",
+        "/work/end1_2.jpg",
+        "/work/end2_0.jpg",
+        "/work/end2_1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627712.700426
+  },
+  {
+    "tool": 108,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/RC01_02.png",
+        "/work/R1.jpg",
+        "/work/zRet.jpg",
+        "/work/rim.jpg",
+        "/work/sbase.jpg",
+        "/work/IG2.jpg",
+        "/work/assets/3623.jpg",
+        "/work/assets/3085.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627756.874732
+  },
+  {
+    "tool": 109,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/RC02_02.png",
+        "/work/RC03_02.png",
+        "/work/RC04_02.png",
+        "/work/R2.jpg",
+        "/work/R3.jpg",
+        "/work/R4.jpg",
+        "/work/fd1.jpg",
+        "/work/crown.jpg",
+        "/work/cent1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627790.9244423
+  },
+  {
+    "tool": 110,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/assets/136.jpg",
+        "/work/assets/155.jpg",
+        "/work/assets/177.jpg",
+        "/work/assets/185.jpg",
+        "/work/bow_0.jpg",
+        "/work/bow_1.jpg",
+        "/work/RC01_01.png",
+        "/work/RC02_01.png",
+        "/work/RC03_01.png",
+        "/work/RC04_01.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627834.7168818
+  },
+  {
+    "tool": 111,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/w1_0.jpg",
+        "/work/w1_1.jpg",
+        "/work/t1_0.jpg",
+        "/work/t1_1.jpg",
+        "/work/t1_2.jpg",
+        "/work/t1_3.jpg",
+        "/work/n1_0.jpg",
+        "/work/n1_1.jpg",
+        "/work/n1_2.jpg",
+        "/work/n1_3.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627869.4159691
+  },
+  {
+    "tool": 112,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/init0.jpg",
+        "/work/precis1.jpg",
+        "/work/IG0.jpg",
+        "/work/IG1.jpg",
+        "/work/redge.jpg",
+        "/work/cuts_0.jpg",
+        "/work/cuts_1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627906.497431
+  },
+  {
+    "tool": 113,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/IG2.jpg",
+        "/work/sbase.jpg",
+        "/work/zRet.jpg",
+        "/work/R1.jpg",
+        "/work/RC01_02.png",
+        "/work/end1_0.jpg",
+        "/work/end1_1.jpg",
+        "/work/end1_2.jpg",
+        "/work/end2_0.jpg",
+        "/work/end2_1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627950.082804
+  },
+  {
+    "tool": 114,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/R2.jpg",
+        "/work/R3.jpg",
+        "/work/R4.jpg",
+        "/work/RC02_02.png",
+        "/work/RC03_02.png",
+        "/work/RC04_02.png",
+        "/work/fd1.jpg",
+        "/work/cent1.jpg",
+        "/work/crown.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795627986.7928736
+  },
+  {
+    "tool": 115,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/assets/126.jpg",
+        "/work/assets/177.jpg",
+        "/work/assets/185.jpg",
+        "/work/rim.jpg",
+        "/work/bow_0.jpg",
+        "/work/bow_1.jpg",
+        "/work/RC01_01.png",
+        "/work/RC02_01.png",
+        "/work/RC03_01.png",
+        "/work/RC04_01.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795628032.7753432
+  },
+  {
+    "tool": 116,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/w1_0.jpg",
+        "/work/w1_1.jpg",
+        "/work/t1_0.jpg",
+        "/work/t1_1.jpg",
+        "/work/t1_2.jpg",
+        "/work/t1_3.jpg",
+        "/work/n1_0.jpg",
+        "/work/n1_1.jpg",
+        "/work/n1_2.jpg",
+        "/work/n1_3.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795628068.2524583
+  },
+  {
+    "tool": 117,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/precis1.jpg",
+        "/work/IG0.jpg",
+        "/work/IG1.jpg",
+        "/work/redge.jpg",
+        "/work/cuts_0.jpg",
+        "/work/cuts_1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795628103.6218536
+  },
+  {
+    "tool": 118,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/IG2.jpg",
+        "/work/sbase.jpg",
+        "/work/zRet.jpg",
+        "/work/R1.jpg",
+        "/work/RC01_02.png",
+        "/work/end1_0.jpg",
+        "/work/end1_1.jpg",
+        "/work/end1_2.jpg",
+        "/work/end2_0.jpg",
+        "/work/end2_1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795628139.878812
+  },
+  {
+    "tool": 119,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/R2.jpg",
+        "/work/R3.jpg",
+        "/work/R4.jpg",
+        "/work/RC02_02.png",
+        "/work/RC03_02.png",
+        "/work/RC04_02.png",
+        "/work/fd1.jpg",
+        "/work/crown.jpg",
+        "/work/cent1.jpg",
+        "/work/init0.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795628176.698589
+  },
+  {
+    "tool": 120,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/ICnot.jpg"
+      ]
+    },
+    "error": "FileNotFoundError: [Errno 2] No such file or directory: '[private archive path]",
+    "at_unix": 1795628225.727843
+  },
+  {
+    "tool": 121,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/assets/126.jpg",
+        "/work/assets/185.jpg",
+        "/work/assets/409.jpg",
+        "/work/fd1.jpg",
+        "/work/bow_0.jpg",
+        "/work/bow_1.jpg",
+        "/work/assets/3623.jpg",
+        "/work/assets/3085.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795628269.4300396
+  },
+  {
+    "tool": 122,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/w1_0.jpg",
+        "/work/w1_1.jpg",
+        "/work/t1_0.jpg",
+        "/work/t1_1.jpg",
+        "/work/t1_2.jpg",
+        "/work/t1_3.jpg",
+        "/work/n1_0.jpg",
+        "/work/n1_1.jpg",
+        "/work/n1_2.jpg",
+        "/work/n1_3.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795628307.3122258
+  },
+  {
+    "tool": 123,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/precis1.jpg",
+        "/work/IG0.jpg",
+        "/work/IG1.jpg",
+        "/work/redge.jpg",
+        "/work/cuts_0.jpg",
+        "/work/cuts_1.jpg",
+        "/work/rim.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795628345.59914
+  },
+  {
+    "tool": 124,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/IG2.jpg",
+        "/work/sbase.jpg",
+        "/work/zRet.jpg",
+        "/work/R1.jpg",
+        "/work/RC01_02.png",
+        "/work/end1_0.jpg",
+        "/work/end1_1.jpg",
+        "/work/end1_2.jpg",
+        "/work/end2_0.jpg",
+        "/work/end2_1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795628384.0228713
+  },
+  {
+    "tool": 125,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/R2.jpg",
+        "/work/R3.jpg",
+        "/work/R4.jpg",
+        "/work/RC02_02.png",
+        "/work/RC03_02.png",
+        "/work/RC04_02.png",
+        "/work/init0.jpg",
+        "/work/cent1.jpg",
+        "/work/crown.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795628422.9574282
+  },
+  {
+    "tool": 126,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/fd1.jpg",
+        "/work/bow_0.jpg",
+        "/work/bow_1.jpg",
+        "/work/assets/3623.jpg",
+        "/work/assets/3085.jpg",
+        "/work/assets/2238.jpg",
+        "/work/assets/126.jpg",
+        "/work/assets/555.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795628462.1666324
+  },
+  {
+    "tool": 127,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/w1_0.jpg",
+        "/work/w1_1.jpg",
+        "/work/t1_0.jpg",
+        "/work/t1_1.jpg",
+        "/work/t1_2.jpg",
+        "/work/t1_3.jpg",
+        "/work/n1_0.jpg",
+        "/work/n1_1.jpg",
+        "/work/n1_2.jpg",
+        "/work/n1_3.jpg",
+        "/work/assets/185.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795628513.9251702
+  },
+  {
+    "tool": 128,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/precis1.jpg",
+        "/work/IG0.jpg",
+        "/work/IG1.jpg",
+        "/work/redge.jpg",
+        "/work/cuts_0.jpg",
+        "/work/cuts_1.jpg",
+        "/work/rim.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795628554.073627
+  },
+  {
+    "tool": 129,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/IG2.jpg",
+        "/work/sbase.jpg",
+        "/work/zRet.jpg",
+        "/work/R1.jpg",
+        "/work/RC01_02.png",
+        "/work/end1_0.jpg",
+        "/work/end1_1.jpg",
+        "/work/end1_2.jpg",
+        "/work/end2_0.jpg",
+        "/work/end2_1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795628593.735439
+  },
+  {
+    "tool": 130,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/R2.jpg",
+        "/work/R3.jpg",
+        "/work/R4.jpg",
+        "/work/RC02_02.png",
+        "/work/RC03_02.png",
+        "/work/RC04_02.png",
+        "/work/init0.jpg",
+        "/work/crown.jpg",
+        "/work/cent1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795628635.5804791
+  },
+  {
+    "tool": 131,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/fd1.jpg",
+        "/work/bow_0.jpg",
+        "/work/bow_1.jpg",
+        "/work/assets/3623.jpg",
+        "/work/assets/3085.jpg",
+        "/work/assets/2238.jpg",
+        "/work/assets/126.jpg",
+        "/work/assets/555.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795628677.831057
+  },
+  {
+    "tool": 132,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/w1_0.jpg",
+        "/work/w1_1.jpg",
+        "/work/t1_0.jpg",
+        "/work/t1_1.jpg",
+        "/work/t1_2.jpg",
+        "/work/t1_3.jpg",
+        "/work/n1_0.jpg",
+        "/work/n1_1.jpg",
+        "/work/n1_2.jpg",
+        "/work/n1_3.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795628719.9739697
+  },
+  {
+    "tool": 133,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/precis1.jpg",
+        "/work/IG0.jpg",
+        "/work/IG1.jpg",
+        "/work/redge.jpg",
+        "/work/cuts_0.jpg",
+        "/work/cuts_1.jpg",
+        "/work/rim.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795628763.3708856
+  },
+  {
+    "tool": 134,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/IG2.jpg",
+        "/work/sbase.jpg",
+        "/work/zRet.jpg",
+        "/work/R1.jpg",
+        "/work/RC01_02.png",
+        "/work/end1_0.jpg",
+        "/work/end1_1.jpg",
+        "/work/end1_2.jpg",
+        "/work/end2_0.jpg",
+        "/work/end2_1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795628805.7940567
+  },
+  {
+    "tool": 135,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/R2.jpg",
+        "/work/R3.jpg",
+        "/work/R4.jpg",
+        "/work/RC02_02.png",
+        "/work/RC03_02.png",
+        "/work/RC04_02.png",
+        "/work/init0.jpg",
+        "/work/crown.jpg",
+        "/work/cent1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795628848.5643704
+  },
+  {
+    "tool": 136,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/fd1.jpg",
+        "/work/bow_0.jpg",
+        "/work/bow_1.jpg",
+        "/work/assets/3623.jpg",
+        "/work/assets/3085.jpg",
+        "/work/assets/2238.jpg",
+        "/work/assets/126.jpg",
+        "/work/assets/555.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795628891.5828996
+  },
+  {
+    "tool": 137,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/w1_0.jpg",
+        "/work/w1_1.jpg",
+        "/work/t1_0.jpg",
+        "/work/t1_1.jpg",
+        "/work/t1_2.jpg",
+        "/work/t1_3.jpg",
+        "/work/n1_0.jpg",
+        "/work/n1_1.jpg",
+        "/work/n1_2.jpg",
+        "/work/n1_3.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795628934.8600574
+  },
+  {
+    "tool": 138,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/precis1.jpg",
+        "/work/IG0.jpg",
+        "/work/IG1.jpg",
+        "/work/redge.jpg",
+        "/work/cuts_0.jpg",
+        "/work/cuts_1.jpg",
+        "/work/rim.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795628980.4867256
+  },
+  {
+    "tool": 139,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/R1.jpg",
+        "/work/zRet.jpg",
+        "/work/RC01_02.png",
+        "/work/sbase.jpg",
+        "/work/end1_0.jpg",
+        "/work/end1_1.jpg",
+        "/work/end1_2.jpg",
+        "/work/end2_0.jpg",
+        "/work/end2_1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795629032.1717873
+  },
+  {
+    "tool": 140,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/R2.jpg",
+        "/work/R3.jpg",
+        "/work/R4.jpg",
+        "/work/RC02_02.png",
+        "/work/RC03_02.png",
+        "/work/RC04_02.png",
+        "/work/init0.jpg",
+        "/work/IG2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795629075.5389864
+  }
+]

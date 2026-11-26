@@ -1,0 +1,26 @@
+{
+  "model": "gpt-6.2-sol",
+  "budgets": {
+    "active_seconds": 10800,
+    "api_turns": 260,
+    "tool_calls": 500,
+    "images": 800,
+    "audio_calls": 96,
+    "max_completion_tokens": 16000
+  },
+  "case_id": "D3-spring-foley-v1",
+  "release_manifest_sha256": "70b4055fd4983bfd2335a0466d01e4e8ae56511da262ef60645e34390900e362",
+  "candidate_archive_sha256": "2fc9c54bd57f17a18c535482eb585206c6ee4a99993d1037889e4fc564a57bc2",
+  "input_mount": "candidate only; readonly /input",
+  "sandbox": "bubblewrap user/pid/net/fs isolation",
+  "audio_observer": "qwen3.8-omni-flash; external assisted perception",
+  "private_answers_exposed": false,
+  "task_specific_decision_renderer": false,
+  "stages": 2,
+  "stage_weights": {
+    "v1": 0.3,
+    "v2": 0.7
+  },
+  "online_provider": "Freesound primary public live search; CC0/CC BY high-quality previews",
+  "engineering_additive_points": 0
+}

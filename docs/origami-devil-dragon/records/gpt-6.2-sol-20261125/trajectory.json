@@ -1,0 +1,2122 @@
+[
+  {
+    "tool": 1,
+    "action": "run",
+    "params": {
+      "command": "ls -R /input; cat /input/RUBRIC.md /input/evidence.schema.json /input/input/source_record.json /input/input/resume_cards/cards.json; ls -R /opt/extra/fonts",
+      "timeout": 30
+    },
+    "error": null,
+    "at_unix": 1795618337.0317192
+  },
+  {
+    "tool": 2,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/input/input/resume_cards/RC01_01.png",
+        "/input/input/resume_cards/RC01_02.png",
+        "/input/input/resume_cards/RC02_01.png",
+        "/input/input/resume_cards/RC02_02.png",
+        "/input/input/resume_cards/RC03_01.png",
+        "/input/input/resume_cards/RC03_02.png",
+        "/input/input/resume_cards/RC04_01.png",
+        "/input/input/resume_cards/RC04_02.png"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795618342.4921043
+  },
+  {
+    "tool": 3,
+    "action": "frames",
+    "params": {
+      "path": "/input/input/tutorial.mp4",
+      "times": [
+        25,
+        38,
+        51,
+        75,
+        120,
+        300,
+        600,
+        900,
+        1200,
+        2000,
+        3000,
+        3800
+      ],
+      "contact_sheet": true
+    },
+    "error": null,
+    "at_unix": 1795618358.9386406
+  },
+  {
+    "tool": 4,
+    "action": "run",
+    "params": {
+      "command": "mkdir -p /work/{output,study}; ls -l /work/observations; ffprobe -v error -show_entries stream=width,height,r_frame_rate -of csv /input/input/tutorial.mp4; ffmpeg -hide_banner -loglevel error -threads 4 -i /input/input/tutorial.mp4 -vf 'fps=2,scale=320:180' -threads 3 -pix_fmt rgb24 -f rawvideo /work/study/low.rgb >/work/study/log 2>&1 &",
+      "timeout": 10
+    },
+    "error": null,
+    "at_unix": 1795618370.85611
+  },
+  {
+    "tool": 5,
+    "action": "run",
+    "params": {
+      "command": "ls -lh /work/study; cat > /work/study/study.py <<'PY'\nimport numpy as np, os, sys\nfrom PIL import Image,ImageDraw\nP='/work/study/'\nw,h=320,180\nN=os.path.getsize(P+'low.rgb')//(w*h*3)\nA=np.memmap(P+'low.rgb',dtype='uint8',mode='r',shape=(N,h,w,3))\nif sys.argv[1]=='match':\n for id in range(1,5):\n  for j in [1,2]:\n   im=Image.open(f'/input/input/resume_cards/RC{id:02}_{j:02}.png').convert('RGB'); im={2:lambda:im.transpose(Image.Transpose.FLIP_LEFT_RIGHT),3:lambda:im.transpose(Image.Transpose.ROTATE_180)}.get(id,lambda:im)(); assert im.size==(1380,1080)\n   B=np.array(im.resize((230,180),Image.Resampling.BILINEAR))[::3,::3].astype('int16'); dif=np.array([np.abs(a[:,:230][::3,::3].astype('int16')-B).mean() for a in A]); print(id,j,[(v/2,round(dif[v],2)) for v in np.argsort(dif)[:4]])\nelif sys.argv[1]=='detect':\n # diagram strokes have low saturation and characteristic dark edges. look for persistent changes in spatial stroke mask\n X=A[:,2:110,210:319]; Y=(X.max(-1)-X.min(-1)<13)&(X.max(-1)<178); D=(Y[1:]!=Y[:-1]).sum((1,2)); np.save(P+'d.npy',D)\n print([(i/2+0.5,int(v)) for i,v in enumerate(D) if v>120])\nelse:\n ts=list(map(float,sys.argv[2].split(','))) if ',' in sys.argv[2] else np.arange(*map(float,sys.argv[2:5])); typ=sys.argv[1]; cols=5 if typ=='d' else 4; ww,hh=(180,165) if typ=='d' else (320,198); O=Image.new('RGB',(cols*ww,((len(ts)+cols-1)//cols)*hh),'white'); d=ImageDraw.Draw(O)\n for i,t in enumerate(ts):\n  if int(t*2)>=N: break\n  img=Image.fromarray(A[int(t*2)]); x=i%cols*ww;y=i//cols*hh\n  if typ=='d': img=img.crop((204,0,320,96)).resize((180,149))\n  O.paste(img,(x,y));d.text((x+3,y+hh-17),f'{t:g}  {int(t)//60:02}:{int(t)%60:02}',fill='black')\n O.save(P+'sheet.jpg',quality=93)\nPY\npython /work/study/study.py match",
+      "timeout": 45
+    },
+    "error": null,
+    "at_unix": 1795618390.1335418
+  },
+  {
+    "tool": 6,
+    "action": "run",
+    "params": {
+      "command": "cd /work/study; ffmpeg -hide_banner -loglevel error -threads 4 -i /input/input/tutorial.mp4 -map 0:v -an -vf 'fps=2,scale=320:180' -threads 3 -pix_fmt rgb24 -f rawvideo -y low.rgb && python study.py match",
+      "timeout": 180
+    },
+    "error": null,
+    "at_unix": 1795618576.6417458
+  },
+  {
+    "tool": 7,
+    "action": "run",
+    "params": {
+      "command": "cd /work/study; ls -lh; python -c 'import os;print(os.path.getsize(\"low.rgb\")/345600)' ; python study.py match",
+      "timeout": 45
+    },
+    "error": null,
+    "at_unix": 1795618582.4371932
+  },
+  {
+    "tool": 8,
+    "action": "run",
+    "params": {
+      "command": "cd /work/study; truncate -s $((6066*172800)) low.rgb; ffmpeg -loglevel error -ss 3033 -threads 4 -i /input/input/tutorial.mp4 -map 0:v -an -vf 'fps=2,scale=320:180' -threads 3 -pix_fmt rgb24 -f rawvideo -y rest.rgb; cat rest.rgb >> low.rgb; rm rest.rgb; sed -i 's/Image.Resampling.BILINEAR/Image.BILINEAR/g;s/Image.Transpose./Image./g' study.py; python study.py match; python study.py full 40 350 10",
+      "timeout": 90
+    },
+    "error": null,
+    "at_unix": 1795618641.7071013
+  },
+  {
+    "tool": 9,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/sheet.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795618646.1922903
+  },
+  {
+    "tool": 10,
+    "action": "run",
+    "params": {
+      "command": "cd /work/study; python study.py detect > changes; head -c 6500 changes; for group in '350 640 a' '640 930 b' '930 1151 c' '1149 1462 d' '1459 1565 e' '1872 2240 f'; do set -- $group; python study.py full $1 $2 10; cp sheet.jpg $3.jpg; done",
+      "timeout": 35
+    },
+    "error": null,
+    "at_unix": 1795618665.3216798
+  },
+  {
+    "tool": 11,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/a.jpg",
+        "/work/study/b.jpg",
+        "/work/study/c.jpg",
+        "/work/study/d.jpg",
+        "/work/study/e.jpg",
+        "/work/study/f.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795618673.8240438
+  },
+  {
+    "tool": 12,
+    "action": "run",
+    "params": {
+      "command": "cd /work/study; for group in '2235 2422 g' '2421 2679 h' '2678 2905 i' '2904 3077 j' '3076 3407 k' '3406 3576 l' '3575 3899 m'; do set -- $group; python study.py full $1 $2 10; cp sheet.jpg $3.jpg; done",
+      "timeout": 25
+    },
+    "error": null,
+    "at_unix": 1795618685.0960674
+  },
+  {
+    "tool": 13,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/g.jpg",
+        "/work/study/h.jpg",
+        "/work/study/i.jpg",
+        "/work/study/j.jpg",
+        "/work/study/k.jpg",
+        "/work/study/l.jpg",
+        "/work/study/m.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795618694.2819438
+  },
+  {
+    "tool": 14,
+    "action": "run",
+    "params": {
+      "command": "cd /work/study; cat > hi.py <<'PY'\nimport os,sys,subprocess, concurrent.futures\nfrom PIL import Image,ImageDraw\nROOT='/work/study'; SRC='/input/input/tutorial.mp4'\nos.makedirs(ROOT+'/hi',exist_ok=True)\ndef path(t): return ROOT+f'/hi/{float(t):07.2f}.jpg'\ndef fetch(t):\n p=path(t)\n if not os.path.exists(p): subprocess.run(['ffmpeg','-nostdin','-v','error','-ss',str(t),'-threads','2','-i',SRC,'-frames:v','1','-threads','1','-q:v','2','-y',p],check=True)\n return p\ndef paths(ts):\n with concurrent.futures.ThreadPoolExecutor(max_workers=7) as e: return list(e.map(fetch,ts))\nif __name__=='__main__':\n typ,out,*ts=sys.argv[1:]; ts=list(map(float,ts)); pp=paths(ts)\n if typ=='cache': quit()\n box,ww,hh,n = {'diagram':((1280,0,1920,485),310,241,5),'hand':((0,0,1390,1080),289,242,5),'full':((0,0,1920,1080),420,254,4),'pair':((0,0,1920,1080),540,322,3)}[typ]\n o=Image.new('RGB',(ww*n,hh*((len(ts)+n-1)//n)),'white');d=ImageDraw.Draw(o)\n for i,(p,t) in enumerate(zip(pp,ts)):\n  im=Image.open(p).crop(box);im.thumbnail((ww,hh-18),Image.LANCZOS); x=ww*(i%n);y=hh*(i//n);o.paste(im,(x,y));d.text((x+5,y+hh-17),f'{t:g} | {int(t)//60:02}:{int(t)%60:02}',fill='black')\n o.save(ROOT+'/'+out+'.jpg',quality=94)\nPY\npython hi.py diagram b1 46 68 76 96 108 123 147 176 191 196 217 225 236 255 267 275 289 298 309 326 340 354 362 407 435 466 531 550 562 572 581 620 637 660 729 742 761 779 801 811 829 844 862 888 905 925 946 972 989 1002 1018 1035 1055 1076 1108 1125 1147",
+      "timeout": 90
+    },
+    "error": null,
+    "at_unix": 1795618723.8052263
+  },
+  {
+    "tool": 15,
+    "action": "run",
+    "params": {
+      "command": "cd /work/study; for a in '0 0 1550 1687 b1a' '0 1687 1550 3374 b1b'; do set -- $a; python -c \"from PIL import Image;Image.open('b1.jpg').crop(($1,$2,$3,$4)).save('$5.jpg')\"; done; python hi.py full rc1 1454 1458 1460 1465 1473 1482 1496 1503 1513 1527 1543 1559; python hi.py full rc2 2189 2203 2227 2235 2244 2251 2257 2265 2279 2288 2294 2308; python hi.py full rc3 3057.5 3067 3078 3085 3091 3100 3115 3125 3136 3147 3157 3166; python hi.py full rc4 3600 3610 3620 3623 3627 3631 3635 3639 3643 3649 3653 3665",
+      "timeout": 90
+    },
+    "error": null,
+    "at_unix": 1795618753.3114498
+  },
+  {
+    "tool": 16,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/b1a.jpg",
+        "/work/study/b1b.jpg",
+        "/work/study/rc1.jpg",
+        "/work/study/rc2.jpg",
+        "/work/study/rc3.jpg",
+        "/work/study/rc4.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795618764.3971174
+  },
+  {
+    "tool": 17,
+    "action": "run",
+    "params": {
+      "command": "cd /work/study; python - <<'PY'\nfrom PIL import Image,ImageDraw\nout=Image.new('RGB',(1440,1168),'white'); d=ImageDraw.Draw(out)\nfor i in range(4):\n for j in range(2):\n  im=Image.open(f'/input/input/resume_cards/RC{i+1:02}_{j+1:02}.png'); im.thumbnail((360,540)); x=i*360;y=j*305;out.paste(im,(x,y));d.text((x+5,y+283),f'RC{i+1:02} / {j+1}',fill='black')\nout.crop((0,0,1440,610)).save('cards.jpg',quality=95)\nPY\npython hi.py pair details1 1457.5 1463.5 1468.5 1473 1479 1491; python hi.py pair details2 2235 2239 2243 2248 2252 2260; python hi.py pair details3 3078 3084 3090 3099 3110 3123; python hi.py pair details4 3620 3623 3628 3631 3637 3643",
+      "timeout": 50
+    },
+    "error": null,
+    "at_unix": 1795618785.8745198
+  },
+  {
+    "tool": 18,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/cards.jpg",
+        "/work/study/details1.jpg",
+        "/work/study/details2.jpg",
+        "/work/study/details3.jpg",
+        "/work/study/details4.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795618797.2843657
+  },
+  {
+    "tool": 19,
+    "action": "run",
+    "params": {
+      "command": "cd /work/study; python hi.py full intro 19 27 37 48 62 68 78 88 98 109 116 123 130 139 149 159 169 176 184 190 196 206 215 225; python hi.py full pre 231 242 251 261 272 282 291 301 314 324 333 344 353 359 368 383 392 402 409 418 429 442 457 467; python hi.py full apex 528 542 548 555 562 565 571 579 585 599 618 639 661 676 690 707 723 730 741 753 762 774 788 803; python hi.py diagram fingerD 1150 1166 1191 1208 1217 1245 1254 1271 1283 1296 1322 1341 1355 1373 1383 1398 1403 1410 1417 1423 1436 1447 1457",
+      "timeout": 80
+    },
+    "error": null,
+    "at_unix": 1795618827.838256
+  },
+  {
+    "tool": 20,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/intro.jpg",
+        "/work/study/pre.jpg",
+        "/work/study/apex.jpg",
+        "/work/study/fingerD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795618839.9895883
+  },
+  {
+    "tool": 21,
+    "action": "run",
+    "params": {
+      "command": "cd /work/study; python hi.py diagram precise 72 91 100 112 139 144 151 167 174 180 189 194 203 228 235 244 258 275 300 314 344 375 410 422 448 461 494 511 526 557; python hi.py full base2 810 824 839 853 867 879 890 901 911 925 936 949 957 967 979 994 1005 1015 1025 1038 1050 1058 1068 1082 1095 1108 1117 1124 1134 1147; python hi.py hand fingerH1 1150 1156 1160 1168 1176 1186 1196 1203 1208 1216 1224 1233 1241 1246 1252 1259 1268 1276 1284 1292; python hi.py hand fingerH2 1300 1311 1320 1328 1335 1343 1352 1360 1371 1381 1391 1401 1410 1420 1431 1441 1448 1452 1457.5 1460",
+      "timeout": 95
+    },
+    "error": null,
+    "at_unix": 1795618874.5048733
+  },
+  {
+    "tool": 22,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/precise.jpg",
+        "/work/study/base2.jpg",
+        "/work/study/fingerH1.jpg",
+        "/work/study/fingerH2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795618886.6526244
+  },
+  {
+    "tool": 23,
+    "action": "run",
+    "params": {
+      "command": "cd /work/study; python hi.py full arms0 1870 1876 1883 1890 1898 1907 1915 1920 1930 1943 1955 1970 1976 1985 1996 2007 2016 2025 2042 2056 2073 2091 2104 2119 2140 2147 2156 2174 2188 2227 2235 2259; python hi.py full tail0 2288 2294 2300 2313 2320 2330 2338 2348 2355 2366 2375 2382 2392 2400 2407 2419; python hi.py full head0 2422 2431 2441 2449 2458 2468 2479 2485 2494 2500 2513 2526 2544 2559 2574 2591 2607 2623 2640 2653 2665 2676; python hi.py full lock0 2684 2695 2708 2719 2730 2740 2753 2761 2777 2785 2795 2809 2816 2824 2830 2843 2862 2879 2894 2905 2916 2928 2940 2950 2961 2973 2984 2992 3006 3017 3031 3042 3055 3066 3074",
+      "timeout": 85
+    },
+    "error": null,
+    "at_unix": 1795618925.0656216
+  },
+  {
+    "tool": 24,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/arms0.jpg",
+        "/work/study/tail0.jpg",
+        "/work/study/head0.jpg",
+        "/work/study/lock0.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795618937.8741739
+  },
+  {
+    "tool": 25,
+    "action": "run",
+    "params": {
+      "command": "cd /work/study; python hi.py full face0 3085 3099 3114 3124 3132 3146 3157 3168 3181 3194 3208 3220 3233 3246 3256 3265 3275 3286 3298 3312 3325 3338 3352 3364 3375 3385 3396 3404; python hi.py full limb0 3407 3416 3425 3435 3445 3452 3462 3474 3483 3496 3506 3516 3526 3536 3546 3554 3562 3572; python hi.py full wing0 3577 3585 3593 3601 3611 3620 3627 3634 3641 3646 3654 3666 3679 3693 3707 3720 3734 3747 3760 3773 3786 3800 3813 3826 3839 3852 3864 3874; python hi.py diagram lateD 3079 3099 3125 3147 3162 3185 3219 3249 3278 3308 3365 3405 3419 3425 3445 3455 3475 3490 3520 3554 3578 3596 3608 3624 3632 3641 3645 3656 3675 3725 3770 3800 3858",
+      "timeout": 80
+    },
+    "error": null,
+    "at_unix": 1795618972.31368
+  },
+  {
+    "tool": 26,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/face0.jpg",
+        "/work/study/limb0.jpg",
+        "/work/study/wing0.jpg",
+        "/work/study/lateD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795618985.0147297
+  },
+  {
+    "tool": 27,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/cards.jpg",
+        "/work/study/details1.jpg",
+        "/work/study/details2.jpg",
+        "/work/study/details3.jpg",
+        "/work/study/details4.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795618998.7938194
+  },
+  {
+    "tool": 28,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/intro.jpg",
+        "/work/study/pre.jpg",
+        "/work/study/apex.jpg",
+        "/work/study/b1b.jpg",
+        "/work/study/fingerD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619021.8971515
+  },
+  {
+    "tool": 29,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/precise.jpg",
+        "/work/study/base2.jpg",
+        "/work/study/fingerH1.jpg",
+        "/work/study/fingerH2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619036.8300843
+  },
+  {
+    "tool": 30,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/hi/0123.00.jpg",
+        "/work/study/hi/0149.00.jpg",
+        "/work/study/hi/0275.00.jpg",
+        "/work/study/hi/0410.00.jpg",
+        "/work/study/hi/0557.00.jpg",
+        "/work/study/hi/0761.00.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619060.8502238
+  },
+  {
+    "tool": 31,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/arms0.jpg",
+        "/work/study/tail0.jpg",
+        "/work/study/head0.jpg",
+        "/work/study/lock0.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619083.4259746
+  },
+  {
+    "tool": 32,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/face0.jpg",
+        "/work/study/limb0.jpg",
+        "/work/study/wing0.jpg",
+        "/work/study/lateD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619098.266656
+  },
+  {
+    "tool": 33,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/cards.jpg",
+        "/work/study/details1.jpg",
+        "/work/study/details2.jpg",
+        "/work/study/details3.jpg",
+        "/work/study/details4.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619112.9553237
+  },
+  {
+    "tool": 34,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/intro.jpg",
+        "/work/study/pre.jpg",
+        "/work/study/apex.jpg",
+        "/work/study/b1b.jpg",
+        "/work/study/fingerD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619127.27977
+  },
+  {
+    "tool": 35,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/precise.jpg",
+        "/work/study/base2.jpg",
+        "/work/study/fingerH1.jpg",
+        "/work/study/fingerH2.jpg",
+        "/work/study/b1a.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619142.3474002
+  },
+  {
+    "tool": 36,
+    "action": "run",
+    "params": {
+      "command": "cd /work/study; cat > match.py <<'PY'\nfrom PIL import Image\nimport numpy as np, subprocess\nfor id,ts in enumerate([(1454,1457.5),(2189.5,2235),(3057.5,3078),(3600,3620)],1):\n for j,t in enumerate(ts,1):\n  im=Image.open(f'/input/input/resume_cards/RC{id:02}_{j:02}.png').convert('RGB'); im={2:lambda:im.transpose(Image.FLIP_LEFT_RIGHT),3:lambda:im.transpose(Image.ROTATE_180)}.get(id,lambda:im)()\n  # scan fixed actual frame indices on 24000/1001 timebase; nearest output\n  best=[]\n  from hi import paths\n  ts1=[round(k*1001/24000-0.001,2) for k in range(int((t-2)*24000/1001),int((t+2)*24000/1001),3)]\n  B=np.array(im)[::16,::16].astype('int16')\n  for ti,p in zip(ts1,paths(ts1)):\n   d=np.abs(np.array(Image.open(p))[:,:1380][::16,::16].astype('int16')-B).mean(); best.append((round(d,2),ti))\n  print(id,j,sorted(best)[:5],flush=True)\nPY\npython match.py",
+      "timeout": 90
+    },
+    "error": null,
+    "at_unix": 1795619196.791818
+  },
+  {
+    "tool": 37,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/hi/0123.00.jpg",
+        "/work/study/hi/0139.00.jpg",
+        "/work/study/hi/0189.00.jpg",
+        "/work/study/hi/0236.00.jpg",
+        "/work/study/hi/0275.00.jpg",
+        "/work/study/hi/0410.00.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619218.7425017
+  },
+  {
+    "tool": 38,
+    "action": "run",
+    "params": {
+      "command": "cd /work/study; python hi.py pair slants1 412 423 433 445 451 460 473 482 499 513 521 529; python hi.py pair slants2 576 591 604 612 628 644 651 662 670 682 695 713; python hi.py pair firstref 84 94 103 113 206 218 239 252 281 298 318 341; python hi.py full reset1 1460 1465 1470 1474 1477 1485 1494 1501 1507 1514 1524 1532 1539 1544 1551 1559 1565 1575 1586 1602 1616 1632 1652 1685; python hi.py full reset2 1873 1878 1883 1889 1893 1899 1906 1915",
+      "timeout": 70
+    },
+    "error": null,
+    "at_unix": 1795619250.7199137
+  },
+  {
+    "tool": 39,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/slants1.jpg",
+        "/work/study/slants2.jpg",
+        "/work/study/firstref.jpg",
+        "/work/study/reset1.jpg",
+        "/work/study/reset2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619264.805464
+  },
+  {
+    "tool": 40,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/cards.jpg",
+        "/work/study/details1.jpg",
+        "/work/study/details2.jpg",
+        "/work/study/details3.jpg",
+        "/work/study/details4.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619292.3099241
+  },
+  {
+    "tool": 41,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/intro.jpg",
+        "/work/study/pre.jpg",
+        "/work/study/apex.jpg",
+        "/work/study/b1b.jpg",
+        "/work/study/fingerD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619310.4877584
+  },
+  {
+    "tool": 42,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/precise.jpg",
+        "/work/study/base2.jpg",
+        "/work/study/fingerH1.jpg",
+        "/work/study/fingerH2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619327.6835675
+  },
+  {
+    "tool": 43,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/arms0.jpg",
+        "/work/study/tail0.jpg",
+        "/work/study/head0.jpg",
+        "/work/study/lock0.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619352.8474224
+  },
+  {
+    "tool": 44,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/face0.jpg",
+        "/work/study/limb0.jpg",
+        "/work/study/wing0.jpg",
+        "/work/study/lateD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619368.003732
+  },
+  {
+    "tool": 45,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/cards.jpg",
+        "/work/study/details1.jpg",
+        "/work/study/details2.jpg",
+        "/work/study/details3.jpg",
+        "/work/study/details4.jpg",
+        "/work/study/reset1.jpg",
+        "/work/study/slants1.jpg",
+        "/work/study/slants2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619385.7934504
+  },
+  {
+    "tool": 46,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/intro.jpg",
+        "/work/study/pre.jpg",
+        "/work/study/apex.jpg",
+        "/work/study/b1b.jpg",
+        "/work/study/fingerD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619403.8572998
+  },
+  {
+    "tool": 47,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/precise.jpg",
+        "/work/study/base2.jpg",
+        "/work/study/fingerH1.jpg",
+        "/work/study/fingerH2.jpg",
+        "/work/study/b1a.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619422.9378345
+  },
+  {
+    "tool": 48,
+    "action": "run",
+    "params": {
+      "command": "cd /work/study; python hi.py pair mat 29 31 34 40 103 126; python hi.py pair apex1 667 678 689 700 711 721 728 735 743 751 760 769 780 790 800 806 816 835; python hi.py full arms1 1918 1927 1936 1945 1950 1962 1974 1983 1992 2004 2012 2021 2033 2047 2061 2078 2094 2106 2144 2155 2166 2187 2198 2210; python hi.py full tail1 2241 2254 2264 2274 2290 2306 2323 2337 2349 2359 2372 2384 2391 2402 2416 2425; python hi.py full head1 2423 2434 2448 2460 2470 2480 2489 2500 2508 2520 2534 2547 2561 2577 2590 2603 2616 2629 2642 2655 2667 2677",
+      "timeout": 85
+    },
+    "error": null,
+    "at_unix": 1795619468.7200713
+  },
+  {
+    "tool": 49,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/mat.jpg",
+        "/work/study/apex1.jpg",
+        "/work/study/arms1.jpg",
+        "/work/study/tail1.jpg",
+        "/work/study/head1.jpg",
+        "/work/study/lock0.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619490.0425448
+  },
+  {
+    "tool": 50,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/face0.jpg",
+        "/work/study/limb0.jpg",
+        "/work/study/wing0.jpg",
+        "/work/study/lateD.jpg",
+        "/work/study/firstref.jpg",
+        "/work/study/reset2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619510.6026235
+  },
+  {
+    "tool": 51,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/cards.jpg",
+        "/work/study/details1.jpg",
+        "/work/study/details2.jpg",
+        "/work/study/details3.jpg",
+        "/work/study/details4.jpg",
+        "/work/study/reset1.jpg",
+        "/work/study/slants1.jpg",
+        "/work/study/slants2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619532.2443156
+  },
+  {
+    "tool": 52,
+    "action": "run",
+    "params": {
+      "command": "cd /work/study; python hi.py full intro2 10 14 20 25 37 48 58 65 69 75 82 85 89 97 107 116 123 134 140 149 160 169 182 191; python hi.py diagram midD 742 752 768 792 807 813 832 847 865 886 907 922 945 960 987 997 1014 1028 1051 1071 1105 1126 1152 1167 1209 1215 1256 1274 1285 1298; python hi.py diagram resetD 1459 1468 1478 1499 1532 1550 1872 1882 1896 1908 1917 1925 1946 1975 1985 2008 2027 2050 2145 2157 2190 2237 2255 2291 2314 2338 2349 2384 2403 2425; python hi.py diagram late2D 2449 2481 2501 2532 2551 2584 2594 2600 2635 2649 2675 2686 2720 2759 2786 2813 2824 2865 2907 2916 2925 2935 2950 2962 2978 2992 3018 3031 3056 3073",
+      "timeout": 85
+    },
+    "error": null,
+    "at_unix": 1795619581.1815748
+  },
+  {
+    "tool": 53,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/intro2.jpg",
+        "/work/study/midD.jpg",
+        "/work/study/fingerD.jpg",
+        "/work/study/resetD.jpg",
+        "/work/study/late2D.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619601.8271918
+  },
+  {
+    "tool": 54,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/precise.jpg",
+        "/work/study/base2.jpg",
+        "/work/study/fingerH1.jpg",
+        "/work/study/fingerH2.jpg",
+        "/work/study/pre.jpg",
+        "/work/study/apex.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619623.66183
+  },
+  {
+    "tool": 55,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/hi/0194.00.jpg",
+        "/work/study/hi/0244.00.jpg",
+        "/work/study/hi/0275.00.jpg",
+        "/work/study/hi/0314.00.jpg",
+        "/work/study/hi/0123.00.jpg",
+        "/work/study/hi/0368.00.jpg",
+        "/work/study/mat.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619659.5736697
+  },
+  {
+    "tool": 56,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/firstref.jpg",
+        "/work/study/apex1.jpg",
+        "/work/study/arms0.jpg",
+        "/work/study/tail0.jpg",
+        "/work/study/head0.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619693.3867648
+  },
+  {
+    "tool": 57,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/cards.jpg",
+        "/work/study/details1.jpg",
+        "/work/study/details2.jpg",
+        "/work/study/details3.jpg",
+        "/work/study/details4.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619716.7085345
+  },
+  {
+    "tool": 58,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/intro2.jpg",
+        "/work/study/midD.jpg",
+        "/work/study/fingerD.jpg",
+        "/work/study/resetD.jpg",
+        "/work/study/late2D.jpg",
+        "/work/study/reset1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619744.3226013
+  },
+  {
+    "tool": 59,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/precise.jpg",
+        "/work/study/pre.jpg",
+        "/work/study/slants1.jpg",
+        "/work/study/slants2.jpg",
+        "/work/study/base2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619772.131099
+  },
+  {
+    "tool": 60,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/fingerH1.jpg",
+        "/work/study/fingerH2.jpg",
+        "/work/study/lock0.jpg",
+        "/work/study/face0.jpg",
+        "/work/study/limb0.jpg",
+        "/work/study/wing0.jpg",
+        "/work/study/lateD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619797.3728566
+  },
+  {
+    "tool": 61,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/mat.jpg",
+        "/work/study/firstref.jpg",
+        "/work/study/apex.jpg",
+        "/work/study/apex1.jpg",
+        "/work/study/arms1.jpg",
+        "/work/study/tail1.jpg",
+        "/work/study/head1.jpg",
+        "/work/study/reset2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619826.6211188
+  },
+  {
+    "tool": 62,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/cards.jpg",
+        "/work/study/details1.jpg",
+        "/work/study/details2.jpg",
+        "/work/study/details3.jpg",
+        "/work/study/details4.jpg",
+        "/work/study/tail0.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619854.5043797
+  },
+  {
+    "tool": 63,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/intro2.jpg",
+        "/work/study/fingerD.jpg",
+        "/work/study/resetD.jpg",
+        "/work/study/reset1.jpg",
+        "/work/study/late2D.jpg",
+        "/work/study/midD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619881.3842912
+  },
+  {
+    "tool": 64,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/precise.jpg",
+        "/work/study/pre.jpg",
+        "/work/study/slants1.jpg",
+        "/work/study/slants2.jpg",
+        "/work/study/base2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619909.096526
+  },
+  {
+    "tool": 65,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/fingerH1.jpg",
+        "/work/study/fingerH2.jpg",
+        "/work/study/lock0.jpg",
+        "/work/study/face0.jpg",
+        "/work/study/limb0.jpg",
+        "/work/study/wing0.jpg",
+        "/work/study/lateD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619935.6551545
+  },
+  {
+    "tool": 66,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/mat.jpg",
+        "/work/study/firstref.jpg",
+        "/work/study/apex.jpg",
+        "/work/study/apex1.jpg",
+        "/work/study/arms1.jpg",
+        "/work/study/head1.jpg",
+        "/work/study/reset2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795619971.156863
+  },
+  {
+    "tool": 67,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/cards.jpg",
+        "/work/study/details1.jpg",
+        "/work/study/details2.jpg",
+        "/work/study/details3.jpg",
+        "/work/study/details4.jpg",
+        "/work/study/tail0.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620000.1028912
+  },
+  {
+    "tool": 68,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/intro2.jpg",
+        "/work/study/midD.jpg",
+        "/work/study/fingerD.jpg",
+        "/work/study/resetD.jpg",
+        "/work/study/late2D.jpg",
+        "/work/study/reset1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620028.4279892
+  },
+  {
+    "tool": 69,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/precise.jpg",
+        "/work/study/pre.jpg",
+        "/work/study/slants1.jpg",
+        "/work/study/slants2.jpg",
+        "/work/study/base2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620060.6494436
+  },
+  {
+    "tool": 70,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/fingerH1.jpg",
+        "/work/study/fingerH2.jpg",
+        "/work/study/lock0.jpg",
+        "/work/study/face0.jpg",
+        "/work/study/limb0.jpg",
+        "/work/study/wing0.jpg",
+        "/work/study/lateD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620091.5751283
+  },
+  {
+    "tool": 71,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/mat.jpg",
+        "/work/study/firstref.jpg",
+        "/work/study/apex1.jpg",
+        "/work/study/arms1.jpg",
+        "/work/study/tail1.jpg",
+        "/work/study/head1.jpg",
+        "/work/study/reset2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620120.8613164
+  },
+  {
+    "tool": 72,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/cards.jpg",
+        "/work/study/details1.jpg",
+        "/work/study/details2.jpg",
+        "/work/study/details3.jpg",
+        "/work/study/details4.jpg",
+        "/work/study/tail0.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620151.6874907
+  },
+  {
+    "tool": 73,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/intro2.jpg",
+        "/work/study/midD.jpg",
+        "/work/study/fingerD.jpg",
+        "/work/study/resetD.jpg",
+        "/work/study/late2D.jpg",
+        "/work/study/reset1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620180.7863028
+  },
+  {
+    "tool": 74,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/precise.jpg",
+        "/work/study/pre.jpg",
+        "/work/study/slants1.jpg",
+        "/work/study/slants2.jpg",
+        "/work/study/base2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620213.3436086
+  },
+  {
+    "tool": 75,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/fingerH1.jpg",
+        "/work/study/fingerH2.jpg",
+        "/work/study/lock0.jpg",
+        "/work/study/face0.jpg",
+        "/work/study/limb0.jpg",
+        "/work/study/wing0.jpg",
+        "/work/study/lateD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620257.589148
+  },
+  {
+    "tool": 76,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/mat.jpg",
+        "/work/study/firstref.jpg",
+        "/work/study/apex.jpg",
+        "/work/study/apex1.jpg",
+        "/work/study/arms1.jpg",
+        "/work/study/head1.jpg",
+        "/work/study/reset2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620291.1038818
+  },
+  {
+    "tool": 77,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/cards.jpg",
+        "/work/study/details1.jpg",
+        "/work/study/details2.jpg",
+        "/work/study/details3.jpg",
+        "/work/study/details4.jpg",
+        "/work/study/tail0.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620325.8147953
+  },
+  {
+    "tool": 78,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/intro2.jpg",
+        "/work/study/midD.jpg",
+        "/work/study/fingerD.jpg",
+        "/work/study/resetD.jpg",
+        "/work/study/late2D.jpg",
+        "/work/study/reset1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620362.6627393
+  },
+  {
+    "tool": 79,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/precise.jpg",
+        "/work/study/pre.jpg",
+        "/work/study/slants1.jpg",
+        "/work/study/slants2.jpg",
+        "/work/study/base2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620399.9696257
+  },
+  {
+    "tool": 80,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/fingerH1.jpg",
+        "/work/study/fingerH2.jpg",
+        "/work/study/lock0.jpg",
+        "/work/study/face0.jpg",
+        "/work/study/limb0.jpg",
+        "/work/study/wing0.jpg",
+        "/work/study/lateD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620450.6702862
+  },
+  {
+    "tool": 81,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/mat.jpg",
+        "/work/study/firstref.jpg",
+        "/work/study/apex.jpg",
+        "/work/study/apex1.jpg",
+        "/work/study/arms1.jpg",
+        "/work/study/head1.jpg",
+        "/work/study/reset2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620485.7521584
+  },
+  {
+    "tool": 82,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/cards.jpg",
+        "/work/study/details1.jpg",
+        "/work/study/details2.jpg",
+        "/work/study/details3.jpg",
+        "/work/study/details4.jpg",
+        "/work/study/tail0.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620521.921285
+  },
+  {
+    "tool": 83,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/intro2.jpg",
+        "/work/study/midD.jpg",
+        "/work/study/fingerD.jpg",
+        "/work/study/resetD.jpg",
+        "/work/study/late2D.jpg",
+        "/work/study/reset1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620555.2663884
+  },
+  {
+    "tool": 84,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/precise.jpg",
+        "/work/study/pre.jpg",
+        "/work/study/slants1.jpg",
+        "/work/study/slants2.jpg",
+        "/work/study/base2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620589.2470136
+  },
+  {
+    "tool": 85,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/fingerH1.jpg",
+        "/work/study/fingerH2.jpg",
+        "/work/study/lock0.jpg",
+        "/work/study/face0.jpg",
+        "/work/study/limb0.jpg",
+        "/work/study/wing0.jpg",
+        "/work/study/lateD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620623.6522486
+  },
+  {
+    "tool": 86,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/mat.jpg",
+        "/work/study/firstref.jpg",
+        "/work/study/apex.jpg",
+        "/work/study/apex1.jpg",
+        "/work/study/arms1.jpg",
+        "/work/study/head1.jpg",
+        "/work/study/reset2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620658.0350423
+  },
+  {
+    "tool": 87,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/cards.jpg",
+        "/work/study/details1.jpg",
+        "/work/study/details2.jpg",
+        "/work/study/details3.jpg",
+        "/work/study/details4.jpg",
+        "/work/study/tail0.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620692.0723288
+  },
+  {
+    "tool": 88,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/intro2.jpg",
+        "/work/study/midD.jpg",
+        "/work/study/fingerD.jpg",
+        "/work/study/resetD.jpg",
+        "/work/study/late2D.jpg",
+        "/work/study/reset1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620729.1260254
+  },
+  {
+    "tool": 89,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/precise.jpg",
+        "/work/study/pre.jpg",
+        "/work/study/slants1.jpg",
+        "/work/study/slants2.jpg",
+        "/work/study/base2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620764.3536284
+  },
+  {
+    "tool": 90,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/fingerH1.jpg",
+        "/work/study/fingerH2.jpg",
+        "/work/study/lock0.jpg",
+        "/work/study/face0.jpg",
+        "/work/study/limb0.jpg",
+        "/work/study/wing0.jpg",
+        "/work/study/lateD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620798.3437397
+  },
+  {
+    "tool": 91,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/mat.jpg",
+        "/work/study/firstref.jpg",
+        "/work/study/apex.jpg",
+        "/work/study/apex1.jpg",
+        "/work/study/arms1.jpg",
+        "/work/study/head1.jpg",
+        "/work/study/reset2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620831.1183882
+  },
+  {
+    "tool": 92,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/cards.jpg",
+        "/work/study/details1.jpg",
+        "/work/study/details2.jpg",
+        "/work/study/details3.jpg",
+        "/work/study/details4.jpg",
+        "/work/study/tail0.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620867.8708181
+  },
+  {
+    "tool": 93,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/intro2.jpg",
+        "/work/study/midD.jpg",
+        "/work/study/fingerD.jpg",
+        "/work/study/resetD.jpg",
+        "/work/study/late2D.jpg",
+        "/work/study/reset1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620905.171082
+  },
+  {
+    "tool": 94,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/precise.jpg",
+        "/work/study/pre.jpg",
+        "/work/study/slants1.jpg",
+        "/work/study/slants2.jpg",
+        "/work/study/base2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620942.4740682
+  },
+  {
+    "tool": 95,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/fingerH1.jpg",
+        "/work/study/fingerH2.jpg",
+        "/work/study/lock0.jpg",
+        "/work/study/face0.jpg",
+        "/work/study/limb0.jpg",
+        "/work/study/wing0.jpg",
+        "/work/study/lateD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795620979.8050716
+  },
+  {
+    "tool": 96,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/mat.jpg",
+        "/work/study/firstref.jpg",
+        "/work/study/apex.jpg",
+        "/work/study/apex1.jpg",
+        "/work/study/arms1.jpg",
+        "/work/study/head1.jpg",
+        "/work/study/reset2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795621027.514621
+  },
+  {
+    "tool": 97,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/cards.jpg",
+        "/work/study/details1.jpg",
+        "/work/study/details2.jpg",
+        "/work/study/details3.jpg",
+        "/work/study/details4.jpg",
+        "/work/study/tail0.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795621067.3414493
+  },
+  {
+    "tool": 98,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/intro2.jpg",
+        "/work/study/midD.jpg",
+        "/work/study/fingerD.jpg",
+        "/work/study/resetD.jpg",
+        "/work/study/late2D.jpg",
+        "/work/study/reset1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795621106.092301
+  },
+  {
+    "tool": 99,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/precise.jpg",
+        "/work/study/pre.jpg",
+        "/work/study/slants1.jpg",
+        "/work/study/slants2.jpg",
+        "/work/study/base2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795621145.6168332
+  },
+  {
+    "tool": 100,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/fingerH1.jpg",
+        "/work/study/fingerH2.jpg",
+        "/work/study/lock0.jpg",
+        "/work/study/face0.jpg",
+        "/work/study/limb0.jpg",
+        "/work/study/wing0.jpg",
+        "/work/study/lateD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795621195.917064
+  },
+  {
+    "tool": 101,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/mat.jpg",
+        "/work/study/firstref.jpg",
+        "/work/study/apex.jpg",
+        "/work/study/apex1.jpg",
+        "/work/study/arms1.jpg",
+        "/work/study/head1.jpg",
+        "/work/study/reset2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795621234.6065342
+  },
+  {
+    "tool": 102,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/cards.jpg",
+        "/work/study/details1.jpg",
+        "/work/study/details2.jpg",
+        "/work/study/details3.jpg",
+        "/work/study/details4.jpg",
+        "/work/study/tail0.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795621275.5472
+  },
+  {
+    "tool": 103,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/intro2.jpg",
+        "/work/study/midD.jpg",
+        "/work/study/fingerD.jpg",
+        "/work/study/resetD.jpg",
+        "/work/study/late2D.jpg",
+        "/work/study/reset1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795621317.0936236
+  },
+  {
+    "tool": 104,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/precise.jpg",
+        "/work/study/pre.jpg",
+        "/work/study/slants1.jpg",
+        "/work/study/slants2.jpg",
+        "/work/study/base2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795621359.4299448
+  },
+  {
+    "tool": 105,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/fingerH1.jpg",
+        "/work/study/fingerH2.jpg",
+        "/work/study/lock0.jpg",
+        "/work/study/face0.jpg",
+        "/work/study/limb0.jpg",
+        "/work/study/wing0.jpg",
+        "/work/study/lateD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795621402.187
+  },
+  {
+    "tool": 106,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/mat.jpg",
+        "/work/study/firstref.jpg",
+        "/work/study/apex1.jpg",
+        "/work/study/arms1.jpg",
+        "/work/study/head1.jpg",
+        "/work/study/reset2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795621455.0093603
+  },
+  {
+    "tool": 107,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/cards.jpg",
+        "/work/study/details1.jpg",
+        "/work/study/details2.jpg",
+        "/work/study/details3.jpg",
+        "/work/study/details4.jpg",
+        "/work/study/tail0.jpg",
+        "/work/study/apex.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795621497.4306126
+  },
+  {
+    "tool": 108,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/intro2.jpg",
+        "/work/study/midD.jpg",
+        "/work/study/fingerD.jpg",
+        "/work/study/resetD.jpg",
+        "/work/study/late2D.jpg",
+        "/work/study/reset1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795621538.4064903
+  },
+  {
+    "tool": 109,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/precise.jpg",
+        "/work/study/pre.jpg",
+        "/work/study/slants1.jpg",
+        "/work/study/slants2.jpg",
+        "/work/study/base2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795621580.2798967
+  },
+  {
+    "tool": 110,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/fingerH1.jpg",
+        "/work/study/fingerH2.jpg",
+        "/work/study/lock0.jpg",
+        "/work/study/face0.jpg",
+        "/work/study/limb0.jpg",
+        "/work/study/wing0.jpg",
+        "/work/study/lateD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795621621.6458278
+  },
+  {
+    "tool": 111,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/mat.jpg",
+        "/work/study/firstref.jpg",
+        "/work/study/apex1.jpg",
+        "/work/study/arms1.jpg",
+        "/work/study/head1.jpg",
+        "/work/study/reset2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795621661.86161
+  },
+  {
+    "tool": 112,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/cards.jpg",
+        "/work/study/details1.jpg",
+        "/work/study/details2.jpg",
+        "/work/study/details3.jpg",
+        "/work/study/details4.jpg",
+        "/work/study/tail0.jpg",
+        "/work/study/apex.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795621706.6953611
+  },
+  {
+    "tool": 113,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/intro2.jpg",
+        "/work/study/midD.jpg",
+        "/work/study/fingerD.jpg",
+        "/work/study/resetD.jpg",
+        "/work/study/late2D.jpg",
+        "/work/study/reset1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795621756.6771812
+  },
+  {
+    "tool": 114,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/precise.jpg",
+        "/work/study/pre.jpg",
+        "/work/study/slants1.jpg",
+        "/work/study/slants2.jpg",
+        "/work/study/base2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795621804.5696702
+  },
+  {
+    "tool": 115,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/fingerH1.jpg",
+        "/work/study/fingerH2.jpg",
+        "/work/study/lock0.jpg",
+        "/work/study/face0.jpg",
+        "/work/study/limb0.jpg",
+        "/work/study/wing0.jpg",
+        "/work/study/lateD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795621872.699976
+  },
+  {
+    "tool": 116,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/firstref.jpg",
+        "/work/study/arms1.jpg",
+        "/work/study/head1.jpg",
+        "/work/study/reset2.jpg",
+        "/work/study/apex1.jpg",
+        "/work/study/mat.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795621924.9790895
+  },
+  {
+    "tool": 117,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/cards.jpg",
+        "/work/study/details1.jpg",
+        "/work/study/details2.jpg",
+        "/work/study/details3.jpg",
+        "/work/study/details4.jpg",
+        "/work/study/tail0.jpg",
+        "/work/study/apex.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795621974.838088
+  },
+  {
+    "tool": 118,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/intro2.jpg",
+        "/work/study/midD.jpg",
+        "/work/study/fingerD.jpg",
+        "/work/study/resetD.jpg",
+        "/work/study/late2D.jpg",
+        "/work/study/reset1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795622019.4005427
+  },
+  {
+    "tool": 119,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/precise.jpg",
+        "/work/study/pre.jpg",
+        "/work/study/slants1.jpg",
+        "/work/study/slants2.jpg",
+        "/work/study/base2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795622065.713637
+  },
+  {
+    "tool": 120,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/fingerH1.jpg",
+        "/work/study/fingerH2.jpg",
+        "/work/study/lock0.jpg",
+        "/work/study/face0.jpg",
+        "/work/study/limb0.jpg",
+        "/work/study/wing0.jpg",
+        "/work/study/lateD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795622113.4760332
+  },
+  {
+    "tool": 121,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/firstref.jpg",
+        "/work/study/arms1.jpg",
+        "/work/study/head1.jpg",
+        "/work/study/reset2.jpg",
+        "/work/study/apex1.jpg",
+        "/work/study/mat.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795622166.8150055
+  },
+  {
+    "tool": 122,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/cards.jpg",
+        "/work/study/details1.jpg",
+        "/work/study/details2.jpg",
+        "/work/study/details3.jpg",
+        "/work/study/details4.jpg",
+        "/work/study/tail0.jpg",
+        "/work/study/apex.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795622215.9241984
+  },
+  {
+    "tool": 123,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/intro2.jpg",
+        "/work/study/midD.jpg",
+        "/work/study/fingerD.jpg",
+        "/work/study/resetD.jpg",
+        "/work/study/late2D.jpg",
+        "/work/study/reset1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795622261.80149
+  },
+  {
+    "tool": 124,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/precise.jpg",
+        "/work/study/pre.jpg",
+        "/work/study/slants1.jpg",
+        "/work/study/slants2.jpg",
+        "/work/study/base2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795622311.318127
+  },
+  {
+    "tool": 125,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/fingerH1.jpg",
+        "/work/study/fingerH2.jpg",
+        "/work/study/lock0.jpg",
+        "/work/study/face0.jpg",
+        "/work/study/limb0.jpg",
+        "/work/study/wing0.jpg",
+        "/work/study/lateD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795622414.3956788
+  },
+  {
+    "tool": 126,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/mat.jpg",
+        "/work/study/firstref.jpg",
+        "/work/study/apex1.jpg",
+        "/work/study/arms1.jpg",
+        "/work/study/head1.jpg",
+        "/work/study/reset2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795622508.861789
+  },
+  {
+    "tool": 127,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/cards.jpg",
+        "/work/study/details1.jpg",
+        "/work/study/details2.jpg",
+        "/work/study/details3.jpg",
+        "/work/study/details4.jpg",
+        "/work/study/tail0.jpg",
+        "/work/study/apex.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795622558.4940832
+  },
+  {
+    "tool": 128,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/intro2.jpg",
+        "/work/study/midD.jpg",
+        "/work/study/fingerD.jpg",
+        "/work/study/resetD.jpg",
+        "/work/study/late2D.jpg",
+        "/work/study/reset1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795622616.4910965
+  },
+  {
+    "tool": 129,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/precise.jpg",
+        "/work/study/pre.jpg",
+        "/work/study/slants1.jpg",
+        "/work/study/slants2.jpg",
+        "/work/study/base2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795622680.3281736
+  },
+  {
+    "tool": 130,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/fingerH1.jpg",
+        "/work/study/fingerH2.jpg",
+        "/work/study/lock0.jpg",
+        "/work/study/face0.jpg",
+        "/work/study/limb0.jpg",
+        "/work/study/wing0.jpg",
+        "/work/study/lateD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795622751.2120163
+  },
+  {
+    "tool": 131,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/firstref.jpg",
+        "/work/study/arms1.jpg",
+        "/work/study/head1.jpg",
+        "/work/study/reset2.jpg",
+        "/work/study/apex1.jpg",
+        "/work/study/mat.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795622804.3132906
+  },
+  {
+    "tool": 132,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/cards.jpg",
+        "/work/study/details1.jpg",
+        "/work/study/details2.jpg",
+        "/work/study/details3.jpg",
+        "/work/study/details4.jpg",
+        "/work/study/tail0.jpg",
+        "/work/study/apex.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795622853.555918
+  },
+  {
+    "tool": 133,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/intro2.jpg",
+        "/work/study/midD.jpg",
+        "/work/study/fingerD.jpg",
+        "/work/study/resetD.jpg",
+        "/work/study/late2D.jpg",
+        "/work/study/reset1.jpg",
+        "/work/study/tail1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795622913.3610528
+  },
+  {
+    "tool": 134,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/precise.jpg",
+        "/work/study/pre.jpg",
+        "/work/study/slants1.jpg",
+        "/work/study/slants2.jpg",
+        "/work/study/base2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795622970.0869982
+  },
+  {
+    "tool": 135,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/fingerH1.jpg",
+        "/work/study/fingerH2.jpg",
+        "/work/study/lock0.jpg",
+        "/work/study/face0.jpg",
+        "/work/study/limb0.jpg",
+        "/work/study/wing0.jpg",
+        "/work/study/lateD.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795623019.1032505
+  },
+  {
+    "tool": 136,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/arms1.jpg",
+        "/work/study/head1.jpg",
+        "/work/study/firstref.jpg",
+        "/work/study/mat.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795623071.6475163
+  },
+  {
+    "tool": 137,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/cards.jpg",
+        "/work/study/details1.jpg",
+        "/work/study/details2.jpg",
+        "/work/study/details3.jpg",
+        "/work/study/details4.jpg",
+        "/work/study/apex1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795623124.1014233
+  },
+  {
+    "tool": 138,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/intro2.jpg",
+        "/work/study/midD.jpg",
+        "/work/study/fingerD.jpg",
+        "/work/study/resetD.jpg",
+        "/work/study/late2D.jpg",
+        "/work/study/reset1.jpg",
+        "/work/study/tail1.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795623177.0553238
+  },
+  {
+    "tool": 139,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/precise.jpg",
+        "/work/study/pre.jpg",
+        "/work/study/slants1.jpg",
+        "/work/study/slants2.jpg",
+        "/work/study/base2.jpg",
+        "/work/study/apex.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795623228.45045
+  },
+  {
+    "tool": 140,
+    "action": "images",
+    "params": {
+      "paths": [
+        "/work/study/lock0.jpg",
+        "/work/study/face0.jpg",
+        "/work/study/limb0.jpg",
+        "/work/study/wing0.jpg",
+        "/work/study/lateD.jpg",
+        "/work/study/fingerH1.jpg",
+        "/work/study/fingerH2.jpg"
+      ]
+    },
+    "error": null,
+    "at_unix": 1795623283.3260806
+  }
+]

@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "explanation": "这是简明结构协议；所有页码为1起始整数，秒数为原片绝对时间。允许添加其他字段。",
+  "required": [
+    "schema_version",
+    "source_video",
+    "sections",
+    "identities",
+    "resume_cards",
+    "teaching_additions"
+  ],
+  "example": {
+    "schema_version": "1.0",
+    "source_video": "input/tutorial.mp4",
+    "sections": [
+      {
+        "id": "S01",
+        "title": "自行填写",
+        "pdf_pages": [
+          1
+        ],
+        "source_intervals": [
+          [
+            37,
+            50
+          ]
+        ],
+        "figures": [
+          {
+            "figure_id": "F01",
+            "pdf_page": 1,
+            "source_time_s": 40,
+            "description": "图的内容"
+          }
+        ]
+      }
+    ],
+    "identities": [
+      {
+        "id": "part_id",
+        "meaning": "自行定义的稳定部位/层名",
+        "anchor_description": "可见锚点",
+        "pdf_pages": [
+          1
+        ],
+        "source_times": [
+          40
+        ]
+      }
+    ],
+    "resume_cards": [
+      {
+        "card_id": "RC01",
+        "pdf_pages": [
+          1
+        ],
+        "source_intervals": [
+          [
+            0,
+            1
+          ]
+        ],
+        "state_summary": "填写判断",
+        "next_action": "填写动作"
+      }
+    ],
+    "teaching_additions": [
+      {
+        "pdf_pages": [
+          1
+        ],
+        "claim": "填写推断建议",
+        "support_level": "inferred"
+      }
+    ]
+  },
+  "constraints": [
+    "sections非空；每项含id/title/pdf_pages/source_intervals/figures，figures可为空",
+    "identities至少三项且各有id/meaning/anchor_description/pdf_pages/source_times",
+    "resume_cards恰含RC01,RC02,RC03,RC04；不能重复",
+    "teaching_additions至少两项，support_level为inferred或source_supported",
+    "所有区间为[起秒,终秒]且0<=起<终<=3899",
+    "页码必须落在真实PDF范围，图像时间须在[0,3899)"
+  ]
+}

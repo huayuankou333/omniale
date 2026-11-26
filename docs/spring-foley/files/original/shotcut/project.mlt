@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mlt producer="tractor" version="7.0.0" LC_NUMERIC="C" title="Shotcut">
+  <profile description="Spring locked picture 1920x804 24p" width="1920" height="804" frame_rate_num="24" frame_rate_den="1" progressive="1" sample_aspect_num="1" sample_aspect_den="1" display_aspect_num="160" display_aspect_den="67" colorspace="709" />
+  <producer id="black" in="0" out="3599">
+    <property name="resource">0</property>
+    <property name="mlt_service">color</property>
+    <property name="length">3600</property>
+    <property name="eof">pause</property>
+    <property name="audio_index">-1</property>
+    <property name="mlt_image_format">rgba</property>
+  </producer>
+  <playlist id="background">
+    <entry producer="black" in="0" out="3599" />
+  </playlist>
+  <playlist id="main_bin">
+    <property name="xml_retain">1</property>
+  </playlist>
+  <chain id="src_picture" out="3599">
+    <property name="resource">../media/picture_v1.mp4</property>
+    <property name="mlt_service">avformat</property>
+    <property name="length">3600</property>
+    <property name="eof">pause</property>
+    <property name="audio_index">-1</property>
+    <property name="video_index">0</property>
+    <property name="set.test_audio">1</property>
+    <property name="set.test_image">0</property>
+    <property name="shotcut:producer">1</property>
+    <property name="shotcut:caption">picture</property>
+  </chain>
+  <playlist id="track_picture">
+    <property name="shotcut:name">V1 · LOCKED PICTURE</property>
+    <property name="shotcut:video">1</property>
+    <entry producer="src_picture" in="0" out="3599" />
+  </playlist>
+  <chain id="src_AMB" out="3599">
+    <property name="resource">../stems/AMB.wav</property>
+    <property name="mlt_service">avformat</property>
+    <property name="length">3600</property>
+    <property name="eof">pause</property>
+    <property name="audio_index">0</property>
+    <property name="video_index">-1</property>
+    <property name="set.test_audio">0</property>
+    <property name="set.test_image">1</property>
+    <property name="shotcut:producer">1</property>
+    <property name="shotcut:caption">AMB</property>
+  </chain>
+  <playlist id="track_AMB">
+    <property name="shotcut:name">AMB</property>
+    <property name="shotcut:audio">1</property>
+    <entry producer="src_AMB" in="0" out="3599" />
+  </playlist>
+  <chain id="src_FOLEY_HUMAN" out="3599">
+    <property name="resource">../stems/FOLEY_HUMAN.wav</property>
+    <property name="mlt_service">avformat</property>
+    <property name="length">3600</property>
+    <property name="eof">pause</property>
+    <property name="audio_index">0</property>
+    <property name="video_index">-1</property>
+    <property name="set.test_audio">0</property>
+    <property name="set.test_image">1</property>
+    <property name="shotcut:producer">1</property>
+    <property name="shotcut:caption">FOLEY_HUMAN</property>
+  </chain>
+  <playlist id="track_FOLEY_HUMAN">
+    <property name="shotcut:name">FOLEY_HUMAN</property>
+    <property name="shotcut:audio">1</property>
+    <entry producer="src_FOLEY_HUMAN" in="0" out="3599" />
+  </playlist>
+  <chain id="src_FOLEY_PROPS" out="3599">
+    <property name="resource">../stems/FOLEY_PROPS.wav</property>
+    <property name="mlt_service">avformat</property>
+    <property name="length">3600</property>
+    <property name="eof">pause</property>
+    <property name="audio_index">0</property>
+    <property name="video_index">-1</property>
+    <property name="set.test_audio">0</property>
+    <property name="set.test_image">1</property>
+    <property name="shotcut:producer">1</property>
+    <property name="shotcut:caption">FOLEY_PROPS</property>
+  </chain>
+  <playlist id="track_FOLEY_PROPS">
+    <property name="shotcut:name">FOLEY_PROPS</property>
+    <property name="shotcut:audio">1</property>
+    <entry producer="src_FOLEY_PROPS" in="0" out="3599" />
+  </playlist>
+  <chain id="src_CREATURE" out="3599">
+    <property name="resource">../stems/CREATURE.wav</property>
+    <property name="mlt_service">avformat</property>
+    <property name="length">3600</property>
+    <property name="eof">pause</property>
+    <property name="audio_index">0</property>
+    <property name="video_index">-1</property>
+    <property name="set.test_audio">0</property>
+    <property name="set.test_image">1</property>
+    <property name="shotcut:producer">1</property>
+    <property name="shotcut:caption">CREATURE</property>
+  </chain>
+  <playlist id="track_CREATURE">
+    <property name="shotcut:name">CREATURE</property>
+    <property name="shotcut:audio">1</property>
+    <entry producer="src_CREATURE" in="0" out="3599" />
+  </playlist>
+  <chain id="src_SFX" out="3599">
+    <property name="resource">../stems/SFX.wav</property>
+    <property name="mlt_service">avformat</property>
+    <property name="length">3600</property>
+    <property name="eof">pause</property>
+    <property name="audio_index">0</property>
+    <property name="video_index">-1</property>
+    <property name="set.test_audio">0</property>
+    <property name="set.test_image">1</property>
+    <property name="shotcut:producer">1</property>
+    <property name="shotcut:caption">SFX</property>
+  </chain>
+  <playlist id="track_SFX">
+    <property name="shotcut:name">SFX</property>
+    <property name="shotcut:audio">1</property>
+    <entry producer="src_SFX" in="0" out="3599" />
+  </playlist>
+  <tractor id="tractor" in="0" out="3599">
+    <property name="shotcut">1</property>
+    <property name="shotcut:name">Spring · Five-stem conform</property>
+    <property name="shotcut:projectAudioChannels">2</property>
+    <track producer="background" />
+    <track producer="track_AMB" hide="video" />
+    <track producer="track_FOLEY_HUMAN" hide="video" />
+    <track producer="track_FOLEY_PROPS" hide="video" />
+    <track producer="track_CREATURE" hide="video" />
+    <track producer="track_SFX" hide="video" />
+    <track producer="track_picture" hide="audio" />
+    <transition in="0" out="3599">
+      <property name="mlt_service">mix</property>
+      <property name="a_track">0</property>
+      <property name="b_track">1</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition in="0" out="3599">
+      <property name="mlt_service">mix</property>
+      <property name="a_track">0</property>
+      <property name="b_track">2</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition in="0" out="3599">
+      <property name="mlt_service">mix</property>
+      <property name="a_track">0</property>
+      <property name="b_track">3</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition in="0" out="3599">
+      <property name="mlt_service">mix</property>
+      <property name="a_track">0</property>
+      <property name="b_track">4</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition in="0" out="3599">
+      <property name="mlt_service">mix</property>
+      <property name="a_track">0</property>
+      <property name="b_track">5</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+  </tractor>
+</mlt>
