@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="OmniALE 30秒歌唱声线替换：原始演唱视频匹配、目标声线重建与跨软件交付。Sol总分33，声音80%、音画10%、成片10%。">
+  <title>30秒演唱 · 声线重建与音画绑定 | OmniALE</title>
+  <link rel="canonical" href="https://huayuankou333.github.io/omniale/voice-reconstruction/v4.html">
+  <link rel="stylesheet" href="case-v4.css">
+</head>
+<body>
+<header>
+  <a class="wordmark" href="../" aria-label="OmniALE 首页">omni<span>ale</span><small>CASE STUDY / AUDIO + VISION</small></a>
+  <nav aria-label="页面导航"><a href="#watch">成片与试听</a><a href="#results">模型得分</a><a href="#scoring">评分规则</a><a href="#files">交付文件</a></nav>
+</header>
+<main>
+  <section class="hero">
+    <div class="eyebrow">VOICE RECONSTRUCTION <span>V4 / 30-SECOND PERFORMANCE</span></div>
+    <div class="hero-grid">
+      <div>
+        <h1>找到这段演唱，<br>重建另一副嗓音。</h1>
+        <p class="lead">从三条无声演唱记录中找到真正匹配的表演；根据独立录音复刻目标歌者声线，保留歌词、旋律与呼吸，交付同步的 30 秒视频。</p>
+        <div class="hero-actions"><a class="button" href="#watch">观看 Sol 成片 ↗</a><a href="v4-short/TASK.zh-CN.md">完整题目 →</a></div>
+        <p class="hero-note">REAPER → Shotcut / MLT <span>服务器 Docker 测试</span></p>
+      </div>
+      <aside class="score-card" aria-label="GPT-6.1 Sol 总分">
+        <div class="score-heading"><span>GPT-6.1 SOL</span><span>自动评测</span></div>
+        <div class="total-score"><strong id="total-score">33</strong><span>/ 100</span></div>
+        <p class="score-subtitle">声音重建 80% · 音画对应 10% · 成片可用性 10%</p>
+        <div class="score-divider"></div>
+        <div class="score-row"><span>声音重建 A</span><b>19<small>/100</small></b></div>
+        <div class="score-row"><span>音画对应 X</span><b>79.2<small>/100</small></b></div>
+        <div class="score-row"><span>成片可用性 V</span><b>100<small>/100</small></b></div>
+        <div class="gate"><span class="dot"></span> 工程门槛 PASS <span>0 分 · 独立重开与渲染</span></div>
+      </aside>
+    </div>
+    <div class="facts"><div><strong>30<small>s</small></strong><span>单段演唱 · 一条人声</span></div><div><strong>3 × 54<small>s</small></strong><span>匿名无声候选记录</span></div><div><strong>72<small>s</small></strong><span>三段独立目标参考</span></div><div><strong>2</strong><span>制作软件 · 工程门槛</span></div></div>
+  </section>
+
+  <section id="watch">
+    <div class="section-heading"><div><div class="eyebrow">01 / WATCH & LISTEN</div><h2>同一段表演，听声线的变化。</h2></div><p>先听目标歌者，再对比原始导唱与转换结果。<br>成片直接使用模型原始交付。</p></div>
+    <div class="media-grid">
+      <div class="film-panel"><video id="final-player" controls playsinline preload="metadata" aria-label="Sol 30秒声线替换成片"><source src="v4-short/Final.mp4" type="video/mp4"></video><div class="film-caption"><b>SOL / FINAL FILM</b><span>1280 × 720 · 25 fps · 30 s</span></div></div>
+      <aside class="reference-panel"><span class="pill">真实目标参考</span><h3>目标歌者的独立录音</h3><p>参考来自其他歌曲。需要恢复歌者身份，而不是复制相同歌词或旋律。</p><audio id="reference-player" controls preload="metadata" src="v4-short/preview/Target-reference.wav" aria-label="目标歌者参考"></audio><div class="reference-footer">TARGET IDENTITY<br><span>NUS-48E / RESEARCH SAMPLE</span></div></aside>
+    </div>
+    <div class="comparison-panel">
+      <div class="comparison-heading"><div><span class="eyebrow">A / B COMPARISON</span><h3>原始导唱 ↔ Sol 转换干声</h3></div><div class="switcher" role="group" aria-label="选择试听音频"><button type="button" data-track="guide" aria-pressed="true">原始导唱</button><button type="button" data-track="sol" aria-pressed="false">Sol 转换</button></div></div>
+      <audio id="comparison-player" controls preload="metadata" src="v4-short/preview/Guide.wav" aria-label="原始导唱与Sol转换干声"></audio>
+      <div class="comparison-foot"><span id="playing-label" aria-live="polite">正在对比：原始导唱</span><span>切换保留播放位置 · 单播放器发声</span></div>
+    </div>
+    <p class="caption">试听 WAV 仅作固定响度归一化；成片、原始 Voice.wav 与完整工程保持模型交付。研究声线替换样片，画面人物为原表演者，目标歌者未实际出演。</p>
+  </section>
+
+  <section id="results">
+    <div class="section-heading"><div><div class="eyebrow">02 / MODEL RESULT</div><h2>声音占主导，工程只作门槛。</h2></div><a href="v4-short/presentation.json">查看展示分数 JSON ↗</a></div>
+    <div class="result-grid"><article class="dimension"><div><span>声音重建</span><b>80%</b></div><strong>19<small>/100</small></strong><div class="bar"><span style="width:19%"></span></div><p>目标声线身份、自然度、伪影、内容与表演保持。</p><span class="contribution">加权贡献 15.20</span></article><article class="dimension"><div><span>音画对应</span><b>10%</b></div><strong>79.2<small>/100</small></strong><div class="bar"><span style="width:79.1667%"></span></div><p>真实表演绑定、同步锚点与可见发声覆盖。</p><span class="contribution">加权贡献 7.92</span></article><article class="dimension"><div><span>成片可用性</span><b>10%</b></div><strong>100<small>/100</small></strong><div class="bar"><span style="width:100%"></span></div><p>有效画面覆盖、构图与镜头连续性。</p><span class="contribution">加权贡献 10.00</span></article></div>
+    <div class="formula-line"><span>总分计算</span><code>19 × 0.80 + 79.1667 × 0.10 + 100 × 0.10 = 33.12</code><b>展示 33 /100</b></div>
+    <div class="run-strip"><div><span>受测模型</span><b>GPT-6.1 Sol / high</b></div><div><span>有效工作时间</span><b>34.75 分钟</b></div><div><span>成功调用</span><b>50 次</b></div><div><span>输出 tokens</span><b>42,547</b></div></div>
+    <p class="caption">单次运行。接口接收实际图片像素，声音通过工具处理；无原生音频或视频输入。素材处理、模型执行、评测与工程独立重渲染均在服务器 Docker 中完成。</p>
+  </section>
+
+  <section id="task">
+    <div class="section-heading"><div><div class="eyebrow">03 / TASK & DIFFICULTY</div><h2>把原始感知，变成可编辑的成片。</h2></div><a href="v4-short/TASK.zh-CN.md">题目原文 ↗</a></div>
+    <div class="difficulty-grid"><article><span class="small-number">01 / BIND</span><h3>找到真实表演</h3><p>三条候选记录没有声音、时间映射和口部标记。需要根据嘴部动作、发声起止与停顿找到对应的连续 30 秒。</p></article><article><span class="small-number">02 / RECONSTRUCT</span><h3>跨歌曲重建身份</h3><p>72 秒参考来自不同歌曲。转换须覆盖高低音、持续元音、快速音节、辅音和呼吸，并保留导唱表演。</p></article><article><span class="small-number">03 / DELIVER</span><h3>音频与视频工程互通</h3><p>在 REAPER 中完成干声与混音，在 Shotcut / MLT 中完成剪辑。工程移位后须能独立重开并重渲染。</p></article></div>
+    <div class="task-columns"><article><h3>模型获得什么</h3><p>30 秒干声导唱；三条各 54 秒的匿名无声候选视频；三段各 24 秒的目标歌者真实录音；制作要求和通用工具。</p><p>候选视频是同一表演者的独立叠录，非同时拍摄多机位。未提供目标专用模型、音素标注或正确片段映射。</p></article><article><h3>需要交付什么</h3><p>Final.mp4、Voice.wav、Mix.wav、Voice.RPP、Edit.mlt、timeline.json 与交接说明。一个正确的连续镜头即可。</p><p>禁止以原声补洞、生成嘴型、遮挡嘴部或加背景声掩盖问题。目标为这一段作品，不要求制作整首歌。</p></article></div>
+  </section>
+
+  <section id="scoring">
+    <div class="section-heading"><div><div class="eyebrow">04 / SCORING</div><h2>声音质量有独立约束。</h2></div><span class="pill outline">A 80% / X 10% / V 10%</span></div>
+    <div class="scoring-grid"><div class="table-wrap"><table><caption>声音 A 内部的 100 分</caption><thead><tr><th>维度</th><th>满分</th><th>检查内容</th></tr></thead><tbody><tr><td>可听目标身份</td><td>30</td><td>共鸣、元辅音与跨音区身份</td></tr><tr><td>独立身份特征</td><td>5</td><td>独立校准后的辅助身份测量</td></tr><tr><td>自然度</td><td>30</td><td>发声、音头、长音和乐句过渡</td></tr><tr><td>伪影控制</td><td>20</td><td>机械、金属、蜂鸣、涂抹与断裂</td></tr><tr><td>内容清晰与完整</td><td>10</td><td>歌词、音节与乐句完整性</td></tr><tr><td>表演保持</td><td>5</td><td>音高、节奏、边界与动态</td></tr></tbody></table></div><aside class="quality-panel"><div class="eyebrow">QUALITY RULES</div><h3>原样返回导唱，声音 0 分。</h3><p>仅改变整体增益、极性或微小延迟，仍按原样处理。</p><dl><div><dt>目标身份未建立</dt><dd>A ≤ 19</dd></div><div><dt>身份不稳或明显机械感</dt><dd>A ≤ 59</dd></div><div><dt>严重持续机械或破损</dt><dd>A ≤ 39</dd></div><div><dt>A &lt; 60 / A &lt; 80</dt><dd>S ≤ 59 / 79</dd></div></dl></aside></div>
+    <details><summary>展开汇总方法、音画规则与工程门槛 <span>＋</span></summary><div class="detail-grid"><article><h3>声音汇总</h3><p>将 30 秒划分为五个连续 6 秒窗口。主观等级 0–4 严格映射为 0 / 0 / 0.25 / 0.65 / 1，乘以维度满分。逐窗执行质量上限后，以 75% 均分 + 25% 最差窗口汇总，再执行全段上限。</p></article><article><h3>音画与成片</h3><p>X：真实表演绑定 30、同步锚点 50、可见发声 20。同步满分阈值 40 ms，160 ms 为零分；均值与最差 20% 各占一半。V：有效覆盖 40、构图 40、连续性 20。</p></article><article><h3>工程门槛</h3><p>验收格式、相对媒体引用、干声与混音一致性、成片音轨一致性，以及 REAPER 和 MLT 在移位目录下独立重开与渲染。通过不加分。</p></article><article><h3>验收条件</h3><p>S ≥ 80、A ≥ 80、X ≥ 80、V ≥ 70，并通过工程门槛。完整公式、参数、原始评测与审计分别保留在交付文件中。</p></article></div></details>
+  </section>
+
+  <section id="files">
+    <div class="section-heading"><div><div class="eyebrow">05 / FILES & PROVENANCE</div><h2>交付、规则与证据。</h2></div><a href="v2.html">历史：读唱双模式与三模型结果 ↗</a></div>
+    <div class="file-grid"><article><h3>模型交付</h3><a href="v4-short/Sol-deliverables.zip">Sol 原始交付与工程 <span>ZIP ↓</span></a><a href="v4-short/Final.mp4">完整成片 <span>MP4 ↗</span></a><a href="v4-short/Voice.wav">原始转换干声 <span>WAV ↓</span></a><a href="v4-short/HANDOFF.md">制作交接说明 <span>MD ↗</span></a></article><article><h3>题目与规则</h3><a href="v4-short/TASK.zh-CN.md">完整任务文件 <span>MD ↗</span></a><a href="v4-short/PROTOCOL.zh-CN.md">评分计算协议 <span>MD ↗</span></a><a href="v4-short/rubric.json">评分参数 <span>JSON ↗</span></a><a href="v4-short/run-protocol.json">运行条件与预算 <span>JSON ↗</span></a></article><article><h3>评测记录</h3><a href="v4-short/result.json">原始自动评测记录 <span>JSON ↗</span></a><a href="v4-short/REVIEW.zh-CN.md">评测审计记录 <span>MD ↗</span></a><a href="v4-short/engineering-gate.json">工程门槛证据 <span>JSON ↗</span></a><a href="v4-short/judge-and-preflight-evidence.zip">评审与对照记录 <span>ZIP ↓</span></a></article></div>
+    <p class="source-note">研究素材：Acappella（Montesinos、Kadandale、Haro，BMVC 2021）与 NUS-48E（Duan 等，APSIPA ASC 2013）。歌曲 The Circle of Life，作曲 Elton John，原作权利依原来源。<a href="v4-short/DATA-LICENSES.md">来源与许可 ↗</a>。本站展示声线替换研究样片，不代表画面人物或目标歌者的真实演唱合作。</p>
+  </section>
+</main>
+<footer><a class="wordmark" href="../">omni<span>ale</span></a><p>MULTIMODAL AGENT CASE STUDY<br>VOICE RECONSTRUCTION / 2026.11.15</p><a href="v2.html">历史版本 ↗</a></footer>
+<script src="case-v4.js" defer></script>
+</body>
+</html>
