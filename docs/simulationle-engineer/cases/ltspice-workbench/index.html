@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="从零搭建、修改和运行电路，在新的拓扑与参数下复现可信的 SPICE 仿真结果。">
+<title>LTspice｜晶体管级电路仿真工作台 · SimulationLE/Engineer</title>
+<link rel="icon" href="../../assets/favicon.svg"><link rel="stylesheet" href="../../assets/style.css"><link rel="stylesheet" href="../../assets/reconstruction.css">
+</head>
+<body class="rebuild-case-page">
+<a class="skip" href="#main">跳转到内容</a>
+<header class="topbar"><div class="nav-shell"><a class="brand" href="../../"><img src="../../assets/favicon.svg" alt="" width="30" height="30"><span>SimulationLE<span class="brand-slash">/</span>Engineer</span></a><nav aria-label="主导航"><a class="active" href="../../#reverse-simulation">仿真软件重建</a><a href="../../d3/">D3 专题</a><a href="../../related-work/">复现案例</a></nav><span class="nav-note"><i></i> CASEBOOK / 2026</span></div></header>
+<main id="main" class="shell rebuild-detail" data-software="LTspice">
+<nav class="rebuild-breadcrumb" aria-label="面包屑"><a href="../../">SLE 总览</a><span>/</span><a href="../../#reverse-simulation">仿真软件重建</a><span>/</span><span aria-current="page">LTspice</span></nav>
+<div class="rebuild-hero">
+<div><div class="eyebrow"><span class="line"></span> D2 · 电路与电子器件 · 仿真软件重建</div><h1>LTspice｜晶体管级电路仿真工作台</h1><p class="rebuild-lead">从零搭建、修改和运行电路，在新的拓扑与参数下复现可信的 SPICE 仿真结果。</p><a class="rebuild-action" href="instruction.md">查看完整冻结题面 <span aria-hidden="true">↗</span></a></div>
+<figure><a href="../../assets/reconstruction/ltspice-workbench.webp"><img src="../../assets/reconstruction/ltspice-workbench.webp" alt="Junction r16 的冻结软件界面" width="1440" height="950"></a><figcaption>Junction r16 的冻结交付在 Chromium 中运行 ADI 二分频电路。截图来自公开工程复测。</figcaption></figure>
+</div>
+<ul class="rebuild-metrics" aria-label="冻结交付和事后验收结果"><li><b>24/24</b><span>r16 原题验收检查通过</span></li><li><b>4/8</b><span>新增公开工程复测通过</span></li><li><b>8/8</b><span>复测指定浏览器流程通过</span></li></ul>
+<div class="rebuild-sections"><article><h2>题目要求</h2><p>交付可离线运行的开源应用，支持创建或导入 SPICE 网表、查看和重接拓扑、配置分析与探针、查看带单位的结果和波形。项目能保存、重开、重算并导出 JSON 与 CSV，命令行和网页共用求解引擎。</p></article>
+<article><h2>物理与数值难点</h2><p>覆盖 OP、DC、复数 AC 和瞬态分析。器件包括 R/C/L、独立与线性受控源、二极管和三端 NPN Gummel–Poon 晶体管；新电路必须保留 Early 效应、结电容及电荷存储等已声明参数。</p></article>
+<article><h2>验收方法</h2><p>以 LTspice 26.1.1 原生结果对照，ngspice 用于交叉核验。各工程的指定分析和浏览器流程全部通过才计通过。ADI 分频器分别检验互补稳态电平和阈值翻转时刻，并依据 LTspice 步长细化结果校准容差。</p></article></div>
+<details class="rebuild-prompt"><summary><strong>在网页展开完整冻结题面</strong></summary><pre lang="en"># Build a transistor-level SPICE workbench
+
+Build a local, open-source web application for circuit modeling and simulation. It must import or create a circuit, edit its connections and values, run studies, display waveforms, and reopen projects. The app must run in Chromium without an internet connection.
+
+## C1. Model and analysis coverage
+
+`/app/data/projects` contains project requests derived from the public ngspice projects in `/app/data/originals`. The conversion changes only analysis metadata and equivalent SPICE spelling. `/app/data/CONTRACT.md` defines the exchange format and numerical tolerances.
+
+- Bridge-T filter. Loaded passive network and complex AC response.
+- BJT differential pair. DC bias, current mirror, differential DC sweep and small-signal AC about the bias.
+- RCA3040 amplifier. Multistage OP, DC, AC and transient with Early effect, base series resistance, depletion capacitance, transit time and delayed SIN.
+- Schmitt trigger. Hysteretic switching with finite-edge PULSE, dynamic capacitance and charge storage.
+- Cascaded RTL inverters. DC transfer, saturation and transient storage through cascaded stages.
+
+Support the demonstrated combinations of R, C, L, V, I, linear E/G, D and three-terminal NPN Gummel–Poon Q. Preserve the parameters in the supplied models, including reverse gain, Early voltage, base and collector resistance, junction capacitances and forward/reverse transit times. Generalize to other values, node names and topologies using the same grammar. For invalid or unsupported data, singular or floating circuits and nonconvergence, return a diagnostic and no successful traces.
+
+You may implement a solver or use the provided open-source ngspice engine. Disclose the engine and version. Deliver an application with your own editing, study setup, validation, result presentation and project handling. A command wrapper, hardcoded answer cache, proprietary dependency or remote solver is outside the scope.
+
+## C2. Web workflow
+
+Provide the following accessible control names so the same Chromium workflow can test different implementations.
+
+- `New project`, file inputs `Import project` for project JSON and `Import deck` for SPICE, editable `Model` and `Circuit topology` view. Support creating a working circuit in an empty editor and inserting, deleting or reconnecting devices. Show the current topology with devices and terminal nodes after edits.
+- Editable `Study` and `Probes` text fields containing JSON. `Run analysis` solves the edited project. `Run status` communicates success, failure and stale results. `Result table` shows trace labels and units. `Result plot` shows swept, frequency or time-domain traces. For AC, make magnitude and phase available alongside real and imaginary data.
+- `Save project` persists the editable project. The `Saved projects` dropdown lets users reopen it on the same origin after a page reload. `Export project` downloads the current JSON request. `Export result` downloads the batch-format JSON. `Export CSV` exports one row per sample, including units in headers. Disable result exports when the selected project has changed since the last success.
+
+## C3. Delivery
+
+Place the complete source and deliverables under `/app/output`. Include `README.md` with startup, usage, supported grammar and limitations, `LICENSE`, and `dependencies.lock` recording pinned runtime dependencies. The app must launch from a fresh copy with `bash /app/output/launch.sh --host 127.0.0.1 --port PORT`. The batch entry is `bash /app/output/simulate.sh REQUEST.json RESULT.json`. Both use the same engine and work offline. Submit regular files and directories without links, at most 6,000 entries and 128 MB total. Verification uses numerical tests, browser workflows and delivery checks. All mandatory checks must pass for reward 1.
+</pre></details>
+<section class="rebuild-evidence" aria-labelledby="verification">
+<h2 id="verification">冻结交付验收</h2><p>原题 24/24 的 Harbor reward 为 1，版本为 replay-sol62-r16-clean-001。新增公开工程复测以工程为单位，结果为 4/8（50%），其中四个工程分别在 DC 或瞬态精度上失分。</p>
+<table class="rebuild-table" aria-label="逐工程验收结果"><thead><tr><th scope="col">公开工程</th><th scope="col">结果</th><th scope="col">验收发现</th></tr></thead><tbody><tr><th scope="row">ngspice diffpair</th><td class="is-gap">未通过</td><td>OP、AC 通过；差分 DC 扫描偏差达到容差 1.63 倍。</td></tr>
+<tr><th scope="row">ngspice RCA3040</th><td class="is-gap">未通过</td><td>OP、AC 与瞬态通过；DC 扫描达到容差 1.67 倍。</td></tr>
+<tr><th scope="row">ngspice Schmitt</th><td class="is-gap">未通过</td><td>一处瞬态采样超限，最大绝对误差 0.359 mV。</td></tr>
+<tr><th scope="row">ngspice 级联 RTL</th><td class="is-gap">未通过</td><td>瞬态通过；DC 最大误差约 3.545 mV。</td></tr>
+<tr><th scope="row">ngspice PZT 网络</th><td class="is-pass">通过</td><td>宽频带复电压响应通过。</td></tr>
+<tr><th scope="row">Xyce 双二极管限幅</th><td class="is-pass">通过</td><td>结电荷与驱动电流瞬态通过。</td></tr>
+<tr><th scope="row">Xyce BJT 电荷斜坡</th><td class="is-pass">通过</td><td>Gummel–Poon 存储电荷斜坡对齐。</td></tr>
+<tr><th scope="row">Analog Devices 双稳态二分频</th><td class="is-pass">通过</td><td>对自包含等价网表，互补电平及翻转时序通过。</td></tr></tbody></table>
+<ul class="rebuild-source"><li><a href="https://wiki.analog.com/university/courses/electronics/electronics-lab-24">Analog Devices · BJT 多谐振荡器实验 ↗</a></li>
+<li><a href="https://github.com/ngspice/ngspice">ngspice 公开工程仓库 ↗</a></li>
+<li><a href="https://github.com/Xyce/Xyce_Regression">Xyce 官方回归测试仓库 ↗</a></li></ul>
+</section>
+<p><a class="rebuild-link" href="../comsol-thermostructural/">查看另一道重建题 · COMSOL →</a></p>
+</main>
+<footer class="footer shell"><span class="footer-brand">SimulationLE/Engineer</span><span>工程仿真 Agent 案例档案 · 2026</span><a href="../../#cases">全部案例 ↗</a></footer>
+</body></html>

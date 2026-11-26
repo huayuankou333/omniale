@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="把工程模型、热载荷与材料行为变成可编辑、可重算、可检查空间结果的专业仿真项目。">
+<title>COMSOL｜热—结构多物理场工作台 · SimulationLE/Engineer</title>
+<link rel="icon" href="../../assets/favicon.svg"><link rel="stylesheet" href="../../assets/style.css"><link rel="stylesheet" href="../../assets/reconstruction.css">
+</head>
+<body class="rebuild-case-page">
+<a class="skip" href="#main">跳转到内容</a>
+<header class="topbar"><div class="nav-shell"><a class="brand" href="../../"><img src="../../assets/favicon.svg" alt="" width="30" height="30"><span>SimulationLE<span class="brand-slash">/</span>Engineer</span></a><nav aria-label="主导航"><a class="active" href="../../#reverse-simulation">仿真软件重建</a><a href="../../d3/">D3 专题</a><a href="../../related-work/">复现案例</a></nav><span class="nav-note"><i></i> CASEBOOK / 2026</span></div></header>
+<main id="main" class="shell rebuild-detail" data-software="COMSOL">
+<nav class="rebuild-breadcrumb" aria-label="面包屑"><a href="../../">SLE 总览</a><span>/</span><a href="../../#reverse-simulation">仿真软件重建</a><span>/</span><span aria-current="page">COMSOL</span></nav>
+<div class="rebuild-hero">
+<div><div class="eyebrow"><span class="line"></span> D3 · 热工与多物理场 · 仿真软件重建</div><h1>COMSOL｜热—结构多物理场工作台</h1><p class="rebuild-lead">把工程模型、热载荷与材料行为变成可编辑、可重算、可检查空间结果的专业仿真项目。</p><a class="rebuild-action" href="instruction.md">查看完整冻结题面 <span aria-hidden="true">↗</span></a></div>
+<figure><a href="../../assets/reconstruction/comsol-thermostructural.webp"><img src="../../assets/reconstruction/comsol-thermostructural.webp" alt="ThermoWarp r07c 的冻结软件界面" width="1440" height="950"></a><figcaption>ThermoWarp r07c 在 Chromium 中重新计算编辑后的压力容器冷却工况并显示温度结果。</figcaption></figure>
+</div>
+<ul class="rebuild-metrics" aria-label="冻结交付和事后验收结果"><li><b>21/21</b><span>r07c 原题验收检查通过</span></li><li><b>2/10</b><span>基础案沿用原探针口径</span></li><li><b>0/10</b><span>十案严格事后能力验收</span></li></ul>
+<div class="rebuild-sections"><article><h2>题目要求</h2><p>交付可离线运行的开源热—结构工作台，支持修改模型、载荷和分析设置，重新求解、保存重开、检查探针和温度场，并导出结果。原题给定五个热—结构工程和三个来自 COMSOL 的研究。</p></article>
+<article><h2>物理与数值难点</h2><p>覆盖瞬态双向热弹性、三维几何非线性、热塑性、接触导热、腔体辐射、温度相关材料，以及压力容器热冲击中热场向历史相关力学计算的传递。</p></article>
+<article><h2>验收方法</h2><p>十案事后审计包含两个基础工程及八个 COMSOL Application Gallery 官方公开模型。严格规则要求等价物理输入、原工况与编辑工况对照、真实空间结果及浏览器工作流。现阶段部分原生场、编辑工况和收敛容差尚未补齐，明确缺失的必过产品能力可直接据此判定。</p></article></div>
+<details class="rebuild-prompt"><summary><strong>在网页展开完整冻结题面</strong></summary><pre lang="en"># Build a thermal–structural simulation workbench
+
+Deliver an open-source local application for editing thermal–structural models and studies, running simulations, inspecting their results and saving projects. Run in Chromium offline. Support the five thermal–structural projects and the three COMSOL-derived verification studies supplied under `/app/data`. The request, result, units and tolerances are specified in `/app/data/CONTRACT.md`.
+
+## T1. Required physical capabilities
+
+| Project | Physics to preserve |
+| --- | --- |
+| H01 COMET quarter plate | Circular hole and symmetry, transient plane strain, temperature-induced stress and mechanical strain-rate feedback in the heat equation, transient temperature and displacement probes. |
+| H02 CalculiX beampt | 3-D solid mesh, geometric nonlinearity, temperature-driven elastoplasticity, isotropic hardening, displacement and stress at integration points. |
+| H03 CalculiX thermomech | 3-D solid mesh, cavity radiation with exchange between surfaces and absolute-temperature fourth power, coupled steady heating, standalone thermal step and subsequent mechanical equilibrium with state transfer. |
+| H04 CalculiX contact9 | 3-D transient dynamics, unilateral mechanical contact with opening and closing, contact conductance and changing active contact set. |
+| H05 CalculiX beamt4 | 3-D thermoelastic deformation with tabulated elastic modulus and thermal expansion, initial and reference temperature semantics and prescribed nonuniform nodal temperatures. |
+
+Import the supplied structured project requests, including the original CalculiX `.inp` decks without removing input cards, structures or physical terms. Support edits of values, loads, material constants and identifiers in the demonstrated deck subset. The H01 public mesh retains the original circular-hole approximation. Use editable JSON parameters for H01. Report malformed or unsupported data and solver failures with a diagnostic, leaving successful output empty. Provide the named displacement, stress, temperature and contact observables in the units and times used by the project.
+
+You may integrate the provided open-source CalculiX and FEniCS tools or implement equivalent algorithms. Disclose the engine and version. The app must manage models, editable physical inputs, studies, results and durable projects. Proprietary dependencies, remote solves, fixed-answer files and a wrapper without an editable workbench are out of scope.
+
+## T2. Engineering workflow
+
+Provide these accessible control names. Layout and appearance are open to design.
+
+- `New project`, `Import project` file input for request JSON, and `Import deck` file input for CalculiX `.inp` files. Support typing or pasting a valid input into the blank `Model` field, and editing model and study after import. Show geometry or mesh information in `Model overview` so users can confirm what was submitted.
+- Editable `Study` JSON object and `Probes` JSON array in editable text fields. `Run analysis` executes calculation with current settings. In `Run status`, indicate success, failure and whether output is stale. Use a `Result table` with units and named observations and a `Result plot` for transient temperature, displacement or contact traces.
+- `Save project` persists editable inputs. A user can reopen one from a `Saved projects` list or dropdown on the same origin after a reload. `Export project`, `Export result` and `Export CSV` download a reopenable request, the actual batch-format result and all samples with units. Changing a value invalidates result exports until a fresh solve succeeds.
+
+## T3. Delivery
+
+Put full source, `LICENSE`, `README.md` and `dependencies.lock` in `/app/output`. Explain installation, usage, physics and known limits. Provide `bash /app/output/launch.sh --host 127.0.0.1 --port PORT` and `bash /app/output/simulate.sh REQUEST.json RESULT.json`. Both entry points run offline using the same engine. Submit regular files and directories without links, at most 6,000 entries and 128 MB total. All mandatory numerical, workflow and delivery checks must pass for reward 1.
+
+A rejected model may exit the batch command with status 0 or 1 if it writes a conforming error result. H01 JSON may be reformatted without changing its values. The provenance hash binds to the exact model text exported for that run.
+
+## T4. Public COMSOL cavity-radiation benchmark
+
+The workbench must also reproduce the public `Radiation in a Cavity` study (Application 447) and support numerical recalculation after physical edits. The editable model and the units for this study are in `/app/data/COMSOL-CAVITY.md`. Import `/app/data/projects/C447.request.json` in both entry points. Use `analysis.kind: &quot;cavity&quot;` for this study. Apply the specified thermal conductivity, independent wall solids, steady conduction, imposed surface fluxes, thermal insulation, fixed temperatures, and diffuse gray surface-to-surface exchange on the interior of a closed cavity. Resolve the spatial temperature variation along each wall. Report inner-wall average temperature and signed integrated normal heat flux for named walls.
+
+In Chromium, show the cavity geometry or mesh with wall identifiers. A user can import and edit a wall&#x27;s emissivity, run the changed model, inspect observations and their units, save and reopen the changed study, recompute, and export JSON and CSV. Allow formatting changes that preserve the values. Both entry points must run offline without a COMSOL runtime and identify their numerical engine. An error must leave no successful result available. The same implementation must support valid rectangular wall thicknesses, coefficients, and loads beyond the example inputs.
+
+## T5. Public COMSOL fire heating benchmark
+
+Reproduce the published Heating Process verification example for a square cross section heated by convection and radiation. Use `/app/data/projects/FIRE.request.json` and `/app/data/COMSOL-HEATING.md`. The workbench must solve transient conduction with temperature-dependent conductivity, show a time-series plot of center temperature, allow a film coefficient edit and fresh solve, and keep the standard save, reopen and export workflows. Show the cross section or mesh information and identify the center probe.
+
+## COMSOL 12805 pressure vessel thermal shock
+
+Implement the study and result contract in `/app/data/COMSOL-VESSEL.md`. Import `/app/data/projects/VESSEL-original.request.json` and edit the vessel cooling schedule. Support steady heat transfer and pressure preload, the transient thermal field, sequential transfer to a temperature-dependent elastic-plastic model with accumulated state, and offline field inspection, persistence and export. The neutral mesh is `/app/data/vessel12805.mesh.json`. Test schedules have the same endpoints as the original and include other valid intermediate knots. Open-source simulation engines are permitted.
+</pre></details>
+<section class="rebuild-evidence" aria-labelledby="verification">
+<h2 id="verification">冻结交付验收</h2><p>原题 21/21 的 Harbor reward 为 1，产物为 sol62-comsol-pilot-r07c-resume-001。十案严格事后能力审计为 0/100，保留两道基础题的原探针口径时为 20/100。压力容器工程的补充后处理测得最大应力差 14.91 MPa、最低点时间差 120 s。该应力由评测侧计算。完整的十案 COMSOL 原生数值对标仍待完成。</p>
+<table class="rebuild-table" aria-label="逐工程验收结果"><thead><tr><th scope="col">公开工程</th><th scope="col">结果</th><th scope="col">验收发现</th></tr></thead><tbody><tr><th scope="row">B01 · COMET 四分之一孔板</th><td class="is-gap">严格未通过</td><td>原有探针和载荷编辑重算通过，缺温度／位移空间场。</td></tr>
+<tr><th scope="row">B02 · CalculiX 动态热接触</th><td class="is-gap">严格未通过</td><td>原有接触活动数完全一致，缺空间结果场。</td></tr>
+<tr><th scope="row">12805 · 压力容器热冲击</th><td class="is-gap">严格未通过</td><td>原有温度、塑性检查通过，无法导出官方 41 点线性化应力曲线。</td></tr>
+<tr><th scope="row">10476 · 涡轮静叶热应力</th><td class="is-gap">严格未通过</td><td>原始四面体导入受限，缺通用温度、位移与应力场。</td></tr>
+<tr><th scope="row">14659 · 电子封装接触热阻</th><td class="is-gap">严格未通过</td><td>缺热阻扫描、界面热流及空间场输出。</td></tr>
+<tr><th scope="row">481 · 贴片电阻热—结构</th><td class="is-gap">严格未通过</td><td>缺三维温度、位移和应力场。</td></tr>
+<tr><th scope="row">504 · 快速热退火</th><td class="is-gap">严格未通过</td><td>缺完整三维瞬态表面辐射与辐照结果。</td></tr>
+<tr><th scope="row">80681 · 狭窄间隙辐射</th><td class="is-gap">严格未通过</td><td>缺三板空间温度和辐射通量。</td></tr>
+<tr><th scope="row">46831 · 多层结构受火</th><td class="is-gap">严格未通过</td><td>受火入口限均质截面、常数热容。</td></tr>
+<tr><th scope="row">12573 · 三维建筑热桥</th><td class="is-gap">严格未通过</td><td>缺空间温度场、表面极值和区域热流积分。</td></tr></tbody></table>
+<ul class="rebuild-source"><li><a href="https://www.comsol.com/model/temperature-dependent-plasticity-in-pressure-vessel-12805">COMSOL 12805 · 压力容器 ↗</a></li>
+<li><a href="https://www.comsol.com/model/thermal-stress-analysis-of-a-turbine-stator-blade-10476">COMSOL 10476 · 涡轮静叶 ↗</a></li>
+<li><a href="https://www.comsol.com/model/thermal-bridges-in-building-construction-3d-structure-between-two-floors-12573">COMSOL 12573 · 三维热桥 ↗</a></li></ul>
+</section>
+<p><a class="rebuild-link" href="../ltspice-workbench/">查看另一道重建题 · LTspice →</a></p>
+</main>
+<footer class="footer shell"><span class="footer-brand">SimulationLE/Engineer</span><span>工程仿真 Agent 案例档案 · 2026</span><a href="../../#cases">全部案例 ↗</a></footer>
+</body></html>
