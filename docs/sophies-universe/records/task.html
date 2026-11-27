@@ -1,0 +1,17 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sophie’s Universe · task</title><link rel="stylesheet" href="../showcase.css"></head><body><header class="masthead wrap"><a class="brand" href="../">OmniALE <span>返回案例 ↗</span></a></header><main class="wrap section record"><h1>Sophie’s Universe 从起针到成品</h1>
+<p>为已经会钩针基本针法、第一次钩 Sophie’s Universe 的读者制作中文图文 PDF。用提供的 18 段讲解视频，带读者从空钩针和毛线起步，做到第 113 圈结束并完成收尾。第 25 圈是可选装饰，明确说明是否采用。第 113 圈之后的可选加宽和追加边饰不纳入主教程。</p>
+<h2>可用输入</h2>
+<ul>
+<li><code>/input/input/videos/part-01.mp4</code> 至 <code>part-18.mp4</code> 是连续教程。<code>/input/input/source_index.json</code> 提供分集、圈数范围、视频内章节时间和英语转写文件的位置。转写可能识错针法或数字，以实拍与上下文复核。</li>
+<li><code>/input/input/cards/</code> 包含四张待续作的局部照片和朝向说明。可以查找原片并结合相邻动作，但必须把针目位置映射到手头照片。用实际能看到的针柱、针顶、线圈或链空间来定位。</li>
+<li><code>/input/evidence.schema.json</code> 规定了机器可读索引。只使用此处给出的素材和本轮工作区。</li>
+</ul>
+<h2>交付内容</h2>
+<ol>
+<li>在 <code>/work/output/tutorial.pdf</code> 写入可独立跟做的中文图文教程。按圈编号清楚覆盖 1–113 圈，解释起针、重复单位、应落入的位置、转角或换边、闭圈和收尾。非常相近的重复圈可以合并，保留每圈差异和验收方法。不同颜色的线材应该能按结构识别。区分针顶、前后半针、针柱、链空间，说明跨圈或隔针时实际操作哪个部位。</li>
+<li>对关键动作给取自真实画面的放大图或自己绘制的针路示意。至少八处新增标注，每处能在图上定位一个具体目标，并说明上钩方向和操作后的可见状态。至少覆盖中心形态变换、长短边差异、立体花纹和末段边饰。</li>
+<li>给 C01–C04 各一张续作页。先就题图标出已完成和未完成部位，再标出下一针或下一重复单元的落点、操作方向和验收状态。对照片中遮挡的内容说明如何补看或确认。只报圈号、针数或时间点不足以指导续作。</li>
+<li>给两条可逆恢复方法，各注明诊断条件、退到哪个可确认的结构、复做的第一步和收尾检查。至少一条配图。区分视频有依据的动作和教学补充。</li>
+<li>在 <code>/work/output/evidence.json</code> 记录每圈对应的 PDF 页码、分集和片内秒数，以及四卡位置。页码从 1 开始。作者署名和来源放在 PDF 里。</li>
+</ol>
+<p>提交前对真实 PDF 页面做渲染检查。从启动起两小时，包含接口、重试与工具执行。轮次不限。尽早将完整路线写进 PDF，并在后续迭代精修。使用 <code>check_submission</code> 检查后调用 <code>finish</code>。</p></main></body></html>
